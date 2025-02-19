@@ -10,6 +10,9 @@ interface TweetCardProps {
 
 export function TweetCard({ tweet }: TweetCardProps) {
   const tweetUrl = `https://twitter.com/${tweet.author?.username}/status/${tweet.id}`;
+  const urls = tweet.entities?.urls;
+  const hasUrls = urls && urls.length > 0;
+  const mainUrl = hasUrls ? urls[0] : null;
 
   const handleClick = () => {
     window.open(tweetUrl, '_blank', 'noopener,noreferrer');
@@ -54,6 +57,40 @@ export function TweetCard({ tweet }: TweetCardProps) {
             )}
           </div>
           <p className="text-gray-800 mt-1 whitespace-pre-wrap">{tweet.text}</p>
+          
+          {/* Linked Content Preview */}
+          {mainUrl && mainUrl.expanded_url && (
+            <div className="mt-3 border border-gray-200 rounded-lg overflow-hidden hover:bg-gray-50">
+              {mainUrl.images && mainUrl.images[0] && (
+                <div className="relative w-full h-52">
+                  <Image
+                    src={mainUrl.images[0].url}
+                    alt={mainUrl.title || 'Link preview'}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  />
+                </div>
+              )}
+              <div className="p-3">
+                <div className="text-gray-500 text-sm truncate">
+                  {mainUrl.display_url}
+                </div>
+                {mainUrl.title && (
+                  <div className="font-bold text-gray-900 mt-1">
+                    {mainUrl.title}
+                  </div>
+                )}
+                {mainUrl.description && (
+                  <div className="text-gray-600 text-sm mt-1 line-clamp-2">
+                    {mainUrl.description}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Media Grid */}
           {tweet.media && tweet.media.length > 0 && (
             <div className={`grid gap-2 mt-3 ${
               tweet.media.length === 1 ? 'grid-cols-1' :

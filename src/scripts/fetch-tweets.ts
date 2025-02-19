@@ -69,7 +69,13 @@ async function fetchTweets(): Promise<void> {
     // Fetch tweets with media
     const tweetsResponse = await v2Client.userTimeline(user.data.id, {
       max_results: TWEETS_PER_MONTH,
-      'tweet.fields': ['created_at', 'attachments', 'author_id'],
+      'tweet.fields': [
+        'created_at',
+        'attachments',
+        'author_id',
+        'entities',
+        'context_annotations'
+      ],
       'user.fields': ['username', 'name', 'profile_image_url'],
       'media.fields': ['url', 'preview_image_url', 'type', 'width', 'height'],
       expansions: ['attachments.media_keys', 'author_id'],
@@ -85,6 +91,34 @@ async function fetchTweets(): Promise<void> {
     const enrichedTweets: EnrichedTweet[] = [];
     for (const tweet of tweets) {
       const enriched = enrichTweet(tweet, tweetsResponse.includes?.users);
+      
+      // Process URLs if present
+      if (tweet.entities?.urls) {
+        for (const url of tweet.entities.urls) {
+          try {
+            // Fetch metadata for each URL
+            const response = await fetch(url.expanded_url);
+            const html = await response.text();
+            
+            // Extract metadata from HTML
+            const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+            const descriptionMatch = html.match(/<meta[^>]*name="description"[^>]*content="([^"]*)"[^>]*>/i);
+            const ogImageMatch = html.match(/<meta[^>]*property="og:image"[^>]*content="([^"]*)"[^>]*>/i);
+            
+            url.title = titleMatch?.[1] || '';
+            url.description = descriptionMatch?.[1] || '';
+            if (ogImageMatch?.[1]) {
+              url.images = [{
+                url: ogImageMatch[1],
+                width: 1200, // Default width
+                height: 630  // Default height
+              }];
+            }
+          } catch (error) {
+            console.error(`Error fetching metadata for URL ${url.expanded_url}:`, error);
+          }
+        }
+      }
       
       // Download media if present
       if (enriched.media?.length) {
