@@ -61,7 +61,7 @@ export function TweetCard({ tweet }: TweetCardProps) {
           {/* Linked Content Preview */}
           {mainUrl && mainUrl.expanded_url && (
             <div className="mt-3 border border-gray-200 rounded-lg overflow-hidden hover:bg-gray-50">
-              {mainUrl.images && mainUrl.images[0] && (
+              {mainUrl.images?.[0]?.url && (
                 <div className="relative w-full h-52">
                   <Image
                     src={mainUrl.images[0].url}
@@ -69,6 +69,7 @@ export function TweetCard({ tweet }: TweetCardProps) {
                     fill
                     className="object-cover"
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    unoptimized
                   />
                 </div>
               )}
