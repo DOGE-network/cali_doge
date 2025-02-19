@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Environment variables
+.env.local
+
 # User-specific files
 *.rsuser
 *.suo
@@ -17,6 +20,9 @@
 mono_crash.*
 
 # Build results
+node_modules/
+.next/
+tsconfig.tsbuildinfo
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
