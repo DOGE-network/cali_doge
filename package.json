@@ -1,0 +1,56 @@
+{
+  "name": "cali-doge",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "typecheck": "tsc --noEmit",
+    "fetch-tweets": "ts-node --project tsconfig.json src/scripts/fetch-tweets.ts"
+  },
+  "dependencies": {
+    "@types/mime-types": "^2.1.4",
+    "@types/node-cron": "^3.0.11",
+    "date-fns": "^4.1.0",
+    "mime-types": "^2.1.35",
+    "next": "^14.2.24",
+    "node-cron": "^3.0.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "twitter-api-v2": "^1.20.1"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/json-schema": "^7.0.15",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "autoprefixer": "^10.4.17",
+    "dotenv": "^16.4.7",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}
