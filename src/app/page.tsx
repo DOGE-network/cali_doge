@@ -1,20 +1,12 @@
 import { TweetGrid } from '@/components/tweets/TweetGrid';
-import { readFileSync, readdirSync } from 'fs';
+import { readFileSync } from 'fs';
 import { join } from 'path';
 import { TwitterApiResponse } from '@/lib/twitter/types';
 
 async function getLatestTweets(): Promise<TwitterApiResponse | null> {
   try {
-    const tweetsDir = join(process.cwd(), 'src/data/tweets');
-    const files = readdirSync(tweetsDir)
-      .filter(file => file.startsWith('tweets_') && file.endsWith('.json'))
-      .sort()
-      .reverse();
-
-    if (!files.length) return null;
-
-    const filePath = join(tweetsDir, files[0]);
-    const fileContent = readFileSync(filePath, 'utf-8');
+    const tweetsFile = join(process.cwd(), 'src/data/tweets/tweets.json');
+    const fileContent = readFileSync(tweetsFile, 'utf-8');
     return JSON.parse(fileContent);
   } catch (error) {
     console.error('Error loading tweets:', error);
