@@ -1,4 +1,4 @@
-import { TweetV2, UserV2 } from 'twitter-api-v2';
+import { TweetV2, UserV2, TweetEntitiesV2 } from 'twitter-api-v2';
 
 export interface TwitterMedia {
   type: 'photo' | 'video' | 'animated_gif';
@@ -8,10 +8,28 @@ export interface TwitterMedia {
   height?: number;
 }
 
-export interface EnrichedTweet extends TweetV2 {
+export interface UrlMetadata {
+  url: string;
+  expanded_url: string;
+  display_url: string;
+  title?: string;
+  description?: string;
+  images?: Array<{
+    url: string;
+    width: number;
+    height: number;
+  }>;
+}
+
+export interface EnrichedTweetEntities extends TweetEntitiesV2 {
+  urls: (TweetEntitiesV2['urls'][0] & UrlMetadata)[];
+}
+
+export interface EnrichedTweet extends Omit<TweetV2, 'entities'> {
   media?: TwitterMedia[];
   author?: UserV2;
   created_at_formatted?: string;
+  entities?: EnrichedTweetEntities;
 }
 
 export interface TwitterApiResponse {

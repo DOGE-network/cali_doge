@@ -35,6 +35,23 @@ export function enrichTweet(
     enriched.media = media;
   }
 
+  // Enrich URLs with metadata
+  if (tweet.entities?.urls) {
+    enriched.entities = {
+      ...tweet.entities,
+      urls: tweet.entities.urls.map(url => ({
+        ...url,
+        title: url.title || undefined,
+        description: url.description || undefined,
+        images: url.images?.map(img => ({
+          url: img.url,
+          width: img.width,
+          height: img.height
+        }))
+      }))
+    };
+  }
+
   return enriched;
 }
 

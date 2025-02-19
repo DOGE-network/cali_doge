@@ -69,7 +69,13 @@ async function fetchTweets(): Promise<void> {
     // Fetch tweets with media
     const tweetsResponse = await v2Client.userTimeline(user.data.id, {
       max_results: TWEETS_PER_MONTH,
-      'tweet.fields': ['created_at', 'attachments', 'author_id'],
+      'tweet.fields': [
+        'created_at',
+        'attachments',
+        'author_id',
+        'entities',
+        'context_annotations'
+      ],
       'user.fields': ['username', 'name', 'profile_image_url'],
       'media.fields': ['url', 'preview_image_url', 'type', 'width', 'height'],
       expansions: ['attachments.media_keys', 'author_id'],
@@ -85,6 +91,51 @@ async function fetchTweets(): Promise<void> {
     const enrichedTweets: EnrichedTweet[] = [];
     for (const tweet of tweets) {
       const enriched = enrichTweet(tweet, tweetsResponse.includes?.users);
+      
+      // Process URLs if present
+      if (tweet.entities?.urls) {
+        for (const url of tweet.entities.urls) {
+          try {
+            // Fetch metadata for each URL
+            const response = await fetch(url.expanded_url, {
+              headers: {
+                'User-Agent': 'Mozilla/5.0 (compatible; CaliforniaDOGE/1.0)'
+              }
+            });
+            const html = await response.text();
+            
+            // Extract metadata from HTML with better tag parsing
+            const titleMatch = html.match(/<meta[^>]*property="og:title"[^>]*content="([^"]*)"[^>]*>/i) 
+              || html.match(/<title>(.*?)<\/title>/i);
+            const descriptionMatch = html.match(/<meta[^>]*property="og:description"[^>]*content="([^"]*)"[^>]*>/i)
+              || html.match(/<meta[^>]*name="description"[^>]*content="([^"]*)"[^>]*>/i);
+            const ogImageMatch = html.match(/<meta[^>]*property="og:image"[^>]*content="([^"]*)"[^>]*>/i)
+              || html.match(/<meta[^>]*property="twitter:image"[^>]*content="([^"]*)"[^>]*>/i);
+            
+            url.title = titleMatch?.[1] || '';
+            url.description = descriptionMatch?.[1] || '';
+
+            // Validate image URL before adding
+            if (ogImageMatch?.[1]) {
+              const imageUrl = ogImageMatch[1];
+              try {
+                const imgResponse = await fetch(imageUrl, { method: 'HEAD' });
+                if (imgResponse.ok) {
+                  url.images = [{
+                    url: imageUrl,
+                    width: 1200,  // Default width
+                    height: 630   // Default height
+                  }];
+                }
+              } catch (imgError) {
+                console.error(`Error validating image URL ${imageUrl}:`, imgError);
+              }
+            }
+          } catch (error) {
+            console.error(`Error fetching metadata for URL ${url.expanded_url}:`, error);
+          }
+        }
+      }
       
       // Download media if present
       if (enriched.media?.length) {
