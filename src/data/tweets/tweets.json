@@ -1,0 +1,1361 @@
+{
+  "tweets": [
+    {
+      "text": "DOGE Update as of 13 Feb 2025 (5/5)\nRecent major developments regarding the Department of Government Efficiency (DOGE) as of February 13, 2025, along with analysis of potential implications for state governments. Source: https://t.co/X9BtM9pyg5, https://t.co/NVwjir2l2M",
+      "created_at": "2025-02-19T13:59:32.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1892212426684125691"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 221,
+            "end": 244,
+            "url": "https://t.co/X9BtM9pyg5",
+            "expanded_url": "https://whitehouse.gov/briefing-room/statements-releases/2025/02/13/remarks-by-the-president-on-government-efficiency-initiatives/",
+            "display_url": "whitehouse.gov/briefing-room/…",
+            "status": 404,
+            "unwound_url": "https://www.whitehouse.gov/briefing-room/statements-releases/2025/02/13/remarks-by-the-president-on-government-efficiency-initiatives/"
+          },
+          {
+            "start": 246,
+            "end": 269,
+            "url": "https://t.co/NVwjir2l2M",
+            "expanded_url": "https://opendatainitiative.io/blog",
+            "display_url": "opendatainitiative.io/blog",
+            "status": 200,
+            "title": "Open Data Initiative",
+            "description": "Advancing government financial transparency through open data",
+            "unwound_url": "https://opendatainitiative.io/blog"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 3,
+            "probability": 0.6491,
+            "type": "Other",
+            "normalized_text": "DOGE"
+          },
+          {
+            "start": 76,
+            "end": 110,
+            "probability": 0.617,
+            "type": "Organization",
+            "normalized_text": "Department of Government Efficiency"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1892212426684125691",
+      "created_at_formatted": "Feb 19, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "Federal Agencies Oversight as of 14 Feb 2025 (4/5)\nAn updated table reflects the latest information on grants, money connections to NGOs, and state programs as of February 14, 2025. Source: https://t.co/LRP7dsAxcF, https://t.co/NVwjir2SSk",
+      "created_at": "2025-02-19T13:59:32.000Z",
+      "edit_history_tweet_ids": [
+        "1892212424482398530"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 190,
+            "end": 213,
+            "url": "https://t.co/LRP7dsAxcF",
+            "expanded_url": "https://usaspending.gov",
+            "display_url": "usaspending.gov",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1891996292425056259/HlfM7Kqd?format=png&name=orig",
+                "width": 1200,
+                "height": 630
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1891996292425056259/HlfM7Kqd?format=png&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Government Spending Open Data | USAspending",
+            "description": "USAspending is the official open data source of federal spending information. We track how federal money is spent in communities across America and beyond. Learn more about government spending through interactive tools that explore elements of the federal budget, such as federal loan, grant, and contract data.",
+            "unwound_url": "https://www.usaspending.gov/"
+          },
+          {
+            "start": 215,
+            "end": 238,
+            "url": "https://t.co/NVwjir2SSk",
+            "expanded_url": "https://opendatainitiative.io/blog",
+            "display_url": "opendatainitiative.io/blog",
+            "status": 200,
+            "title": "Open Data Initiative",
+            "description": "Advancing government financial transparency through open data",
+            "unwound_url": "https://opendatainitiative.io/blog"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 132,
+            "end": 135,
+            "probability": 0.4313,
+            "type": "Other",
+            "normalized_text": "NGOs"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1892212424482398530",
+      "created_at_formatted": "Feb 19, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "USAID Connections to California Organizations (3/5)\nUSAID has a long-standing history of collaborating with academic institutions, non-governmental organizations, and private sector entities in California. Source: https://t.co/3p9Uy8Odus , https://t.co/NVwjir2l2M",
+      "created_at": "2025-02-19T13:59:31.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974596157251587",
+            "name": "Government/Education"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974597226729473",
+            "name": "Non-profit - Government/Education"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10046650628",
+            "name": "USAID"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1892212421483225214"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 214,
+            "end": 237,
+            "url": "https://t.co/3p9Uy8Odus",
+            "expanded_url": "https://usaid.gov/partnerships",
+            "display_url": "usaid.gov/partnerships",
+            "status": 200,
+            "title": "U.S. Agency for International Development",
+            "unwound_url": "https://usaid.gov/partnerships"
+          },
+          {
+            "start": 240,
+            "end": 263,
+            "url": "https://t.co/NVwjir2l2M",
+            "expanded_url": "https://opendatainitiative.io/blog",
+            "display_url": "opendatainitiative.io/blog",
+            "status": 200,
+            "title": "Open Data Initiative",
+            "description": "Advancing government financial transparency through open data",
+            "unwound_url": "https://opendatainitiative.io/blog"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 4,
+            "probability": 0.4341,
+            "type": "Organization",
+            "normalized_text": "USAID"
+          },
+          {
+            "start": 21,
+            "end": 44,
+            "probability": 0.3398,
+            "type": "Other",
+            "normalized_text": "California Organizations"
+          },
+          {
+            "start": 52,
+            "end": 56,
+            "probability": 0.6495,
+            "type": "Organization",
+            "normalized_text": "USAID"
+          },
+          {
+            "start": 194,
+            "end": 203,
+            "probability": 0.9885,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1892212421483225214",
+      "created_at_formatted": "Feb 19, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "Updates since the weekend (2/5)\nSince Feb 15 2025, the Department of Government Efficiency (DOGE) has focused on continuing its efficiency initiatives, working with agencies to simplify the credit card program, which involves 4.6 million accounts. Source: https://t.co/NGNkUcu3ov",
+      "created_at": "2025-02-19T13:59:31.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "1563854962383171585",
+            "name": "Credit Cards"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "1563854962383171585",
+            "name": "Credit Cards"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1892212419331821919"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 256,
+            "end": 279,
+            "url": "https://t.co/NGNkUcu3ov",
+            "expanded_url": "https://gao.gov/assets/gao-20-100.pdf",
+            "display_url": "gao.gov/assets/gao-20-…",
+            "status": 404,
+            "unwound_url": "https://www.gao.gov/assets/gao-20-100.pdf"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 55,
+            "end": 89,
+            "probability": 0.595,
+            "type": "Organization",
+            "normalized_text": "Department of Government Efficiency"
+          },
+          {
+            "start": 92,
+            "end": 95,
+            "probability": 0.2767,
+            "type": "Other",
+            "normalized_text": "DOGE"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1892212419331821919",
+      "created_at_formatted": "Feb 19, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "Social Security and COBOL (1/5)\nRecent investigations into Social Security Administration records have revealed an intriguing statistical anomaly regarding beneficiary age data. Source: https://t.co/pEiZhUwrAW , https://t.co/NVwjir2l2M",
+      "created_at": "2025-02-19T13:59:30.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1047123725525479425",
+            "name": "Information security",
+            "description": "Information Security"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1047123725525479425",
+            "name": "Information security",
+            "description": "Information Security"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1892212417125343727"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 186,
+            "end": 209,
+            "url": "https://t.co/pEiZhUwrAW",
+            "expanded_url": "https://ssa.gov/oact/NOTES/as120/LifeTables_Tbl_7.html",
+            "display_url": "ssa.gov/oact/NOTES/as1…",
+            "status": 200,
+            "title": "Table 7.html",
+            "description": "ACTUARIAL STUDY NO. 120 by Felicitie C. Bell and Michael L.",
+            "unwound_url": "https://www.ssa.gov/oact/NOTES/as120/LifeTables_Tbl_7.html"
+          },
+          {
+            "start": 212,
+            "end": 235,
+            "url": "https://t.co/NVwjir2l2M",
+            "expanded_url": "https://opendatainitiative.io/blog",
+            "display_url": "opendatainitiative.io/blog",
+            "status": 200,
+            "title": "Open Data Initiative",
+            "description": "Advancing government financial transparency through open data",
+            "unwound_url": "https://opendatainitiative.io/blog"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 20,
+            "end": 24,
+            "probability": 0.5789,
+            "type": "Other",
+            "normalized_text": "COBOL"
+          },
+          {
+            "start": 66,
+            "end": 73,
+            "probability": 0.5326,
+            "type": "Organization",
+            "normalized_text": "Security"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1892212417125343727",
+      "created_at_formatted": "Feb 19, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "Are the Federal @DOGE efforts going to result in Congress making the necessary structural changes so the waste, fraud and abuse does not reoccur…",
+      "created_at": "2025-02-14T19:36:31.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 16,
+            "end": 21,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 49,
+            "end": 56,
+            "probability": 0.7462,
+            "type": "Organization",
+            "normalized_text": "Congress"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1890485290936004837"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1890485290936004837",
+      "created_at_formatted": "Feb 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "RT @DavidSacks: WHY TRUMP WON\n\nWhile the legacy media has a meltdown searching for hitherto undiagnosed psychoses in the electorate to expl…",
+      "created_at": "2025-02-07T03:31:16.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1836137739353292800",
+            "name": "2024 US Election",
+            "description": "Brought to you by @Polymarket. Get live, unbiased 2024 election forecasts: https://polymarket.com/elections\n"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 14,
+            "username": "DavidSacks",
+            "id": "1137701"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1887705660705710364"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1887705660705710364",
+      "created_at_formatted": "Feb 6, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "🚨 Regulatory Burden 🚨\n\nCA: 1 regulation per 97 workers\nUS: 1 regulation per 191 workers\n\nCA has 2x the regulatory density of the national average\n\nDive deeper into the regulatory impact: https://t.co/8G8GLRAXr1",
+      "created_at": "2025-02-06T00:58:05.000Z",
+      "edit_history_tweet_ids": [
+        "1887304724569071787"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 187,
+            "end": 210,
+            "url": "https://t.co/8G8GLRAXr1",
+            "expanded_url": "https://opendatainitiative.io",
+            "display_url": "opendatainitiative.io",
+            "status": 200,
+            "title": "Open Data Initiative",
+            "description": "Advancing government financial transparency through open data",
+            "unwound_url": "https://opendatainitiative.io"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 23,
+            "end": 24,
+            "probability": 0.8848,
+            "type": "Place",
+            "normalized_text": "CA"
+          },
+          {
+            "start": 55,
+            "end": 56,
+            "probability": 0.8988,
+            "type": "Place",
+            "normalized_text": "US"
+          },
+          {
+            "start": 89,
+            "end": 90,
+            "probability": 0.8084,
+            "type": "Place",
+            "normalized_text": "CA"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1887304724569071787",
+      "created_at_formatted": "Feb 5, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "Our California government has failed. Income is dropping and not likely to return. Costs are rising with little understanding of what to do next. We need a reset.",
+      "created_at": "2025-02-05T21:31:31.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1887252740730138663"
+      ],
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 4,
+            "end": 13,
+            "probability": 0.958,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "id": "1887252740730138663",
+      "created_at_formatted": "Feb 5, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "The sad truth is California is broken and busted. Years of neglecting the basics in favor of appearances has gotten us to this place.",
+      "created_at": "2025-02-05T21:29:12.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1887252157797441812"
+      ],
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 17,
+            "end": 26,
+            "probability": 0.9792,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "id": "1887252157797441812",
+      "created_at_formatted": "Feb 5, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "You will find thoughtful information on California business climate. Some on how we got here. Mostly on what to do next.",
+      "created_at": "2025-02-05T21:20:17.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1887249914603970660"
+      ],
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 40,
+            "end": 49,
+            "probability": 0.9623,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "id": "1887249914603970660",
+      "created_at_formatted": "Feb 5, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "🚀 Did you know the regulatory burden in \nCalifornia is off the charts? 📷 We're looking at a whopping $125,360 per worker!  This echoes\n@DOGE\n#California #Economy #RegulationReform🗣️\nFind more at https://t.co/8G8GLRAXr1",
+      "created_at": "2025-01-28T21:13:44.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 135,
+            "end": 140,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ],
+        "urls": [
+          {
+            "start": 195,
+            "end": 218,
+            "url": "https://t.co/8G8GLRAXr1",
+            "expanded_url": "https://opendatainitiative.io",
+            "display_url": "opendatainitiative.io",
+            "status": 200,
+            "title": "Open Data Initiative",
+            "description": "Advancing government financial transparency through open data",
+            "unwound_url": "https://opendatainitiative.io"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 41,
+            "end": 50,
+            "probability": 0.9845,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 142,
+            "end": 151,
+            "probability": 0.9663,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "hashtags": [
+          {
+            "start": 141,
+            "end": 152,
+            "tag": "California"
+          },
+          {
+            "start": 153,
+            "end": 161,
+            "tag": "Economy"
+          },
+          {
+            "start": 162,
+            "end": 179,
+            "tag": "RegulationReform"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1884349163363787209"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1884349163363787209",
+      "created_at_formatted": "Jan 28, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "Carrie Underwood turns tech fail into magic at Trump’s inauguration. Watch her lead an impromptu a cappella ‘America the Beautiful’ with the crowd. #CarrieUnderwood #Inauguration2025\nhttps://t.co/tGbneQT9gT",
+      "created_at": "2025-01-22T19:13:59.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1879704866345418752",
+            "name": "Inauguration Day: Donald Trump Back in Office"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696802391859201",
+            "name": "Entertainment & Leisure Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to movies, music, television, franchises, venues, theme parks, toys, tourism, hotels"
+          }
+        },
+        {
+          "domain": {
+            "id": "69",
+            "name": "News Vertical",
+            "description": "News Categories like Entertainment or Technology"
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1488973753274929152",
+            "name": "Political events"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "807322608525983744",
+            "name": "Carrie Underwood",
+            "description": "Carrie Underwood"
+          }
+        },
+        {
+          "domain": {
+            "id": "54",
+            "name": "Musician",
+            "description": "A musician in the world, like Adele or Bob Dylan"
+          },
+          "entity": {
+            "id": "807322608525983744",
+            "name": "Carrie Underwood",
+            "description": "Carrie Underwood"
+          }
+        },
+        {
+          "domain": {
+            "id": "55",
+            "name": "Music Genre",
+            "description": "A category for a musical style, like Pop, Rock, or Rap"
+          },
+          "entity": {
+            "id": "810937781996253185",
+            "name": "Country music",
+            "description": "Country"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "807322608525983744",
+            "name": "Carrie Underwood",
+            "description": "Carrie Underwood"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "810937781996253185",
+            "name": "Country music",
+            "description": "Country"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847524658970636288",
+            "name": "Music",
+            "description": "Music and radio"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1836137739353292800",
+            "name": "2024 US Election",
+            "description": "Brought to you by @Polymarket. Get live, unbiased 2024 election forecasts: https://polymarket.com/elections\n"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1882144700762878208"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 183,
+            "end": 206,
+            "url": "https://t.co/tGbneQT9gT",
+            "expanded_url": "https://youtu.be/s-UHNb3GWQ4?si=c6XdEiu7z0e13jk-&t=2m6s",
+            "display_url": "youtu.be/s-UHNb3GWQ4?si…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1882144703770161152/mhInQ6h3?format=jpg&name=orig",
+                "width": 480,
+                "height": 360
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1882144703770161152/mhInQ6h3?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Carrie Underwood Sings \"America the Beautiful\" A Capella at Inauguration",
+            "description": "Carrie Underwood sings \"America the Beautiful\" a capella following a technical issue with her music at the presidential inauguration ceremony. https://www.c-...",
+            "unwound_url": "https://www.youtube.com/watch?si=c6XdEiu7z0e13jk-&t=2m6s&v=s-UHNb3GWQ4&feature=youtu.be"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 15,
+            "probability": 0.9623,
+            "type": "Person",
+            "normalized_text": "Carrie Underwood"
+          },
+          {
+            "start": 47,
+            "end": 51,
+            "probability": 0.9505,
+            "type": "Person",
+            "normalized_text": "Trump"
+          },
+          {
+            "start": 109,
+            "end": 129,
+            "probability": 0.7758,
+            "type": "Other",
+            "normalized_text": "America the Beautiful"
+          },
+          {
+            "start": 149,
+            "end": 163,
+            "probability": 0.4188,
+            "type": "Person",
+            "normalized_text": "CarrieUnderwood"
+          }
+        ],
+        "hashtags": [
+          {
+            "start": 148,
+            "end": 164,
+            "tag": "CarrieUnderwood"
+          },
+          {
+            "start": 165,
+            "end": 182,
+            "tag": "Inauguration2025"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1882144700762878208",
+      "created_at_formatted": "Jan 22, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    }
+  ],
+  "users": [
+    {
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+      "id": "1859283000145608705",
+      "name": "California DOGE",
+      "username": "cali_doge"
+    }
+  ],
+  "meta": {
+    "result_count": 13,
+    "newest_id": "1892212426684125691",
+    "oldest_id": "1882144700762878208"
+  }
+}

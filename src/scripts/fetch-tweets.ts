@@ -4,11 +4,11 @@ import path from 'path';
 import { v2Client } from '../lib/twitter/client';
 import { enrichTweet, handleTwitterError, validateRateLimit, TWEETS_PER_MONTH } from '../lib/twitter/utils';
 import { EnrichedTweet, TwitterApiResponse } from '../lib/twitter/types';
-import { format } from 'date-fns';
 
 const TWEETS_DIR = path.join(process.cwd(), 'src/data/tweets');
 const MEDIA_DIR = path.join(process.cwd(), 'src/data/media');
 const RATE_LIMIT_FILE = path.join(TWEETS_DIR, 'rate_limit.json');
+const TWEETS_FILE = path.join(TWEETS_DIR, 'tweets.json');
 
 interface RateLimitInfo {
   remaining: number;
@@ -47,6 +47,21 @@ function loadRateLimit(): RateLimitInfo | null {
   return null;
 }
 
+function loadExistingTweets(): TwitterApiResponse | null {
+  try {
+    if (fs.existsSync(TWEETS_FILE)) {
+      return JSON.parse(fs.readFileSync(TWEETS_FILE, 'utf-8')) as TwitterApiResponse;
+    }
+  } catch (error) {
+    console.error('Error loading tweets:', error);
+  }
+  return null;
+}
+
+function saveTweets(data: TwitterApiResponse): void {
+  fs.writeFileSync(TWEETS_FILE, JSON.stringify(data, null, 2));
+}
+
 async function fetchTweets(): Promise<void> {
   try {
     // Check rate limit
@@ -66,9 +81,14 @@ async function fetchTweets(): Promise<void> {
     const user = await v2Client.userByUsername(username);
     if (!user.data) throw new Error('User not found');
 
-    // Fetch tweets with media
+    // Load existing tweets
+    const existingData = loadExistingTweets();
+    const since_id = existingData?.meta?.newest_id;
+
+    // Fetch new tweets with media
     const tweetsResponse = await v2Client.userTimeline(user.data.id, {
       max_results: TWEETS_PER_MONTH,
+      since_id,
       'tweet.fields': [
         'created_at',
         'attachments',
@@ -83,7 +103,7 @@ async function fetchTweets(): Promise<void> {
 
     const tweets = Array.from(tweetsResponse);
     if (!tweets.length) {
-      console.log('No tweets found');
+      console.log('No new tweets found');
       return;
     }
 
@@ -104,7 +124,7 @@ async function fetchTweets(): Promise<void> {
             });
             const html = await response.text();
             
-            // Extract metadata from HTML with better tag parsing
+            // Extract metadata from HTML
             const titleMatch = html.match(/<meta[^>]*property="og:title"[^>]*content="([^"]*)"[^>]*>/i) 
               || html.match(/<title>(.*?)<\/title>/i);
             const descriptionMatch = html.match(/<meta[^>]*property="og:description"[^>]*content="([^"]*)"[^>]*>/i)
@@ -115,7 +135,6 @@ async function fetchTweets(): Promise<void> {
             url.title = titleMatch?.[1] || '';
             url.description = descriptionMatch?.[1] || '';
 
-            // Validate image URL before adding
             if (ogImageMatch?.[1]) {
               const imageUrl = ogImageMatch[1];
               try {
@@ -123,8 +142,8 @@ async function fetchTweets(): Promise<void> {
                 if (imgResponse.ok) {
                   url.images = [{
                     url: imageUrl,
-                    width: 1200,  // Default width
-                    height: 630   // Default height
+                    width: 1200,
+                    height: 630
                   }];
                 }
               } catch (imgError) {
@@ -146,7 +165,6 @@ async function fetchTweets(): Promise<void> {
             const extension = mediaUrl.split('.').pop() || 'jpg';
             const filename = `${tweet.id}_${i}.${extension}`;
             await downloadMedia(mediaUrl, filename);
-            // Update media URL to local path
             media.url = `/media/${filename}`;
           }
         }
@@ -155,22 +173,32 @@ async function fetchTweets(): Promise<void> {
       enrichedTweets.push(enriched);
     }
 
-    // Save tweets to file
+    // Merge with existing tweets if available
+    const mergedTweets = existingData
+      ? [...enrichedTweets, ...existingData.tweets]
+      : enrichedTweets;
+
+    const mergedUsers = existingData
+      ? [...(tweetsResponse.includes?.users || []), ...existingData.users]
+      : tweetsResponse.includes?.users || [];
+
+    // Remove duplicate users by ID
+    const uniqueUsers = Array.from(
+      new Map(mergedUsers.map(user => [user.id, user])).values()
+    );
+
+    // Save merged tweets to file
     const tweetData: TwitterApiResponse = {
-      tweets: enrichedTweets,
-      users: tweetsResponse.includes?.users || [],
+      tweets: mergedTweets,
+      users: uniqueUsers,
       meta: {
-        result_count: tweetsResponse.meta.result_count,
-        newest_id: tweetsResponse.meta.newest_id,
-        oldest_id: tweetsResponse.meta.oldest_id,
+        result_count: mergedTweets.length,
+        newest_id: tweetsResponse.meta.newest_id || (existingData?.meta?.newest_id ?? ''),
+        oldest_id: existingData?.meta?.oldest_id ?? tweetsResponse.meta.oldest_id,
       },
     };
 
-    const timestamp = format(new Date(), 'yyyyMMdd_HHmmss');
-    fs.writeFileSync(
-      path.join(TWEETS_DIR, `tweets_${timestamp}.json`),
-      JSON.stringify(tweetData, null, 2)
-    );
+    saveTweets(tweetData);
 
     // Update rate limit info
     const resetDate = tweetsResponse.rateLimit?.reset 
@@ -184,7 +212,7 @@ async function fetchTweets(): Promise<void> {
     };
     saveRateLimit(newRateLimit);
 
-    console.log(`Successfully fetched and saved ${enrichedTweets.length} tweets`);
+    console.log(`Successfully fetched ${enrichedTweets.length} new tweets and merged with ${existingData ? existingData.tweets.length : 0} existing tweets`);
   } catch (error) {
     handleTwitterError(error);
   }
