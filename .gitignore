@@ -20,6 +20,9 @@
 mono_crash.*
 
 # Build results
+node_modules/
+.next/
+tsconfig.tsbuildinfo
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
