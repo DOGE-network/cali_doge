@@ -7,11 +7,24 @@ import Footer from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Cali Doge - Adventures in California',
-  description: 'Follow the adventures of the coolest DOGE in California',
+  title: 'Cali DOGE - Unofficial California Department of Government Efficiency',
+  description: 'Simple, apolitical content. Possible future home of https://doge.ca.gov/',
+  manifest: '/manifest.json',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }
+    ]
   },
+  appleWebApp: {
+    title: 'Cali Doge',
+    statusBarStyle: 'default',
+    capable: true
+  }
 };
 
 export default function RootLayout({

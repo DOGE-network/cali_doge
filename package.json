@@ -10,7 +10,8 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "typecheck": "tsc --noEmit",
-    "fetch-tweets": "ts-node --project tsconfig.json src/scripts/fetch-tweets.ts"
+    "fetch-tweets": "ts-node --project tsconfig.json src/scripts/fetch-tweets.ts",
+    "favicon-check": "npx realfavicon check http://localhost:3000"
   },
   "dependencies": {
     "@types/mime-types": "^2.1.4",
