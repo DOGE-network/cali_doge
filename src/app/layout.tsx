@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Cali Doge - Adventures in California',
-  description: 'Follow the adventures of the coolest doge in California',
+  description: 'Follow the adventures of the coolest DOGE in California',
   icons: {
     icon: '/favicon.ico',
   },
