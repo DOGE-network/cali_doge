@@ -16,10 +16,13 @@
   "dependencies": {
     "@types/mime-types": "^2.1.4",
     "@types/node-cron": "^3.0.11",
+    "@types/nodemailer": "^6.4.17",
+    "@vercel/analytics": "^1.5.0",
     "date-fns": "^4.1.0",
     "mime-types": "^2.1.35",
     "next": "^14.2.24",
     "node-cron": "^3.0.3",
+    "nodemailer": "^6.10.0",
     "react": "^18",
     "react-dom": "^18",
     "twitter-api-v2": "^1.20.1"

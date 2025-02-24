@@ -1,0 +1,103 @@
+'use client';
+
+import Link from 'next/link';
+import { useState, useEffect, useRef } from 'react';
+
+interface NavItem {
+  href: string;
+  label: string;
+}
+
+const navItems: NavItem[] = [
+  { href: '/savings', label: 'Savings' },
+  { href: '/spend', label: 'Spend' },
+  { href: '/workforce', label: 'Workforce' },
+  { href: '/regulations', label: 'Regulations' },
+  { href: '/join', label: 'Join' },
+  { href: '/about', label: 'About' },
+];
+
+export function NavMenu() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMenuOpen]);
+
+  return (
+    <div className="relative">
+      <button
+        className="p-2 rounded-lg text-odi-black hover:bg-odi-gray-100 focus:outline-none focus:ring-2 focus:ring-odi-blue transition-colors"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle navigation menu"
+        aria-expanded={isMenuOpen}
+        aria-controls="mobile-menu"
+      >
+        <div className="w-6 h-6 flex items-center justify-center">
+          <svg
+            className="w-full h-full transition-transform duration-200"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            {isMenuOpen ? (
+              <path d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </div>
+      </button>
+
+      <div
+        id="mobile-menu"
+        ref={menuRef}
+        className={`absolute right-0 top-12 w-48 transition-all duration-200 ease-in-out transform ${
+          isMenuOpen 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 -translate-y-2 pointer-events-none'
+        }`}
+      >
+        <nav 
+          className="flex flex-col space-y-1 py-2 bg-white rounded-lg shadow-lg border border-odi-gray-300"
+          aria-label="Navigation menu"
+        >
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-odi-black hover:bg-odi-gray-100 font-medium block px-4 py-2 mx-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-odi-blue transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </div>
+  );
+} 

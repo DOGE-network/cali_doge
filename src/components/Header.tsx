@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { NavMenu } from './NavMenu';
 
 export default function Header() {
   return (
@@ -36,6 +37,9 @@ export default function Header() {
                   </p>
               </div>
             </Link>
+          </div>
+          <div className="flex items-center">
+            <NavMenu />
           </div>
         </div>
       </div>
