@@ -1,0 +1,123 @@
+{
+  "name": "California Government",
+  "headCount": 2252162,
+  "subordinateOffices": 16439,
+  "totalWages": 211300000000,
+  "tenureDistribution": {
+    "<1": 217955,
+    "1-4": 311367,
+    "5-9": 298450,
+    "10-19": 287632,
+    "20-24": 198450,
+    "25+": 156308
+  },
+  "salaryDistribution": {
+    "60-70k": 298450,
+    "70-80k": 287632,
+    "80-90k": 128463,
+    "90-100k": 98450,
+    "100-110k": 78632,
+    "110-120k": 58450,
+    "120-130k": 48632,
+    "130-140k": 38450,
+    "140-150k": 28632,
+    "150-160k": 18450
+  },
+  "ageDistribution": {
+    "25-29": 217955,
+    "30-34": 287632,
+    "35-39": 292848,
+    "40-44": 198450,
+    "45-49": 156308,
+    "50-54": 98450,
+    "55-59": 58632,
+    "60+": 28632
+  },
+  "averageTenureYears": 10,
+  "averageSalary": 93828,
+  "averageAge": 47,
+  "subAgencies": [
+    {
+      "name": "Core Administrative Agencies",
+      "headCount": 450432,
+      "subordinateOffices": 3287,
+      "totalWages": 42260000000,
+      "tenureDistribution": {
+        "<1": 43591,
+        "1-4": 62273,
+        "5-9": 59690,
+        "10-19": 57526,
+        "20-24": 39690,
+        "25+": 31261
+      },
+      "salaryDistribution": {
+        "60-70k": 59690,
+        "70-80k": 57526,
+        "80-90k": 25692,
+        "90-100k": 19690,
+        "100-110k": 15726,
+        "110-120k": 11690,
+        "120-130k": 9726,
+        "130-140k": 7690,
+        "140-150k": 5726,
+        "150-160k": 3690
+      },
+      "ageDistribution": {
+        "25-29": 43591,
+        "30-34": 57526,
+        "35-39": 58569,
+        "40-44": 39690,
+        "45-49": 31261,
+        "50-54": 19690,
+        "55-59": 11726,
+        "60+": 5726
+      },
+      "averageTenureYears": 8,
+      "averageSalary": 87654,
+      "averageAge": 42,
+      "subAgencies": [
+        {
+          "name": "California Department of Finance",
+          "abbreviation": "DOF",
+          "description": "Responsible for establishing fiscal policies and managing state finances",
+          "headCount": 150144,
+          "subordinateOffices": 1095,
+          "totalWages": 14086666666,
+          "tenureDistribution": {
+            "<1": 14530,
+            "1-4": 20757,
+            "5-9": 19896,
+            "10-19": 19175,
+            "20-24": 13230,
+            "25+": 10420
+          },
+          "salaryDistribution": {
+            "60-70k": 19896,
+            "70-80k": 19175,
+            "80-90k": 8564,
+            "90-100k": 6563,
+            "100-110k": 5242,
+            "110-120k": 3896,
+            "120-130k": 3242,
+            "130-140k": 2563,
+            "140-150k": 1908,
+            "150-160k": 1230
+          },
+          "ageDistribution": {
+            "25-29": 14530,
+            "30-34": 19175,
+            "35-39": 19523,
+            "40-44": 13230,
+            "45-49": 10420,
+            "50-54": 6563,
+            "55-59": 3908,
+            "60+": 1908
+          },
+          "averageTenureYears": 7,
+          "averageSalary": 82345,
+          "averageAge": 40
+        }
+      ]
+    }
+  ]
+}

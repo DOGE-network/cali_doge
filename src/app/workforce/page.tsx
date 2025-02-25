@@ -1,19 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-
-interface Agency {
-  name: string;
-  abbreviation?: string;
-  description?: string;
-  website?: string;
-  subAgencies?: Agency[];
-  headCount?: number;
-  totalWages?: number;
-  averageTenureYears?: number;
-  averageSalary?: number;
-  averageAge?: number;
-}
+import React, { useState, useEffect } from 'react';
+import AgencyDataVisualization from './AgencyDataVisualization';
+import agencyData from '@/data/workforce-data.json';
+import type { Agency } from './types';
 
 const agencyStructure: Agency[] = [
   {
@@ -135,59 +125,163 @@ const agencyStructure: Agency[] = [
   }
 ];
 
-function AgencyCard({ agency }: { agency: Agency }) {
+// Merge agency data with structure
+const mergeAgencyData = (structure: Agency[], data: Agency | undefined): Agency[] => {
+  if (!data) {
+    console.log('No data provided for merging');
+    return structure;
+  }
+  
+  console.log('Merging data:', {
+    structureAgencies: structure.map(a => a.name),
+    dataName: data.name,
+    dataHasHeadCount: !!data.headCount,
+    dataHasSubAgencies: !!data.subAgencies?.length
+  });
+  
+  return structure.map(agency => {
+    // If this is the top-level California Government agency
+    if (agency.name === data.name) {
+      const merged = {
+        ...agency,
+        headCount: data.headCount,
+        subordinateOffices: data.subordinateOffices,
+        totalWages: data.totalWages,
+        tenureDistribution: data.tenureDistribution,
+        salaryDistribution: data.salaryDistribution,
+        ageDistribution: data.ageDistribution,
+        averageTenureYears: data.averageTenureYears,
+        averageSalary: data.averageSalary,
+        averageAge: data.averageAge,
+        // Recursively merge subagencies
+        subAgencies: agency.subAgencies && data.subAgencies
+          ? mergeAgencyData(agency.subAgencies, { ...data, subAgencies: data.subAgencies })
+          : agency.subAgencies
+      };
+      console.log(`Merged top-level data for ${agency.name}:`, { 
+        hasHeadCount: !!merged.headCount,
+        subAgenciesCount: merged.subAgencies?.length 
+      });
+      return merged;
+    }
+    
+    // Find matching agency in the data
+    const matchingData = data.subAgencies?.find(d => d.name === agency.name);
+    
+    if (matchingData) {
+      console.log(`Found matching data for ${agency.name}:`, {
+        hasHeadCount: !!matchingData.headCount,
+        hasSubAgencies: !!matchingData.subAgencies?.length
+      });
+      const merged = {
+        ...agency,
+        headCount: matchingData.headCount,
+        subordinateOffices: matchingData.subordinateOffices,
+        totalWages: matchingData.totalWages,
+        tenureDistribution: matchingData.tenureDistribution,
+        salaryDistribution: matchingData.salaryDistribution,
+        ageDistribution: matchingData.ageDistribution,
+        averageTenureYears: matchingData.averageTenureYears,
+        averageSalary: matchingData.averageSalary,
+        averageAge: matchingData.averageAge,
+        // Recursively merge subagencies
+        subAgencies: agency.subAgencies && matchingData.subAgencies
+          ? mergeAgencyData(agency.subAgencies, matchingData)
+          : agency.subAgencies
+      };
+      return merged;
+    }
+    
+    // If this agency has subagencies, try to merge them with the current data level
+    if (agency.subAgencies && data.subAgencies) {
+      return {
+        ...agency,
+        subAgencies: mergeAgencyData(agency.subAgencies, data)
+      };
+    }
+    
+    console.log(`No matching data found for ${agency.name}`);
+    return agency;
+  });
+};
+
+function AgencyCard({ 
+  agency, 
+  isActive, 
+  onClick,
+  showChart
+}: { 
+  agency: Agency;
+  isActive: boolean;
+  onClick: () => void;
+  showChart: boolean;
+}) {
+  // Debug logs
+  console.log('AgencyCard render:', {
+    agencyName: agency.name,
+    hasHeadCount: !!agency.headCount,
+    showChart,
+    isActive
+  });
+
   return (
-    <div className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white">
-      <h3 className="text-lg font-semibold text-gray-900">
-        {agency.name}
-        {agency.abbreviation && <span className="ml-2 text-sm text-gray-500">({agency.abbreviation})</span>}
-      </h3>
-      {agency.description && (
-        <p className="mt-2 text-sm text-gray-600">{agency.description}</p>
-      )}
-      {agency.headCount && (
-        <ul className="mt-2 text-sm text-gray-600">
-          <li>Head Count: {agency.headCount}</li>
-          <li>Total Wages: ${agency.totalWages?.toLocaleString()}</li>
-          <li>Average Tenure: {agency.averageTenureYears} years</li>
-          <li>Average Salary: ${agency.averageSalary?.toLocaleString()}</li>
-        <li>Average Age: {agency.averageAge} years</li>
-        </ul>
-      )}
+    <div className={`space-y-4 ${isActive ? 'ring-2 ring-blue-500 rounded-lg' : ''}`}>
+      <div 
+        className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white cursor-pointer"
+        onClick={onClick}
+      >
+        <h3 className="text-lg font-semibold text-gray-900">
+          {agency.name}
+          {agency.abbreviation && <span className="ml-2 text-sm text-gray-500">({agency.abbreviation})</span>}
+        </h3>
+        {agency.description && (
+          <p className="mt-2 text-sm text-gray-600">{agency.description}</p>
+        )}
+      </div>
+      {agency.headCount && showChart && <AgencyDataVisualization agency={agency} />}
     </div>
   );
 }
 
-function AgencySection({ section, isOpen, toggleOpen }: { section: Agency, isOpen: boolean, toggleOpen: () => void }) {
-  // State to manage visibility of sub-sub-agencies
-  const [openSubIndex, setOpenSubIndex] = useState<number | null>(null);
+function AgencySection({ 
+  section, 
+  activeAgencyPath,
+  onAgencyClick
+}: { 
+  section: Agency;
+  activeAgencyPath: string[];
+  onAgencyClick: { (_paths: string[]): void };
+}) {
+  // For main agency: show chart by default, hide when any agency is selected
+  const showChart = section.name === "California Government" && activeAgencyPath.length === 0;
+  const isActiveAgency = activeAgencyPath[0] === section.name;
 
-  // Function to handle opening a sub-agency
-  const handleToggleSubOpen = (index: number) => {
-    setOpenSubIndex(prevIndex => prevIndex === index ? null : index);
-  };
+  console.log('AgencySection render:', {
+    sectionName: section.name,
+    activeAgencyPath,
+    showChart,
+    isActiveAgency
+  });
 
   return (
     <div className="mb-8">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-2 cursor-pointer"
-          onClick={toggleOpen}>
-        {section.name}
-      </h2>
-      {isOpen && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {section.subAgencies?.map((agency, index) => (
-            <div key={index}>
-              <div onClick={(e) => { e.stopPropagation(); handleToggleSubOpen(index); }} className="cursor-pointer">
-                <AgencyCard agency={agency} />
-                {/* Render sub-sub-agencies if they exist and this sub-agency is open */}
-                {openSubIndex === index && agency.subAgencies && (
-                  <div className="ml-4">
-                    {agency.subAgencies.map((subAgency, subIndex) => (
-                      <AgencyCard key={subIndex} agency={subAgency} />
-                    ))}
-                  </div>
-                )}
-              </div>
+      <AgencyCard 
+        agency={section}
+        isActive={isActiveAgency}
+        onClick={() => onAgencyClick([section.name])}
+        showChart={showChart}
+      />
+      
+      {section.subAgencies && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          {section.subAgencies.map((agency, index) => (
+            <div key={index} className="ml-4">
+              <SubAgencySection
+                agency={agency}
+                parentPath={[section.name]}
+                activeAgencyPath={activeAgencyPath}
+                onAgencyClick={onAgencyClick}
+              />
             </div>
           ))}
         </div>
@@ -196,32 +290,93 @@ function AgencySection({ section, isOpen, toggleOpen }: { section: Agency, isOpe
   );
 }
 
-export default function Page() {
-  // Initially, only the top-level "California Government" section is open
-  const [openSectionIndex, setOpenSectionIndex] = useState<number | null>(0);  // Assuming it's the first in the array
+function SubAgencySection({ 
+  agency, 
+  parentPath,
+  activeAgencyPath,
+  onAgencyClick
+}: { 
+  agency: Agency;
+  parentPath: string[];
+  activeAgencyPath: string[];
+  onAgencyClick: { (_paths: string[]): void };
+}) {
+  const currentPath = [...parentPath, agency.name];
+  const isActive = activeAgencyPath.length > parentPath.length && 
+                  activeAgencyPath[parentPath.length] === agency.name;
+  // Show chart when this agency is selected (paths match exactly)
+  const showChart = activeAgencyPath.join('/') === currentPath.join('/');
+  
+  // Show sub-sub-agencies only when this agency is active
+  const showSubAgencies = isActive || activeAgencyPath.length === 0;
 
-  const handleToggleOpen = (index: number) => {
-    setOpenSectionIndex(openSectionIndex === index ? null : index);
+  console.log('SubAgencySection render:', {
+    agencyName: agency.name,
+    currentPath,
+    activeAgencyPath,
+    showChart,
+    isActive
+  });
+
+  return (
+    <div>
+      <AgencyCard
+        agency={agency}
+        isActive={isActive}
+        onClick={() => onAgencyClick(currentPath)}
+        showChart={showChart}
+      />
+      
+      {agency.subAgencies && showSubAgencies && (
+        <div className="ml-4 mt-4 space-y-4">
+          {agency.subAgencies.map((subAgency, index) => (
+            <AgencyCard
+              key={index}
+              agency={subAgency}
+              isActive={activeAgencyPath.join('/') === [...currentPath, subAgency.name].join('/')}
+              onClick={() => onAgencyClick([...currentPath, subAgency.name])}
+              showChart={activeAgencyPath.join('/') === [...currentPath, subAgency.name].join('/')}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+const Page = () => {
+  const [mergedStructure, setMergedStructure] = useState<Agency[]>(agencyStructure);
+  const [activeAgencyPath, setActiveAgencyPath] = useState<string[]>([]);
+
+  useEffect(() => {
+    const merged = mergeAgencyData(agencyStructure, agencyData);
+    setMergedStructure(merged);
+  }, []);
+
+  const handleAgencyClick = (path: string[]) => {
+    setActiveAgencyPath(prevPath => 
+      prevPath.join('/') === path.join('/') ? [] : path
+    );
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          California State Agencies
+        <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
+          California State Workforce
         </h1>
-        <p className="text-lg text-gray-600">
-          A comprehensive overview of California&apos;s government agencies and their relationships
+        <p className="text-sm text-center text-gray-600">
+          California&apos;s public sector employed over 2.3 million workers as of 2023, representing 9% of total state employment.
         </p>
       </div>
       
       <div className="space-y-12">
-        {agencyStructure.map((section, index) => (
+        {mergedStructure.map((section, index) => (
           <div key={index}>
             <AgencySection
               section={section}
-              isOpen={openSectionIndex === index}
-              toggleOpen={() => handleToggleOpen(index)}
+              activeAgencyPath={activeAgencyPath}
+              onAgencyClick={handleAgencyClick}
             />
           </div>
         ))}
@@ -230,7 +385,11 @@ export default function Page() {
       <footer className="mt-12 pt-8 border-t text-sm text-gray-500">
         <p>Data sourced from official California government records and public documents.</p>
         <p>Last updated: {new Date().toLocaleDateString()}</p>
+        <p><a href="https://www.calbright.edu/wp-content/uploads/2024/05/Calbright-College-The-Road-to-Optimizing-Californias-Public-Sector-Labor-Market.pdf" target="_blank" rel="noopener noreferrer">calbright.edu</a>.</p>
+        <p><a href="https://publicpay.ca.gov/reports/rawexport.aspx" target="_blank" rel="noopener noreferrer">Government Compensation in California</a>.</p>
       </footer>
     </div>
   );
-} 
+};
+
+export default Page; 
