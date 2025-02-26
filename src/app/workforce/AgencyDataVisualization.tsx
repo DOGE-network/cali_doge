@@ -38,7 +38,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
           break;
       }
       return (
-        <div className="bg-white p-3 border rounded shadow-lg">
+        <div className="bg-white p-3 border rounded shadow-lg absolute -translate-y-full -mt-2">
           <p className="text-sm">{message}</p>
         </div>
       );
@@ -80,56 +80,58 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
         </div>
       </div>
 
-      {tenureData.length > 0 && (
-        <div className="mb-8">
-          <h3 className="text-sm font-semibold mb-2">Years of Tenure</h3>
-          <div style={{ width: '100%', height: 200 }}>
-            <ResponsiveContainer>
-              <BarChart data={tenureData}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip content={(props) => <CustomTooltip {...props} type="tenure" />} />
-                <Bar dataKey="value" fill="#8884d8" />
-              </BarChart>
-            </ResponsiveContainer>
+      <div className="charts-container">
+        {tenureData.length > 0 && (
+          <div className="chart-section">
+            <h3 className="text-sm font-semibold mb-2">Years of Tenure</h3>
+            <div className="chart-container">
+              <ResponsiveContainer width="100%" height={100}>
+                <BarChart data={tenureData}>
+                  <XAxis dataKey="name" />
+                  <YAxis hide={true} />
+                  <Tooltip content={(props) => <CustomTooltip {...props} type="tenure" />} />
+                  <Bar dataKey="value" fill="#000000" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <p className="text-gray-600 text-xs mt-1">Average tenure: {agency.averageTenureYears} years</p>
           </div>
-          <p className="text-gray-600 text-xs mt-1">Average tenure: {agency.averageTenureYears} years</p>
-        </div>
-      )}
+        )}
 
-      {salaryData.length > 0 && (
-        <div className="mb-8">
-          <h3 className="text-sm font-semibold mb-2">Salary Distribution</h3>
-          <div style={{ width: '100%', height: 200 }}>
-            <ResponsiveContainer>
-              <BarChart data={salaryData}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip content={(props) => <CustomTooltip {...props} type="salary" />} />
-                <Bar dataKey="value" fill="#82ca9d" />
-              </BarChart>
-            </ResponsiveContainer>
+        {salaryData.length > 0 && (
+          <div className="chart-section">
+            <h3 className="text-sm font-semibold mb-2">Salary Distribution</h3>
+            <div className="chart-container">
+              <ResponsiveContainer width="100%" height={100}>
+                <BarChart data={salaryData}>
+                  <XAxis dataKey="name" />
+                  <YAxis hide={true} />
+                  <Tooltip content={(props) => <CustomTooltip {...props} type="salary" />} />
+                  <Bar dataKey="value" fill="#000000" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <p className="text-gray-600 text-xs mt-1">Average salary: ${formatNumber(agency.averageSalary || 0)}/yr</p>
           </div>
-          <p className="text-gray-600 text-xs mt-1">Average salary: ${formatNumber(agency.averageSalary || 0)}/yr</p>
-        </div>
-      )}
+        )}
 
-      {ageData.length > 0 && (
-        <div className="mb-8">
-          <h3 className="text-sm font-semibold mb-2">Age Distribution</h3>
-          <div style={{ width: '100%', height: 200 }}>
-            <ResponsiveContainer>
-              <BarChart data={ageData}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip content={(props) => <CustomTooltip {...props} type="age" />} />
-                <Bar dataKey="value" fill="#ffc658" />
-              </BarChart>
-            </ResponsiveContainer>
+        {ageData.length > 0 && (
+          <div className="chart-section">
+            <h3 className="text-sm font-semibold mb-2">Age Distribution</h3>
+            <div className="chart-container">
+              <ResponsiveContainer width="100%" height={100}>
+                <BarChart data={ageData}>
+                  <XAxis dataKey="name" />
+                  <YAxis hide={true} />
+                  <Tooltip content={(props) => <CustomTooltip {...props} type="age" />} />
+                  <Bar dataKey="value" fill="#000000" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <p className="text-gray-600 text-xs mt-1">Average age: {agency.averageAge} years</p>
           </div>
-          <p className="text-gray-600 text-xs mt-1">Average age: {agency.averageAge} years</p>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
