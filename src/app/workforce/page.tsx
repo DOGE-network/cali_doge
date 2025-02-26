@@ -3,125 +3,59 @@
 import React, { useState, useEffect } from 'react';
 import AgencyDataVisualization from './AgencyDataVisualization';
 import agencyData from '@/data/workforce-data.json';
+import executiveBranchData from '@/data/executive-branch-hierarchy.json';
 import type { Agency } from './types';
+
+// Convert executive branch JSON to Agency structure
+const convertExecutiveBranchToAgency = (data: any): Agency => {
+  const agency: Agency = {
+    name: data.agencyName,
+    subAgencies: []
+  };
+
+  // Process each category of sub-agencies
+  if (data.subAgencies) {
+    // For each category (Superagencies, Standalone Departments, etc.)
+    Object.entries(data.subAgencies).forEach(([category, categoryAgencies]: [string, any]) => {
+      // Create a category agency
+      const categoryAgency: Agency = {
+        name: category,
+        subAgencies: []
+      };
+
+      // Process agencies in this category
+      categoryAgencies.forEach((subAgencyData: any) => {
+        const subAgency: Agency = {
+          name: subAgencyData.name,
+          description: subAgencyData.keyFunctions
+        };
+
+        // Process sub-sub-agencies if they exist
+        if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
+          subAgency.subAgencies = subAgencyData.subAgencies.map((subSubAgencyData: any) => ({
+            name: subSubAgencyData.name,
+            description: subSubAgencyData.keyFunctions,
+            abbreviation: subSubAgencyData.abbreviation
+          }));
+        }
+
+        categoryAgency.subAgencies?.push(subAgency);
+      });
+
+      agency.subAgencies?.push(categoryAgency);
+    });
+  }
+
+  return agency;
+};
+
+// Convert executive branch data to Agency structure
+const executiveBranch = convertExecutiveBranchToAgency(executiveBranchData);
 
 const agencyStructure: Agency[] = [
   {
-    name: "California Government",
-    subAgencies: [
-      {
-        name: "Core Administrative Agencies",
-        subAgencies: [
-          {
-            name: "California Department of Finance",
-            abbreviation: "DOF",
-            description: "Responsible for establishing fiscal policies and managing state finances"
-          },
-          {
-            name: "California State Treasurer's Office",
-            description: "Manages state investments and finances"
-          },
-          {
-            name: "California Department of General Services",
-            abbreviation: "DGS",
-            description: "Provides centralized services to state agencies"
-          }
-        ]
-      },
-      {
-        name: "Public Safety & Emergency Services",
-        subAgencies: [
-          {
-            name: "California Department of Justice",
-            abbreviation: "DOJ",
-            description: "Primary law enforcement agency"
-          },
-          {
-            name: "California State Threat Assessment Center",
-            abbreviation: "STAC",
-            description: "Primary fusion center for threat intelligence"
-          },
-          {
-            name: "California Office of Emergency Services",
-            abbreviation: "CalOES",
-            description: "Coordinates emergency response and disaster preparedness"
-          }
-        ]
-      },
-      {
-        name: "Natural Resources & Environment",
-        subAgencies: [
-          {
-            name: "California Environmental Protection Agency",
-            abbreviation: "CalEPA",
-            description: "Develops and implements environmental policies"
-          },
-          {
-            name: "California Department of Parks and Recreation",
-            description: "Manages state parks and recreation areas"
-          },
-          {
-            name: "California ISO",
-            description: "Independent System Operator managing power grid"
-          }
-        ]
-      },
-      {
-        name: "Health & Human Services",
-        subAgencies: [
-          {
-            name: "California Department of Health Care Services",
-            description: "Provides healthcare services and programs"
-          },
-          {
-            name: "California Department of Public Health",
-            description: "Promotes and protects public health"
-          },
-          {
-            name: "California Department of Social Services",
-            abbreviation: "CDSS",
-            description: "Oversees social service programs"
-          }
-        ]
-      },
-      {
-        name: "Business & Economic Development",
-        subAgencies: [
-          {
-            name: "California Governor's Office of Business and Economic Development",
-            abbreviation: "GO-Biz",
-            description: "Promotes business development and economic growth"
-          },
-          {
-            name: "California Department of Financial Protection and Innovation",
-            abbreviation: "DFPI",
-            description: "Regulates financial services and products"
-          },
-          {
-            name: "California Public Utilities Commission",
-            abbreviation: "CPUC",
-            description: "Regulates privately owned utilities"
-          }
-        ]
-      },
-      {
-        name: "Education & Research",
-        subAgencies: [
-          {
-            name: "California Department of Education",
-            description: "Oversees K-12 education"
-          },
-          {
-            name: "California Student Aid Commission",
-            description: "Administers state financial aid programs"
-          },
-          {
-            name: "California Space Grant Consortium",
-            description: "Promotes aerospace research and education"
-          }
-        ]
-      }
-    ]
+    name: "Executive Branch",
+    subAgencies: executiveBranch.subAgencies
   }
 ];
 
@@ -253,7 +187,7 @@ function AgencySection({
   onAgencyClick: { (_paths: string[]): void };
 }) {
   // For main agency: show chart by default, hide when any agency is selected
-  const showChart = section.name === "California Government" && activeAgencyPath.length === 0;
+  const showChart = section.name === "Executive Branch" && activeAgencyPath.length === 0;
   const isActiveAgency = activeAgencyPath[0] === section.name;
 
   console.log('AgencySection render:', {
@@ -351,9 +285,11 @@ const Page = () => {
   useEffect(() => {
     const merged = mergeAgencyData(agencyStructure, agencyData);
     setMergedStructure(merged);
+    console.log("Merged structure:", merged);
   }, []);
 
   const handleAgencyClick = (path: string[]) => {
+    console.log("Agency clicked:", path);
     setActiveAgencyPath(prevPath => 
       prevPath.join('/') === path.join('/') ? [] : path
     );
@@ -363,10 +299,10 @@ const Page = () => {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-          California State Workforce
+          California State Government Workforce
         </h1>
         <p className="text-sm text-center text-gray-600">
-          California&apos;s public sector employed over 2.3 million workers as of 2023, representing 9% of total state employment.
+          For reference, California&apos;s public sector (state, county, and local governments) employed over 2.3 million workers as of 2023, representing 9% of total state employment.
         </p>
       </div>
       
@@ -385,7 +321,7 @@ const Page = () => {
       <footer className="mt-12 pt-8 border-t text-sm text-gray-500">
         <p>Data sourced from official California government records and public documents.</p>
         <p>Last updated: {new Date().toLocaleDateString()}</p>
-        <p><a href="https://www.calbright.edu/wp-content/uploads/2024/05/Calbright-College-The-Road-to-Optimizing-Californias-Public-Sector-Labor-Market.pdf" target="_blank" rel="noopener noreferrer">calbright.edu</a>.</p>
+        <p><a href="https://www.calbright.edu/wp-content/uploads/2024/05/Calbright-College-The-Road-to-Optimizing-Californias-Public-Sector-Labor-Market.pdf" target="_blank" rel="noopener noreferrer">Calbright-College-The-Road-to-Optimizing-Californias-Public-Sector-Labor-Market calbright.edu</a>.</p>
         <p><a href="https://publicpay.ca.gov/reports/rawexport.aspx" target="_blank" rel="noopener noreferrer">Government Compensation in California</a>.</p>
       </footer>
     </div>

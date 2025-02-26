@@ -1,0 +1,414 @@
+{
+  "agencyName": "Executive Branch",
+  "subAgencies": {
+    "Superagencies and Departments": [
+      {
+        "name": "Government Operations Agency",
+        "subAgencies": [
+          {
+            "name": "Department of General Services",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Procurement, state buildings"
+          },
+          {
+            "name": "Department of Technology",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "IT services, cybersecurity"
+          },
+          {
+            "name": "Franchise Tax Board",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Income tax collection"
+          },
+          {
+            "name": "Department of Human Resources",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "State personnel management"
+          },
+          {
+            "name": "Office of Administrative Law",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Regulatory oversight"
+          }
+        ]
+      },
+      {
+        "name": "Labor & Workforce Development",
+        "subAgencies": [
+          {
+            "name": "Employment Development Department",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Unemployment insurance, job services"
+          },
+          {
+            "name": "Department of Industrial Relations",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Labor law enforcement, worker safety"
+          },
+          {
+            "name": "Agricultural Labor Relations Board",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Farm labor dispute resolution"
+          },
+          {
+            "name": "Workforce Development Board",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Job training coordination"
+          }
+        ]
+      },
+      {
+        "name": "Transportation Agency",
+        "subAgencies": [
+          {
+            "name": "Department of Transportation (Caltrans)",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Highway/transportation infrastructure"
+          },
+          {
+            "name": "Department of Motor Vehicles",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Vehicle registration, driver licensing"
+          },
+          {
+            "name": "California Highway Patrol",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Traffic enforcement, safety"
+          },
+          {
+            "name": "High-Speed Rail Authority",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "High-speed rail development"
+          }
+        ]
+      },
+      {
+        "name": "Natural Resources Agency",
+        "subAgencies": [
+          {
+            "name": "Department of Parks & Recreation",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "State parks management"
+          },
+          {
+            "name": "Department of Water Resources",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Water infrastructure, planning"
+          },
+          {
+            "name": "Department of Fish & Wildlife",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Wildlife conservation"
+          },
+          {
+            "name": "Department of Forestry & Fire Protection",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Wildfire prevention, suppression"
+          },
+          {
+            "name": "California Coastal Commission",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Coastal development regulation"
+          },
+          {
+            "name": "Department of Conservation",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Land resource protection"
+          }
+        ]
+      },
+      {
+        "name": "Environmental Protection Agency",
+        "subAgencies": [
+          {
+            "name": "Air Resources Board",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Air quality standards"
+          },
+          {
+            "name": "State Water Resources Control Board",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Water rights, quality control"
+          },
+          {
+            "name": "Department of Toxic Substances Control",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Hazardous waste management"
+          },
+          {
+            "name": "Department of Pesticide Regulation",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Pesticide regulation"
+          }
+        ]
+      },
+      {
+        "name": "Health & Human Services Agency",
+        "subAgencies": [
+          {
+            "name": "Department of Health Care Services",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Medi-Cal administration"
+          },
+          {
+            "name": "Department of Public Health",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Public health programs"
+          },
+          {
+            "name": "Department of Social Services",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Welfare, child protection"
+          },
+          {
+            "name": "Department of Developmental Services",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Developmental disability services"
+          },
+          {
+            "name": "Department of State Hospitals",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Mental health facilities"
+          },
+          {
+            "name": "Department of Aging",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Senior services"
+          }
+        ]
+      },
+      {
+        "name": "Business, Consumer Services & Housing",
+        "subAgencies": [
+          {
+            "name": "Department of Consumer Affairs",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Professional licensing boards"
+          },
+          {
+            "name": "Department of Housing & Community Development",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Housing policy, funding"
+          },
+          {
+            "name": "Department of Financial Protection & Innovation",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Financial regulation"
+          },
+          {
+            "name": "Department of Alcoholic Beverage Control",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Alcohol licensing"
+          },
+          {
+            "name": "Department of Real Estate",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Real estate licensing"
+          },
+          {
+            "name": "Cannabis Control Appeals Panel",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Cannabis licensing appeals"
+          }
+        ]
+      }
+    ],
+    "Standalone Departments": [
+      {
+        "name": "Department of Corrections & Rehabilitation",
+        "reportsTo": "Governor",
+        "keyFunctions": "Prison system management"
+      },
+      {
+        "name": "Department of Food & Agriculture",
+        "reportsTo": "Governor",
+        "keyFunctions": "Agricultural regulation, inspection"
+      },
+      {
+        "name": "Department of Cannabis Control",
+        "reportsTo": "Governor",
+        "keyFunctions": "Cannabis industry regulation"
+      },
+      {
+        "name": "Department of Veterans Affairs",
+        "reportsTo": "Governor",
+        "keyFunctions": "Veterans services, homes"
+      },
+      {
+        "name": "Military Department",
+        "reportsTo": "Governor",
+        "keyFunctions": "National Guard administration"
+      },
+      {
+        "name": "Emergency Services",
+        "reportsTo": "Governor",
+        "keyFunctions": "Disaster response coordination"
+      }
+    ],
+    "Independent Boards and Commissions": [
+      {
+        "name": "Public Utilities Commission",
+        "reportsTo": "Governor",
+        "keyFunctions": "Utility regulation",
+        "composition": "5 appointed commissioners"
+      },
+      {
+        "name": "Little Hoover Commission",
+        "reportsTo": "Independent",
+        "keyFunctions": "Government efficiency studies",
+        "composition": "13 members (9 appointed, 4 legislators)"
+      },
+      {
+        "name": "Citizens Redistricting Commission",
+        "reportsTo": "Independent",
+        "keyFunctions": "Electoral district boundaries",
+        "composition": "14 citizen members"
+      },
+      {
+        "name": "Fair Political Practices Commission",
+        "reportsTo": "Independent",
+        "keyFunctions": "Campaign finance regulation",
+        "composition": "5 appointed members"
+      },
+      {
+        "name": "California State Auditor",
+        "reportsTo": "Legislature",
+        "keyFunctions": "Performance audits",
+        "composition": "Appointed by Governor from legislative nominees"
+      },
+      {
+        "name": "State Lands Commission",
+        "reportsTo": "Independent",
+        "keyFunctions": "Public lands management",
+        "composition": "Lt. Governor, Controller, Finance Director"
+      },
+      {
+        "name": "California Debt Limit Allocation Committee",
+        "reportsTo": "Independent",
+        "keyFunctions": "Bond allocation",
+        "composition": "Treasurer, Governor, Controller"
+      },
+      {
+        "name": "California Pollution Control Financing Authority",
+        "reportsTo": "Independent",
+        "keyFunctions": "Environmental financing",
+        "composition": "Treasurer, Governor, Controller"
+      },
+      {
+        "name": "Commission on Judicial Performance",
+        "reportsTo": "Independent",
+        "keyFunctions": "Judicial conduct oversight",
+        "composition": "11 members (judges, attorneys, public)"
+      },
+      {
+        "name": "CalPERS Board",
+        "reportsTo": "Independent",
+        "keyFunctions": "Public employee pension management",
+        "composition": "13 members (elected, appointed, ex officio)"
+      },
+      {
+        "name": "CalSTRS Board",
+        "reportsTo": "Independent",
+        "keyFunctions": "Teacher pension management",
+        "composition": "12 members (elected, appointed, ex officio)"
+      }
+    ],
+    "Education Systems": [
+      {
+        "name": "K-12 Education",
+        "subAgencies": [
+          {
+            "name": "State Board of Education",
+            "reportsTo": "Governor (appointments)",
+            "keyFunctions": "Curriculum standards, textbook approval",
+            "leadershipStructure": "11 governor-appointed members"
+          },
+          {
+            "name": "Department of Education",
+            "reportsTo": "Superintendent",
+            "keyFunctions": "Policy implementation",
+            "leadershipStructure": "Elected Superintendent"
+          },
+          {
+            "name": "County Offices of Education (58)",
+            "reportsTo": "Local voters",
+            "keyFunctions": "District oversight, services",
+            "leadershipStructure": "County Superintendents"
+          },
+          {
+            "name": "School Districts (1,037)",
+            "reportsTo": "Local voters",
+            "keyFunctions": "Local school operations",
+            "leadershipStructure": "Elected school boards"
+          }
+        ]
+      },
+      {
+        "name": "Higher Education",
+        "subAgencies": [
+          {
+            "name": "University of California",
+            "reportsTo": "Board of Regents",
+            "keyFunctions": "Research universities (10 campuses)",
+            "leadershipStructure": "26-member Board of Regents"
+          },
+          {
+            "name": "California State University",
+            "reportsTo": "Board of Trustees",
+            "keyFunctions": "Comprehensive universities (23 campuses)",
+            "leadershipStructure": "25-member Board of Trustees"
+          },
+          {
+            "name": "California Community Colleges",
+            "reportsTo": "Board of Governors",
+            "keyFunctions": "Two-year colleges (116 campuses)",
+            "leadershipStructure": "17-member Board of Governors"
+          },
+          {
+            "name": "California Student Aid Commission",
+            "reportsTo": "Governor",
+            "keyFunctions": "Financial aid administration",
+            "leadershipStructure": "15 appointed commissioners"
+          }
+        ]
+      }
+    ],
+    "Judicial Branch": [
+      {
+        "name": "Supreme Court",
+        "entity": "California Supreme Court",
+        "reportsTo": "Voters (retention)",
+        "keyFunctions": "Final appellate review",
+        "composition": "Chief Justice + 6 Associate Justices"
+      },
+      {
+        "name": "Appellate",
+        "entity": "Courts of Appeal (6 districts)",
+        "reportsTo": "Voters (retention)",
+        "keyFunctions": "Intermediate appellate review",
+        "composition": "105 justices across districts"
+      },
+      {
+        "name": "Trial",
+        "entity": "Superior Courts (58 counties)",
+        "reportsTo": "Voters",
+        "keyFunctions": "Trial jurisdiction",
+        "composition": "1,535 judges statewide"
+      },
+      {
+        "name": "Judicial Governance",
+        "entity": "Judicial Council",
+        "reportsTo": "Chief Justice",
+        "keyFunctions": "Court administration, rules",
+        "composition": "21 members led by Chief Justice"
+      },
+      {
+        "name": "Judicial Governance",
+        "entity": "Commission on Judicial Appointments",
+        "reportsTo": "Independent",
+        "keyFunctions": "Appellate judicial confirmations",
+        "composition": "Chief Justice, Attorney General, senior presiding justice"
+      }
+    ]
+  }
+} 
