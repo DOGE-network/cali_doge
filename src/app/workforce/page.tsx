@@ -238,7 +238,7 @@ function AgencyCard({
           <p className="mt-2 text-sm text-gray-600">{agency.description}</p>
         )}
       </div>
-      {agency.headCount && showChart && <AgencyDataVisualization agency={agency} />}
+      {showChart && <AgencyDataVisualization agency={agency} />}
     </div>
   );
 }
