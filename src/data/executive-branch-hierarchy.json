@@ -311,6 +311,356 @@
         "reportsTo": "Independent",
         "keyFunctions": "Teacher pension management",
         "composition": "12 members (elected, appointed, ex officio)"
+      },
+      {
+        "name": "Board of Equalization",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Alternative Energy and Advanced Transportation Financing Authority",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Coastal Commission (even number years)",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Debt and Investment Advisory Commission",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Educational Facilities Authority",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Health Facilities Financing Authority",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Hope, Opportunity, Perseverance, and Empowerment (HOPE) for Children Trust Account Act Board",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Ocean Protection Council (even number years)",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Pollution Control Financing Authority",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Public Employees' Retirement System (CalPERS)",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California State Teachers' Retirement System (CalSTRS)",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Tax Credit Allocation Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Transportation Financing Authority",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Victim Compensation Board",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Citizens Financial Accountability Oversight Committee (CFAOC)",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Commission on State Mandates",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Franchise Tax Board",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "State Lands Commission",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "State Public Works Board",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Achieving a Better Life Experience (ABLE) Act Board",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Drought, Water, Parks, Climate, Coastal Protection, and Outdoor Access For All Act of 2018",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Earthquake Safety and Housing Rehabilitation Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Secure Choice Retirement Savings Board",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Stem Cell Research and Cures Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Streamlined Sales Tax Project - Board of Governance",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Urban Waterfront Area Restoration Financing Authority",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Water Resources Development Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "California Wildlife, Coastal and Park Land Conservation Program of 1988 Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Children's Hospital Bond Act Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Clean Water and Water Conservation Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Clean Water and Water Reclamation Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Clean Water Finance Committee-Clean Water Bond Act of 1984",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "1986 County Correctional Facility Capital Expenditure Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "1988 County Correctional Facility Capital Expenditure and Youth Facility Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Disaster Preparedness and Flood Prevention Bond Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Earthquake Safety and Public Buildings Rehabilitation Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Economic Recovery Financing Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Golden State Tobacco Securitization Corporation",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Harbor Improvement Bond Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Higher Education Facilities Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "High-Speed Passenger Train Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Highway Safety, Traffic Reduction, Air Quality and Port Security Committee - Bond Act 2006",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Housing Committee - Housing and Homeless Acts 1988, 1990",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Housing Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "First Time Home Buyers Financing Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Lake Tahoe Acquisitions Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Parklands Program Finance Committee of 1980",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Parklands Program Finance Committee of 1984",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Passenger Rail Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Pooled Money Investment Board",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "1986 Prison Construction Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "1988 Prison Construction Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "1990 Prison Construction Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Safe, Clean, Reliable Water Supply Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Safe Drinking Water, Clean Water, Watershed Protection, and Flood Protection Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Safe Drinking Water, Water Quality and Supply, Flood Control, River and Coastal Protection Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Safe Neighborhood Parks, Clean Water, Clean Air and Coastal Protection (Villaraigosa-Keeley Act) Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Seismic Retrofit Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "State Park and Recreation Finance Committee-Bond Act of 1976",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "State School Building Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Transportation Improvement Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Veterans' Debenture Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Veterans' Finance Committee of 1943",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Veterans' Home Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Voting Modernization Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Water Conservation Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Water Conservation and Water Quality Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Water Quality, Supply, and Infrastructure Improvement Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Water Security, Clean Drinking Water, Coastal and Beach Protection Act of 2002 Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
+      },
+      {
+        "name": "Wildlife Habitat Enhancement Program Finance Committee",
+        "reportsTo": "",
+        "keyFunctions": ""
       }
     ],
     "Education Systems": [

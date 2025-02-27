@@ -13,6 +13,9 @@ const convertExecutiveBranchToAgency = (data: any): Agency => {
     subAgencies: []
   };
 
+  // Count total subordinate offices
+  let totalSubordinateOffices = 0;
+
   // Process each category of sub-agencies
   if (data.subAgencies) {
     // For each category (Superagencies, Standalone Departments, etc.)
@@ -23,11 +26,24 @@ const convertExecutiveBranchToAgency = (data: any): Agency => {
         subAgencies: []
       };
 
+      // Count subordinate offices for this category
+      let categorySubordinateOffices = 0;
+
       // Process agencies in this category
       categoryAgencies.forEach((subAgencyData: any) => {
+        // Count this agency as a subordinate office
+        categorySubordinateOffices++;
+        
+        // Count sub-sub-agencies for this agency
+        let subAgencySubordinateOffices = 0;
+        if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
+          subAgencySubordinateOffices = subAgencyData.subAgencies.length;
+        }
+
         const subAgency: Agency = {
           name: subAgencyData.name,
-          description: subAgencyData.keyFunctions
+          description: subAgencyData.keyFunctions,
+          subordinateOffices: subAgencySubordinateOffices
         };
 
         // Process sub-sub-agencies if they exist
@@ -35,16 +51,24 @@ const convertExecutiveBranchToAgency = (data: any): Agency => {
           subAgency.subAgencies = subAgencyData.subAgencies.map((subSubAgencyData: any) => ({
             name: subSubAgencyData.name,
             description: subSubAgencyData.keyFunctions,
-            abbreviation: subSubAgencyData.abbreviation
+            abbreviation: subSubAgencyData.abbreviation,
+            subordinateOffices: 0 // Leaf nodes have no subordinates
           }));
         }
 
         categoryAgency.subAgencies?.push(subAgency);
       });
 
+      // Set subordinate offices count for this category
+      categoryAgency.subordinateOffices = categorySubordinateOffices;
+      totalSubordinateOffices += categorySubordinateOffices;
+
       agency.subAgencies?.push(categoryAgency);
     });
   }
+
+  // Set total subordinate offices for the executive branch
+  agency.subordinateOffices = totalSubordinateOffices;
 
   return agency;
 };
@@ -55,7 +79,8 @@ const executiveBranch = convertExecutiveBranchToAgency(executiveBranchData);
 const agencyStructure: Agency[] = [
   {
     name: "Executive Branch",
-    subAgencies: executiveBranch.subAgencies
+    subAgencies: executiveBranch.subAgencies,
+    subordinateOffices: executiveBranch.subordinateOffices
   }
 ];
 
@@ -79,7 +104,8 @@ const mergeAgencyData = (structure: Agency[], data: Agency | undefined): Agency[
       const merged = {
         ...agency,
         headCount: data.headCount,
-        subordinateOffices: data.subordinateOffices,
+        // Keep the subordinateOffices from the structure (calculated from JSON)
+        subordinateOffices: agency.subordinateOffices,
         totalWages: data.totalWages,
         tenureDistribution: data.tenureDistribution,
         salaryDistribution: data.salaryDistribution,
@@ -110,7 +136,8 @@ const mergeAgencyData = (structure: Agency[], data: Agency | undefined): Agency[
       const merged = {
         ...agency,
         headCount: matchingData.headCount,
-        subordinateOffices: matchingData.subordinateOffices,
+        // Keep the subordinateOffices from the structure (calculated from JSON)
+        subordinateOffices: agency.subordinateOffices,
         totalWages: matchingData.totalWages,
         tenureDistribution: matchingData.tenureDistribution,
         salaryDistribution: matchingData.salaryDistribution,
@@ -302,7 +329,7 @@ const Page = () => {
           California State Government Workforce
         </h1>
         <p className="text-sm text-center text-gray-600">
-          For reference, California&apos;s public sector (state, county, and local governments) employed over 2.3 million workers as of 2023, representing 9% of total state employment.
+          For reference, California&apos;s public sector (state, county, and local governments) employed over 2.3 million workers as of 2023, representing 9% of total state employment. All 2023 data below is from public sources
         </p>
       </div>
       
@@ -321,8 +348,9 @@ const Page = () => {
       <footer className="mt-12 pt-8 border-t text-sm text-gray-500">
         <p>Data sourced from official California government records and public documents.</p>
         <p>Last updated: {new Date().toLocaleDateString()}</p>
-        <p><a href="https://www.calbright.edu/wp-content/uploads/2024/05/Calbright-College-The-Road-to-Optimizing-Californias-Public-Sector-Labor-Market.pdf" target="_blank" rel="noopener noreferrer">Calbright-College-The-Road-to-Optimizing-Californias-Public-Sector-Labor-Market calbright.edu</a>.</p>
+        <p><a href="https://www.calbright.edu/wp-content/uploads/2024/05/Calbright-College-The-Road-to-Optimizing-California&apos;s-Public-Sector-Labor-Market.pdf" target="_blank" rel="noopener noreferrer">Calbright-College-The-Road-to-Optimizing-California&apos;s-Public-Sector-Labor-Market calbright.edu</a>.</p>
         <p><a href="https://publicpay.ca.gov/reports/rawexport.aspx" target="_blank" rel="noopener noreferrer">Government Compensation in California</a>.</p>
+        <p><a href="https://www.sco.ca.gov/eo_about_boards.html" target="_blank" rel="noopener noreferrer">Boards and Commissions - California State Controller&apos;s Office</a>.</p>
       </footer>
     </div>
   );

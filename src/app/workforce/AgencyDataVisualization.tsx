@@ -4,12 +4,15 @@ import type { Agency } from './types';
 import Image from 'next/image';
 
 const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
+  console.log('Received agency data:', agency);
+
   const formatNumber = (num: number) => num.toLocaleString();
 
   // Enhanced debug logs
   console.log('AgencyDataVisualization received:', {
     name: agency.name,
     headCount: agency.headCount,
+    subordinateOffices: agency.subordinateOffices,
     hasDistributions: {
       tenure: !!agency.tenureDistribution && Object.keys(agency.tenureDistribution).length > 0,
       salary: !!agency.salaryDistribution && Object.keys(agency.salaryDistribution).length > 0,
@@ -19,6 +22,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
 
   // Debug logs to check data
   console.log('Agency data:', agency);
+  console.log('Subordinate Offices:', agency.subordinateOffices);
   console.log('Tenure data:', Object.entries(agency.tenureDistribution || {}).map(([key, value]) => ({ name: key, value })));
   console.log('Salary data:', Object.entries(agency.salaryDistribution || {}).map(([key, value]) => ({ name: key, value })));
   console.log('Age data:', Object.entries(agency.ageDistribution || {}).map(([key, value]) => ({ name: key, value })));
@@ -81,112 +85,88 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
         </div>
       </div>
 
-      {tenureData.length === 0 && salaryData.length === 0 && ageData.length === 0 ? (
-        <div className="flex justify-center items-center mt-4">
-          <Image 
-            src="/no-data-yet.svg" 
-            alt="No Data Yet" 
-            width={256} 
-            height={256} 
-            priority
-          />
-        </div>
-      ) : (
-        <div className="charts-container">
+      <div className="charts-container">
+        <div className="chart-section">
+          <h3 className="text-sm font-semibold mb-2">Years of Tenure</h3>
           {tenureData.length > 0 ? (
-            <div className="chart-section">
-              <h3 className="text-sm font-semibold mb-2">Years of Tenure</h3>
-              <div className="chart-container">
-                <ResponsiveContainer width="100%" height={100}>
-                  <BarChart data={tenureData}>
-                    <XAxis dataKey="name" />
-                    <YAxis hide={true} />
-                    <Tooltip content={(props) => <CustomTooltip {...props} type="tenure" />} />
-                    <Bar dataKey="value" fill="#000000" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-              <p className="text-gray-600 text-xs mt-1">Average tenure: {agency.averageTenureYears || '~'} years</p>
+            <div className="chart-container">
+              <ResponsiveContainer width="100%" height={100}>
+                <BarChart data={tenureData}>
+                  <XAxis dataKey="name" />
+                  <YAxis hide={true} />
+                  <Tooltip content={(props) => <CustomTooltip {...props} type="tenure" />} />
+                  <Bar dataKey="value" fill="#000000" />
+                </BarChart>
+              </ResponsiveContainer>
             </div>
           ) : (
-            <div className="chart-section">
-              <h3 className="text-sm font-semibold mb-2">Years of Tenure</h3>
-              <div className="flex justify-center items-center h-[100px]">
-                <Image 
-                  src="/no-data-yet.svg" 
-                  alt="No Data Yet" 
-                  width={100} 
-                  height={100} 
-                  priority
-                />
-              </div>
-              <p className="text-gray-600 text-xs mt-1">Average tenure: {agency.averageTenureYears || '~'} years</p>
+            <div className="flex justify-center items-center h-[100px]">
+              <Image 
+                src="/no-data-yet.svg" 
+                alt="No Data Yet" 
+                width={100} 
+                height={100} 
+                priority
+              />
             </div>
           )}
-
-          {salaryData.length > 0 ? (
-            <div className="chart-section">
-              <h3 className="text-sm font-semibold mb-2">Salary Distribution</h3>
-              <div className="chart-container">
-                <ResponsiveContainer width="100%" height={100}>
-                  <BarChart data={salaryData}>
-                    <XAxis dataKey="name" />
-                    <YAxis hide={true} />
-                    <Tooltip content={(props) => <CustomTooltip {...props} type="salary" />} />
-                    <Bar dataKey="value" fill="#000000" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-              <p className="text-gray-600 text-xs mt-1">Average salary: ${agency.averageSalary ? formatNumber(agency.averageSalary) : '~'}/yr</p>
-            </div>
-          ) : (
-            <div className="chart-section">
-              <h3 className="text-sm font-semibold mb-2">Salary Distribution</h3>
-              <div className="flex justify-center items-center h-[100px]">
-                <Image 
-                  src="/no-data-yet.svg" 
-                  alt="No Data Yet" 
-                  width={100} 
-                  height={100} 
-                  priority
-                />
-              </div>
-              <p className="text-gray-600 text-xs mt-1">Average salary: ${agency.averageSalary ? formatNumber(agency.averageSalary) : '~'}/yr</p>
-            </div>
-          )}
-
-          {ageData.length > 0 ? (
-            <div className="chart-section">
-              <h3 className="text-sm font-semibold mb-2">Age Distribution</h3>
-              <div className="chart-container">
-                <ResponsiveContainer width="100%" height={100}>
-                  <BarChart data={ageData}>
-                    <XAxis dataKey="name" />
-                    <YAxis hide={true} />
-                    <Tooltip content={(props) => <CustomTooltip {...props} type="age" />} />
-                    <Bar dataKey="value" fill="#000000" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-              <p className="text-gray-600 text-xs mt-1">Average age: {agency.averageAge || '~'} years</p>
-            </div>
-          ) : (
-            <div className="chart-section">
-              <h3 className="text-sm font-semibold mb-2">Age Distribution</h3>
-              <div className="flex justify-center items-center h-[100px]">
-                <Image 
-                  src="/no-data-yet.svg" 
-                  alt="No Data Yet" 
-                  width={100} 
-                  height={100} 
-                  priority
-                />
-              </div>
-              <p className="text-gray-600 text-xs mt-1">Average age: {agency.averageAge || '~'} years</p>
-            </div>
-          )}
+          <p className="text-gray-600 text-xs mt-1">Average tenure: {agency.averageTenureYears || '~'} years</p>
         </div>
-      )}
+
+        <div className="chart-section">
+          <h3 className="text-sm font-semibold mb-2">Salary Distribution</h3>
+          {salaryData.length > 0 ? (
+            <div className="chart-container">
+              <ResponsiveContainer width="100%" height={100}>
+                <BarChart data={salaryData}>
+                  <XAxis dataKey="name" />
+                  <YAxis hide={true} />
+                  <Tooltip content={(props) => <CustomTooltip {...props} type="salary" />} />
+                  <Bar dataKey="value" fill="#000000" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          ) : (
+            <div className="flex justify-center items-center h-[100px]">
+              <Image 
+                src="/no-data-yet.svg" 
+                alt="No Data Yet" 
+                width={100} 
+                height={100} 
+                priority
+              />
+            </div>
+          )}
+          <p className="text-gray-600 text-xs mt-1">Average salary: ${agency.averageSalary ? formatNumber(agency.averageSalary) : '~'}/yr</p>
+        </div>
+
+        <div className="chart-section">
+          <h3 className="text-sm font-semibold mb-2">Age Distribution</h3>
+          {ageData.length > 0 ? (
+            <div className="chart-container">
+              <ResponsiveContainer width="100%" height={100}>
+                <BarChart data={ageData}>
+                  <XAxis dataKey="name" />
+                  <YAxis hide={true} />
+                  <Tooltip content={(props) => <CustomTooltip {...props} type="age" />} />
+                  <Bar dataKey="value" fill="#000000" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          ) : (
+            <div className="flex justify-center items-center h-[100px]">
+              <Image 
+                src="/no-data-yet.svg" 
+                alt="No Data Yet" 
+                width={100} 
+                height={100} 
+                priority
+              />
+            </div>
+          )}
+          <p className="text-gray-600 text-xs mt-1">Average age: {agency.averageAge || '~'} years</p>
+        </div>
+      </div>
     </div>
   );
 };

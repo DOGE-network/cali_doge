@@ -13,5 +13,11 @@ module.exports = {
         'no-console': 'off',
       },
     },
+    {
+      files: ['src/app/workforce/**/*.tsx', 'src/app/workforce/**/*.ts'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
   ],
 }; 
