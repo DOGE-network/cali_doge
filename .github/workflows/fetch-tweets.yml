@@ -5,6 +5,9 @@ on:
     - cron: '0 * * * *'  # Runs every hour
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
@@ -26,6 +29,12 @@ jobs:
       env:
         NODE_ENV: production
       run: |
-        npm run build
-        node dist/scripts/fetch-tweets.ts
+        npx ts-node src/scripts/fetch-tweets.ts
       continue-on-error: false
+
+    - name: Commit and push if changed
+      run: |
+        git config --global user.name 'GitHub Action'
+        git config --global user.email 'action@github.com'
+        git add src/data/rate_limit.json
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update rate limit data [skip ci]" && git push)
