@@ -1,6 +1,161 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-02-28T23:44:25.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1895621106666758559",
+      "text": "“for sale: one chimney. Good condition. Fire-tested”\n\nThe LA fires  estimated total loss could exceed California’s entire state budget from the 2021–22 fiscal year. \n\nhttps://t.co/9NGSwY78Rn",
+      "edit_history_tweet_ids": [
+        "1895621106666758559"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 167,
+            "end": 190,
+            "url": "https://t.co/9NGSwY78Rn",
+            "expanded_url": "https://www.hoover.org/research/apocalypse-city-angels-what-might-have-been-so-different",
+            "display_url": "hoover.org/research/apoca…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1895621107895713796/vhGlMP29?format=jpg&name=orig",
+                "width": 1200,
+                "height": 630
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1895621107895713796/vhGlMP29?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Apocalypse In The City Of Angels: What Might Have Been So Different",
+            "description": "If only the city of Los Angeles had invested more to protect its Angelenos, the enormous destruction from the Los Angeles fires perhaps could have been considerably smaller.",
+            "unwound_url": "https://www.hoover.org/research/apocalypse-city-angels-what-might-have-been-so-different"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 58,
+            "end": 59,
+            "probability": 0.932,
+            "type": "Place",
+            "normalized_text": "LA"
+          },
+          {
+            "start": 102,
+            "end": 111,
+            "probability": 0.9692,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "created_at_formatted": "Feb 28, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-02-23T17:30:32.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1893715075808063702",
+      "text": "Annual California state government hiring by department and overall is good information to know",
+      "edit_history_tweet_ids": [
+        "1893715075808063702"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 7,
+            "end": 16,
+            "probability": 0.7828,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "created_at_formatted": "Feb 23, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-02-23T17:27:22.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1893714279586501119",
+      "text": "Where can productivity be found in the California government systems?",
+      "edit_history_tweet_ids": [
+        "1893714279586501119"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 39,
+            "end": 48,
+            "probability": 0.832,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "created_at_formatted": "Feb 23, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "text": "DOGE Update as of 13 Feb 2025 (5/5)\nRecent major developments regarding the Department of Government Efficiency (DOGE) as of February 13, 2025, along with analysis of potential implications for state governments. Source: https://t.co/X9BtM9pyg5, https://t.co/NVwjir2l2M",
       "created_at": "2025-02-19T13:59:32.000Z",
       "context_annotations": [
@@ -1354,8 +1509,8 @@
     }
   ],
   "meta": {
-    "result_count": 13,
-    "newest_id": "1892212426684125691",
+    "result_count": 16,
+    "newest_id": "1895621106666758559",
     "oldest_id": "1882144700762878208"
   }
 }
