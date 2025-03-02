@@ -1,33 +1,46 @@
 import { TwitterApi } from 'twitter-api-v2';
 
-if (!process.env.TWITTER_API_KEY) {
-  throw new Error('TWITTER_API_KEY is not defined in environment variables');
-}
-if (!process.env.TWITTER_API_KEY_SECRET) {
-  throw new Error('TWITTER_API_KEY_SECRET is not defined in environment variables');
-}
-if (!process.env.TWITTER_bearer_TOKEN) {
-  throw new Error('TWITTER_bearer_TOKEN is not defined in environment variables');
-}
-if (!process.env.TWITTER_ACCESS_TOKEN) {
-  throw new Error('TWITTER_ACCESS_TOKEN is not defined in environment variables');
-}
-if (!process.env.TWITTER_ACCESS_TOKEN_SECRET) {
-  throw new Error('TWITTER_ACCESS_TOKEN_SECRET is not defined in environment variables');
-}
-if (!process.env.TWITTER_USERNAME) {
-  throw new Error('TWITTER_USERNAME is not defined in environment variables');
+// Determine if we're running in a GitHub Actions environment
+const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
+
+// Check for required environment variables
+const requiredEnvVars = [
+  'TWITTER_API_KEY',
+  'TWITTER_API_KEY_SECRET',
+  'TWITTER_BEARER_TOKEN',
+  'TWITTER_ACCESS_TOKEN',
+  'TWITTER_ACCESS_TOKEN_SECRET',
+  'TWITTER_USERNAME',
+];
+
+// Check each required environment variable
+for (const envVar of requiredEnvVars) {
+  if (!process.env[envVar]) {
+    if (isGitHubActions) {
+      throw new Error(
+        `${envVar} is not defined in GitHub Secrets. ` +
+        'Make sure to add it in your repository settings under Secrets and Variables > Actions.'
+      );
+    } else {
+      throw new Error(
+        `${envVar} is not defined in environment variables. ` +
+        'Make sure it is set in your .env.local file or system environment.'
+      );
+    }
+  }
 }
 
 // Create client with app-only bearer token
-export const twitterClient = new TwitterApi(process.env.TWITTER_bearer_TOKEN);
+// We can safely assert non-null since we've checked above
+const bearerToken = process.env.TWITTER_BEARER_TOKEN as string;
+export const twitterClient = new TwitterApi(bearerToken);
 
 // Create client with user authentication
 export const twitterAuthClient = new TwitterApi({
-  appKey: process.env.TWITTER_API_KEY,
-  appSecret: process.env.TWITTER_API_KEY_SECRET,
-  accessToken: process.env.TWITTER_ACCESS_TOKEN,
-  accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+  appKey: process.env.TWITTER_API_KEY as string,
+  appSecret: process.env.TWITTER_API_KEY_SECRET as string,
+  accessToken: process.env.TWITTER_ACCESS_TOKEN as string,
+  accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET as string,
 });
 
 // Read-only client for app-only endpoints
