@@ -225,36 +225,31 @@ function AgencyCard({
   onClick: () => void;
   showChart: boolean;
 }) {
-  // Debug logs
-  console.log('🔍 AgencyCard render:', {
-    agencyName: agency.name,
-    hasHeadCount: !!agency.headCount,
-    hasDistributions: {
-      tenure: !!agency.tenureDistribution,
-      salary: !!agency.salaryDistribution,
-      age: !!agency.ageDistribution
-    },
-    showChart: showChart,
-    isActive: isActive
-  });
-
   return (
     <div className={`space-y-4 ${isActive ? 'ring-2 ring-blue-500 rounded-lg' : ''}`}>
       <div 
-        className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white cursor-pointer"
+        className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white cursor-pointer relative"
         onClick={onClick}
       >
-        <h3 className="text-lg font-semibold text-gray-900">
-          {agency.name}
-          {agency.abbreviation && <span className="ml-2 text-sm text-gray-500">({agency.abbreviation})</span>}
-        </h3>
-        {agency.description && (
-          <p className="mt-2 text-sm text-gray-600">{agency.description}</p>
-        )}
+        <div className="flex justify-between items-start">
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900">
+              {agency.name}
+              {agency.abbreviation && <span className="ml-2 text-sm text-gray-500">({agency.abbreviation})</span>}
+            </h3>
+            {agency.description && (
+              <p className="mt-2 text-sm text-gray-600">{agency.description}</p>
+            )}
+          </div>
+          {agency.subordinateOffices !== undefined && agency.subordinateOffices > 0 && (
+            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+              <span className="text-sm font-medium text-gray-700">{agency.subordinateOffices}</span>
+            </div>
+          )}
+        </div>
       </div>
       {showChart && (
         <div className="chart-wrapper">
-          <p className="text-xs text-gray-500 mb-1">Chart for {agency.name}</p>
           <AgencyDataVisualization agency={agency} />
         </div>
       )}
@@ -429,7 +424,7 @@ const Page = () => {
           California State Government Workforce
         </h1>
         <p className="text-sm text-center text-gray-600">
-          For reference, California&apos;s public sector (state, county, and local governments) employed over 2.3 million workers as of 2023, representing 9% of total state employment. All 2023 data below is from public sources
+          For reference, California&apos;s public sector (state, county, and local governments) employed over 2.3 million workers as of 2023, representing 9% of total state employment. The national average for government employee salary is $68,727. The median age of California&apos;s overall population is 37.6 years. All 2023 data below is from public sources.
         </p>
         
         {/* Debug section only shown in development */}
