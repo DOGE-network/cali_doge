@@ -1,3 +1,21 @@
+// Level 0: Executive Branch
+// Level 1: Categories (Superagencies and Departments, etc.)
+// Level 2: Agencies (Government Operations Agency, etc.)
+// Level 3: Sub-agencies (Department of General Services, etc.)
+
+// When nothing is selected:
+// - Show Executive Branch (Level 0). show data and charts.
+// - Show Categories (Level 1) no data or charts
+// - Hide everything else
+
+// When something is selected:
+// Always show the path to root, ancestors. ancestors do not display data or charts. 
+// always show the active card, data and charts
+// if no json data display ~
+// if no json chart data then display no-data-yet svg for each chart missing data
+// Show only immediate children of active card. do not display data
+// Hide all other branches
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -84,60 +102,83 @@ const agencyStructure: Agency[] = [
   }
 ];
 
-// Merge agency data with structure
-const mergeAgencyData = (structure: Agency[], data: Agency | undefined): Agency[] => {
-  if (!data) {
-    console.log('No data provided for merging');
+// Remove or prefix unused functions with underscore
+const _logAgencyHierarchy = (agencies: Agency[], level = 0) => {
+  agencies.forEach(agency => {
+    console.log(
+      '  '.repeat(level) + 
+      `${agency.name}${agency.subordinateOffices ? ` (${agency.subordinateOffices} offices)` : ''}`
+    );
+    if (agency.subAgencies) {
+      _logAgencyHierarchy(agency.subAgencies, level + 1);
+    }
+  });
+};
+
+// Remove or prefix unused functions with underscore
+const _findAgencyByNameRecursive = (
+  agencies: Agency[], 
+  targetName: string, 
+  path: string[] = []
+): { agency: Agency | null; path: string[] } => {
+  for (const agency of agencies) {
+    const currentPath = [...path, agency.name];
+    
+    if (agency.name === targetName) {
+      return { agency, path: currentPath };
+    }
+    
+    if (agency.subAgencies) {
+      const found = _findAgencyByNameRecursive(agency.subAgencies, targetName, currentPath);
+      if (found.agency) {
+        return found;
+      }
+    }
+  }
+  
+  return { agency: null, path: [] };
+};
+
+// Update the mergeAgencyData function to handle the array structure
+const mergeAgencyData = (structure: Agency[], data: any[]): Agency[] => {
+  if (!data || !Array.isArray(data)) {
+    console.log('No valid data provided for merging');
     return structure;
   }
   
-  console.log('Merging data:', {
-    structureAgencies: structure.map(a => a.name),
-    dataName: data.name,
-    dataHasHeadCount: !!data.headCount,
-    dataHasSubAgencies: !!data.subAgencies?.length
-  });
+  console.log('Starting new data merge process...');
   
-  return structure.map(agency => {
-    // If this is the top-level California Government agency
-    if (agency.name === data.name) {
-      const merged = {
-        ...agency,
-        headCount: data.headCount,
-        // Keep the subordinateOffices from the structure (calculated from JSON)
-        subordinateOffices: agency.subordinateOffices,
-        totalWages: data.totalWages,
-        tenureDistribution: data.tenureDistribution,
-        salaryDistribution: data.salaryDistribution,
-        ageDistribution: data.ageDistribution,
-        averageTenureYears: data.averageTenureYears,
-        averageSalary: data.averageSalary,
-        averageAge: data.averageAge,
-        // Recursively merge subagencies
-        subAgencies: agency.subAgencies && data.subAgencies
-          ? mergeAgencyData(agency.subAgencies, { ...data, subAgencies: data.subAgencies })
-          : agency.subAgencies
-      };
-      console.log(`Merged top-level data for ${agency.name}:`, { 
-        hasHeadCount: !!merged.headCount,
-        subAgenciesCount: merged.subAgencies?.length 
-      });
-      return merged;
+  // Map special cases - known naming differences between the two data sets
+  const specialCaseMap: Record<string, string> = {
+    "Executive Branch": "California Government",
+    "Government Operations Agency": "Government Operations",
+    "Labor & Workforce Development": "Labor and Workforce Development Agency"
+  };
+
+  // Function to find matching data in the workforce data array
+  const findMatchingData = (name: string): any => {
+    // Try direct match
+    let match = data.find(d => d.name === name);
+    
+    // Try special case mapping if no direct match
+    if (!match && specialCaseMap[name]) {
+      match = data.find(d => d.name === specialCaseMap[name]);
     }
     
-    // Find matching agency in the data
-    const matchingData = data.subAgencies?.find(d => d.name === agency.name);
+    return match;
+  };
+
+  // Function to apply agency data recursively
+  const applyAgencyData = (agency: Agency): Agency => {
+    const matchingData = findMatchingData(agency.name);
     
     if (matchingData) {
-      console.log(`Found matching data for ${agency.name}:`, {
-        hasHeadCount: !!matchingData.headCount,
-        hasSubAgencies: !!matchingData.subAgencies?.length
-      });
-      const merged = {
+      console.log(`📍 Found matching data for ${agency.name}`);
+      
+      // Create merged agency with data from matching agency
+      const merged: Agency = {
         ...agency,
         headCount: matchingData.headCount,
-        // Keep the subordinateOffices from the structure (calculated from JSON)
-        subordinateOffices: agency.subordinateOffices,
         totalWages: matchingData.totalWages,
         tenureDistribution: matchingData.tenureDistribution,
         salaryDistribution: matchingData.salaryDistribution,
@@ -145,25 +186,32 @@ const mergeAgencyData = (structure: Agency[], data: Agency | undefined): Agency[
         averageTenureYears: matchingData.averageTenureYears,
         averageSalary: matchingData.averageSalary,
         averageAge: matchingData.averageAge,
-        // Recursively merge subagencies
-        subAgencies: agency.subAgencies && matchingData.subAgencies
-          ? mergeAgencyData(agency.subAgencies, matchingData)
-          : agency.subAgencies
       };
+      
+      // Process subagencies if they exist
+      if (agency.subAgencies) {
+        merged.subAgencies = agency.subAgencies.map(subAgency => 
+          applyAgencyData(subAgency)
+        );
+      }
+      
       return merged;
     }
     
-    // If this agency has subagencies, try to merge them with the current data level
-    if (agency.subAgencies && data.subAgencies) {
+    // No matching data found, but still process subagencies
+    if (agency.subAgencies) {
       return {
         ...agency,
-        subAgencies: mergeAgencyData(agency.subAgencies, data)
+        subAgencies: agency.subAgencies.map(subAgency => applyAgencyData(subAgency))
       };
     }
     
-    console.log(`No matching data found for ${agency.name}`);
+    // Return original agency if no match and no subagencies
     return agency;
-  });
+  };
+  
+  // Process the entire structure
+  return structure.map(agency => applyAgencyData(agency));
 };
 
 function AgencyCard({ 
@@ -178,11 +226,16 @@ function AgencyCard({
   showChart: boolean;
 }) {
   // Debug logs
-  console.log('AgencyCard render:', {
+  console.log('🔍 AgencyCard render:', {
     agencyName: agency.name,
     hasHeadCount: !!agency.headCount,
-    showChart,
-    isActive
+    hasDistributions: {
+      tenure: !!agency.tenureDistribution,
+      salary: !!agency.salaryDistribution,
+      age: !!agency.ageDistribution
+    },
+    showChart: showChart,
+    isActive: isActive
   });
 
   return (
@@ -199,7 +252,12 @@ function AgencyCard({
           <p className="mt-2 text-sm text-gray-600">{agency.description}</p>
         )}
       </div>
-      {showChart && <AgencyDataVisualization agency={agency} />}
+      {showChart && (
+        <div className="chart-wrapper">
+          <p className="text-xs text-gray-500 mb-1">Chart for {agency.name}</p>
+          <AgencyDataVisualization agency={agency} />
+        </div>
+      )}
     </div>
   );
 }
@@ -213,15 +271,27 @@ function AgencySection({
   activeAgencyPath: string[];
   onAgencyClick: { (_paths: string[]): void };
 }) {
-  // For main agency: show chart by default, hide when any agency is selected
-  const showChart = section.name === "Executive Branch" && activeAgencyPath.length === 0;
-  const isActiveAgency = activeAgencyPath[0] === section.name;
+  const isActiveAgency = activeAgencyPath.length > 0 && activeAgencyPath[0] === section.name;
+  
+  // FIXED: Executive Branch should only show chart when:
+  // 1. Nothing is selected (activeAgencyPath.length === 0)
+  // 2. Executive Branch itself is selected (isActiveAgency AND activeAgencyPath.length === 1)
+  // This prevents ancestors from showing data when descendants are selected
+  const showChart = section.name === "Executive Branch" && 
+                   (activeAgencyPath.length === 0 || 
+                    (isActiveAgency && activeAgencyPath.length === 1));
 
-  console.log('AgencySection render:', {
-    sectionName: section.name,
+  // When nothing is selected, only show Executive Branch and its categories
+  const showSubAgencies = true;
+
+  console.log('🔍 AgencySection:', {
+    name: section.name,
     activeAgencyPath,
+    isActiveAgency,
+    showSubAgencies,
     showChart,
-    isActiveAgency
+    hasHeadCount: !!section.headCount,
+    hasAgencyData: !!section.tenureDistribution
   });
 
   return (
@@ -233,7 +303,7 @@ function AgencySection({
         showChart={showChart}
       />
       
-      {section.subAgencies && (
+      {section.subAgencies && showSubAgencies && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
           {section.subAgencies.map((agency, index) => (
             <div key={index} className="ml-4">
@@ -260,43 +330,44 @@ function SubAgencySection({
   agency: Agency;
   parentPath: string[];
   activeAgencyPath: string[];
-  onAgencyClick: { (_paths: string[]): void };
+  onAgencyClick: (_path: string[]) => void;
 }) {
-  const currentPath = [...parentPath, agency.name];
-  const isActive = activeAgencyPath.length > parentPath.length && 
-                  activeAgencyPath[parentPath.length] === agency.name;
-  // Show chart when this agency is selected (paths match exactly)
-  const showChart = activeAgencyPath.join('/') === currentPath.join('/');
-  
-  // Show sub-sub-agencies only when this agency is active
-  const showSubAgencies = isActive || activeAgencyPath.length === 0;
+  // Check if this agency's path matches the active path exactly
+  const isActive = activeAgencyPath.length > 0 &&
+    parentPath.length === activeAgencyPath.length &&
+    parentPath.every((name, i) => activeAgencyPath[i] === name);
 
-  console.log('SubAgencySection render:', {
-    agencyName: agency.name,
-    currentPath,
-    activeAgencyPath,
-    showChart,
-    isActive
-  });
+  // Only show subagencies if this is the active branch
+  const showSubAgencies = activeAgencyPath.length >= parentPath.length &&
+    parentPath.every((name, i) => activeAgencyPath[i] === name);
+
+  // Determine if we should show the chart
+  // Only show chart if this agency is the active selection
+  // Level 1 categories should not show charts when nothing is selected
+  const showChart = isActive && 
+    // Don't show charts for Level 1 categories when nothing is selected
+    !(parentPath.length === 1 && parentPath[0] === "Executive Branch" && activeAgencyPath.length === 0);
 
   return (
-    <div>
-      <AgencyCard
-        agency={agency}
-        isActive={isActive}
-        onClick={() => onAgencyClick(currentPath)}
-        showChart={showChart}
-      />
-      
-      {agency.subAgencies && showSubAgencies && (
-        <div className="ml-4 mt-4 space-y-4">
+    <div className="flex flex-col gap-2">
+      {agency && (
+        <AgencyCard
+          agency={agency}
+          isActive={isActive}
+          onClick={() => onAgencyClick(parentPath)}
+          showChart={showChart}
+        />
+      )}
+
+      {showSubAgencies && agency?.subAgencies && (
+        <div className="pl-4">
           {agency.subAgencies.map((subAgency, index) => (
-            <AgencyCard
-              key={index}
+            <SubAgencySection
+              key={`${subAgency.name}-${index}`} // Add index to ensure unique keys
               agency={subAgency}
-              isActive={activeAgencyPath.join('/') === [...currentPath, subAgency.name].join('/')}
-              onClick={() => onAgencyClick([...currentPath, subAgency.name])}
-              showChart={activeAgencyPath.join('/') === [...currentPath, subAgency.name].join('/')}
+              parentPath={[...parentPath, subAgency.name]}
+              activeAgencyPath={activeAgencyPath}
+              onAgencyClick={onAgencyClick}
             />
           ))}
         </div>
@@ -308,19 +379,56 @@ function SubAgencySection({
 const Page = () => {
   const [mergedStructure, setMergedStructure] = useState<Agency[]>(agencyStructure);
   const [activeAgencyPath, setActiveAgencyPath] = useState<string[]>([]);
+  const [showDebugInfo, setShowDebugInfo] = useState<boolean>(false);
+  const isDevEnv = process.env.NODE_ENV === 'development';
 
   useEffect(() => {
+    // Add debug logging for initial data
+    console.log('📍 Initial agencyData:', agencyData);
+    console.log('📍 Initial agencyStructure:', agencyStructure);
+    
     const merged = mergeAgencyData(agencyStructure, agencyData);
+    console.log('📍 Merged structure:', merged);
     setMergedStructure(merged);
-    console.log("Merged structure:", merged);
   }, []);
 
   const handleAgencyClick = (path: string[]) => {
-    console.log("Agency clicked:", path);
-    setActiveAgencyPath(prevPath => 
-      prevPath.join('/') === path.join('/') ? [] : path
-    );
+    console.log("👆 Agency clicked:", path, "Current active path:", activeAgencyPath);
+    
+    // Get the path as a string for comparison
+    const clickedPathString = path.join('/');
+    const currentPathString = activeAgencyPath.join('/');
+    
+    // Toggle selection: If already selected, clear selection
+    if (clickedPathString === currentPathString) {
+      console.log("👆 Clearing selection");
+      setActiveAgencyPath([]);
+    } else {
+      console.log("👆 Setting new active path:", path);
+      setActiveAgencyPath(path);
+    }
   };
+
+  // Helper function to find agency by path
+  const findAgencyByPath = (path: string[], agencies: Agency[]): Agency | null => {
+    if (path.length === 0 || agencies.length === 0) return null;
+    
+    const targetAgency = agencies.find(a => a.name === path[0]);
+    if (!targetAgency) return null;
+    
+    if (path.length === 1) return targetAgency;
+    
+    if (targetAgency.subAgencies && targetAgency.subAgencies.length > 0) {
+      return findAgencyByPath(path.slice(1), targetAgency.subAgencies);
+    }
+    
+    return null;
+  };
+
+  // Get the active agency if any
+  const activeAgency = activeAgencyPath.length > 0 
+    ? findAgencyByPath(activeAgencyPath, mergedStructure)
+    : null;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -331,6 +439,43 @@ const Page = () => {
         <p className="text-sm text-center text-gray-600">
           For reference, California&apos;s public sector (state, county, and local governments) employed over 2.3 million workers as of 2023, representing 9% of total state employment. All 2023 data below is from public sources
         </p>
+        
+        {/* Debug section only shown in development */}
+        {isDevEnv && (
+          <>
+            <div className="mt-4 flex justify-between items-center">
+              <button 
+                className="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded hover:bg-gray-300"
+                onClick={() => setShowDebugInfo(!showDebugInfo)}
+              >
+                {showDebugInfo ? 'Hide' : 'Show'} Debug Info
+              </button>
+              
+              {activeAgencyPath.length > 0 && (
+                <button 
+                  className="text-xs bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200"
+                  onClick={() => setActiveAgencyPath([])}
+                >
+                  Clear Selection
+                </button>
+              )}
+            </div>
+            
+            {showDebugInfo && (
+              <div className="mt-2 p-2 bg-gray-100 text-xs text-gray-600 rounded">
+                <p><strong>Active path:</strong> {activeAgencyPath.length > 0 ? activeAgencyPath.join(' → ') : 'None (showing Executive Branch)'}</p>
+                
+                {activeAgency && (
+                  <div className="mt-1">
+                    <p><strong>Selected agency:</strong> {activeAgency.name}</p>
+                    <p><strong>Has data:</strong> {!!activeAgency.headCount ? 'Yes' : 'No'}</p>
+                    <p><strong>Has charts:</strong> {!!activeAgency.tenureDistribution ? 'Yes' : 'No'}</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </>
+        )}
       </div>
       
       <div className="space-y-12">
