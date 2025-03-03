@@ -271,34 +271,28 @@ function AgencySection({
   activeAgencyPath: string[];
   onAgencyClick: { (_paths: string[]): void };
 }) {
-  const isActiveAgency = activeAgencyPath.length > 0 && activeAgencyPath[0] === section.name;
+  // Check if this section is in the active path
+  const isInActivePath = activeAgencyPath.length > 0 && activeAgencyPath[0] === section.name;
   
-  // FIXED: Executive Branch should only show chart when:
+  // Check if this section is the currently selected item
+  const isActiveItem = activeAgencyPath.length === 1 && activeAgencyPath[0] === section.name;
+  
+  // Show Executive Branch chart when:
   // 1. Nothing is selected (activeAgencyPath.length === 0)
-  // 2. Executive Branch itself is selected (isActiveAgency AND activeAgencyPath.length === 1)
-  // This prevents ancestors from showing data when descendants are selected
+  // 2. Executive Branch is specifically selected
   const showChart = section.name === "Executive Branch" && 
-                   (activeAgencyPath.length === 0 || 
-                    (isActiveAgency && activeAgencyPath.length === 1));
+    (activeAgencyPath.length === 0 || isActiveItem);
 
-  // When nothing is selected, only show Executive Branch and its categories
-  const showSubAgencies = true;
-
-  console.log('🔍 AgencySection:', {
-    name: section.name,
-    activeAgencyPath,
-    isActiveAgency,
-    showSubAgencies,
-    showChart,
-    hasHeadCount: !!section.headCount,
-    hasAgencyData: !!section.tenureDistribution
-  });
+  // Show subagencies when:
+  // 1. This is Executive Branch (always show its immediate children)
+  // 2. This section is in the active path
+  const showSubAgencies = section.name === "Executive Branch" || isInActivePath;
 
   return (
     <div className="mb-8">
       <AgencyCard 
         agency={section}
-        isActive={isActiveAgency}
+        isActive={isActiveItem}
         onClick={() => onAgencyClick([section.name])}
         showChart={showChart}
       />
@@ -332,40 +326,38 @@ function SubAgencySection({
   activeAgencyPath: string[];
   onAgencyClick: (_path: string[]) => void;
 }) {
-  // Check if this agency's path matches the active path exactly
-  const isActive = activeAgencyPath.length > 0 &&
-    parentPath.length === activeAgencyPath.length &&
-    parentPath.every((name, i) => activeAgencyPath[i] === name);
+  const currentPath = [...parentPath, agency.name];
+  
+  // Check if this agency is the currently selected item
+  const isActiveItem = activeAgencyPath.length === currentPath.length &&
+    currentPath.every((name, i) => activeAgencyPath[i] === name);
+  
+  // Check if this agency is in the active path
+  const isInActivePath = activeAgencyPath.length >= currentPath.length &&
+    currentPath.every((name, i) => activeAgencyPath[i] === name);
 
-  // Only show subagencies if this is the active branch
-  const showSubAgencies = activeAgencyPath.length >= parentPath.length &&
-    parentPath.every((name, i) => activeAgencyPath[i] === name);
+  // Show chart only for the actively selected item
+  const showChart = isActiveItem;
 
-  // Determine if we should show the chart
-  // Only show chart if this agency is the active selection
-  // Level 1 categories should not show charts when nothing is selected
-  const showChart = isActive && 
-    // Don't show charts for Level 1 categories when nothing is selected
-    !(parentPath.length === 1 && parentPath[0] === "Executive Branch" && activeAgencyPath.length === 0);
+  // Show subagencies only if this is in the active path
+  const showSubAgencies = isInActivePath;
 
   return (
     <div className="flex flex-col gap-2">
-      {agency && (
-        <AgencyCard
-          agency={agency}
-          isActive={isActive}
-          onClick={() => onAgencyClick(parentPath)}
-          showChart={showChart}
-        />
-      )}
+      <AgencyCard
+        agency={agency}
+        isActive={isActiveItem}
+        onClick={() => onAgencyClick(currentPath)}
+        showChart={showChart}
+      />
 
       {showSubAgencies && agency?.subAgencies && (
         <div className="pl-4">
           {agency.subAgencies.map((subAgency, index) => (
             <SubAgencySection
-              key={`${subAgency.name}-${index}`} // Add index to ensure unique keys
+              key={`${subAgency.name}-${index}`}
               agency={subAgency}
-              parentPath={[...parentPath, subAgency.name]}
+              parentPath={currentPath}
               activeAgencyPath={activeAgencyPath}
               onAgencyClick={onAgencyClick}
             />
@@ -496,6 +488,8 @@ const Page = () => {
         <p><a href="https://www.calbright.edu/wp-content/uploads/2024/05/Calbright-College-The-Road-to-Optimizing-California&apos;s-Public-Sector-Labor-Market.pdf" target="_blank" rel="noopener noreferrer">Calbright-College-The-Road-to-Optimizing-California&apos;s-Public-Sector-Labor-Market calbright.edu</a>.</p>
         <p><a href="https://publicpay.ca.gov/reports/rawexport.aspx" target="_blank" rel="noopener noreferrer">Government Compensation in California</a>.</p>
         <p><a href="https://www.sco.ca.gov/eo_about_boards.html" target="_blank" rel="noopener noreferrer">Boards and Commissions - California State Controller&apos;s Office</a>.</p>
+        <p><a href="https://speaker.asmdc.org/sites/speaker.asmdc.org/files/2022-11/All-Bds-and-Comms-List-8-1-22.pdf" target="_blank" rel="noopener noreferrer">California State Assembly Speaker&apos;s Office - Boards and Commissions List</a>.</p>
+        <p><a href="https://www.treasurer.ca.gov/otherboards.asp" target="_blank" rel="noopener noreferrer">California State Treasurer&apos;s Office - Boards and Commissions</a>.</p>
       </footer>
     </div>
   );
