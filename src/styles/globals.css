@@ -36,4 +36,45 @@ body {
            hover:bg-odi-dark-blue focus:outline-none focus:ring-2 focus:ring-offset-2 
            focus:ring-odi-blue transition-colors duration-150;
   }
+  .chart-container {
+    width: 100%;
+    height: auto;
+    min-width: 100px;
+    max-width: 200px;
+    max-height: 100px;
+    margin: 0 auto;
+  }
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.chart-section {
+  flex: 1 1 100%;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .charts-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .chart-section {
+    flex: 1 1 45%;
+    max-width: 48%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .chart-section {
+    flex: 1 1 30%;
+    max-width: 32%;
+  }
 } 
