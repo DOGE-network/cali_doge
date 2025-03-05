@@ -1,6 +1,295 @@
 {
   "tweets": [
     {
+      "created_at": "2025-03-05T07:05:37.000Z",
+      "entities": {
+        "hashtags": [
+          {
+            "start": 189,
+            "end": 200,
+            "tag": "healthcare"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 7,
+            "probability": 0.6011,
+            "type": "Other",
+            "normalized_text": "Medicaid"
+          },
+          {
+            "start": 69,
+            "end": 71,
+            "probability": 0.4853,
+            "type": "Other",
+            "normalized_text": "HHS"
+          }
+        ]
+      },
+      "id": "1897181689073557527",
+      "edit_history_tweet_ids": [
+        "1897181689073557527"
+      ],
+      "author_id": "1859283000145608705",
+      "text": "Medicaid programs facing significant exposure from funding disputes. HHS review indicates potential disruption to healthcare services in affected states if resolution not reached by April. #healthcare",
+      "created_at_formatted": "Mar 5, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "created_at": "2025-03-05T07:05:36.000Z",
+      "entities": {
+        "hashtags": [
+          {
+            "start": 172,
+            "end": 181,
+            "tag": "CAbudget"
+          },
+          {
+            "start": 182,
+            "end": 193,
+            "tag": "EPAfunding"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 9,
+            "probability": 0.9841,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 35,
+            "end": 37,
+            "probability": 0.9292,
+            "type": "Organization",
+            "normalized_text": "EPA"
+          },
+          {
+            "start": 173,
+            "end": 180,
+            "probability": 0.5644,
+            "type": "Place",
+            "normalized_text": "CAbudget"
+          },
+          {
+            "start": 183,
+            "end": 192,
+            "probability": 0.4568,
+            "type": "Organization",
+            "normalized_text": "EPAfunding"
+          }
+        ]
+      },
+      "id": "1897181687576224136",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1897181687576224136"
+      ],
+      "author_id": "1859283000145608705",
+      "text": "California particularly exposed to EPA funding freeze with $1.2B in environmental projects now at risk. State officials scrambling to identify alternative funding sources. #CAbudget #EPAfunding",
+      "created_at_formatted": "Mar 5, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "created_at": "2025-03-05T07:05:36.000Z",
+      "entities": {
+        "hashtags": [
+          {
+            "start": 178,
+            "end": 189,
+            "tag": "GovFunding"
+          }
+        ]
+      },
+      "id": "1897181686028509457",
+      "edit_history_tweet_ids": [
+        "1897181686028509457"
+      ],
+      "author_id": "1859283000145608705",
+      "text": "Federal government now demanding repayment of previously allocated funds from multiple states. Citing compliance issues with grant terms. Estimated $800M in potential clawbacks. #GovFunding",
+      "created_at_formatted": "Mar 5, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "created_at": "2025-03-05T07:05:36.000Z",
+      "entities": {
+        "hashtags": [
+          {
+            "start": 157,
+            "end": 166,
+            "tag": "OpenData"
+          },
+          {
+            "start": 167,
+            "end": 183,
+            "tag": "GovTransparency"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 2,
+            "probability": 0.9561,
+            "type": "Organization",
+            "normalized_text": "EPA"
+          }
+        ]
+      },
+      "id": "1897181684417880173",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "930484568305541120",
+            "name": "Data science",
+            "description": "Data Science"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "849075430715936768",
+            "name": "Open source",
+            "description": "Open source"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "849075430715936768",
+            "name": "Open source",
+            "description": "Open source"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1897181684417880173"
+      ],
+      "author_id": "1859283000145608705",
+      "text": "EPA announces immediate funding freeze affecting multiple state environmental programs. This impacts pending grants and ongoing projects across the country. #OpenData #GovTransparency",
+      "created_at_formatted": "Mar 5, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -1509,8 +1798,8 @@
     }
   ],
   "meta": {
-    "result_count": 16,
-    "newest_id": "1895621106666758559",
+    "result_count": 20,
+    "newest_id": "1897181689073557527",
     "oldest_id": "1882144700762878208"
   }
 }
