@@ -47,7 +47,7 @@ export default function SpendPage() {
     <main className="container mx-auto px-4 py-8 max-w-7xl">
       {/* Agency Spending */}
       <div className="mb-12">
-        <h1 className="text-2xl font-bold mb-8">Agency Spending</h1>
+        <h1 className="text-2xl font-bold mb-8">California Department Spending</h1>
         
         <div className="overflow-x-auto">
           <table className="min-w-full bg-transparent dark:bg-transparent">
@@ -80,7 +80,7 @@ export default function SpendPage() {
 
       {/* Revenue Sources */}
       <div className="mb-12">
-        <h1 className="text-2xl font-bold mb-8">Revenue Sources</h1>
+        <h1 className="text-2xl font-bold mb-8">California Revenue Sources</h1>
         
         <div className="overflow-x-auto">
           <table className="min-w-full bg-transparent dark:bg-transparent">
@@ -137,7 +137,7 @@ export default function SpendPage() {
             </thead>
             <tbody>
               <tr className="border-b border-gray-700">
-                <td className="py-3 px-4 font-bold">Federal Deficit</td>
+                <td className="py-3 px-4 font-bold">California Budget Deficit</td>
                 <td className="py-3 px-4 text-right">
                   {typedSpendingData.federalDeficit.FY2023}
                 </td>

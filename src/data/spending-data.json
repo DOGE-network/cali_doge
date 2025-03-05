@@ -2,175 +2,179 @@
   "fiscalYears": ["FY2023", "FY2024"],
   "agencies": [
     {
-      "name": "Department of Health and Human Services",
+      "name": "California Department of Forestry and Fire Protection",
       "rank": "#1",
       "spending": {
-        "FY2023": "$1213.8B",
-        "FY2024": "$1720.6B"
-      }
-    },
-    {
-      "name": "Social Security Administration",
-      "rank": "#2",
-      "spending": {
-        "FY2023": "$1101.8B",
-        "FY2024": "$1519.7B"
-      }
-    },
-    {
-      "name": "Department of the Treasury",
-      "rank": "#3",
-      "spending": {
-        "FY2023": "$689.5B",
-        "FY2024": "$1311.9B"
-      }
-    },
-    {
-      "name": "Department of Defense",
-      "rank": "#4",
-      "spending": {
-        "FY2023": "$654.0B",
-        "FY2024": "$826.3B"
-      }
-    },
-    {
-      "name": "Department of Veterans Affairs",
-      "rank": "#5",
-      "spending": {
-        "FY2023": "$199.6B",
-        "FY2024": "$325.0B"
-      }
-    },
-    {
-      "name": "Department of Education",
-      "rank": "#6",
-      "spending": {
-        "FY2023": "$194.4B",
-        "FY2024": "$268.4B"
-      }
-    },
-    {
-      "name": "Department of Agriculture",
-      "rank": "#7",
-      "spending": {
-        "FY2023": "$150.1B",
-        "FY2024": "$203.4B"
-      }
-    },
-    {
-      "name": "Office of Personnel Management",
-      "rank": "#8",
-      "spending": {
-        "FY2023": "$103.1B",
-        "FY2024": "$126.2B"
-      }
-    },
-    {
-      "name": "Department of Forestry and Fire Protection",
-      "rank": "#9",
-      "spending": {
-        "FY2023": "$4.0B",
-        "FY2024": "$4.2B"
+        "FY2023": "$4.32B",
+        "FY2024": "$4.22B"
       }
     },
     {
       "name": "Department of Water Resources",
+      "rank": "#2",
+      "spending": {
+        "FY2023": "$7.48B",
+        "FY2024": "$3.19B"
+      }
+    },
+    {
+      "name": "Department of Parks and Recreation",
+      "rank": "#3",
+      "spending": {
+        "FY2023": "$1.99B",
+        "FY2024": "$0.88B"
+      }
+    },
+    {
+      "name": "Energy Commission",
+      "rank": "#4",
+      "spending": {
+        "FY2023": "$1.32B",
+        "FY2024": "$1.15B"
+      }
+    },
+    {
+      "name": "Department of Fish and Wildlife",
+      "rank": "#5",
+      "spending": {
+        "FY2023": "$1.12B",
+        "FY2024": "$0.68B"
+      }
+    },
+    {
+      "name": "Water Resources Control Board",
+      "rank": "#6",
+      "spending": {
+        "FY2023": "$3.94B",
+        "FY2024": "$2.15B"
+      }
+    },
+    {
+      "name": "Air Resources Board",
+      "rank": "#7",
+      "spending": {
+        "FY2023": "$2.94B",
+        "FY2024": "$1.62B"
+      }
+    },
+    {
+      "name": "Department of Toxic Substances Control",
+      "rank": "#8",
+      "spending": {
+        "FY2023": "$0.82B",
+        "FY2024": "$0.58B"
+      }
+    },
+    {
+      "name": "California Conservation Corps",
+      "rank": "#9",
+      "spending": {
+        "FY2023": "$0.16B",
+        "FY2024": "$0.15B"
+      }
+    },
+    {
+      "name": "California Natural Resources Agency",
       "rank": "#10",
       "spending": {
-        "FY2023": "$3.9B",
-        "FY2024": "$3.2B"
+        "FY2023": "$0.39B",
+        "FY2024": "$0.32B"
       }
     }
   ],
   "budgetSummary": {
     "totalSpending": {
-      "FY2023": "$3463.0B",
-      "FY2024": "$4918.0B"
+      "FY2023": "$232.05B",
+      "FY2024": "$228.89B"
     },
     "deficit": {
-      "FY2023": "$984.4B",
-      "FY2024": "$1830.0B"
+      "FY2023": "$32.00B",
+      "FY2024": "$68.00B"
     },
     "revenue": {
-      "FY2023": "$3463.0B",
-      "FY2024": "$4918.0B"
+      "FY2023": "$193.27B",
+      "FY2024": "$222.47B"
     }
   },
   "revenueSources": [
     {
-      "source": "Individual Income Taxes",
+      "source": "Personal Income Tax",
       "amounts": {
-        "FY2023": "$1718.0B",
-        "FY2024": "$2426.0B"
+        "FY2023": "$83.87B",
+        "FY2024": "$100.32B"
       }
     },
     {
-      "source": "Corporate Income Taxes",
+      "source": "Sales and Use Tax",
       "amounts": {
-        "FY2023": "$230.0B",
-        "FY2024": "$530.0B"
+        "FY2023": "$38.65B",
+        "FY2024": "$41.27B"
       }
     },
     {
-      "source": "Social Insurance Taxes",
+      "source": "Corporate Tax",
       "amounts": {
-        "FY2023": "$1243.0B",
-        "FY2024": "$1709.0B"
+        "FY2023": "$22.46B",
+        "FY2024": "$23.83B"
       }
     },
     {
-      "source": "Excise Taxes",
+      "source": "Insurance Tax",
       "amounts": {
-        "FY2023": "$99.0B",
-        "FY2024": "$101.0B"
+        "FY2023": "$3.86B",
+        "FY2024": "$4.02B"
       }
     },
     {
-      "source": "Estate and Gift Taxes",
+      "source": "Vehicle License Fees",
       "amounts": {
-        "FY2023": "$17.0B",
-        "FY2024": "$32.0B"
+        "FY2023": "$13.72B",
+        "FY2024": "$14.37B"
       }
     },
     {
-      "source": "Customs Duties",
+      "source": "Managed Care Organization Tax",
       "amounts": {
-        "FY2023": "$71.0B",
-        "FY2024": "$77.0B"
+        "FY2023": "$1.75B",
+        "FY2024": "$5.82B"
       }
     },
     {
-      "source": "Miscellaneous Revenue",
+      "source": "Other Revenue",
       "amounts": {
-        "FY2023": "$85.0B",
-        "FY2024": "$43.0B"
+        "FY2023": "$28.96B",
+        "FY2024": "$32.84B"
       }
     }
   ],
   "totalRevenue": {
-    "FY2023": "$3463.0B",
-    "FY2024": "$4918.0B",
-    "percentChange": "+42.0%"
+    "FY2023": "$193.27B",
+    "FY2024": "$222.47B",
+    "percentChange": "+15.1%"
   },
   "federalDeficit": {
-    "FY2023": "$984.4B",
-    "FY2024": "$1830.0B"
+    "FY2023": "$32.00B",
+    "FY2024": "$68.00B"
   },
   "sources": [
     {
-      "name": "California Department of Finance",
-      "url": "https://www.dof.ca.gov/"
+      "name": "LAO: The 2024-25 California Spending Plan: Resources and Environmental Protection",
+      "url": "https://lao.ca.gov/Publications/Report/4928"
     },
     {
-      "name": "Legislative Analyst's Office",
-      "url": "https://lao.ca.gov/"
+      "name": "LAO: The 2025-26 Budget: Overview of the Governor's Budget",
+      "url": "https://lao.ca.gov/Publications/Report/4951"
     },
     {
-      "name": "California State Controller's Office",
-      "url": "https://www.sco.ca.gov/"
+      "name": "California State Controller's Office: Personal Income Tax Daily Revenue Tracker",
+      "url": "https://www.sco.ca.gov/2024_personal_income_tax_tracker.html"
     },
     {
-      "name": "Open FI$Cal",
+      "name": "CalMatters: California lawmakers face a ballooning budget deficit",
+      "url": "https://calmatters.org/politics/capitol/2024/02/california-budget-deficit-balloons/"
+    },
+    {
+      "name": "Open FI$Cal: California's Financial Transparency Portal",
       "url": "https://open.fiscal.ca.gov/"
     }
   ]
