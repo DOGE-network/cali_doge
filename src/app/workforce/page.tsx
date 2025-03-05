@@ -420,7 +420,7 @@ const Page = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
+        <h1 className="text-2xl font-bold text-center text-gray-900 mb-4">
           California State Government Workforce
         </h1>
         <p className="text-sm text-center text-gray-600">

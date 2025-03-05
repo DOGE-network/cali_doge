@@ -1,0 +1,177 @@
+{
+  "fiscalYears": ["FY2023", "FY2024"],
+  "agencies": [
+    {
+      "name": "Department of Health and Human Services",
+      "rank": "#1",
+      "spending": {
+        "FY2023": "$1213.8B",
+        "FY2024": "$1720.6B"
+      }
+    },
+    {
+      "name": "Social Security Administration",
+      "rank": "#2",
+      "spending": {
+        "FY2023": "$1101.8B",
+        "FY2024": "$1519.7B"
+      }
+    },
+    {
+      "name": "Department of the Treasury",
+      "rank": "#3",
+      "spending": {
+        "FY2023": "$689.5B",
+        "FY2024": "$1311.9B"
+      }
+    },
+    {
+      "name": "Department of Defense",
+      "rank": "#4",
+      "spending": {
+        "FY2023": "$654.0B",
+        "FY2024": "$826.3B"
+      }
+    },
+    {
+      "name": "Department of Veterans Affairs",
+      "rank": "#5",
+      "spending": {
+        "FY2023": "$199.6B",
+        "FY2024": "$325.0B"
+      }
+    },
+    {
+      "name": "Department of Education",
+      "rank": "#6",
+      "spending": {
+        "FY2023": "$194.4B",
+        "FY2024": "$268.4B"
+      }
+    },
+    {
+      "name": "Department of Agriculture",
+      "rank": "#7",
+      "spending": {
+        "FY2023": "$150.1B",
+        "FY2024": "$203.4B"
+      }
+    },
+    {
+      "name": "Office of Personnel Management",
+      "rank": "#8",
+      "spending": {
+        "FY2023": "$103.1B",
+        "FY2024": "$126.2B"
+      }
+    },
+    {
+      "name": "Department of Forestry and Fire Protection",
+      "rank": "#9",
+      "spending": {
+        "FY2023": "$4.0B",
+        "FY2024": "$4.2B"
+      }
+    },
+    {
+      "name": "Department of Water Resources",
+      "rank": "#10",
+      "spending": {
+        "FY2023": "$3.9B",
+        "FY2024": "$3.2B"
+      }
+    }
+  ],
+  "budgetSummary": {
+    "totalSpending": {
+      "FY2023": "$3463.0B",
+      "FY2024": "$4918.0B"
+    },
+    "deficit": {
+      "FY2023": "$984.4B",
+      "FY2024": "$1830.0B"
+    },
+    "revenue": {
+      "FY2023": "$3463.0B",
+      "FY2024": "$4918.0B"
+    }
+  },
+  "revenueSources": [
+    {
+      "source": "Individual Income Taxes",
+      "amounts": {
+        "FY2023": "$1718.0B",
+        "FY2024": "$2426.0B"
+      }
+    },
+    {
+      "source": "Corporate Income Taxes",
+      "amounts": {
+        "FY2023": "$230.0B",
+        "FY2024": "$530.0B"
+      }
+    },
+    {
+      "source": "Social Insurance Taxes",
+      "amounts": {
+        "FY2023": "$1243.0B",
+        "FY2024": "$1709.0B"
+      }
+    },
+    {
+      "source": "Excise Taxes",
+      "amounts": {
+        "FY2023": "$99.0B",
+        "FY2024": "$101.0B"
+      }
+    },
+    {
+      "source": "Estate and Gift Taxes",
+      "amounts": {
+        "FY2023": "$17.0B",
+        "FY2024": "$32.0B"
+      }
+    },
+    {
+      "source": "Customs Duties",
+      "amounts": {
+        "FY2023": "$71.0B",
+        "FY2024": "$77.0B"
+      }
+    },
+    {
+      "source": "Miscellaneous Revenue",
+      "amounts": {
+        "FY2023": "$85.0B",
+        "FY2024": "$43.0B"
+      }
+    }
+  ],
+  "totalRevenue": {
+    "FY2023": "$3463.0B",
+    "FY2024": "$4918.0B",
+    "percentChange": "+42.0%"
+  },
+  "federalDeficit": {
+    "FY2023": "$984.4B",
+    "FY2024": "$1830.0B"
+  },
+  "sources": [
+    {
+      "name": "California Department of Finance",
+      "url": "https://www.dof.ca.gov/"
+    },
+    {
+      "name": "Legislative Analyst's Office",
+      "url": "https://lao.ca.gov/"
+    },
+    {
+      "name": "California State Controller's Office",
+      "url": "https://www.sco.ca.gov/"
+    },
+    {
+      "name": "Open FI$Cal",
+      "url": "https://open.fiscal.ca.gov/"
+    }
+  ]
+} 
