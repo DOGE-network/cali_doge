@@ -12,6 +12,16 @@ const nextConfig = {
         hostname: 'abs.twimg.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cali-doge.org',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'doge.gov',
+        pathname: '/**',
+      },
     ],
   },
   // Ensure media files are handled properly

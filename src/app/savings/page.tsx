@@ -7,7 +7,7 @@ export default function SavingsPage() {
       </div>
 
       <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-6">Potential Savings Summary</h2>
+        <h2 className="text-2xl font-bold mb-6">Potential Savings Summary</h2>
         
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div className="border p-6 rounded-lg">
@@ -30,7 +30,7 @@ export default function SavingsPage() {
       </section>
 
       <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-6">Savings Opportunities by Agency</h2>
+        <h2 className="text-2xl font-bold mb-6">Savings Opportunities by Agency</h2>
         <p className="mb-6">
           The following information is compiled from publicly available California State Auditor reports.
           Each item includes a reference to the specific report for verification.
@@ -115,7 +115,7 @@ export default function SavingsPage() {
       </section>
       
       <section className="mb-8">
-        <h2 className="text-3xl font-bold mb-6">Additional Savings Opportunities</h2>
+        <h2 className="text-2xl font-bold mb-6">Additional Savings Opportunities</h2>
         <p className="mb-4">
           Beyond the major agencies listed above, the California State Auditor has identified numerous
           other opportunities for cost savings across state government:
@@ -142,7 +142,7 @@ export default function SavingsPage() {
       </section>
       
       <section>
-        <h2 className="text-3xl font-bold mb-6">Methodology and Disclaimer</h2>
+        <h2 className="text-2xl font-bold mb-6">Sources</h2>
         <p className="mb-4">
           The information presented on this page is compiled from publicly available <a href="https://information.auditor.ca.gov/reports" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">California State Auditor reports</a> and other government documents. The potential savings figures represent estimates based on
           these official sources.
