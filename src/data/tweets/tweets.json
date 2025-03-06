@@ -1,6 +1,130 @@
 {
   "tweets": [
     {
+      "text": "With the possible new Ohio Governor @VivekGRamaswamy , we can count on yet another state competing for California businesses",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1897396796638499097"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 22,
+            "end": 34,
+            "probability": 0.6304,
+            "type": "Organization",
+            "normalized_text": "Ohio Governor"
+          },
+          {
+            "start": 103,
+            "end": 112,
+            "probability": 0.927,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 36,
+            "end": 52,
+            "username": "VivekGRamaswamy",
+            "id": "1227799690579718144"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1694423773468917760",
+            "name": "Vivek Ramaswamy"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "1694423773468917760",
+            "name": "Vivek Ramaswamy"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1407811550987972617",
+            "name": "Industries"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "1010253454822895616",
+            "name": "Ohio",
+            "description": "Ohio"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-03-05T21:20:22.000Z",
+      "id": "1897396796638499097",
+      "created_at_formatted": "Mar 5, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "created_at": "2025-03-05T07:05:37.000Z",
       "entities": {
         "hashtags": [
@@ -1798,8 +1922,8 @@
     }
   ],
   "meta": {
-    "result_count": 20,
-    "newest_id": "1897181689073557527",
+    "result_count": 21,
+    "newest_id": "1897396796638499097",
     "oldest_id": "1882144700762878208"
   }
 }
