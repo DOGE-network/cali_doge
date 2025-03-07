@@ -1,6 +1,908 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1503733786608955394",
+            "name": "Small and medium-sized business"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1584573725449408513",
+            "name": "Businesses by size"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 134,
+            "end": 157,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 6,
+            "end": 11,
+            "probability": 0.568,
+            "type": "Other",
+            "normalized_text": "FedBiz"
+          },
+          {
+            "start": 70,
+            "end": 73,
+            "probability": 0.4595,
+            "type": "Other",
+            "normalized_text": "CMAS"
+          },
+          {
+            "start": 103,
+            "end": 106,
+            "probability": 0.4772,
+            "type": "Other",
+            "normalized_text": "SMBs"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:28.000Z",
+      "edit_history_tweet_ids": [
+        "1898105238521033061"
+      ],
+      "id": "1898105238521033061",
+      "author_id": "1859283000145608705",
+      "text": "11/11 FedBiz Access: $180M for contracting compliance. 2.8k sq.ft. in CMAS hubs. Key support: CMAS for SMBs (2010–2025). Full data at https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "898650876658634752",
+            "name": "Cybersecurity",
+            "description": "Cybersecurity"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1047123725525479425",
+            "name": "Information security",
+            "description": "Information Security"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "898650876658634752",
+            "name": "Cybersecurity",
+            "description": "Cybersecurity"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "900740740468191232",
+            "name": "Political issues",
+            "description": "Political issues"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1047123725525479425",
+            "name": "Information security",
+            "description": "Information Security"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1088443224425807872",
+            "name": "Information Privacy Worldwide",
+            "description": "Information Privacy"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 144,
+            "end": 167,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:28.000Z",
+      "edit_history_tweet_ids": [
+        "1898105236809826401"
+      ],
+      "id": "1898105236809826401",
+      "author_id": "1859283000145608705",
+      "text": "10/11 TruAdvantage: $195M for cybersecurity &amp; IT. 1.2k sq.ft. in Judicial hubs. Key work: Court security (2021), data consolidation (2023). https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 137,
+            "end": 160,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 8,
+            "end": 15,
+            "probability": 0.4839,
+            "type": "Other",
+            "normalized_text": "Schorsch"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:27.000Z",
+      "edit_history_tweet_ids": [
+        "1898105235148882411"
+      ],
+      "id": "1898105235148882411",
+      "author_id": "1859283000145608705",
+      "text": "9/11 WD Schorsch: $220M for real estate advisory. 3.5k sq.ft. in GSA space. Key contracts: VA clinics (2014), GSA leases (2019). More at https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "1575492088128421888",
+            "name": "Protiviti"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "848921562422026240",
+            "name": "Data centers",
+            "description": "Data centers"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848921562422026240",
+            "name": "Data centers",
+            "description": "Data centers"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 146,
+            "end": 169,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 5,
+            "end": 13,
+            "probability": 0.4671,
+            "type": "Other",
+            "normalized_text": "Protiviti"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:27.000Z",
+      "edit_history_tweet_ids": [
+        "1898105233341071756"
+      ],
+      "id": "1898105233341071756",
+      "author_id": "1859283000145608705",
+      "text": "8/11 Protiviti: $240M for risk mgmt &amp; auditing. 9.8k sq.ft. in state data centers. Key work: Tax fraud detection (2015), cyber audits (2024). https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1838998617064878080",
+            "name": "developers"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 149,
+            "end": 172,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 5,
+            "end": 13,
+            "probability": 0.6722,
+            "type": "Other",
+            "normalized_text": "eSparkBiz"
+          },
+          {
+            "start": 76,
+            "end": 82,
+            "probability": 0.4941,
+            "type": "Other",
+            "normalized_text": "Sac Hub"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:26.000Z",
+      "edit_history_tweet_ids": [
+        "1898105230929412529"
+      ],
+      "id": "1898105230929412529",
+      "author_id": "1859283000145608705",
+      "text": "7/11 eSparkBiz: $260M for software dev &amp; IT outsourcing. 4.2k sq.ft. in Sac Hub. Key contracts: DMV portal (2017), unemployment upgrades (2020). https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 140,
+            "end": 163,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 5,
+            "end": 21,
+            "probability": 0.6177,
+            "type": "Other",
+            "normalized_text": "The Chartis Group"
+          },
+          {
+            "start": 68,
+            "end": 70,
+            "probability": 0.6971,
+            "type": "Other",
+            "normalized_text": "DGS"
+          },
+          {
+            "start": 88,
+            "end": 95,
+            "probability": 0.9847,
+            "type": "Other",
+            "normalized_text": "COVID-19"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:26.000Z",
+      "edit_history_tweet_ids": [
+        "1898105229364936952"
+      ],
+      "id": "1898105229364936952",
+      "author_id": "1859283000145608705",
+      "text": "6/11 The Chartis Group: $275M for healthcare systems. 12k sq.ft. in DGS hubs. Key work: COVID-19 response (2020), hospital opt. (2022). See https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 136,
+            "end": 159,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:25.000Z",
+      "edit_history_tweet_ids": [
+        "1898105227041296767"
+      ],
+      "id": "1898105227041296767",
+      "author_id": "1859283000145608705",
+      "text": "5/11 Galliot: $290M for AI/ML &amp; cloud solutions. Fully remote, 0 sq.ft. Key project: CA healthcare exchange analytics (2019). Visit https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 128,
+            "end": 151,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:25.000Z",
+      "edit_history_tweet_ids": [
+        "1898105223996227819"
+      ],
+      "id": "1898105223996227819",
+      "author_id": "1859283000145608705",
+      "text": "4/11 Rincon Consultants: $310M for env. compliance. 8.5k sq.ft. at CEQA sites. Key contracts: CEQA docs (2010–2025). Details at https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1503733786613219328",
+            "name": "Logistics"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 146,
+            "end": 169,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 7,
+            "end": 16,
+            "probability": 0.5081,
+            "type": "Other",
+            "normalized_text": "T. Kearney"
+          },
+          {
+            "start": 72,
+            "end": 82,
+            "probability": 0.42,
+            "type": "Other",
+            "normalized_text": "Oakland Hub"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:24.000Z",
+      "edit_history_tweet_ids": [
+        "1898105222305923416"
+      ],
+      "id": "1898105222305923416",
+      "author_id": "1859283000145608705",
+      "text": "3/11 A.T. Kearney: $420M for IT infra &amp; supply chain. 15k sq.ft. in Oakland Hub. Key work: Caltrans logistics (2016), energy grid (2023). See https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1579631776967688192",
+            "name": "Consulting"
+          }
+        },
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974597226799105",
+            "name": "B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974597172203520",
+            "name": "Services - B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10037021815",
+            "name": "McKinsey & Company"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 152,
+            "end": 175,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:24.000Z",
+      "edit_history_tweet_ids": [
+        "1898105220565287298"
+      ],
+      "id": "1898105220565287298",
+      "author_id": "1859283000145608705",
+      "text": "2/11 McKinsey &amp; Co.: $680M for strategic planning &amp; policy. 22k sq.ft. in Sac Hub. Key contracts: Medi-Cal (2018), homelessness (2021). More at https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1579631776967688192",
+            "name": "Consulting"
+          }
+        },
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974597226799105",
+            "name": "B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974597172203520",
+            "name": "Services - B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10037021815",
+            "name": "McKinsey & Company"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10045225402",
+            "name": "X"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 220,
+            "end": 243,
+            "url": "https://t.co/EBeD8ZeguQ",
+            "expanded_url": "https://cali-doge.org/spend",
+            "display_url": "cali-doge.org/spend",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/spend"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 5,
+            "end": 6,
+            "probability": 0.607,
+            "type": "Place",
+            "normalized_text": "CA"
+          },
+          {
+            "start": 150,
+            "end": 157,
+            "probability": 0.4991,
+            "type": "Organization",
+            "normalized_text": "McKinsey"
+          },
+          {
+            "start": 172,
+            "end": 180,
+            "probability": 0.4398,
+            "type": "Other",
+            "normalized_text": ". Kearney"
+          }
+        ]
+      },
+      "created_at": "2025-03-07T20:15:23.000Z",
+      "edit_history_tweet_ids": [
+        "1898105218409414896"
+      ],
+      "id": "1898105218409414896",
+      "author_id": "1859283000145608705",
+      "text": "1/11 CA state govt estimated to have spent at least $18.7B over past 15 yrs on consulting companies during business. Estimated top spenders: $680M to McKinsey, $420M to A.T. Kearney. Next 10 tweets detail top firms. See https://t.co/EBeD8ZeguQ",
+      "created_at_formatted": "Mar 7, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
       "text": "With the possible new Ohio Governor @VivekGRamaswamy , we can count on yet another state competing for California businesses",
       "author_id": "1859283000145608705",
       "edit_history_tweet_ids": [
@@ -1922,8 +2824,8 @@
     }
   ],
   "meta": {
-    "result_count": 21,
-    "newest_id": "1897396796638499097",
+    "result_count": 32,
+    "newest_id": "1898105238521033061",
     "oldest_id": "1882144700762878208"
   }
 }
