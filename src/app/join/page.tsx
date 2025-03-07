@@ -19,6 +19,10 @@ export default function JoinPage() {
     setErrorMessage('');
 
     try {
+      // Add timeout to prevent hanging requests
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
@@ -33,11 +37,15 @@ Role: ${formData.role}
 Message: ${formData.message}
           `.trim()
         }),
+        signal: controller.signal
       });
 
+      clearTimeout(timeoutId);
+
+      // Handle response
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.details || 'Failed to send message');
+        const errorData = await response.json().catch(() => ({ details: 'Network error' }));
+        throw new Error(errorData.details || `Server error: ${response.status}`);
       }
 
       setStatus('success');
@@ -49,8 +57,17 @@ Message: ${formData.message}
         message: ''
       });
     } catch (error) {
+      console.error('Form submission error:', error);
       setStatus('error');
-      setErrorMessage(error instanceof Error ? error.message : 'An error occurred');
+      
+      // Handle different error types
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        setErrorMessage('Request timed out. Please try again later.');
+      } else if (error instanceof Error) {
+        setErrorMessage(error.message || 'An error occurred while submitting the form.');
+      } else {
+        setErrorMessage('An unexpected error occurred. Please try again later.');
+      }
     }
   };
 
@@ -82,6 +99,7 @@ Message: ${formData.message}
               value={formData.name}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-odi-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-odi-blue"
+              disabled={status === 'submitting'}
             />
           </div>
 
@@ -97,6 +115,7 @@ Message: ${formData.message}
               value={formData.email}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-odi-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-odi-blue"
+              disabled={status === 'submitting'}
             />
           </div>
 
@@ -112,6 +131,7 @@ Message: ${formData.message}
               value={formData.organization}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-odi-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-odi-blue"
+              disabled={status === 'submitting'}
             />
           </div>
           <div>
@@ -126,6 +146,7 @@ Message: ${formData.message}
               onChange={handleChange}
               rows={4}
               className="w-full px-4 py-2 border border-odi-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-odi-blue"
+              disabled={status === 'submitting'}
             />
           </div>
 
@@ -152,6 +173,12 @@ Message: ${formData.message}
               <p className="text-red-800">
                 {errorMessage || 'An error occurred. Please try again later.'}
               </p>
+              <button 
+                onClick={() => setStatus('idle')}
+                className="mt-2 text-red-600 underline"
+              >
+                Try again
+              </button>
             </div>
           )}
         </form>
