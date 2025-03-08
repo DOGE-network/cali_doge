@@ -1,6 +1,400 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 25,
+            "end": 41,
+            "username": "OpentoDebateOrg",
+            "id": "174770559"
+          }
+        ]
+      },
+      "text": "Adding that you can find @OpentoDebateOrg here",
+      "id": "1898167816689504511",
+      "edit_history_tweet_ids": [
+        "1898167816689504511"
+      ],
+      "created_at": "2025-03-08T00:24:08.000Z",
+      "created_at_formatted": "Mar 8, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 17,
+            "end": 27,
+            "probability": 0.5205,
+            "type": "Organization",
+            "normalized_text": "Partnership"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 126,
+            "end": 135,
+            "username": "tribelaw",
+            "id": "4091551984"
+          },
+          {
+            "start": 143,
+            "end": 148,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1138109518288568321",
+            "name": "Laurence Tribe",
+            "description": "Professor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1138109518288568321",
+            "name": "Laurence Tribe",
+            "description": "Professor"
+          }
+        }
+      ],
+      "text": "5/5 The National Partnership for Reinventing Government was widely regarded as a success in the 1990s. Did not hear much from @tribelaw on why @DOGE is so different.",
+      "id": "1898165645034111464",
+      "edit_history_tweet_ids": [
+        "1898165645034111464"
+      ],
+      "created_at": "2025-03-08T00:15:30.000Z",
+      "created_at_formatted": "Mar 8, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "text": "4/5 They didn’t stop there - transferred institutional knowledge to contractors, streamlining operations in a way government officials later praised as successful",
+      "id": "1898165642983010622",
+      "edit_history_tweet_ids": [
+        "1898165642983010622"
+      ],
+      "created_at": "2025-03-08T00:15:30.000Z",
+      "created_at_formatted": "Mar 8, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "text": "3/5 That initiative cut over 100 programs and slashed 250,000 federal jobs - a massive overhaul that also consolidated over 800 agencies",
+      "id": "1898165641427009767",
+      "edit_history_tweet_ids": [
+        "1898165641427009767"
+      ],
+      "created_at": "2025-03-08T00:15:29.000Z",
+      "created_at_formatted": "Mar 8, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 4,
+            "end": 12,
+            "probability": 0.7971,
+            "type": "Person",
+            "normalized_text": "McConnell"
+          },
+          {
+            "start": 104,
+            "end": 114,
+            "probability": 0.3833,
+            "type": "Organization",
+            "normalized_text": "Partnership"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 35,
+            "end": 40,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 79,
+            "end": 86,
+            "username": "algore",
+            "id": "17220934"
+          }
+        ],
+        "urls": [
+          {
+            "start": 143,
+            "end": 166,
+            "url": "https://t.co/x8mKyXlz62",
+            "expanded_url": "https://en.m.wikipedia.org/wiki/National_Partnership_for_Reinventing_Government",
+            "display_url": "en.m.wikipedia.org/wiki/National_…",
+            "status": 200,
+            "title": "National Partnership for Reinventing Government - Wikipedia",
+            "unwound_url": "https://en.m.wikipedia.org/wiki/National_Partnership_for_Reinventing_Government"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "909926966559612928",
+            "name": "Al Gore",
+            "description": "Former US Vice President Al Gore"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "909926966559612928",
+            "name": "Al Gore",
+            "description": "Former US Vice President Al Gore"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "909926966559612928",
+            "name": "Al Gore",
+            "description": "Former US Vice President Al Gore"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "text": "2/5 McConnell’s closing argument - @DOGE has a usual name but not its purpose. @algore led the National Partnership for Reinventing Government https://t.co/x8mKyXlz62",
+      "id": "1898165639694761988",
+      "edit_history_tweet_ids": [
+        "1898165639694761988"
+      ],
+      "created_at": "2025-03-08T00:15:29.000Z",
+      "created_at_formatted": "Mar 8, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 40,
+            "end": 48,
+            "probability": 0.6041,
+            "type": "Other",
+            "normalized_text": "to Debate"
+          },
+          {
+            "start": 79,
+            "end": 98,
+            "probability": 0.9371,
+            "type": "Person",
+            "normalized_text": "Michael W. McConnell"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 65,
+            "end": 74,
+            "username": "tribelaw",
+            "id": "4091551984"
+          },
+          {
+            "start": 125,
+            "end": 130,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ],
+        "urls": [
+          {
+            "start": 172,
+            "end": 195,
+            "url": "https://t.co/hmHU5JwG9I",
+            "expanded_url": "https://youtu.be/UATYoq4a1hA?si=sJ2D72H5D6IHuRbo&t=49m22s",
+            "display_url": "youtu.be/UATYoq4a1hA?si…",
+            "status": 200,
+            "title": "Is Musk’s DOGE Dodging the Law?",
+            "description": "In the new Trump administration, Elon Musk was named a special government employee and de facto head of the newly created Department of Government Efficiency...",
+            "unwound_url": "https://www.youtube.com/watch?si=sJ2D72H5D6IHuRbo&t=49m22s&v=UATYoq4a1hA&feature=youtu.be"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1138109518288568321",
+            "name": "Laurence Tribe",
+            "description": "Professor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1138109518288568321",
+            "name": "Laurence Tribe",
+            "description": "Professor"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1840858535829057537",
+            "name": "CBS News 2024 Vice Presidential Debate",
+            "description": "TONIGHT: Democratic Gov. Tim Walz of Minnesota and GOP Sen. JD Vance of Ohio participate in the CBS News Vice Presidential Debate live in New York City. Watch live at 9pm ET via @CBSNews on @X."
+          }
+        }
+      ],
+      "text": "1/5 Just listened to an insightful Open to Debate cast featuring @tribelaw and Michael W. McConnell - in-depth discussion on @DOGE constitutional issues worth listening to https://t.co/hmHU5JwG9I",
+      "id": "1898165637656318344",
+      "edit_history_tweet_ids": [
+        "1898165637656318344"
+      ],
+      "created_at": "2025-03-08T00:15:28.000Z",
+      "created_at_formatted": "Mar 8, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -2824,8 +3218,8 @@
     }
   ],
   "meta": {
-    "result_count": 32,
-    "newest_id": "1898105238521033061",
+    "result_count": 38,
+    "newest_id": "1898167816689504511",
     "oldest_id": "1882144700762878208"
   }
 }
