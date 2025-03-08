@@ -51,6 +51,17 @@ export function TweetCard({ tweet }: TweetCardProps) {
   const youtubeThumbnailUrl = youtubeVideoId ? 
     `https://img.youtube.com/vi/${youtubeVideoId}/0.jpg` : null;
 
+  // Check if this tweet is part of a thread
+  const threadMatch = tweet.text.match(/^(\d+)\/(\d+)/);
+  const isThreadTweet = !!threadMatch;
+  const threadPosition = isThreadTweet ? parseInt(threadMatch[1]) : null;
+  const threadTotal = isThreadTweet ? parseInt(threadMatch[2]) : null;
+  
+  // If it's a thread tweet, remove the thread indicator from the displayed text
+  const displayText = isThreadTweet 
+    ? tweet.text.replace(/^\d+\/\d+\s*/, '') 
+    : tweet.text;
+
   const handleClick = () => {
     window.open(tweetUrl, '_blank', 'noopener,noreferrer');
   };
@@ -58,7 +69,7 @@ export function TweetCard({ tweet }: TweetCardProps) {
   return (
     <div 
       onClick={handleClick}
-      className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+      className="bg-white p-4 hover:bg-gray-50 transition-colors cursor-pointer"
       role="link"
       tabIndex={0}
       onKeyDown={(e) => {
@@ -80,7 +91,7 @@ export function TweetCard({ tweet }: TweetCardProps) {
           </div>
         )}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-wrap">
             <span className="font-bold text-gray-900 truncate">
               {tweet.author?.name}
             </span>
@@ -92,8 +103,15 @@ export function TweetCard({ tweet }: TweetCardProps) {
                 · {format(new Date(tweet.created_at), 'MMM d')}
               </span>
             )}
+            {/* Thread indicator badge - show for all tweets in a thread */}
+            {isThreadTweet && (
+              <span className="text-xs font-medium text-blue-600 bg-blue-50 rounded-full px-2 py-0.5 ml-1">
+                {threadPosition}/{threadTotal}
+              </span>
+            )}
           </div>
-          <p className="text-gray-800 mt-1 whitespace-pre-wrap">{tweet.text}</p>
+          
+          <p className="text-gray-800 mt-1 whitespace-pre-wrap">{displayText}</p>
           
           {/* Linked Content Preview */}
           {mainUrl && mainUrl.expanded_url && (
