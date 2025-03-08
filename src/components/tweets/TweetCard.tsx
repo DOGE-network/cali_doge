@@ -33,6 +33,149 @@ function extractYouTubeVideoId(url: string): string | null {
   return null;
 }
 
+// Function to decode HTML entities in text
+function decodeHtmlEntities(text: string): string {
+  const entities: Record<string, string> = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#39;': "'",
+    '&#x2F;': '/',
+    '&#x60;': '`',
+    '&#x3D;': '='
+  };
+  
+  return text.replace(/&amp;|&lt;|&gt;|&quot;|&#39;|&#x2F;|&#x60;|&#x3D;/g, 
+    match => entities[match] || match);
+}
+
+// Function to format tweet text with highlighted mentions, hashtags, and URLs
+function formatTweetText(text: string): React.ReactNode {
+  // First decode HTML entities
+  const decodedText = decodeHtmlEntities(text);
+  
+  // Find all matches and their positions
+  const matches: Array<{ type: 'mention' | 'hashtag' | 'url', content: string, index: number }> = [];
+  
+  // Find mentions
+  const mentionRegex = /@(\w+)/g;
+  let mentionMatch;
+  while ((mentionMatch = mentionRegex.exec(decodedText)) !== null) {
+    matches.push({ 
+      type: 'mention', 
+      content: mentionMatch[0], 
+      index: mentionMatch.index 
+    });
+  }
+  
+  // Find hashtags
+  const hashtagRegex = /#(\w+)/g;
+  let hashtagMatch;
+  while ((hashtagMatch = hashtagRegex.exec(decodedText)) !== null) {
+    matches.push({ 
+      type: 'hashtag', 
+      content: hashtagMatch[0], 
+      index: hashtagMatch.index 
+    });
+  }
+  
+  // Find URLs
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  let urlMatch;
+  while ((urlMatch = urlRegex.exec(decodedText)) !== null) {
+    matches.push({ 
+      type: 'url', 
+      content: urlMatch[0], 
+      index: urlMatch.index 
+    });
+  }
+  
+  // Sort matches by their index
+  matches.sort((a, b) => a.index - b.index);
+  
+  // If no matches, return the decoded text
+  if (matches.length === 0) {
+    return decodedText;
+  }
+  
+  // Split the text by matches
+  const parts: Array<{ type: 'text' | 'mention' | 'hashtag' | 'url', content: string }> = [];
+  let lastIndex = 0;
+  
+  // Process matches in order
+  for (const match of matches) {
+    // Add text before the match
+    if (match.index > lastIndex) {
+      parts.push({ type: 'text', content: decodedText.substring(lastIndex, match.index) });
+    }
+    
+    // Add the match
+    parts.push({ type: match.type, content: match.content });
+    
+    // Update lastIndex
+    lastIndex = match.index + match.content.length;
+  }
+  
+  // Add any remaining text
+  if (lastIndex < decodedText.length) {
+    parts.push({ type: 'text', content: decodedText.substring(lastIndex) });
+  }
+  
+  // Handle click on a mention, hashtag, or URL
+  const handleEntityClick = (e: React.MouseEvent, type: 'mention' | 'hashtag' | 'url', content: string) => {
+    e.stopPropagation(); // Prevent the tweet card click from triggering
+    
+    let url = '';
+    if (type === 'mention') {
+      // Extract username without the @ symbol
+      const username = content.substring(1);
+      url = `https://twitter.com/${username}`;
+    } else if (type === 'hashtag') {
+      // Extract hashtag without the # symbol
+      const tag = content.substring(1);
+      url = `https://twitter.com/hashtag/${tag}`;
+    } else if (type === 'url') {
+      // Use the URL as is
+      url = content;
+    }
+    
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+  
+  // Convert parts to React elements
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (part.type === 'text') {
+          return <span key={index}>{part.content}</span>;
+        } else {
+          // We know part.type is 'mention', 'hashtag', or 'url' here
+          const entityType = part.type; // This narrows the type
+          return (
+            <span 
+              key={index} 
+              className="text-blue-600 cursor-pointer hover:underline"
+              onClick={(e) => handleEntityClick(e, entityType, part.content)}
+              role="link"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  handleEntityClick(e as any, entityType, part.content);
+                }
+              }}
+            >
+              {part.content}
+            </span>
+          );
+        }
+      })}
+    </>
+  );
+}
+
 export function TweetCard({ tweet }: TweetCardProps) {
   const tweetUrl = `https://twitter.com/${tweet.author?.username}/status/${tweet.id}`;
   const urls = tweet.entities?.urls;
@@ -58,9 +201,12 @@ export function TweetCard({ tweet }: TweetCardProps) {
   const threadTotal = isThreadTweet ? parseInt(threadMatch[2]) : null;
   
   // If it's a thread tweet, remove the thread indicator from the displayed text
-  const displayText = isThreadTweet 
+  let displayText = isThreadTweet 
     ? tweet.text.replace(/^\d+\/\d+\s*/, '') 
     : tweet.text;
+    
+  // Format the tweet text (this will also decode HTML entities)
+  const formattedText = formatTweetText(displayText);
 
   const handleClick = () => {
     window.open(tweetUrl, '_blank', 'noopener,noreferrer');
@@ -93,10 +239,10 @@ export function TweetCard({ tweet }: TweetCardProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center space-x-2 flex-wrap">
             <span className="font-bold text-gray-900 truncate">
-              {tweet.author?.name}
+              {tweet.author?.name ? decodeHtmlEntities(tweet.author.name) : ''}
             </span>
             <span className="text-gray-500 truncate">
-              @{tweet.author?.username}
+              @{tweet.author?.username ? decodeHtmlEntities(tweet.author.username) : ''}
             </span>
             {tweet.created_at && (
               <span className="text-gray-500 text-sm">
@@ -111,7 +257,7 @@ export function TweetCard({ tweet }: TweetCardProps) {
             )}
           </div>
           
-          <p className="text-gray-800 mt-1 whitespace-pre-wrap">{displayText}</p>
+          <p className="text-gray-800 mt-1 whitespace-pre-wrap">{formattedText}</p>
           
           {/* Linked Content Preview */}
           {mainUrl && mainUrl.expanded_url && (
@@ -154,12 +300,12 @@ export function TweetCard({ tweet }: TweetCardProps) {
                 </div>
                 {mainUrl.title && (
                   <div className="font-bold text-gray-900 mt-1">
-                    {mainUrl.title}
+                    {decodeHtmlEntities(mainUrl.title)}
                   </div>
                 )}
                 {mainUrl.description && (
                   <div className="text-gray-600 text-sm mt-1 line-clamp-2">
-                    {mainUrl.description}
+                    {decodeHtmlEntities(mainUrl.description)}
                   </div>
                 )}
               </div>

@@ -4,6 +4,23 @@ import { EnrichedTweet } from '@/lib/twitter/types';
 import { TweetCard } from './TweetCard';
 import { useState } from 'react';
 
+// Function to decode HTML entities in text
+function decodeHtmlEntities(text: string): string {
+  const entities: Record<string, string> = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#39;': "'",
+    '&#x2F;': '/',
+    '&#x60;': '`',
+    '&#x3D;': '='
+  };
+  
+  return text.replace(/&amp;|&lt;|&gt;|&quot;|&#39;|&#x2F;|&#x60;|&#x3D;/g, 
+    match => entities[match] || match);
+}
+
 interface TweetThreadProps {
   tweets: EnrichedTweet[];
 }
@@ -50,6 +67,12 @@ export function TweetThread({ tweets }: TweetThreadProps) {
     setIsCollapsed(!isCollapsed);
   };
 
+  // Handle username click
+  const handleUsernameClick = (e: React.MouseEvent, username: string) => {
+    e.stopPropagation(); // Prevent the thread header click from triggering
+    window.open(`https://twitter.com/${username}`, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="border border-gray-200 rounded-lg overflow-hidden">
       {/* Thread header */}
@@ -73,7 +96,21 @@ export function TweetThread({ tweets }: TweetThreadProps) {
             </svg>
           </div>
           <span className="font-medium text-gray-700">
-            Thread by @{firstTweet.author?.username} ({sortedTweets.length} tweets)
+            Thread by {firstTweet.author?.username ? (
+              <span 
+                className="text-blue-600 cursor-pointer hover:underline"
+                onClick={(e) => firstTweet.author && handleUsernameClick(e, firstTweet.author.username)}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if ((e.key === 'Enter' || e.key === ' ') && firstTweet.author) {
+                    handleUsernameClick(e as any, firstTweet.author.username);
+                  }
+                }}
+              >
+                @{decodeHtmlEntities(firstTweet.author.username)}
+              </span>
+            ) : ''} ({sortedTweets.length} tweets)
           </span>
         </div>
         <div className="text-gray-500 transition-transform duration-200">
