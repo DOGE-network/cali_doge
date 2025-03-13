@@ -1,6 +1,91 @@
 {
   "tweets": [
     {
+      "entities": {
+        "annotations": [
+          {
+            "start": 31,
+            "end": 34,
+            "probability": 0.3708,
+            "type": "Other",
+            "normalized_text": "GGRF"
+          },
+          {
+            "start": 83,
+            "end": 90,
+            "probability": 0.4847,
+            "type": "Organization",
+            "normalized_text": "Citibank"
+          },
+          {
+            "start": 124,
+            "end": 126,
+            "probability": 0.9265,
+            "type": "Organization",
+            "normalized_text": "EPA"
+          },
+          {
+            "start": 130,
+            "end": 135,
+            "probability": 0.3718,
+            "type": "Other",
+            "normalized_text": "Zeldin"
+          }
+        ],
+        "urls": [
+          {
+            "start": 204,
+            "end": 227,
+            "url": "https://t.co/ez1L3LQYet",
+            "expanded_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding",
+            "display_url": "opendatainitiative.io/blog/2025-03-1…",
+            "status": 200,
+            "title": "California Connections to 2024 EPA Funding",
+            "description": "Advancing government financial transparency through open data",
+            "unwound_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding"
+          },
+          {
+            "start": 229,
+            "end": 252,
+            "url": "https://t.co/C0VhxNE0aA",
+            "expanded_url": "https://www.nytimes.com/2025/03/08/climate/epa-climate-funds-lawsuit.html",
+            "display_url": "nytimes.com/2025/03/08/cli…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1898487584667611136/KudW57P4?format=jpg&name=orig",
+                "width": 3000,
+                "height": 1688
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1898487584667611136/KudW57P4?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Climate United Sues E.P.A. Over Frozen $20 Billion",
+            "description": "In a lawsuit, Climate United claims the E.P.A. is illegally withholding funds that have become a target of the Trump administration.",
+            "unwound_url": "https://www.nytimes.com/2025/03/08/climate/epa-climate-funds-lawsuit.html"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 164,
+            "end": 177,
+            "username": "SteveHiltonx",
+            "id": "2779389582"
+          },
+          {
+            "start": 178,
+            "end": 194,
+            "username": "CalPolicyCenter",
+            "id": "494180327"
+          }
+        ]
+      },
+      "id": "1900230289882046930",
+      "text": "6/6\nTimeline: April 2024, $27B GGRF announced; Aug 2024, $20B obligated; Dec 2024, Citibank arrangement signed; March 2025, EPA’s Zeldin moves to terminate grants. @SteveHiltonx @CalPolicyCenter \nSource: https://t.co/ez1L3LQYet; https://t.co/C0VhxNE0aA",
+      "author_id": "1859283000145608705",
       "context_annotations": [
         {
           "domain": {
@@ -71,229 +156,54 @@
           }
         }
       ],
-      "id": "1900197564714279267",
-      "created_at": "2025-03-13T14:49:38.000Z",
-      "author_id": "1859283000145608705",
-      "entities": {
-        "mentions": [
-          {
-            "start": 168,
-            "end": 181,
-            "username": "SteveHiltonx",
-            "id": "2779389582"
-          }
-        ],
-        "annotations": [
-          {
-            "start": 32,
-            "end": 35,
-            "probability": 0.3708,
-            "type": "Other",
-            "normalized_text": "GGRF"
-          },
-          {
-            "start": 85,
-            "end": 92,
-            "probability": 0.4847,
-            "type": "Organization",
-            "normalized_text": "Citibank"
-          },
-          {
-            "start": 127,
-            "end": 129,
-            "probability": 0.9265,
-            "type": "Organization",
-            "normalized_text": "EPA"
-          },
-          {
-            "start": 133,
-            "end": 138,
-            "probability": 0.3718,
-            "type": "Other",
-            "normalized_text": "Zeldin"
-          }
-        ],
-        "urls": [
-          {
-            "start": 207,
-            "end": 230,
-            "url": "https://t.co/ez1L3LQYet",
-            "expanded_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding",
-            "display_url": "opendatainitiative.io/blog/2025-03-1…",
-            "status": 200,
-            "title": "California Connections to 2024 EPA Funding",
-            "description": "Advancing government financial transparency through open data",
-            "unwound_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding"
-          },
-          {
-            "start": 232,
-            "end": 255,
-            "url": "https://t.co/C0VhxNE0aA",
-            "expanded_url": "https://www.nytimes.com/2025/03/08/climate/epa-climate-funds-lawsuit.html",
-            "display_url": "nytimes.com/2025/03/08/cli…",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1898487584667611136/KudW57P4?format=jpg&name=orig",
-                "width": 3000,
-                "height": 1688
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1898487584667611136/KudW57P4?format=jpg&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "Climate United Sues E.P.A. Over Frozen $20 Billion",
-            "description": "In a lawsuit, Climate United claims the E.P.A. is illegally withholding funds that have become a target of the Trump administration.",
-            "unwound_url": "https://www.nytimes.com/2025/03/08/climate/epa-climate-funds-lawsuit.html"
-          }
-        ]
-      },
       "edit_history_tweet_ids": [
-        "1900197564714279267"
+        "1900230289882046930"
       ],
-      "text": "6/6\nTimeline: \nApril 2024, $27B GGRF announced; Aug 2024, $20B obligated; \nDec 2024, Citibank arrangement signed; \nMarch 2025, EPA’s Zeldin moves to terminate grants. \n@SteveHiltonx\n@CAPolicyMatters\nSource: https://t.co/ez1L3LQYet; https://t.co/C0VhxNE0aA",
+      "created_at": "2025-03-13T16:59:40.000Z",
       "created_at_formatted": "Mar 13, 2025",
       "author": {
-        "name": "California DOGE",
         "username": "cali_doge",
         "id": "1859283000145608705",
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
       }
     },
     {
-      "context_annotations": [
-        {
-          "domain": {
-            "id": "88",
-            "name": "Political Body",
-            "description": "A section of a government, like The Supreme Court"
-          },
-          "entity": {
-            "id": "870708323540017153",
-            "name": "US Environmental Protection Agency",
-            "description": "US Environmental Protection Agency"
-          }
-        },
-        {
-          "domain": {
-            "id": "156",
-            "name": "Cities",
-            "description": "Cities around the world"
-          },
-          "entity": {
-            "id": "1012406055941226496",
-            "name": "San Diego",
-            "description": "San Diego"
-          }
-        },
-        {
-          "domain": {
-            "id": "88",
-            "name": "Political Body",
-            "description": "A section of a government, like The Supreme Court"
-          },
-          "entity": {
-            "id": "870708323540017153",
-            "name": "US Environmental Protection Agency",
-            "description": "US Environmental Protection Agency"
-          }
-        },
-        {
-          "domain": {
-            "id": "131",
-            "name": "Unified Twitter Taxonomy",
-            "description": "A taxonomy of user interests. "
-          },
-          "entity": {
-            "id": "847878884917886977",
-            "name": "Politics",
-            "description": "Politics"
-          }
-        },
-        {
-          "domain": {
-            "id": "131",
-            "name": "Unified Twitter Taxonomy",
-            "description": "A taxonomy of user interests. "
-          },
-          "entity": {
-            "id": "870708323540017153",
-            "name": "US Environmental Protection Agency",
-            "description": "US Environmental Protection Agency"
-          }
-        },
-        {
-          "domain": {
-            "id": "131",
-            "name": "Unified Twitter Taxonomy",
-            "description": "A taxonomy of user interests. "
-          },
-          "entity": {
-            "id": "1068583660914266113",
-            "name": "Government institutions",
-            "description": "Political Body"
-          }
-        },
-        {
-          "domain": {
-            "id": "159",
-            "name": "States",
-            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
-          },
-          "entity": {
-            "id": "856860158428798977",
-            "name": "California",
-            "description": "California"
-          }
-        }
-      ],
-      "id": "1900197563359429061",
-      "created_at": "2025-03-13T14:49:37.000Z",
-      "author_id": "1859283000145608705",
       "entities": {
         "annotations": [
           {
             "start": 18,
             "end": 30,
-            "probability": 0.6009,
+            "probability": 0.5923,
             "type": "Organization",
             "normalized_text": "Green Capital"
           },
           {
             "start": 117,
             "end": 126,
-            "probability": 0.9896,
+            "probability": 0.985,
             "type": "Place",
             "normalized_text": "California"
           },
           {
-            "start": 129,
-            "end": 131,
-            "probability": 0.9455,
-            "type": "Organization",
-            "normalized_text": "EPA"
-          },
-          {
-            "start": 145,
-            "end": 164,
-            "probability": 0.5907,
+            "start": 156,
+            "end": 175,
+            "probability": 0.5737,
             "type": "Organization",
             "normalized_text": "San Diego Foundation"
           },
           {
-            "start": 178,
-            "end": 188,
-            "probability": 0.4912,
+            "start": 189,
+            "end": 199,
+            "probability": 0.4754,
             "type": "Place",
             "normalized_text": "Bakersfield"
           }
         ],
         "urls": [
           {
-            "start": 221,
-            "end": 244,
+            "start": 232,
+            "end": 255,
             "url": "https://t.co/Q0UUm4r6sE",
             "expanded_url": "https://coalitionforgreencapital.com",
             "display_url": "coalitionforgreencapital.com",
@@ -315,8 +225,8 @@
             "unwound_url": "https://coalitionforgreencapital.com"
           },
           {
-            "start": 246,
-            "end": 269,
+            "start": 257,
+            "end": 280,
             "url": "https://t.co/Ps4IoFuZkW",
             "expanded_url": "https://www.epa.gov/newsreleases/biden-harris-administration-announces-over-100-million-seven-california-environmental",
             "display_url": "epa.gov/newsreleases/b…",
@@ -339,50 +249,76 @@
           }
         ]
       },
-      "edit_history_tweet_ids": [
-        "1900197563359429061"
+      "id": "1900230286400774266",
+      "text": "5/6\nCoalition for Green Capital received $5B to establish a national green bank, targeting low-income communities in California and nationwide. Also funded San Diego Foundation and City of Bakersfield for climate projects.\nSources: https://t.co/Q0UUm4r6sE, https://t.co/Ps4IoFuZkW",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "1012406055941226496",
+            "name": "San Diego",
+            "description": "San Diego"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
       ],
-      "text": "5/6\nCoalition for Green Capital received $5B to establish a national green bank, targeting low-income communities in California. EPA also funded San Diego Foundation and City of Bakersfield for climate projects.\nSources: https://t.co/Q0UUm4r6sE, https://t.co/Ps4IoFuZkW",
+      "edit_history_tweet_ids": [
+        "1900230286400774266"
+      ],
+      "created_at": "2025-03-13T16:59:39.000Z",
       "created_at_formatted": "Mar 13, 2025",
       "author": {
-        "name": "California DOGE",
         "username": "cali_doge",
         "id": "1859283000145608705",
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
       }
     },
     {
-      "id": "1900197561954382166",
-      "created_at": "2025-03-13T14:49:37.000Z",
-      "author_id": "1859283000145608705",
       "entities": {
         "annotations": [
           {
             "start": 10,
             "end": 16,
-            "probability": 0.5131,
+            "probability": 0.5729,
             "type": "Other",
             "normalized_text": "Forward"
           },
           {
             "start": 71,
             "end": 77,
-            "probability": 0.3879,
+            "probability": 0.3414,
             "type": "Place",
             "normalized_text": "America"
           },
           {
-            "start": 111,
-            "end": 113,
-            "probability": 0.4033,
+            "start": 109,
+            "end": 119,
+            "probability": 0.3526,
             "type": "Other",
-            "normalized_text": "API"
+            "normalized_text": "America API"
           }
         ],
         "urls": [
           {
-            "start": 222,
-            "end": 245,
+            "start": 229,
+            "end": 252,
             "url": "https://t.co/OFqbbipwHT",
             "expanded_url": "https://powerforwardcommunities.org",
             "display_url": "powerforwardcommunities.org",
@@ -404,8 +340,8 @@
             "unwound_url": "https://powerforwardcommunities.org"
           },
           {
-            "start": 247,
-            "end": 270,
+            "start": 254,
+            "end": 277,
             "url": "https://t.co/FQaPLVKRGF",
             "expanded_url": "https://www.rewiringamerica.org/about-us",
             "display_url": "rewiringamerica.org/about-us",
@@ -428,19 +364,119 @@
           }
         ]
       },
+      "id": "1900230283515093102",
+      "text": "4/6\nPower Forward Communities received $2B. It partnered with Rewiring America, which developed the Rewiring America API to access electrification incentives. Focus is on residential decarbonization in low-income areas.\nSources: https://t.co/OFqbbipwHT, https://t.co/FQaPLVKRGF.",
+      "author_id": "1859283000145608705",
       "edit_history_tweet_ids": [
-        "1900197561954382166"
+        "1900230283515093102"
       ],
-      "text": "4/6\nPower Forward Communities received $2B. It partnered with Rewiring America, developed the Rewiring America API for Californians access electrification incentives. Focus on decarbonization in low-income areas.\nSources: https://t.co/OFqbbipwHT, https://t.co/FQaPLVKRGF",
+      "created_at": "2025-03-13T16:59:38.000Z",
       "created_at_formatted": "Mar 13, 2025",
       "author": {
-        "name": "California DOGE",
         "username": "cali_doge",
         "id": "1859283000145608705",
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
       }
     },
     {
+      "entities": {
+        "annotations": [
+          {
+            "start": 4,
+            "end": 17,
+            "probability": 0.571,
+            "type": "Other",
+            "normalized_text": "Climate United"
+          },
+          {
+            "start": 44,
+            "end": 73,
+            "probability": 0.7639,
+            "type": "Other",
+            "normalized_text": "National Clean Investment Fund"
+          },
+          {
+            "start": 113,
+            "end": 114,
+            "probability": 0.9198,
+            "type": "Place",
+            "normalized_text": "LA"
+          },
+          {
+            "start": 116,
+            "end": 125,
+            "probability": 0.6811,
+            "type": "Place",
+            "normalized_text": "Long Beach"
+          },
+          {
+            "start": 138,
+            "end": 151,
+            "probability": 0.557,
+            "type": "Other",
+            "normalized_text": "Forum Mobility"
+          },
+          {
+            "start": 171,
+            "end": 192,
+            "probability": 0.596,
+            "type": "Other",
+            "normalized_text": "Calvert Impact Capital"
+          }
+        ],
+        "urls": [
+          {
+            "start": 231,
+            "end": 254,
+            "url": "https://t.co/bIuMW0UY78",
+            "expanded_url": "https://weareclimateunited.org/about-us",
+            "display_url": "weareclimateunited.org/about-us",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1900197565574111232/eKce_UY3?format=png&name=orig",
+                "width": 2000,
+                "height": 713
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1900197565574111232/eKce_UY3?format=png&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "About Climate United",
+            "description": "Climate United is a national coalition that delivers accessible, affordable financing to accelerate our path to a clean energy future, and build a stronger, more resilient economy that works for all Americans.",
+            "unwound_url": "https://weareclimateunited.org/about-us"
+          },
+          {
+            "start": 256,
+            "end": 279,
+            "url": "https://t.co/Uodiov1VH8",
+            "expanded_url": "https://www.latimes.com/b2b/business-visionaries/inspirational-women/story/woman-led-climate-united-launches-zero-emission-truck-la-ports",
+            "display_url": "latimes.com/b2b/business-v…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1900197561769828352/f_xFltlg?format=jpg&name=orig",
+                "width": 1200,
+                "height": 675
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1900197561769828352/f_xFltlg?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Woman-Led Climate United Launches $250 Million Zero-Emission Truck Program at L.A. Ports",
+            "description": "Largest order of all-electric drayage trucks in U.S. history will support small fleet owners moving to zero-emissions Los Angeles-based Climate United in a press release has announced a new program to offer affordable leasing options to small fleets and independent operators to lower operational costs and reduce air pollution in port communities, beginning at the Ports of Long Beach and Los Angeles, with the intention to expand nationally.",
+            "unwound_url": "https://www.latimes.com/b2b/business-visionaries/inspirational-women/story/woman-led-climate-united-launches-zero-emission-truck-la-ports"
+          }
+        ]
+      },
+      "id": "1900230281388568990",
+      "text": "3/6\nClimate United received $6.97B from the National Clean Investment Fund. Funding $250M for electric trucks at LA/Long Beach ports with Forum Mobility. Partners include Calvert Impact Capital and Self-Help Credit Union.\nSources: https://t.co/bIuMW0UY78, https://t.co/Uodiov1VH8",
+      "author_id": "1859283000145608705",
       "context_annotations": [
         {
           "domain": {
@@ -572,116 +608,60 @@
           }
         }
       ],
-      "id": "1900197560532541687",
-      "created_at": "2025-03-13T14:49:37.000Z",
-      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1900230281388568990"
+      ],
+      "created_at": "2025-03-13T16:59:38.000Z",
+      "created_at_formatted": "Mar 13, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
-            "start": 4,
-            "end": 17,
-            "probability": 0.571,
-            "type": "Other",
-            "normalized_text": "Climate United"
+            "start": 8,
+            "end": 12,
+            "probability": 0.8266,
+            "type": "Person",
+            "normalized_text": "Biden"
           },
           {
-            "start": 44,
-            "end": 73,
-            "probability": 0.7639,
+            "start": 27,
+            "end": 30,
+            "probability": 0.3818,
             "type": "Other",
-            "normalized_text": "National Clean Investment Fund"
+            "normalized_text": "GGRF"
           },
           {
-            "start": 113,
-            "end": 114,
-            "probability": 0.9198,
+            "start": 157,
+            "end": 166,
+            "probability": 0.6916,
             "type": "Place",
-            "normalized_text": "LA"
-          },
-          {
-            "start": 116,
-            "end": 125,
-            "probability": 0.6811,
-            "type": "Place",
-            "normalized_text": "Long Beach"
-          },
-          {
-            "start": 138,
-            "end": 151,
-            "probability": 0.557,
-            "type": "Other",
-            "normalized_text": "Forum Mobility"
-          },
-          {
-            "start": 171,
-            "end": 192,
-            "probability": 0.596,
-            "type": "Other",
-            "normalized_text": "Calvert Impact Capital"
+            "normalized_text": "California"
           }
         ],
         "urls": [
           {
-            "start": 231,
-            "end": 254,
-            "url": "https://t.co/bIuMW0UY78",
-            "expanded_url": "https://weareclimateunited.org/about-us",
-            "display_url": "weareclimateunited.org/about-us",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197565574111232/eKce_UY3?format=png&name=orig",
-                "width": 2000,
-                "height": 713
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197565574111232/eKce_UY3?format=png&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
+            "start": 228,
+            "end": 251,
+            "url": "https://t.co/ez1L3LQYet",
+            "expanded_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding",
+            "display_url": "opendatainitiative.io/blog/2025-03-1…",
             "status": 200,
-            "title": "About Climate United",
-            "description": "Climate United is a national coalition that delivers accessible, affordable financing to accelerate our path to a clean energy future, and build a stronger, more resilient economy that works for all Americans.",
-            "unwound_url": "https://weareclimateunited.org/about-us"
-          },
-          {
-            "start": 256,
-            "end": 279,
-            "url": "https://t.co/Uodiov1VH8",
-            "expanded_url": "https://www.latimes.com/b2b/business-visionaries/inspirational-women/story/woman-led-climate-united-launches-zero-emission-truck-la-ports",
-            "display_url": "latimes.com/b2b/business-v…",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197561769828352/f_xFltlg?format=jpg&name=orig",
-                "width": 1200,
-                "height": 675
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197561769828352/f_xFltlg?format=jpg&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "Woman-Led Climate United Launches $250 Million Zero-Emission Truck Program at L.A. Ports",
-            "description": "Largest order of all-electric drayage trucks in U.S. history will support small fleet owners moving to zero-emissions Los Angeles-based Climate United in a press release has announced a new program to offer affordable leasing options to small fleets and independent operators to lower operational costs and reduce air pollution in port communities, beginning at the Ports of Long Beach and Los Angeles, with the intention to expand nationally.",
-            "unwound_url": "https://www.latimes.com/b2b/business-visionaries/inspirational-women/story/woman-led-climate-united-launches-zero-emission-truck-la-ports"
+            "title": "California Connections to 2024 EPA Funding",
+            "description": "Advancing government financial transparency through open data",
+            "unwound_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding"
           }
         ]
       },
-      "edit_history_tweet_ids": [
-        "1900197560532541687"
-      ],
-      "text": "3/6\nClimate United received $6.97B from the National Clean Investment Fund. Funding $250M for electric trucks at LA/Long Beach ports with Forum Mobility. Partners include Calvert Impact Capital and Self-Help Credit Union.\nSources: https://t.co/bIuMW0UY78, https://t.co/Uodiov1VH8",
-      "created_at_formatted": "Mar 13, 2025",
-      "author": {
-        "name": "California DOGE",
-        "username": "cali_doge",
-        "id": "1859283000145608705",
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
-      }
-    },
-    {
+      "id": "1900230279459201114",
+      "text": "2/6\nThe Biden admin’s $27B GGRF grants, particularly the $20B to eight nonprofits, face scrutiny for rapid distribution and potential conflicts of interest. California organizations are linked as recipients or partners.\nSource: https://t.co/ez1L3LQYet",
+      "author_id": "1859283000145608705",
       "context_annotations": [
         {
           "domain": {
@@ -803,219 +783,257 @@
           }
         }
       ],
-      "id": "1900197559135854886",
-      "created_at": "2025-03-13T14:49:36.000Z",
-      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1900230279459201114"
+      ],
+      "created_at": "2025-03-13T16:59:37.000Z",
+      "created_at_formatted": "Mar 13, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
-            "start": 8,
-            "end": 12,
-            "probability": 0.8266,
+            "start": 17,
+            "end": 21,
+            "probability": 0.734,
             "type": "Person",
             "normalized_text": "Biden"
           },
           {
-            "start": 27,
-            "end": 30,
-            "probability": 0.3818,
+            "start": 36,
+            "end": 64,
+            "probability": 0.558,
+            "type": "Other",
+            "normalized_text": "Greenhouse Gas Reduction Fund"
+          },
+          {
+            "start": 67,
+            "end": 70,
+            "probability": 0.345,
             "type": "Other",
             "normalized_text": "GGRF"
           },
           {
-            "start": 157,
-            "end": 166,
-            "probability": 0.6916,
+            "start": 88,
+            "end": 97,
+            "probability": 0.9379,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 145,
+            "end": 151,
+            "probability": 0.5347,
+            "type": "Place",
+            "normalized_text": "America"
+          },
+          {
+            "start": 223,
+            "end": 232,
+            "probability": 0.953,
             "type": "Place",
             "normalized_text": "California"
           }
         ],
         "urls": [
           {
-            "start": 228,
-            "end": 251,
-            "url": "https://t.co/ez1L3LQYet",
-            "expanded_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding",
-            "display_url": "opendatainitiative.io/blog/2025-03-1…",
-            "status": 200,
-            "title": "California Connections to 2024 EPA Funding",
-            "description": "Advancing government financial transparency through open data",
-            "unwound_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding"
-          }
-        ]
-      },
-      "edit_history_tweet_ids": [
-        "1900197559135854886"
-      ],
-      "text": "2/6\nThe Biden admin’s $27B GGRF grants, particularly the $20B to eight nonprofits, face scrutiny for rapid distribution and potential conflicts of interest. California organizations are linked as recipients or partners.\nSource: https://t.co/ez1L3LQYet",
-      "created_at_formatted": "Mar 13, 2025",
-      "author": {
-        "name": "California DOGE",
-        "username": "cali_doge",
-        "id": "1859283000145608705",
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
-      }
-    },
-    {
-      "context_annotations": [
-        {
-          "domain": {
-            "id": "46",
-            "name": "Business Taxonomy",
-            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
-          },
-          "entity": {
-            "id": "1557696848252391426",
-            "name": "Financial Services Business",
-            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
-          }
-        },
-        {
-          "domain": {
-            "id": "88",
-            "name": "Political Body",
-            "description": "A section of a government, like The Supreme Court"
-          },
-          "entity": {
-            "id": "870708323540017153",
-            "name": "US Environmental Protection Agency",
-            "description": "US Environmental Protection Agency"
-          }
-        },
-        {
-          "domain": {
-            "id": "45",
-            "name": "Brand Vertical",
-            "description": "Top level entities that describe a Brands industry"
-          },
-          "entity": {
-            "id": "781974596148793345",
-            "name": "Business & finance"
-          }
-        },
-        {
-          "domain": {
-            "id": "30",
-            "name": "Entities [Entity Service]",
-            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
-          },
-          "entity": {
-            "id": "781974596731871232",
-            "name": "Banking - Business & finance"
-          }
-        },
-        {
-          "domain": {
-            "id": "47",
-            "name": "Brand",
-            "description": "Brands and Companies"
-          },
-          "entity": {
-            "id": "10026450526",
-            "name": "Citi"
-          }
-        },
-        {
-          "domain": {
-            "id": "65",
-            "name": "Interests and Hobbies Vertical",
-            "description": "Top level interests and hobbies groupings, like Food or Travel"
-          },
-          "entity": {
-            "id": "781974596148793345",
-            "name": "Business & finance"
-          }
-        }
-      ],
-      "id": "1900197557747462300",
-      "created_at": "2025-03-13T14:49:36.000Z",
-      "author_id": "1859283000145608705",
-      "entities": {
-        "mentions": [
-          {
-            "start": 168,
-            "end": 181,
-            "username": "SteveHiltonx",
-            "id": "2779389582"
-          }
-        ],
-        "annotations": [
-          {
-            "start": 32,
-            "end": 35,
-            "probability": 0.3708,
-            "type": "Other",
-            "normalized_text": "GGRF"
-          },
-          {
-            "start": 85,
-            "end": 92,
-            "probability": 0.4847,
-            "type": "Organization",
-            "normalized_text": "Citibank"
-          },
-          {
-            "start": 127,
-            "end": 129,
-            "probability": 0.9265,
-            "type": "Organization",
-            "normalized_text": "EPA"
-          },
-          {
-            "start": 133,
-            "end": 138,
-            "probability": 0.3718,
-            "type": "Other",
-            "normalized_text": "Zeldin"
-          }
-        ],
-        "urls": [
-          {
-            "start": 207,
-            "end": 230,
-            "url": "https://t.co/ez1L3LQYet",
-            "expanded_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding",
-            "display_url": "opendatainitiative.io/blog/2025-03-1…",
-            "status": 200,
-            "title": "California Connections to 2024 EPA Funding",
-            "description": "Advancing government financial transparency through open data",
-            "unwound_url": "https://opendatainitiative.io/blog/2025-03-13-california-connections-2024-epa-funding"
-          },
-          {
-            "start": 232,
-            "end": 255,
-            "url": "https://t.co/C0VhxNE0aA",
-            "expanded_url": "https://www.nytimes.com/2025/03/08/climate/epa-climate-funds-lawsuit.html",
-            "display_url": "nytimes.com/2025/03/08/cli…",
+            "start": 251,
+            "end": 274,
+            "url": "https://t.co/eaaE32U7k8",
+            "expanded_url": "https://cali-doge.org",
+            "display_url": "cali-doge.org",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1898487584667611136/KudW57P4?format=jpg&name=orig",
-                "width": 3000,
-                "height": 1688
+                "url": "https://pbs.twimg.com/news_img/1900230320047480833/tipXLQSX?format=png&name=orig",
+                "width": 2000,
+                "height": 713
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1898487584667611136/KudW57P4?format=jpg&name=150x150",
+                "url": "https://pbs.twimg.com/news_img/1900230320047480833/tipXLQSX?format=png&name=150x150",
                 "width": 150,
                 "height": 150
               }
             ],
             "status": 200,
-            "title": "Climate United Sues E.P.A. Over Frozen $20 Billion",
-            "description": "In a lawsuit, Climate United claims the E.P.A. is illegally withholding funds that have become a target of the Trump administration.",
-            "unwound_url": "https://www.nytimes.com/2025/03/08/climate/epa-climate-funds-lawsuit.html"
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org"
           }
         ]
       },
-      "edit_history_tweet_ids": [
-        "1900197557747462300"
+      "id": "1900230277177499718",
+      "text": "1/6\nSummary: The Biden admin’s $27B Greenhouse Gas Reduction Fund (GGRF) grants involve California-based groups like Climate United and Rewiring America. Distribution and conflicts of interest are under scrutiny. Find more California spending info at https://t.co/eaaE32U7k8",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "10040395078",
+            "name": "Joe Biden",
+            "description": "US President Joe Biden"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "10040395078",
+            "name": "Joe Biden",
+            "description": "US President Joe Biden"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10040395078",
+            "name": "Joe Biden",
+            "description": "US President Joe Biden"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "900740740468191232",
+            "name": "Political issues",
+            "description": "Political issues"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1265415402915393537",
+            "name": "Climate change"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1518689897296453633",
+            "name": "United States political issues"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1560634560705990656",
+            "name": "Climate change in the United States"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
       ],
-      "text": "6/6\nTimeline: \nApril 2024, $27B GGRF announced; Aug 2024, $20B obligated; \nDec 2024, Citibank arrangement signed; \nMarch 2025, EPA’s Zeldin moves to terminate grants. \n@SteveHiltonx\n@CAPolicyMatters\nSource: https://t.co/ez1L3LQYet; https://t.co/C0VhxNE0aA",
+      "edit_history_tweet_ids": [
+        "1900230277177499718"
+      ],
+      "created_at": "2025-03-13T16:59:37.000Z",
       "created_at_formatted": "Mar 13, 2025",
       "author": {
-        "name": "California DOGE",
         "username": "cali_doge",
         "id": "1859283000145608705",
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
       }
     },
     {
@@ -4237,7 +4255,7 @@
   ],
   "meta": {
     "result_count": 44,
-    "newest_id": "1900197564714279267",
+    "newest_id": "1900230289882046930",
     "oldest_id": "1882144700762878208"
   }
 }
