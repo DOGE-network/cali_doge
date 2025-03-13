@@ -44,3 +44,40 @@ I am the love child of Elon Musk and Lanhee Chen. Godson of David Sacks. A fun m
   "averageAge": 47
 }
 ```
+
+## Tweet Fetching Script
+
+The repository includes an automated tweet fetching system (`src/scripts/fetch-tweets.ts`) that efficiently manages tweet collection and storage. Here's how it works:
+
+### Key Features
+
+- **Incremental Updates**: Only fetches new tweets since the last run using Twitter's `since_id` parameter
+- **Rate Limit Aware**: Implements rate limit checking to prevent API abuse
+- **Media Management**: 
+  - Downloads and stores media files locally
+  - Maintains unique filenames based on tweet IDs
+  - Updates media URLs to point to local copies
+- **URL Enrichment**:
+  - Fetches metadata for URLs in tweets (title, description)
+  - Extracts OpenGraph/Twitter card images
+  - Validates image URLs
+- **Data Organization**:
+  - Merges new tweets with existing archive
+  - Deduplicates user information
+  - Maintains chronological order
+  - Preserves metadata about newest and oldest tweet IDs
+
+### API Integration
+
+The script utilizes Twitter v2 API to fetch comprehensive tweet data including:
+- Tweet fields: creation date, attachments, author, entities, context
+- User fields: username, name, profile picture
+- Media fields: URLs, dimensions, type
+
+### Storage Structure
+
+- Tweet data: `src/data/tweets/tweets.json`
+- Media files: `src/data/media/`
+- Rate limit info: `src/data/tweets/rate_limit.json`
+
+The script is designed to run regularly (e.g., via GitHub Actions) while minimizing API usage and maintaining a complete local archive of tweets and associated media. 
