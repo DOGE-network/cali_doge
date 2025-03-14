@@ -18,7 +18,7 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import AgencyDataVisualization from './AgencyDataVisualization';
 import agencyData from '@/data/workforce-data.json';
 import executiveBranchData from '@/data/executive-branch-hierarchy.json';
@@ -353,7 +353,8 @@ function SubAgencySection({
   );
 }
 
-const Page = () => {
+// Client component that uses useSearchParams
+function WorkforcePageClient() {
   const [activeAgencyPath, setActiveAgencyPath] = useState<string[]>([]);
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const searchParams = useSearchParams();
@@ -488,6 +489,15 @@ const Page = () => {
         <p><a href="https://www.treasurer.ca.gov/otherboards.asp" target="_blank" rel="noopener noreferrer">California State Treasurer&apos;s Office - Boards and Commissions</a>.</p>
       </footer>
     </div>
+  );
+}
+
+// Main page component with Suspense boundary
+const Page = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <WorkforcePageClient />
+    </Suspense>
   );
 };
 

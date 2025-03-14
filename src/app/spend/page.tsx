@@ -4,7 +4,7 @@ import spendingData from '@/data/spending-data.json';
 import Link from 'next/link';
 import { getDepartmentBySpendingName } from '@/lib/departmentMapping';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 
 // Define types for our data
 type FiscalYear = 'FY2023' | 'FY2024';
@@ -46,7 +46,8 @@ interface SpendingData {
 // Type assertion for our imported data
 const typedSpendingData = spendingData as SpendingData;
 
-export default function SpendPage() {
+// Client component that uses useSearchParams
+function SpendPageClient() {
   const searchParams = useSearchParams();
   const [highlightedDepartment, setHighlightedDepartment] = useState<string | null>(null);
   
@@ -201,5 +202,14 @@ export default function SpendPage() {
         <p className="mt-4">Note: All figures are in billions of dollars. FY = Fiscal Year.</p>
       </div>
     </main>
+  );
+}
+
+// Main page component with Suspense boundary
+export default function SpendPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SpendPageClient />
+    </Suspense>
   );
 } 
