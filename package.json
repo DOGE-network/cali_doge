@@ -14,11 +14,15 @@
     "favicon-check": "npx realfavicon check http://localhost:3000"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.2",
     "@types/mime-types": "^2.1.4",
     "@types/node-cron": "^3.0.11",
     "@types/nodemailer": "^6.4.17",
     "@vercel/analytics": "^1.5.0",
+    "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.479.0",
     "mime-types": "^2.1.35",
     "next": "^14.2.24",
     "node-cron": "^3.0.3",
@@ -27,9 +31,14 @@
     "react-dom": "^18",
     "react-icons": "^5.5.0",
     "recharts": "^2.15.1",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-html": "^16.0.1",
+    "tailwind-merge": "^3.0.2",
     "twitter-api-v2": "^1.20.1"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "@types/dotenv": "^6.1.1",
     "@types/json-schema": "^7.0.15",
     "@types/node": "^20.17.24",

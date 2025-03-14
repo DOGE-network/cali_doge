@@ -18,11 +18,12 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import AgencyDataVisualization from './AgencyDataVisualization';
 import agencyData from '@/data/workforce-data.json';
 import executiveBranchData from '@/data/executive-branch-hierarchy.json';
 import type { Agency } from './types';
+import { useSearchParams } from 'next/navigation';
 
 // Convert executive branch JSON to Agency structure
 const convertExecutiveBranchToAgency = (data: any): Agency => {
@@ -90,17 +91,6 @@ const convertExecutiveBranchToAgency = (data: any): Agency => {
 
   return agency;
 };
-
-// Convert executive branch data to Agency structure
-const executiveBranch = convertExecutiveBranchToAgency(executiveBranchData);
-
-const agencyStructure: Agency[] = [
-  {
-    name: "Executive Branch",
-    subAgencies: executiveBranch.subAgencies,
-    subordinateOffices: executiveBranch.subordinateOffices
-  }
-];
 
 // Remove or prefix unused functions with underscore
 const _logAgencyHierarchy = (agencies: Agency[], level = 0) => {
@@ -363,21 +353,33 @@ function SubAgencySection({
   );
 }
 
-const Page = () => {
-  const [mergedStructure, setMergedStructure] = useState<Agency[]>(agencyStructure);
+// Client component that uses useSearchParams
+function WorkforcePageClient() {
   const [activeAgencyPath, setActiveAgencyPath] = useState<string[]>([]);
+  const [agencies, setAgencies] = useState<Agency[]>([]);
+  const searchParams = useSearchParams();
   const [showDebugInfo, setShowDebugInfo] = useState<boolean>(false);
   const isDevEnv = process.env.NODE_ENV === 'development';
 
   useEffect(() => {
-    // Add debug logging for initial data
-    console.log('📍 Initial agencyData:', agencyData);
-    console.log('📍 Initial agencyStructure:', agencyStructure);
+    // Convert executive branch data to our Agency structure
+    const rootAgency = convertExecutiveBranchToAgency(executiveBranchData);
     
-    const merged = mergeAgencyData(agencyStructure, agencyData);
-    console.log('📍 Merged structure:', merged);
-    setMergedStructure(merged);
-  }, []);
+    // Merge with actual data
+    const mergedAgencies = mergeAgencyData([rootAgency], agencyData);
+    
+    setAgencies(mergedAgencies);
+    
+    // Check for department parameter in URL
+    const departmentParam = searchParams.get('department');
+    if (departmentParam) {
+      // Find the agency path for this department
+      const result = _findAgencyByNameRecursive(mergedAgencies, departmentParam);
+      if (result.agency) {
+        setActiveAgencyPath(result.path);
+      }
+    }
+  }, [searchParams]);
 
   const handleAgencyClick = (path: string[]) => {
     console.log("👆 Agency clicked:", path, "Current active path:", activeAgencyPath);
@@ -414,7 +416,7 @@ const Page = () => {
 
   // Get the active agency if any
   const activeAgency = activeAgencyPath.length > 0 
-    ? findAgencyByPath(activeAgencyPath, mergedStructure)
+    ? findAgencyByPath(activeAgencyPath, agencies)
     : null;
 
   return (
@@ -466,7 +468,7 @@ const Page = () => {
       </div>
       
       <div className="space-y-12">
-        {mergedStructure.map((section, index) => (
+        {agencies.map((section, index) => (
           <div key={index}>
             <AgencySection
               section={section}
@@ -487,6 +489,15 @@ const Page = () => {
         <p><a href="https://www.treasurer.ca.gov/otherboards.asp" target="_blank" rel="noopener noreferrer">California State Treasurer&apos;s Office - Boards and Commissions</a>.</p>
       </footer>
     </div>
+  );
+}
+
+// Main page component with Suspense boundary
+const Page = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <WorkforcePageClient />
+    </Suspense>
   );
 };
 

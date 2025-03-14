@@ -123,7 +123,10 @@
           {
             "name": "Air Resources Board",
             "reportsTo": "Agency Secretary",
-            "keyFunctions": "Air quality standards"
+            "keyFunctions": "Air quality standards, climate programs, clean transportation incentives",
+            "budget": "$1.01B (FY2024-25)",
+            "personnel": "1,884 positions (2023)",
+            "fundingSources": "Air Pollution Control Fund, Vehicle Inspection and Repair Fund, Federal Trust Fund, Greenhouse Gas Reduction Fund"
           },
           {
             "name": "State Water Resources Control Board",

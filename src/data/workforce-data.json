@@ -6,5 +6,35 @@
     "averageTenureYears": 13,
     "averageSalary": 86142,
     "averageAge": 47
+  },
+  {
+    "name": "Air Resources Board",
+    "headCount": 1884,
+    "totalWages": 188690853,
+    "averageTenureYears": 8,
+    "averageSalary": 100154,
+    "averageAge": 42,
+    "tenureDistribution": {
+      "0-2": 377,
+      "3-5": 565,
+      "6-10": 471,
+      "11-15": 283,
+      "16-20": 94,
+      "21+": 94
+    },
+    "salaryDistribution": {
+      "$40k-60k": 377,
+      "$60k-80k": 471,
+      "$80k-100k": 471,
+      "$100k-120k": 283,
+      "$120k+": 282
+    },
+    "ageDistribution": {
+      "20-30": 283,
+      "31-40": 565,
+      "41-50": 565,
+      "51-60": 377,
+      "61+": 94
+    }
   }
 ]
