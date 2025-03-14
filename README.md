@@ -1,6 +1,274 @@
 # cali_doge
 I am the love child of Elon Musk and Lanhee Chen. Godson of David Sacks. A fun mode parody account for educational purposes.
 
+## Markdown Processing and Source Formatting
+
+The website uses a custom Markdown processing system to render content with enhanced features, particularly for handling sources and references.
+
+### Markdown to HTML Conversion
+
+The core Markdown processing is handled in `src/lib/blog.ts` using the remark ecosystem:
+
+- **Base Processing**: Uses `remark()` with `remarkGfm` plugin to support GitHub Flavored Markdown (tables, strikethrough, etc.)
+- **HTML Conversion**: Converts Markdown to HTML using `remark-html` with `sanitize: false` and `allowDangerousHtml: true` to allow custom HTML
+- **Content Cleaning**: Removes Jekyll templating and adjusts image paths before processing
+
+### Source Reference System
+
+A specialized function `processSources()` enhances the Markdown processing by:
+
+1. **Detecting Source Sections**: Identifies "Sources:" sections in the Markdown content
+2. **Parsing References**: Extracts numbered references like `[1] https://example.com Description text`
+3. **Formatting Sources**: Converts the plain text sources into a structured HTML format with:
+   - Unique IDs for each source
+   - Proper styling and layout
+   - Link formatting with target="_blank"
+4. **Reference Linking**: Transforms in-text references (e.g., `[1]`, `[2]`) into clickable links that jump to the corresponding source
+
+### How to Use Source References
+
+To add properly formatted sources to a Markdown file:
+
+1. Add a "Sources:" section at the end of your Markdown file
+2. List each source on a new line in the format: `[number] URL optional description`
+3. Reference sources in your content using the format `[number]`
+
+Example:
+```markdown
+This is a statement that needs a citation[1].
+
+Sources:
+[1] https://example.com/data This is the source description
+[2] https://another-example.com/info
+```
+
+The processor will automatically:
+- Format the sources section with proper styling
+- Make the `[1]` reference clickable, linking to the source
+- Apply consistent styling to all sources
+
+### CSS Styling
+
+The source references are styled using custom CSS in `src/styles/globals.css`:
+
+- Source list has a top border and consistent spacing
+- Each source item has left padding for the reference number
+- Reference numbers are positioned absolutely for alignment
+- In-text references are styled as superscript with appropriate colors
+
+### Debugging Source Formatting
+
+If sources aren't displaying correctly, check these common issues:
+
+1. **Source Format**: Each source must be on its own line and follow the exact format `[number] URL optional description`
+2. **Source Section**: The "Sources:" heading must be followed by a newline before listing sources
+3. **Reference Format**: In-text references must be in the format `[number]` without any additional characters
+4. **Line Breaks**: Ensure there are no unexpected line breaks within a source entry
+5. **URL Format**: URLs must start with http:// or https://
+
+To debug the source processing:
+
+```typescript
+// Add this temporarily to src/lib/blog.ts to see the parsed sources
+console.log('Sources found:', sources);
+console.log('Source section match:', sourcesMatch);
+```
+
+You can also inspect the HTML output in the browser's developer tools to see how the sources are being rendered.
+
+## Workforce Hierarchy System
+
+The website includes a comprehensive workforce hierarchy visualization system that displays the organizational structure of California's government agencies.
+
+### Data Structure
+
+The workforce hierarchy is built on a multi-level nested structure:
+
+1. **Level 0**: Executive Branch (root)
+2. **Level 1**: Categories (Superagencies and Departments, Standalone Departments, etc.)
+3. **Level 2**: Agencies (Government Operations Agency, Transportation Agency, etc.)
+4. **Level 3**: Sub-agencies (Department of General Services, Caltrans, etc.)
+
+The hierarchy is defined in `src/data/executive-branch-hierarchy.json` and follows this structure:
+
+```json
+{
+  "agencyName": "Executive Branch",
+  "subAgencies": {
+    "Superagencies and Departments": [
+      {
+        "name": "Government Operations Agency",
+        "subAgencies": [
+          {
+            "name": "Department of General Services",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Procurement, state buildings"
+          },
+          // More sub-agencies...
+        ]
+      },
+      // More agencies...
+    ],
+    // More categories...
+  }
+}
+```
+
+### Agency Type Definition
+
+Each agency in the hierarchy is represented by the `Agency` interface defined in `src/app/workforce/types.ts`:
+
+```typescript
+export interface Agency {
+  name: string;
+  abbreviation?: string;
+  description?: string;
+  website?: string;
+  subAgencies?: Agency[];
+  headCount?: number;
+  subordinateOffices?: number;
+  totalWages?: number;
+  tenureDistribution?: { [key: string]: number };
+  salaryDistribution?: { [key: string]: number };
+  ageDistribution?: { [key: string]: number };
+  averageTenureYears?: number;
+  averageSalary?: number;
+  averageAge?: number;
+}
+```
+
+### Hierarchy Processing
+
+The workforce hierarchy is processed in `src/app/workforce/page.tsx` through several key functions:
+
+1. **`convertExecutiveBranchToAgency`**: Transforms the raw JSON data into the Agency structure
+   - Processes each category of sub-agencies
+   - Calculates subordinate office counts
+   - Creates a consistent hierarchical structure
+
+2. **`mergeAgencyData`**: Combines the hierarchy structure with statistical data
+   - Maps agency names between different data sources
+   - Handles special case naming differences
+   - Recursively applies data to the entire hierarchy
+
+3. **`findAgencyByPath`**: Navigates the hierarchy to find specific agencies
+   - Follows a path of agency names to locate a specific node
+   - Used for navigation and selection
+
+### Visualization Components
+
+The hierarchy is visualized through several React components:
+
+1. **`AgencyCard`**: Displays individual agency information
+   - Shows name, abbreviation, and description
+   - Indicates the number of subordinate offices
+   - Highlights active selections
+
+2. **`AgencySection`**: Renders a section of the hierarchy
+   - Manages the display of parent-child relationships
+   - Handles navigation state
+
+3. **`SubAgencySection`**: Renders child agencies
+   - Shows only immediate children of the active agency
+   - Maintains the hierarchical visual structure
+
+### Navigation Logic
+
+The system implements an intuitive navigation approach:
+
+- When nothing is selected, shows the Executive Branch (Level 0) with data and charts
+- When an agency is selected, shows the path to root (ancestors) without data
+- Always displays the active card with its data and charts
+- Shows only immediate children of the active card without their data
+- Hides all other branches for clarity
+
+This approach allows users to navigate the complex government structure while maintaining context and focus.
+
+## Department Page Connection System
+
+The website implements a cross-linking system that connects department pages with their corresponding entries in the spending and workforce pages. This system ensures users can easily navigate between different views of the same department's data.
+
+### Connection Architecture
+
+The connection system is built on a mapping framework defined in `src/lib/departmentMapping.ts`:
+
+1. **Central Mapping Registry**: A single source of truth that maps each department to its representations across different data sources:
+   ```typescript
+   export interface DepartmentMapping {
+     slug: string;           // The slug used in department URLs
+     fullName: string;       // The full official name
+     spendingName?: string;  // The name used in spending data (if different from fullName)
+     workforceName?: string; // The name used in workforce data (if different from fullName)
+   }
+   ```
+
+2. **Lookup Functions**: A set of utility functions that enable bidirectional lookups:
+   - `getDepartmentBySlug`: Finds department data using the URL slug
+   - `getDepartmentBySpendingName`: Finds department data using the name in spending datasets
+   - `getDepartmentByWorkforceName`: Finds department data using the name in workforce datasets
+
+3. **URL Generation**: Functions that create properly formatted URLs for cross-navigation:
+   - `getSpendingUrlForDepartment`: Creates a URL to the spending page filtered for a specific department
+   - `getWorkforceUrlForDepartment`: Creates a URL to the workforce page filtered for a specific department
+
+### Implementation in Components
+
+The connection system is implemented in several key components:
+
+1. **Department Page** (`src/app/departments/[slug]/page.tsx`):
+   - Uses `getDepartmentBySlug` to load department information
+   - Uses `getSpendingUrlForDepartment` and `getWorkforceUrlForDepartment` to create navigation links
+
+2. **Workforce Visualization** (`src/app/workforce/AgencyDataVisualization.tsx`):
+   - Uses `getDepartmentByWorkforceName` to check if a department page exists for the current agency
+   - Creates "Details" links that navigate to the corresponding department page
+
+3. **Spending Page** (`src/app/spend/page.tsx`):
+   - Uses `getDepartmentBySpendingName` to check if a department page exists for the current spending entry
+   - Creates links that navigate to the corresponding department page
+
+### How to Update When Creating New Department Pages
+
+When creating a new department page, follow these steps to ensure proper cross-linking:
+
+1. **Add a New Mapping Entry**:
+   Add a new entry to the `departmentMappings` array in `src/lib/departmentMapping.ts`:
+   ```typescript
+   {
+     slug: 'department-slug',  // URL-friendly slug for the department
+     fullName: 'Department Full Name',  // Official name
+     spendingName: 'Name in Spending Data',  // Optional: only if different from fullName
+     workforceName: 'Name in Workforce Data'  // Optional: only if different from fullName
+   }
+   ```
+
+2. **Create the Department Page**:
+   Create a new page at `src/app/departments/[slug]/page.tsx` using the same slug defined in the mapping.
+
+3. **Verify Data Consistency**:
+   - Ensure the `spendingName` matches exactly how the department appears in `src/data/spending-data.json`
+   - Ensure the `workforceName` matches exactly how the department appears in `src/data/workforce-data.json`
+   - If names differ slightly between datasets, use the optional fields to specify the exact names
+
+4. **Test Cross-Navigation**:
+   After implementation, test that:
+   - The department page has working links to spending and workforce pages
+   - The department appears correctly in the workforce visualization with a "Details" link
+   - The department appears correctly in the spending page with a link to its department page
+
+### Troubleshooting Connection Issues
+
+If cross-linking is not working correctly:
+
+1. **Check Name Consistency**: Verify that the names in the mapping exactly match the names in the data files
+2. **Verify Slug Format**: Ensure the slug is URL-friendly (lowercase, hyphens instead of spaces)
+3. **Check Component Implementation**: Ensure the components are using the lookup functions correctly
+4. **Debug with Console Logs**: Add temporary console logs to trace the mapping process:
+   ```typescript
+   console.log('Looking up department:', name);
+   console.log('Found mapping:', getDepartmentByWorkforceName(name));
+   ```
+
 ## Data Sources
 
 - Example data 

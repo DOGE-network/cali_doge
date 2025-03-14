@@ -1,6 +1,10 @@
 'use client';
 
 import spendingData from '@/data/spending-data.json';
+import Link from 'next/link';
+import { getDepartmentBySpendingName } from '@/lib/departmentMapping';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 // Define types for our data
 type FiscalYear = 'FY2023' | 'FY2024';
@@ -43,6 +47,17 @@ interface SpendingData {
 const typedSpendingData = spendingData as SpendingData;
 
 export default function SpendPage() {
+  const searchParams = useSearchParams();
+  const [highlightedDepartment, setHighlightedDepartment] = useState<string | null>(null);
+  
+  useEffect(() => {
+    // Get the department from URL query parameter
+    const departmentParam = searchParams.get('department');
+    if (departmentParam) {
+      setHighlightedDepartment(departmentParam);
+    }
+  }, [searchParams]);
+
   return (
     <main className="container mx-auto px-4 py-8 max-w-7xl">
       {/* Agency Spending */}
@@ -50,29 +65,45 @@ export default function SpendPage() {
         <h1 className="text-2xl font-bold mb-8">California Department Spending</h1>
         
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-transparent dark:bg-transparent">
+          <table className="min-w-full bg-white border border-gray-200">
             <thead>
-              <tr>
-                <th className="py-3 px-4 text-left">Agency</th>
-                <th className="py-3 px-4 text-right">FY2023</th>
-                <th className="py-3 px-4 text-right">FY2024</th>
+              <tr className="bg-gray-100">
+                <th className="py-3 px-4 text-left">Rank</th>
+                <th className="py-3 px-4 text-left">Department</th>
+                {typedSpendingData.fiscalYears.map(year => (
+                  <th key={year} className="py-3 px-4 text-right">{year}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {typedSpendingData.agencies.map((agency) => (
-                <tr 
-                  key={agency.name} 
-                  className="border-b border-gray-700"
-                >
-                  <td className="py-3 px-4">{agency.name}</td>
-                  <td className="py-3 px-4 text-right">
-                    {agency.spending.FY2023}
-                  </td>
-                  <td className="py-3 px-4 text-right">
-                    {agency.spending.FY2024}
-                  </td>
-                </tr>
-              ))}
+              {typedSpendingData.agencies.map((agency, index) => {
+                const departmentMapping = getDepartmentBySpendingName(agency.name);
+                const isHighlighted = highlightedDepartment === agency.name;
+                
+                return (
+                  <tr 
+                    key={index} 
+                    className={`border-t border-gray-200 ${isHighlighted ? 'bg-blue-50' : ''}`}
+                  >
+                    <td className="py-3 px-4">{agency.rank}</td>
+                    <td className="py-3 px-4">
+                      {departmentMapping ? (
+                        <Link 
+                          href={`/departments/${departmentMapping.slug}`}
+                          className="text-blue-600 hover:underline"
+                        >
+                          {agency.name}
+                        </Link>
+                      ) : (
+                        agency.name
+                      )}
+                    </td>
+                    {typedSpendingData.fiscalYears.map(year => (
+                      <td key={year} className="py-3 px-4 text-right">{agency.spending[year]}</td>
+                    ))}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
