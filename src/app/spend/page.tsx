@@ -5,6 +5,8 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 import SpendingDisplay from '@/components/SpendingDisplay';
 import { SpendingData } from '@/types/spending';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 // Type assertion for our imported data
 const typedSpendingData = spendingData as SpendingData;
@@ -22,12 +24,19 @@ const sortYearsChronologically = (years: string[]) => {
 function SpendPageClient() {
   const searchParams = useSearchParams();
   const [highlightedDepartment, setHighlightedDepartment] = useState<string | null>(null);
+  const [showAllDepartments, setShowAllDepartments] = useState(false);
   
   useEffect(() => {
     // Get the department from URL query parameter
     const departmentParam = searchParams.get('department');
     if (departmentParam) {
       setHighlightedDepartment(departmentParam);
+    }
+    
+    // Check if view=top is in the URL
+    const viewParam = searchParams.get('view');
+    if (viewParam === 'top') {
+      setShowAllDepartments(false);
     }
   }, [searchParams]);
   
@@ -39,11 +48,36 @@ function SpendPageClient() {
     <main className="container mx-auto px-4 py-8 max-w-7xl">
       {/* Agency Spending */}
       <div className="mb-12">
-        <h1 className="text-2xl font-bold mb-8">California Department Spending</h1>
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-2xl font-bold">California Department Spending</h1>
+          <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
+            <Link href="/spend?view=top" passHref>
+              <Button
+                variant={!showAllDepartments ? "secondary" : "ghost"}
+                size="sm"
+                className={`rounded-full text-xs ${!showAllDepartments ? 'bg-white shadow-sm' : ''}`}
+                onClick={() => setShowAllDepartments(false)}
+              >
+                Top Spend
+              </Button>
+            </Link>
+            <Link href="/spend" passHref>
+              <Button
+                variant={showAllDepartments ? "secondary" : "ghost"}
+                size="sm"
+                className={`rounded-full text-xs ${showAllDepartments ? 'bg-white shadow-sm' : ''}`}
+                onClick={() => setShowAllDepartments(true)}
+              >
+                All Departments
+              </Button>
+            </Link>
+          </div>
+        </div>
         
         <SpendingDisplay 
           spendingData={typedSpendingData} 
-          highlightedDepartment={highlightedDepartment} 
+          highlightedDepartment={highlightedDepartment}
+          showTopSpendOnly={!showAllDepartments}
         />
       </div>
 

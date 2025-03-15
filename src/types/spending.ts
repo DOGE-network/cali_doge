@@ -4,7 +4,6 @@ export type FiscalYear = string; // 'FY2017' | 'FY2018' | 'FY2019' | 'FY2020' | 
 
 export interface AgencySpending {
   name: string;
-  rank: string;
   spending: Record<FiscalYear, string>;
   stateOperations?: Record<FiscalYear, string>;
   majorPrograms?: Array<{

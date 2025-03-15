@@ -3,7 +3,6 @@
   "agencies": [
     {
       "name": "California Department of Forestry and Fire Protection",
-      "rank": "#1",
       "spending": {
         "FY2023": "$4.32B",
         "FY2024": "$4.22B"
@@ -11,7 +10,6 @@
     },
     {
       "name": "Department of Water Resources",
-      "rank": "#2",
       "spending": {
         "FY2023": "$7.48B",
         "FY2024": "$3.19B"
@@ -19,7 +17,6 @@
     },
     {
       "name": "Department of Parks and Recreation",
-      "rank": "#3",
       "spending": {
         "FY2023": "$1.99B",
         "FY2024": "$0.88B"
@@ -27,7 +24,6 @@
     },
     {
       "name": "Energy Commission",
-      "rank": "#4",
       "spending": {
         "FY2023": "$1.32B",
         "FY2024": "$1.15B"
@@ -35,7 +31,6 @@
     },
     {
       "name": "Department of Fish and Wildlife",
-      "rank": "#5",
       "spending": {
         "FY2023": "$1.12B",
         "FY2024": "$0.68B"
@@ -43,7 +38,6 @@
     },
     {
       "name": "Water Resources Control Board",
-      "rank": "#6",
       "spending": {
         "FY2023": "$3.94B",
         "FY2024": "$2.15B"
@@ -51,7 +45,6 @@
     },
     {
       "name": "Air Resources Board",
-      "rank": "#7",
       "spending": {
         "FY2017": "$1.63B",
         "FY2018": "$1.43B",
@@ -90,7 +83,6 @@
     },
     {
       "name": "Department of Toxic Substances Control",
-      "rank": "#8",
       "spending": {
         "FY2023": "$0.82B",
         "FY2024": "$0.58B"
@@ -98,7 +90,6 @@
     },
     {
       "name": "California Conservation Corps",
-      "rank": "#9",
       "spending": {
         "FY2023": "$0.16B",
         "FY2024": "$0.15B"
@@ -106,7 +97,6 @@
     },
     {
       "name": "California Natural Resources Agency",
-      "rank": "#10",
       "spending": {
         "FY2023": "$0.39B",
         "FY2024": "$0.32B"
