@@ -19,7 +19,7 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import AgencyDataVisualization from './AgencyDataVisualization';
 import agencyData from '@/data/workforce-data.json';
 import executiveBranchData from '@/data/executive-branch-hierarchy.json';
@@ -438,6 +438,14 @@ function SubAgencySection({
 
 // Client component that uses useSearchParams
 export default function WorkforcePage() {
+  return (
+    <Suspense fallback={<div className="p-4">Loading workforce data...</div>}>
+      <WorkforcePageContent />
+    </Suspense>
+  );
+}
+
+function WorkforcePageContent() {
   const searchParams = useSearchParams();
   const [selectedAgencyName, setSelectedAgencyName] = useState<string | null>(null);
   const [showInactive, setShowInactive] = useState<boolean>(false);
