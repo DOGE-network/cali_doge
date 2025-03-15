@@ -382,4 +382,138 @@ The script utilizes Twitter v2 API to fetch comprehensive tweet data including:
 - Media files: `src/data/media/`
 - Rate limit info: `src/data/tweets/rate_limit.json`
 
-The script is designed to run regularly (e.g., via GitHub Actions) while minimizing API usage and maintaining a complete local archive of tweets and associated media. 
+The script is designed to run regularly (e.g., via GitHub Actions) while minimizing API usage and maintaining a complete local archive of tweets and associated media.
+
+## California State Government Organizational Structure
+
+According to the [Department of Finance's Uniform Codes Manual](https://dof.ca.gov/wp-content/uploads/sites/352/Accounting/Policies_and_Procedures/Uniform_Codes_Manual/UCM_2-Organization_Codes-Introduction.pdf), California state government organization codes are structured in five hierarchical levels:
+
+### Hierarchical Levels
+- **Level A**: Agency level - Groups of departments under agency secretaries or broad functional groupings
+- **Level B**: Subagency level - Breakdown of agencies into subagency groupings
+- **Level 1**: Department level - Organizations that normally receive appropriations
+- **Level 2**: Suborganization level - Divisions, bureaus, boards, or commissions
+- **Level 3**: Suborganization of Level 2 - Bureaus, offices, or units
+
+### Agency (Level A)
+| Code Range | Agency |
+|------------|----------------|
+| 0000-0999 | State Operations |
+| 1000-1999 | Legislative, Judicial, Executive |
+| 2000-2999 | Business, Transportation & Housing |
+| 3000-3999 | Resources and Environmental Protection |
+| 4000-4999 | Health and Human Services |
+| 5000-5999 | Corrections and Rehabilitation |
+| 6000-6999 | Education |
+| 7000-7999 | Government Operations |
+| 8000-8999 | General Government |
+| 9000-9999 | Capital Outlay |
+
+### Budget Document Structure
+Budget documents follow the URL pattern:
+```
+ebudget.ca.gov/[FISCAL-YEAR]/pdf/[DOCUMENT-TYPE]/[AGENCY-CODE]/[DEPARTMENT-CODE].pdf
+```
+
+### Budget Document Types
+
+The budget documents are available in different forms throughout the fiscal year cycle:
+
+1. **Current Year (2024-25)**
+   - **Governor's Proposed Budget** (January): Initial budget proposal released by January 10
+   - **May Revision** (May): Updated proposal incorporating latest economic and revenue information
+   - **Enacted Budget** (June/July): Final approved budget after legislative process
+
+2. **Previous Years**
+   - **Enacted Budget**: Final approved version with all amendments
+   - **Budget Act**: Initial enacted version before amendments
+   - **Trailer Bills**: Implementing legislation for budget provisions
+
+### Budget Document URLs
+
+Budget documents follow the URL pattern:
+```
+ebudget.ca.gov/[FISCAL-YEAR]/pdf/[DOCUMENT-TYPE]/[AGENCY-CODE]/[DEPARTMENT-CODE].pdf
+```
+
+## California department of finance codes
+https://dof.ca.gov/accounting/accounting-policies-and-procedures/accounting-policies-and-procedures-uniform-codes-manual-organization-codes/
+
+## structural listing of codes
+https://dof.ca.gov/wp-content/uploads/sites/352/2024/07/3orgstruc.pdf
+
+## program code structure
+https://dof.ca.gov/accounting/accounting-policies-and-procedures/department-program-codes/
+
+## glossary of terms
+https://ebudget.ca.gov/reference/GlossaryOfTerms.pdf
+
+# California Government Organizational Structure Parser
+
+## Overview
+
+This project includes tools to parse and analyze the organizational structure of California state government from official PDF documents. The system extracts hierarchical relationships between agencies, departments, and other organizational units based on their position in the document.
+
+## Components
+
+### PDF Structure Extraction (`extract_codes.py`)
+
+The `extract_codes.py` script uses PyMuPDF (also known as fitz) to parse the California state government's organizational structure from PDF documents. It identifies hierarchical relationships based on horizontal positioning in the document.
+
+#### How It Works
+
+1. **Position Analysis**: The script analyzes the horizontal positions (x-coordinates) of codes and descriptions in the PDF to determine their hierarchical level.
+
+2. **Hierarchical Classification**: Based on the horizontal position, each entry is classified into one of five levels:
+   - **Level A**: Agency level (top-level organizational units)
+   - **Level B**: Subagency level (breakdown of agencies)
+   - **Level 1**: Department level (organizations receiving appropriations)
+   - **Level 2**: Suborganization level (divisions, bureaus, boards, commissions)
+   - **Level 3**: Suborganization of Level 2 (bureaus, offices, units)
+
+3. **Data Extraction**: For each entry, the script extracts:
+   - The 4-digit code
+   - The description
+   - The hierarchical level (A, B, 1, 2, or 3)
+   - The page number
+   - The horizontal position
+
+4. **Output**: The extracted data is saved to a CSV file (`org_structure.csv`) for further analysis and use in other scripts.
+
+#### Special Notations
+
+The organizational structure includes entries marked with "DO NOT USE", which indicate:
+- Abolished or discontinued entities
+- Renamed or renumbered entities
+- Merged entities
+- Codes reserved for special purposes
+
+These entries are maintained for historical record-keeping and to prevent code reuse.
+
+### Budget Document Downloader (`download_budgets.sh`)
+
+The `download_budgets.sh` script uses the organizational structure data to download budget documents for California state government entities. It maps department codes to their parent agency codes to construct the correct URLs for budget documents.
+
+## Usage
+
+### Extracting Organizational Structure
+
+```bash
+python src/scripts/extract_codes.py path/to/3orgstruc.pdf
+```
+
+### Downloading Budget Documents
+
+```bash
+bash src/scripts/download_budgets.sh
+```
+
+## Data Files
+
+- **org_structure.csv**: Contains the extracted organizational structure with levels, codes, and descriptions
+- **budget_docs/**: Directory containing downloaded budget documents
+
+## Dependencies
+
+- **PyMuPDF (fitz)**: For PDF parsing (`pip install PyMuPDF`)
+- **Standard Python libraries**: re, statistics, os, sys, csv, collections 
