@@ -1,40 +1,51 @@
 [
   {
     "name": "Executive Branch",
-    "headCount": 399000,
-    "totalWages": 28870000000,
     "averageTenureYears": 13,
     "averageSalary": 86142,
-    "averageAge": 47
+    "averageAge": 47,
+    "yearlyHeadCount": [
+      {"year": "2017", "headCount": 390000},
+      {"year": "2018", "headCount": 375000},
+      {"year": "2019", "headCount": 400000},
+      {"year": "2020", "headCount": 389000},
+      {"year": "2021", "headCount": 384000},
+      {"year": "2023", "headCount": 399000},
+      {"year": "2024", "headCount": 397000}
+    ],
+    "yearlyWages": [
+      {"year": "2017", "wages": 22000000000},
+      {"year": "2018", "wages": 22040000000},
+      {"year": "2019", "wages": 24540000000},
+      {"year": "2020", "wages": 25060000000},
+      {"year": "2021", "wages": 25920000000},
+      {"year": "2023", "wages": 28870000000},
+      {"year": "2024", "wages": 29820000000}
+    ]
   },
   {
     "name": "Air Resources Board",
-    "headCount": 1884,
-    "totalWages": 188690853,
-    "averageTenureYears": 8,
-    "averageSalary": 100154,
-    "averageAge": 42,
-    "tenureDistribution": {
-      "0-2": 377,
-      "3-5": 565,
-      "6-10": 471,
-      "11-15": 283,
-      "16-20": 94,
-      "21+": 94
-    },
-    "salaryDistribution": {
-      "$40k-60k": 377,
-      "$60k-80k": 471,
-      "$80k-100k": 471,
-      "$100k-120k": 283,
-      "$120k+": 282
-    },
-    "ageDistribution": {
-      "20-30": 283,
-      "31-40": 565,
-      "41-50": 565,
-      "51-60": 377,
-      "61+": 94
-    }
+    "headCount": 1994,
+    "totalWages": 199590000,
+    "yearlyHeadCount": [
+      {"year": "2017", "headCount": 1356},
+      {"year": "2018", "headCount": 1425},
+      {"year": "2019", "headCount": 1625},
+      {"year": "2020", "headCount": 1720},
+      {"year": "2021", "headCount": 1356},
+      {"year": "2022", "headCount": 1802},
+      {"year": "2023", "headCount": 1898},
+      {"year": "2024", "headCount": 1994}
+    ],
+    "yearlyWages": [
+      {"year": "2017", "wages": 135600000},
+      {"year": "2018", "wages": 142500000},
+      {"year": "2019", "wages": 162500000},
+      {"year": "2020", "wages": 172000000},
+      {"year": "2021", "wages": 135600000},
+      {"year": "2022", "wages": 180200000},
+      {"year": "2023", "wages": 199590000},
+      {"year": "2024", "wages": 209370000}
+    ]
   }
 ]

@@ -168,8 +168,8 @@ const mergeAgencyData = (structure: Agency[], data: any[]): Agency[] => {
       // Create merged agency with data from matching agency
       const merged: Agency = {
         ...agency,
-        headCount: matchingData.headCount,
-        totalWages: matchingData.totalWages,
+        yearlyHeadCount: matchingData.yearlyHeadCount,
+        yearlyWages: matchingData.yearlyWages,
         tenureDistribution: matchingData.tenureDistribution,
         salaryDistribution: matchingData.salaryDistribution,
         ageDistribution: matchingData.ageDistribution,
@@ -426,7 +426,7 @@ function WorkforcePageClient() {
           California State Government Workforce
         </h1>
         <p className="text-sm text-center text-gray-600">
-          For reference, California&apos;s public sector (state, county, and local governments) employed over 2.3 million workers as of 2023, representing 9% of total state employment. The national average for government employee salary is $68,727. The median age of California&apos;s overall population is 37.6 years. All 2023 data below is from public sources.
+          For reference, California&apos;s public sector (state, county, and local governments) employed over 2.3 million workers as of 2023, representing 9% of total state employment. The national average for government employee salary is $68,727. The median age of California&apos;s overall population is 37.6 years. All 2024 data below is from public sources.
         </p>
         
         {/* Debug section only shown in development */}
@@ -457,7 +457,7 @@ function WorkforcePageClient() {
                 {activeAgency && (
                   <div className="mt-1">
                     <p><strong>Selected agency:</strong> {activeAgency.name}</p>
-                    <p><strong>Has data:</strong> {!!activeAgency.headCount ? 'Yes' : 'No'}</p>
+                    <p><strong>Has data:</strong> {!!activeAgency.yearlyHeadCount ? 'Yes' : 'No'}</p>
                     <p><strong>Has charts:</strong> {!!activeAgency.tenureDistribution ? 'Yes' : 'No'}</p>
                   </div>
                 )}

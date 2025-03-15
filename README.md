@@ -1,6 +1,39 @@
 # cali_doge
 I am the love child of Elon Musk and Lanhee Chen. Godson of David Sacks. A fun mode parody account for educational purposes.
 
+## Fiscal Year Representation
+
+The website uses fiscal year data for budget and workforce information. Understanding how fiscal years are represented is important for interpreting the data correctly.
+
+### California Fiscal Year Convention
+
+In California state government:
+
+- A fiscal year spans from July 1 to June 30 of the following calendar year
+- Official state documents represent fiscal years as "YYYY-YY" (e.g., "2023-24")
+- This indicates the fiscal year begins on July 1, 2023 and ends on June 30, 2024
+
+### Fiscal Year Representation in Our Data
+
+For simplicity and consistency across our application:
+
+1. **Single Year Format**: We use a single year format (e.g., "2023" instead of "2023-24") in our JSON data files
+2. **First Year Convention**: The year we use represents the first year of the fiscal year range
+   - Example: "2023" in our data represents the fiscal year "2023-24" (July 1, 2023 to June 30, 2024)
+
+3. **Display Format**: 
+   - In data tables, we display just the year number (e.g., "2023")
+   - This represents the full fiscal year that begins in that calendar year
+
+### Implementation in Data Files
+
+This convention is applied consistently across our data sources:
+
+- **Spending Data** (`src/data/spending-data.json`): Uses "FY" prefix followed by year (e.g., "FY2023")
+- **Workforce Data** (`src/data/workforce-data.json`): Uses year only (e.g., "2023")
+
+When interpreting the data, remember that each year represents the beginning of a fiscal year period that extends into the following calendar year.
+
 ## Markdown Processing and Source Formatting
 
 The website uses a custom Markdown processing system to render content with enhanced features, particularly for handling sources and references.
@@ -235,15 +268,16 @@ When creating a new department page, follow these steps to ensure proper cross-l
    Add a new entry to the `departmentMappings` array in `src/lib/departmentMapping.ts`:
    ```typescript
    {
-     slug: 'department-slug',  // URL-friendly slug for the department
-     fullName: 'Department Full Name',  // Official name
-     spendingName: 'Name in Spending Data',  // Optional: only if different from fullName
-     workforceName: 'Name in Workforce Data'  // Optional: only if different from fullName
+     slug: '3900_air_resources_board',  // Format: <dept_code>_<name_in_snake_case>
+     fullName: 'Air Resources Board',  // Official name
+     spendingName: 'Air Resources Board',  // Optional: only if different from fullName
+     workforceName: 'Air Resources Board'  // Optional: only if different from fullName
    }
    ```
 
 2. **Create the Department Page**:
-   Create a new page at `src/app/departments/[slug]/page.tsx` using the same slug defined in the mapping.
+   Create a new markdown file at `src/app/departments/posts/<dept_code>_<name_in_snake_case>.md` using the same format as the slug.
+   Example: `src/app/departments/posts/3900_air_resources_board.md`
 
 3. **Verify Data Consistency**:
    - Ensure the `spendingName` matches exactly how the department appears in `src/data/spending-data.json`

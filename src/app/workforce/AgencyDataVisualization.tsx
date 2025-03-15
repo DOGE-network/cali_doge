@@ -21,10 +21,15 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
     }
   };
 
+  // Get 2024 data from yearly arrays
+  const headCount2024 = agency.yearlyHeadCount?.find(item => item.year === "2024")?.headCount;
+  const wages2024 = agency.yearlyWages?.find(item => item.year === "2024")?.wages;
+
   // Enhanced debug logs
   console.log('AgencyDataVisualization received:', {
     name: agency.name,
-    headCount: agency.headCount,
+    headCount2024,
+    wages2024,
     subordinateOffices: agency.subordinateOffices,
     hasDistributions: {
       tenure: !!agency.tenureDistribution && Object.keys(agency.tenureDistribution).length > 0,
@@ -79,7 +84,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
   const departmentMapping = getDepartmentByWorkforceName(agency.name);
   
   // If no data, show placeholder
-  if (!agency.headCount && !agency.totalWages) {
+  if (!headCount2024 && !wages2024) {
     return (
       <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
         <h3 className="text-xl font-semibold mb-4">Workforce Data</h3>
@@ -108,7 +113,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div>
           <div className="text-lg font-bold">
-            {agency.headCount !== undefined ? formatNumber(agency.headCount) : '~'}
+            {headCount2024 !== undefined ? formatNumber(headCount2024) : '~'}
           </div>
           <div className="text-gray-600 text-sm">
             {departmentMapping ? (
@@ -116,10 +121,10 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
                 href={`/departments/${departmentMapping.slug}`}
                 className="text-blue-600 hover:underline"
               >
-                Headcount Details
+                Headcount (2024)
               </Link>
             ) : (
-              "Headcount"
+              "Headcount (2024)"
             )}
           </div>
         </div>
@@ -131,9 +136,9 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
         </div>
         <div>
           <div className="text-lg font-bold">
-            {agency.totalWages !== undefined ? formatCurrencyWithSuffix(agency.totalWages) : '~'}
+            {wages2024 !== undefined ? formatCurrencyWithSuffix(wages2024) : '~'}
           </div>
-          <div className="text-gray-600 text-sm">Total Wages</div>
+          <div className="text-gray-600 text-sm">Total Wages (2024)</div>
         </div>
       </div>
 
