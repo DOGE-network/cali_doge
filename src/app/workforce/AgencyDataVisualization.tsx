@@ -88,7 +88,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
     return (
       <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
         <h3 className="text-xl font-semibold mb-4">Workforce Data</h3>
-        <p className="text-gray-500">No workforce data available for this agency.</p>
+        <p className="text-gray-500">No workforce data available for this organization</p>
       </div>
     );
   }
