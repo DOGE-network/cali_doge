@@ -1,5 +1,5 @@
 {
-  "fiscalYears": ["FY2023", "FY2024"],
+  "fiscalYears": ["FY2023", "FY2024", "FY2025", "FY2017", "FY2018", "FY2019", "FY2020", "FY2021", "FY2022"],
   "agencies": [
     {
       "name": "California Department of Forestry and Fire Protection",
@@ -53,9 +53,40 @@
       "name": "Air Resources Board",
       "rank": "#7",
       "spending": {
+        "FY2017": "$1.63B",
+        "FY2018": "$1.43B",
+        "FY2019": "$1.63B",
+        "FY2020": "$1.72B",
+        "FY2021": "$2.63B",
+        "FY2022": "$3.31B",
+        "FY2023": "$1.30B",
+        "FY2024": "$1.01B",
+        "FY2025": "$1.20B"
+      },
+      "stateOperations": {
+        "FY2017": "$0.85B",
+        "FY2018": "$0.89B",
+        "FY2019": "$0.95B",
+        "FY2020": "$1.02B",
+        "FY2021": "$0.35B",
+        "FY2022": "$0.59B",
         "FY2023": "$0.50B",
-        "FY2024": "$1.01B"
-      }
+        "FY2024": "$1.01B",
+        "FY2025": "$1.20B"
+      },
+      "majorPrograms": [
+        {"code": "3500", "name": "Mobile Source"},
+        {"code": "3505", "name": "Stationary Source"},
+        {"code": "3510", "name": "Climate Change"},
+        {"code": "3515", "name": "Subvention"},
+        {"code": "3530", "name": "Community Air Protection"}
+      ],
+      "fundingSources": [
+        {"code": "0115", "name": "Air Pollution Control Fund"},
+        {"code": "3228", "name": "Greenhouse Gas Reduction Fund"},
+        {"code": "0421", "name": "Vehicle Inspection and Repair Fund"},
+        {"code": "0890", "name": "Federal Trust Fund"}
+      ]
     },
     {
       "name": "Department of Toxic Substances Control",
@@ -158,24 +189,16 @@
   },
   "sources": [
     {
-      "name": "LAO: The 2024-25 California Spending Plan: Resources and Environmental Protection",
-      "url": "https://lao.ca.gov/Publications/Report/4928"
+      "name": "California State Budget 2023-24",
+      "url": "https://www.ebudget.ca.gov/2023-24/pdf/Enacted/BudgetSummary/FullBudgetSummary.pdf"
     },
     {
-      "name": "LAO: The 2025-26 Budget: Overview of the Governor's Budget",
-      "url": "https://lao.ca.gov/Publications/Report/4951"
+      "name": "California State Budget 2024-25",
+      "url": "https://www.ebudget.ca.gov/2024-25/pdf/Enacted/BudgetSummary/FullBudgetSummary.pdf"
     },
     {
-      "name": "California State Controller's Office: Personal Income Tax Daily Revenue Tracker",
-      "url": "https://www.sco.ca.gov/2024_personal_income_tax_tracker.html"
-    },
-    {
-      "name": "CalMatters: California lawmakers face a ballooning budget deficit",
-      "url": "https://calmatters.org/politics/capitol/2024/02/california-budget-deficit-balloons/"
-    },
-    {
-      "name": "Open FI$Cal: California's Financial Transparency Portal",
-      "url": "https://open.fiscal.ca.gov/"
+      "name": "Legislative Analyst's Office - The 2023-24 Budget: Overview of the California Spending Plan",
+      "url": "https://lao.ca.gov/Publications/Report/4704"
     }
   ]
 } 

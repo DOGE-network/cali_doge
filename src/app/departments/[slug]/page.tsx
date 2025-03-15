@@ -3,7 +3,13 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import BackButton from '@/components/BackButton'
 import Link from 'next/link'
-import { getSpendingUrlForDepartment, getWorkforceUrlForDepartment } from '@/lib/departmentMapping'
+import { getSpendingUrlForDepartment, getWorkforceUrlForDepartment, getDepartmentBySlug } from '@/lib/departmentMapping'
+import DepartmentSpendingDisplay from '@/components/DepartmentSpendingDisplay'
+import DepartmentWorkforceDisplay from '@/components/DepartmentWorkforceDisplay'
+import spendingData from '@/data/spending-data.json'
+import workforceData from '@/data/workforce-data.json'
+import { SpendingData } from '@/types/spending'
+import { WorkforceData } from '@/types/workforce'
 
 type Props = {
   params: {
@@ -37,6 +43,27 @@ export default async function BlogPost({ params }: Props) {
   // Get links to spending and workforce data if available
   const spendingUrl = getSpendingUrlForDepartment(params.slug)
   const workforceUrl = getWorkforceUrlForDepartment(params.slug)
+  
+  // Get department name for spending data
+  const department = getDepartmentBySlug(params.slug)
+  const departmentName = department?.spendingName || department?.fullName
+  const workforceName = department?.workforceName || department?.fullName
+  
+  // Type assertion for spending data
+  const typedSpendingData = spendingData as SpendingData
+
+  // Find workforce data for this department
+  const departmentWorkforceData = workforceName ? workforceData.find(d => d.name === workforceName) : null
+
+  // Transform workforce data to match WorkforceData type
+  const typedWorkforceData: WorkforceData | null = departmentWorkforceData ? {
+    name: departmentWorkforceData.name,
+    yearlyHeadCount: departmentWorkforceData.yearlyHeadCount || [],
+    yearlyWages: departmentWorkforceData.yearlyWages || [],
+    averageTenureYears: departmentWorkforceData.averageTenureYears,
+    averageSalary: departmentWorkforceData.averageSalary,
+    averageAge: departmentWorkforceData.averageAge
+  } : null;
 
   return (
     <div className="container mx-auto px-4 pt-32">
@@ -86,6 +113,26 @@ export default async function BlogPost({ params }: Props) {
           </div>
         )}
         
+        {/* Department Spending Display */}
+        {departmentName && (
+          <div className="mb-12 not-prose">
+            <DepartmentSpendingDisplay 
+              departmentName={departmentName} 
+              spendingData={typedSpendingData} 
+            />
+          </div>
+        )}
+        
+        {/* Department Workforce Display */}
+        {typedWorkforceData && (
+          <div className="mb-12 not-prose">
+            <DepartmentWorkforceDisplay 
+              workforceData={typedWorkforceData} 
+            />
+          </div>
+        )}
+
+        {/* Post Content */}
         <div 
           className="prose prose-lg max-w-none
             prose-headings:font-bold prose-headings:text-gray-900

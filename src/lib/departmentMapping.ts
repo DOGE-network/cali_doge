@@ -12,7 +12,7 @@ export interface DepartmentMapping {
 // Map of department slugs to their corresponding names in different datasets
 export const departmentMappings: DepartmentMapping[] = [
   {
-    slug: 'arb',
+    slug: '3900_air_resources_board',
     fullName: 'Air Resources Board',
     spendingName: 'Air Resources Board',
     workforceName: 'Air Resources Board'

@@ -4,12 +4,12 @@ export interface Agency {
   description?: string;
   website?: string;
   subAgencies?: Agency[];
-  headCount?: number;
   subordinateOffices?: number;
-  totalWages?: number;
   tenureDistribution?: { [key: string]: number };
   salaryDistribution?: { [key: string]: number };
   ageDistribution?: { [key: string]: number };
+  yearlyHeadCount?: Array<{ year: string; headCount: number }>;
+  yearlyWages?: Array<{ year: string; wages: number }>;
   averageTenureYears?: number;
   averageSalary?: number;
   averageAge?: number;

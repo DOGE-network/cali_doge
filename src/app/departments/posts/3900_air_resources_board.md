@@ -1,19 +1,60 @@
 ---
-title: "Air Resources Board"
+title: "3900 - Air Resources Board"
+name: "Air Resources Board"
+code: 3900
 date: 2025-03-13 08:00:00 -0800
 author: "Sean Roberts"
 image: 
 description: "CARB has administered significant clean transportation funding, with approximately $6.3 billion appropriated from FY 2009-10 through FY 2024-25"
 ---
 
-## Budget and Personnel
 
-| Fiscal Year | Budget (in millions) | Personnel (positions) | Funding Sources |
-|------------|---------------------|----------------------|----------------|
-| 2021-22    | $354.2 (State Operations) | 1,356 | Air Pollution Control Fund, Vehicle Inspection and Repair Fund, Federal Trust Fund, Greenhouse Gas Reduction Fund[7] |
-| 2022-23    | $588.1 (State Operations) | 1,802 | Air Pollution Control Fund, Vehicle Inspection and Repair Fund, Federal Trust Fund, Greenhouse Gas Reduction Fund[7] |
-| 2023-24    | $496.8 (State Operations) | 1,898 | Air Pollution Control Fund, Vehicle Inspection and Repair Fund, Federal Trust Fund, Greenhouse Gas Reduction Fund[7] |
-| 2024-25    | $1,005.0 | 1,994 | Multiple state and federal sources[6] |
+### Budget Trends and Highlights (2017-2026)
+
+#### Position Growth
+- **Overall Growth**: 56.3% increase in positions from 2017-18 (1,356) to 2025-26 (2,120)[41][43]
+- **Recent Expansion**: The 2025-26 budget authorizes 118 new positions (6% increase) compared to 2024-25[43]
+- **Major Staffing Initiatives**: 
+  - 28 positions for Climate Disclosure Laws implementation (2024-25)[42]
+  - 42 positions for Climate Disclosure Laws implementation (2025-26)[43]
+  - 45 positions for Zero-Emission regulations implementation (2025-26)[43]
+
+#### Budget Fluctuations
+- **Peak Funding**: FY 2022-23 saw the highest total budget at $3.31 billion[41]
+- **Funding Variability**: Year-to-year comparisons are heavily affected by one-time funding and prior-year appropriations[42]
+- **State Operations Growth**: State operations funding increased from $0.35 billion in 2021-22 to $1.20 billion in 2025-26[41][43]
+
+#### Major Capital Projects
+- **Southern California Headquarters**: $413 million allocated in 2017-18 for the Mary D. Nichols Campus in Riverside[41]
+- **Ongoing Facility Costs**: $6.3 million in 2024-25 growing to $9.4 million annually for headquarters operations[42]
+
+#### Program Funding (2024-25)
+- **Mobile Source Program**: $500 million (Code 3500)[42]
+- **Climate Change Program**: $350 million (Code 3510)[42]
+- **Community Air Protection**: $80 million (Code 3530)[42]
+
+### Major Funding Codes and Sources
+
+The Air Resources Board receives funding from various sources, each designated by specific codes in the state budget:
+
+#### Program Codes
+- **3500 - Mobile Source**: Programs focused on reducing emissions from vehicles and other mobile sources
+- **3505 - Stationary Source**: Regulation and monitoring of fixed pollution sources like factories and power plants
+- **3510 - Climate Change**: Implementation of greenhouse gas reduction programs and cap-and-trade
+- **3515 - Subvention**: Grants to local air districts for air quality monitoring and enforcement
+- **3530 - Community Air Protection**: Programs targeting air quality improvements in disadvantaged communities
+
+#### Funding Source Codes
+- **0001 - General Fund**: State's primary operating fund
+- **0115 - Air Pollution Control Fund**: Fees and penalties from regulated entities
+- **0421 - Vehicle Inspection and Repair Fund**: Smog check and vehicle registration fees
+- **0434 - Air Toxics Inventory and Assessment Account**: Fees for toxic air contaminant programs
+- **0890 - Federal Trust Fund**: Federal grants for air quality programs
+- **3119 - Air Quality Improvement Fund**: Vehicle and equipment incentives
+- **3228 - Greenhouse Gas Reduction Fund**: Cap-and-trade auction proceeds
+- **3237 - Cost of Implementation Account**: Fees for AB 32 implementation
+- **3358 - Truck Emission Check Fund**: Heavy-duty vehicle inspection fees
+- **3359 - Certification Compliance Fund**: Vehicle certification fees
 
 ## Major Projects and Initiatives
 
@@ -138,3 +179,13 @@ Sources:
 [38] https://ww2.arb.ca.gov/our-work/programs/advanced-clean-cars-program/advanced-clean-cars-midterm-review
 [39] https://ww2.arb.ca.gov/sites/default/files/barcu/regact/2022/accii/acciifro_ldtps_exh_2015-2025.pdf
 [40] https://ww2.arb.ca.gov/our-work/programs/compliance-offset-program/early-action-offset-credits/early-action-projects
+[41] https://ebudget.ca.gov/2017-18/pdf/Enacted/GovernorsBudget/3890/3900.pdf
+[42] https://lao.ca.gov/Publications/Report/4928
+[43] https://lao.ca.gov/Publications/Report/4980
+[44] https://ebudget.ca.gov/2018-19/pdf/Enacted/GovernorsBudget/3890/3900.pdf
+[45] https://ebudget.ca.gov/2019-20/pdf/Enacted/GovernorsBudget/3890/3900.pdf
+[46] https://ebudget.ca.gov/2020-21/pdf/Enacted/GovernorsBudget/3890/3900.pdf
+[47] https://ebudget.ca.gov/2021-22/pdf/Enacted/GovernorsBudget/3890/3900.pdf
+[48] https://ebudget.ca.gov/2022-23/pdf/Enacted/GovernorsBudget/3890/3900.pdf
+[49] https://ebudget.ca.gov/2024-25/pdf/Enacted/GovernorsBudget/3890/3900.pdf
+[50] https://ebudget.ca.gov/2025-26/pdf/GovernorsBudget/3890/3900.pdf

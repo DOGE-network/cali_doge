@@ -1,50 +1,22 @@
 'use client';
 
 import spendingData from '@/data/spending-data.json';
-import Link from 'next/link';
-import { getDepartmentBySpendingName } from '@/lib/departmentMapping';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
-
-// Define types for our data
-type FiscalYear = 'FY2023' | 'FY2024';
-
-interface AgencySpending {
-  name: string;
-  rank: string;
-  spending: Record<FiscalYear, string>;
-}
-
-interface BudgetSummary {
-  totalSpending: Record<FiscalYear, string>;
-  deficit: Record<FiscalYear, string>;
-  revenue: Record<FiscalYear, string>;
-}
-
-interface RevenueSource {
-  source: string;
-  amounts: Record<FiscalYear, string>;
-}
-
-interface TotalRevenueData extends Record<FiscalYear, string> {
-  percentChange: string;
-}
-
-interface SpendingData {
-  fiscalYears: FiscalYear[];
-  agencies: AgencySpending[];
-  budgetSummary: BudgetSummary;
-  revenueSources: RevenueSource[];
-  totalRevenue: TotalRevenueData;
-  federalDeficit: Record<FiscalYear, string>;
-  sources: Array<{
-    name: string;
-    url: string;
-  }>;
-}
+import SpendingDisplay from '@/components/SpendingDisplay';
+import { SpendingData } from '@/types/spending';
 
 // Type assertion for our imported data
 const typedSpendingData = spendingData as SpendingData;
+
+// Helper function to sort years chronologically
+const sortYearsChronologically = (years: string[]) => {
+  return [...years].sort((a, b) => {
+    const yearA = parseInt(a.replace('FY', ''));
+    const yearB = parseInt(b.replace('FY', ''));
+    return yearA - yearB;
+  });
+};
 
 // Client component that uses useSearchParams
 function SpendPageClient() {
@@ -58,6 +30,10 @@ function SpendPageClient() {
       setHighlightedDepartment(departmentParam);
     }
   }, [searchParams]);
+  
+  // Get sorted years for budget summary and revenue sources
+  const budgetYears = sortYearsChronologically(Object.keys(typedSpendingData.budgetSummary.totalSpending));
+  const revenueYears = sortYearsChronologically(Object.keys(typedSpendingData.revenueSources[0].amounts));
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-7xl">
@@ -65,147 +41,115 @@ function SpendPageClient() {
       <div className="mb-12">
         <h1 className="text-2xl font-bold mb-8">California Department Spending</h1>
         
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="py-3 px-4 text-left">Rank</th>
-                <th className="py-3 px-4 text-left">Department</th>
-                {typedSpendingData.fiscalYears.map(year => (
-                  <th key={year} className="py-3 px-4 text-right">{year}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {typedSpendingData.agencies.map((agency, index) => {
-                const departmentMapping = getDepartmentBySpendingName(agency.name);
-                const isHighlighted = highlightedDepartment === agency.name;
-                
-                return (
-                  <tr 
-                    key={index} 
-                    className={`border-t border-gray-200 ${isHighlighted ? 'bg-blue-50' : ''}`}
-                  >
-                    <td className="py-3 px-4">{agency.rank}</td>
-                    <td className="py-3 px-4">
-                      {departmentMapping ? (
-                        <Link 
-                          href={`/departments/${departmentMapping.slug}`}
-                          className="text-blue-600 hover:underline"
-                        >
-                          {agency.name}
-                        </Link>
-                      ) : (
-                        agency.name
-                      )}
-                    </td>
-                    {typedSpendingData.fiscalYears.map(year => (
-                      <td key={year} className="py-3 px-4 text-right">{agency.spending[year]}</td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+        <SpendingDisplay 
+          spendingData={typedSpendingData} 
+          highlightedDepartment={highlightedDepartment} 
+        />
+      </div>
+
+      {/* Budget Summary */}
+      <div className="mb-12">
+        <h2 className="text-xl font-bold mb-4">Budget Summary</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h3 className="text-lg font-semibold mb-4">Total Spending</h3>
+            <div className="space-y-2">
+              {budgetYears.map(year => (
+                <div key={year} className="flex justify-between">
+                  <span>{year}:</span>
+                  <span className="font-medium">{typedSpendingData.budgetSummary.totalSpending[year]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h3 className="text-lg font-semibold mb-4">Revenue</h3>
+            <div className="space-y-2">
+              {budgetYears.map(year => (
+                <div key={year} className="flex justify-between">
+                  <span>{year}:</span>
+                  <span className="font-medium">{typedSpendingData.budgetSummary.revenue[year]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h3 className="text-lg font-semibold mb-4">Deficit</h3>
+            <div className="space-y-2">
+              {budgetYears.map(year => (
+                <div key={year} className="flex justify-between">
+                  <span>{year}:</span>
+                  <span className="font-medium">{typedSpendingData.budgetSummary.deficit[year]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Revenue Sources */}
       <div className="mb-12">
-        <h1 className="text-2xl font-bold mb-8">California Revenue Sources</h1>
-        
+        <h2 className="text-xl font-bold mb-4">Revenue Sources</h2>
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-transparent dark:bg-transparent">
+          <table className="min-w-full bg-white border border-gray-200">
             <thead>
-              <tr>
+              <tr className="bg-gray-100">
                 <th className="py-3 px-4 text-left">Source</th>
-                <th className="py-3 px-4 text-right">FY2023</th>
-                <th className="py-3 px-4 text-right">FY2024</th>
+                {revenueYears.map(year => (
+                  <th key={year} className="py-3 px-4 text-right">{year}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {typedSpendingData.revenueSources.map((item) => (
-                <tr 
-                  key={item.source} 
-                  className="border-b border-gray-700"
-                >
-                  <td className="py-3 px-4">{item.source}</td>
-                  <td className="py-3 px-4 text-right">
-                    {item.amounts.FY2023}
-                  </td>
-                  <td className="py-3 px-4 text-right">
-                    {item.amounts.FY2024}
-                  </td>
+              {typedSpendingData.revenueSources.map((source, index) => (
+                <tr key={index} className="border-t border-gray-200">
+                  <td className="py-3 px-4">{source.source}</td>
+                  {revenueYears.map(year => (
+                    <td key={year} className="py-3 px-4 text-right">{source.amounts[year]}</td>
+                  ))}
                 </tr>
               ))}
-              <tr className="border-b border-gray-700">
-                <td className="py-3 px-4 font-bold">Total Revenue</td>
-                <td className="py-3 px-4 text-right font-bold">
-                  {typedSpendingData.totalRevenue.FY2023}
-                </td>
-                <td className="py-3 px-4 text-right font-bold">
-                  {typedSpendingData.totalRevenue.FY2024}
-                </td>
+              <tr className="border-t border-gray-200 font-semibold bg-gray-50">
+                <td className="py-3 px-4">Total Revenue</td>
+                {revenueYears.map(year => (
+                  <td key={year} className="py-3 px-4 text-right">
+                    {typedSpendingData.totalRevenue[year]}
+                  </td>
+                ))}
               </tr>
             </tbody>
           </table>
         </div>
-        
-        <p className="mt-4 text-gray-400">
-          {typedSpendingData.totalRevenue.percentChange} change from FY2023 to FY2024
-        </p>
-      </div>
-
-      {/* Federal Deficit */}
-      <div className="mb-12">
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-transparent dark:bg-transparent">
-            <thead>
-              <tr>
-                <th className="py-3 px-4 text-left"></th>
-                <th className="py-3 px-4 text-right">FY2023</th>
-                <th className="py-3 px-4 text-right">FY2024</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-700">
-                <td className="py-3 px-4 font-bold">California Budget Deficit</td>
-                <td className="py-3 px-4 text-right">
-                  {typedSpendingData.federalDeficit.FY2023}
-                </td>
-                <td className="py-3 px-4 text-right">
-                  {typedSpendingData.federalDeficit.FY2024}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="mt-2 text-right text-sm text-gray-600">
+          Year-over-year change: {typedSpendingData.totalRevenue.percentChange}
         </div>
       </div>
 
       {/* Sources */}
-      <div className="text-sm text-gray-400 mt-8">
-        <h3 className="text-lg font-semibold mb-2">Sources:</h3>
-        <ul className="list-disc pl-5 space-y-1">
-          {typedSpendingData.sources.map((source) => (
-            <li key={source.name}>
+      <div className="mt-16">
+        <h2 className="text-xl font-bold mb-4">Sources</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          {typedSpendingData.sources.map((source, index) => (
+            <li key={index}>
               <a 
                 href={source.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline"
+                className="text-blue-600 hover:underline"
               >
                 {source.name}
               </a>
             </li>
           ))}
         </ul>
-        <p className="mt-4">Note: All figures are in billions of dollars. FY = Fiscal Year.</p>
       </div>
     </main>
   );
 }
 
-// Main page component with Suspense boundary
+// Wrapper component for suspense
 export default function SpendPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
