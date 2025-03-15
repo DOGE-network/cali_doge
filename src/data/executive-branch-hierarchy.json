@@ -1,1656 +1,2541 @@
 {
-  "agencyName": "Executive Branch",
-  "subAgencies": {
-    "Superagencies and Departments": [
-      {
-        "name": "Government Operations Agency",
-        "subAgencies": [
+  "name": "California State Government",
+  "org_level": 0,
+  "budget_code": "0000",
+  "budget_level": "0",
+  "budget_status": "active",
+  "subAgencies": [
+    {
+      "name": "Executive Branch",
+      "org_level": 1,
+      "budget_code": "0001",
+      "budget_level": "A",
+      "budget_status": "active",
+      "subAgencies": {
+        "Superagencies and Departments": [
           {
-            "name": "Department of General Services",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Procurement, state buildings"
+            "name": "Government Operations Agency",
+            "org_level": 3,
+            "budget_code": "0511",
+            "budget_level": "2",
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "Department of General Services",
+                "org_level": 4,
+                "budget_code": "1760",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "State procurement, real estate, fleet management",
+                "abbreviation": "DGS",
+                "subAgencies": [
+                  {
+                    "name": "Office of Administrative Hearings",
+                    "org_level": 5,
+                    "budget_code": "1760",
+                    "budget_level": "3",
+                    "budget_status": "active",
+                    "keyFunctions": "Administrative law proceedings"
+                  },
+                  {
+                    "name": "Office of Public School Construction",
+                    "org_level": 5,
+                    "budget_code": "1760",
+                    "budget_level": "3",
+                    "budget_status": "active",
+                    "keyFunctions": "School facility program administration"
+                  },
+                  {
+                    "name": "Building Standards Commission",
+                    "org_level": 5,
+                    "budget_code": "1760",
+                    "budget_level": "3",
+                    "budget_status": "active",
+                    "keyFunctions": "Building standards development and publication"
+                  }
+                ]
+              },
+              {
+                "name": "Department of Technology",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "IT services, cybersecurity"
+              },
+              {
+                "name": "Franchise Tax Board",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Income tax collection"
+              },
+              {
+                "name": "Department of Human Resources",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "State personnel management"
+              },
+              {
+                "name": "Office of Administrative Law",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Regulatory oversight"
+              }
+            ]
           },
           {
-            "name": "Department of Technology",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "IT services, cybersecurity"
+            "name": "Labor & Workforce Development",
+            "org_level": 3,
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "Employment Development Department",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Unemployment insurance, job services"
+              },
+              {
+                "name": "Department of Industrial Relations",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Labor law enforcement, worker safety"
+              },
+              {
+                "name": "Agricultural Labor Relations Board",
+                "org_level": 4,
+                "budget_code": "7300",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Farm labor relations enforcement"
+              },
+              {
+                "name": "Workforce Development Board",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Job training coordination"
+              }
+            ]
           },
           {
-            "name": "Franchise Tax Board",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Income tax collection"
+            "name": "Transportation Agency",
+            "org_level": 3,
+            "budget_code": "0521",
+            "budget_level": "2",
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "Department of Transportation",
+                "abbreviation": "Caltrans",
+                "org_level": 4,
+                "budget_code": "2660",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Highway and transportation infrastructure"
+              },
+              {
+                "name": "Department of Motor Vehicles",
+                "abbreviation": "DMV",
+                "org_level": 4,
+                "budget_code": "2740",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Vehicle registration and driver licensing"
+              },
+              {
+                "name": "California Highway Patrol",
+                "abbreviation": "CHP",
+                "org_level": 4,
+                "budget_code": "2720",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Traffic safety and law enforcement"
+              },
+              {
+                "name": "High-Speed Rail Authority",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "High-speed rail development"
+              }
+            ]
           },
           {
-            "name": "Department of Human Resources",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "State personnel management"
+            "name": "Natural Resources Agency",
+            "org_level": 3,
+            "budget_code": "0540",
+            "budget_level": "2",
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "Department of Water Resources",
+                "org_level": 4,
+                "budget_code": "3860",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Water management and infrastructure"
+              },
+              {
+                "name": "Department of Parks and Recreation",
+                "org_level": 4,
+                "budget_code": "3790",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "State parks and recreation areas management"
+              },
+              {
+                "name": "Department of Fish and Wildlife",
+                "org_level": 4,
+                "budget_code": "3600",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Wildlife conservation and management"
+              },
+              {
+                "name": "Department of Forestry & Fire Protection",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Wildfire prevention, suppression"
+              },
+              {
+                "name": "California Coastal Commission",
+                "org_level": 4,
+                "budget_code": "3720",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Coastal zone planning and management"
+              },
+              {
+                "name": "California Coastal Conservancy",
+                "org_level": 4,
+                "budget_code": "3760",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Coastal protection and access projects"
+              }
+            ]
           },
           {
-            "name": "Office of Administrative Law",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Regulatory oversight"
+            "name": "Environmental Protection Agency",
+            "org_level": 3,
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "Air Resources Board",
+                "org_level": 4,
+                "budget_code": "3900",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Air quality regulation and enforcement"
+              },
+              {
+                "name": "State Water Resources Control Board",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Water rights, quality control"
+              },
+              {
+                "name": "Department of Toxic Substances Control",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Hazardous waste management"
+              },
+              {
+                "name": "Department of Pesticide Regulation",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Pesticide regulation"
+              }
+            ]
+          },
+          {
+            "name": "Health and Human Services Agency",
+            "org_level": 3,
+            "budget_code": "0530",
+            "budget_level": "2",
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "Department of Health Care Services",
+                "org_level": 4,
+                "budget_code": "4260",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Administers Medi-Cal program"
+              },
+              {
+                "name": "Department of Public Health",
+                "org_level": 4,
+                "budget_code": "4265",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Public health protection and promotion"
+              },
+              {
+                "name": "Department of Social Services",
+                "org_level": 4,
+                "budget_code": "5180",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Welfare and social services programs"
+              },
+              {
+                "name": "Department of Developmental Services",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Developmental disability services"
+              },
+              {
+                "name": "Department of State Hospitals",
+                "org_level": 4,
+                "budget_code": "4440",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Mental health hospital operations"
+              },
+              {
+                "name": "Department of Aging",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Agency Secretary",
+                "keyFunctions": "Senior services"
+              }
+            ]
+          },
+          {
+            "name": "Business, Consumer Services, and Housing Agency",
+            "org_level": 3,
+            "budget_code": "0515",
+            "budget_level": "2",
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "Department of Financial Protection and Innovation",
+                "org_level": 4,
+                "budget_code": "1701",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Financial services regulation and consumer protection"
+              },
+              {
+                "name": "Department of Business Oversight",
+                "org_level": 4,
+                "budget_code": "1701",
+                "budget_level": "2",
+                "budget_status": "inactive",
+                "keyFunctions": "Financial services regulation (now DFPI)"
+              },
+              {
+                "name": "Department of Housing and Community Development",
+                "org_level": 4,
+                "budget_code": "2240",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Housing policy and funding programs"
+              },
+              {
+                "name": "Department of Consumer Affairs",
+                "org_level": 4,
+                "budget_code": "1111",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Professional licensing boards and consumer protection"
+              },
+              {
+                "name": "Department of Alcoholic Beverage Control",
+                "org_level": 4,
+                "budget_code": "2100",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Alcohol licensing and regulation"
+              },
+              {
+                "name": "Department of Real Estate",
+                "org_level": 4,
+                "budget_code": "2320",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Real estate licensing and regulation"
+              },
+              {
+                "name": "Cannabis Control Appeals Panel",
+                "org_level": 4,
+                "budget_code": "2150",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Cannabis licensing appeals"
+              }
+            ]
           }
-        ]
-      },
-      {
-        "name": "Labor & Workforce Development",
-        "subAgencies": [
+        ],
+        "Standalone Departments": [
           {
-            "name": "Employment Development Department",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Unemployment insurance, job services"
+            "name": "Department of Corrections & Rehabilitation",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "Governor",
+            "keyFunctions": "Prison system management"
           },
           {
-            "name": "Department of Industrial Relations",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Labor law enforcement, worker safety"
+            "name": "Department of Food & Agriculture",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "Governor",
+            "keyFunctions": "Agricultural regulation, inspection"
           },
           {
-            "name": "Agricultural Labor Relations Board",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Farm labor dispute resolution"
+            "name": "Department of Cannabis Control",
+            "org_level": 3,
+            "budget_code": "8260",
+            "budget_level": "2",
+            "budget_status": "active",
+            "reportsTo": "Governor",
+            "keyFunctions": "Cannabis industry regulation"
+          },
+          {
+            "name": "Department of Veterans Affairs",
+            "org_level": 3,
+            "budget_code": "8955",
+            "budget_level": "2",
+            "budget_status": "active",
+            "reportsTo": "Governor",
+            "keyFunctions": "Veterans services, homes"
+          },
+          {
+            "name": "Military Department",
+            "org_level": 3,
+            "budget_code": "8940",
+            "budget_level": "2",
+            "budget_status": "active",
+            "reportsTo": "Governor",
+            "keyFunctions": "National Guard administration"
+          },
+          {
+            "name": "Emergency Services",
+            "org_level": 3,
+            "budget_code": "0690",
+            "budget_level": "2",
+            "budget_status": "active",
+            "reportsTo": "Governor",
+            "keyFunctions": "Disaster response coordination"
+          }
+        ],
+        "Independent Boards and Commissions": [
+          {
+            "name": "Accountancy, State Board of",
+            "org_level": 3,
+            "budget_code": "1120",
+            "budget_level": "2",
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Actuarial Advisory",
+            "org_level": 3,
+            "budget_code": "1121",
+            "budget_level": "3",
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Acupuncture Board",
+            "org_level": 3,
+            "budget_code": "1122",
+            "budget_level": "2",
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Adult Offender Supervision, CA Council for Interstate",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Aging, CA Commission on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Agricultural Cooperative Bargaining Associations Advisory",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Air Contaminants, Toxic, Scientific Review Panel on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Air Quality, Management District Board, South Coast",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Air Resources Board",
+            "org_level": 4,
+            "budget_code": "3900",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Air quality regulation and enforcement"
+          },
+          {
+            "name": "Allocation Board, State",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "American River Conservancy Advisory Committee, Lower",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Architects Board, CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Arts Council, CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Arts, Board of Trustees, CA Summer School for the",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Asian & Pacific Islander American Affairs, Commission on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Associate Degree for Transfer Intersegmental Implementation Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Athletic Commission",
+            "org_level": 4,
+            "budget_code": "1130",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Combat sports regulation"
+          },
+          {
+            "name": "Baldwin Hills Conservancy Governing Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Bar, State, Access to Justice",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Bar, State, Attorney Diversion & Assistance Program Oversight Com",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Bar, State, Board of Trustees",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Bar, State, Examining Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Bar, State, Court Hearing Judge",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Barbering and Cosmetology, State Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Behavioral Sciences, Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Blockchain Working Group",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Broadband Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Broadband Council",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "CalAccount Blue Ribbon Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "CalSavers Retirement Savings Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "CalVolunteers, Board of Commissioners",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Cannabis Control Appeals Board",
+            "org_level": 4,
+            "budget_code": "2150",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "ABC licensing decisions appeals"
+          },
+          {
+            "name": "Capitol Commission, Historic State",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Carpet Stewardship Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Catastrophe Response Council, CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Child Welfare Council, California",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Children and Families First Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Civil Liberties Public Education Grant Program",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Coachella Valley Mountains Conservancy Governing Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Coastal Commission, CA",
+            "org_level": 3,
+            "budget_code": "3720",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Coastal zone planning and management"
+          },
+          {
+            "name": "Coastal Conservancy, State",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Community College Athlete Name, Image, & Likeness Working Group",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Community College Student Success Funding Formula Oversight Com",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Compensation Insurance Fund, State",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Contractors' State License Board",
+            "org_level": 4,
+            "budget_code": "1230",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Construction contractor licensing"
+          },
+          {
+            "name": "Community Corrections, Board of State and",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Senate Advisory Commission on cost Control in State Gov",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Court Reporters Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Covered California Governing Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Cradle-to-Career Data System Governing Board, California",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Crime Victims' Memorial Review Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Criminal Index and Identification System Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Criminal Justice and Behavioral Health, Council on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Cultural and Historical Endowment, California",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Debt and Investment Advisory Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Delta Conservancy Governing Board, Sac-San Joaquin",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Delta Protection Commission, Sac-San Joaquin",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Delta Stewardship Council",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Dental Examiners of CA, Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Dental Hygiene Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Disability Access, CA Commission on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Domestic Services, Advisory Committee on Household",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Domestic Violence Program Advisory Council OES (EMA)",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Early Childhood Policy Council",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Early Childhood Policy Council Parent Adv. Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Early Childhood Policy Council Workforce Adv. Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Earthquake Early Warning Advisory Board, CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Earthquake Insurance Authority Governing Board & Advisory Panel",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Economic Development, Commission on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Education Commission, CA Postsecondary",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Education Commission of the States",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Education, Awards for Innovation Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Education, Private Postsecondary, Adv. Com",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Education, Advisory Commission on Special",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Educational Excellence, CA Collaborative",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Educational Opportunity for Military Children, State Council",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Electricity Oversight Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Emergency Medical Services, Commission on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Emissions Market Advisory Committee, Independent",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Employment of People with Disabilities, CA Governor's Committee on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Employment Training Panel",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Engineers and Land Surveyors, Board for Professional",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Environmental Contaminant Biomonitoring Program Scientific Guidance",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Environmental Health Specialist Registration Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Environmental Safety, Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Exposition & State Fair Board of Directors",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Fiduciaries Advisory Committee, Professional",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Film Commission, Board of Commissioners",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Forestry Task Force, Western States Legislative",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Gang Database Technical Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Genocide Memorial Commission, International",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Hate, Commission on the State of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Health & Safety & Workers' Compensation, Commission on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Health Facilities Financing Authority",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Health Professions Education Foundation Board of Trustees",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Healthcare Workforce Education and Training Council, California",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Healthy CA For All Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Home, No Place Like, Program Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Homeless Coordinating and Financing Council",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Housing Finance Agency Board of Directors, CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Housing Partnership Board of Directors, CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Instructional Quality Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Insurance Guarantee Association, California, Board of Governors",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Investment Network Advisory Board, CA Organized",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Judicial Council of CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Judicial Council Information Technology Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Judicial Performance, Council on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Judicial Performance, Committee to Review the Operations and Structure of the Commission on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Landscape Architect Technical Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Law Revision Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Legal Service Trust Fund Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Library Services Board, CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Library Construction and Renovation Board, Public",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Lithium Extraction in CA, Blue Ribbon Commission on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Little Hoover Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Long-Term Care Insurance Task Force",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Los Angeles Memorial Coliseum Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Marine Preservation, CA Endowment Board of Directors",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Medical Board of CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Medicine, Institute for Regenerative, Citizen's Oversight Com.",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Medicine, Institute for Regenerative, Citizen's Financial Accountability Oversight Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Mental Health Services Oversight",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Military Council, Governor's",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Mobilehome Park Inspection Program Task Force",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Motor Vehicle Board, New",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Motor Vehicle Recovery Corporation, Board of Director",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Naturopathic Medicine Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Nursing, Registered, Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Nursing, Vocational & Psychiatric Technical Examiners, Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Occupational Therapy, Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Ocean Protection Council",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Off-Highway Motor Vehicle Recreation Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Oil Spill Technical Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Optometry, California State Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Osteopathic Medical Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Pacific Fisheries Legislative Task Force",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Paramedic Disciplinary Review Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Parks & Recreation Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Peace Officer Standards Accountability Advisory Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Peace Officer Standards & Training, Commission on",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Penal Code, Committee on Revision of the",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Pharmacy, State Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Physical Therapy Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Physician Assistant Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Podiatric Medicine, Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Prison Industry Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Privacy Protection Agency Board, California",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Psychology, Board of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Public Employees Retirement System Board of Administration",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Public Works Board, State",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Racial and Identity Profiling Advisory Board (RIPA)",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Rail Authority, High Speed",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Regents Selection Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Rehabilitation Oversight Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Reparation Proposals for African Americans, Task Force",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Respiratory Care Board of California",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "San Diego River Conservancy",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "San Francisco Water Emergency Transportation Authority",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "San Francisco Bay Conservation & Development Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "San Gabriel and Lower Los Angeles Rivers and Mountains Conservancy",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "San Joaquin River Conservancy Governing Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Santa Monica Mountains Conservancy",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Santa Monica Mountains Conservancy Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Scholarshare Investment Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "State School Building Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "School, Advisory Committee on Before and After Programs",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Sea Grant Advisory Panel Resources Agency",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Search & Rescue Memorial Review Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Seismic Safety Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Sex Offender Management Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Sierra Nevada Conservancy",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Small Business Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Speech-Language Pathology & Audiology Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Strategic Growth Council",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Structural Pest Control Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Student Aid Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Student Opportunity & Access Program Project Grant Advisory Com",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Tahoe Conservancy Governing Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Tahoe Regional Planning Agency (TRPA)",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Tax Credit Allocation Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Tax Credit Committee, CA Competes",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Tobacco Education & Research Oversight Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Transportation Commission",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Transportation Financing Authority",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Underground Facilities Safe Excavation Board, CA",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Unemployment Insurance Appeals Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Uniform State Laws",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Veterinary Medical Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Waste, Hazardous",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Western Climate Initiative, Inc. Board of Directors",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Wildfire Cost & Recovery, Commission on Catastrophic",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Wildfire Safety Advisory Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Wildfire Technology Research and Development Review Advisory Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Wildlife Conservation Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Women, Commission on the Status of",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
           },
           {
             "name": "Workforce Development Board",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Job training coordination"
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Workforce Impacts of Transitioning Seaports Lower Carbon TF",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "World War II Japanese American Incarceration Memorial Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Youth Empowerment Commission, California",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Achieving a Better Life Experience (ABLE) Act Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Debt Limit Allocation Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Secure Choice Retirement Savings Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Stem Cell Research and Cures Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Streamlined Sales Tax Project - Board of Governance",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Urban Waterfront Area Restoration Financing Authority",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Water Resources Development Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Wildlife, Coastal and Park Land Conservation Program of 1988 Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Children's Hospital Bond Act Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Citizens Financial Accountability Oversight Committee (CFAOC)",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Clean Water and Water Conservation Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Clean Water and Water Reclamation Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Clean Water Finance Committee-Clean Water Bond Act of 1984",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "1986 County Correctional Facility Capital Expenditure Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "1988 County Correctional Facility Capital Expenditure and Youth Facility Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Disaster Preparedness and Flood Prevention Bond Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Economic Recovery Financing Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Golden State Tobacco Securitization Corporation",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Harbor Improvement Bond Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Higher Education Facilities Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "High-Speed Passenger Train Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Highway Safety, Traffic Reduction, Air Quality and Port Security Committee - Bond Act 2006",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Housing Committee - Housing and Homeless Acts 1988, 1990",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Housing Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "First Time Home Buyers Financing Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Lake Tahoe Acquisitions Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Parklands Program Finance Committee of 1980",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Parklands Program Finance Committee of 1984",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Passenger Rail Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Pooled Money Investment Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "1986 Prison Construction Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "1988 Prison Construction Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "1990 Prison Construction Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Safe, Clean, Reliable Water Supply Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Safe Drinking Water, Clean Water, Watershed Protection, and Flood Protection Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Safe Drinking Water, Water Quality and Supply, Flood Control, River and Coastal Protection Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Safe Neighborhood Parks, Clean Water, Clean Air and Coastal Protection (Villaraigosa-Keeley Act) Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "State Park and Recreation Finance Committee-Bond Act of 1976",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Veterans' Debenture Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Veterans' Finance Committee of 1943",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Veterans' Home Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Voting Modernization Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Water Conservation Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Water Conservation and Water Quality Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Water Quality, Supply, and Infrastructure Improvement Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Water Security, Clean Drinking Water, Coastal and Beach Protection Act of 2002 Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Wildlife Habitat Enhancement Program Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California School Finance Authority",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "ScholarShare Investment Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Local Investment Advisory Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Competes Tax Credit Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Earthquake Authority",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Housing Finance Agency",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Infrastructure and Economic Development Bank",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California State University Investment Advisory Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "No Place Like Home Program Advisory Board",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Clean Water, Clean Air, Safe Neighborhood Parks and Coastal Protection Act Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Drought, Water, Parks, Climate, Coastal Protection, and Outdoor Access For All Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Library Construction and Renovation Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Safe Drinking Water Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "Housing for Veterans Finance Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "1984 Prison Construction Committee",
+            "org_level": 3,
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": ""
+          },
+          {
+            "name": "California Coastal Conservancy",
+            "org_level": 4,
+            "budget_code": "3760",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Coastal protection and access projects"
+          },
+          {
+            "name": "State Compensation Insurance Fund",
+            "org_level": 4,
+            "budget_code": "8770",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Workers' compensation insurance"
+          },
+          {
+            "name": "Commission on Teacher Credentialing",
+            "org_level": 4,
+            "budget_code": "6360",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Teacher certification and standards"
+          },
+          {
+            "name": "Constitutional Offices",
+            "org_level": 3,
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "Governor's Office",
+                "org_level": 4,
+                "budget_code": "0500",
+                "budget_level": "1",
+                "budget_status": "active",
+                "keyFunctions": "Executive leadership of state government"
+              },
+              {
+                "name": "Lieutenant Governor's Office",
+                "org_level": 4,
+                "budget_code": "0750",
+                "budget_level": "1",
+                "budget_status": "active",
+                "keyFunctions": "President of Senate, acting governor"
+              },
+              {
+                "name": "Office of the Attorney General",
+                "org_level": 4,
+                "budget_code": "0820",
+                "budget_level": "1",
+                "budget_status": "active",
+                "keyFunctions": "Chief law officer of the state"
+              },
+              {
+                "name": "Secretary of State's Office",
+                "org_level": 4,
+                "budget_code": "0890",
+                "budget_level": "1",
+                "budget_status": "active",
+                "keyFunctions": "Elections, business filings, state archives"
+              },
+              {
+                "name": "State Controller's Office",
+                "org_level": 4,
+                "budget_code": "0840",
+                "budget_level": "1",
+                "budget_status": "active",
+                "keyFunctions": "State fiscal officer, audits, payroll"
+              },
+              {
+                "name": "State Treasurer's Office",
+                "org_level": 4,
+                "budget_code": "0950",
+                "budget_level": "1",
+                "budget_status": "active",
+                "keyFunctions": "Banking and investment of state funds"
+              },
+              {
+                "name": "Insurance Commissioner's Office",
+                "org_level": 4,
+                "budget_code": "0845",
+                "budget_level": "1",
+                "budget_status": "active",
+                "keyFunctions": "Insurance industry regulation"
+              }
+            ]
           }
-        ]
-      },
-      {
-        "name": "Transportation Agency",
-        "subAgencies": [
+        ],
+        "Education Systems": [
           {
-            "name": "Department of Transportation (Caltrans)",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Highway/transportation infrastructure"
+            "name": "K-12 Education",
+            "org_level": 3,
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "State Board of Education",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Governor (appointments)",
+                "keyFunctions": "Curriculum standards, textbook approval",
+                "leadershipStructure": "11 governor-appointed members"
+              },
+              {
+                "name": "Department of Education",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Superintendent",
+                "keyFunctions": "Policy implementation",
+                "leadershipStructure": "Elected Superintendent"
+              },
+              {
+                "name": "County Offices of Education (58)",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Local voters",
+                "keyFunctions": "District oversight, services",
+                "leadershipStructure": "County Superintendents"
+              },
+              {
+                "name": "School Districts (1,037)",
+                "org_level": 4,
+                "budget_status": "active",
+                "reportsTo": "Local voters",
+                "keyFunctions": "Local school operations",
+                "leadershipStructure": "Elected school boards"
+              }
+            ]
           },
           {
-            "name": "Department of Motor Vehicles",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Vehicle registration, driver licensing"
-          },
-          {
-            "name": "California Highway Patrol",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Traffic enforcement, safety"
-          },
-          {
-            "name": "High-Speed Rail Authority",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "High-speed rail development"
-          }
-        ]
-      },
-      {
-        "name": "Natural Resources Agency",
-        "subAgencies": [
-          {
-            "name": "Department of Parks & Recreation",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "State parks management"
-          },
-          {
-            "name": "Department of Water Resources",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Water infrastructure, planning"
-          },
-          {
-            "name": "Department of Fish & Wildlife",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Wildlife conservation"
-          },
-          {
-            "name": "Department of Forestry & Fire Protection",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Wildfire prevention, suppression"
-          },
-          {
-            "name": "California Coastal Commission",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Coastal development regulation"
-          },
-          {
-            "name": "Department of Conservation",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Land resource protection"
-          }
-        ]
-      },
-      {
-        "name": "Environmental Protection Agency",
-        "subAgencies": [
-          {
-            "name": "Air Resources Board",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Air quality standards, climate programs, clean transportation incentives",
-            "budget": "$1.01B (FY2024-25)",
-            "personnel": "1,884 positions (2023)",
-            "fundingSources": "Air Pollution Control Fund, Vehicle Inspection and Repair Fund, Federal Trust Fund, Greenhouse Gas Reduction Fund"
-          },
-          {
-            "name": "State Water Resources Control Board",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Water rights, quality control"
-          },
-          {
-            "name": "Department of Toxic Substances Control",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Hazardous waste management"
-          },
-          {
-            "name": "Department of Pesticide Regulation",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Pesticide regulation"
-          }
-        ]
-      },
-      {
-        "name": "Health & Human Services Agency",
-        "subAgencies": [
-          {
-            "name": "Department of Health Care Services",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Medi-Cal administration"
-          },
-          {
-            "name": "Department of Public Health",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Public health programs"
-          },
-          {
-            "name": "Department of Social Services",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Welfare, child protection"
-          },
-          {
-            "name": "Department of Developmental Services",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Developmental disability services"
-          },
-          {
-            "name": "Department of State Hospitals",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Mental health facilities"
-          },
-          {
-            "name": "Department of Aging",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Senior services"
-          }
-        ]
-      },
-      {
-        "name": "Business, Consumer Services & Housing",
-        "subAgencies": [
-          {
-            "name": "Department of Consumer Affairs",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Professional licensing boards"
-          },
-          {
-            "name": "Department of Housing & Community Development",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Housing policy, funding"
-          },
-          {
-            "name": "Department of Financial Protection & Innovation",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Financial regulation"
-          },
-          {
-            "name": "Department of Alcoholic Beverage Control",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Alcohol licensing"
-          },
-          {
-            "name": "Department of Real Estate",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Real estate licensing"
-          },
-          {
-            "name": "Cannabis Control Appeals Panel",
-            "reportsTo": "Agency Secretary",
-            "keyFunctions": "Cannabis licensing appeals"
-          }
-        ]
-      }
-    ],
-    "Standalone Departments": [
-      {
-        "name": "Department of Corrections & Rehabilitation",
-        "reportsTo": "Governor",
-        "keyFunctions": "Prison system management"
-      },
-      {
-        "name": "Department of Food & Agriculture",
-        "reportsTo": "Governor",
-        "keyFunctions": "Agricultural regulation, inspection"
-      },
-      {
-        "name": "Department of Cannabis Control",
-        "reportsTo": "Governor",
-        "keyFunctions": "Cannabis industry regulation"
-      },
-      {
-        "name": "Department of Veterans Affairs",
-        "reportsTo": "Governor",
-        "keyFunctions": "Veterans services, homes"
-      },
-      {
-        "name": "Military Department",
-        "reportsTo": "Governor",
-        "keyFunctions": "National Guard administration"
-      },
-      {
-        "name": "Emergency Services",
-        "reportsTo": "Governor",
-        "keyFunctions": "Disaster response coordination"
-      }
-    ],
-    "Independent Boards and Commissions": [
-      {
-        "name": "Accountancy, State Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Actuarial Advisory",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Acupuncture Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Adult Offender Supervision, CA Council for Interstate",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Aging, CA Commission on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Agricultural Cooperative Bargaining Associations Advisory",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Air Contaminants, Toxic, Scientific Review Panel on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Air Quality, Management District Board, South Coast",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Air Resources Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Allocation Board, State",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "American River Conservancy Advisory Committee, Lower",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Architects Board, CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Arts Council, CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Arts, Board of Trustees, CA Summer School for the",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Asian & Pacific Islander American Affairs, Commission on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Associate Degree for Transfer Intersegmental Implementation Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Athletic Commission, State",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Baldwin Hills Conservancy Governing Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Bar, State, Access to Justice",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Bar, State, Attorney Diversion & Assistance Program Oversight Com",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Bar, State, Board of Trustees",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Bar, State, Examining Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Bar, State, Court Hearing Judge",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Barbering and Cosmetology, State Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Behavioral Sciences, Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Blockchain Working Group",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Broadband Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Broadband Council",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "CalAccount Blue Ribbon Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "CalSavers Retirement Savings Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "CalVolunteers, Board of Commissioners",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Cannabis Control Appeals Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Capitol Commission, Historic State",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Carpet Stewardship Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Catastrophe Response Council, CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Child Welfare Council, California",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Children and Families First Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Civil Liberties Public Education Grant Program",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Coachella Valley Mountains Conservancy Governing Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Coastal Commission, CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Coastal Conservancy, State",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Community College Athlete Name, Image, & Likeness Working Group",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Community College Student Success Funding Formula Oversight Com",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Compensation Insurance Fund, State",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Contractors' State License Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Community Corrections, Board of State and",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Senate Advisory Commission on cost Control in State Gov",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Court Reporters Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Covered California Governing Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Cradle-to-Career Data System Governing Board, California",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Crime Victims' Memorial Review Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Criminal Index and Identification System Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Criminal Justice and Behavioral Health, Council on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Cultural and Historical Endowment, California",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Debt and Investment Advisory Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Delta Conservancy Governing Board, Sac-San Joaquin",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Delta Protection Commission, Sac-San Joaquin",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Delta Stewardship Council",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Dental Examiners of CA, Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Dental Hygiene Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Disability Access, CA Commission on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Domestic Services, Advisory Committee on Household",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Domestic Violence Program Advisory Council OES (EMA)",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Early Childhood Policy Council",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Early Childhood Policy Council Parent Adv. Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Early Childhood Policy Council Workforce Adv. Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Earthquake Early Warning Advisory Board, CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Earthquake Insurance Authority Governing Board & Advisory Panel",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Economic Development, Commission on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Education Commission, CA Postsecondary",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Education Commission of the States",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Education, Awards for Innovation Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Education, Private Postsecondary, Adv. Com",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Education, Advisory Commission on Special",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Educational Excellence, CA Collaborative",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Educational Opportunity for Military Children, State Council",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Electricity Oversight Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Emergency Medical Services, Commission on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Emissions Market Advisory Committee, Independent",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Employment of People with Disabilities, CA Governor's Committee on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Employment Training Panel",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Engineers and Land Surveyors, Board for Professional",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Environmental Contaminant Biomonitoring Program Scientific Guidance",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Environmental Health Specialist Registration Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Environmental Safety, Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Exposition & State Fair Board of Directors",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Fiduciaries Advisory Committee, Professional",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Film Commission, Board of Commissioners",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Forestry Task Force, Western States Legislative",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Gang Database Technical Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Genocide Memorial Commission, International",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Hate, Commission on the State of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Health & Safety & Workers' Compensation, Commission on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Health Facilities Financing Authority",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Health Professions Education Foundation Board of Trustees",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Healthcare Workforce Education and Training Council, California",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Healthy CA For All Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Home, No Place Like, Program Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Homeless Coordinating and Financing Council",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Housing Finance Agency Board of Directors, CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Housing Partnership Board of Directors, CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Instructional Quality Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Insurance Guarantee Association, California, Board of Governors",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Investment Network Advisory Board, CA Organized",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Judicial Council of CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Judicial Council Information Technology Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Judicial Performance, Council on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Judicial Performance, Committee to Review the Operations and Structure of the Commission on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Landscape Architect Technical Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Law Revision Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Legal Service Trust Fund Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Library Services Board, CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Library Construction and Renovation Board, Public",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Lithium Extraction in CA, Blue Ribbon Commission on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Little Hoover Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Long-Term Care Insurance Task Force",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Los Angeles Memorial Coliseum Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Marine Preservation, CA Endowment Board of Directors",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Medical Board of CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Medicine, Institute for Regenerative, Citizen's Oversight Com.",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Medicine, Institute for Regenerative, Citizen's Financial Accountability Oversight Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Mental Health Services Oversight",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Military Council, Governor's",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Mobilehome Park Inspection Program Task Force",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Motor Vehicle Board, New",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Motor Vehicle Recovery Corporation, Board of Director",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Naturopathic Medicine Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Nursing, Registered, Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Nursing, Vocational & Psychiatric Technical Examiners, Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Occupational Therapy, Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Ocean Protection Council",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Off-Highway Motor Vehicle Recreation Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Oil Spill Technical Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Optometry, California State Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Osteopathic Medical Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Pacific Fisheries Legislative Task Force",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Paramedic Disciplinary Review Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Parks & Recreation Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Peace Officer Standards Accountability Advisory Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Peace Officer Standards & Training, Commission on",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Penal Code, Committee on Revision of the",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Pharmacy, State Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Physical Therapy Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Physician Assistant Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Podiatric Medicine, Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Prison Industry Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Privacy Protection Agency Board, California",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Psychology, Board of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Public Employees Retirement System Board of Administration",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Public Works Board, State",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Racial and Identity Profiling Advisory Board (RIPA)",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Rail Authority, High Speed",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Regents Selection Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Rehabilitation Oversight Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Reparation Proposals for African Americans, Task Force",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Respiratory Care Board of California",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "San Diego River Conservancy",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "San Francisco Water Emergency Transportation Authority",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "San Francisco Bay Conservation & Development Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "San Gabriel and Lower Los Angeles Rivers and Mountains Conservancy",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "San Joaquin River Conservancy Governing Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Santa Monica Mountains Conservancy",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Santa Monica Mountains Conservancy Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Scholarshare Investment Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "State School Building Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "School, Advisory Committee on Before and After Programs",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Sea Grant Advisory Panel Resources Agency",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Search & Rescue Memorial Review Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Seismic Safety Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Sex Offender Management Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Sierra Nevada Conservancy",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Small Business Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Speech-Language Pathology & Audiology Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Strategic Growth Council",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Structural Pest Control Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Student Aid Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Student Opportunity & Access Program Project Grant Advisory Com",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Tahoe Conservancy Governing Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Tahoe Regional Planning Agency (TRPA)",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Tax Credit Allocation Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Tax Credit Committee, CA Competes",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Tobacco Education & Research Oversight Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Transportation Commission",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Transportation Financing Authority",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Underground Facilities Safe Excavation Board, CA",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Unemployment Insurance Appeals Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Uniform State Laws",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Veterinary Medical Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Waste, Hazardous",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Western Climate Initiative, Inc. Board of Directors",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Wildfire Cost & Recovery, Commission on Catastrophic",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Wildfire Safety Advisory Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Wildfire Technology Research and Development Review Advisory Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Wildlife Conservation Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Women, Commission on the Status of",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Workforce Development Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Workforce Impacts of Transitioning Seaports Lower Carbon TF",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "World War II Japanese American Incarceration Memorial Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Youth Empowerment Commission, California",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Achieving a Better Life Experience (ABLE) Act Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Debt Limit Allocation Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Secure Choice Retirement Savings Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Stem Cell Research and Cures Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Streamlined Sales Tax Project - Board of Governance",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Urban Waterfront Area Restoration Financing Authority",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Water Resources Development Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Wildlife, Coastal and Park Land Conservation Program of 1988 Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Children's Hospital Bond Act Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Citizens Financial Accountability Oversight Committee (CFAOC)",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Clean Water and Water Conservation Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Clean Water and Water Reclamation Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Clean Water Finance Committee-Clean Water Bond Act of 1984",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "1986 County Correctional Facility Capital Expenditure Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "1988 County Correctional Facility Capital Expenditure and Youth Facility Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Disaster Preparedness and Flood Prevention Bond Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Economic Recovery Financing Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Golden State Tobacco Securitization Corporation",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Harbor Improvement Bond Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Higher Education Facilities Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "High-Speed Passenger Train Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Highway Safety, Traffic Reduction, Air Quality and Port Security Committee - Bond Act 2006",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Housing Committee - Housing and Homeless Acts 1988, 1990",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Housing Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "First Time Home Buyers Financing Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Lake Tahoe Acquisitions Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Parklands Program Finance Committee of 1980",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Parklands Program Finance Committee of 1984",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Passenger Rail Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Pooled Money Investment Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "1986 Prison Construction Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "1988 Prison Construction Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "1990 Prison Construction Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Safe, Clean, Reliable Water Supply Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Safe Drinking Water, Clean Water, Watershed Protection, and Flood Protection Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Safe Drinking Water, Water Quality and Supply, Flood Control, River and Coastal Protection Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Safe Neighborhood Parks, Clean Water, Clean Air and Coastal Protection (Villaraigosa-Keeley Act) Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "State Park and Recreation Finance Committee-Bond Act of 1976",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Veterans' Debenture Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Veterans' Finance Committee of 1943",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Veterans' Home Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Voting Modernization Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Water Conservation Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Water Conservation and Water Quality Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Water Quality, Supply, and Infrastructure Improvement Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Water Security, Clean Drinking Water, Coastal and Beach Protection Act of 2002 Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Wildlife Habitat Enhancement Program Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California School Finance Authority",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "ScholarShare Investment Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Local Investment Advisory Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Competes Tax Credit Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Earthquake Authority",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Housing Finance Agency",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Infrastructure and Economic Development Bank",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California State University Investment Advisory Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "No Place Like Home Program Advisory Board",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Clean Water, Clean Air, Safe Neighborhood Parks and Coastal Protection Act Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Drought, Water, Parks, Climate, Coastal Protection, and Outdoor Access For All Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Library Construction and Renovation Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "California Safe Drinking Water Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "Housing for Veterans Finance Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      },
-      {
-        "name": "1984 Prison Construction Committee",
-        "reportsTo": "",
-        "keyFunctions": ""
-      }
-    ],
-    "Education Systems": [
-      {
-        "name": "K-12 Education",
-        "subAgencies": [
-          {
-            "name": "State Board of Education",
-            "reportsTo": "Governor (appointments)",
-            "keyFunctions": "Curriculum standards, textbook approval",
-            "leadershipStructure": "11 governor-appointed members"
-          },
-          {
-            "name": "Department of Education",
-            "reportsTo": "Superintendent",
-            "keyFunctions": "Policy implementation",
-            "leadershipStructure": "Elected Superintendent"
-          },
-          {
-            "name": "County Offices of Education (58)",
-            "reportsTo": "Local voters",
-            "keyFunctions": "District oversight, services",
-            "leadershipStructure": "County Superintendents"
-          },
-          {
-            "name": "School Districts (1,037)",
-            "reportsTo": "Local voters",
-            "keyFunctions": "Local school operations",
-            "leadershipStructure": "Elected school boards"
-          }
-        ]
-      },
-      {
-        "name": "Higher Education",
-        "subAgencies": [
-          {
-            "name": "University of California",
-            "reportsTo": "Board of Regents",
-            "keyFunctions": "Research universities (10 campuses)",
-            "leadershipStructure": "26-member Board of Regents"
-          },
-          {
-            "name": "California State University",
-            "reportsTo": "Board of Trustees",
-            "keyFunctions": "Comprehensive universities (23 campuses)",
-            "leadershipStructure": "25-member Board of Trustees"
-          },
-          {
-            "name": "California Community Colleges",
-            "reportsTo": "Board of Governors",
-            "keyFunctions": "Two-year colleges (116 campuses)",
-            "leadershipStructure": "17-member Board of Governors"
-          },
-          {
-            "name": "California Student Aid Commission",
-            "reportsTo": "Governor",
-            "keyFunctions": "Financial aid administration",
-            "leadershipStructure": "15 appointed commissioners"
+            "name": "Higher Education",
+            "org_level": 3,
+            "budget_status": "active",
+            "subAgencies": [
+              {
+                "name": "University of California",
+                "abbreviation": "UC",
+                "org_level": 4,
+                "budget_code": "6440",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Public university system with 10 campuses"
+              },
+              {
+                "name": "California State University",
+                "abbreviation": "CSU",
+                "org_level": 4,
+                "budget_code": "6610",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Public university system with 23 campuses"
+              },
+              {
+                "name": "California Community Colleges",
+                "abbreviation": "CCC",
+                "org_level": 4,
+                "budget_code": "6870",
+                "budget_level": "2", 
+                "budget_status": "active",
+                "keyFunctions": "Public community college system with 116 colleges"
+              },
+              {
+                "name": "California Student Aid Commission",
+                "abbreviation": "CSAC",
+                "org_level": 4,
+                "budget_code": "7980",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Financial aid administration for higher education"
+              }
+            ]
           }
         ]
       }
-    ],
-    "Judicial Branch": [
-      {
-        "name": "Supreme Court",
-        "entity": "California Supreme Court",
-        "reportsTo": "Voters (retention)",
-        "keyFunctions": "Final appellate review",
-        "composition": "Chief Justice + 6 Associate Justices"
-      },
-      {
-        "name": "Appellate",
-        "entity": "Courts of Appeal (6 districts)",
-        "reportsTo": "Voters (retention)",
-        "keyFunctions": "Intermediate appellate review",
-        "composition": "105 justices across districts"
-      },
-      {
-        "name": "Trial",
-        "entity": "Superior Courts (58 counties)",
-        "reportsTo": "Voters",
-        "keyFunctions": "Trial jurisdiction",
-        "composition": "1,535 judges statewide"
-      },
-      {
-        "name": "Judicial Governance",
-        "entity": "Judicial Council",
-        "reportsTo": "Chief Justice",
-        "keyFunctions": "Court administration, rules",
-        "composition": "21 members led by Chief Justice"
-      },
-      {
-        "name": "Judicial Governance",
-        "entity": "Commission on Judicial Appointments",
-        "reportsTo": "Independent",
-        "keyFunctions": "Appellate judicial confirmations",
-        "composition": "Chief Justice, Attorney General, senior presiding justice"
-      }
-    ]
-  }
+    },
+    {
+      "name": "Legislative Branch",
+      "org_level": 1,
+      "budget_code": "0020",
+      "budget_level": "1",
+      "budget_status": "active",
+      "subAgencies": [
+        {
+          "name": "Legislature",
+          "org_level": 2,
+          "budget_code": "0100",
+          "budget_level": "2",
+          "budget_status": "active",
+          "subAgencies": [
+            {
+              "name": "Senate",
+              "org_level": 3,
+              "budget_code": "0110",
+              "budget_level": "2",
+              "budget_status": "active",
+              "keyFunctions": "Upper house of legislature"
+            },
+            {
+              "name": "Assembly",
+              "org_level": 3,
+              "budget_code": "0120",
+              "budget_level": "2",
+              "budget_status": "active",
+              "keyFunctions": "Lower house of legislature"
+            },
+            {
+              "name": "Legislative Counsel Bureau",
+              "org_level": 3,
+              "budget_code": "0160",
+              "budget_level": "2",
+              "budget_status": "active",
+              "keyFunctions": "Legal services for legislature"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Judicial Branch",
+      "org_level": 1,
+      "budget_code": "0200",
+      "budget_level": "1",
+      "budget_status": "active",
+      "subAgencies": [
+        {
+          "name": "Supreme Court",
+          "org_level": 2,
+          "budget_code": "0260",
+          "budget_level": "2",
+          "entity": "California Supreme Court",
+          "budget_status": "active",
+          "reportsTo": "Voters (retention)",
+          "keyFunctions": "Final appellate review",
+          "composition": "Chief Justice + 6 Associate Justices"
+        },
+        {
+          "name": "Courts of Appeal",
+          "org_level": 2,
+          "budget_code": "0280",
+          "budget_level": "2",
+          "budget_status": "active",
+          "entity": "CA Courts of Appeal",
+          "reportsTo": "Supreme Court/Judicial Council",
+          "keyFunctions": "Appellate review of superior court cases",
+          "composition": "Six districts with 105 justices total"
+        },
+        {
+          "name": "Trial Courts",
+          "org_level": 2,
+          "budget_code": "0290",
+          "budget_level": "2",
+          "budget_status": "active",
+          "entity": "Superior Courts of California",
+          "reportsTo": "Judicial Council",
+          "keyFunctions": "Trial court jurisdiction",
+          "composition": "58 courts (one per county)"
+        },
+        {
+          "name": "Judicial Governance",
+          "org_level": 2,
+          "entity": "Judicial Council",
+          "budget_code": "0250",
+          "budget_level": "2",
+          "budget_status": "active",
+          "reportsTo": "Chief Justice",
+          "keyFunctions": "Administrative body for judicial branch",
+          "composition": "Chief Justice + 20 voting members"
+        }
+      ]
+    }
+  ]
 } 

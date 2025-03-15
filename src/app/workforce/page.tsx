@@ -1,11 +1,12 @@
-// Level 0: Executive Branch
-// Level 1: Categories (Superagencies and Departments, etc.)
-// Level 2: Agencies (Government Operations Agency, etc.)
-// Level 3: Sub-agencies (Department of General Services, etc.)
+// Level 0: California State Government
+// Level 1: Executive, Legislative, Judicial Branches
+// Level 2: Branch-specific sub-organizations
+// Level 3: Categories (Superagencies and Departments, etc.)
+// Level 4: Agencies (Department of General Services, etc.)
 
 // When nothing is selected:
-// - Show Executive Branch (Level 0). show data and charts.
-// - Show Categories (Level 1) no data or charts
+// - Show California State Government (Level 0). show data and charts.
+// - Show Level 1 branches (no data or charts)
 // - Hide everything else
 
 // When something is selected:
@@ -24,72 +25,152 @@ import agencyData from '@/data/workforce-data.json';
 import executiveBranchData from '@/data/executive-branch-hierarchy.json';
 import type { Agency } from './types';
 import { useSearchParams } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 
 // Convert executive branch JSON to Agency structure
 const convertExecutiveBranchToAgency = (data: any): Agency => {
+  // Create top-level agency
   const agency: Agency = {
-    name: data.agencyName,
+    name: data.name || "California State Government",
+    org_level: data.org_level || 0,
+    budget_status: data.budget_status || "active",
     subAgencies: []
   };
 
   // Count total subordinate offices
   let totalSubordinateOffices = 0;
 
-  // Process each category of sub-agencies
-  if (data.subAgencies) {
-    // For each category (Superagencies, Standalone Departments, etc.)
-    Object.entries(data.subAgencies).forEach(([category, categoryAgencies]: [string, any]) => {
-      // Create a category agency
-      const categoryAgency: Agency = {
-        name: category,
+  // Process the branches (Executive, Legislative, Judicial)
+  if (data.subAgencies && Array.isArray(data.subAgencies)) {
+    data.subAgencies.forEach((branch: any) => {
+      const branchAgency: Agency = {
+        name: branch.name,
+        org_level: branch.org_level,
+        budget_status: branch.budget_status || "active",
         subAgencies: []
       };
 
-      // Count subordinate offices for this category
-      let categorySubordinateOffices = 0;
+      let branchSubordinateOffices = 0;
+      
+      // Handle Executive Branch's special structure (object with categories)
+      if (branch.name === "Executive Branch" && branch.subAgencies && typeof branch.subAgencies === 'object' && !Array.isArray(branch.subAgencies)) {
+        // Process each category of sub-agencies
+        Object.entries(branch.subAgencies).forEach(([category, categoryAgencies]: [string, any]) => {
+          // Create a category agency
+          const categoryAgency: Agency = {
+            name: category,
+            org_level: 3, // Categories are level 3 under Executive
+            budget_status: "active",
+            subAgencies: []
+          };
 
-      // Process agencies in this category
-      categoryAgencies.forEach((subAgencyData: any) => {
-        // Count this agency as a subordinate office
-        categorySubordinateOffices++;
-        
-        // Count sub-sub-agencies for this agency
-        let subAgencySubordinateOffices = 0;
-        if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
-          subAgencySubordinateOffices = subAgencyData.subAgencies.length;
-        }
+          // Count subordinate offices for this category
+          let categorySubordinateOffices = 0;
 
-        const subAgency: Agency = {
-          name: subAgencyData.name,
-          description: subAgencyData.keyFunctions,
-          subordinateOffices: subAgencySubordinateOffices
-        };
+          // Process agencies in this category
+          categoryAgencies.forEach((subAgencyData: any) => {
+            // Count this agency as a subordinate office
+            categorySubordinateOffices++;
+            
+            // Count sub-sub-agencies for this agency
+            let subAgencySubordinateOffices = 0;
+            if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
+              subAgencySubordinateOffices = subAgencyData.subAgencies.length;
+            }
 
-        // Process sub-sub-agencies if they exist
-        if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
-          subAgency.subAgencies = subAgencyData.subAgencies.map((subSubAgencyData: any) => ({
-            name: subSubAgencyData.name,
-            description: subSubAgencyData.keyFunctions,
-            abbreviation: subSubAgencyData.abbreviation,
-            subordinateOffices: 0 // Leaf nodes have no subordinates
-          }));
-        }
+            const subAgency: Agency = {
+              name: subAgencyData.name,
+              org_level: subAgencyData.org_level,
+              budget_status: subAgencyData.budget_status || "active",
+              description: subAgencyData.keyFunctions,
+              subordinateOffices: subAgencySubordinateOffices
+            };
 
-        categoryAgency.subAgencies?.push(subAgency);
-      });
+            // Process sub-sub-agencies if they exist
+            if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
+              subAgency.subAgencies = subAgencyData.subAgencies.map((subSubAgencyData: any) => ({
+                name: subSubAgencyData.name,
+                org_level: subSubAgencyData.org_level,
+                budget_status: subSubAgencyData.budget_status || "active",
+                description: subSubAgencyData.keyFunctions,
+                abbreviation: subSubAgencyData.abbreviation,
+                subordinateOffices: 0 // Leaf nodes have no subordinates
+              }));
+            }
 
-      // Set subordinate offices count for this category
-      categoryAgency.subordinateOffices = categorySubordinateOffices;
-      totalSubordinateOffices += categorySubordinateOffices;
+            categoryAgency.subAgencies?.push(subAgency);
+          });
 
-      agency.subAgencies?.push(categoryAgency);
+          // Set subordinate offices count for this category
+          categoryAgency.subordinateOffices = categorySubordinateOffices;
+          branchSubordinateOffices += categorySubordinateOffices;
+
+          branchAgency.subAgencies?.push(categoryAgency);
+        });
+      } 
+      // Handle other branches with simple array structure
+      else if (branch.subAgencies && Array.isArray(branch.subAgencies)) {
+        branchAgency.subAgencies = branch.subAgencies.map((subAgencyData: any) => {
+          const subAgency: Agency = {
+            name: subAgencyData.name,
+            org_level: subAgencyData.org_level,
+            budget_status: subAgencyData.budget_status || "active",
+            description: subAgencyData.keyFunctions || subAgencyData.entity,
+            subordinateOffices: 0
+          };
+
+          // If this sub-agency has its own sub-agencies, process them
+          if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
+            subAgency.subordinateOffices = subAgencyData.subAgencies.length;
+            branchSubordinateOffices += subAgency.subordinateOffices || 0;
+
+            subAgency.subAgencies = subAgencyData.subAgencies.map((subSubAgencyData: any) => ({
+              name: subSubAgencyData.name,
+              org_level: subSubAgencyData.org_level,
+              budget_status: subSubAgencyData.budget_status || "active",
+              description: subSubAgencyData.keyFunctions,
+              subordinateOffices: 0
+            }));
+          }
+
+          branchSubordinateOffices++;
+          return subAgency;
+        });
+      }
+
+      // Set subordinate offices count for this branch
+      branchAgency.subordinateOffices = branchSubordinateOffices;
+      totalSubordinateOffices += branchSubordinateOffices;
+
+      agency.subAgencies?.push(branchAgency);
     });
   }
 
-  // Set total subordinate offices for the executive branch
+  // Set total subordinate offices for the government
   agency.subordinateOffices = totalSubordinateOffices;
 
   return agency;
+};
+
+// Function to filter inactive agencies
+const filterInactiveAgencies = (agencies: Agency[] | undefined, showInactive: boolean): Agency[] => {
+  if (!agencies) return [];
+  
+  return agencies.map(agency => {
+    // Skip filtering if we're showing all
+    if (showInactive) return agency;
+    
+    // Filter out inactive agencies
+    if (agency.budget_status === 'inactive') return null;
+    
+    // Recursively filter subagencies
+    if (agency.subAgencies) {
+      const filteredSubs = filterInactiveAgencies(agency.subAgencies, showInactive);
+      return {...agency, subAgencies: filteredSubs.filter(Boolean)};
+    }
+    
+    return agency;
+  }).filter(Boolean) as Agency[];
 };
 
 // Remove or prefix unused functions with underscore
@@ -140,6 +221,7 @@ const mergeAgencyData = (structure: Agency[], data: any[]): Agency[] => {
   
   // Map special cases - known naming differences between the two data sets
   const specialCaseMap: Record<string, string> = {
+    "California State Government": "California Government",
     "Executive Branch": "California Government",
     "Government Operations Agency": "Government Operations",
     "Labor & Workforce Development": "Labor and Workforce Development Agency"
@@ -218,7 +300,7 @@ function AgencyCard({
   return (
     <div className={`space-y-4 ${isActive ? 'ring-2 ring-blue-500 rounded-lg' : ''}`}>
       <div 
-        className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white cursor-pointer relative"
+        className={`p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow ${agency.budget_status === 'inactive' ? 'bg-gray-100 opacity-75' : 'bg-white'} cursor-pointer relative`}
         onClick={onClick}
       >
         <div className="flex justify-between items-start">
@@ -226,6 +308,7 @@ function AgencyCard({
             <h3 className="text-lg font-semibold text-gray-900">
               {agency.name}
               {agency.abbreviation && <span className="ml-2 text-sm text-gray-500">({agency.abbreviation})</span>}
+              {agency.budget_status === 'inactive' && <span className="ml-2 text-xs text-gray-500 italic">(inactive)</span>}
             </h3>
             {agency.description && (
               <p className="mt-2 text-sm text-gray-600">{agency.description}</p>
@@ -247,7 +330,7 @@ function AgencyCard({
   );
 }
 
-function AgencySection({ 
+function _AgencySection({ 
   section, 
   activeAgencyPath,
   onAgencyClick
@@ -354,151 +437,228 @@ function SubAgencySection({
 }
 
 // Client component that uses useSearchParams
-function WorkforcePageClient() {
-  const [activeAgencyPath, setActiveAgencyPath] = useState<string[]>([]);
-  const [agencies, setAgencies] = useState<Agency[]>([]);
-  const searchParams = useSearchParams();
-  const [showDebugInfo, setShowDebugInfo] = useState<boolean>(false);
-  const isDevEnv = process.env.NODE_ENV === 'development';
-
-  useEffect(() => {
-    // Convert executive branch data to our Agency structure
-    const rootAgency = convertExecutiveBranchToAgency(executiveBranchData);
-    
-    // Merge with actual data
-    const mergedAgencies = mergeAgencyData([rootAgency], agencyData);
-    
-    setAgencies(mergedAgencies);
-    
-    // Check for department parameter in URL
-    const departmentParam = searchParams.get('department');
-    if (departmentParam) {
-      // Find the agency path for this department
-      const result = _findAgencyByNameRecursive(mergedAgencies, departmentParam);
-      if (result.agency) {
-        setActiveAgencyPath(result.path);
-      }
-    }
-  }, [searchParams]);
-
-  const handleAgencyClick = (path: string[]) => {
-    console.log("👆 Agency clicked:", path, "Current active path:", activeAgencyPath);
-    
-    // Get the path as a string for comparison
-    const clickedPathString = path.join('/');
-    const currentPathString = activeAgencyPath.join('/');
-    
-    // Toggle selection: If already selected, clear selection
-    if (clickedPathString === currentPathString) {
-      console.log("👆 Clearing selection");
-      setActiveAgencyPath([]);
-    } else {
-      console.log("👆 Setting new active path:", path);
-      setActiveAgencyPath(path);
-    }
-  };
-
-  // Helper function to find agency by path
-  const findAgencyByPath = (path: string[], agencies: Agency[]): Agency | null => {
-    if (path.length === 0 || agencies.length === 0) return null;
-    
-    const targetAgency = agencies.find(a => a.name === path[0]);
-    if (!targetAgency) return null;
-    
-    if (path.length === 1) return targetAgency;
-    
-    if (targetAgency.subAgencies && targetAgency.subAgencies.length > 0) {
-      return findAgencyByPath(path.slice(1), targetAgency.subAgencies);
-    }
-    
-    return null;
-  };
-
-  // Get the active agency if any
-  const activeAgency = activeAgencyPath.length > 0 
-    ? findAgencyByPath(activeAgencyPath, agencies)
-    : null;
-
+export default function WorkforcePage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-center text-gray-900 mb-4">
-          California State Government Workforce
-        </h1>
-        <p className="text-sm text-center text-gray-600">
-          For reference, California&apos;s public sector (state, county, and local governments) employed over 2.3 million workers as of 2023, representing 9% of total state employment. The national average for government employee salary is $68,727. The median age of California&apos;s overall population is 37.6 years. All 2024 data below is from public sources.
-        </p>
-        
-        {/* Debug section only shown in development */}
-        {isDevEnv && (
-          <>
-            <div className="mt-4 flex justify-between items-center">
-              <button 
-                className="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded hover:bg-gray-300"
-                onClick={() => setShowDebugInfo(!showDebugInfo)}
-              >
-                {showDebugInfo ? 'Hide' : 'Show'} Debug Info
-              </button>
-              
-              {activeAgencyPath.length > 0 && (
-                <button 
-                  className="text-xs bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200"
-                  onClick={() => setActiveAgencyPath([])}
-                >
-                  Clear Selection
-                </button>
-              )}
-            </div>
-            
-            {showDebugInfo && (
-              <div className="mt-2 p-2 bg-gray-100 text-xs text-gray-600 rounded">
-                <p><strong>Active path:</strong> {activeAgencyPath.length > 0 ? activeAgencyPath.join(' → ') : 'None (showing Executive Branch)'}</p>
-                
-                {activeAgency && (
-                  <div className="mt-1">
-                    <p><strong>Selected agency:</strong> {activeAgency.name}</p>
-                    <p><strong>Has data:</strong> {!!activeAgency.yearlyHeadCount ? 'Yes' : 'No'}</p>
-                    <p><strong>Has charts:</strong> {!!activeAgency.tenureDistribution ? 'Yes' : 'No'}</p>
-                  </div>
-                )}
-              </div>
-            )}
-          </>
-        )}
-      </div>
-      
-      <div className="space-y-12">
-        {agencies.map((section, index) => (
-          <div key={index}>
-            <AgencySection
-              section={section}
-              activeAgencyPath={activeAgencyPath}
-              onAgencyClick={handleAgencyClick}
-            />
-          </div>
-        ))}
-      </div>
-      
-      <footer className="mt-12 pt-8 border-t text-sm text-gray-500">
-        <p>Data sourced from official California government records and public documents.</p>
-        <p>Last updated: {new Date().toLocaleDateString()}</p>
-        <p><a href="https://www.calbright.edu/wp-content/uploads/2024/05/Calbright-College-The-Road-to-Optimizing-California&apos;s-Public-Sector-Labor-Market.pdf" target="_blank" rel="noopener noreferrer">Calbright-College-The-Road-to-Optimizing-California&apos;s-Public-Sector-Labor-Market calbright.edu</a>.</p>
-        <p><a href="https://publicpay.ca.gov/reports/rawexport.aspx" target="_blank" rel="noopener noreferrer">Government Compensation in California</a>.</p>
-        <p><a href="https://www.sco.ca.gov/eo_about_boards.html" target="_blank" rel="noopener noreferrer">Boards and Commissions - California State Controller&apos;s Office</a>.</p>
-        <p><a href="https://speaker.asmdc.org/sites/speaker.asmdc.org/files/2022-11/All-Bds-and-Comms-List-8-1-22.pdf" target="_blank" rel="noopener noreferrer">California State Assembly Speaker&apos;s Office - Boards and Commissions List</a>.</p>
-        <p><a href="https://www.treasurer.ca.gov/otherboards.asp" target="_blank" rel="noopener noreferrer">California State Treasurer&apos;s Office - Boards and Commissions</a>.</p>
-      </footer>
-    </div>
+    <Suspense fallback={<div className="p-4">Loading workforce data...</div>}>
+      <WorkforcePageContent />
+    </Suspense>
   );
 }
 
-// Main page component with Suspense boundary
-const Page = () => {
+function WorkforcePageContent() {
+  const searchParams = useSearchParams();
+  const [selectedAgencyName, setSelectedAgencyName] = useState<string | null>(null);
+  const [showInactive, setShowInactive] = useState<boolean>(false);
+  const [_activeAgency, setActiveAgency] = useState<Agency | null>(null);
+  const [activePath, setActivePath] = useState<string[]>([]);
+  const [hierarchyData, setHierarchyData] = useState<Agency | null>(null);
+  
+  // Convert executive branch data to agency hierarchy
+  useEffect(() => {
+    try {
+      const converted = convertExecutiveBranchToAgency(executiveBranchData);
+      setHierarchyData(converted);
+    } catch (error) {
+      console.error('Error converting hierarchy data:', error);
+    }
+  }, []);
+  
+  // Get the department from URL query parameter
+  useEffect(() => {
+    const agencyParam = searchParams.get('agency');
+    if (agencyParam) {
+      setSelectedAgencyName(agencyParam);
+    }
+  }, [searchParams]);
+  
+  // When selectedAgencyName or hierarchyData changes, find the active agency
+  useEffect(() => {
+    if (!hierarchyData || !hierarchyData.subAgencies) return;
+    
+    if (!selectedAgencyName) {
+      // If no agency is selected, set the root as active
+      setActiveAgency(hierarchyData);
+      setActivePath([hierarchyData.name]);
+      return;
+    }
+    
+    // Function to find agency by name in hierarchy
+    const findAgencyByName = (
+      agencies: Agency[], 
+      targetName: string, 
+      currentPath: string[] = []
+    ): { agency: Agency | null; path: string[] } => {
+      for (const agency of agencies) {
+        const updatedPath = [...currentPath, agency.name];
+        
+        if (agency.name === targetName) {
+          return { agency, path: updatedPath };
+        }
+        
+        if (agency.subAgencies) {
+          const result = findAgencyByName(agency.subAgencies, targetName, updatedPath);
+          if (result.agency) {
+            return result;
+          }
+        }
+      }
+      
+      return { agency: null, path: [] };
+    };
+    
+    // First check if the root itself is selected
+    if (selectedAgencyName === hierarchyData.name) {
+      setActiveAgency(hierarchyData);
+      setActivePath([hierarchyData.name]);
+      return;
+    }
+    
+    // Otherwise search through subagencies
+    const result = findAgencyByName(
+      hierarchyData.subAgencies,
+      selectedAgencyName,
+      [hierarchyData.name]
+    );
+    
+    if (result.agency) {
+      setActiveAgency(result.agency);
+      setActivePath(result.path);
+    } else {
+      // If not found, default to root
+      setActiveAgency(hierarchyData);
+      setActivePath([hierarchyData.name]);
+    }
+  }, [selectedAgencyName, hierarchyData]);
+  
+  // Handle agency selection
+  const handleSelectAgency = (agency: Agency) => {
+    setSelectedAgencyName(agency.name);
+  };
+  
+  if (!hierarchyData) {
+    return <div className="p-4">Loading workforce data...</div>;
+  }
+  
+  // Filter inactive agencies if needed
+  const _filteredHierarchy = {
+    ...hierarchyData,
+    subAgencies: filterInactiveAgencies(hierarchyData.subAgencies, showInactive)
+  };
+  
+  // Merge with workforce data
+  const agenciesWithData = [hierarchyData];
+  const mergedAgencies = mergeAgencyData(agenciesWithData, agencyData);
+  const enrichedHierarchy = mergedAgencies[0];
+  
+  // Get path agencies to display
+  const pathAgencies: Agency[] = [];
+  let currentAgencies = [enrichedHierarchy];
+  
+  for (let i = 0; i < activePath.length; i++) {
+    const currentName = activePath[i];
+    const foundAgency = currentAgencies.find(a => a.name === currentName);
+    
+    if (foundAgency) {
+      pathAgencies.push(foundAgency);
+      if (foundAgency.subAgencies) {
+        currentAgencies = foundAgency.subAgencies;
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+  
+  // The last agency in the path is the active one
+  const currentActiveAgency = pathAgencies.length > 0 ? pathAgencies[pathAgencies.length - 1] : null;
+  
+  // Child agencies of the active agency (to display below)
+  const childAgencies = currentActiveAgency && currentActiveAgency.subAgencies 
+    ? showInactive 
+      ? currentActiveAgency.subAgencies 
+      : currentActiveAgency.subAgencies.filter(a => a.budget_status !== 'inactive')
+    : [];
+  
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <WorkforcePageClient />
-    </Suspense>
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8 flex justify-between items-center">
+        <h1 className="text-2xl font-bold">California State Government Workforce</h1>
+        <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
+          <Button
+            variant={showInactive ? "ghost" : "secondary"}
+            size="sm"
+            className={`rounded-full text-xs ${!showInactive ? 'bg-white shadow-sm' : ''}`}
+            onClick={() => setShowInactive(false)}
+          >
+            Active Only
+          </Button>
+          <Button
+            variant={showInactive ? "secondary" : "ghost"}
+            size="sm"
+            className={`rounded-full text-xs ${showInactive ? 'bg-white shadow-sm' : ''}`}
+            onClick={() => setShowInactive(true)}
+          >
+            Include Inactive
+          </Button>
+        </div>
+      </div>
+      
+      <div className="mb-10">
+        <nav className="mb-4">
+          <ol className="flex flex-wrap items-center">
+            {pathAgencies.map((agency, index) => (
+              <li key={index} className="flex items-center">
+                {index > 0 && (
+                  <span className="mx-2 text-gray-400">/</span>
+                )}
+                <button 
+                  onClick={() => handleSelectAgency(agency)}
+                  className={`text-sm ${
+                    index === pathAgencies.length - 1 
+                      ? 'font-bold text-blue-600' 
+                      : 'text-gray-600 hover:text-blue-500'
+                  }`}
+                >
+                  {agency.name}
+                </button>
+              </li>
+            ))}
+          </ol>
+        </nav>
+        
+        {/* Active agency card with visualization */}
+        {currentActiveAgency && (
+          <div className="mb-6">
+            <AgencyCard 
+              agency={currentActiveAgency} 
+              isActive={true} 
+              onClick={() => {}} 
+              showChart={true} 
+            />
+          </div>
+        )}
+      </div>
+      
+      {/* Child agencies */}
+      {childAgencies && childAgencies.length > 0 && (
+        <div>
+          <h2 className="text-xl font-bold mb-4">
+            {currentActiveAgency?.name} Subagencies
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {childAgencies.map((agency, index) => (
+              <AgencyCard 
+                key={index} 
+                agency={agency} 
+                isActive={false} 
+                onClick={() => handleSelectAgency(agency)} 
+                showChart={false} 
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
-};
-
-export default Page; 
+} 

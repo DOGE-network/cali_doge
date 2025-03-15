@@ -1,5 +1,9 @@
 export interface Agency {
   name: string;
+  org_level?: number;
+  budget_code?: string;
+  budget_level?: string;
+  budget_status?: 'active' | 'inactive';
   abbreviation?: string;
   description?: string;
   website?: string;
