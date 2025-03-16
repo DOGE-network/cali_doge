@@ -25,8 +25,6 @@
   },
   {
     "name": "Air Resources Board",
-    "headCount": 1994,
-    "totalWages": 199590000,
     "yearlyHeadCount": [
       {"year": "2017", "headCount": 1356},
       {"year": "2018", "headCount": 1425},
@@ -46,6 +44,32 @@
       {"year": "2022", "wages": 180200000},
       {"year": "2023", "wages": 199590000},
       {"year": "2024", "wages": 209370000}
+    ]
+  },
+  {
+    "name": "Exposition Park",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 142},
+      {"year": "2023", "headCount": 182},
+      {"year": "2024", "headCount": 186}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 54962000},
+      {"year": "2023", "wages": 48026000},
+      {"year": "2024", "wages": 45789000}
+    ]
+  },
+  {
+    "name": "California Tahoe Conservancy",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 40},
+      {"year": "2023", "headCount": 41},
+      {"year": "2024", "headCount": 41}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 5200000},
+      {"year": "2023", "wages": 5400000},
+      {"year": "2024", "wages": 5600000}
     ]
   }
 ]

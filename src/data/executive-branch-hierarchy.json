@@ -431,6 +431,24 @@
         ],
         "Independent Boards and Commissions": [
           {
+            "name": "Exposition Park",
+            "org_level": 3,
+            "budget_code": "3100",
+            "budget_level": "2",
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": "Management of Exposition Park facilities and grounds"
+          },
+          {
+            "name": "California Tahoe Conservancy",
+            "org_level": 3,
+            "budget_code": "3125",
+            "budget_level": "2",
+            "budget_status": "active",
+            "reportsTo": "",
+            "keyFunctions": "Environmental protection and restoration in the Lake Tahoe Basin"
+          },
+          {
             "name": "Accountancy, State Board of",
             "org_level": 3,
             "budget_code": "1120",

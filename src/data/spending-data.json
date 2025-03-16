@@ -73,12 +73,6 @@
         {"code": "3510", "name": "Climate Change"},
         {"code": "3515", "name": "Subvention"},
         {"code": "3530", "name": "Community Air Protection"}
-      ],
-      "fundingSources": [
-        {"code": "0115", "name": "Air Pollution Control Fund"},
-        {"code": "3228", "name": "Greenhouse Gas Reduction Fund"},
-        {"code": "0421", "name": "Vehicle Inspection and Repair Fund"},
-        {"code": "0890", "name": "Federal Trust Fund"}
       ]
     },
     {
@@ -100,6 +94,22 @@
       "spending": {
         "FY2023": "$0.39B",
         "FY2024": "$0.32B"
+      }
+    },
+    {
+      "name": "Exposition Park",
+      "spending": {
+        "FY2023": "$0.055B",
+        "FY2024": "$0.048B",
+        "FY2025": "$0.046B"
+      }
+    },
+    {
+      "name": "California Tahoe Conservancy",
+      "spending": {
+        "FY2023": "$0.028B",
+        "FY2024": "$0.056B",
+        "FY2025": "$0.013B"
       }
     }
   ],
