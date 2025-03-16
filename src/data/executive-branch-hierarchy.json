@@ -26,7 +26,7 @@
                 "budget_code": "1760",
                 "budget_level": "2",
                 "budget_status": "active",
-                "keyFunctions": "State procurement, real estate, fleet management",
+                "keyFunctions": "Serves as the business manager for the state, providing procurement, real estate management, design and construction, fleet administration, printing, and other services to state agencies.",
                 "abbreviation": "DGS",
                 "subAgencies": [
                   {
@@ -72,9 +72,11 @@
               {
                 "name": "Department of Human Resources",
                 "org_level": 4,
+                "budget_code": "7501",
+                "budget_level": "2",
                 "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "State personnel management"
+                "reportsTo": "Government Operations Agency",
+                "keyFunctions": "Manages state civil service system, including recruitment, selection, classification, compensation, benefits, and labor relations for state employees."
               },
               {
                 "name": "Office of Administrative Law",
@@ -82,6 +84,33 @@
                 "budget_status": "active",
                 "reportsTo": "Agency Secretary",
                 "keyFunctions": "Regulatory oversight"
+              },
+              {
+                "name": "California Department of Motor Vehicles",
+                "organizationalLevel": 3,
+                "budgetCode": "2740",
+                "budgetLevel": "2",
+                "budgetStatus": "active",
+                "reportsTo": "California State Transportation Agency",
+                "keyFunctions": "Licenses drivers, registers vehicles, secures identities, and regulates the motor vehicle industry to promote safety on California's roads."
+              },
+              {
+                "name": "California Highway Patrol",
+                "organizationalLevel": 3,
+                "budgetCode": "2720",
+                "budgetLevel": "2",
+                "budgetStatus": "active",
+                "reportsTo": "California State Transportation Agency",
+                "keyFunctions": "Provides safety, service, and security on California's highways and roads, protecting the public through enforcement, education, and assistance."
+              },
+              {
+                "name": "California Department of Technology",
+                "organizationalLevel": 3,
+                "budgetCode": "7502",
+                "budgetLevel": "2",
+                "budgetStatus": "active",
+                "reportsTo": "Government Operations Agency",
+                "keyFunctions": "Provides technology leadership, guidance, and oversight to state departments and is the guardian of public data, a leader in IT services and solutions, and an innovator in IT infrastructure."
               }
             ]
           },
@@ -431,355 +460,121 @@
         ],
         "Independent Boards and Commissions": [
           {
-            "name": "Exposition Park",
+            "name": "California Department of Health Care Services",
             "org_level": 3,
-            "budget_code": "3100",
+            "budget_code": "4260",
             "budget_level": "2",
             "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": "Management of Exposition Park facilities and grounds"
+            "keyFunctions": "Administration of Medi-Cal and other health care programs for low-income Californians"
           },
           {
-            "name": "California Tahoe Conservancy",
+            "name": "California Department of Corrections and Rehabilitation",
             "org_level": 3,
-            "budget_code": "3125",
+            "budget_code": "5225",
             "budget_level": "2",
             "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": "Environmental protection and restoration in the Lake Tahoe Basin"
+            "keyFunctions": "Operation of state prisons, rehabilitation programs, parole supervision, and juvenile justice facilities"
           },
           {
-            "name": "Accountancy, State Board of",
+            "name": "California Coastal Conservancy",
             "org_level": 3,
-            "budget_code": "1120",
+            "budget_code": "3760",
             "budget_level": "2",
             "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Protection and restoration of coastal resources, providing public access to the California coast, and addressing sea level rise"
           },
           {
-            "name": "Actuarial Advisory",
+            "name": "California Department of Education",
             "org_level": 3,
-            "budget_code": "1121",
-            "budget_level": "3",
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Acupuncture Board",
-            "org_level": 3,
-            "budget_code": "1122",
+            "budget_code": "6100",
             "budget_level": "2",
             "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Oversight of the state's public school system, curriculum development, and educational policy"
           },
           {
-            "name": "Adult Offender Supervision, CA Council for Interstate",
+            "name": "California Department of Transportation",
             "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Aging, CA Commission on",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Agricultural Cooperative Bargaining Associations Advisory",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Air Contaminants, Toxic, Scientific Review Panel on",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Air Quality, Management District Board, South Coast",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Air Resources Board",
-            "org_level": 4,
-            "budget_code": "3900",
+            "budget_code": "2660",
             "budget_level": "2",
             "budget_status": "active",
-            "keyFunctions": "Air quality regulation and enforcement"
-          },
-          {
-            "name": "Allocation Board, State",
-            "org_level": 3,
-            "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Planning, designing, building, operating, and maintaining California's state highway system"
           },
           {
-            "name": "American River Conservancy Advisory Committee, Lower",
+            "name": "California Environmental Protection Agency",
             "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Architects Board, CA",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Arts Council, CA",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Arts, Board of Trustees, CA Summer School for the",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Asian & Pacific Islander American Affairs, Commission on",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Associate Degree for Transfer Intersegmental Implementation Committee",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Athletic Commission",
-            "org_level": 4,
-            "budget_code": "1130",
+            "budget_code": "0555",
             "budget_level": "2",
             "budget_status": "active",
-            "keyFunctions": "Combat sports regulation"
-          },
-          {
-            "name": "Baldwin Hills Conservancy Governing Board",
-            "org_level": 3,
-            "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Oversight of environmental departments, environmental justice, and climate programs"
           },
           {
-            "name": "Bar, State, Access to Justice",
+            "name": "California Natural Resources Agency",
             "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Bar, State, Attorney Diversion & Assistance Program Oversight Com",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Bar, State, Board of Trustees",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Bar, State, Examining Committee",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Bar, State, Court Hearing Judge",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Barbering and Cosmetology, State Board of",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Behavioral Sciences, Board of",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Blockchain Working Group",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Broadband Advisory Committee",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Broadband Council",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "CalAccount Blue Ribbon Commission",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "CalSavers Retirement Savings Board",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "CalVolunteers, Board of Commissioners",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Cannabis Control Appeals Board",
-            "org_level": 4,
-            "budget_code": "2150",
+            "budget_code": "0540",
             "budget_level": "2",
             "budget_status": "active",
-            "keyFunctions": "ABC licensing decisions appeals"
+            "reportsTo": "",
+            "keyFunctions": "Oversight of natural resources departments, climate resilience, and conservation initiatives"
           },
           {
-            "name": "Capitol Commission, Historic State",
+            "name": "California Department of Forestry and Fire Protection",
             "org_level": 3,
+            "budget_code": "3540",
+            "budget_level": "2",
             "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Fire protection, wildfire prevention, and forest management"
           },
           {
-            "name": "Carpet Stewardship Advisory Committee",
+            "name": "California Water Resources Control Board",
             "org_level": 3,
+            "budget_code": "3940",
+            "budget_level": "2",
             "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Water quality protection, drinking water regulation, and water rights management"
           },
           {
-            "name": "Catastrophe Response Council, CA",
+            "name": "California Department of Parks and Recreation",
             "org_level": 3,
+            "budget_code": "3790",
+            "budget_level": "2",
             "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Management of state parks, beaches, and historic sites"
           },
           {
-            "name": "Child Welfare Council, California",
+            "name": "California State Lands Commission",
             "org_level": 3,
+            "budget_code": "3560",
+            "budget_level": "2",
             "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Management of state-owned public trust lands, waterways, and resources for the benefit of all Californians"
           },
           {
-            "name": "Children and Families First Commission",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "California Civil Liberties Public Education Grant Program",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Coachella Valley Mountains Conservancy Governing Board",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Coastal Commission, CA",
+            "name": "California Coastal Commission",
             "org_level": 3,
             "budget_code": "3720",
             "budget_level": "2",
             "budget_status": "active",
-            "keyFunctions": "Coastal zone planning and management"
-          },
-          {
-            "name": "Coastal Conservancy, State",
-            "org_level": 3,
-            "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Planning and regulation of land and water use in the coastal zone to protect coastal resources and ensure public access"
           },
           {
-            "name": "Community College Athlete Name, Image, & Likeness Working Group",
+            "name": "California Department of Public Health",
             "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Community College Student Success Funding Formula Oversight Com",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Compensation Insurance Fund, State",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": ""
-          },
-          {
-            "name": "Contractors' State License Board",
-            "org_level": 4,
-            "budget_code": "1230",
+            "budget_code": "4265",
             "budget_level": "2",
             "budget_status": "active",
-            "keyFunctions": "Construction contractor licensing"
-          },
-          {
-            "name": "Community Corrections, Board of State and",
-            "org_level": 3,
-            "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": ""
+            "keyFunctions": "Protection of public health through disease prevention, health promotion, and health equity initiatives"
           },
           {
             "name": "Senate Advisory Commission on cost Control in State Gov",
@@ -2285,14 +2080,6 @@
             "budget_status": "active",
             "reportsTo": "",
             "keyFunctions": ""
-          },
-          {
-            "name": "California Coastal Conservancy",
-            "org_level": 4,
-            "budget_code": "3760",
-            "budget_level": "2",
-            "budget_status": "active",
-            "keyFunctions": "Coastal protection and access projects"
           },
           {
             "name": "State Compensation Insurance Fund",

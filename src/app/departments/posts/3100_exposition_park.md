@@ -2,7 +2,7 @@
 title: "3100 - Exposition Park"
 name: "Exposition Park"
 code: 3100
-date: 2025-03-15 08:00:00 -0800
+date: '2025-03-15'
 author: "Sean Roberts"
 image: 
 description: "Exposition Park manages a 152-acre tract in south Los Angeles that includes the Science Center and California African American Museum"

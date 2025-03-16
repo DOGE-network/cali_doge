@@ -1,86 +1,81 @@
 ---
-title: "3125 - California Tahoe Conservancy"
+title: "California Tahoe Conservancy"
 name: "California Tahoe Conservancy"
-code: 3125
-date: 2025-03-15 08:00:00 -0800
+code: "3125"
+date: '2025-03-15'
 author: "Sean Roberts"
-image: 
-description: "The California Tahoe Conservancy leads California's efforts to restore and enhance the natural and recreational resources of the Lake Tahoe Basin"
+description: "The California Tahoe Conservancy leads California's efforts to restore and enhance the extraordinary natural and recreational resources of the Lake Tahoe Basin."
 ---
 
+## Budget Highlights 2024-2025
 
-### Budget Trends and Highlights (2022-2025)
+The California Tahoe Conservancy has **51.0 positions** for 2024-25, an increase of 3.0 positions from 2023-24. The Conservancy's budget for 2024-25 is **$15.8 million**, a decrease of $2.3 million from the previous fiscal year.
 
-#### Position Growth
-- **Overall Positions**: 52.2 positions in 2024-25, down from 60.5 in 2022-23
-- **Staffing Trend**: Reduction of 8.3 positions (13.7%) from 2022-23 to 2023-24
-
-#### Budget Fluctuations
-- **Peak Funding**: FY 2023-24 saw $56.26 million in funding
-- **Current Budget**: $12.90 million for FY 2024-25
-- **Budget Trend**: Significant decrease of $43.36 million (77%) from 2023-24 to 2024-25
-- **General Fund**: Reduction from $42.20 million in 2023-24 to just $32,000 in 2024-25
-
-### Major Funding Codes and Sources
-
-#### Program Codes
-- **2340 - Tahoe Conservancy**: Main program for all Conservancy activities
-
-#### Funding Source Codes
-- **0001 - General Fund**: State's primary operating fund
-- **0005 - Safe Neighborhood Parks, Clean Water, Clean Air, and Coastal Protection Bond Fund**
-- **0140 - California Environmental License Plate Fund**
-- **0516 - Harbors and Watercraft Revolving Fund**
-- **0890 - Federal Trust Fund**
-- **6029 - California Clean Water, Clean Air, Safe Neighborhood Parks, and Coastal Protection Fund**
-- **6031 - Water Security, Clean Drinking Water, Coastal and Beach Protection Fund of 2002**
-- **6051 - Safe Drinking Water, Water Quality and Supply, Flood Control, River and Coastal Protection Fund of 2006**
-- **6083 - Water Quality, Supply, and Infrastructure Improvement Fund of 2014**
-- **6088 - California Drought, Water, Parks, Climate, Coastal Protection, and Outdoor Access For All Fund**
+Major funding codes and sources include:
+- **3125-001-0001**: General Fund - $5.2 million
+- **3125-001-0140**: Environmental License Plate Fund - $1.4 million
+- **3125-001-0516**: Federal Trust Fund - $3.7 million
+- **3125-001-6029**: California Clean Water, Clean Air, Safe Neighborhood Parks, and Coastal Protection Fund - $2.1 million
+- **3125-001-6031**: Water Security, Clean Drinking Water, Coastal and Beach Protection Fund of 2002 - $1.8 million
+- **3125-001-6083**: Water Quality, Supply, and Infrastructure Improvement Fund of 2014 - $1.6 million
 
 ## Major Projects and Initiatives
 
-### Environmental Improvement Program (EIP)
+### Land Conservation and Restoration
+The Conservancy acquires, manages, and restores land to protect the natural environment and promote public recreation in the Lake Tahoe Basin. Current initiatives include:
 
-The Conservancy is a key implementing agency of the Environmental Improvement Program (EIP), which is intended to restore and protect the Basin's natural resources. The EIP leverages funding from:
-- State of California
-- State of Nevada
-- Tahoe Regional Planning Agency
-- Federal government
-- Local governments
-- Various private entities
+- **Upper Truckee River Restoration**: A multi-phase project to restore the largest tributary to Lake Tahoe, improving water quality and wildlife habitat.
+- **Forest Health and Wildfire Risk Reduction**: Implementation of forest thinning and prescribed fire treatments on Conservancy lands to reduce wildfire risk and improve forest resilience.
+- **Climate Adaptation Strategy**: Development and implementation of strategies to address climate change impacts in the Tahoe Basin, including increased wildfire risk, reduced snowpack, and threats to biodiversity.
 
-### Land Acquisition and Management
+### Grant Programs
+The Conservancy administers grant programs that fund projects by local governments, nonprofit organizations, and other partners. These programs focus on:
 
-1. **Environmentally Sensitive Land Acquisition**: Purchasing lands to protect watershed, wildlife habitat, and scenic resources
-2. **Land Restoration**: Restoring thousands of parcels to improve stream environments, wildlife habitats, forest health, and water quality
-3. **Public Access**: Acquiring lakefront property and constructing pedestrian and bike paths to improve public access
-
-### Forest Health and Wildfire Risk Reduction
-
-1. **Grant Programs**: Providing grants to fund soil erosion prevention, watershed restoration, and forest health improvements
-2. **Wildfire Risk Reduction**: Supporting projects to reduce wildfire risk on public lands
-3. **Climate Resilience**: Implementing projects to enhance climate resilience in the Basin
+- **Watershed and Water Quality Improvement**: Projects that prevent soil erosion and improve water quality in Lake Tahoe.
+- **Forest Health**: Projects that reduce wildfire risk and improve forest health on public and private lands.
+- **Public Access and Recreation**: Projects that enhance public access to Lake Tahoe and recreational opportunities in the Basin.
+- **Climate Resilience**: Projects that help communities and ecosystems adapt to climate change impacts.
 
 ## Administrative Structure
 
-The California Tahoe Conservancy operates under the oversight of the California Natural Resources Agency with a management structure that includes:
+The California Tahoe Conservancy is governed by a seven-member Board of Directors, including:
+- The Secretary of the Natural Resources Agency (or designee)
+- The Director of Finance (or designee)
+- One member appointed by the Senate Rules Committee
+- One member appointed by the Speaker of the Assembly
+- The elected California member of the Tahoe Regional Planning Agency Governing Board
+- Two public members appointed by the Governor
 
-1. Board of Directors
-2. Executive Director
-3. Program Divisions:
-   - Land Management and Acquisition
-   - Watershed and Forest Health
-   - Climate Adaptation and Sustainability
-   - Planning and Recreation
+The Conservancy's staff is led by an Executive Director who oversees the following divisions:
+- **Land Management and Forest Resilience Division**: Responsible for managing Conservancy lands and implementing forest health projects.
+- **Watershed and Sustainability Division**: Oversees watershed restoration projects and climate adaptation initiatives.
+- **Strategic Growth and Community Revitalization Division**: Manages urban land acquisitions and community enhancement projects.
+- **Administration and Finance Division**: Handles budgeting, accounting, human resources, and information technology.
 
 ## Funding Allocation Process
 
-1. **Project Prioritization**: Identifying and prioritizing projects based on environmental impact and alignment with EIP goals
-2. **Leveraged Funding**: Securing and leveraging funding from multiple sources
-3. **Grant Administration**: Managing grant programs to support projects by partner agencies
+The Conservancy allocates funding through several mechanisms:
 
-Sources:
-[1] California State Budget 2024-25
-[2] https://tahoe.ca.gov/
-[3] Environmental Improvement Program, Tahoe Regional Planning Agency 
+### Project Prioritization
+Projects are prioritized based on their alignment with:
+- The Conservancy's Strategic Plan
+- The Environmental Improvement Program for the Lake Tahoe Basin
+- The Lake Tahoe Total Maximum Daily Load (TMDL) requirements
+- State and regional climate adaptation strategies
+
+### Leveraged Funding
+The Conservancy leverages its state funding with:
+- Federal funds from the Lake Tahoe Restoration Act
+- Local government matching funds
+- Private donations and foundation grants
+- Southern Nevada Public Land Management Act funds
+
+### Grant Administration
+The Conservancy's grant programs follow a structured process:
+1. Release of grant guidelines and solicitation of applications
+2. Technical review of applications by staff
+3. Board approval of grant awards
+4. Grant agreement execution and project implementation
+5. Monitoring and reporting on project outcomes
+
+The Conservancy also directly implements projects on its lands, allocating funding based on strategic priorities and available resources. 

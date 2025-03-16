@@ -75,8 +75,8 @@ const DepartmentWorkforceDisplay = ({ workforceData }: DepartmentWorkforceDispla
           <thead>
             <tr className="bg-gray-100">
               <th className="py-3 px-4 text-left">Fiscal Year</th>
-              <th className="py-3 px-4 text-right">Total Budget</th>
-              <th className="py-3 px-4 text-right">State Operations</th>
+              <th className="py-3 px-4 text-right">Budget</th>
+              <th className="py-3 px-4 text-right">Headcount</th>
             </tr>
           </thead>
           <tbody>
