@@ -86,7 +86,7 @@ function SpendPageClient() {
         <h2 className="text-xl font-bold mb-4">Budget Summary</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <h3 className="text-lg font-semibold mb-4">Total Spending</h3>
+            <h3 className="text-lg font-semibold mb-4">Spending</h3>
             <div className="space-y-2">
               {budgetYears.map(year => (
                 <div key={year} className="flex justify-between">

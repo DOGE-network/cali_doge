@@ -5,42 +5,48 @@
       "name": "California Department of Forestry and Fire Protection",
       "spending": {
         "FY2023": "$4.32B",
-        "FY2024": "$4.22B"
+        "FY2024": "$4.22B",
+        "FY2025": "$4.35B"
       }
     },
     {
       "name": "Department of Water Resources",
       "spending": {
         "FY2023": "$7.48B",
-        "FY2024": "$3.19B"
+        "FY2024": "$3.19B",
+        "FY2025": "$3.25B"
       }
     },
     {
       "name": "Department of Parks and Recreation",
       "spending": {
         "FY2023": "$1.99B",
-        "FY2024": "$0.88B"
+        "FY2024": "$0.88B",
+        "FY2025": "$0.92B"
       }
     },
     {
       "name": "Energy Commission",
       "spending": {
         "FY2023": "$1.32B",
-        "FY2024": "$1.15B"
+        "FY2024": "$1.15B",
+        "FY2025": "$1.18B"
       }
     },
     {
       "name": "Department of Fish and Wildlife",
       "spending": {
         "FY2023": "$1.12B",
-        "FY2024": "$0.68B"
+        "FY2024": "$0.68B",
+        "FY2025": "$0.71B"
       }
     },
     {
       "name": "Water Resources Control Board",
       "spending": {
         "FY2023": "$3.94B",
-        "FY2024": "$2.15B"
+        "FY2024": "$2.15B",
+        "FY2025": "$2.20B"
       }
     },
     {
@@ -79,21 +85,24 @@
       "name": "Department of Toxic Substances Control",
       "spending": {
         "FY2023": "$0.82B",
-        "FY2024": "$0.58B"
+        "FY2024": "$0.58B",
+        "FY2025": "$0.60B"
       }
     },
     {
       "name": "California Conservation Corps",
       "spending": {
         "FY2023": "$0.16B",
-        "FY2024": "$0.15B"
+        "FY2024": "$0.15B",
+        "FY2025": "$0.16B"
       }
     },
     {
       "name": "California Natural Resources Agency",
       "spending": {
         "FY2023": "$0.39B",
-        "FY2024": "$0.32B"
+        "FY2024": "$0.32B",
+        "FY2025": "$0.33B"
       }
     },
     {
@@ -111,20 +120,175 @@
         "FY2024": "$0.056B",
         "FY2025": "$0.013B"
       }
+    },
+    {
+      "name": "California Coastal Conservancy",
+      "spending": {
+        "FY2023": "$0.074B",
+        "FY2024": "$0.076B",
+        "FY2025": "$0.078B"
+      }
+    },
+    {
+      "name": "California Coastal Commission",
+      "spending": {
+        "FY2023": "$0.186B",
+        "FY2024": "$0.193B",
+        "FY2025": "$0.198B"
+      }
+    },
+    {
+      "name": "California State Lands Commission",
+      "spending": {
+        "FY2023": "$0.234B",
+        "FY2024": "$0.242B",
+        "FY2025": "$0.248B"
+      }
+    },
+    {
+      "name": "California Department of Public Health",
+      "spending": {
+        "FY2023": "$4.962B",
+        "FY2024": "$4.835B",
+        "FY2025": "$4.950B"
+      }
+    },
+    {
+      "name": "California Department of Social Services",
+      "spending": {
+        "FY2023": "$5.295B",
+        "FY2024": "$5.387B",
+        "FY2025": "$5.520B"
+      }
+    },
+    {
+      "name": "California Department of State Hospitals",
+      "spending": {
+        "FY2023": "$13.213B",
+        "FY2024": "$13.428B",
+        "FY2025": "$13.750B"
+      }
+    },
+    {
+      "name": "California Department of Developmental Services",
+      "spending": {
+        "FY2023": "$5.858B",
+        "FY2024": "$5.982B",
+        "FY2025": "$6.130B"
+      }
+    },
+    {
+      "name": "California Department of Corrections and Rehabilitation",
+      "spending": {
+        "FY2023": "$54.894B",
+        "FY2024": "$53.821B",
+        "FY2025": "$52.750B"
+      }
+    },
+    {
+      "name": "California Department of Health Care Services",
+      "spending": {
+        "FY2023": "$4.570B",
+        "FY2024": "$4.782B",
+        "FY2025": "$4.900B"
+      }
+    },
+    {
+      "name": "California Department of Education",
+      "spending": {
+        "FY2023": "$2.392B",
+        "FY2024": "$2.486B",
+        "FY2025": "$2.550B"
+      }
+    },
+    {
+      "name": "California Department of Transportation",
+      "spending": {
+        "FY2023": "$20.735B",
+        "FY2024": "$21.359B",
+        "FY2025": "$21.980B"
+      }
+    },
+    {
+      "name": "California Environmental Protection Agency",
+      "spending": {
+        "FY2023": "$0.350B",
+        "FY2024": "$0.320B",
+        "FY2025": "$0.330B"
+      }
+    },
+    {
+      "name": "California Department of Food and Agriculture",
+      "spending": {
+        "FY2023": "$1.929B",
+        "FY2024": "$1.972B",
+        "FY2025": "$2.020B"
+      }
+    },
+    {
+      "name": "California Department of Veterans Affairs",
+      "spending": {
+        "FY2023": "$2.805B",
+        "FY2024": "$2.842B",
+        "FY2025": "$2.910B"
+      }
+    },
+    {
+      "name": "California Department of Human Resources",
+      "spending": {
+        "FY2023": "$0.334B",
+        "FY2024": "$0.342B",
+        "FY2025": "$0.350B"
+      }
+    },
+    {
+      "name": "California Department of General Services",
+      "spending": {
+        "FY2023": "$3.786B",
+        "FY2024": "$3.842B",
+        "FY2025": "$3.940B"
+      }
+    },
+    {
+      "name": "California Department of Motor Vehicles",
+      "spending": {
+        "FY2023": "$8.639B",
+        "FY2024": "$8.763B",
+        "FY2025": "$8.980B"
+      }
+    },
+    {
+      "name": "California Highway Patrol",
+      "spending": {
+        "FY2023": "$11.255B",
+        "FY2024": "$11.342B",
+        "FY2025": "$11.620B"
+      }
+    },
+    {
+      "name": "California Department of Technology",
+      "spending": {
+        "FY2023": "$1.244B",
+        "FY2024": "$1.286B",
+        "FY2025": "$1.320B"
+      }
     }
   ],
   "budgetSummary": {
     "totalSpending": {
       "FY2023": "$232.05B",
-      "FY2024": "$228.89B"
+      "FY2024": "$228.89B",
+      "FY2025": "$233.50B"
     },
     "deficit": {
       "FY2023": "$32.00B",
-      "FY2024": "$68.00B"
+      "FY2024": "$68.00B",
+      "FY2025": "$58.00B"
     },
     "revenue": {
       "FY2023": "$193.27B",
-      "FY2024": "$222.47B"
+      "FY2024": "$222.47B",
+      "FY2025": "$227.80B"
     }
   },
   "revenueSources": [
@@ -132,60 +296,69 @@
       "source": "Personal Income Tax",
       "amounts": {
         "FY2023": "$83.87B",
-        "FY2024": "$100.32B"
+        "FY2024": "$100.32B",
+        "FY2025": "$102.50B"
       }
     },
     {
       "source": "Sales and Use Tax",
       "amounts": {
         "FY2023": "$38.65B",
-        "FY2024": "$41.27B"
+        "FY2024": "$41.27B",
+        "FY2025": "$42.30B"
       }
     },
     {
       "source": "Corporate Tax",
       "amounts": {
         "FY2023": "$22.46B",
-        "FY2024": "$23.83B"
+        "FY2024": "$23.83B",
+        "FY2025": "$24.40B"
       }
     },
     {
       "source": "Insurance Tax",
       "amounts": {
         "FY2023": "$3.86B",
-        "FY2024": "$4.02B"
+        "FY2024": "$4.02B",
+        "FY2025": "$4.15B"
       }
     },
     {
       "source": "Vehicle License Fees",
       "amounts": {
         "FY2023": "$13.72B",
-        "FY2024": "$14.37B"
+        "FY2024": "$14.37B",
+        "FY2025": "$14.70B"
       }
     },
     {
       "source": "Managed Care Organization Tax",
       "amounts": {
         "FY2023": "$1.75B",
-        "FY2024": "$5.82B"
+        "FY2024": "$5.82B",
+        "FY2025": "$5.95B"
       }
     },
     {
       "source": "Other Revenue",
       "amounts": {
         "FY2023": "$28.96B",
-        "FY2024": "$32.84B"
+        "FY2024": "$32.84B",
+        "FY2025": "$33.80B"
       }
     }
   ],
   "totalRevenue": {
     "FY2023": "$193.27B",
     "FY2024": "$222.47B",
-    "percentChange": "+15.1%"
+    "FY2025": "$227.80B",
+    "percentChange": "+2.4%"
   },
   "federalDeficit": {
     "FY2023": "$32.00B",
-    "FY2024": "$68.00B"
+    "FY2024": "$68.00B",
+    "FY2025": "$58.00B"
   },
   "sources": [
     {

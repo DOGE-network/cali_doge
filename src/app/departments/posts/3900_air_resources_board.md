@@ -2,7 +2,7 @@
 title: "3900 - Air Resources Board"
 name: "Air Resources Board"
 code: 3900
-date: 2025-03-13 08:00:00 -0800
+date: '2025-03-15'
 author: "Sean Roberts"
 image: 
 description: "CARB has administered significant clean transportation funding, with approximately $6.3 billion appropriated from FY 2009-10 through FY 2024-25"

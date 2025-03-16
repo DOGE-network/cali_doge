@@ -69,7 +69,7 @@ const DepartmentSpendingDisplay: React.FC<DepartmentSpendingDisplayProps> = ({
           <thead>
             <tr className="bg-gray-100">
               <th className="py-3 px-4 text-left">Fiscal Year</th>
-              <th className="py-3 px-4 text-right">Total Budget</th>
+              <th className="py-3 px-4 text-right">Spend</th>
               {departmentData.stateOperations && (
                 <th className="py-3 px-4 text-right">State Operations</th>
               )}
