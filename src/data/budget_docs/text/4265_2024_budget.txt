@@ -1,0 +1,6683 @@
+4265   Department of Public Health 
+The California Department of Public Health (DPH) is dedicated to optimizing the health and well-being of all Californians 
+through the following core activities: 
+• Protecting the public from communicable diseases. 
+• Protecting the public from unhealthy and unsafe environments, and improving social determinants of health and healthy 
+communities. 
+• Preventing disease, injury, disability, and premature death; and reducing or eliminating health disparities by embedding 
+health and mental health equity language, tools, and approaches into all public health and partner agency policies, practices, 
+programs, systems, and resource allocation. 
+• Preparing for and responding to public health emergencies. 
+• Producing and disseminating data to evaluate population health status; inform people, institutions and communities; and to 
+guide public health strategies, programs, and actions. 
+• Promoting healthy lifestyles for individuals and families in their communities and workplaces. 
+• Providing access to quality, population-based health services. 
+ 
+3-YEAR EXPENDITURES AND POSITIONS † 
+ 
+Positions 
+Expenditures 
+2022-23 
+2023-24 
+2024-25 
+2022-23* 
+2023-24* 
+2024-25* 
+4040010 
+Emergency Preparedness 
+140.7 
+184.6 
+184.6 
+$1,530,887 
+$452,942 
+$254,716 
+4045010 
+Healthy Communities 
+563.5 
+627.0 
+627.0 
+500,460 
+709,001 
+492,615 
+4045013 
+Media Campaign 
+- 
+- 
+- 
+11,119 
+11,787 
+10,641 
+4045015 
+Evaluation and Committee 
+- 
+- 
+- 
+2,738 
+4,026 
+2,702 
+4045017 
+State Administration 
+- 
+- 
+- 
+3,827 
+6,134 
+5,976 
+4045019 
+Local Lead Agency 
+- 
+- 
+- 
+10,560 
+9,150 
+9,150 
+4045021 
+Competitive Grants 
+- 
+- 
+- 
+9,136 
+13,051 
+11,578 
+4045023 
+Infectious Diseases 
+452.5 
+515.8 
+515.8 
+1,518,940 
+2,292,866 
+1,489,438 
+4045032 
+Family Health 
+526.5 
+639.9 
+657.9 
+1,720,251 
+1,887,346 
+1,929,298 
+4045041 
+Health Statistics and Informatics 
+295.5 
+251.5 
+251.5 
+30,565 
+105,104 
+61,920 
+4045050 
+County Health Services 
+2.4 
+3.1 
+3.1 
+- 
+- 
+- 
+4045059 
+Environmental Health 
+455.4 
+473.6 
+473.6 
+116,194 
+121,503 
+118,780 
+4045068 
+Laboratory Sciences 
+- 
+193.3 
+193.3 
+- 
+68,492 
+77,726 
+4050010 
+Health Facilities 
+1,245.2 
+1,690.6 
+1,698.4 
+395,865 
+481,796 
+473,725 
+4050019 
+Laboratory Field Services 
+85.8 
+113.7 
+113.7 
+17,199 
+39,314 
+32,903 
+9900100 
+Administration 
+372.9 
+446.5 
+446.5 
+109,784 
+107,542 
+106,315 
+9900200 
+Administration - Distributed 
+- 
+- 
+- 
+-109,784 
+-107,542 
+-106,315 
+TOTALS, POSITIONS AND EXPENDITURES (All 
+Programs) 
+4,140.4 
+5,139.6 
+5,165.4 
+$5,867,741 
+$6,202,512 
+$4,971,168 
+FUNDING 
+2022-23* 
+2023-24* 
+2024-25* 
+0001 
+General Fund 
+$802,439 
+$1,507,755 
+$815,317 
+0007 
+Breast Cancer Research Account, Breast Cancer Fund 
+2,095 
+385 
+587 
+0029 
+Nuclear Planning Assessment Special Account 
+762 
+1,087 
+1,091 
+0044 
+Motor Vehicle Account, State Transportation Fund 
+1,291 
+1,721 
+1,723 
+0066 
+Sale of Tobacco to Minors Control Account 
+25 
+1,062 
+1,063 
+0070 
+Occupational Lead Poisoning Prevention Account 
+1,743 
+2,600 
+3,100 
+0074 
+Medical Waste Management Fund 
+2,909 
+3,266 
+3,276 
+0075 
+Radiation Control Fund 
+29,423 
+31,832 
+31,902 
+0076 
+Tissue Bank License Fund 
+463 
+1,670 
+1,675 
+0080 
+Childhood Lead Poisoning Prevention Fund 
+29,246 
+47,857 
+47,922 
+0082 
+Export Document Program Fund 
+412 
+569 
+706 
+0098 
+Clinical Laboratory Improvement Fund 
+13,081 
+16,579 
+16,607 
+0099 
+Health Statistics Special Fund 
+20,618 
+33,509 
+33,686 
+0106 
+Department of Pesticide Regulation Fund 
+291 
+362 
+363 
+HEALTH AND HUMAN SERVICES
+2024-25 GOVERNOR'S BUDGET — HHS 1
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+FUNDING 
+2022-23* 
+2023-24* 
+2024-25* 
+0115 
+Air Pollution Control Fund 
+302 
+320 
+320 
+0143 
+California Health Data and Planning Fund 
+240 
+240 
+240 
+0177 
+Food Safety Fund 
+10,523 
+12,189 
+13,305 
+0203 
+Genetic Disease Testing Fund 
+162,288 
+167,770 
+181,545 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+37,317 
+43,106 
+39,040 
+0234 
+Research Account, Cigarette and Tobacco Products Surtax Fund 
+2,790 
+4,300 
+4,003 
+0236 
+Unallocated Account, Cigarette and Tobacco Products Surtax Fund 
+1,890 
+1,812 
+1,803 
+0272 
+Infant Botulism Treatment and Prevention Fund 
+6,514 
+14,072 
+18,278 
+0279 
+Child Health and Safety Fund 
+485 
+551 
+551 
+0335 
+Registered Environmental Health Specialist Fund 
+438 
+509 
+510 
+0367 
+Indian Gaming Special Distribution Fund 
+8,064 
+8,514 
+8,519 
+0478 
+Vectorborne Disease Account 
+141 
+213 
+195 
+0557 
+Toxic Substances Control Account 
+351 
+585 
+586 
+0642 
+Domestic Violence Training and Education Fund 
+295 
+706 
+709 
+0823 
+California Alzheimers Disease and Related Disorders Research Fund 
+618 
+686 
+687 
+0890 
+Federal Trust Fund 
+2,218,300 
+2,301,540 
+2,200,573 
+0942 
+Special Deposit Fund 
+8,015 
+9,012 
+9,016 
+0995 
+Reimbursements 
+518,797 
+1,013,709 
+575,977 
+3018 
+Drug and Device Safety Fund 
+6,624 
+8,423 
+7,461 
+3023 
+WIC Manufacturer Rebate Fund 
+194,081 
+189,616 
+190,373 
+3080 
+AIDS Drug Assistance Program Rebate Fund 
+240,742 
+258,146 
+273,357 
+3081 
+Cannery Inspection Fund 
+4,344 
+4,493 
+4,511 
+3085 
+Mental Health Services Fund 
+1,953 
+2,743 
+2,767 
+3098 
+State Department of Public Health Licensing and Certification Program Fund 
+263,399 
+307,875 
+313,858 
+3110 
+Gambling Addiction Program Fund 
+150 
+150 
+350 
+3114 
+Birth Defects Monitoring Program Fund 
+2,310 
+2,576 
+2,579 
+3155 
+Lead-Related Construction Fund 
+948 
+1,394 
+1,401 
+3237 
+Cost of Implementation Account, Air Pollution Control Fund 
+401 
+408 
+410 
+3288 
+Cannabis Control Fund 
+467 
+601 
+601 
+3307 
+State Dental Program Account, California Healthcare, Research and Prevention 
+Tobacco Tax Act of 2016 Fund 
+26,886 
+33,068 
+35,100 
+3318 
+Department of Public Health Subaccount, Tobacco Law Enforcement Account, 
+CA Healthcare, Research and Prevention Tobacco Tax Act of 2016 Fund 
+6,397 
+4,656 
+4,071 
+3322 
+Department of Public Health Subaccount, Tobacco Prevention and Control 
+Programs Account, CA Healthcare, Research and Prevention Tobacco Tax Act 
+of 2016 Fund 
+98,366 
+85,217 
+100,491 
+3385 
+Transgender, Gender Nonconforming, and Intersex (TGI) Wellness and Equity 
+Fund 
+-12,729 
+12,729 
+- 
+3396 
+Industrial Hemp Enrollment and Oversight Fund 
+- 
+- 
+2,113 
+3397 
+Opioid Settlements Fund 
+8,221 
+60,329 
+16,850 
+3398 
+California Emergency Relief Fund 
+1,143,015 
+- 
+- 
+TOTALS, EXPENDITURES, ALL FUNDS 
+$5,867,741 
+$6,202,512 
+$4,971,168 
+† Fiscal year 2022-23 budget display reflects the best available information for use in decision-making for this department and/
+or these fund(s). Additional review and reconciliation of 2022-23 ending fund balances will occur in the spring to evaluate if a 
+budget adjustment is required. 
+LEGAL CITATIONS AND AUTHORITY 
+PROGRAM AUTHORITY 4040-Public Health Emergency Preparedness: Health and Safety Code, Sections 100150-100236, 
+100250-100255, 100325-100950, 101315-101319, 131000-131021,  and 131050-131231; Government Code, Sections 
+8574.48 and 8587.8-8587.9; and California Code of Regulations, Titles 17 and 22. 4045-Public and Environmental Health: 
+Health and Safety Code, Sections 137-140, 152, 425, 443-443.22, 475,  1179.80, 1255, 1275.41, 1276.5, 1277, 1342.74, 
+2024-25 GOVERNOR'S BUDGET — HHS 2
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+1348.9, 1367.016, 1367.3, 1367.34, 1385.09 1603.3, 1627, 1629.5, 1630, 1635-1635.2; 1644.5, 2000-2002, 2100, 2101, 
+7006.4,  11006.5-11532, 18897-18897.7, 25257.2, 39660, 100150-100236, 100250-100255, 100325-100775, 
+100825-100920.5, 100950, 101175-101319, 102100-103925, 104100-105459, 106500, 106600-106735, 106750-106795, 
+106875-106910, 106955-107175, 107250, 108100-108225, 108550-108585, 108675-108725, 108750-108785, 
+108850-108915, 108940-108941, 108980, 109250-109395, 109875-111929.4, 111940-113120, 113250-113360, 
+113700-114435, 114650-115342, 115825-116090.7, 116271-116701, 117600-118360, 118506, 118910-118948,119301-119406, 
+120100-122450; 123225-123775, 124111-124260, 124975-125119.5, 125275-125285.5, 125290.10-125292.10, 
+125300-125320, 125700-125710, 131000-131230, 150900, 151000-151003, 17920.10, 17961, and 17980; Business and 
+Professions Code, Sections 650.01, 1209-3152,  7639, 7639.08, 17537.3, 19954, and 22950-22980.2, 24204, 25503.6, 
+26000-26227.9, 26249, 26260; Civil Code Section 1714.22; Code of Civil Procedure Sections 1277,1278,  and 1947.5; 
+Education Code Sections 1241,  8209,  17199.4, 17391, 17463.7, 35182.5, 37700, 41024, 41207.47,  48412, 48901, 49431.5, 
+49431.9, 49452.8, 49580, 51461, 52065, 52074, 56836.07, 56836.148, 56836.24, 60010, 69996,  87408.6, 92411 and 92495; 
+Family Code, Section 1852; 7571; 7574; Fish and Game Code Section 1506, 1602, and 1617; Food and Agriculture Code, 
+Sections 405, 11901-11910, 12978, 14103, 31753, 37104, 54036, 81010, and 82000-82001; Government Code, Sections 
+6276, 8310.3-8310.9, 8593.3.5, 8595, 8610-8614, 9795, 11019, 11553, 11553.5, 12945, 13989-13989.8, 14900-14906, 
+14910-14911, 15438.11, 15805, 26840, 26840.8, 26840.1, 26840.7, and 26840.8, 27301, 27337, 27491.41 and 50535; 
+Insurance Code Section 10123.5 and 10123.55, 10123.1933, 10176.11, 10181.8; Labor Code, Sections 60.9, 147.2, 147.3 and 
+6404.5; Penal Code Sections 308, 830.3, 14251, and 12088.5; Public Resources Code Sections 21080.26, 71275, 
+75120-75130; Public Utilities Code Section 561; Revenue and Taxation Code Sections 18761-18766, 3012130130, 30461.6, 
+and 34010-34021.5, 55044; Water Code, Sections 1831, 1847, 13182, 13276, 13500-13569 and 79500-79590; Vehicle Code, 
+Section 2429.7, 3095; 5072, 5162, 12523, 12800, and 13005; Welfare and Institutions Code, Sections 4369-4369.5, 14132(u), 
+14134.5, 14148.9, 14504.3, 17852, 18285, 18966, and 18993-18993.9, and California Code of Regulations, Titles 4, 17 and 22. 
+4050; Licensing and Certification: Health and Safety Code, Sections 442-442.7, 1180-1180.6,1200-1245, 1250-1339.59, 
+1339.63-1339.70, 1400-1439.54, 1499, 1522.08, 1570-1596.5, 1599-1599.89, 1600-1630, 1635-1643.2, 1644-1644.6, 1645, 
+1647-1648, 1649-1649.6, 1725-1742, 1745-1759, 1760-1763.4, 1765.101-1765.175, 1795, 41514.1, 100150-100236, 101850, 
+127400-127446,  131000-131021, and 131050-131135;  Business and Professions Code, Sections 680, and 1200-1327; 
+Corporations Code, Sections 5914-5926; Labor Code, Section 238.4; Probate Code, Sections 4780-4786; Welfare and 
+Institutions Code, Sections 4514, 4648.14, 5328.15, 5676, 14126.022, 14126.028, and 14592; and California Code of 
+Regulations, Title 22. 
+DETAILED BUDGET ADJUSTMENTS 
+ 
+2023-24* 
+2024-25* 
+General 
+Fund 
+Other 
+Funds 
+Positions 
+General 
+Fund 
+Other 
+Funds 
+Positions 
+Workload Budget Adjustments 
+Workload Budget Change Proposals 
+• Maintenance and Operations Support for the 
+Surveillance and Public Health Information 
+Reporting and Exchange (SaPHIRE) System 
+$- 
+$- 
+- 
+$26,900 
+$- 
+- 
+• WIC November Estimate 
+- 
+7,159 
+- 
+- 
+63,457 
+- 
+• CHCQ November Estimate 
+- 
+- 
+- 
+- 
+16,455 
+- 
+• Clinical Dental Rotations Fund Shift 
+-9,700 
+- 
+- 
+- 
+9,700 
+- 
+• WIC Modernization 
+- 
+- 
+- 
+- 
+2,964 
+18.0 
+• Center for Health Care Quality, Centralized 
+Application Branch (CAB) Expansion 
+- 
+- 
+- 
+- 
+1,078 
+7.8 
+• Office of Problem Gambling Community Based 
+Organization Grants 
+- 
+- 
+- 
+- 
+200 
+- 
+• Climate and Health Surveillance Program 
+Reversion 
+-3,085 
+- 
+- 
+- 
+- 
+- 
+• Information Technology Savings 
+-1,700 
+- 
+- 
+- 
+- 
+- 
+• GDSP November Estimate 
+- 
+-20,442 
+- 
+- 
+-6,558 
+- 
+• AIDS Drug Assistance Program Estimate 
+- 
+-44,118 
+- 
+- 
+-32,060 
+- 
+• COVID-19 Website Information Technology 
+Reversion 
+-900 
+- 
+- 
+-900 
+- 
+- 
+• Skilled Nursing Facilities Staffing Audits Fund 
+Shift 
+- 
+- 
+- 
+-4,000 
+4,000 
+- 
+Totals, Workload Budget Change Proposals 
+$-15,385 
+$-57,401 
+- 
+$22,000 
+$59,236 
+25.8 
+Other Workload Budget Adjustments 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 3
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+ 
+2023-24* 
+2024-25* 
+General 
+Fund 
+Other 
+Funds 
+Positions 
+General 
+Fund 
+Other 
+Funds 
+Positions 
+• Miscellaneous Baseline Adjustment per 
+Provision 33(a) of Item 4265-001-0001 of the 
+2022 Budget Act (Chapter 249, Statues of 2022) 
+- 
+- 
+- 
+- 
+- 
+- 
+• Revised Opioid Settlements Fund Expenditure 
+Plan 
+- 
+- 
+- 
+- 
+-1,900 
+- 
+• Other Post-Employment Benefit Adjustments 
+-263 
+-1,041 
+- 
+-351 
+-1,382 
+- 
+• Salary Adjustments 
+4,538 
+20,427 
+- 
+4,885 
+20,863 
+- 
+• Benefit Adjustments 
+2,377 
+10,754 
+- 
+3,199 
+14,276 
+- 
+• Miscellaneous Baseline Adjustments 
+12,262 
+132,880 
+55.6 
+- 
+115,810 
+55.6 
+• Carryover/Reappropriation 
+507,102 
+50,308 
+- 
+- 
+- 
+- 
+• SWCAP 
+- 
+- 
+- 
+- 
+-4,419 
+- 
+• Lease Revenue Debt Service Adjustment 
+-44 
+519 
+- 
+-24 
+527 
+- 
+Totals, Other Workload Budget Adjustments 
+$525,972 
+$213,847 
+55.6 
+$7,709 
+$143,775 
+55.6 
+Totals, Workload Budget Adjustments 
+$510,587 
+$156,446 
+55.6 
+$29,709 
+$203,011 
+81.4 
+Totals, Budget Adjustments 
+$510,587 
+$156,446 
+55.6 
+$29,709 
+$203,011 
+81.4 
+PROGRAM DESCRIPTIONS 
+4040010 - Emergency Preparedness and Response 
+The Emergency Preparedness and Response program provides expertise, leadership, and dedicated support for the 
+coordination of emergency planning, preparedness, response, and recovery efforts for all public health emergencies and 
+disasters, including natural disasters, acts of terrorism, and infectious diseases. The program oversees statewide public health 
+disaster planning; supports medical care and public health systems to plan for and respond to medical surge; coordinates and 
+facilitates efforts between federal, state, and local entities; and maintains other risk communications and response systems 
+during emergencies and disasters. The program also administers federal and state funds to support public health emergency 
+preparedness and response activities at the state and local levels. 
+4045 - PUBLIC AND ENVIRONMENTAL HEALTH 
+The Public and Environmental Health programs provide public health services of: communicable disease control; chronic 
+disease and injury prevention; environmental public health; maternal, child, and family health; and vital records. These 
+programs function as part of the greater public health system throughout California. 
+4045010 - Healthy Communities 
+The Healthy Communities program works to prevent and control chronic diseases such as cancer, cardiovascular diseases, 
+asthma, Alzheimer's, and diabetes; to reduce the prevalence of obesity; to reduce tobacco use; to improve oral health through 
+prevention, education, and community efforts; to provide training programs for the public health workforce; to prevent and 
+control injuries, violence, deaths, and diseases related to behavioral, environmental, and occupational factors; to promote and 
+support safe, equitable, and healthy environments in communities and workplaces; to prevent substance and gambling 
+addiction and treat gambling disorder; and to support suicide prevention efforts. This program includes the California Tobacco 
+Control Program, Childhood Lead Poisoning Prevention Branch, Chronic Disease Control Branch, Chronic Disease 
+Surveillance and Research Branch, Environmental Health Investigations Branch, Nutrition and Physical Activity Branch, 
+Occupational Health Branch, Injury and Violence Prevention Branch, Substance and Addiction Prevention Branch, Office of 
+School Health, Office of Suicide Prevention, Office of Problem Gambling, and the Office of Oral Health. 
+4045023 - Infectious Diseases 
+The Infectious Diseases program works to prevent and control infectious diseases such as: HIV/AIDS, COVID-19, viral 
+hepatitis, influenza and other vaccine-preventable illnesses, sexually transmitted diseases, tuberculosis, emerging infections, 
+and foodborne illnesses. This program includes the Division of Communicable Disease Control, the Office of AIDS, the Office of 
+Binational Border Health, the Office of Refugee Health, and the Office of Infectious Disease Preparedness and Response. 
+4045032 - Family Health 
+The Family Health program works to improve the health and well-being of individuals, pregnant people, children and youth as 
+well as reduce disparities in perinatal health outcomes. This program includes the Genetic Disease Screening Program; 
+Maternal, Child, and Adolescent Health; and the Special Supplemental Nutrition Program for Women, Infants, and Children. 
+4045041 - Health Statistics and Informatics 
+2024-25 GOVERNOR'S BUDGET — HHS 4
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+The Health Statistics and Informatics program works to improve the public’s health by managing information systems and 
+facilitating the collection, validation, analysis, and dissemination of health statistics and demographic information on the 
+California population. This program includes Vital Records and Public Health Informatics. 
+4045050 - County Health Services 
+The County Health Services program supports county-based public health information and services, including the Medical 
+Marijuana Identification Card Program. 
+4045059 - Environmental Health 
+The Environmental Health program works to protect and improve the health of all California residents by utilizing inspection, 
+technical assistance, regulatory, investigation, and emergency response activities to improve the safety of foods, industrial 
+hemp products, drugs, and medical devices; conduct underage tobacco enforcement; oversee the use of radiation and 
+radioactive materials; regulate medical waste; and conduct other environmental management programs. The program includes 
+the Division of Food and Drug Safety and the Division of Radiation Safety and Environmental Management. 
+4045068 - Laboratory Sciences 
+The Center for Laboratory Sciences provides laboratory testing services, technical consultation, and leadership for the State's 
+Public Health Laboratory System to protect Californians from the threat of infectious and environmental diseases. The Center 
+includes the Drinking Water and Radiation Laboratory, Environmental Health Laboratory, Food and Drug Laboratory, Infant 
+Botulism Treatment and Prevention Program, Microbial Diseases Laboratory, and Viral and Rickettsial Disease Laboratory. The 
+Center provides laboratory testing services to support public health surveillance programs; research for disease diagnosis, 
+characterization, investigation, and control; and subject matter expertise to inform effective decision-making. 
+4050 - LICENSING AND CERTIFICATION 
+4050010 - Health Facilities 
+The Health Facilities program regulates the quality of care in over 14,000 public and private health facilities, clinics, and 
+agencies throughout the state; licenses nursing home administrators; certifies nurse assistants, home health aides, and 
+hemodialysis technicians; and oversees the prevention, surveillance and reporting of healthcare-associated infections in 
+California's health facilities. 
+4050019 - Laboratory Field Services 
+The Laboratory Field Services program regulates California clinical and public health laboratory, blood bank, biologics, and 
+tissue bank quality standards through licensure and oversight of approximately 27,000 clinical laboratories, public health 
+laboratories, blood banks, biologics facilities, and tissue banks operating in California; and over 65,000 California laboratory 
+personnel in more than 30 different categories of laboratory personnel including phlebotomists, cytotechnologists, medical 
+laboratory technicians, clinical laboratory scientist trainees, clinical laboratory scientists, public health microbiologists, clinical 
+reproductive biologists, bioanalysts, and clinical laboratory directors. 
+9900 - DEPARTMENTAL ADMINISTRATION 
+This program provides overall management, planning, policy development, and administrative support services for all DPH 
+programs. This program is carried out by the Director's Office, the Office of Health Equity, the Office of Compliance, the Office 
+of Policy and Planning, the Strategic Development and External Relations Fusion Center, the Office of Communications, the 
+Office of Professional Development and Engagement, the Office of Legal Services, Legislative and Governmental Affairs, the 
+Information Technology Services Division, the Human Resources Division, and the Administration Division. 
+DETAILED EXPENDITURES BY PROGRAM † 
+ 
+ 
+2022-23* 
+2023-24* 
+2024-25* 
+PROGRAM REQUIREMENTS 
+4040 
+PUBLIC HEALTH EMERGENCY PREPAREDNESS 
+State Operations: 
+0001 
+General Fund 
+$2,933 
+$78,947 
+$18,597 
+0890 
+Federal Trust Fund 
+51,560 
+69,853 
+69,298 
+0995 
+Reimbursements 
+167,251 
+137,321 
+- 
+3398 
+California Emergency Relief Fund 
+1,143,015 
+- 
+- 
+Totals, State Operations 
+$1,364,759 
+$286,121 
+$87,895 
+Local Assistance: 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 5
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+ 
+ 
+2022-23* 
+2023-24* 
+2024-25* 
+0001 
+General Fund 
+$5,479 
+$4,960 
+$4,960 
+0890 
+Federal Trust Fund 
+160,649 
+161,861 
+161,861 
+Totals, Local Assistance 
+$166,128 
+$166,821 
+$166,821 
+SUBPROGRAM REQUIREMENTS 
+4040010 
+Emergency Preparedness 
+State Operations: 
+0001 
+General Fund 
+$2,933 
+$78,947 
+$18,597 
+0890 
+Federal Trust Fund 
+51,560 
+69,853 
+69,298 
+0995 
+Reimbursements 
+167,251 
+137,321 
+- 
+3398 
+California Emergency Relief Fund 
+1,143,015 
+- 
+- 
+Totals, State Operations 
+$1,364,759 
+$286,121 
+$87,895 
+Local Assistance: 
+0001 
+General Fund 
+$5,479 
+$4,960 
+$4,960 
+0890 
+Federal Trust Fund 
+160,649 
+161,861 
+161,861 
+Totals, Local Assistance 
+$166,128 
+$166,821 
+$166,821 
+PROGRAM REQUIREMENTS 
+4045 
+PUBLIC AND ENVIRONMENTAL HEALTH 
+State Operations: 
+0001 
+General Fund 
+$472,262 
+$762,592 
+$406,894 
+0007 
+Breast Cancer Research Account, Breast Cancer Fund 
+2,095 
+385 
+587 
+0029 
+Nuclear Planning Assessment Special Account 
+762 
+1,087 
+1,091 
+0044 
+Motor Vehicle Account, State Transportation Fund 
+1,291 
+1,721 
+1,723 
+0066 
+Sale of Tobacco to Minors Control Account 
+25 
+1,062 
+1,063 
+0070 
+Occupational Lead Poisoning Prevention Account 
+1,743 
+2,600 
+3,100 
+0074 
+Medical Waste Management Fund 
+2,909 
+3,266 
+3,276 
+0075 
+Radiation Control Fund 
+29,423 
+31,832 
+31,902 
+0080 
+Childhood Lead Poisoning Prevention Fund 
+13,646 
+18,453 
+18,518 
+0082 
+Export Document Program Fund 
+412 
+569 
+706 
+0099 
+Health Statistics Special Fund 
+20,618 
+32,999 
+33,176 
+0106 
+Department of Pesticide Regulation Fund 
+291 
+362 
+363 
+0115 
+Air Pollution Control Fund 
+302 
+320 
+320 
+0177 
+Food Safety Fund 
+10,523 
+12,144 
+13,260 
+0203 
+Genetic Disease Testing Fund 
+32,519 
+38,670 
+38,761 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+20,791 
+23,306 
+21,214 
+0234 
+Research Account, Cigarette and Tobacco Products Surtax Fund 
+2,790 
+4,300 
+4,003 
+0236 
+Unallocated Account, Cigarette and Tobacco Products Surtax Fund 
+1,890 
+1,812 
+1,803 
+0272 
+Infant Botulism Treatment and Prevention Fund 
+6,514 
+14,072 
+18,278 
+0279 
+Child Health and Safety Fund 
+9 
+25 
+25 
+0335 
+Registered Environmental Health Specialist Fund 
+438 
+509 
+510 
+0367 
+Indian Gaming Special Distribution Fund 
+4,064 
+4,514 
+4,519 
+0478 
+Vectorborne Disease Account 
+141 
+213 
+195 
+0557 
+Toxic Substances Control Account 
+351 
+585 
+586 
+0642 
+Domestic Violence Training and Education Fund 
+137 
+406 
+409 
+0823 
+California Alzheimers Disease and Related Disorders Research Fund 
+124 
+192 
+193 
+0890 
+Federal Trust Fund 
+245,381 
+305,694 
+289,908 
+0995 
+Reimbursements 
+119,633 
+285,864 
+249,239 
+3018 
+Drug and Device Safety Fund 
+6,624 
+8,423 
+7,461 
+3080 
+AIDS Drug Assistance Program Rebate Fund 
+12,110 
+12,515 
+12,563 
+3081 
+Cannery Inspection Fund 
+4,344 
+4,493 
+4,511 
+3085 
+Mental Health Services Fund 
+1,953 
+2,743 
+2,767 
+3110 
+Gambling Addiction Program Fund 
+150 
+150 
+150 
+3114 
+Birth Defects Monitoring Program Fund 
+2,310 
+2,576 
+2,579 
+2024-25 GOVERNOR'S BUDGET — HHS 6
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+ 
+ 
+2022-23* 
+2023-24* 
+2024-25* 
+3155 
+Lead-Related Construction Fund 
+948 
+1,394 
+1,401 
+3237 
+Cost of Implementation Account, Air Pollution Control Fund 
+401 
+408 
+410 
+3288 
+Cannabis Control Fund 
+467 
+601 
+601 
+3307 
+State Dental Program Account, California Healthcare, Research and 
+Prevention Tobacco Tax Act of 2016 Fund 
+5,603 
+8,114 
+15,866 
+3318 
+Department of Public Health Subaccount, Tobacco Law Enforcement 
+Account, CA Healthcare, Research and Prevention Tobacco Tax Act of 2016 
+Fund 
+6,397 
+4,656 
+4,071 
+3322 
+Department of Public Health Subaccount, Tobacco Prevention and Control 
+Programs Account, CA Healthcare, Research and Prevention Tobacco Tax 
+Act of 2016 Fund 
+48,729 
+40,799 
+45,339 
+3385 
+Transgender, Gender Nonconforming, and Intersex (TGI) Wellness and 
+Equity Fund 
+-2,457 
+2,457 
+- 
+3396 
+Industrial Hemp Enrollment and Oversight Fund 
+- 
+- 
+2,113 
+3397 
+Opioid Settlements Fund 
+8,221 
+39,683 
+2,104 
+Totals, State Operations 
+$1,086,884 
+$1,678,566 
+$1,247,558 
+Local Assistance: 
+0001 
+General Fund 
+$309,213 
+$632,226 
+$367,474 
+0080 
+Childhood Lead Poisoning Prevention Fund 
+15,600 
+29,404 
+29,404 
+0099 
+Health Statistics Special Fund 
+- 
+510 
+510 
+0143 
+California Health Data and Planning Fund 
+240 
+240 
+240 
+0177 
+Food Safety Fund 
+- 
+45 
+45 
+0203 
+Genetic Disease Testing Fund 
+129,769 
+129,100 
+142,784 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+16,526 
+19,800 
+17,826 
+0279 
+Child Health and Safety Fund 
+476 
+526 
+526 
+0367 
+Indian Gaming Special Distribution Fund 
+4,000 
+4,000 
+4,000 
+0642 
+Domestic Violence Training and Education Fund 
+158 
+300 
+300 
+0823 
+California Alzheimers Disease and Related Disorders Research Fund 
+494 
+494 
+494 
+0890 
+Federal Trust Fund 
+1,651,631 
+1,622,802 
+1,547,119 
+0995 
+Reimbursements 
+225,438 
+574,910 
+311,045 
+3023 
+WIC Manufacturer Rebate Fund 
+194,081 
+189,616 
+190,373 
+3080 
+AIDS Drug Assistance Program Rebate Fund 
+228,632 
+245,631 
+260,794 
+3110 
+Gambling Addiction Program Fund 
+- 
+- 
+200 
+3307 
+State Dental Program Account, California Healthcare, Research and 
+Prevention Tobacco Tax Act of 2016 Fund 
+21,283 
+24,954 
+19,234 
+3322 
+Department of Public Health Subaccount, Tobacco Prevention and Control 
+Programs Account, CA Healthcare, Research and Prevention Tobacco Tax 
+Act of 2016 Fund 
+49,637 
+44,418 
+55,152 
+3385 
+Transgender, Gender Nonconforming, and Intersex (TGI) Wellness and 
+Equity Fund 
+-10,272 
+10,272 
+- 
+3397 
+Opioid Settlements Fund 
+- 
+20,646 
+14,746 
+Totals, Local Assistance 
+$2,836,906 
+$3,549,894 
+$2,962,266 
+SUBPROGRAM REQUIREMENTS 
+4045010 
+Healthy Communities 
+State Operations: 
+0001 
+General Fund 
+$77,706 
+$197,889 
+$91,951 
+0007 
+Breast Cancer Research Account, Breast Cancer Fund 
+2,095 
+385 
+587 
+0070 
+Occupational Lead Poisoning Prevention Account 
+1,743 
+2,600 
+3,100 
+0080 
+Childhood Lead Poisoning Prevention Fund 
+13,646 
+16,961 
+17,024 
+0106 
+Department of Pesticide Regulation Fund 
+291 
+55 
+55 
+0115 
+Air Pollution Control Fund 
+302 
+52 
+52 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+- 
+114 
+136 
+0234 
+Research Account, Cigarette and Tobacco Products Surtax Fund 
+2,790 
+4,266 
+3,969 
+0236 
+Unallocated Account, Cigarette and Tobacco Products Surtax Fund 
+1,251 
+156 
+66 
+0279 
+Child Health and Safety Fund 
+9 
+25 
+25 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 7
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+ 
+ 
+2022-23* 
+2023-24* 
+2024-25* 
+0367 
+Indian Gaming Special Distribution Fund 
+4,064 
+4,514 
+4,519 
+0557 
+Toxic Substances Control Account 
+351 
+509 
+510 
+0642 
+Domestic Violence Training and Education Fund 
+137 
+406 
+409 
+0823 
+California Alzheimers Disease and Related Disorders Research Fund 
+124 
+192 
+193 
+0890 
+Federal Trust Fund 
+81,029 
+31,444 
+31,093 
+0995 
+Reimbursements 
+32,158 
+63,159 
+63,225 
+3085 
+Mental Health Services Fund 
+- 
+2,743 
+2,767 
+3110 
+Gambling Addiction Program Fund 
+150 
+150 
+150 
+3114 
+Birth Defects Monitoring Program Fund 
+404 
+441 
+443 
+3155 
+Lead-Related Construction Fund 
+948 
+1,394 
+1,401 
+3237 
+Cost of Implementation Account, Air Pollution Control Fund 
+401 
+408 
+410 
+3307 
+State Dental Program Account, California Healthcare, Research and 
+Prevention Tobacco Tax Act of 2016 Fund 
+5,603 
+8,114 
+15,866 
+3322 
+Department of Public Health Subaccount, Tobacco Prevention and Control 
+Programs Account, CA Healthcare, Research and Prevention Tobacco Tax 
+Act of 2016 Fund 
+48,729 
+40,799 
+45,339 
+3385 
+Transgender, Gender Nonconforming, and Intersex (TGI) Wellness and 
+Equity Fund 
+-2,457 
+2,457 
+- 
+3397 
+Opioid Settlements Fund 
+7,583 
+35,239 
+578 
+Totals, State Operations 
+$279,057 
+$414,472 
+$283,868 
+Local Assistance: 
+0001 
+General Fund 
+$34,615 
+$88,242 
+$9,518 
+0080 
+Childhood Lead Poisoning Prevention Fund 
+15,600 
+29,404 
+29,404 
+0279 
+Child Health and Safety Fund 
+476 
+526 
+526 
+0367 
+Indian Gaming Special Distribution Fund 
+4,000 
+4,000 
+4,000 
+0642 
+Domestic Violence Training and Education Fund 
+158 
+300 
+300 
+0823 
+California Alzheimers Disease and Related Disorders Research Fund 
+494 
+494 
+494 
+0890 
+Federal Trust Fund 
+54,336 
+16,734 
+16,734 
+0995 
+Reimbursements 
+51,076 
+70,763 
+70,763 
+3110 
+Gambling Addiction Program Fund 
+- 
+- 
+200 
+3307 
+State Dental Program Account, California Healthcare, Research and 
+Prevention Tobacco Tax Act of 2016 Fund 
+21,283 
+24,954 
+19,234 
+3322 
+Department of Public Health Subaccount, Tobacco Prevention and Control 
+Programs Account, CA Healthcare, Research and Prevention Tobacco Tax 
+Act of 2016 Fund 
+49,637 
+44,418 
+55,152 
+3385 
+Transgender, Gender Nonconforming, and Intersex (TGI) Wellness and 
+Equity Fund 
+-10,272 
+10,272 
+- 
+3397 
+Opioid Settlements Fund 
+- 
+4,422 
+2,422 
+Totals, Local Assistance 
+$221,403 
+$294,529 
+$208,747 
+SUBPROGRAM REQUIREMENTS 
+4045013 
+Media Campaign 
+State Operations: 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+$11,119 
+$11,787 
+$10,641 
+Totals, State Operations 
+$11,119 
+$11,787 
+$10,641 
+SUBPROGRAM REQUIREMENTS 
+4045015 
+Evaluation and Committee 
+State Operations: 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+$2,738 
+$4,026 
+$2,702 
+Totals, State Operations 
+$2,738 
+$4,026 
+$2,702 
+SUBPROGRAM REQUIREMENTS 
+4045017 
+State Administration 
+State Operations: 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+$3,764 
+$4,978 
+$4,833 
+0234 
+Research Account, Cigarette and Tobacco Products Surtax Fund 
+- 
+34 
+34 
+2024-25 GOVERNOR'S BUDGET — HHS 8
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+ 
+ 
+2022-23* 
+2023-24* 
+2024-25* 
+0236 
+Unallocated Account, Cigarette and Tobacco Products Surtax Fund 
+63 
+1,122 
+1,109 
+Totals, State Operations 
+$3,827 
+$6,134 
+$5,976 
+SUBPROGRAM REQUIREMENTS 
+4045019 
+Local Lead Agency 
+Local Assistance: 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+$10,560 
+$9,150 
+$9,150 
+Totals, Local Assistance 
+$10,560 
+$9,150 
+$9,150 
+SUBPROGRAM REQUIREMENTS 
+4045021 
+Competitive Grants 
+State Operations: 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+$3,170 
+$2,401 
+$2,902 
+Totals, State Operations 
+$3,170 
+$2,401 
+$2,902 
+Local Assistance: 
+0231 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+$5,966 
+$10,650 
+$8,676 
+Totals, Local Assistance 
+$5,966 
+$10,650 
+$8,676 
+SUBPROGRAM REQUIREMENTS 
+4045023 
+Infectious Diseases 
+State Operations: 
+0001 
+General Fund 
+$344,253 
+$370,403 
+$189,529 
+0272 
+Infant Botulism Treatment and Prevention Fund 
+6,514 
+233 
+233 
+0478 
+Vectorborne Disease Account 
+141 
+213 
+195 
+0890 
+Federal Trust Fund 
+82,344 
+172,048 
+150,140 
+0995 
+Reimbursements 
+73,189 
+193,381 
+156,605 
+3080 
+AIDS Drug Assistance Program Rebate Fund 
+12,110 
+12,515 
+12,563 
+3397 
+Opioid Settlements Fund 
+- 
+1,526 
+1,526 
+Totals, State Operations 
+$518,551 
+$750,319 
+$510,791 
+Local Assistance: 
+0001 
+General Fund 
+$180,393 
+$451,160 
+$273,215 
+0890 
+Federal Trust Fund 
+475,681 
+405,532 
+274,308 
+0995 
+Reimbursements 
+115,683 
+424,000 
+158,006 
+3080 
+AIDS Drug Assistance Program Rebate Fund 
+228,632 
+245,631 
+260,794 
+3397 
+Opioid Settlements Fund 
+- 
+16,224 
+12,324 
+Totals, Local Assistance 
+$1,000,389 
+$1,542,547 
+$978,647 
+SUBPROGRAM REQUIREMENTS 
+4045032 
+Family Health 
+State Operations: 
+0001 
+General Fund 
+$381 
+$47,965 
+$24,241 
+0203 
+Genetic Disease Testing Fund 
+32,519 
+38,670 
+38,761 
+0890 
+Federal Trust Fund 
+82,008 
+99,889 
+101,439 
+0995 
+Reimbursements 
+2,896 
+6,239 
+6,245 
+3085 
+Mental Health Services Fund 
+1,953 
+- 
+- 
+3114 
+Birth Defects Monitoring Program Fund 
+1,906 
+2,120 
+2,121 
+Totals, State Operations 
+$121,663 
+$194,883 
+$172,807 
+Local Assistance: 
+0001 
+General Fund 
+$94,205 
+$92,824 
+$84,741 
+0143 
+California Health Data and Planning Fund 
+240 
+240 
+240 
+0203 
+Genetic Disease Testing Fund 
+129,769 
+129,100 
+142,784 
+0890 
+Federal Trust Fund 
+1,121,614 
+1,200,536 
+1,256,077 
+0995 
+Reimbursements 
+58,679 
+80,147 
+82,276 
+3023 
+WIC Manufacturer Rebate Fund 
+194,081 
+189,616 
+190,373 
+Totals, Local Assistance 
+$1,598,588 
+$1,692,463 
+$1,756,491 
+SUBPROGRAM REQUIREMENTS 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 9
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+ 
+ 
+2022-23* 
+2023-24* 
+2024-25* 
+4045041 
+Health Statistics and Informatics 
+State Operations: 
+0001 
+General Fund 
+$8,210 
+$67,023 
+$26,486 
+0099 
+Health Statistics Special Fund 
+20,618 
+32,999 
+33,176 
+0236 
+Unallocated Account, Cigarette and Tobacco Products Surtax Fund 
+576 
+534 
+628 
+0995 
+Reimbursements 
+523 
+1,120 
+1,120 
+3397 
+Opioid Settlements Fund 
+638 
+2,918 
+- 
+Totals, State Operations 
+$30,565 
+$104,594 
+$61,410 
+Local Assistance: 
+0099 
+Health Statistics Special Fund 
+$- 
+$510 
+$510 
+Totals, Local Assistance 
+$- 
+$510 
+$510 
+SUBPROGRAM REQUIREMENTS 
+4045059 
+Environmental Health 
+State Operations: 
+0001 
+General Fund 
+$41,712 
+$32,422 
+$27,726 
+0029 
+Nuclear Planning Assessment Special Account 
+762 
+1,087 
+1,091 
+0044 
+Motor Vehicle Account, State Transportation Fund 
+1,291 
+124 
+124 
+0066 
+Sale of Tobacco to Minors Control Account 
+25 
+1,062 
+1,063 
+0074 
+Medical Waste Management Fund 
+2,909 
+3,266 
+3,276 
+0075 
+Radiation Control Fund 
+29,423 
+31,832 
+31,902 
+0082 
+Export Document Program Fund 
+412 
+569 
+706 
+0177 
+Food Safety Fund 
+10,523 
+12,144 
+13,260 
+0335 
+Registered Environmental Health Specialist Fund 
+438 
+509 
+510 
+0890 
+Federal Trust Fund 
+- 
+1,077 
+1,053 
+0995 
+Reimbursements 
+10,867 
+19,193 
+19,267 
+3018 
+Drug and Device Safety Fund 
+6,624 
+8,423 
+7,461 
+3081 
+Cannery Inspection Fund 
+4,344 
+4,493 
+4,511 
+3288 
+Cannabis Control Fund 
+467 
+601 
+601 
+3318 
+Department of Public Health Subaccount, Tobacco Law Enforcement 
+Account, CA Healthcare, Research and Prevention Tobacco Tax Act of 2016 
+Fund 
+6,397 
+4,656 
+4,071 
+3396 
+Industrial Hemp Enrollment and Oversight Fund 
+- 
+- 
+2,113 
+Totals, State Operations 
+$116,194 
+$121,458 
+$118,735 
+Local Assistance: 
+0177 
+Food Safety Fund 
+$- 
+$45 
+$45 
+Totals, Local Assistance 
+$- 
+$45 
+$45 
+SUBPROGRAM REQUIREMENTS 
+4045068 
+Laboratory Sciences 
+State Operations: 
+0001 
+General Fund 
+$- 
+$46,890 
+$46,961 
+0044 
+Motor Vehicle Account, State Transportation Fund 
+- 
+1,597 
+1,599 
+0080 
+Childhood Lead Poisoning Prevention Fund 
+- 
+1,492 
+1,494 
+0106 
+Department of Pesticide Regulation Fund 
+- 
+307 
+308 
+0115 
+Air Pollution Control Fund 
+- 
+268 
+268 
+0272 
+Infant Botulism Treatment and Prevention Fund 
+- 
+13,839 
+18,045 
+0557 
+Toxic Substances Control Account 
+- 
+76 
+76 
+0890 
+Federal Trust Fund 
+- 
+1,236 
+6,183 
+0995 
+Reimbursements 
+- 
+2,772 
+2,777 
+3114 
+Birth Defects Monitoring Program Fund 
+- 
+15 
+15 
+Totals, State Operations 
+$- 
+$68,492 
+$77,726 
+PROGRAM REQUIREMENTS 
+4050 
+LICENSING AND CERTIFICATION 
+State Operations: 
+2024-25 GOVERNOR'S BUDGET — HHS 10
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+ 
+ 
+2022-23* 
+2023-24* 
+2024-25* 
+0001 
+General Fund 
+$12,552 
+$29,030 
+$17,392 
+0076 
+Tissue Bank License Fund 
+463 
+1,670 
+1,675 
+0098 
+Clinical Laboratory Improvement Fund 
+13,081 
+16,579 
+16,607 
+0890 
+Federal Trust Fund 
+109,079 
+141,330 
+132,387 
+0942 
+Special Deposit Fund 
+4,036 
+3,437 
+3,441 
+0995 
+Reimbursements 
+6,475 
+15,614 
+15,693 
+3098 
+State Department of Public Health Licensing and Certification Program Fund 
+263,399 
+307,830 
+313,813 
+Totals, State Operations 
+$409,085 
+$515,490 
+$501,008 
+Local Assistance: 
+0942 
+Special Deposit Fund 
+$3,979 
+$5,575 
+$5,575 
+3098 
+State Department of Public Health Licensing and Certification Program Fund 
+- 
+45 
+45 
+Totals, Local Assistance 
+$3,979 
+$5,620 
+$5,620 
+SUBPROGRAM REQUIREMENTS 
+4050010 
+Health Facilities 
+State Operations: 
+0001 
+General Fund 
+$10,363 
+$9,960 
+$4,969 
+0890 
+Federal Trust Fund 
+107,613 
+139,335 
+130,189 
+0942 
+Special Deposit Fund 
+4,036 
+3,437 
+3,441 
+0995 
+Reimbursements 
+6,475 
+15,614 
+15,693 
+3098 
+State Department of Public Health Licensing and Certification Program Fund 
+263,399 
+307,830 
+313,813 
+Totals, State Operations 
+$391,886 
+$476,176 
+$468,105 
+Local Assistance: 
+0942 
+Special Deposit Fund 
+$3,979 
+$5,575 
+$5,575 
+3098 
+State Department of Public Health Licensing and Certification Program Fund 
+- 
+45 
+45 
+Totals, Local Assistance 
+$3,979 
+$5,620 
+$5,620 
+SUBPROGRAM REQUIREMENTS 
+4050019 
+Laboratory Field Services 
+State Operations: 
+0001 
+General Fund 
+$2,189 
+$19,070 
+$12,423 
+0076 
+Tissue Bank License Fund 
+463 
+1,670 
+1,675 
+0098 
+Clinical Laboratory Improvement Fund 
+13,081 
+16,579 
+16,607 
+0890 
+Federal Trust Fund 
+1,466 
+1,995 
+2,198 
+Totals, State Operations 
+$17,199 
+$39,314 
+$32,903 
+SUBPROGRAM REQUIREMENTS 
+9900100 
+Administration 
+State Operations: 
+0001 
+General Fund 
+$109,784 
+$107,542 
+$106,315 
+Totals, State Operations 
+$109,784 
+$107,542 
+$106,315 
+SUBPROGRAM REQUIREMENTS 
+9900200 
+Administration - Distributed 
+State Operations: 
+0001 
+General Fund 
+-$109,784 
+-$107,542 
+-$106,315 
+Totals, State Operations 
+-$109,784 
+-$107,542 
+-$106,315 
+TOTALS, EXPENDITURES 
+State Operations 
+2,860,728 
+2,480,177 
+1,836,461 
+Local Assistance 
+3,007,013 
+3,722,335 
+3,134,707 
+Totals, Expenditures 
+$5,867,741 
+$6,202,512 
+$4,971,168 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 11
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+† Fiscal year 2022-23 budget display reflects the best available information for use in decision-making for this department and/
+or these fund(s). Additional review and reconciliation of 2022-23 ending fund balances will occur in the spring to evaluate if a 
+budget adjustment is required. 
+EXPENDITURES BY CATEGORY † 
+1 State Operations 
+Positions 
+Expenditures 
+ 
+2022-23 
+2023-24 
+2024-25 
+2022-23* 
+2023-24* 
+2024-25* 
+PERSONAL SERVICES 
+Baseline Positions 
+5,035.0 
+5,084.0 
+5,084.0 
+$467,181 
+$472,893 
+$473,158 
+Other Adjustments 
+-894.6 
+55.6 
+81.4 
+-65,611 
+24,965 
+28,115 
+Net Totals, Salaries and Wages 
+4,140.4 
+5,139.6 
+5,165.4 
+$401,570 
+$497,858 
+$501,273 
+Staff Benefits 
+- 
+- 
+- 
+250,892 
+259,101 
+264,989 
+Totals, Personal Services 
+4,140.4 
+5,139.6 
+5,165.4 
+$652,462 
+$756,959 
+$766,262 
+OPERATING EXPENSES AND EQUIPMENT 
+$2,208,331 
+$1,723,283 
+$1,070,264 
+SPECIAL ITEMS OF EXPENSES 
+-65 
+-65 
+-65 
+TOTALS, POSITIONS AND EXPENDITURES, ALL 
+FUNDS (State Operations) 
+$2,860,728 
+$2,480,177 
+$1,836,461 
+2 Local Assistance 
+Expenditures 
+ 
+2022-23* 
+2023-24* 
+2024-25* 
+Goods - Other 
+$33,962 
+$26,806 
+$17,651 
+Grants and Subventions - Governmental 
+2,973,051 
+3,695,529 
+3,117,056 
+TOTALS, EXPENDITURES, ALL FUNDS (Local Assistance) 
+$3,007,013 
+$3,722,335 
+$3,134,707 
+† Fiscal year 2022-23 budget display reflects the best available information for use in decision-making for this department and/
+or these fund(s). Additional review and reconciliation of 2022-23 ending fund balances will occur in the spring to evaluate if a 
+budget adjustment is required. 
+DETAIL OF APPROPRIATIONS AND ADJUSTMENTS † 
+1   STATE OPERATIONS 
+2022-23* 
+2023-24* 
+2024-25* 
+0001   General Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$488,442 
+$593,098 
+$428,757 
+Allocation for Employee Compensation 
+- 
+4,538 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-263 
+- 
+Allocation for Staff Benefits 
+- 
+2,377 
+- 
+COVID-19 Website Information Technology Reversion 
+- 
+-900 
+- 
+Climate and Health Surveillance Program Reversion 
+- 
+-3,085 
+- 
+Control Section 19.56 Administrative Workload Allocation 
+- 
+101 
+- 
+Miscellaneous Baseline Adjustment per Provision 5(b) of Item 4265-001-0001 of the 
+2023 Budget Act for IT, Data Science, and Informatics Framework Planning Activities 
+- 
+7,221 
+- 
+Technical Adjustment to 2021 Allocation for Other Post-Employment Benefits 
+- 
+686 
+- 
+003 Budget Act appropriation 
+8,727 
+10,450 
+10,426 
+Lease Revenue Debt Service Adjustments 
+- 
+-44 
+- 
+004 Budget Act appropriation (transfer to Licensing and Certification Fund) 
+3,700 
+3,700 
+3,700 
+012 Budget Act appropriation (transfer to the Transgender Wellness and Equity Fund) 
+2,728 
+- 
+- 
+Prior Year Balances Available: 
+Chapter 10, Statutes of 2021 
+835 
+- 
+- 
+Item 4265-001-0001, Budget Act of 2019 
+3,075 
+525 
+- 
+2024-25 GOVERNOR'S BUDGET — HHS 12
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+1   STATE OPERATIONS 
+2022-23* 
+2023-24* 
+2024-25* 
+Item 4265-001-0001, Budget Act of 2020 
+-1,806 
+50,921 
+- 
+Item 4265-001-0001, Budget Act of 2021 as reappropriated by Item 4265-491, Budget 
+Act of 2022 
+-17,954 
+45,310 
+- 
+Item 4265-001-0001, Budget Act of 2022 
+- 
+208,555 
+- 
+Totals Available 
+$487,747 
+$923,190 
+$442,883 
+Unexpended balance, estimated savings 
+- 
+-52,621 
+- 
+TOTALS, EXPENDITURES 
+$487,747 
+$870,569 
+$442,883 
+0007   Breast Cancer Research Account, Breast Cancer Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$2,095 
+$718 
+$587 
+Totals Available 
+$2,095 
+$718 
+$587 
+Unexpended balance, estimated savings 
+- 
+-333 
+- 
+TOTALS, EXPENDITURES 
+$2,095 
+$385 
+$587 
+0029   Nuclear Planning Assessment Special Account 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$762 
+$1,078 
+$1,091 
+Allocation for Employee Compensation 
+- 
+6 
+- 
+Allocation for Staff Benefits 
+- 
+3 
+- 
+Totals Available 
+$762 
+$1,087 
+$1,091 
+TOTALS, EXPENDITURES 
+$762 
+$1,087 
+$1,091 
+0044   Motor Vehicle Account, State Transportation Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$1,184 
+$1,584 
+$1,599 
+Allocation for Employee Compensation 
+- 
+9 
+- 
+Allocation for Staff Benefits 
+- 
+4 
+- 
+003 Budget Act appropriation 
+107 
+125 
+124 
+Lease Revenue Debt Service Adjustments 
+- 
+-1 
+- 
+Totals Available 
+$1,291 
+$1,721 
+$1,723 
+TOTALS, EXPENDITURES 
+$1,291 
+$1,721 
+$1,723 
+0066   Sale of Tobacco to Minors Control Account 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$2,022 
+$3,048 
+$3,059 
+Allocation for Employee Compensation 
+- 
+7 
+- 
+Allocation for Staff Benefits 
+- 
+3 
+- 
+003 Budget Act appropriation 
+3 
+4 
+4 
+Totals Available 
+$2,025 
+$3,062 
+$3,063 
+TOTALS, EXPENDITURES 
+$2,025 
+$3,062 
+$3,063 
+Less funding provided by Federal Trust Fund (in DHCS) 
+-2,000 
+-2,000 
+-2,000 
+NET TOTALS, EXPENDITURES 
+$25 
+$1,062 
+$1,063 
+0070   Occupational Lead Poisoning Prevention Account 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$1,574 
+$3,978 
+$4,072 
+Allocation for Employee Compensation 
+- 
+55 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-3 
+- 
+Allocation for Staff Benefits 
+- 
+29 
+- 
+003 Budget Act appropriation 
+169 
+196 
+195 
+Lease Revenue Debt Service Adjustments 
+- 
+-1 
+- 
+Totals Available 
+$1,743 
+$4,254 
+$4,267 
+Unexpended balance, estimated savings 
+- 
+-1,654 
+-1,167 
+TOTALS, EXPENDITURES 
+$1,743 
+$2,600 
+$3,100 
+0074   Medical Waste Management Fund 
+APPROPRIATIONS 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 13
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+1   STATE OPERATIONS 
+2022-23* 
+2023-24* 
+2024-25* 
+001 Budget Act appropriation 
+$2,909 
+$3,180 
+$3,276 
+Allocation for Employee Compensation 
+- 
+56 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-1 
+- 
+Allocation for Staff Benefits 
+- 
+31 
+- 
+Totals Available 
+$2,909 
+$3,266 
+$3,276 
+TOTALS, EXPENDITURES 
+$2,909 
+$3,266 
+$3,276 
+0075   Radiation Control Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$29,356 
+$31,272 
+$31,825 
+Allocation for Employee Compensation 
+- 
+327 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-18 
+- 
+Allocation for Staff Benefits 
+- 
+174 
+- 
+003 Budget Act appropriation 
+67 
+77 
+77 
+Totals Available 
+$29,423 
+$31,832 
+$31,902 
+TOTALS, EXPENDITURES 
+$29,423 
+$31,832 
+$31,902 
+0076   Tissue Bank License Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$436 
+$1,597 
+$1,643 
+Allocation for Employee Compensation 
+- 
+27 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-1 
+- 
+Allocation for Staff Benefits 
+- 
+15 
+- 
+003 Budget Act appropriation 
+27 
+32 
+32 
+Totals Available 
+$463 
+$1,670 
+$1,675 
+TOTALS, EXPENDITURES 
+$463 
+$1,670 
+$1,675 
+0080   Childhood Lead Poisoning Prevention Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$12,898 
+$17,170 
+$17,656 
+Allocation for Employee Compensation 
+- 
+287 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-16 
+- 
+Allocation for Staff Benefits 
+- 
+151 
+- 
+003 Budget Act appropriation 
+748 
+864 
+862 
+Lease Revenue Debt Service Adjustments 
+- 
+-3 
+- 
+Totals Available 
+$13,646 
+$18,453 
+$18,518 
+TOTALS, EXPENDITURES 
+$13,646 
+$18,453 
+$18,518 
+0082   Export Document Program Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$412 
+$624 
+$706 
+Allocation for Employee Compensation 
+- 
+28 
+- 
+Allocation for Staff Benefits 
+- 
+17 
+- 
+Totals Available 
+$412 
+$669 
+$706 
+Unexpended balance, estimated savings 
+- 
+-100 
+- 
+TOTALS, EXPENDITURES 
+$412 
+$569 
+$706 
+0098   Clinical Laboratory Improvement Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$12,676 
+$15,643 
+$16,141 
+Allocation for Employee Compensation 
+- 
+317 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-18 
+- 
+Allocation for Staff Benefits 
+- 
+171 
+- 
+003 Budget Act appropriation 
+405 
+467 
+466 
+Lease Revenue Debt Service Adjustments 
+- 
+-1 
+- 
+Totals Available 
+$13,081 
+$16,579 
+$16,607 
+TOTALS, EXPENDITURES 
+$13,081 
+$16,579 
+$16,607 
+2024-25 GOVERNOR'S BUDGET — HHS 14
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+1   STATE OPERATIONS 
+2022-23* 
+2023-24* 
+2024-25* 
+0099   Health Statistics Special Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$20,618 
+$31,852 
+$33,176 
+Allocation for Employee Compensation 
+- 
+783 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-54 
+- 
+Allocation for Staff Benefits 
+- 
+418 
+- 
+Totals Available 
+$20,618 
+$32,999 
+$33,176 
+TOTALS, EXPENDITURES 
+$20,618 
+$32,999 
+$33,176 
+0106   Department of Pesticide Regulation Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$244 
+$304 
+$308 
+Allocation for Employee Compensation 
+- 
+2 
+- 
+Allocation for Staff Benefits 
+- 
+1 
+- 
+003 Budget Act appropriation 
+47 
+55 
+55 
+Totals Available 
+$291 
+$362 
+$363 
+TOTALS, EXPENDITURES 
+$291 
+$362 
+$363 
+0115   Air Pollution Control Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$257 
+$265 
+$268 
+Allocation for Employee Compensation 
+- 
+2 
+- 
+Allocation for Staff Benefits 
+- 
+1 
+- 
+003 Budget Act appropriation 
+45 
+52 
+52 
+Totals Available 
+$302 
+$320 
+$320 
+TOTALS, EXPENDITURES 
+$302 
+$320 
+$320 
+0177   Food Safety Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$10,473 
+$12,185 
+$13,202 
+Allocation for Employee Compensation 
+- 
+568 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-10 
+- 
+Allocation for Staff Benefits 
+- 
+343 
+- 
+003 Budget Act appropriation 
+50 
+58 
+58 
+Totals Available 
+$10,523 
+$13,144 
+$13,260 
+Unexpended balance, estimated savings 
+- 
+-1,000 
+- 
+TOTALS, EXPENDITURES 
+$10,523 
+$12,144 
+$13,260 
+0203   Genetic Disease Testing Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$30,566 
+$35,895 
+$36,594 
+Allocation for Employee Compensation 
+- 
+421 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-27 
+- 
+Allocation for Staff Benefits 
+- 
+217 
+- 
+003 Budget Act appropriation 
+1,402 
+1,620 
+1,616 
+Lease Revenue Debt Service Adjustments 
+- 
+-7 
+- 
+017 Budget Act appropriation 
+551 
+551 
+551 
+Totals Available 
+$32,519 
+$38,670 
+$38,761 
+TOTALS, EXPENDITURES 
+$32,519 
+$38,670 
+$38,761 
+0231   Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$20,791 
+$23,192 
+$21,214 
+Allocation for Employee Compensation 
+- 
+80 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-7 
+- 
+Allocation for Staff Benefits 
+- 
+41 
+- 
+TOTALS, EXPENDITURES 
+$20,791 
+$23,306 
+$21,214 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 15
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+1   STATE OPERATIONS 
+2022-23* 
+2023-24* 
+2024-25* 
+0234   Research Account, Cigarette and Tobacco Products Surtax Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$2,768 
+$4,248 
+$3,976 
+Allocation for Employee Compensation 
+- 
+18 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-1 
+- 
+Allocation for Staff Benefits 
+- 
+9 
+- 
+003 Budget Act appropriation 
+22 
+26 
+27 
+Totals Available 
+$2,790 
+$4,300 
+$4,003 
+TOTALS, EXPENDITURES 
+$2,790 
+$4,300 
+$4,003 
+0236   Unallocated Account, Cigarette and Tobacco Products Surtax Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$1,860 
+$1,679 
+$1,768 
+Allocation for Employee Compensation 
+- 
+66 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-4 
+- 
+Allocation for Staff Benefits 
+- 
+36 
+- 
+003 Budget Act appropriation 
+30 
+36 
+35 
+Lease Revenue Debt Service Adjustments 
+- 
+-1 
+- 
+Totals Available 
+$1,890 
+$1,812 
+$1,803 
+TOTALS, EXPENDITURES 
+$1,890 
+$1,812 
+$1,803 
+0272   Infant Botulism Treatment and Prevention Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$6,412 
+$13,922 
+$18,160 
+Allocation for Employee Compensation 
+- 
+21 
+- 
+Allocation for Staff Benefits 
+- 
+11 
+- 
+003 Budget Act appropriation 
+102 
+119 
+118 
+Lease Revenue Debt Service Adjustments 
+- 
+-1 
+- 
+Totals Available 
+$6,514 
+$14,072 
+$18,278 
+TOTALS, EXPENDITURES 
+$6,514 
+$14,072 
+$18,278 
+0279   Child Health and Safety Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$9 
+$25 
+$25 
+Totals Available 
+$9 
+$25 
+$25 
+TOTALS, EXPENDITURES 
+$9 
+$25 
+$25 
+0335   Registered Environmental Health Specialist Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$438 
+$503 
+$510 
+Allocation for Employee Compensation 
+- 
+4 
+- 
+Allocation for Staff Benefits 
+- 
+2 
+- 
+Totals Available 
+$438 
+$509 
+$510 
+TOTALS, EXPENDITURES 
+$438 
+$509 
+$510 
+0367   Indian Gaming Special Distribution Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$4,064 
+$4,497 
+$4,519 
+Allocation for Employee Compensation 
+- 
+12 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-1 
+- 
+Allocation for Staff Benefits 
+- 
+6 
+- 
+Totals Available 
+$4,064 
+$4,514 
+$4,519 
+TOTALS, EXPENDITURES 
+$4,064 
+$4,514 
+$4,519 
+0478   Vectorborne Disease Account 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$141 
+$209 
+$195 
+Allocation for Employee Compensation 
+- 
+3 
+- 
+2024-25 GOVERNOR'S BUDGET — HHS 16
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+1   STATE OPERATIONS 
+2022-23* 
+2023-24* 
+2024-25* 
+Allocation for Staff Benefits 
+- 
+1 
+- 
+TOTALS, EXPENDITURES 
+$141 
+$213 
+$195 
+0557   Toxic Substances Control Account 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$219 
+$432 
+$434 
+Allocation for Employee Compensation 
+- 
+1 
+- 
+Allocation for Staff Benefits 
+- 
+1 
+- 
+003 Budget Act appropriation 
+132 
+152 
+152 
+Lease Revenue Debt Service Adjustments 
+- 
+-1 
+- 
+Totals Available 
+$351 
+$585 
+$586 
+TOTALS, EXPENDITURES 
+$351 
+$585 
+$586 
+0642   Domestic Violence Training and Education Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$137 
+$385 
+$409 
+Allocation for Employee Compensation 
+- 
+15 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-1 
+- 
+Allocation for Staff Benefits 
+- 
+7 
+- 
+Totals Available 
+$137 
+$406 
+$409 
+TOTALS, EXPENDITURES 
+$137 
+$406 
+$409 
+0823   California Alzheimers Disease and Related Disorders Research Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$124 
+$186 
+$193 
+Allocation for Employee Compensation 
+- 
+4 
+- 
+Allocation for Staff Benefits 
+- 
+2 
+- 
+Totals Available 
+$124 
+$192 
+$193 
+TOTALS, EXPENDITURES 
+$124 
+$192 
+$193 
+0890   Federal Trust Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$406,020 
+$505,878 
+$491,593 
+Allocation for Employee Compensation 
+- 
+7,508 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-414 
+- 
+Allocation for Staff Benefits 
+- 
+3,905 
+- 
+Totals Available 
+$406,020 
+$516,877 
+$491,593 
+TOTALS, EXPENDITURES 
+$406,020 
+$516,877 
+$491,593 
+0942   Special Deposit Fund 
+APPROPRIATIONS 
+002 Budget Act appropriation (Health Facilities Citation Penalties Account) 
+$360 
+$2,144 
+$2,144 
+004 Budget Act appropriation (Internal Departmental Quality Improvement Account) 
+3,676 
+687 
+718 
+Allocation for Employee Compensation 
+- 
+20 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-1 
+- 
+Allocation for Staff Benefits 
+- 
+10 
+- 
+005 Budget Act appropriation (Federal Citation Penalties Account) 
+- 
+565 
+579 
+Allocation for Employee Compensation 
+- 
+8 
+- 
+Allocation for Staff Benefits 
+- 
+4 
+- 
+Totals Available 
+$4,036 
+$3,437 
+$3,441 
+TOTALS, EXPENDITURES 
+$4,036 
+$3,437 
+$3,441 
+0995   Reimbursements 
+APPROPRIATIONS 
+Reimbursements 
+$293,359 
+$438,799 
+$264,932 
+TOTALS, EXPENDITURES 
+$293,359 
+$438,799 
+$264,932 
+3018   Drug and Device Safety Fund 
+APPROPRIATIONS 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 17
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+1   STATE OPERATIONS 
+2022-23* 
+2023-24* 
+2024-25* 
+001 Budget Act appropriation 
+$6,624 
+$7,873 
+$7,461 
+Allocation for Employee Compensation 
+- 
+342 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-6 
+- 
+Allocation for Staff Benefits 
+- 
+214 
+- 
+Totals Available 
+$6,624 
+$8,423 
+$7,461 
+TOTALS, EXPENDITURES 
+$6,624 
+$8,423 
+$7,461 
+3080   AIDS Drug Assistance Program Rebate Fund 
+APPROPRIATIONS 
+Health and Safety Code section 120956 
+$12,110 
+$12,246 
+$12,563 
+Allocation for Employee Compensation 
+- 
+187 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-14 
+- 
+Allocation for Staff Benefits 
+- 
+96 
+- 
+Totals Available 
+$12,110 
+$12,515 
+$12,563 
+TOTALS, EXPENDITURES 
+$12,110 
+$12,515 
+$12,563 
+3081   Cannery Inspection Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$4,344 
+$4,342 
+$4,511 
+Allocation for Employee Compensation 
+- 
+93 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-1 
+- 
+Allocation for Staff Benefits 
+- 
+59 
+- 
+TOTALS, EXPENDITURES 
+$4,344 
+$4,493 
+$4,511 
+3085   Mental Health Services Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+- 
+$2,598 
+$2,767 
+Allocation for Employee Compensation 
+- 
+98 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-5 
+- 
+Allocation for Staff Benefits 
+- 
+52 
+- 
+Prior Year Balances Available: 
+Item 4265-001-3085, Budget Act of 2018 as reappropriated by Item 4265-491, Budget 
+Act of 2022 
+1,953 
+- 
+- 
+Totals Available 
+$1,953 
+$2,743 
+$2,767 
+TOTALS, EXPENDITURES 
+$1,953 
+$2,743 
+$2,767 
+3098   State Department of Public Health Licensing and Certification Program 
+Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$266,817 
+$300,211 
+$317,188 
+Allocation for Employee Compensation 
+- 
+7,473 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-354 
+- 
+Allocation for Staff Benefits 
+- 
+3,876 
+- 
+003 Budget Act appropriation 
+282 
+325 
+325 
+Lease Revenue Debt Service Adjustments 
+- 
+-1 
+- 
+Totals Available 
+$267,099 
+$311,530 
+$317,513 
+TOTALS, EXPENDITURES 
+$267,099 
+$311,530 
+$317,513 
+Less funding provided by General Fund 
+-3,700 
+-3,700 
+-3,700 
+NET TOTALS, EXPENDITURES 
+$263,399 
+$307,830 
+$313,813 
+3110   Gambling Addiction Program Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$150 
+$150 
+$150 
+TOTALS, EXPENDITURES 
+$150 
+$150 
+$150 
+3114   Birth Defects Monitoring Program Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$2,226 
+$2,459 
+$2,482 
+2024-25 GOVERNOR'S BUDGET — HHS 18
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+1   STATE OPERATIONS 
+2022-23* 
+2023-24* 
+2024-25* 
+Allocation for Employee Compensation 
+- 
+13 
+- 
+Allocation for Staff Benefits 
+- 
+7 
+- 
+003 Budget Act appropriation 
+84 
+97 
+97 
+Totals Available 
+$2,310 
+$2,576 
+$2,579 
+TOTALS, EXPENDITURES 
+$2,310 
+$2,576 
+$2,579 
+3155   Lead-Related Construction Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$914 
+$1,322 
+$1,361 
+Allocation for Employee Compensation 
+- 
+23 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-2 
+- 
+Allocation for Staff Benefits 
+- 
+12 
+- 
+003 Budget Act appropriation 
+34 
+41 
+40 
+Lease Revenue Debt Service Adjustments 
+- 
+-2 
+- 
+Totals Available 
+$948 
+$1,394 
+$1,401 
+TOTALS, EXPENDITURES 
+$948 
+$1,394 
+$1,401 
+3237   Cost of Implementation Account, Air Pollution Control Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$401 
+$400 
+$410 
+Allocation for Employee Compensation 
+- 
+6 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-1 
+- 
+Allocation for Staff Benefits 
+- 
+3 
+- 
+TOTALS, EXPENDITURES 
+$401 
+$408 
+$410 
+3288   Cannabis Control Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$467 
+$601 
+$601 
+Totals Available 
+$467 
+$601 
+$601 
+TOTALS, EXPENDITURES 
+$467 
+$601 
+$601 
+3307   State Dental Program Account, California Healthcare, Research and 
+Prevention Tobacco Tax Act of 2016 Fund 
+APPROPRIATIONS 
+Revenue and Taxation Code section 30130.57(d) and (f) 
+$5,603 
+$8,000 
+$15,866 
+Allocation for Employee Compensation 
+- 
+79 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-6 
+- 
+Allocation for Staff Benefits 
+- 
+41 
+- 
+Totals Available 
+$5,603 
+$8,114 
+$15,866 
+TOTALS, EXPENDITURES 
+$5,603 
+$8,114 
+$15,866 
+3318   Department of Public Health Subaccount, Tobacco Law Enforcement 
+Account, CA Healthcare, Research and Prevention Tobacco Tax Act of 2016 Fund 
+APPROPRIATIONS 
+Revenue and Taxation Code section 30130.57(e)(3) and (f) 
+$6,397 
+$4,647 
+$4,071 
+Allocation for Employee Compensation 
+- 
+6 
+- 
+Allocation for Staff Benefits 
+- 
+3 
+- 
+Totals Available 
+$6,397 
+$4,656 
+$4,071 
+TOTALS, EXPENDITURES 
+$6,397 
+$4,656 
+$4,071 
+3322   Department of Public Health Subaccount, Tobacco Prevention and Control 
+Programs Account, CA Healthcare, Research and Prevention Tobacco Tax Act of 
+2016 Fund 
+APPROPRIATIONS 
+Revenue and Taxation Code section 30130.55(b)(1) and 30130.57(f) 
+$48,729 
+$40,623 
+$45,339 
+Allocation for Employee Compensation 
+- 
+124 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-11 
+- 
+Allocation for Staff Benefits 
+- 
+63 
+- 
+Totals Available 
+$48,729 
+$40,799 
+$45,339 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 19
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+1   STATE OPERATIONS 
+2022-23* 
+2023-24* 
+2024-25* 
+TOTALS, EXPENDITURES 
+$48,729 
+$40,799 
+$45,339 
+3385   Transgender, Gender Nonconforming, and Intersex (TGI) Wellness and 
+Equity Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$271 
+- 
+- 
+Totals Available 
+$271 
+- 
+- 
+TOTALS, EXPENDITURES 
+$271 
+- 
+- 
+Less funding provided by General Fund 
+-2,728 
+2,457 
+- 
+NET TOTALS, EXPENDITURES 
+-$2,457 
+$2,457 
+- 
+3396   Industrial Hemp Enrollment and Oversight Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+- 
+$1,253 
+$2,113 
+Allocation for Employee Compensation 
+- 
+64 
+- 
+Allocation for Other Post-Employment Benefits 
+- 
+-1 
+- 
+Allocation for Staff Benefits 
+- 
+38 
+- 
+Totals Available 
+- 
+$1,354 
+$2,113 
+Unexpended balance, estimated savings 
+- 
+-1,354 
+- 
+TOTALS, EXPENDITURES 
+- 
+- 
+$2,113 
+3397   Opioid Settlements Fund 
+APPROPRIATIONS 
+001 Budget Act appropriation 
+$8,221 
+$2,104 
+$2,104 
+Prior Year Balances Available: 
+Item 4265-001-3317, Budget Act of 2022 
+- 
+37,579 
+- 
+Totals Available 
+$8,221 
+$39,683 
+$2,104 
+TOTALS, EXPENDITURES 
+$8,221 
+$39,683 
+$2,104 
+3398   California Emergency Relief Fund 
+APPROPRIATIONS 
+021 Budget Act appropriation 
+$942,364 
+- 
+- 
+Prior Year Balances Available: 
+Item 4265-021-3398, Budget Act of 2021 as added by Chapter 2, Statutes of 2022 
+200,651 
+- 
+- 
+Totals Available 
+$1,143,015 
+- 
+- 
+TOTALS, EXPENDITURES 
+$1,143,015 
+- 
+- 
+Total Expenditures, All Funds, (State Operations) 
+$2,860,728 
+$2,480,177 
+$1,836,461 
+2   LOCAL ASSISTANCE 
+2022-23* 
+2023-24* 
+2024-25* 
+0001   General Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$291,955 
+$380,821 
+$372,434 
+Adjustment to Reflect Support for ELAWC “Promotora” (Community Health Worker) 
+Program, Pursuant to Control Section 19.565 of the 2023 Budget Act (Chapter 189, 
+Statutes of 2023) 
+- 
+200 
+- 
+Adjustment to Reflect Support for Expanded Programs to Address the Fentanyl 
+Epidemic Pursuant to Control Section 19.565 of the 2023 Budget Act (Chapter 189, 
+Statutes of 2023) 
+- 
+1,000 
+- 
+Adjustment to Reflect Support for Kern County Fentanyl Awareness Campaign 
+Pursuant to Control Section 19.565 of the 2023 Budget Act (Chapter 189, Statutes of 
+2023) 
+- 
+500 
+- 
+Adjustment to Reflect Support for Meadowview Community Mental Health Support 
+Center Pursuant to Control Section 19.565 of the 2023 Budget Act (Chapter 189, 
+Statutes of 2023) 
+- 
+300 
+- 
+Adjustment to Reflect Support for Mendonoma Mobile Health Clinic, Pursuant to 
+Control Section 19.563 of the 2023 Budget Act (Chapter 189, Statutes of 2023) 
+- 
+350 
+- 
+Adjustment to Reflect Support for San Fernando Community Health Center— Corazon 
+del Valle II Project Pursuant to Control Section 19.565 of the 2023 Budget Act 
+(Chapter 189, Statutes of 2023) 
+- 
+2,000 
+- 
+2024-25 GOVERNOR'S BUDGET — HHS 20
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2   LOCAL ASSISTANCE 
+2022-23* 
+2023-24* 
+2024-25* 
+Adjustment to Reflect Support for a Postpartum Home Visitation Program in the 
+Counties of Santa Barbara, Ventura, and San Luis Obispo Pursuant to Control Section 
+19.565 of the 2023 Budget Act (Chapter 189, Statutes of 2023) 
+- 
+590 
+- 
+112 Budget Act appropriation (transfer to the Transgender Wellness and Equity Fund) 
+10,272 
+- 
+- 
+Prior Year Balances Available: 
+Chapter 10, Statutes of 2021 
+519 
+- 
+- 
+Item 4265-111-0001, Budget Act of 2019 
+6,292 
+13,431 
+- 
+Item 4265-111-0001, Budget Act of 2021 
+5,654 
+40,325 
+- 
+Item 4265-111-0001, Budget Act of 2022 
+- 
+197,669 
+- 
+Totals Available 
+$314,692 
+$637,186 
+$372,434 
+TOTALS, EXPENDITURES 
+$314,692 
+$637,186 
+$372,434 
+0080   Childhood Lead Poisoning Prevention Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$15,600 
+$29,404 
+$29,404 
+Totals Available 
+$15,600 
+$29,404 
+$29,404 
+TOTALS, EXPENDITURES 
+$15,600 
+$29,404 
+$29,404 
+0099   Health Statistics Special Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+- 
+$510 
+$510 
+Totals Available 
+- 
+$510 
+$510 
+TOTALS, EXPENDITURES 
+- 
+$510 
+$510 
+0143   California Health Data and Planning Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$240 
+$240 
+$240 
+TOTALS, EXPENDITURES 
+$240 
+$240 
+$240 
+0177   Food Safety Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+- 
+$45 
+$45 
+Totals Available 
+- 
+$45 
+$45 
+TOTALS, EXPENDITURES 
+- 
+$45 
+$45 
+0203   Genetic Disease Testing Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$129,769 
+$149,542 
+$142,784 
+GDSP November Estimate 
+- 
+-20,442 
+- 
+Totals Available 
+$129,769 
+$129,100 
+$142,784 
+TOTALS, EXPENDITURES 
+$129,769 
+$129,100 
+$142,784 
+0231   Health Education Account, Cigarette and Tobacco Products Surtax Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$16,526 
+$19,800 
+$17,826 
+TOTALS, EXPENDITURES 
+$16,526 
+$19,800 
+$17,826 
+0279   Child Health and Safety Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$476 
+$526 
+$526 
+Totals Available 
+$476 
+$526 
+$526 
+TOTALS, EXPENDITURES 
+$476 
+$526 
+$526 
+0367   Indian Gaming Special Distribution Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$4,000 
+$4,000 
+$4,000 
+TOTALS, EXPENDITURES 
+$4,000 
+$4,000 
+$4,000 
+0642   Domestic Violence Training and Education Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$158 
+$300 
+$300 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 21
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2   LOCAL ASSISTANCE 
+2022-23* 
+2023-24* 
+2024-25* 
+Totals Available 
+$158 
+$300 
+$300 
+TOTALS, EXPENDITURES 
+$158 
+$300 
+$300 
+0823   California Alzheimers Disease and Related Disorders Research Fund 
+APPROPRIATIONS 
+111 Budget Act Appropriation 
+$494 
+$494 
+$494 
+TOTALS, EXPENDITURES 
+$494 
+$494 
+$494 
+0890   Federal Trust Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$1,812,280 
+$1,743,616 
+$1,708,980 
+AIDS Drug Assistance Program Estimate 
+- 
+6,191 
+- 
+WIC November Estimate 
+- 
+34,856 
+- 
+Totals Available 
+$1,812,280 
+$1,784,663 
+$1,708,980 
+TOTALS, EXPENDITURES 
+$1,812,280 
+$1,784,663 
+$1,708,980 
+0942   Special Deposit Fund 
+APPROPRIATIONS 
+115 Budget Act appropriation (Federal Citation Penalties Account) 
+$3,979 
+$5,575 
+$5,575 
+Totals Available 
+$3,979 
+$5,575 
+$5,575 
+TOTALS, EXPENDITURES 
+$3,979 
+$5,575 
+$5,575 
+0995   Reimbursements 
+APPROPRIATIONS 
+Reimbursements 
+$225,438 
+$574,910 
+$311,045 
+TOTALS, EXPENDITURES 
+$225,438 
+$574,910 
+$311,045 
+3023   WIC Manufacturer Rebate Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+$194,081 
+$217,313 
+$190,373 
+WIC November Estimate 
+- 
+-27,697 
+- 
+Totals Available 
+$194,081 
+$189,616 
+$190,373 
+TOTALS, EXPENDITURES 
+$194,081 
+$189,616 
+$190,373 
+3080   AIDS Drug Assistance Program Rebate Fund 
+APPROPRIATIONS 
+Health and Safety Code section 120956 
+$228,632 
+$295,940 
+$260,794 
+AIDS Drug Assistance Program Estimate 
+- 
+-50,309 
+- 
+Totals Available 
+$228,632 
+$245,631 
+$260,794 
+TOTALS, EXPENDITURES 
+$228,632 
+$245,631 
+$260,794 
+3098   State Department of Public Health Licensing and Certification Program 
+Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+- 
+$45 
+$45 
+Totals Available 
+- 
+$45 
+$45 
+TOTALS, EXPENDITURES 
+- 
+$45 
+$45 
+3110   Gambling Addiction Program Fund 
+APPROPRIATIONS 
+111 Budget Act Appropriation 
+- 
+- 
+$200 
+TOTALS, EXPENDITURES 
+- 
+- 
+$200 
+3307   State Dental Program Account, California Healthcare, Research and 
+Prevention Tobacco Tax Act of 2016 Fund 
+APPROPRIATIONS 
+Revenue and Taxation Code section 30130.57(d) 
+$21,283 
+$24,954 
+$19,234 
+Totals Available 
+$21,283 
+$24,954 
+$19,234 
+TOTALS, EXPENDITURES 
+$21,283 
+$24,954 
+$19,234 
+3322   Department of Public Health Subaccount, Tobacco Prevention and Control 
+Programs Account, CA Healthcare, Research and Prevention Tobacco Tax Act of 
+2016 Fund 
+2024-25 GOVERNOR'S BUDGET — HHS 22
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2   LOCAL ASSISTANCE 
+2022-23* 
+2023-24* 
+2024-25* 
+APPROPRIATIONS 
+Revenue and Taxation Code section 30130.55(b)(1) 
+$49,637 
+$44,418 
+$55,152 
+Totals Available 
+$49,637 
+$44,418 
+$55,152 
+TOTALS, EXPENDITURES 
+$49,637 
+$44,418 
+$55,152 
+3385   Transgender, Gender Nonconforming, and Intersex (TGI) Wellness and 
+Equity Fund 
+TOTALS, EXPENDITURES 
+- 
+- 
+- 
+Less funding provided by General Fund 
+-10,272 
+10,272 
+- 
+NET TOTALS, EXPENDITURES 
+-$10,272 
+$10,272 
+- 
+3397   Opioid Settlements Fund 
+APPROPRIATIONS 
+111 Budget Act appropriation 
+- 
+$20,646 
+$14,746 
+TOTALS, EXPENDITURES 
+- 
+$20,646 
+$14,746 
+Total Expenditures, All Funds, (Local Assistance) 
+$3,007,013 
+$3,722,335 
+$3,134,707 
+TOTALS, EXPENDITURES, ALL FUNDS (State Operations and Local Assistance) 
+$5,867,741 
+$6,202,512 
+$4,971,168 
+† Fiscal year 2022-23 budget display reflects the best available information for use in decision-making for this department and/
+or these fund(s). Additional review and reconciliation of 2022-23 ending fund balances will occur in the spring to evaluate if a 
+budget adjustment is required. 
+FUND CONDITION STATEMENTS † 
+2022-23* 
+2023-24* 
+2024-25* 
+0004   Breast Cancer Fund S 
+BEGINNING BALANCE 
+- 
+$170 
+$190 
+Adjusted Beginning Balance 
+- 
+$170 
+$190 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4110400 Cigarette Tax 
+$9,277 
+8,589 
+8,280 
+4171100 Cost Recoveries - Other 
+- 
+1 
+1 
+Transfers and Other Adjustments 
+Revenue Transfer from the Breast Cancer Fund (0004) to the Breast Cancer Control 
+Account, Breast Cancer Fund (0009) per Revenue and Taxation Code Section 
+30130.54(b) 
+-1,494 
+-1,619 
+-1,488 
+Revenue Transfer from the Breast Cancer Fund (0004) to the Breast Cancer Control 
+Account, Breast Cancer Fund (0009) per Revenue and Taxation Code Section 
+30461.6 
+-5,514 
+-5,184 
+-4,928 
+Revenue Transfer from the Breast Cancer Fund (0004) to the Breast Cancer 
+Research Account, Breast Cancer Fund (0007) per Revenue and Taxation Code 
+Section 30130.54(b) 
+-1,494 
+-1,619 
+-1,488 
+Revenue Transfer from the Breast Cancer Fund (0004) to the Breast Cancer 
+Research Account, Breast Cancer Fund (0007) per Revenue and Taxation Code 
+Section 30461.6 
+-5,514 
+-5,184 
+-4,928 
+Revenue Transfer from California Children and Families First Trust Fund (0623) to 
+Breast Cancer Fund (0004) per HSC 130105 
+2,208 
+2,436 
+2,234 
+Revenue Transfer from the CA Healthcare Research and Prevention Tobacco Tax Act 
+of 2016 Fund (3304) to the Breast Cancer Fund (0004) per RTC 30130.54(b) 
+3,153 
+3,238 
+2,976 
+Total Revenues, Transfers, and Other Adjustments 
+$622 
+$658 
+$659 
+Total Resources 
+$622 
+$828 
+$849 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+7600 California Department of Tax and Fee Administration (State Operations) 
+338 
+588 
+588 
+9892 Supplemental Pension Payments (State Operations) 
+16 
+16 
+14 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+98 
+34 
+57 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 23
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+Total Expenditures and Expenditure Adjustments 
+$452 
+$638 
+$659 
+FUND BALANCE 
+$170 
+$190 
+$190 
+Reserve for economic uncertainties 
+170 
+190 
+190 
+0007   Breast Cancer Research Account, Breast Cancer Fund S 
+BEGINNING BALANCE 
+$18,109 
+$2,231 
+- 
+Prior Year Adjustments 
+-9,301 
+- 
+- 
+Adjusted Beginning Balance 
+$8,808 
+$2,231 
+- 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+462 
+110 
+$110 
+Transfers and Other Adjustments 
+Revenue Transfer from the Breast Cancer Fund (0004) to the Breast Cancer 
+Research Account, Breast Cancer Fund (0007) per Revenue and Taxation Code 
+Section 30130.54(b) 
+1,494 
+1,619 
+1,488 
+Revenue Transfer from the Breast Cancer Fund (0004) to the Breast Cancer 
+Research Account, Breast Cancer Fund (0007) per Revenue and Taxation Code 
+Section 30461.6 
+5,514 
+5,184 
+4,928 
+Total Revenues, Transfers, and Other Adjustments 
+$7,470 
+$6,913 
+$6,526 
+Total Resources 
+$16,278 
+$9,144 
+$6,526 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+2,095 
+385 
+587 
+6440 University of California (State Operations) 
+11,952 
+8,725 
+5,286 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+- 
+34 
+- 
+Total Expenditures and Expenditure Adjustments 
+$14,047 
+$9,144 
+$5,873 
+FUND BALANCE 
+$2,231 
+- 
+$653 
+Reserve for economic uncertainties 
+2,231 
+- 
+653 
+0066   Sale of Tobacco to Minors Control Account S 
+BEGINNING BALANCE 
+$1,356 
+$1,762 
+$1,130 
+Adjusted Beginning Balance 
+$1,356 
+$1,762 
+$1,130 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+13 
+2 
+2 
+4170700 Civil and Criminal Violation Assessment 
+420 
+428 
+428 
+Total Revenues, Transfers, and Other Adjustments 
+$433 
+$430 
+$430 
+Total Resources 
+$1,789 
+$2,192 
+$1,560 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+2,025 
+3,062 
+3,063 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+2 
+- 
+- 
+Less funding provided by Federal Trust Fund (in DHCS) (State Operations) 
+-2,000 
+-2,000 
+-2,000 
+Total Expenditures and Expenditure Adjustments 
+$27 
+$1,062 
+$1,063 
+FUND BALANCE 
+$1,762 
+$1,130 
+$497 
+Reserve for economic uncertainties 
+1,762 
+1,130 
+497 
+0070   Occupational Lead Poisoning Prevention Account S 
+BEGINNING BALANCE 
+$4,174 
+$4,595 
+$3,977 
+Adjusted Beginning Balance 
+$4,174 
+$4,595 
+$3,977 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129200 Other Regulatory Fees 
+3,218 
+3,256 
+3,256 
+4171000 Cost Recoveries - Delinquent Receivables 
+- 
+27 
+27 
+4171400 Escheat - Unclaimed Checks, Warrants, Bonds, and Coupons 
+10 
+8 
+8 
+Total Revenues, Transfers, and Other Adjustments 
+$3,228 
+$3,291 
+$3,291 
+Total Resources 
+$7,402 
+$7,886 
+$7,268 
+2024-25 GOVERNOR'S BUDGET — HHS 24
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+1,743 
+2,600 
+3,100 
+7600 California Department of Tax and Fee Administration (State Operations) 
+915 
+1,153 
+1,160 
+9892 Supplemental Pension Payments (State Operations) 
+82 
+82 
+68 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+67 
+74 
+298 
+Total Expenditures and Expenditure Adjustments 
+$2,807 
+$3,909 
+$4,626 
+FUND BALANCE 
+$4,595 
+$3,977 
+$2,642 
+Reserve for economic uncertainties 
+4,595 
+3,977 
+2,642 
+0074   Medical Waste Management Fund S 
+BEGINNING BALANCE 
+$2,226 
+$2,473 
+$1,995 
+Adjusted Beginning Balance 
+$2,226 
+$2,473 
+$1,995 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129400 Other Regulatory Licenses and Permits 
+3,198 
+3,000 
+3,000 
+4163000 Investment Income - Surplus Money Investments 
+47 
+7 
+7 
+Total Revenues, Transfers, and Other Adjustments 
+$3,245 
+$3,007 
+$3,007 
+Total Resources 
+$5,471 
+$5,480 
+$5,002 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+2,909 
+3,266 
+3,276 
+9892 Supplemental Pension Payments (State Operations) 
+89 
+89 
+75 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+- 
+130 
+76 
+Total Expenditures and Expenditure Adjustments 
+$2,998 
+$3,485 
+$3,427 
+FUND BALANCE 
+$2,473 
+$1,995 
+$1,575 
+Reserve for economic uncertainties 
+2,473 
+1,995 
+1,575 
+0075   Radiation Control Fund S 
+BEGINNING BALANCE 
+$13,310 
+$13,783 
+$11,373 
+Adjusted Beginning Balance 
+$13,310 
+$13,783 
+$11,373 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129400 Other Regulatory Licenses and Permits 
+30,930 
+30,000 
+30,000 
+4163000 Investment Income - Surplus Money Investments 
+351 
+30 
+30 
+Total Revenues, Transfers, and Other Adjustments 
+$31,281 
+$30,030 
+$30,030 
+Total Resources 
+$44,591 
+$43,813 
+$41,403 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+29,423 
+31,832 
+31,902 
+9892 Supplemental Pension Payments (State Operations) 
+608 
+608 
+398 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+777 
+- 
+720 
+Total Expenditures and Expenditure Adjustments 
+$30,808 
+$32,440 
+$33,020 
+FUND BALANCE 
+$13,783 
+$11,373 
+$8,383 
+Reserve for economic uncertainties 
+13,783 
+11,373 
+8,383 
+0076   Tissue Bank License Fund S 
+BEGINNING BALANCE 
+$3,044 
+$3,398 
+$2,783 
+Adjusted Beginning Balance 
+$3,044 
+$3,398 
+$2,783 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129400 Other Regulatory Licenses and Permits 
+790 
+996 
+996 
+4163000 Investment Income - Surplus Money Investments 
+72 
+77 
+77 
+Total Revenues, Transfers, and Other Adjustments 
+$862 
+$1,073 
+$1,073 
+Total Resources 
+$3,906 
+$4,471 
+$3,856 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+463 
+1,670 
+1,675 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 25
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+9892 Supplemental Pension Payments (State Operations) 
+18 
+18 
+11 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+27 
+- 
+- 
+Total Expenditures and Expenditure Adjustments 
+$508 
+$1,688 
+$1,686 
+FUND BALANCE 
+$3,398 
+$2,783 
+$2,170 
+Reserve for economic uncertainties 
+3,398 
+2,783 
+2,170 
+0080   Childhood Lead Poisoning Prevention Fund S 
+BEGINNING BALANCE 
+$52,977 
+$55,228 
+$36,317 
+Adjusted Beginning Balance 
+$52,977 
+$55,228 
+$36,317 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129200 Other Regulatory Fees 
+32,200 
+30,826 
+30,826 
+4163000 Investment Income - Surplus Money Investments 
+1,494 
+300 
+300 
+Total Revenues, Transfers, and Other Adjustments 
+$33,694 
+$31,126 
+$31,126 
+Total Resources 
+$86,671 
+$86,354 
+$67,443 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+3960 Department of Toxic Substances Control (State Operations) 
+39 
+61 
+61 
+3980 Office of Environmental Health Hazard Assessment (State Operations) 
+80 
+184 
+185 
+4260 State Department of Health Care Services (State Operations) 
+- 
+87 
+- 
+4260 State Department of Health Care Services (Local Assistance) 
+- 
+902 
+- 
+4265 Department of Public Health (State Operations) 
+13,646 
+18,453 
+18,518 
+4265 Department of Public Health (Local Assistance) 
+15,600 
+29,404 
+29,404 
+7600 California Department of Tax and Fee Administration (State Operations) 
+275 
+642 
+644 
+9892 Supplemental Pension Payments (State Operations) 
+240 
+240 
+204 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+1,563 
+64 
+441 
+Total Expenditures and Expenditure Adjustments 
+$31,443 
+$50,037 
+$49,457 
+FUND BALANCE 
+$55,228 
+$36,317 
+$17,986 
+Reserve for economic uncertainties 
+55,228 
+36,317 
+17,986 
+0082   Export Document Program Fund S 
+BEGINNING BALANCE 
+$174 
+$122 
+$84 
+Prior Year Adjustments 
+-1 
+- 
+- 
+Adjusted Beginning Balance 
+$173 
+$122 
+$84 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129400 Other Regulatory Licenses and Permits 
+412 
+549 
+660 
+4163000 Investment Income - Surplus Money Investments 
+5 
+- 
+- 
+Total Revenues, Transfers, and Other Adjustments 
+$417 
+$549 
+$660 
+Total Resources 
+$590 
+$671 
+$744 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+412 
+569 
+706 
+9892 Supplemental Pension Payments (State Operations) 
+18 
+18 
+12 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+38 
+- 
+- 
+Total Expenditures and Expenditure Adjustments 
+$468 
+$587 
+$718 
+FUND BALANCE 
+$122 
+$84 
+$26 
+Reserve for economic uncertainties 
+122 
+84 
+26 
+0098   Clinical Laboratory Improvement Fund S 
+BEGINNING BALANCE 
+$14,256 
+$14,004 
+$10,760 
+Adjusted Beginning Balance 
+$14,256 
+$14,004 
+$10,760 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129200 Other Regulatory Fees 
+3,519 
+3,532 
+3,532 
+4129400 Other Regulatory Licenses and Permits 
+9,808 
+9,838 
+9,838 
+2024-25 GOVERNOR'S BUDGET — HHS 26
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+4163000 Investment Income - Surplus Money Investments 
+327 
+218 
+218 
+Total Revenues, Transfers, and Other Adjustments 
+$13,654 
+$13,588 
+$13,588 
+Total Resources 
+$27,910 
+$27,592 
+$24,348 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+13,081 
+16,579 
+16,607 
+9892 Supplemental Pension Payments (State Operations) 
+253 
+253 
+214 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+572 
+- 
+538 
+Total Expenditures and Expenditure Adjustments 
+$13,906 
+$16,832 
+$17,359 
+FUND BALANCE 
+$14,004 
+$10,760 
+$6,989 
+Reserve for economic uncertainties 
+14,004 
+10,760 
+6,989 
+0099   Health Statistics Special Fund S 
+BEGINNING BALANCE 
+$10,587 
+$23,331 
+$23,735 
+Adjusted Beginning Balance 
+$10,587 
+$23,331 
+$23,735 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4143500 Miscellaneous Services to the Public 
+33,538 
+34,089 
+34,089 
+4163000 Investment Income - Surplus Money Investments 
+407 
+407 
+407 
+Total Revenues, Transfers, and Other Adjustments 
+$33,945 
+$34,496 
+$34,496 
+Total Resources 
+$44,532 
+$57,827 
+$58,231 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+20,618 
+32,999 
+33,176 
+4265 Department of Public Health (Local Assistance) 
+- 
+510 
+510 
+9892 Supplemental Pension Payments (State Operations) 
+583 
+583 
+494 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+- 
+- 
+618 
+Total Expenditures and Expenditure Adjustments 
+$21,201 
+$34,092 
+$34,798 
+FUND BALANCE 
+$23,331 
+$23,735 
+$23,433 
+Reserve for economic uncertainties 
+23,331 
+23,735 
+23,433 
+0174   Clandestine Drug Lab Clean-Up Account S 
+BEGINNING BALANCE 
+$10 
+$10 
+$10 
+Adjusted Beginning Balance 
+$10 
+$10 
+$10 
+Total Resources 
+$10 
+$10 
+$10 
+FUND BALANCE 
+$10 
+$10 
+$10 
+Reserve for economic uncertainties 
+10 
+10 
+10 
+0177   Food Safety Fund S 
+BEGINNING BALANCE 
+$3,947 
+$3,057 
+$2,165 
+Prior Year Adjustments 
+-178 
+- 
+- 
+Adjusted Beginning Balance 
+$3,769 
+$3,057 
+$2,165 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129200 Other Regulatory Fees 
+7,786 
+8,800 
+8,800 
+4129400 Other Regulatory Licenses and Permits 
+2,727 
+2,832 
+2,832 
+4163000 Investment Income - Surplus Money Investments 
+75 
+25 
+25 
+4170400 Capital Asset Sales Proceeds 
+29 
+- 
+- 
+4172500 Miscellaneous Revenue 
+17 
+29 
+29 
+Total Revenues, Transfers, and Other Adjustments 
+$10,634 
+$11,686 
+$11,686 
+Total Resources 
+$14,403 
+$14,743 
+$13,851 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+10,523 
+12,144 
+13,260 
+4265 Department of Public Health (Local Assistance) 
+- 
+45 
+45 
+9892 Supplemental Pension Payments (State Operations) 
+389 
+389 
+321 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+434 
+- 
+- 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 27
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+Total Expenditures and Expenditure Adjustments 
+$11,346 
+$12,578 
+$13,626 
+FUND BALANCE 
+$3,057 
+$2,165 
+$225 
+Reserve for economic uncertainties 
+3,057 
+2,165 
+225 
+0203   Genetic Disease Testing Fund S 
+BEGINNING BALANCE 
+$38,414 
+$33,060 
+$17,194 
+Prior Year Adjustments 
+-3,871 
+- 
+- 
+Adjusted Beginning Balance 
+$34,543 
+$33,060 
+$17,194 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4123400 Genetic Disease Testing Fees 
+161,683 
+152,179 
+182,380 
+4163000 Investment Income - Surplus Money Investments 
+820 
+118 
+118 
+4171400 Escheat - Unclaimed Checks, Warrants, Bonds, and Coupons 
+214 
+103 
+103 
+Total Revenues, Transfers, and Other Adjustments 
+$162,717 
+$152,400 
+$182,601 
+Total Resources 
+$197,260 
+$185,460 
+$199,795 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+32,519 
+38,670 
+38,761 
+4265 Department of Public Health (Local Assistance) 
+129,769 
+129,100 
+142,784 
+9892 Supplemental Pension Payments (State Operations) 
+496 
+496 
+417 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+1,416 
+- 
+774 
+Total Expenditures and Expenditure Adjustments 
+$164,200 
+$168,266 
+$182,736 
+FUND BALANCE 
+$33,060 
+$17,194 
+$17,059 
+Reserve for economic uncertainties 
+33,060 
+17,194 
+17,059 
+0230   Cigarette and Tobacco Products Surtax Fund S 
+BEGINNING BALANCE 
+- 
+$841 
+$842 
+Prior Year Adjustments 
+$2,137 
+- 
+- 
+Adjusted Beginning Balance 
+$2,137 
+$841 
+$842 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4110400 Cigarette Tax 
+176,628 
+158,922 
+155,676 
+4161000 Investment Income - Other 
+417 
+263 
+263 
+4171100 Cost Recoveries - Other 
+- 
+5 
+5 
+4171400 Escheat - Unclaimed Checks, Warrants, Bonds, and Coupons 
+18 
+1 
+1 
+Transfers and Other Adjustments 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Health Education Account, Cigarette and Tobacco Products Surtax Fund (0231) 
+per RTC 30124 
+-34,973 
+-30,277 
+-29,571 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Health Education Account, Cigarette and Tobacco Products Surtax Fund (0231) 
+per RTC 30130.54(b) 
+-9,638 
+-9,706 
+-8,922 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Hospital Services Account, Cigarette and Tobacco Products Surtax Fund (0232) 
+per RTC 30124 
+-61,203 
+-52,985 
+-51,748 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Hospital Services Account, Cigarette and Tobacco Products Surtax Fund (0232) 
+per RTC 30130.54(b) 
+-16,866 
+-16,986 
+-15,614 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Physicians' Services Account, Cigarette and Tobacco Products Surtax Fund 
+(0233) per RTC 30124 
+-17,487 
+-15,139 
+-14,785 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Physicians' Services Account, Cigarette and Tobacco Products Surtax Fund 
+(0233) per RTC 30130.54(b) 
+-4,819 
+-4,853 
+-4,461 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Public Resources Account, Cigarette and Tobacco Products Surtax Fund (0235) 
+per RTC 30124 
+-8,743 
+-7,569 
+-7,393 
+2024-25 GOVERNOR'S BUDGET — HHS 28
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Public Resources Account, Cigarette and Tobacco Products Surtax Fund (0235) 
+per RTC 30130.54(b) 
+-2,409 
+-2,427 
+-2,230 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Research Account, Cigarette and Tobacco Products Surtax Fund (0234) per RTC 
+30124 
+-8,743 
+-7,569 
+-7,393 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Research Account, Cigarette and Tobacco Products Surtax Fund (0234) per RTC 
+30130.54(b) 
+-2,409 
+-2,427 
+-2,230 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Unallocated Account, Cigarette and Tobacco Products Surtax Fund (0236) per 
+RTC 30124 
+-43,717 
+-37,847 
+-36,964 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Unallocated Account, Cigarette and Tobacco Products Surtax Fund (0236) per 
+RTC 30130.54(b) 
+-12,047 
+-12,133 
+-11,153 
+Revenue Transfer from the CA Healthcare Research and Prevention Tobacco Tax Act 
+of 2016 Fund (3304) to the Cigarette and Tobacco Products Surtax Fund (0230) per 
+RTC 30130.54(b) 
+49,662 
+48,532 
+44,610 
+Total Revenues, Transfers, and Other Adjustments 
+$3,671 
+$7,805 
+$8,091 
+Total Resources 
+$5,808 
+$8,646 
+$8,933 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+7600 California Department of Tax and Fee Administration (State Operations) 
+4,120 
+7,204 
+7,213 
+9892 Supplemental Pension Payments (State Operations) 
+193 
+193 
+190 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+654 
+407 
+688 
+Total Expenditures and Expenditure Adjustments 
+$4,967 
+$7,804 
+$8,091 
+FUND BALANCE 
+$841 
+$842 
+$842 
+Reserve for economic uncertainties 
+841 
+842 
+842 
+0231   Health Education Account, Cigarette and Tobacco Products Surtax Fund S 
+BEGINNING BALANCE 
+$1,667 
+$10,136 
+$5,458 
+Adjusted Beginning Balance 
+$1,667 
+$10,136 
+$5,458 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+207 
+207 
+207 
+Transfers and Other Adjustments 
+Revenue Transfer from California Children and Families First Trust Fund (0623) to 
+Health Education Account, Cigarette and Tobacco Products Surtax Fund (0231) per 
+Health and Safety Code Section 130105 
+5,797 
+6,338 
+5,813 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Health Education Account, Cigarette and Tobacco Products Surtax Fund (0231) 
+per RTC 30124 
+34,973 
+30,277 
+29,571 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Health Education Account, Cigarette and Tobacco Products Surtax Fund (0231) 
+per RTC 30130.54(b) 
+9,638 
+9,706 
+8,922 
+Revenue Transfer from the Electronic Cigarette Excise Tax Fund (3366) to the Health 
+Education Account, Cigarette and Tobacco Products Surtax Fund (0231) per 
+Revenue and Taxation Code Section 31002 
+9,799 
+7,651 
+7,892 
+Total Revenues, Transfers, and Other Adjustments 
+$60,414 
+$54,179 
+$52,405 
+Total Resources 
+$62,081 
+$64,315 
+$57,863 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+20,791 
+23,306 
+21,214 
+4265 Department of Public Health (Local Assistance) 
+16,526 
+19,800 
+17,826 
+6100 Department of Education (State Operations) 
+1,158 
+1,282 
+1,287 
+6100 Department of Education (Local Assistance) 
+12,061 
+14,258 
+12,788 
+9892 Supplemental Pension Payments (State Operations) 
+140 
+140 
+109 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+1,269 
+71 
+187 
+Total Expenditures and Expenditure Adjustments 
+$51,945 
+$58,857 
+$53,411 
+FUND BALANCE 
+$10,136 
+$5,458 
+$4,452 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 29
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+Reserve for economic uncertainties 
+10,136 
+5,458 
+4,452 
+0232   Hospital Services Account, Cigarette and Tobacco Products Surtax Fund S 
+BEGINNING BALANCE 
+$11,464 
+$12,560 
+$12,793 
+Adjusted Beginning Balance 
+$11,464 
+$12,560 
+$12,793 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+377 
+377 
+377 
+Transfers and Other Adjustments 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Hospital Services Account, Cigarette and Tobacco Products Surtax Fund (0232) 
+per RTC 30124 
+61,203 
+52,985 
+51,748 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Hospital Services Account, Cigarette and Tobacco Products Surtax Fund (0232) 
+per RTC 30130.54(b) 
+16,866 
+16,986 
+15,614 
+Total Revenues, Transfers, and Other Adjustments 
+$78,446 
+$70,348 
+$67,739 
+Total Resources 
+$89,910 
+$82,908 
+$80,532 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4260 State Department of Health Care Services (Local Assistance) 
+77,350 
+70,115 
+72,477 
+Total Expenditures and Expenditure Adjustments 
+$77,350 
+$70,115 
+$72,477 
+FUND BALANCE 
+$12,560 
+$12,793 
+$8,055 
+Reserve for economic uncertainties 
+12,560 
+12,793 
+8,055 
+0233   Physician Services Account, Cigarette and Tobacco Products Surtax Fund S 
+BEGINNING BALANCE 
+$3,276 
+$3,440 
+$3,638 
+Adjusted Beginning Balance 
+$3,276 
+$3,440 
+$3,638 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+107 
+107 
+107 
+Transfers and Other Adjustments 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Physicians' Services Account, Cigarette and Tobacco Products Surtax Fund 
+(0233) per RTC 30124 
+17,487 
+15,139 
+14,785 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Physicians' Services Account, Cigarette and Tobacco Products Surtax Fund 
+(0233) per RTC 30130.54(b) 
+4,819 
+4,853 
+4,461 
+Total Revenues, Transfers, and Other Adjustments 
+$22,413 
+$20,099 
+$19,353 
+Total Resources 
+$25,689 
+$23,539 
+$22,991 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4260 State Department of Health Care Services (Local Assistance) 
+22,249 
+19,901 
+20,693 
+Total Expenditures and Expenditure Adjustments 
+$22,249 
+$19,901 
+$20,693 
+FUND BALANCE 
+$3,440 
+$3,638 
+$2,298 
+Reserve for economic uncertainties 
+3,440 
+3,638 
+2,298 
+0234   Research Account, Cigarette and Tobacco Products Surtax Fund S 
+BEGINNING BALANCE 
+$8,475 
+$9,882 
+$3,837 
+Adjusted Beginning Balance 
+$8,475 
+$9,882 
+$3,837 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+495 
+495 
+495 
+Transfers and Other Adjustments 
+Revenue Transfer from California Children and Families First Trust Fund (0623) to 
+Research Account, Cigarette and Tobacco Products Surtax Fund (0234) per Health 
+and Safety Code Section 130105 
+1,449 
+1,584 
+1,453 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Research Account, Cigarette and Tobacco Products Surtax Fund (0234) per RTC 
+30124 
+8,743 
+7,569 
+7,393 
+2024-25 GOVERNOR'S BUDGET — HHS 30
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Research Account, Cigarette and Tobacco Products Surtax Fund (0234) per RTC 
+30130.54(b) 
+2,409 
+2,427 
+2,230 
+Total Revenues, Transfers, and Other Adjustments 
+$13,096 
+$12,075 
+$11,571 
+Total Resources 
+$21,571 
+$21,957 
+$15,408 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+2,790 
+4,300 
+4,003 
+6440 University of California (State Operations) 
+8,630 
+13,790 
+9,802 
+9892 Supplemental Pension Payments (State Operations) 
+30 
+30 
+19 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+239 
+- 
+- 
+Total Expenditures and Expenditure Adjustments 
+$11,689 
+$18,120 
+$13,824 
+FUND BALANCE 
+$9,882 
+$3,837 
+$1,584 
+Reserve for economic uncertainties 
+9,882 
+3,837 
+1,584 
+0235   Public Resources Account, Cigarette and Tobacco Products Surtax Fund S 
+BEGINNING BALANCE 
+$446 
+$627 
+$1,108 
+Adjusted Beginning Balance 
+$446 
+$627 
+$1,108 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+81 
+81 
+81 
+Transfers and Other Adjustments 
+Revenue Transfer from the Public Resources Account, Cigarette and Tobacco 
+Products Surtax Fund (0235) to Habitat Conservation Fund (0262) per Item 
+3640-311-0235 Budget Act of 2013 
+-5,114 
+-5,114 
+-5,114 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Public Resources Account, Cigarette and Tobacco Products Surtax Fund (0235) 
+per RTC 30124 
+8,743 
+7,569 
+7,393 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Public Resources Account, Cigarette and Tobacco Products Surtax Fund (0235) 
+per RTC 30130.54(b) 
+2,409 
+2,427 
+2,230 
+Total Revenues, Transfers, and Other Adjustments 
+$6,119 
+$4,963 
+$4,590 
+Total Resources 
+$6,565 
+$5,590 
+$5,698 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+3600 Department of Fish and Wildlife (State Operations) 
+1,587 
+1,289 
+1,394 
+3790 Department of Parks and Recreation (State Operations) 
+3,348 
+2,727 
+2,970 
+3940 State Water Resources Control Board (State Operations) 
+315 
+256 
+277 
+9892 Supplemental Pension Payments (State Operations) 
+131 
+131 
+169 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+557 
+79 
+318 
+Total Expenditures and Expenditure Adjustments 
+$5,938 
+$4,482 
+$5,128 
+FUND BALANCE 
+$627 
+$1,108 
+$570 
+Reserve for economic uncertainties 
+627 
+1,108 
+570 
+0236   Unallocated Account, Cigarette and Tobacco Products Surtax Fund S 
+BEGINNING BALANCE 
+$7,658 
+$10,750 
+$9,978 
+Adjusted Beginning Balance 
+$7,658 
+$10,750 
+$9,978 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+239 
+239 
+239 
+Transfers and Other Adjustments 
+Revenue Transfer from the Unallocated Account, Cigarette and Tobacco Products 
+Surtax Fund (0236) to the Habitat Conservation Fund (0262) per FGC 2795(a) 
+-5,184 
+-5,022 
+-4,835 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Unallocated Account, Cigarette and Tobacco Products Surtax Fund (0236) per 
+RTC 30124 
+43,717 
+37,847 
+36,964 
+Revenue Transfer from the Cigarette and Tobacco Products Surtax Fund (0230) to 
+the Unallocated Account, Cigarette and Tobacco Products Surtax Fund (0236) per 
+RTC 30130.54(b) 
+12,047 
+12,133 
+11,153 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 31
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+Total Revenues, Transfers, and Other Adjustments 
+$50,819 
+$45,197 
+$43,521 
+Total Resources 
+$58,477 
+$55,947 
+$53,499 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4260 State Department of Health Care Services (State Operations) 
+514 
+773 
+776 
+4260 State Department of Health Care Services (Local Assistance) 
+45,070 
+43,268 
+45,514 
+4265 Department of Public Health (State Operations) 
+1,890 
+1,812 
+1,803 
+9892 Supplemental Pension Payments (State Operations) 
+45 
+45 
+27 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+208 
+71 
+28 
+Total Expenditures and Expenditure Adjustments 
+$47,727 
+$45,969 
+$48,148 
+FUND BALANCE 
+$10,750 
+$9,978 
+$5,351 
+Reserve for economic uncertainties 
+10,750 
+9,978 
+5,351 
+0272   Infant Botulism Treatment and Prevention Fund S 
+BEGINNING BALANCE 
+$20,192 
+$27,126 
+$25,869 
+Adjusted Beginning Balance 
+$20,192 
+$27,126 
+$25,869 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+596 
+599 
+599 
+4172500 Miscellaneous Revenue 
+13,523 
+12,262 
+12,262 
+Total Revenues, Transfers, and Other Adjustments 
+$14,119 
+$12,861 
+$12,861 
+Total Resources 
+$34,311 
+$39,987 
+$38,730 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+6,514 
+14,072 
+18,278 
+9892 Supplemental Pension Payments (State Operations) 
+46 
+46 
+34 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+625 
+- 
+552 
+Total Expenditures and Expenditure Adjustments 
+$7,185 
+$14,118 
+$18,864 
+FUND BALANCE 
+$27,126 
+$25,869 
+$19,866 
+Reserve for economic uncertainties 
+27,126 
+25,869 
+19,866 
+0335   Registered Environmental Health Specialist Fund S 
+BEGINNING BALANCE 
+$142 
+$152 
+$149 
+Adjusted Beginning Balance 
+$142 
+$152 
+$149 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129200 Other Regulatory Fees 
+455 
+535 
+535 
+4163000 Investment Income - Surplus Money Investments 
+6 
+3 
+3 
+Total Revenues, Transfers, and Other Adjustments 
+$461 
+$538 
+$538 
+Total Resources 
+$603 
+$690 
+$687 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+438 
+509 
+510 
+9892 Supplemental Pension Payments (State Operations) 
+13 
+13 
+10 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+- 
+19 
+13 
+Total Expenditures and Expenditure Adjustments 
+$451 
+$541 
+$533 
+FUND BALANCE 
+$152 
+$149 
+$154 
+Reserve for economic uncertainties 
+152 
+149 
+154 
+0478   Vectorborne Disease Account S 
+BEGINNING BALANCE 
+$114 
+$52 
+$24 
+Prior Year Adjustments 
+36 
+- 
+- 
+Adjusted Beginning Balance 
+$150 
+$52 
+$24 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+4 
+- 
+- 
+4172500 Miscellaneous Revenue 
+49 
+191 
+191 
+2024-25 GOVERNOR'S BUDGET — HHS 32
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+Total Revenues, Transfers, and Other Adjustments 
+$53 
+$191 
+$191 
+Total Resources 
+$203 
+$243 
+$215 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+141 
+213 
+195 
+9892 Supplemental Pension Payments (State Operations) 
+6 
+6 
+3 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+4 
+- 
+- 
+Total Expenditures and Expenditure Adjustments 
+$151 
+$219 
+$198 
+FUND BALANCE 
+$52 
+$24 
+$17 
+Reserve for economic uncertainties 
+52 
+24 
+17 
+0642   Domestic Violence Training and Education Fund S 
+BEGINNING BALANCE 
+$1,510 
+$1,836 
+$1,811 
+Adjusted Beginning Balance 
+$1,510 
+$1,836 
+$1,811 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4135000 Local Agencies - Miscellaneous Revenue 
+645 
+685 
+685 
+Total Revenues, Transfers, and Other Adjustments 
+$645 
+$685 
+$685 
+Total Resources 
+$2,155 
+$2,521 
+$2,496 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+137 
+406 
+409 
+4265 Department of Public Health (Local Assistance) 
+158 
+300 
+300 
+9892 Supplemental Pension Payments (State Operations) 
+5 
+4 
+- 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+19 
+- 
+18 
+Total Expenditures and Expenditure Adjustments 
+$319 
+$710 
+$727 
+FUND BALANCE 
+$1,836 
+$1,811 
+$1,769 
+Reserve for economic uncertainties 
+1,836 
+1,811 
+1,769 
+0823   California Alzheimers Disease and Related Disorders Research Fund N 
+BEGINNING BALANCE 
+$1,021 
+$896 
+$893 
+Adjusted Beginning Balance 
+$1,021 
+$896 
+$893 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4171300 Donations 
+10 
+11 
+11 
+4172500 Miscellaneous Revenue 
+501 
+686 
+686 
+Total Revenues, Transfers, and Other Adjustments 
+$511 
+$697 
+$697 
+Total Resources 
+$1,532 
+$1,593 
+$1,590 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+124 
+192 
+193 
+4265 Department of Public Health (Local Assistance) 
+494 
+494 
+494 
+7730 Franchise Tax Board (State Operations) 
+10 
+11 
+11 
+9892 Supplemental Pension Payments (State Operations) 
+3 
+3 
+3 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+5 
+- 
+5 
+Total Expenditures and Expenditure Adjustments 
+$636 
+$700 
+$706 
+FUND BALANCE 
+$896 
+$893 
+$884 
+Reserve for economic uncertainties 
+896 
+893 
+884 
+3018   Drug and Device Safety Fund S 
+BEGINNING BALANCE 
+$3,853 
+$2,963 
+$965 
+Prior Year Adjustments 
+-54 
+- 
+- 
+Adjusted Beginning Balance 
+$3,799 
+$2,963 
+$965 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129400 Other Regulatory Licenses and Permits 
+6,264 
+6,717 
+7,053 
+4163000 Investment Income - Surplus Money Investments 
+77 
+11 
+11 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 33
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+4170400 Capital Asset Sales Proceeds 
+3 
+- 
+- 
+Total Revenues, Transfers, and Other Adjustments 
+$6,344 
+$6,728 
+$7,064 
+Total Resources 
+$10,143 
+$9,691 
+$8,029 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+6,624 
+8,423 
+7,461 
+9892 Supplemental Pension Payments (State Operations) 
+278 
+278 
+312 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+278 
+25 
+- 
+Total Expenditures and Expenditure Adjustments 
+$7,180 
+$8,726 
+$7,773 
+FUND BALANCE 
+$2,963 
+$965 
+$256 
+Reserve for economic uncertainties 
+2,963 
+965 
+256 
+3020   Tobacco Settlement Fund S 
+BEGINNING BALANCE 
+$1,215 
+$1,215 
+$1,215 
+Adjusted Beginning Balance 
+$1,215 
+$1,215 
+$1,215 
+Total Resources 
+$1,215 
+$1,215 
+$1,215 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+FUND BALANCE 
+$1,215 
+$1,215 
+$1,215 
+Reserve for economic uncertainties 
+1,215 
+1,215 
+1,215 
+3023   WIC Manufacturer Rebate Fund N 
+BEGINNING BALANCE 
+$9,057 
+$559 
+$589 
+Prior Year Adjustments 
+-8,553 
+- 
+- 
+Adjusted Beginning Balance 
+$504 
+$559 
+$589 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+55 
+30 
+30 
+4172500 Miscellaneous Revenue 
+194,081 
+189,616 
+190,373 
+Total Revenues, Transfers, and Other Adjustments 
+$194,136 
+$189,646 
+$190,403 
+Total Resources 
+$194,640 
+$190,205 
+$190,992 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (Local Assistance) 
+194,081 
+189,616 
+190,373 
+Total Expenditures and Expenditure Adjustments 
+$194,081 
+$189,616 
+$190,373 
+FUND BALANCE 
+$559 
+$589 
+$619 
+Reserve for economic uncertainties 
+559 
+589 
+619 
+3074   Medical Marijuana Program Fund S 
+BEGINNING BALANCE 
+$11 
+$11 
+$11 
+Adjusted Beginning Balance 
+$11 
+$11 
+$11 
+Total Resources 
+$11 
+$11 
+$11 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+FUND BALANCE 
+$11 
+$11 
+$11 
+Reserve for economic uncertainties 
+11 
+11 
+11 
+3080   AIDS Drug Assistance Program Rebate Fund S 
+BEGINNING BALANCE 
+$917,413 
+$1,000,500 
+$670,112 
+Adjusted Beginning Balance 
+$917,413 
+$1,000,500 
+$670,112 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4163000 Investment Income - Surplus Money Investments 
+16,699 
+2,242 
+2,242 
+4171400 Escheat - Unclaimed Checks, Warrants, Bonds, and Coupons 
+68 
+- 
+- 
+4172500 Miscellaneous Revenue 
+309,791 
+325,598 
+278,703 
+Transfers and Other Adjustments 
+Loan from AIDS Drug Assistance Program Rebate Fund (3080) to General Fund per 
+Control Section 13.40, Budget Act of 2023 
+- 
+-400,000 
+- 
+2024-25 GOVERNOR'S BUDGET — HHS 34
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+Loan from the AIDS Drug Assistance Program Rebate Fund (3080) to the General 
+Fund (0001) 
+- 
+- 
+-500,000 
+Total Revenues, Transfers, and Other Adjustments 
+$326,558 
+-$72,160 
+-$219,055 
+Total Resources 
+$1,243,971 
+$928,340 
+$451,057 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+12,110 
+12,515 
+12,563 
+4265 Department of Public Health (Local Assistance) 
+228,632 
+245,631 
+260,794 
+9892 Supplemental Pension Payments (State Operations) 
+82 
+82 
+34 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+2,647 
+- 
+1,000 
+Total Expenditures and Expenditure Adjustments 
+$243,471 
+$258,228 
+$274,391 
+FUND BALANCE 
+$1,000,500 
+$670,112 
+$176,666 
+Reserve for economic uncertainties 
+1,000,500 
+670,112 
+176,666 
+3081   Cannery Inspection Fund S 
+BEGINNING BALANCE 
+$3,368 
+$2,588 
+$2,375 
+Adjusted Beginning Balance 
+$3,368 
+$2,588 
+$2,375 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129400 Other Regulatory Licenses and Permits 
+3,689 
+4,342 
+4,342 
+4163000 Investment Income - Surplus Money Investments 
+80 
+5 
+5 
+Total Revenues, Transfers, and Other Adjustments 
+$3,769 
+$4,347 
+$4,347 
+Total Resources 
+$7,137 
+$6,935 
+$6,722 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+4,344 
+4,493 
+4,511 
+9892 Supplemental Pension Payments (State Operations) 
+67 
+67 
+45 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+138 
+- 
+144 
+Total Expenditures and Expenditure Adjustments 
+$4,549 
+$4,560 
+$4,700 
+FUND BALANCE 
+$2,588 
+$2,375 
+$2,022 
+Reserve for economic uncertainties 
+2,588 
+2,375 
+2,022 
+3098   State Department of Public Health Licensing and Certification Program Fund 
+S 
+BEGINNING BALANCE 
+$80,656 
+$136,892 
+$129,862 
+Prior Year Adjustments 
+16,380 
+- 
+- 
+Adjusted Beginning Balance 
+$97,036 
+$136,892 
+$129,862 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129400 Other Regulatory Licenses and Permits 
+312,315 
+301,622 
+301,622 
+4143500 Miscellaneous Services to the Public 
+- 
+6 
+6 
+4163000 Investment Income - Surplus Money Investments 
+4,418 
+4,418 
+4,418 
+4172500 Miscellaneous Revenue 
+-2 
+- 
+- 
+Total Revenues, Transfers, and Other Adjustments 
+$316,731 
+$306,046 
+$306,046 
+Total Resources 
+$413,767 
+$442,938 
+$435,908 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4170 California Department of Aging (Local Assistance) 
+400 
+400 
+400 
+4265 Department of Public Health (State Operations) 
+267,099 
+311,530 
+317,513 
+4265 Department of Public Health (Local Assistance) 
+- 
+45 
+45 
+9892 Supplemental Pension Payments (State Operations) 
+3,179 
+3,179 
+2,591 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+9,897 
+1,622 
+10,926 
+Less funding provided by General Fund (State Operations) 
+-3,700 
+-3,700 
+-3,700 
+Total Expenditures and Expenditure Adjustments 
+$276,875 
+$313,076 
+$327,775 
+FUND BALANCE 
+$136,892 
+$129,862 
+$108,133 
+Reserve for economic uncertainties 
+136,892 
+129,862 
+108,133 
+3110   Gambling Addiction Program Fund S 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 35
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+BEGINNING BALANCE 
+$2,913 
+$2,964 
+$2,923 
+Adjusted Beginning Balance 
+$2,913 
+$2,964 
+$2,923 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129400 Other Regulatory Licenses and Permits 
+208 
+109 
+210 
+4172500 Miscellaneous Revenue 
+- 
+- 
+80 
+Total Revenues, Transfers, and Other Adjustments 
+$208 
+$109 
+$290 
+Total Resources 
+$3,121 
+$3,073 
+$3,213 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+150 
+150 
+150 
+4265 Department of Public Health (Local Assistance) 
+- 
+- 
+200 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+7 
+- 
+3 
+Total Expenditures and Expenditure Adjustments 
+$157 
+$150 
+$353 
+FUND BALANCE 
+$2,964 
+$2,923 
+$2,860 
+Reserve for economic uncertainties 
+2,964 
+2,923 
+2,860 
+3114   Birth Defects Monitoring Program Fund S 
+BEGINNING BALANCE 
+$2,998 
+$4,938 
+$6,761 
+Adjusted Beginning Balance 
+$2,998 
+$4,938 
+$6,761 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4123400 Genetic Disease Testing Fees 
+4,383 
+4,688 
+4,688 
+4163000 Investment Income - Surplus Money Investments 
+64 
+15 
+15 
+Total Revenues, Transfers, and Other Adjustments 
+$4,447 
+$4,703 
+$4,703 
+Total Resources 
+$7,445 
+$9,641 
+$11,464 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+3960 Department of Toxic Substances Control (State Operations) 
+50 
+81 
+81 
+3980 Office of Environmental Health Hazard Assessment (State Operations) 
+68 
+181 
+182 
+4265 Department of Public Health (State Operations) 
+2,310 
+2,576 
+2,579 
+9892 Supplemental Pension Payments (State Operations) 
+29 
+29 
+7 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+50 
+13 
+375 
+Total Expenditures and Expenditure Adjustments 
+$2,507 
+$2,880 
+$3,224 
+FUND BALANCE 
+$4,938 
+$6,761 
+$8,240 
+Reserve for economic uncertainties 
+4,938 
+6,761 
+8,240 
+3151   Internal Health Information Integrity Quality Improvement Account S 
+BEGINNING BALANCE 
+$1 
+$1 
+$1 
+Adjusted Beginning Balance 
+$1 
+$1 
+$1 
+Total Resources 
+$1 
+$1 
+$1 
+FUND BALANCE 
+$1 
+$1 
+$1 
+Reserve for economic uncertainties 
+1 
+1 
+1 
+3155   Lead-Related Construction Fund S 
+BEGINNING BALANCE 
+$546 
+$724 
+$412 
+Prior Year Adjustments 
+116 
+- 
+- 
+Adjusted Beginning Balance 
+$662 
+$724 
+$412 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4172500 Miscellaneous Revenue 
+1,076 
+1,100 
+1,100 
+Total Revenues, Transfers, and Other Adjustments 
+$1,076 
+$1,100 
+$1,100 
+Total Resources 
+$1,738 
+$1,824 
+$1,512 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+948 
+1,394 
+1,401 
+9892 Supplemental Pension Payments (State Operations) 
+18 
+18 
+11 
+2024-25 GOVERNOR'S BUDGET — HHS 36
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+48 
+- 
+- 
+Total Expenditures and Expenditure Adjustments 
+$1,014 
+$1,412 
+$1,412 
+FUND BALANCE 
+$724 
+$412 
+$100 
+Reserve for economic uncertainties 
+724 
+412 
+100 
+3307   State Dental Program Account, California Healthcare, Research and 
+Prevention Tobacco Tax Act of 2016 Fund S 
+BEGINNING BALANCE 
+$32,318 
+$30,695 
+$18,950 
+Adjusted Beginning Balance 
+$32,318 
+$30,695 
+$18,950 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Transfers and Other Adjustments 
+Revenue Transfer from California Healthcare Research and Prevention Tobacco Tax 
+Act of 2016 Fund (3304) to State Dental Program Account (3307) per Revenue and 
+Taxation Code 30130.57(d) 
+25,382 
+21,627 
+19,880 
+Total Revenues, Transfers, and Other Adjustments 
+$25,382 
+$21,627 
+$19,880 
+Total Resources 
+$57,700 
+$52,322 
+$38,830 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+5,603 
+8,114 
+15,866 
+4265 Department of Public Health (Local Assistance) 
+21,283 
+24,954 
+19,234 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+119 
+304 
+233 
+Total Expenditures and Expenditure Adjustments 
+$27,005 
+$33,372 
+$35,333 
+FUND BALANCE 
+$30,695 
+$18,950 
+$3,497 
+Reserve for economic uncertainties 
+30,695 
+18,950 
+3,497 
+3318   Department of Public Health Subaccount, Tobacco Law Enforcement 
+Account, CA Healthcare, Research and Prevention Tobacco Tax Act of 2016 Fund S 
+BEGINNING BALANCE 
+$2,991 
+$1,535 
+$1,031 
+Adjusted Beginning Balance 
+$2,991 
+$1,535 
+$1,031 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Transfers and Other Adjustments 
+Revenue Transfer from California Healthcare Research and Prevention Tobacco Tax 
+Act of 2016 Fund (3304) to Public Health Tobacco Law Enforcement Account (3318) 
+per Revenue and Taxation Code 30130.57(e)(3) 
+5,076 
+4,325 
+3,976 
+Total Revenues, Transfers, and Other Adjustments 
+$5,076 
+$4,325 
+$3,976 
+Total Resources 
+$8,067 
+$5,860 
+$5,007 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+6,397 
+4,656 
+4,071 
+9892 Supplemental Pension Payments (State Operations) 
+82 
+82 
+107 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+53 
+91 
+- 
+Total Expenditures and Expenditure Adjustments 
+$6,532 
+$4,829 
+$4,178 
+FUND BALANCE 
+$1,535 
+$1,031 
+$829 
+Reserve for economic uncertainties 
+1,535 
+1,031 
+829 
+3322   Department of Public Health Subaccount, Tobacco Prevention and Control 
+Programs Account, CA Healthcare, Research and Prevention Tobacco Tax Act of 
+2016 Fund S 
+BEGINNING BALANCE 
+$17,392 
+$31,025 
+$25,887 
+Prior Year Adjustments 
+34,808 
+- 
+- 
+Adjusted Beginning Balance 
+$52,200 
+$31,025 
+$25,887 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4172500 Miscellaneous Revenue 
+2 
+- 
+- 
+Transfers and Other Adjustments 
+Revenue Transfer from Tobacco Prevention & Control Account (3322) to the Tobacco 
+Prevention and Control Programs Account (3321) per Revenue and Taxation Code 
+30130.55(b)(2) / 2017 Budget Act - Actuals Adjustment 
+- 
+-1,339 
+-1,339 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 37
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+2022-23* 
+2023-24* 
+2024-25* 
+Revenue Transfer from California Healthcare Research and Prevention Tobacco Tax 
+Act of 2016 Fund (3304) to Public Health Tobacco Prevention & Control Programs 
+Account (3322) per Revenue and Taxation Code 30130.55(b)(1) 
+77,189 
+81,527 
+80,382 
+Total Revenues, Transfers, and Other Adjustments 
+$77,191 
+$80,188 
+$79,043 
+Total Resources 
+$129,391 
+$111,213 
+$104,930 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+48,729 
+40,799 
+45,339 
+4265 Department of Public Health (Local Assistance) 
+49,637 
+44,418 
+55,152 
+9900 Statewide General Administrative Expenditures (Pro Rata) (State Operations) 
+- 
+109 
+134 
+Total Expenditures and Expenditure Adjustments 
+$98,366 
+$85,326 
+$100,625 
+FUND BALANCE 
+$31,025 
+$25,887 
+$4,305 
+Reserve for economic uncertainties 
+31,025 
+25,887 
+4,305 
+3385   Transgender, Gender Nonconforming, and Intersex (TGI) Wellness and 
+Equity Fund S 
+BEGINNING BALANCE 
+- 
+12,729 
+- 
+Adjusted Beginning Balance 
+- 
+$12,729 
+- 
+Total Resources 
+- 
+$12,729 
+- 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+$271 
+- 
+- 
+Less funding provided by General Fund (State Operations) 
+-2,728 
+2,457 
+- 
+Less funding provided by General Fund (Local Assistance) 
+-10,272 
+10,272 
+- 
+Total Expenditures and Expenditure Adjustments 
+-$12,729 
+$12,729 
+- 
+FUND BALANCE 
+$12,729 
+- 
+- 
+Reserve for economic uncertainties 
+12,729 
+- 
+- 
+3396   Industrial Hemp Enrollment and Oversight Fund S 
+BEGINNING BALANCE 
+- 
+$427 
+$1,221 
+Adjusted Beginning Balance 
+- 
+$427 
+$1,221 
+REVENUES, TRANSFERS, AND OTHER ADJUSTMENTS 
+Revenues: 
+4129200 Other Regulatory Fees 
+$427 
+- 
+- 
+4129400 Other Regulatory Licenses and Permits 
+- 
+794 
+1,186 
+Total Revenues, Transfers, and Other Adjustments 
+$427 
+$794 
+$1,186 
+Total Resources 
+$427 
+$1,221 
+$2,407 
+EXPENDITURE AND EXPENDITURE ADJUSTMENTS 
+4265 Department of Public Health (State Operations) 
+- 
+- 
+2,113 
+Total Expenditures and Expenditure Adjustments 
+- 
+- 
+$2,113 
+FUND BALANCE 
+$427 
+$1,221 
+$294 
+Reserve for economic uncertainties 
+427 
+1,221 
+294 
+† Fiscal year 2022-23 budget display reflects the best available information for use in decision-making for this department and/
+or these fund(s). Additional review and reconciliation of 2022-23 ending fund balances will occur in the spring to evaluate if a 
+budget adjustment is required. 
+CHANGES IN AUTHORIZED POSITIONS † 
+ 
+Positions 
+Expenditures 
+2022-23 
+2023-24 
+2024-25 
+2022-23* 
+2023-24* 
+2024-25* 
+Baseline Positions 
+5,035.0 
+5,084.0 
+5,084.0 
+$467,181 
+$472,893 
+$473,158 
+Salary and Other Adjustments 
+-894.6 
+55.6 
+55.6 
+-65,611 
+24,965 
+25,748 
+Workload and Administrative Adjustments 
+2024-25 GOVERNOR'S BUDGET — HHS 38
+4265   Department of Public Health - Continued
+HEALTH AND HUMAN SERVICES
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.
+ 
+Positions 
+Expenditures 
+2022-23 
+2023-24 
+2024-25 
+2022-23* 
+2023-24* 
+2024-25* 
+Center for Health Care Quality, Centralized Application 
+Branch (CAB) Expansion 
+Assoc Govtl Program Analyst 
+- 
+- 
+3.3 
+- 
+- 
+243 
+Staff Svcs Analyst (Gen) 
+- 
+- 
+3.0 
+- 
+- 
+155 
+Staff Svcs Mgr I 
+- 
+- 
+1.5 
+- 
+- 
+132 
+Maintenance and Operations Support for the 
+Surveillance and Public Health Information Reporting 
+and Exchange (SaPHIRE) System 
+Temporary Help 
+- 
+- 
+- 
+- 
+- 
+331 
+WIC Modernization 
+Assoc Govtl Program Analyst 
+- 
+- 
+6.0 
+- 
+- 
+455 
+Hlth Program Spec I 
+- 
+- 
+5.0 
+- 
+- 
+409 
+Hlth Program Spec II 
+- 
+- 
+2.0 
+- 
+- 
+180 
+Public Hlth Nutrition Consultant III (Supvry) 
+- 
+- 
+2.0 
+- 
+- 
+181 
+Research Scientist II 
+- 
+- 
+1.0 
+- 
+- 
+96 
+Staff Svcs Mgr I 
+- 
+- 
+1.0 
+- 
+- 
+88 
+Staff Svcs Mgr II (Supvry) 
+- 
+- 
+1.0 
+- 
+- 
+97 
+TOTALS, WORKLOAD AND ADMINISTRATIVE 
+ADJUSTMENTS 
+- 
+- 
+25.8 
+$- 
+$- 
+$2,367 
+Totals, Adjustments 
+-894.6 
+55.6 
+81.4 
+$-65,611 
+$24,965 
+$28,115 
+TOTALS, SALARIES AND WAGES 
+4,140.4 
+5,139.6 
+5,165.4 
+$401,570 
+$497,858 
+$501,273 
+† Fiscal year 2022-23 budget display reflects the best available information for use in decision-making for this department and/
+or these fund(s). Additional review and reconciliation of 2022-23 ending fund balances will occur in the spring to evaluate if a 
+budget adjustment is required. 
+HEALTH AND HUMAN SERVICES
+4265   Department of Public Health - Continued
+2024-25 GOVERNOR'S BUDGET — HHS 39
+* Dollars in thousands, except in Salary Range. Numbers may not add or match to other statements due to rounding of budget details.

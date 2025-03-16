@@ -17,6 +17,18 @@ export const departmentMappings: DepartmentMapping[] = [
     spendingName: 'Air Resources Board',
     workforceName: 'Air Resources Board'
   },
+  {
+    slug: '3100_exposition_park',
+    fullName: 'Exposition Park',
+    spendingName: 'Exposition Park',
+    workforceName: 'Exposition Park'
+  },
+  {
+    slug: '3125_california_tahoe_conservancy',
+    fullName: 'California Tahoe Conservancy',
+    spendingName: 'California Tahoe Conservancy',
+    workforceName: 'California Tahoe Conservancy'
+  },
   // Add more departments as they are created
 ];
 

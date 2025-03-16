@@ -466,7 +466,11 @@ function WorkforcePageContent() {
   // Get the department from URL query parameter
   useEffect(() => {
     const agencyParam = searchParams.get('agency');
-    if (agencyParam) {
+    const departmentParam = searchParams.get('department');
+    
+    if (departmentParam) {
+      setSelectedAgencyName(departmentParam);
+    } else if (agencyParam) {
       setSelectedAgencyName(agencyParam);
     }
   }, [searchParams]);
