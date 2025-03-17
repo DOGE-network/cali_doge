@@ -1,76 +1,139 @@
 ---
-title: California Energy Commission
-name: California Energy Commission
+name: "Energy Commission"
 code: 3360
-date: '2025-03-15'
-author: Sean Roberts
-description: The California Energy Commission is the state's primary energy policy and planning agency, committed to reducing energy costs and environmental impacts of energy use while ensuring a safe, resilient, and reliable supply of energy.
+date: '2024-03-16'
+author: "Sean Roberts"
+image: 
+description: "The Energy Commission ensures reliable energy supply while protecting public health, safety, and the environment through policy recommendations, research, facility oversight, and efficiency standards."
 ---
 
-## Budget Highlights 2024-2025
+### Budget Trends and Highlights (2022-2025)
 
-### Position Growth
-- **Total Positions**: 1,042.3 positions in 2024-25
-- **Growth**: Increase of 158.3 positions (17.9%) from 2022-23 to 2024-25
-- **Key Areas**: Clean energy research, transportation electrification, and building decarbonization
+#### Position Growth
+- **Overall Growth**: Steady increase from 760.0 positions in 2022-23 to 785.0 positions in 2024-25
+- **Program Distribution**:
+  - Regulatory and Planning: 212.4 positions (27%)
+  - Energy Resources Conservation: 288.4 positions (37%)
+  - Development: 284.2 positions (36%)
 
-### Budget Fluctuations
-- **Peak Funding**: FY 2022-23 saw $1.32 billion in funding
-- **Current Budget**: $1.15 billion for FY 2024-25
-- **Budget Trend**: Decrease of $170 million (12.9%) from 2022-23 to 2024-25
-- **General Fund**: Reduction from $380 million in 2022-23 to $120 million in 2024-25
+#### Budget Fluctuations
+- **Peak Funding**: FY 2023-24 saw highest total budget at $3.81 billion
+- **Major Changes**:
+  - Significant reduction from $3.81 billion in 2023-24 to $764.6 million in 2024-25
+  - General Fund allocation decreased from $1.75 billion to $203 million
+  - New Proposition 98 funding of $125 million in 2024-25
+
+#### Major Program Funding (2024-25)
+- **Electric Program Investment**: $148 million
+- **Alternative and Renewable Fuel**: $112.3 million
+- **Greenhouse Gas Reduction**: $143.9 million
+- **Energy Resources Programs**: $83.3 million
 
 ### Major Funding Codes and Sources
 
 #### Program Codes
-- **2390 - Energy Resources Conservation**: $650 million in 2024-25
-- **2395 - Clean Energy Research and Development**: $500 million in 2024-25
+- **2380 - Regulatory and Planning**: Facility oversight, building standards, and public policy
+- **2385 - Energy Resources Conservation**: Efficiency standards and conservation programs
+- **2390 - Development**: Research, demonstration, and deployment initiatives
 
 #### Funding Source Codes
-- **0001 - General Fund**: $120 million in 2024-25
-- **0465 - Energy Resources Programs Account**: $130 million in 2024-25
-- **3228 - Greenhouse Gas Reduction Fund**: $400 million in 2024-25
-- **3205 - Electric Program Investment Charge Fund**: $180 million in 2024-25
-- **0995 - Reimbursements**: $320 million in 2024-25
+- **0001 - General Fund**: State's primary operating fund
+- **3211 - Electric Program Investment Charge Fund**: Research and development funding
+- **3228 - Greenhouse Gas Reduction Fund**: Climate change initiatives
+- **3117 - Alternative and Renewable Fuel and Vehicle Technology Fund**: Clean transportation
+- **0465 - Energy Resources Programs Account**: Core program operations
+- **3109 - Natural Gas Subaccount**: Natural gas research and development
+- **3237 - Cost of Implementation Account**: Air pollution control initiatives
 
 ## Major Projects and Initiatives
 
-### Clean Transportation Program
+### Building Standards and Efficiency
 
-The Clean Transportation Program (formerly known as the Alternative and Renewable Fuel and Vehicle Technology Program) provides funding to support innovation and accelerate the development and deployment of advanced transportation and fuel technologies.
+1. **Building Energy Efficiency Standards**:
+   - Development and updates of state building codes
+   - Technical assistance support for compliance
+   - Integration of zero-emission technologies
 
-### Building Decarbonization
+2. **Appliance Efficiency Program**:
+   - Standards development and enforcement
+   - Market surveillance and testing
+   - Manufacturer certification requirements
 
-The Energy Commission leads efforts to reduce emissions from buildings through the Building Initiative for Low-Emissions Development (BUILD) Program and the Building Energy Efficiency Standards (Title 24, Part 6).
+### Clean Transportation Programs
 
-### Renewable Energy Development
+1. **Alternative and Renewable Fuel and Vehicle Technology**:
+   - Infrastructure development for zero-emission vehicles
+   - Technology demonstration and deployment
+   - Market transformation initiatives
 
-The Energy Commission administers the Renewable Portfolio Standard (RPS) program, which requires utilities to increase procurement from eligible renewable energy resources to 60% by 2030.
+2. **Electric Vehicle Infrastructure**:
+   - Charging station deployment
+   - Grid integration studies
+   - Regional readiness planning
+
+### Energy Research and Innovation
+
+1. **EPIC Program** (Electric Program Investment Charge):
+   - Clean energy technology development
+   - Grid modernization projects
+   - Energy storage solutions
+
+2. **Natural Gas Research Program**:
+   - Efficiency improvements
+   - Renewable gas development
+   - Infrastructure safety
+
+### Climate Initiatives
+
+1. **Greenhouse Gas Reduction**:
+   - Clean energy deployment
+   - Technology demonstrations
+   - Community-scale projects
+
+2. **Long Duration Storage**:
+   - Grid-scale storage solutions
+   - Technology assessment
+   - Integration planning
 
 ## Administrative Structure
 
-The Energy Commission is governed by five Commissioners appointed by the Governor and confirmed by the Senate for five-year terms:
+The Energy Commission operates with five commissioners appointed by the Governor and confirmed by the Senate. The organization includes:
 
-1. **Chair**: Leads the Commission and serves as the principal executive officer
-2. **Vice Chair**: Assumes the duties of the Chair in their absence
-3. **Three Additional Commissioners**: Each assigned specific policy areas
-
-The Commission is organized into the following divisions:
-- **Executive Office**: Overall leadership and coordination
-- **Efficiency Division**: Building and appliance efficiency standards
-- **Renewable Energy Division**: Renewable energy development and integration
-- **Research & Development Division**: Energy innovation and technology advancement
-- **Siting, Transmission & Environmental Protection Division**: Power plant licensing
-- **Administrative & Financial Services Division**: Budget, accounting, and human resources
+1. Executive Office
+2. Chief Counsel's Office
+3. Public Advisor's Office
+4. Major Divisions:
+   - Efficiency
+   - Renewable Energy
+   - Research and Development
+   - Siting, Transmission and Environmental Protection
+   - Administrative Services
 
 ## Funding Allocation Process
 
-1. **Strategic Planning**: The Commission develops a strategic plan that guides investment priorities
-2. **Public Solicitations**: Competitive grant funding through public solicitations
-3. **Direct Funding**: Targeted investments in high-priority areas
-4. **Interagency Coordination**: Collaboration with other state agencies to leverage resources
+1. **Annual Budget Process**:
+   - Development of funding priorities
+   - Public workshops and stakeholder input
+   - Commission business meetings for approval
+
+2. **Program Implementation**:
+   - Competitive solicitations
+   - Direct funding agreements
+   - Technical assistance contracts
+
+3. **Oversight and Reporting**:
+   - Regular progress updates
+   - Financial audits
+   - Legislative reporting
 
 Sources:
-[1] California State Budget 2024-25
-[2] California Energy Commission Strategic Plan 2021-2025
-[3] https://www.energy.ca.gov/ 
+[1] Energy Commission Budget Document 2024-25
+[2] Public Resources Code, Division 15
+[3] Warren-Alquist Act
+[4] California Code of Regulations, Title 20
+[5] Building Energy Efficiency Standards (Title 24, Part 6)
+[6] Alternative and Renewable Fuel and Vehicle Technology Program Investment Plan
+[7] Electric Program Investment Charge (EPIC) Investment Plan
+[8] Natural Gas Research and Development Program
+[9] Integrated Energy Policy Report
+[10] California Energy Commission Strategic Plan 

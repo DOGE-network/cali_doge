@@ -1,82 +1,151 @@
 ---
-title: California Environmental Protection Agency
-name: California Environmental Protection Agency
+
+name: "California Environmental Protection Agency"
 code: 0555
 date: '2025-03-15'
-author: Sean Roberts
-description: The California Environmental Protection Agency (CalEPA) is dedicated to the protection of human health and the environment through the coordination of the state's environmental regulatory programs. CalEPA oversees six departments, boards, and offices that work to address air and water pollution, toxic substances control, and environmental justice.
+author: "Sean Roberts"
+image: 
+description: "The California Environmental Protection Agency (CalEPA) leads the state's environmental regulatory programs, focusing on reducing greenhouse gas emissions, protecting environmental quality, and safeguarding public health."
 ---
 
-## Budget Highlights 2024-2025
+### Budget Trends and Highlights (2022-2025)
 
-### Position Growth
-- **Total Positions**: 245.6 positions in 2024-25
-- **Growth**: Increase of 28.3 positions (13.0%) from 2022-23 to 2024-25
-- **Key Areas**: Environmental justice, climate programs, and tribal affairs
+#### Position Growth
+- **Overall Trend**: Positions increased from 101.0 in 2022-23 to 110.0 in 2024-25 (8.9% growth)
+- **Staffing Expansion**: Net increase of 9.0 positions over three years
+- **New Initiatives**: Addition of 2.0 positions for Environmental Complaint System enhancement
+- **Current Workforce**: 110.0 positions dedicated to environmental protection and oversight
 
-### Budget Fluctuations
-- **Peak Funding**: FY 2022-23 saw $420 million in funding
-- **Current Budget**: $350 million for FY 2024-25
-- **Budget Trend**: Decrease of $70 million (16.7%) from 2022-23 to 2024-25
-- **General Fund**: Reduction from $180 million in 2022-23 to $120 million in 2024-25
+#### Budget Fluctuations
+- **Total Budget**: Fluctuated from $26.4 million in 2022-23 to $40.4 million in 2024-25 (53.0% growth)
+- **General Fund**: Decreased from $7.6 million to $4.6 million
+- **Unified Program**: Increased from $8.4 million to $10.7 million
+- **Reimbursements**: Significant increase from $3.7 million to $12.8 million
+
+#### Program Funding (2024-25)
+- **Support Programs**: $40.4 million total across all programs
+- **Unified Program**: $10.7 million (Unified Program Account)
+- **Motor Vehicle**: $2.4 million (Motor Vehicle Account)
+- **Air Pollution Control**: $2.4 million (Air Pollution Control Fund)
 
 ### Major Funding Codes and Sources
 
 #### Program Codes
-- **0555010 - Office of the Secretary**: $95 million in 2024-25
-- **0555020 - Environmental Justice and Tribal Affairs**: $85 million in 2024-25
-- **0555030 - Climate Programs**: $120 million in 2024-25
-- **0555040 - Law Enforcement and Counsel**: $50 million in 2024-25
+- **0340 - Support**: Core operations and environmental programs
+- **Environmental Justice**: Community protection and advocacy
+- **Emergency Response**: Environmental emergency preparedness
+- **Border Programs**: California-Mexico environmental coordination
 
 #### Funding Source Codes
-- **0001 - General Fund**: $120 million in 2024-25
-- **0044 - Motor Vehicle Account, State Transportation Fund**: $35 million in 2024-25
-- **0115 - Air Pollution Control Fund**: $65 million in 2024-25
-- **3228 - Greenhouse Gas Reduction Fund**: $90 million in 2024-25
-- **0995 - Reimbursements**: $40 million in 2024-25
+- **0001 - General Fund**: Core state funding ($4.6 million)
+- **0028 - Unified Program Account**: Environmental program coordination ($10.7 million)
+- **0044 - Motor Vehicle Account**: Transportation-related programs ($2.4 million)
+- **0115 - Air Pollution Control Fund**: Air quality programs ($2.4 million)
+- **0995 - Reimbursements**: Inter-agency services ($12.8 million)
+- **8013 - Environmental Enforcement and Training Account**: Enforcement programs ($2.1 million)
 
 ## Major Projects and Initiatives
 
-### Environmental Justice and Tribal Affairs
+### Environmental Protection Programs
 
-CalEPA's Environmental Justice and Tribal Affairs program works to ensure the fair treatment of all people regardless of race, culture, or income with respect to the development, implementation, and enforcement of environmental laws, regulations, and policies.
+1. **Greenhouse Gas Reduction**:
+   - AB 32 implementation coordination
+   - Climate change program oversight
+   - Emissions reduction strategies
 
-### Climate Action
+2. **Environmental Justice**:
+   - Community engagement
+   - Resource allocation
+   - Health impact assessment
 
-The agency coordinates California's climate action efforts, including the implementation of the state's cap-and-trade program, which generates revenue for the Greenhouse Gas Reduction Fund to support programs that further reduce emissions.
+3. **Environmental Law Enforcement**:
+   - Regulatory compliance
+   - Investigation coordination
+   - Enforcement actions
 
-### Pollution Prevention
+### Program Management and Oversight
 
-CalEPA leads pollution prevention initiatives that focus on reducing or eliminating pollution at the source, rather than controlling it after it has been created, through changes in production, operation, and raw materials use.
+1. **Unified Program**:
+   - Local agency coordination
+   - Program certification
+   - Performance evaluation
+
+2. **Environmental Reporting**:
+   - California Environmental Reporting System
+   - Data collection and analysis
+   - Transparency initiatives
+
+### Emergency Response and Border Programs
+
+1. **Emergency Preparedness**:
+   - Response coordination
+   - Resource deployment
+   - Agency collaboration
+
+2. **California-Mexico Border**:
+   - Cross-border initiatives
+   - Environmental protection
+   - International cooperation
 
 ## Administrative Structure
 
-The California Environmental Protection Agency is led by a Secretary appointed by the Governor and confirmed by the Senate. The agency is organized into the following divisions:
+The Environmental Protection Agency coordinates multiple environmental programs:
 
-1. **Office of the Secretary**: Overall leadership and coordination
-2. **Environmental Justice and Tribal Affairs**: Environmental justice and tribal engagement
-3. **Climate Programs**: Climate action and greenhouse gas reduction
-4. **Office of Legal Affairs**: Legal counsel and enforcement
-5. **External Affairs**: Communications and legislative affairs
-6. **Administration**: Budget, accounting, and human resources
+1. **Executive Office**:
+   - Secretary's Office
+   - Policy Development
+   - Legislative Affairs
+   - Communications
 
-The Secretary oversees six departments, boards, and offices:
-- Air Resources Board
-- Department of Pesticide Regulation
-- Department of Toxic Substances Control
-- Office of Environmental Health Hazard Assessment
-- State Water Resources Control Board
-- Department of Resources Recycling and Recovery (CalRecycle)
+2. **Core Programs**:
+   - Environmental Justice
+   - Law Enforcement
+   - Emergency Response
+   - Scientific Review
+
+3. **Support Services**:
+   - Administrative Operations
+   - Information Technology
+   - Legal Affairs
+   - External Affairs
+
+4. **Special Programs**:
+   - Climate Change
+   - Border Affairs
+   - Tribal Affairs
+   - Environmental Education
 
 ## Funding Allocation Process
 
-1. **Strategic Planning**: The agency develops a strategic plan that guides investment priorities
-2. **Interagency Coordination**: Coordination of funding across environmental departments
-3. **Environmental Justice Grants**: Competitive grants for environmental justice projects
-4. **Climate Investments**: Administration of Greenhouse Gas Reduction Fund programs
-5. **Special Initiatives**: Targeted funding for high-priority environmental initiatives
+1. **Program Development**:
+   - Environmental assessment
+   - Priority setting
+   - Resource planning
+   - Stakeholder input
+
+2. **Implementation Strategy**:
+   - Program guidelines
+   - Performance metrics
+   - Timeline development
+   - Resource allocation
+
+3. **Monitoring and Enforcement**:
+   - Compliance verification
+   - Progress tracking
+   - Impact assessment
+   - Program adjustment
+
+4. **Coordination and Reporting**:
+   - Agency collaboration
+   - Data management
+   - Public reporting
+   - Program evaluation
 
 Sources:
 [1] California State Budget 2024-25
-[2] California Environmental Protection Agency Strategic Plan 2021-2026
-[3] https://calepa.ca.gov/ 
+[2] Governor's Reorganization Plan No. 1 of 1991
+[3] Government Code Section 12812.6
+[4] Health and Safety Code, Division 37, Section 57000
+[5] Public Resources Code Sections 71000 and 71110
+[6] Governor's Reorganization Plan No. 2 of 2012
+[7] CalEPA Strategic Plan 

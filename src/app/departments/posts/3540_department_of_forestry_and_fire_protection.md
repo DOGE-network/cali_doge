@@ -1,77 +1,144 @@
 ---
-title: California Department of Forestry and Fire Protection
-name: California Department of Forestry and Fire Protection
+name: "Department of Forestry and Fire Protection"
 code: 3540
-date: '2025-03-15'
-author: Sean Roberts
-description: The California Department of Forestry and Fire Protection (CAL FIRE) is dedicated to the fire protection and stewardship of over 31 million acres of California's privately-owned wildlands. The Department also provides varied emergency services in 36 of the State's 58 counties via contracts with local governments.
+date: '2024-03-16'
+author: "Sean Roberts"
+image: 
+description: "CAL FIRE provides comprehensive emergency response services and leadership in protecting life, property, and natural resources through fire protection, prevention, and resource management."
 ---
 
-## Budget Highlights 2024-2025
+### Budget Trends and Highlights (2022-2025)
 
-### Position Growth
-- **Total Positions**: 9,748.5 positions in 2024-25
-- **Growth**: Increase of 1,256.3 positions (14.8%) from 2022-23 to 2024-25
-- **Key Areas**: Fire suppression, forest health, and climate resilience
+#### Position Growth
+- **Overall Growth**: Substantial increase from 11,170.8 positions in 2022-23 to 12,294.5 positions in 2024-25 (10% growth)
+- **Program Distribution**:
+  - Fire Protection: 10,534.6 positions (86%)
+  - Administration: 956.7 positions (8%)
+  - Resource Management: 569.7 positions (5%)
+  - State Fire Marshal: 222.6 positions (2%)
 
-### Budget Fluctuations
-- **Peak Funding**: FY 2022-23 saw $4.32 billion in funding
-- **Current Budget**: $4.22 billion for FY 2024-25
-- **Budget Trend**: Slight decrease of $100 million (2.3%) from 2022-23 to 2024-25
-- **General Fund**: Reduction from $2.85 billion in 2022-23 to $2.65 billion in 2024-25
+#### Budget Fluctuations
+- **Total Budget Trend**: Varied from $4.63 billion (2022-23) to $4.05 billion (2024-25)
+- **Major Changes**:
+  - General Fund allocation: $2.66 billion (2024-25)
+  - Reimbursements increase to $963.1 million
+  - Greenhouse Gas Reduction Fund: $318.5 million
+
+#### Major Program Funding (2024-25)
+- **Fire Protection**: $3.67 billion
+- **Resource Management**: $301.2 million
+- **State Fire Marshal**: $62.7 million
+- **Administration**: $203.2 million
 
 ### Major Funding Codes and Sources
 
 #### Program Codes
-- **3540010 - Office of the State Fire Marshal**: $120 million in 2024-25
-- **3540020 - Fire Protection**: $3.25 billion in 2024-25
-- **3540030 - Resource Management**: $650 million in 2024-25
-- **3540040 - State Fire Training**: $200 million in 2024-25
+- **2461 - Office of the State Fire Marshal**: Fire safety standards and enforcement
+- **2465 - Fire Protection**: Emergency response and fire suppression
+- **2470 - Resource Management**: Forest and wildland management
+- **2475 - Board of Forestry**: Policy development and oversight
+- **2480 - Legal Services**: Department of Justice support
 
 #### Funding Source Codes
-- **0001 - General Fund**: $2.65 billion in 2024-25
-- **0022 - State Emergency Response Fund**: $350 million in 2024-25
-- **0557 - Toxic Substances Control Account**: $25 million in 2024-25
-- **3228 - Greenhouse Gas Reduction Fund**: $280 million in 2024-25
-- **0995 - Reimbursements**: $915 million in 2024-25
+- **0001 - General Fund**: Primary funding source
+- **0995 - Reimbursements**: Emergency response cost recovery
+- **3228 - Greenhouse Gas Reduction Fund**: Climate initiatives
+- **3212 - Timber Regulation Fund**: Forest management
+- **0102 - State Fire Marshal Licensing Fund**: Regulatory activities
 
 ## Major Projects and Initiatives
 
-### Wildfire Prevention and Forest Health
+### Emergency Response
 
-CAL FIRE implements the California Forest Improvement Program (CFIP), which provides financial and technical assistance to landowners for forest management projects that improve forest health, increase carbon sequestration, and reduce wildfire risk.
+1. **Fire Protection Operations**:
+   - 66-Hour Workweek Implementation
+   - Air Attack Base Infrastructure
+   - Assistance by Hire Program
+   - Emergency Response Coordination
 
-### Fire Protection Operations
+2. **Public Safety Programs**:
+   - Fire Prevention Education
+   - Law Enforcement
+   - Emergency Medical Services
+   - Disaster Response
 
-The department maintains an extensive fire protection system that includes over 800 fire stations, 343 fire engines, 58 bulldozers, 29 air tankers, and 11 helicopters. This system is designed to respond rapidly to wildfires and other emergencies throughout the state.
+### Resource Management
 
-### Climate Adaptation and Resilience
+1. **Forest Health Programs**:
+   - Wildfire Prevention
+   - Forest Restoration
+   - Vegetation Management
+   - Prescribed Fire Activities
 
-CAL FIRE is implementing climate adaptation strategies to address the increasing frequency and severity of wildfires due to climate change, including fuel reduction projects, prescribed burns, and community wildfire protection planning.
+2. **Environmental Protection**:
+   - Climate Change Adaptation
+   - Watershed Protection
+   - Habitat Conservation
+   - Carbon Sequestration
+
+### Fire Prevention and Safety
+
+1. **State Fire Marshal Programs**:
+   - Building Standards
+   - Fire Safety Inspections
+   - Code Enforcement
+   - Professional Certification
+
+2. **Community Protection**:
+   - Defensible Space
+   - Fire Safe Regulations
+   - Local Assistance
+   - Risk Assessment
 
 ## Administrative Structure
 
-The Department of Forestry and Fire Protection is led by a Director appointed by the Governor and confirmed by the Senate. The department is organized into the following divisions:
+CAL FIRE operates through a comprehensive organizational structure:
 
-1. **Executive Office**: Overall leadership and coordination
-2. **Fire Protection**: Emergency response and fire suppression
-3. **Resource Management**: Forest health and management
-4. **Fire Prevention and Planning**: Fire prevention education and planning
-5. **Office of the State Fire Marshal**: Building standards and fire safety
-6. **Business Services**: Budget, accounting, and human resources
-7. **Information Technology**: Technology infrastructure and support
+1. Executive Leadership
+   - Director's Office
+   - Chief Deputy Directors
+   - State Fire Marshal
 
-The department operates through 21 operational units, which are organized into six regions throughout the state. Each region is led by a Regional Chief who reports to the Deputy Director for Fire Protection.
+2. Operational Divisions
+   - Fire Protection
+   - Resource Management
+   - Training and Safety
+   - Law Enforcement
+
+3. Support Functions
+   - Administration
+   - Information Technology
+   - Communications
+   - Legal Services
 
 ## Funding Allocation Process
 
-1. **Strategic Planning**: The department develops a strategic plan that guides resource allocation
-2. **Emergency Response Prioritization**: Funding for fire suppression and emergency response
-3. **Prevention and Preparedness**: Investment in fire prevention and preparedness activities
-4. **Grant Programs**: Competitive grants for forest health and fire prevention projects
-5. **Local Government Contracts**: Funding for fire protection services in contract counties
+1. **Budget Development**:
+   - Emergency response planning
+   - Resource management priorities
+   - Capital improvement needs
+   - Staffing requirements
+
+2. **Program Implementation**:
+   - Emergency response deployment
+   - Prevention program delivery
+   - Resource management activities
+   - Training and certification
+
+3. **Fiscal Management**:
+   - Emergency fund tracking
+   - Cost recovery processing
+   - Grant administration
+   - Contract management
 
 Sources:
-[1] California State Budget 2024-25
-[2] California Department of Forestry and Fire Protection Strategic Plan 2023-2028
-[3] https://www.fire.ca.gov/ 
+[1] CAL FIRE Budget Document 2024-25
+[2] Public Resources Code Division 1 and 4
+[3] Government Code Title 5
+[4] Health and Safety Code Division 12
+[5] Strategic Fire Plan for California
+[6] Forest and Fire Protection Laws
+[7] Emergency Response Plans
+[8] Resource Management Reports
+[9] Fire Prevention Program Guidelines
+[10] Administrative Procedures Manual 

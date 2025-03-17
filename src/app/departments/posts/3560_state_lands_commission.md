@@ -1,93 +1,139 @@
 ---
-title: "California State Lands Commission"
-name: "California State Lands Commission"
-code: "3560"
-date: '2025-03-15'
+name: "State Lands Commission"
+code: 3560
+date: '2024-03-16'
 author: "Sean Roberts"
-description: "The California State Lands Commission manages and protects the state's public trust lands, waterways, and resources for the benefit of all Californians."
+image: 
+description: "The California State Lands Commission provides stewardship of public lands, waterways, and resources through preservation, restoration, enhancement, responsible economic development, and public access promotion."
 ---
 
-## Budget Highlights 2024-2025
+### Budget Trends and Highlights (2022-2025)
 
-The California State Lands Commission has **242.0 positions** for 2024-25, an increase of 8.0 positions from 2023-24. The Commission's budget for 2024-25 is **$85.6 million**, an increase of $3.2 million from the previous fiscal year.
+#### Position Growth
+- **Stable Staffing**: Maintained 248.6 positions consistently from 2022-23 through 2024-25
+- **Program Distribution**:
+  - Marine Environmental Protection: 95.0 positions (38%)
+  - Mineral Resources Management: 79.0 positions (32%)
+  - Land Management: 74.6 positions (30%)
 
-Major funding codes and sources include:
-- **3560-001-0001**: General Fund - $18.3 million
-- **3560-001-0212**: Marine Invasive Species Control Fund - $3.7 million
-- **3560-001-0320**: Oil Spill Prevention and Administration Fund - $14.2 million
-- **3560-001-0347**: School Land Bank Fund - $2.1 million
-- **3560-001-0943**: Environmental License Plate Fund - $1.5 million
-- **3560-001-8018**: Land Bank Fund - $45.8 million
+#### Budget Fluctuations
+- **Total Budget Trend**: Declining from $87.3 million (2022-23) to $51.0 million (2024-25)
+- **Major Changes**:
+  - General Fund reduction from $61.4 million to $19.0 million
+  - Oil Spill Prevention Fund increase to $17.0 million
+  - Marine Invasive Species Control Fund stable at $4.8 million
+
+#### Major Program Funding (2024-25)
+- **Mineral Resources Management**: $16.5 million
+- **Land Management**: $19.5 million
+- **Marine Environmental Protection**: $15.0 million
+
+### Major Funding Codes and Sources
+
+#### Program Codes
+- **2560 - Mineral Resources Management**: Oil, gas, and mineral resource oversight
+- **2565 - Land Management**: Public trust and school lands administration
+- **2570 - Marine Environmental Protection**: Marine terminal and invasive species regulation
+
+#### Funding Source Codes
+- **0001 - General Fund**: Primary state funding
+- **0320 - Oil Spill Prevention Fund**: Marine safety programs
+- **0212 - Marine Invasive Species Control Fund**: Species prevention
+- **0347 - School Land Bank Fund**: Educational land management
+- **0140 - Environmental License Plate Fund**: Environmental programs
 
 ## Major Projects and Initiatives
 
-### Public Trust Lands Management
-The Commission manages approximately 4 million acres of tide and submerged lands and the beds of navigable rivers, streams, lakes, bays, estuaries, inlets, and straits. Current initiatives include:
+### Public Trust Land Management
 
-- **Offshore Renewable Energy**: Facilitating the development of offshore wind energy projects while ensuring environmental protection and public benefit.
-- **Port and Harbor Management**: Overseeing leases and agreements for ports, harbors, and marinas throughout California.
-- **Waterfront Revitalization**: Working with local governments to enhance public access and economic development along urban waterfronts.
+1. **Sovereign Land Oversight**:
+   - 4 million acres of tide and submerged lands
+   - Natural waterway management
+   - Public access preservation
+   - Boundary resolution
 
-### Environmental Protection and Restoration
-The Commission leads efforts to protect and restore coastal and aquatic environments through:
+2. **Local Trust Grants**:
+   - 70+ local jurisdiction oversight
+   - Port management coordination
+   - Revenue reinvestment monitoring
+   - Trust compliance verification
 
-- **Marine Invasive Species Program**: Preventing the introduction of non-native species from commercial shipping vessels.
-- **Oil Spill Prevention**: Inspecting marine oil terminals and offshore platforms to prevent oil spills.
-- **Legacy Well Remediation**: Capping and abandoning legacy oil wells along the California coast, particularly in the Santa Barbara Channel.
-- **Abandoned Vessel Removal**: Removing abandoned and derelict vessels from state waterways to prevent environmental damage.
+### Resource Development
 
-### Climate Change Adaptation
-The Commission is addressing climate change impacts through:
+1. **Mineral Resource Management**:
+   - Oil and gas facility oversight
+   - Geothermal resource development
+   - Royalty collection
+   - Safety audit implementation
 
-- **Sea Level Rise Assessments**: Evaluating vulnerability of state lands to sea level rise and developing adaptation strategies.
-- **Carbon Sequestration**: Exploring opportunities for blue carbon sequestration in coastal wetlands and eelgrass beds.
-- **Coastal Resilience Planning**: Collaborating with local governments and state agencies on coastal resilience initiatives.
+2. **School Land Administration**:
+   - 458,843 acres of school lands
+   - 790,000 acres of mineral interests
+   - Revenue generation for education
+   - Land consolidation efforts
+
+### Environmental Protection
+
+1. **Marine Terminal Program**:
+   - Oil transfer monitoring
+   - Facility inspections
+   - Operations manual review
+   - Training certification
+
+2. **Marine Invasive Species Control**:
+   - Vessel inspection program
+   - Scientific research
+   - Regulation development
+   - Compliance monitoring
 
 ## Administrative Structure
 
-The California State Lands Commission is governed by a three-member Commission consisting of:
-- The Lieutenant Governor
-- The State Controller
-- The Director of Finance (or designee)
+The Commission operates under a three-member governing body:
 
-The Commission's staff is led by an Executive Officer who oversees the following divisions:
-- **Land Management Division**: Manages leases, permits, and agreements for the use of state lands.
-- **Marine Environmental Protection Division**: Oversees marine oil terminals, offshore platforms, and the Marine Invasive Species Program.
-- **Mineral Resources Management Division**: Manages mineral extraction activities on state lands.
-- **Environmental Planning and Management Division**: Conducts environmental reviews and planning for projects on state lands.
-- **Legal Division**: Provides legal counsel and represents the Commission in litigation.
-- **Administrative Services Division**: Handles budgeting, accounting, human resources, and information technology.
+1. Commission Leadership
+   - Lieutenant Governor
+   - State Controller
+   - Director of Finance
+
+2. Program Divisions
+   - Mineral Resources Management
+   - Land Management
+   - Marine Environmental Protection
+
+3. Support Services
+   - Executive Office
+   - Legal Division
+   - Administrative Services
+   - Information Technology
 
 ## Funding Allocation Process
 
-The Commission allocates funding through several mechanisms:
+1. **Revenue Generation**:
+   - Lease management
+   - Royalty collection
+   - Permit fees
+   - Grant oversight
 
-### Revenue Generation and Distribution
-The Commission generates revenue through:
-- Leases and permits for the use of state lands
-- Royalties from mineral extraction
-- Fees for services and regulatory activities
+2. **Program Implementation**:
+   - Resource protection
+   - Public access enhancement
+   - Safety enforcement
+   - Environmental monitoring
 
-Revenue is distributed to:
-- The General Fund
-- The Land Bank Fund for acquisition of property
-- The School Land Bank Fund for the benefit of the State Teachers' Retirement System
-- Special funds for environmental protection and restoration
+3. **Fiscal Management**:
+   - Trust fund administration
+   - Revenue distribution
+   - Program budgeting
+   - Audit compliance
 
-### Project Prioritization
-Projects are prioritized based on:
-- Public trust needs and benefits
-- Environmental protection and restoration goals
-- Legal mandates and obligations
-- Public safety concerns
-- Climate change adaptation needs
-
-### Grant and Contract Management
-The Commission administers grants and contracts for:
-1. Environmental studies and assessments
-2. Habitat restoration projects
-3. Legacy well remediation
-4. Abandoned vessel removal
-5. Public access improvements
-
-The Commission leverages state funding with federal and local sources when possible, particularly for environmental restoration and climate adaptation projects. 
+Sources:
+[1] State Lands Commission Budget Document 2024-25
+[2] Public Resources Code, Divisions 3, 6, 7, 7.7, 7.8, and 36
+[3] Government Code, Title 2, Division 1, Chapter 7.4
+[4] Marine Oil Terminal Engineering and Maintenance Standards
+[5] Marine Invasive Species Act
+[6] Public Trust Doctrine
+[7] School Land Management Program
+[8] Annual Staff Reports
+[9] Strategic Plan
+[10] Environmental Justice Policy 

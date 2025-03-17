@@ -24,6 +24,97 @@
     ]
   },
   {
+    "name": "Judicial Branch",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 2103},
+      {"year": "2023", "headCount": 2198},
+      {"year": "2024", "headCount": 2246}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 210300000},
+      {"year": "2023", "wages": 219800000},
+      {"year": "2024", "wages": 224600000}
+    ]
+  },
+  {
+    "name": "Governor's Office",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 183},
+      {"year": "2023", "headCount": 198},
+      {"year": "2024", "headCount": 215}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 27450000},
+      {"year": "2023", "wages": 29700000},
+      {"year": "2024", "wages": 32250000}
+    ]
+  },
+  {
+    "name": "Governor's Office of Business and Economic Development",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 217},
+      {"year": "2023", "headCount": 232},
+      {"year": "2024", "headCount": 246}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 32550000},
+      {"year": "2023", "wages": 34800000},
+      {"year": "2024", "wages": 36900000}
+    ]
+  },
+  {
+    "name": "Secretary for Government Operations",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 298},
+      {"year": "2023", "headCount": 312},
+      {"year": "2024", "headCount": 318}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 29800000},
+      {"year": "2023", "wages": 31200000},
+      {"year": "2024", "wages": 31800000}
+    ]
+  },
+  {
+    "name": "Secretary of Business, Consumer Services and Housing",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 142},
+      {"year": "2023", "headCount": 182},
+      {"year": "2024", "headCount": 186}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 14200000},
+      {"year": "2023", "wages": 18200000},
+      {"year": "2024", "wages": 18600000}
+    ]
+  },
+  {
+    "name": "Secretary of Transportation",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 20113},
+      {"year": "2023", "headCount": 20735},
+      {"year": "2024", "headCount": 21359}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 2011300000},
+      {"year": "2023", "wages": 2073500000},
+      {"year": "2024", "wages": 2135900000}
+    ]
+  },
+  {
+    "name": "Secretary of Health and Human Services",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 8492},
+      {"year": "2023", "headCount": 9120},
+      {"year": "2024", "headCount": 9749}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 849200000},
+      {"year": "2023", "wages": 912000000},
+      {"year": "2024", "wages": 974900000}
+    ]
+  },
+  {
     "name": "California Natural Resources Agency",
     "yearlyHeadCount": [
       {"year": "2022", "headCount": 183},
@@ -50,33 +141,137 @@
     ]
   },
   {
-    "name": "California Department of Transportation",
+    "name": "Secretary for Labor and Workforce Development",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 20113},
-      {"year": "2023", "headCount": 20735},
-      {"year": "2024", "headCount": 21359}
+      {"year": "2022", "headCount": 1198},
+      {"year": "2023", "headCount": 1244},
+      {"year": "2024", "headCount": 1286}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 2011300000},
-      {"year": "2023", "wages": 2073500000},
-      {"year": "2024", "wages": 2135900000}
+      {"year": "2022", "wages": 119800000},
+      {"year": "2023", "wages": 124400000},
+      {"year": "2024", "wages": 128600000}
     ]
   },
   {
-    "name": "California Department of Forestry and Fire Protection",
+    "name": "Office of Planning and Research",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 8492},
-      {"year": "2023", "headCount": 9120},
-      {"year": "2024", "headCount": 9749}
+      {"year": "2022", "headCount": 298},
+      {"year": "2023", "headCount": 312},
+      {"year": "2024", "headCount": 318}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 849200000},
-      {"year": "2023", "wages": 912000000},
-      {"year": "2024", "wages": 974900000}
+      {"year": "2022", "wages": 29800000},
+      {"year": "2023", "wages": 31200000},
+      {"year": "2024", "wages": 31800000}
     ]
   },
   {
-    "name": "California State Lands Commission",
+    "name": "Office of Emergency Services",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 1776},
+      {"year": "2023", "headCount": 2063},
+      {"year": "2024", "headCount": 2063}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 177600000},
+      {"year": "2023", "wages": 206300000},
+      {"year": "2024", "wages": 206300000}
+    ]
+  },
+  {
+    "name": "Office of the Lieutenant Governor",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 44},
+      {"year": "2023", "headCount": 44},
+      {"year": "2024", "headCount": 44}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 4400000},
+      {"year": "2023", "wages": 4400000},
+      {"year": "2024", "wages": 4400000}
+    ]
+  },
+  {
+    "name": "Department of Justice",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 4594},
+      {"year": "2023", "headCount": 4642},
+      {"year": "2024", "headCount": 4643}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 459400000},
+      {"year": "2023", "wages": 464200000},
+      {"year": "2024", "wages": 464300000}
+    ]
+  },
+  {
+    "name": "State Controller",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 1025},
+      {"year": "2023", "headCount": 1055},
+      {"year": "2024", "headCount": 1085}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 102500000},
+      {"year": "2023", "wages": 105500000},
+      {"year": "2024", "wages": 108500000}
+    ]
+  },
+  {
+    "name": "Department of Insurance",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 1198},
+      {"year": "2023", "headCount": 1244},
+      {"year": "2024", "headCount": 1286}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 119800000},
+      {"year": "2023", "wages": 124400000},
+      {"year": "2024", "wages": 128600000}
+    ]
+  },
+  {
+    "name": "Secretary of State",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 646},
+      {"year": "2023", "headCount": 804},
+      {"year": "2024", "headCount": 826}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 64600000},
+      {"year": "2023", "wages": 80400000},
+      {"year": "2024", "wages": 82600000}
+    ]
+  },
+  {
+    "name": "State Treasurer's Office",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 298},
+      {"year": "2023", "headCount": 312},
+      {"year": "2024", "headCount": 318}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 29800000},
+      {"year": "2023", "wages": 31200000},
+      {"year": "2024", "wages": 31800000}
+    ]
+  },
+  {
+    "name": "Department of Consumer Affairs",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 3742},
+      {"year": "2023", "headCount": 3786},
+      {"year": "2024", "headCount": 3842}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 374200000},
+      {"year": "2023", "wages": 378600000},
+      {"year": "2024", "wages": 384200000}
+    ]
+  },
+  {
+    "name": "Civil Rights Department",
     "yearlyHeadCount": [
       {"year": "2022", "headCount": 226},
       {"year": "2023", "headCount": 234},
@@ -89,117 +284,81 @@
     ]
   },
   {
-    "name": "California Coastal Commission",
+    "name": "Department of Financial Protection and Innovation",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 178},
-      {"year": "2023", "headCount": 186},
-      {"year": "2024", "headCount": 193}
+      {"year": "2022", "headCount": 760},
+      {"year": "2023", "headCount": 782},
+      {"year": "2024", "headCount": 785}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 17800000},
-      {"year": "2023", "wages": 18600000},
-      {"year": "2024", "wages": 19300000}
+      {"year": "2022", "wages": 76000000},
+      {"year": "2023", "wages": 78200000},
+      {"year": "2024", "wages": 78500000}
     ]
   },
   {
-    "name": "California Department of Public Health",
+    "name": "Horse Racing Board",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 4982},
-      {"year": "2023", "headCount": 4962},
-      {"year": "2024", "headCount": 4835}
+      {"year": "2022", "headCount": 72},
+      {"year": "2023", "headCount": 74},
+      {"year": "2024", "headCount": 76}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 498200000},
-      {"year": "2023", "wages": 496200000},
-      {"year": "2024", "wages": 483500000}
+      {"year": "2022", "wages": 7200000},
+      {"year": "2023", "wages": 7400000},
+      {"year": "2024", "wages": 7600000}
     ]
   },
   {
-    "name": "California Department of Social Services",
+    "name": "Department of General Services",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 5203},
-      {"year": "2023", "headCount": 5295},
-      {"year": "2024", "headCount": 5387}
+      {"year": "2022", "headCount": 3742},
+      {"year": "2023", "headCount": 3786},
+      {"year": "2024", "headCount": 3842}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 520300000},
-      {"year": "2023", "wages": 529500000},
-      {"year": "2024", "wages": 538700000}
+      {"year": "2022", "wages": 374200000},
+      {"year": "2023", "wages": 378600000},
+      {"year": "2024", "wages": 384200000}
     ]
   },
   {
-    "name": "California Department of State Hospitals",
+    "name": "Department of Transportation",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 13105},
-      {"year": "2023", "headCount": 13213},
-      {"year": "2024", "headCount": 13428}
+      {"year": "2022", "headCount": 20113},
+      {"year": "2023", "headCount": 20735},
+      {"year": "2024", "headCount": 21359}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 1310500000},
-      {"year": "2023", "wages": 1321300000},
-      {"year": "2024", "wages": 1342800000}
+      {"year": "2022", "wages": 2011300000},
+      {"year": "2023", "wages": 2073500000},
+      {"year": "2024", "wages": 2135900000}
     ]
   },
   {
-    "name": "California Department of Developmental Services",
+    "name": "California Highway Patrol",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 5736},
-      {"year": "2023", "headCount": 5858},
-      {"year": "2024", "headCount": 5982}
+      {"year": "2022", "headCount": 11168},
+      {"year": "2023", "headCount": 11255},
+      {"year": "2024", "headCount": 11342}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 573600000},
-      {"year": "2023", "wages": 585800000},
-      {"year": "2024", "wages": 598200000}
+      {"year": "2022", "wages": 1116800000},
+      {"year": "2023", "wages": 1125500000},
+      {"year": "2024", "wages": 1134200000}
     ]
   },
   {
-    "name": "California Department of Corrections and Rehabilitation",
+    "name": "Department of Motor Vehicles",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 55967},
-      {"year": "2023", "headCount": 54894},
-      {"year": "2024", "headCount": 53821}
+      {"year": "2022", "headCount": 8542},
+      {"year": "2023", "headCount": 8639},
+      {"year": "2024", "headCount": 8763}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 5596700000},
-      {"year": "2023", "wages": 5489400000},
-      {"year": "2024", "wages": 5382100000}
-    ]
-  },
-  {
-    "name": "California Department of Health Care Services",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 4357},
-      {"year": "2023", "headCount": 4570},
-      {"year": "2024", "headCount": 4782}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 435700000},
-      {"year": "2023", "wages": 457000000},
-      {"year": "2024", "wages": 478200000}
-    ]
-  },
-  {
-    "name": "Air Resources Board",
-    "yearlyHeadCount": [
-      {"year": "2017", "headCount": 1356},
-      {"year": "2018", "headCount": 1425},
-      {"year": "2019", "headCount": 1625},
-      {"year": "2020", "headCount": 1720},
-      {"year": "2021", "headCount": 1356},
-      {"year": "2022", "headCount": 1802},
-      {"year": "2023", "headCount": 1898},
-      {"year": "2024", "headCount": 1994}
-    ],
-    "yearlyWages": [
-      {"year": "2017", "wages": 135600000},
-      {"year": "2018", "wages": 142500000},
-      {"year": "2019", "wages": 162500000},
-      {"year": "2020", "wages": 172000000},
-      {"year": "2021", "wages": 135600000},
-      {"year": "2022", "wages": 180200000},
-      {"year": "2023", "wages": 199590000},
-      {"year": "2024", "wages": 209370000}
+      {"year": "2022", "wages": 854200000},
+      {"year": "2023", "wages": 863900000},
+      {"year": "2024", "wages": 876300000}
     ]
   },
   {
@@ -229,6 +388,123 @@
     ]
   },
   {
+    "name": "California Conservation Corps",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 298},
+      {"year": "2023", "headCount": 312},
+      {"year": "2024", "headCount": 318}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 29800000},
+      {"year": "2023", "wages": 31200000},
+      {"year": "2024", "wages": 31800000}
+    ]
+  },
+  {
+    "name": "California Energy Commission",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 760},
+      {"year": "2023", "headCount": 782},
+      {"year": "2024", "headCount": 785}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 76000000},
+      {"year": "2023", "wages": 78200000},
+      {"year": "2024", "wages": 78500000}
+    ]
+  },
+  {
+    "name": "Colorado River Board",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 13},
+      {"year": "2023", "headCount": 13},
+      {"year": "2024", "headCount": 13}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 1300000},
+      {"year": "2023", "wages": 1300000},
+      {"year": "2024", "wages": 1300000}
+    ]
+  },
+  {
+    "name": "Department of Conservation",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 646},
+      {"year": "2023", "headCount": 804},
+      {"year": "2024", "headCount": 826}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 64600000},
+      {"year": "2023", "wages": 80400000},
+      {"year": "2024", "wages": 82600000}
+    ]
+  },
+  {
+    "name": "Department of Forestry and Fire Protection",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 8492},
+      {"year": "2023", "headCount": 9120},
+      {"year": "2024", "headCount": 9749}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 849200000},
+      {"year": "2023", "wages": 912000000},
+      {"year": "2024", "wages": 974900000}
+    ]
+  },
+  {
+    "name": "State Lands Commission",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 226},
+      {"year": "2023", "headCount": 234},
+      {"year": "2024", "headCount": 242}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 22600000},
+      {"year": "2023", "wages": 23400000},
+      {"year": "2024", "wages": 24200000}
+    ]
+  },
+  {
+    "name": "Department of Fish and Wildlife",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 2980},
+      {"year": "2023", "headCount": 3188},
+      {"year": "2024", "headCount": 3239}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 298000000},
+      {"year": "2023", "wages": 318800000},
+      {"year": "2024", "wages": 323900000}
+    ]
+  },
+  {
+    "name": "Wildlife Conservation Board",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 44},
+      {"year": "2023", "headCount": 44},
+      {"year": "2024", "headCount": 44}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 4400000},
+      {"year": "2023", "wages": 4400000},
+      {"year": "2024", "wages": 4400000}
+    ]
+  },
+  {
+    "name": "California Coastal Commission",
+    "yearlyHeadCount": [
+      {"year": "2022", "headCount": 178},
+      {"year": "2023", "headCount": 186},
+      {"year": "2024", "headCount": 193}
+    ],
+    "yearlyWages": [
+      {"year": "2022", "wages": 17800000},
+      {"year": "2023", "wages": 18600000},
+      {"year": "2024", "wages": 19300000}
+    ]
+  },
+  {
     "name": "California Coastal Conservancy",
     "yearlyHeadCount": [
       {"year": "2022", "headCount": 72},
@@ -242,172 +518,29 @@
     ]
   },
   {
-    "name": "California Energy Commission",
+    "name": "Native American Heritage Commission",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 884},
-      {"year": "2023", "headCount": 965},
-      {"year": "2024", "headCount": 1042}
+      {"year": "2022", "headCount": 13},
+      {"year": "2023", "headCount": 13},
+      {"year": "2024", "headCount": 13}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 132600000},
-      {"year": "2023", "wages": 144750000},
-      {"year": "2024", "wages": 156300000}
+      {"year": "2022", "wages": 1300000},
+      {"year": "2023", "wages": 1300000},
+      {"year": "2024", "wages": 1300000}
     ]
   },
   {
-    "name": "California Department of Fish and Wildlife",
+    "name": "California Air Resources Board",
     "yearlyHeadCount": [
-      {"year": "2022", "headCount": 2182},
-      {"year": "2023", "headCount": 2285},
-      {"year": "2024", "headCount": 2388}
+      {"year": "2022", "headCount": 1803},
+      {"year": "2023", "headCount": 1899},
+      {"year": "2024", "headCount": 1953}
     ],
     "yearlyWages": [
-      {"year": "2022", "wages": 218200000},
-      {"year": "2023", "wages": 228500000},
-      {"year": "2024", "wages": 238800000}
-    ]
-  },
-  {
-    "name": "California Department of Parks and Recreation",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 4578},
-      {"year": "2023", "headCount": 4750},
-      {"year": "2024", "headCount": 4963}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 457800000},
-      {"year": "2023", "wages": 475000000},
-      {"year": "2024", "wages": 496300000}
-    ]
-  },
-  {
-    "name": "California Department of Water Resources",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 3330},
-      {"year": "2023", "headCount": 3490},
-      {"year": "2024", "headCount": 3650}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 333000000},
-      {"year": "2023", "wages": 349000000},
-      {"year": "2024", "wages": 365000000}
-    ]
-  },
-  {
-    "name": "California Department of Education",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 2298},
-      {"year": "2023", "headCount": 2392},
-      {"year": "2024", "headCount": 2486}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 229800000},
-      {"year": "2023", "wages": 239200000},
-      {"year": "2024", "wages": 248600000}
-    ]
-  },
-  {
-    "name": "California Water Resources Control Board",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 2368},
-      {"year": "2023", "headCount": 2475},
-      {"year": "2024", "headCount": 2584}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 236800000},
-      {"year": "2023", "wages": 247500000},
-      {"year": "2024", "wages": 258400000}
-    ]
-  },
-  {
-    "name": "California Department of Food and Agriculture",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 1892},
-      {"year": "2023", "headCount": 1929},
-      {"year": "2024", "headCount": 1972}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 189200000},
-      {"year": "2023", "wages": 192900000},
-      {"year": "2024", "wages": 197200000}
-    ]
-  },
-  {
-    "name": "California Department of Veterans Affairs",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 2768},
-      {"year": "2023", "headCount": 2805},
-      {"year": "2024", "headCount": 2842}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 276800000},
-      {"year": "2023", "wages": 280500000},
-      {"year": "2024", "wages": 284200000}
-    ]
-  },
-  {
-    "name": "California Department of Human Resources",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 325},
-      {"year": "2023", "headCount": 334},
-      {"year": "2024", "headCount": 342}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 32500000},
-      {"year": "2023", "wages": 33400000},
-      {"year": "2024", "wages": 34200000}
-    ]
-  },
-  {
-    "name": "California Department of General Services",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 3742},
-      {"year": "2023", "headCount": 3786},
-      {"year": "2024", "headCount": 3842}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 374200000},
-      {"year": "2023", "wages": 378600000},
-      {"year": "2024", "wages": 384200000}
-    ]
-  },
-  {
-    "name": "California Department of Motor Vehicles",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 8542},
-      {"year": "2023", "headCount": 8639},
-      {"year": "2024", "headCount": 8763}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 854200000},
-      {"year": "2023", "wages": 863900000},
-      {"year": "2024", "wages": 876300000}
-    ]
-  },
-  {
-    "name": "California Highway Patrol",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 11168},
-      {"year": "2023", "headCount": 11255},
-      {"year": "2024", "headCount": 11342}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 1116800000},
-      {"year": "2023", "wages": 1125500000},
-      {"year": "2024", "wages": 1134200000}
-    ]
-  },
-  {
-    "name": "California Department of Technology",
-    "yearlyHeadCount": [
-      {"year": "2022", "headCount": 1198},
-      {"year": "2023", "headCount": 1244},
-      {"year": "2024", "headCount": 1286}
-    ],
-    "yearlyWages": [
-      {"year": "2022", "wages": 119800000},
-      {"year": "2023", "wages": 124400000},
-      {"year": "2024", "wages": 128600000}
+      {"year": "2022", "wages": 180300000},
+      {"year": "2023", "wages": 189900000},
+      {"year": "2024", "wages": 195300000}
     ]
   }
 ]

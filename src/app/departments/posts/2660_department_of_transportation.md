@@ -1,77 +1,131 @@
 ---
-title: California Department of Transportation
-name: California Department of Transportation
+
+name: "Department of Transportation"
 code: 2660
 date: '2025-03-15'
-author: Sean Roberts
-description: The California Department of Transportation (Caltrans) is responsible for planning, designing, building, operating, and maintaining California's state highway system, as well as supporting public transportation systems throughout the state.
+author: "Sean Roberts"
+image: 
+description: "Caltrans manages California's state highway system and supports public transportation systems throughout the state"
 ---
 
-## Budget Highlights 2024-2025
+### Budget Trends and Highlights (2024-2026)
 
-### Position Growth
-- **Total Positions**: 21,358.5 positions in 2024-25
-- **Growth**: Increase of 1,245.2 positions (6.2%) from 2022-23 to 2024-25
-- **Key Areas**: Highway maintenance, project delivery, and climate adaptation
+#### Budget Overview
+- **Total Budget**: $15.3 billion for 2024-25
+- **Year-over-Year Change**: Roughly flat from 2023-24 expenditure level
+- **Historical Trend**: 
+  - 2022-23: $14.1 billion (actual)
+  - 2023-24: $15.3 billion (estimated)
+  - 2024-25: $15.3 billion (enacted)
 
-### Budget Fluctuations
-- **Peak Funding**: FY 2022-23 saw $20.6 billion in funding
-- **Current Budget**: $18.8 billion for FY 2024-25
-- **Budget Trend**: Decrease of $1.8 billion (8.7%) from 2022-23 to 2024-25
-- **General Fund**: Reduction from $2.2 billion in 2022-23 to $1.5 billion in 2024-25
+#### Major Funding Sources
+- **Special Funds**: Primary funding source from transportation-specific accounts
+- **Federal Funds**: Significant federal transportation funding
+- **General Fund**: Limited appropriations for specific projects
+- **Bond Funds**: Infrastructure and transportation bond proceeds
 
-### Major Funding Codes and Sources
+### Major Projects and Initiatives
 
-#### Program Codes
-- **2660010 - Highway Transportation**: $12.5 billion in 2024-25
-- **2660020 - Mass Transportation**: $3.8 billion in 2024-25
-- **2660030 - Transportation Planning**: $1.2 billion in 2024-25
-- **2660040 - Administration**: $1.3 billion in 2024-25
+#### California Integrated Travel Project
+- **New Funding**: $11.8 million in 2024-25, increasing to $26.3 million annually by 2026-27
+- **Purpose**: Improve and standardize public transit ridership experience
+- **Implementation**: Transition from federal funding to ongoing state support
+- **Scope**: Standardization of transit systems across agencies
 
-#### Funding Source Codes
-- **0001 - General Fund**: $1.5 billion in 2024-25
-- **0042 - State Highway Account, State Transportation Fund**: $8.2 billion in 2024-25
-- **0046 - Public Transportation Account, State Transportation Fund**: $2.3 billion in 2024-25
-- **0890 - Federal Trust Fund**: $5.6 billion in 2024-25
-- **0995 - Reimbursements**: $1.2 billion in 2024-25
+#### Intercity Passenger Rail Program
+- **Funding Allocation**: 
+  - $66 million in 2024-25
+  - $72 million in 2025-26
+  - $73 million in 2026-27
+- **Services Supported**:
+  - Capitol Corridor
+  - San Joaquin
+  - Los Angeles-San Diego-San Luis Obispo Rail (LOSSAN) Corridor
+- **Challenges Addressed**: Operating cost increases and ridership decreases
 
-## Major Projects and Initiatives
+#### Local Transportation Projects
+- **Total Allocation**: $20.8 million one-time General Fund
+- **Key Projects**:
+  1. Crescent City Bluffs Repair: $8 million
+  2. Active Transportation Program: $5 million
+  3. Sonoma-Marin Rail Operations: $4 million
+  4. Sonoma County Street Safety: $3.8 million
 
-### Fix-it-First Highway Rehabilitation
+### Administrative Structure
 
-Caltrans is implementing a "fix-it-first" approach to highway maintenance and rehabilitation, focusing on repairing and maintaining existing infrastructure before building new capacity. This includes the State Highway Operation and Protection Program (SHOPP), which funds projects to preserve and protect the state highway system.
+#### Executive Leadership
+1. Director's Office
+2. Chief Deputy Director
+3. District Directors (12 districts)
+4. Chief Financial Officer
+5. Chief Information Officer
 
-### Climate Adaptation and Resilience
+#### Major Divisions
+1. Planning and Modal Programs
+   - Transportation Planning
+   - Rail and Mass Transportation
+   - Aeronautics
+   
+2. Project Delivery
+   - Design
+   - Construction
+   - Environmental Analysis
+   
+3. Maintenance and Operations
+   - Traffic Operations
+   - Maintenance
+   - Equipment
+   
+4. Administration
+   - Human Resources
+   - Procurement
+   - Information Technology
+   
+5. Sustainability
+   - Environmental Stewardship
+   - Climate Change
+   - Air Quality
 
-The department is integrating climate adaptation strategies into transportation planning and project delivery to ensure that California's transportation infrastructure is resilient to climate impacts such as sea-level rise, extreme heat, and increased wildfire risk.
+### Funding Allocation Process
 
-### Active Transportation and Complete Streets
+#### Revenue Sources
+1. **State Highway Account**: Fuel taxes and vehicle fees
+2. **Federal Transportation Funds**: Highway and transit funding
+3. **Senate Bill 1**: Road Repair and Accountability Act funds
+4. **Cap-and-Trade**: Greenhouse gas reduction funds
 
-Caltrans is implementing the Active Transportation Program and Complete Streets policies to create safer, more accessible transportation networks for pedestrians, bicyclists, and transit users, with a focus on equity and reducing greenhouse gas emissions.
+#### Program Funding Categories
+1. **Highway Program**: Maintenance, rehabilitation, and expansion
+2. **Mass Transportation**: Rail and transit support
+3. **Local Assistance**: Support for cities and counties
+4. **Active Transportation**: Bicycle and pedestrian projects
+5. **Planning**: Transportation system planning and research
 
-## Administrative Structure
+#### Project Selection Criteria
+1. **Safety**: Accident reduction and system security
+2. **Mobility**: Congestion relief and travel time reliability
+3. **Preservation**: Infrastructure condition and maintenance
+4. **Sustainability**: Environmental impact and climate resilience
+5. **Economy**: Economic benefits and cost-effectiveness
 
-The Department of Transportation is led by a Director appointed by the Governor and confirmed by the Senate. The department is organized into the following divisions:
+### Performance Metrics
 
-1. **Executive Office**: Overall leadership and coordination
-2. **Planning and Modal Programs**: Transportation planning and multimodal programs
-3. **Project Delivery**: Design and construction of transportation projects
-4. **Maintenance and Operations**: Highway maintenance and traffic operations
-5. **Administration**: Budget, accounting, and human resources
-6. **Information Technology**: Technology infrastructure and support
-7. **Legal Division**: Legal counsel and risk management
+#### Transportation System Performance
+1. **Highway Condition**: Pavement and bridge health indices
+2. **Safety**: Accident rates and fatality statistics
+3. **Mobility**: Travel time reliability and delay measures
+4. **Sustainability**: Greenhouse gas emissions reduction
+5. **Project Delivery**: On-time and on-budget performance
 
-The department operates through 12 district offices throughout the state, each responsible for planning, designing, constructing, operating, and maintaining the state highway system within its geographic area.
-
-## Funding Allocation Process
-
-1. **Strategic Planning**: The department develops a strategic plan that guides investment priorities
-2. **State Transportation Improvement Program (STIP)**: Five-year capital improvement program
-3. **State Highway Operation and Protection Program (SHOPP)**: Four-year program for highway rehabilitation
-4. **Active Transportation Program**: Competitive grants for bicycle and pedestrian projects
-5. **Transit and Intercity Rail Capital Program**: Competitive grants for transit and rail projects
+#### Operational Efficiency
+1. **Asset Management**: Infrastructure condition ratings
+2. **Program Delivery**: Project completion rates
+3. **Financial Management**: Budget execution accuracy
+4. **Environmental Compliance**: NEPA/CEQA clearance timelines
+5. **Safety Performance**: Worker safety statistics
 
 Sources:
-[1] California State Budget 2024-25
-[2] California Department of Transportation Strategic Plan 2020-2024
-[3] https://dot.ca.gov/ 
+[1] https://lao.ca.gov/Publications/Report/4925
+[2] https://dot.ca.gov/
+[3] https://ebudget.ca.gov/
+[4] https://catc.ca.gov/ 

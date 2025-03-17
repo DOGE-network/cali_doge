@@ -1,108 +1,129 @@
 ---
-title: "California Highway Patrol"
+
 name: "California Highway Patrol"
-code: "2720"
-date: "2025-03-15"
-author: "California State"
-description: "The California Highway Patrol (CHP) provides safety, service, and security on California's highways and roads, protecting the public through enforcement, education, and assistance."
+code: 2720
+date: '2024-03-16'
+author: "Sean Roberts"
+image: 
+description: "The California Highway Patrol is responsible for traffic law enforcement, crash investigation, and vehicle theft prevention throughout California"
 ---
 
-## Budget Highlights 2024-2025
+### Budget Trends and Highlights (2024-2026)
 
-The California Highway Patrol has **11,342.0 positions** for 2024-25, an increase of 87.0 positions from 2023-24. The Department's budget for 2024-25 is **$3.08 billion**, an increase of $112.4 million from the previous fiscal year.
+#### Budget Overview
+- **Total Budget**: $3.2 billion for 2024-25
+- **Year-over-Year Change**: Decrease of $110 million (3%) from 2023-24
+- **Historical Trend**: 
+  - 2022-23: $2.95 billion (actual)
+  - 2023-24: $3.33 billion (estimated)
+  - 2024-25: $3.22 billion (enacted)
+  - 2025-26: $3.31 billion (proposed)
 
-Major funding codes and sources include:
-- **2720-001-0044**: Motor Vehicle Account, State Transportation Fund - $2.86 billion
-- **2720-001-0293**: Motor Carriers Safety Improvement Fund - $2.4 million
-- **2720-001-0840**: State Highway Account, State Transportation Fund - $98.7 million
-- **2720-001-0890**: Federal Trust Fund - $24.6 million
-- **2720-001-3290**: Road Maintenance and Rehabilitation Account - $57.5 million
-- **2720-301-0044**: Capital Outlay, Motor Vehicle Account - $38.2 million
+#### Major Funding Changes
+- **Capital Outlay Projects**: $13.1 million shift from General Fund to lease revenue bonds
+- **Area Office Projects**: Performance criteria phase funding for six locations:
+  - Antelope
+  - Barstow
+  - Gold Run
+  - Los Banos
+  - Porterville
+  - Redding
 
-## Major Projects and Initiatives
+### Major Projects and Initiatives
 
-### Traffic Safety and Enforcement
-The CHP implements programs to enhance traffic safety through:
+#### Facility Modernization Program
+- **Area Office Replacements**: Systematic upgrade of aging facilities
+- **Sustainable Design**: Implementation of green building standards
+- **Technology Integration**: Modern communication and dispatch systems
+- **Training Facilities**: Enhanced capabilities for officer training
 
-- **Enhanced Enforcement Programs**: Targeting impaired driving, distracted driving, speeding, and occupant restraint violations.
-- **Commercial Vehicle Safety**: Conducting inspections and enforcement to improve commercial vehicle safety.
-- **Motorcycle Safety Program**: Promoting motorcycle safety through education and enforcement.
-- **Pedestrian and Bicycle Safety**: Implementing programs to protect vulnerable road users.
+#### Public Safety Programs
+- **Traffic Safety Initiatives**: Enhanced enforcement and education
+- **Commercial Vehicle Safety**: Inspection and compliance programs
+- **Vehicle Theft Prevention**: Specialized investigation units
+- **Emergency Response**: Coordination with state and local agencies
 
-### Technology and Modernization
-The CHP is investing in technology to enhance operations:
+#### Technology Modernization
+- **Computer Aided Dispatch**: System upgrades and integration
+- **Body-Worn Cameras**: Equipment and data management
+- **Mobile Technology**: Field operations support systems
+- **Cybersecurity**: Enhanced protection of critical systems
 
-- **Computer Aided Dispatch Upgrade**: Modernizing dispatch systems to improve emergency response.
-- **Body-Worn Camera Program**: Implementing a statewide body-worn camera program for officers.
-- **Air Operations Modernization**: Upgrading the aircraft fleet to enhance aerial support capabilities.
-- **Integrated Database Management**: Developing integrated systems for more effective data collection and analysis.
+### Administrative Structure
 
-### Public Service and Assistance
-The CHP provides essential services to the public:
+#### Executive Leadership
+1. Commissioner's Office
+2. Deputy Commissioner
+3. Assistant Commissioners
+4. Chief of Staff
+5. Executive Management
 
-- **Freeway Service Patrol**: Operating roving tow trucks to assist motorists and clear roadways.
-- **Emergency Response and Disaster Support**: Providing critical support during emergencies and disasters.
-- **AMBER Alert System**: Coordinating the state's AMBER Alert system for child abduction cases.
-- **Senior Volunteer Program**: Engaging senior volunteers to support CHP operations and community outreach.
+#### Major Divisions
+1. Field Operations
+   - Northern Division
+   - Valley Division
+   - Golden Gate Division
+   - Central Division
+   - Southern Division
+   - Border Division
+   - Coastal Division
+   - Inland Division
+   
+2. Special Operations
+   - Air Operations
+   - Commercial Vehicle Section
+   - Protective Services
+   
+3. Support Services
+   - Information Management
+   - Personnel and Training
+   - Administrative Services
+   
+4. Investigation Division
+   - Vehicle Theft
+   - Criminal Investigation
+   - Internal Affairs
 
-## Administrative Structure
+### Funding Allocation Process
 
-The California Highway Patrol is led by a Commissioner appointed by the Governor and confirmed by the Senate. The Department is organized into the following divisions and offices:
+#### Revenue Sources
+1. **Motor Vehicle Account**: Primary funding from vehicle registration and driver license fees
+2. **State Highway Account**: Support for highway operations
+3. **Federal Funds**: Grants for specific programs
+4. **Reimbursements**: Services provided to other agencies
 
-- **Field Operations Division**: Oversees patrol operations through eight field divisions across the state.
-- **Enforcement and Planning Division**: Develops and implements enforcement strategies and programs.
-- **Administrative Services Division**: Provides administrative support, including human resources, budgeting, and facilities management.
-- **Information Management Division**: Manages information technology systems and telecommunications.
-- **Office of Air Operations**: Operates the Department's aircraft fleet for traffic enforcement and emergency response.
-- **Office of Risk Management**: Manages risk assessment, safety programs, and workers' compensation.
-- **Office of Employee Safety and Assistance**: Provides support services for employee wellness and safety.
-- **Office of Community Outreach and Media Relations**: Manages public information and community engagement.
-- **Office of Special Representative**: Coordinates legislative affairs and intergovernmental relations.
+#### Program Funding Categories
+1. **Traffic Management**: Patrol operations and enforcement
+2. **Commercial Vehicle Program**: Truck and bus safety
+3. **Protective Services**: State facilities and personnel security
+4. **Vehicle Safety**: Inspection and compliance programs
+5. **Administration**: Support services and management
 
-The CHP operates 103 area offices throughout California, organized into eight field divisions:
-- Northern Division
-- Valley Division
-- Golden Gate Division
-- Central Division
-- Southern Division
-- Border Division
-- Coastal Division
-- Inland Division
+#### Resource Distribution
+1. **Personnel**: Officer and support staff allocation
+2. **Equipment**: Vehicle and technology procurement
+3. **Facilities**: Maintenance and construction
+4. **Training**: Academy and ongoing education
+5. **Special Programs**: Targeted enforcement initiatives
 
-## Funding Allocation Process
+### Performance Metrics
 
-The CHP allocates funding through several mechanisms:
+#### Public Safety Indicators
+1. **Traffic Fatalities**: Year-over-year changes in highway deaths
+2. **Response Times**: Emergency call response performance
+3. **DUI Arrests**: Impaired driving enforcement statistics
+4. **Commercial Vehicle Inspections**: Safety compliance rates
+5. **Vehicle Recovery**: Stolen vehicle recovery statistics
 
-### Program-Based Budgeting
-Funding is allocated to core programs including:
-- Traffic management and enforcement
-- Commercial vehicle inspection and enforcement
-- Protective services (Capitol, state buildings, and dignitaries)
-- Air operations
-- Vehicle theft investigation and prevention
-- Public safety communications
+#### Operational Efficiency
+1. **Officer Deployment**: Coverage and response capability
+2. **Equipment Utilization**: Vehicle and resource management
+3. **Training Completion**: Officer certification and updates
+4. **Budget Execution**: Fiscal management performance
+5. **Public Satisfaction**: Community feedback and surveys
 
-### Geographic Distribution
-Resources are distributed geographically based on:
-- Traffic volume and patterns
-- Collision rates and trends
-- Population density and growth
-- Highway mileage and infrastructure
-- Special event and seasonal needs
-
-### Capital Outlay and Equipment
-The CHP allocates funding for:
-1. Area office construction and renovation
-2. Vehicle fleet acquisition and maintenance
-3. Aircraft acquisition and maintenance
-4. Communications equipment
-5. Protective equipment and technology
-
-### Special Programs and Grants
-The CHP administers grant-funded programs including:
-- Federal motor carrier safety grants
-- Impaired driving enforcement grants
-- Seatbelt enforcement initiatives
-- Distracted driving prevention
-
-The CHP primarily relies on the Motor Vehicle Account in the State Transportation Fund, with additional support from federal funds and other special funds, to provide comprehensive traffic safety services throughout California. 
+Sources:
+[1] https://lao.ca.gov/Publications/Report/4925
+[2] https://lao.ca.gov/Publications/Report/4961
+[3] https://www.chp.ca.gov/
+[4] https://ebudget.ca.gov/ 

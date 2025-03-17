@@ -12,340 +12,72 @@
       "budget_level": "A",
       "budget_status": "active",
       "subAgencies": {
+        "Constitutional Officers": [
+          {
+            "name": "Governor's Office",
+            "org_level": 3,
+            "budget_code": "0500",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Chief executive of the state, responsible for implementing state laws and coordinating state agencies"
+          },
+          {
+            "name": "Lieutenant Governor",
+            "org_level": 3,
+            "budget_code": "0750",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Second highest executive officer, acting governor when governor is absent"
+          },
+          {
+            "name": "Secretary of State",
+            "org_level": 3,
+            "budget_code": "0890",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Chief elections officer, keeper of state records and business filings"
+          },
+          {
+            "name": "State Controller",
+            "org_level": 3,
+            "budget_code": "0840",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Chief fiscal officer, responsible for state disbursements and financial controls"
+          },
+          {
+            "name": "State Treasurer",
+            "org_level": 3,
+            "budget_code": "0950",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "State's banker, manages investments and debt"
+          },
+          {
+            "name": "Attorney General",
+            "org_level": 3,
+            "budget_code": "0820",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Chief law officer, provides legal services to state government"
+          },
+          {
+            "name": "Insurance Commissioner",
+            "org_level": 3,
+            "budget_code": "0845",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Regulates insurance industry and protects consumers"
+          }
+        ],
         "Superagencies and Departments": [
-          {
-            "name": "Government Operations Agency",
-            "org_level": 3,
-            "budget_code": "0511",
-            "budget_level": "2",
-            "budget_status": "active",
-            "subAgencies": [
-              {
-                "name": "Department of General Services",
-                "org_level": 4,
-                "budget_code": "1760",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Serves as the business manager for the state, providing procurement, real estate management, design and construction, fleet administration, printing, and other services to state agencies.",
-                "abbreviation": "DGS",
-                "subAgencies": [
-                  {
-                    "name": "Office of Administrative Hearings",
-                    "org_level": 5,
-                    "budget_code": "1760",
-                    "budget_level": "3",
-                    "budget_status": "active",
-                    "keyFunctions": "Administrative law proceedings"
-                  },
-                  {
-                    "name": "Office of Public School Construction",
-                    "org_level": 5,
-                    "budget_code": "1760",
-                    "budget_level": "3",
-                    "budget_status": "active",
-                    "keyFunctions": "School facility program administration"
-                  },
-                  {
-                    "name": "Building Standards Commission",
-                    "org_level": 5,
-                    "budget_code": "1760",
-                    "budget_level": "3",
-                    "budget_status": "active",
-                    "keyFunctions": "Building standards development and publication"
-                  }
-                ]
-              },
-              {
-                "name": "Department of Technology",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "IT services, cybersecurity"
-              },
-              {
-                "name": "Franchise Tax Board",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Income tax collection"
-              },
-              {
-                "name": "Department of Human Resources",
-                "org_level": 4,
-                "budget_code": "7501",
-                "budget_level": "2",
-                "budget_status": "active",
-                "reportsTo": "Government Operations Agency",
-                "keyFunctions": "Manages state civil service system, including recruitment, selection, classification, compensation, benefits, and labor relations for state employees."
-              },
-              {
-                "name": "Office of Administrative Law",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Regulatory oversight"
-              },
-              {
-                "name": "California Department of Motor Vehicles",
-                "organizationalLevel": 3,
-                "budgetCode": "2740",
-                "budgetLevel": "2",
-                "budgetStatus": "active",
-                "reportsTo": "California State Transportation Agency",
-                "keyFunctions": "Licenses drivers, registers vehicles, secures identities, and regulates the motor vehicle industry to promote safety on California's roads."
-              },
-              {
-                "name": "California Highway Patrol",
-                "organizationalLevel": 3,
-                "budgetCode": "2720",
-                "budgetLevel": "2",
-                "budgetStatus": "active",
-                "reportsTo": "California State Transportation Agency",
-                "keyFunctions": "Provides safety, service, and security on California's highways and roads, protecting the public through enforcement, education, and assistance."
-              },
-              {
-                "name": "California Department of Technology",
-                "organizationalLevel": 3,
-                "budgetCode": "7502",
-                "budgetLevel": "2",
-                "budgetStatus": "active",
-                "reportsTo": "Government Operations Agency",
-                "keyFunctions": "Provides technology leadership, guidance, and oversight to state departments and is the guardian of public data, a leader in IT services and solutions, and an innovator in IT infrastructure."
-              }
-            ]
-          },
-          {
-            "name": "Labor & Workforce Development",
-            "org_level": 3,
-            "budget_status": "active",
-            "subAgencies": [
-              {
-                "name": "Employment Development Department",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Unemployment insurance, job services"
-              },
-              {
-                "name": "Department of Industrial Relations",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Labor law enforcement, worker safety"
-              },
-              {
-                "name": "Agricultural Labor Relations Board",
-                "org_level": 4,
-                "budget_code": "7300",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Farm labor relations enforcement"
-              },
-              {
-                "name": "Workforce Development Board",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Job training coordination"
-              }
-            ]
-          },
-          {
-            "name": "Transportation Agency",
-            "org_level": 3,
-            "budget_code": "0521",
-            "budget_level": "2",
-            "budget_status": "active",
-            "subAgencies": [
-              {
-                "name": "Department of Transportation",
-                "abbreviation": "Caltrans",
-                "org_level": 4,
-                "budget_code": "2660",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Highway and transportation infrastructure"
-              },
-              {
-                "name": "Department of Motor Vehicles",
-                "abbreviation": "DMV",
-                "org_level": 4,
-                "budget_code": "2740",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Vehicle registration and driver licensing"
-              },
-              {
-                "name": "California Highway Patrol",
-                "abbreviation": "CHP",
-                "org_level": 4,
-                "budget_code": "2720",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Traffic safety and law enforcement"
-              },
-              {
-                "name": "High-Speed Rail Authority",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "High-speed rail development"
-              }
-            ]
-          },
-          {
-            "name": "Natural Resources Agency",
-            "org_level": 3,
-            "budget_code": "0540",
-            "budget_level": "2",
-            "budget_status": "active",
-            "subAgencies": [
-              {
-                "name": "Department of Water Resources",
-                "org_level": 4,
-                "budget_code": "3860",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Water management and infrastructure"
-              },
-              {
-                "name": "Department of Parks and Recreation",
-                "org_level": 4,
-                "budget_code": "3790",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "State parks and recreation areas management"
-              },
-              {
-                "name": "Department of Fish and Wildlife",
-                "org_level": 4,
-                "budget_code": "3600",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Wildlife conservation and management"
-              },
-              {
-                "name": "Department of Forestry & Fire Protection",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Wildfire prevention, suppression"
-              },
-              {
-                "name": "California Coastal Commission",
-                "org_level": 4,
-                "budget_code": "3720",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Coastal zone planning and management"
-              },
-              {
-                "name": "California Coastal Conservancy",
-                "org_level": 4,
-                "budget_code": "3760",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Coastal protection and access projects"
-              }
-            ]
-          },
-          {
-            "name": "Environmental Protection Agency",
-            "org_level": 3,
-            "budget_status": "active",
-            "subAgencies": [
-              {
-                "name": "Air Resources Board",
-                "org_level": 4,
-                "budget_code": "3900",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Air quality regulation and enforcement"
-              },
-              {
-                "name": "State Water Resources Control Board",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Water rights, quality control"
-              },
-              {
-                "name": "Department of Toxic Substances Control",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Hazardous waste management"
-              },
-              {
-                "name": "Department of Pesticide Regulation",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Pesticide regulation"
-              }
-            ]
-          },
-          {
-            "name": "Health and Human Services Agency",
-            "org_level": 3,
-            "budget_code": "0530",
-            "budget_level": "2",
-            "budget_status": "active",
-            "subAgencies": [
-              {
-                "name": "Department of Health Care Services",
-                "org_level": 4,
-                "budget_code": "4260",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Administers Medi-Cal program"
-              },
-              {
-                "name": "Department of Public Health",
-                "org_level": 4,
-                "budget_code": "4265",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Public health protection and promotion"
-              },
-              {
-                "name": "Department of Social Services",
-                "org_level": 4,
-                "budget_code": "5180",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Welfare and social services programs"
-              },
-              {
-                "name": "Department of Developmental Services",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Developmental disability services"
-              },
-              {
-                "name": "Department of State Hospitals",
-                "org_level": 4,
-                "budget_code": "4440",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Mental health hospital operations"
-              },
-              {
-                "name": "Department of Aging",
-                "org_level": 4,
-                "budget_status": "active",
-                "reportsTo": "Agency Secretary",
-                "keyFunctions": "Senior services"
-              }
-            ]
-          },
           {
             "name": "Business, Consumer Services, and Housing Agency",
             "org_level": 3,
             "budget_code": "0515",
             "budget_level": "2",
             "budget_status": "active",
+            "keyFunctions": "Oversees departments responsible for business oversight, consumer protection, housing policy, and professional licensing",
             "subAgencies": [
               {
                 "name": "Department of Financial Protection and Innovation",
@@ -356,22 +88,6 @@
                 "keyFunctions": "Financial services regulation and consumer protection"
               },
               {
-                "name": "Department of Business Oversight",
-                "org_level": 4,
-                "budget_code": "1701",
-                "budget_level": "2",
-                "budget_status": "inactive",
-                "keyFunctions": "Financial services regulation (now DFPI)"
-              },
-              {
-                "name": "Department of Housing and Community Development",
-                "org_level": 4,
-                "budget_code": "2240",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Housing policy and funding programs"
-              },
-              {
                 "name": "Department of Consumer Affairs",
                 "org_level": 4,
                 "budget_code": "1111",
@@ -380,82 +96,168 @@
                 "keyFunctions": "Professional licensing boards and consumer protection"
               },
               {
-                "name": "Department of Alcoholic Beverage Control",
-                "org_level": 4,
-                "budget_code": "2100",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Alcohol licensing and regulation"
-              },
-              {
                 "name": "Department of Real Estate",
                 "org_level": 4,
                 "budget_code": "2320",
                 "budget_level": "2",
                 "budget_status": "active",
                 "keyFunctions": "Real estate licensing and regulation"
-              },
-              {
-                "name": "Cannabis Control Appeals Panel",
-                "org_level": 4,
-                "budget_code": "2150",
-                "budget_level": "2",
-                "budget_status": "active",
-                "keyFunctions": "Cannabis licensing appeals"
               }
             ]
+          },
+          {
+            "name": "Transportation Agency",
+            "org_level": 3,
+            "budget_code": "0521",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Oversees state transportation systems and infrastructure",
+            "subAgencies": [
+              {
+                "name": "Department of Transportation",
+                "org_level": 4,
+                "budget_code": "2660",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Highway and transportation infrastructure",
+                "abbreviation": "Caltrans"
+              },
+              {
+                "name": "Department of Motor Vehicles",
+                "org_level": 4,
+                "budget_code": "2740",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Vehicle registration and driver licensing",
+                "abbreviation": "DMV"
+              },
+              {
+                "name": "California Highway Patrol",
+                "org_level": 4,
+                "budget_code": "2720",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Traffic safety and law enforcement",
+                "abbreviation": "CHP"
+              }
+            ]
+          },
+          {
+            "name": "Government Operations Agency",
+            "org_level": 3,
+            "budget_code": "0511",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Oversees state operations including procurement, technology, human resources, and administrative functions",
+            "subAgencies": [
+              {
+                "name": "Department of General Services",
+                "org_level": 4,
+                "budget_code": "1760",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Serves as the business manager for the state, providing procurement, real estate management, design and construction, fleet administration, printing, and other services to state agencies",
+                "abbreviation": "DGS"
+              },
+              {
+                "name": "Department of Technology",
+                "org_level": 4,
+                "budget_code": "7502",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Provides technology leadership, guidance, and oversight to state departments and is the guardian of public data, a leader in IT services and solutions, and an innovator in IT infrastructure",
+                "abbreviation": "CDT"
+              },
+              {
+                "name": "Department of Human Resources",
+                "org_level": 4,
+                "budget_code": "7501",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Manages state civil service system, including recruitment, selection, classification, compensation, benefits, and labor relations for state employees",
+                "abbreviation": "CalHR"
+              }
+            ]
+          },
+          {
+            "name": "Franchise Tax Board",
+            "org_level": 4,
+            "budget_status": "active",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "Income tax collection"
+          },
+          {
+            "name": "High-Speed Rail Authority",
+            "org_level": 4,
+            "budget_status": "active",
+            "reportsTo": "Agency Secretary",
+            "keyFunctions": "High-speed rail development"
           }
         ],
         "Standalone Departments": [
           {
-            "name": "Department of Corrections & Rehabilitation",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "Governor",
-            "keyFunctions": "Prison system management"
-          },
-          {
-            "name": "Department of Food & Agriculture",
-            "org_level": 3,
-            "budget_status": "active",
-            "reportsTo": "Governor",
-            "keyFunctions": "Agricultural regulation, inspection"
-          },
-          {
-            "name": "Department of Cannabis Control",
-            "org_level": 3,
-            "budget_code": "8260",
-            "budget_level": "2",
-            "budget_status": "active",
-            "reportsTo": "Governor",
-            "keyFunctions": "Cannabis industry regulation"
-          },
-          {
-            "name": "Department of Veterans Affairs",
-            "org_level": 3,
-            "budget_code": "8955",
-            "budget_level": "2",
-            "budget_status": "active",
-            "reportsTo": "Governor",
-            "keyFunctions": "Veterans services, homes"
-          },
-          {
-            "name": "Military Department",
-            "org_level": 3,
-            "budget_code": "8940",
-            "budget_level": "2",
-            "budget_status": "active",
-            "reportsTo": "Governor",
-            "keyFunctions": "National Guard administration"
-          },
-          {
-            "name": "Emergency Services",
+            "name": "Office of Emergency Services",
             "org_level": 3,
             "budget_code": "0690",
             "budget_level": "2",
             "budget_status": "active",
-            "reportsTo": "Governor",
-            "keyFunctions": "Disaster response coordination"
+            "keyFunctions": "Emergency management and disaster response coordination"
+          },
+          {
+            "name": "Office of Planning and Research",
+            "org_level": 3,
+            "budget_code": "0650",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "State planning and policy development"
+          },
+          {
+            "name": "Governor's Office of Business and Economic Development",
+            "org_level": 3,
+            "budget_code": "0509",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Business development and economic growth"
+          },
+          {
+            "name": "Civil Rights Department",
+            "org_level": 3,
+            "budget_code": "1700",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Civil rights enforcement and protection"
+          },
+          {
+            "name": "California Conservation Corps",
+            "org_level": 3,
+            "budget_code": "3340",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Conservation work and youth development"
+          },
+          {
+            "name": "Colorado River Board",
+            "org_level": 3,
+            "budget_code": "3460",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Colorado River water resources management"
+          },
+          {
+            "name": "Native American Heritage Commission",
+            "org_level": 3,
+            "budget_code": "3780",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Protection of Native American cultural resources"
+          },
+          {
+            "name": "Exposition Park",
+            "org_level": 3,
+            "budget_code": "3100",
+            "budget_level": "2",
+            "budget_status": "active",
+            "keyFunctions": "Management of Exposition Park cultural and recreational facilities"
           }
         ],
         "Independent Boards and Commissions": [
@@ -511,34 +313,83 @@
             "budget_level": "2",
             "budget_status": "active",
             "reportsTo": "",
-            "keyFunctions": "Oversight of environmental departments, environmental justice, and climate programs"
+            "keyFunctions": "Oversees environmental protection, pollution control, and climate change programs",
+            "subAgencies": [
+              {
+                "name": "Energy Commission",
+                "org_level": 4,
+                "budget_code": "3360",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Energy policy and planning, renewable energy programs"
+              }
+            ]
           },
           {
-            "name": "California Natural Resources Agency",
+            "name": "Natural Resources Agency",
             "org_level": 3,
             "budget_code": "0540",
             "budget_level": "2",
             "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": "Oversight of natural resources departments, climate resilience, and conservation initiatives"
-          },
-          {
-            "name": "California Department of Forestry and Fire Protection",
-            "org_level": 3,
-            "budget_code": "3540",
-            "budget_level": "2",
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": "Fire protection, wildfire prevention, and forest management"
-          },
-          {
-            "name": "California Water Resources Control Board",
-            "org_level": 3,
-            "budget_code": "3940",
-            "budget_level": "2",
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": "Water quality protection, drinking water regulation, and water rights management"
+            "keyFunctions": "Oversees and coordinates the state's natural resources programs",
+            "subAgencies": [
+              {
+                "name": "Department of Fish and Wildlife",
+                "org_level": 4,
+                "budget_code": "3600",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Wildlife conservation and management"
+              },
+              {
+                "name": "Department of Forestry and Fire Protection",
+                "org_level": 4,
+                "budget_code": "3540",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Wildfire prevention and suppression"
+              },
+              {
+                "name": "California Coastal Commission",
+                "org_level": 4,
+                "budget_code": "3720",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Coastal zone planning and management"
+              },
+              {
+                "name": "California Coastal Conservancy",
+                "org_level": 4,
+                "budget_code": "3760",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Coastal protection and access projects"
+              },
+              {
+                "name": "State Lands Commission",
+                "org_level": 4,
+                "budget_code": "3560",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Management of state lands and resources"
+              },
+              {
+                "name": "California Tahoe Conservancy",
+                "org_level": 4,
+                "budget_code": "3125",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Environmental protection and restoration in the Lake Tahoe Basin"
+              },
+              {
+                "name": "Wildlife Conservation Board",
+                "org_level": 4,
+                "budget_code": "3640",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Wildlife habitat protection and restoration"
+              }
+            ]
           },
           {
             "name": "California Department of Parks and Recreation",

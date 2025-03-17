@@ -1,77 +1,146 @@
 ---
-title: California Department of Fish and Wildlife
-name: California Department of Fish and Wildlife
+name: "Department of Fish and Wildlife"
 code: 3600
-date: '2025-03-15'
-author: Sean Roberts
-description: The California Department of Fish and Wildlife manages California's diverse fish, wildlife, and plant resources, and the habitats upon which they depend, for their ecological values and for their use and enjoyment by the public.
+date: '2024-03-16'
+author: "Sean Roberts"
+image: 
+description: "The Department of Fish and Wildlife manages California's diverse fish, wildlife, and plant resources, and their habitats, for ecological value and public enjoyment through protection, maintenance, and sustainable use."
 ---
 
-## Budget Highlights 2024-2025
+### Budget Trends and Highlights (2022-2025)
 
-### Position Growth
-- **Total Positions**: 2,387.5 positions in 2024-25
-- **Growth**: Increase of 205.8 positions (9.4%) from 2022-23 to 2024-25
-- **Key Areas**: Wildlife conservation, habitat restoration, and law enforcement
+#### Position Growth
+- **Overall Growth**: Increase from 2,980.0 positions in 2022-23 to 3,238.9 positions in 2024-25 (8.7% growth)
+- **Program Distribution**:
+  - Biodiversity Conservation: 1,249.1 positions (39%)
+  - Hunting, Fishing, and Public Use: 508.0 positions (16%)
+  - Enforcement: 491.8 positions (15%)
+  - Department Lands Management: 452.8 positions (14%)
+  - Other Programs: 537.2 positions (16%)
 
-### Budget Fluctuations
-- **Peak Funding**: FY 2022-23 saw $1.12 billion in funding
-- **Current Budget**: $680 million for FY 2024-25
-- **Budget Trend**: Decrease of $440 million (39.3%) from 2022-23 to 2024-25
-- **General Fund**: Reduction from $440 million in 2022-23 to $180 million in 2024-25
+#### Budget Fluctuations
+- **Total Budget Trend**: Varied from $974.4 million (2022-23) to $800.5 million (2024-25)
+- **Major Changes**:
+  - General Fund reduction from $313.8 million to $192.1 million
+  - Fish and Game Preservation Fund increase to $142.3 million
+  - Cannabis Tax Fund allocation of $79.1 million
+
+#### Major Program Funding (2024-25)
+- **Biodiversity Conservation**: $390.0 million
+- **Enforcement**: $145.8 million
+- **Hunting and Fishing**: $116.4 million
+- **Department Lands**: $88.8 million
+- **Spill Prevention**: $52.2 million
 
 ### Major Funding Codes and Sources
 
 #### Program Codes
-- **3600010 - Biodiversity Conservation Program**: $320 million in 2024-25
-- **3600020 - Hunting, Fishing, and Public Use**: $160 million in 2024-25
-- **3600030 - Management of Department Lands and Facilities**: $120 million in 2024-25
-- **3600040 - Enforcement**: $80 million in 2024-25
+- **2590 - Biodiversity Conservation**: Species and habitat protection
+- **2595 - Hunting, Fishing, and Public Use**: Recreational management
+- **2600 - Department Lands**: Facility and property management
+- **2605 - Enforcement**: Law enforcement and compliance
+- **2615 - Spill Prevention**: Environmental protection
 
 #### Funding Source Codes
-- **0001 - General Fund**: $180 million in 2024-25
-- **0200 - Fish and Game Preservation Fund**: $150 million in 2024-25
-- **0235 - Public Resources Account, Cigarette and Tobacco Products Surtax Fund**: $15 million in 2024-25
-- **0320 - Oil Spill Prevention and Administration Fund**: $35 million in 2024-25
-- **3228 - Greenhouse Gas Reduction Fund**: $40 million in 2024-25
-- **0995 - Reimbursements**: $260 million in 2024-25
+- **0001 - General Fund**: Primary state funding
+- **0200 - Fish and Game Preservation Fund**: Core operations
+- **0890 - Federal Trust Fund**: Federal program support
+- **3351 - Cannabis Tax Fund**: Environmental restoration
+- **0320 - Oil Spill Prevention Fund**: Marine protection
 
 ## Major Projects and Initiatives
 
-### Biodiversity Conservation
+### Wildlife Conservation
 
-The department implements the California Biodiversity Initiative, which aims to secure the future of California's biodiversity through a collaborative approach to conservation planning, habitat restoration, and species protection.
+1. **Species Management**:
+   - Endangered species protection
+   - Habitat restoration
+   - Population monitoring
+   - Recovery planning
 
-### Wildlife Corridors and Connectivity
+2. **Habitat Protection**:
+   - Land acquisition
+   - Conservation easements
+   - Ecosystem restoration
+   - Climate adaptation
 
-The department leads efforts to identify, protect, and enhance wildlife corridors and habitat connectivity to ensure the long-term health of California's ecosystems and wildlife populations.
+### Public Access and Recreation
 
-### Climate Adaptation
+1. **Hunting and Fishing Programs**:
+   - License administration
+   - Wildlife areas management
+   - Fish hatchery operations
+   - Public education
 
-The department is implementing climate adaptation strategies to help fish and wildlife populations adapt to changing environmental conditions, including drought, wildfire, and sea-level rise.
+2. **Land Management**:
+   - Wildlife area maintenance
+   - Facility improvements
+   - Public access enhancement
+   - Habitat restoration
+
+### Environmental Protection
+
+1. **Law Enforcement**:
+   - Wildlife protection
+   - Poaching prevention
+   - Commercial fishing oversight
+   - Public safety
+
+2. **Pollution Prevention**:
+   - Oil spill response
+   - Water quality protection
+   - Environmental review
+   - Habitat conservation
 
 ## Administrative Structure
 
-The Department of Fish and Wildlife is led by a Director appointed by the Governor and confirmed by the Senate. The department is organized into the following divisions:
+The Department operates through specialized divisions:
 
-1. **Wildlife and Fisheries Division**: Manages wildlife and fisheries programs
-2. **Ecosystem Conservation Division**: Oversees habitat conservation and restoration
-3. **Law Enforcement Division**: Enforces fish and wildlife laws and regulations
-4. **Administration Division**: Provides administrative support services
-5. **Communications, Education and Outreach Division**: Manages public information and education
-6. **Regional Operations**: Seven regional offices throughout the state
+1. Executive Office
+   - Director
+   - Chief Deputy Director
+   - Regional Managers
 
-The department works closely with the Fish and Game Commission, a five-member body appointed by the Governor that establishes regulations for hunting and fishing.
+2. Program Divisions
+   - Wildlife and Fisheries
+   - Ecosystem Conservation
+   - Law Enforcement
+   - Administrative Services
+
+3. Support Functions
+   - Scientific Services
+   - Information Technology
+   - Communications
+   - Legal Affairs
 
 ## Funding Allocation Process
 
-1. **Strategic Planning**: The department develops a strategic plan that guides resource allocation
-2. **Regional Priorities**: Funding is allocated based on regional conservation priorities
-3. **Grant Programs**: Competitive grant programs for habitat restoration and conservation
-4. **Federal Matching**: Leveraging federal funds through matching state investments
-5. **Dedicated Accounts**: Special funds dedicated to specific conservation purposes
+1. **Resource Management**:
+   - Species conservation
+   - Habitat protection
+   - Recreation programs
+   - Law enforcement
+
+2. **Program Implementation**:
+   - Scientific research
+   - Public outreach
+   - Permit processing
+   - Field operations
+
+3. **Fiscal Controls**:
+   - License revenue management
+   - Grant administration
+   - Federal fund oversight
+   - Special fund allocation
 
 Sources:
-[1] California State Budget 2024-25
-[2] California Department of Fish and Wildlife Strategic Plan 2022-2027
-[3] https://wildlife.ca.gov/ 
+[1] Department of Fish and Wildlife Budget Document 2024-25
+[2] Fish and Game Code
+[3] California Code of Regulations, Title 14
+[4] State Wildlife Action Plan
+[5] Annual License Revenue Reports
+[6] Endangered Species Recovery Plans
+[7] Marine Life Protection Act
+[8] Wildlife Area Management Plans
+[9] Law Enforcement Division Reports
+[10] Strategic Vision for Fish and Wildlife Management 

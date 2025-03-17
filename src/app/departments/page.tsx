@@ -22,7 +22,7 @@ export default async function BlogPage() {
                 <div className="relative w-full pt-[56.25%]">
                   <Image
                     src={post.image.replace('/assets/img/', '/')}
-                    alt={post.title}
+                    alt={`${post.code} - ${post.name}`}
                     fill
                     className="rounded-t-lg object-cover"
                   />
@@ -37,7 +37,7 @@ export default async function BlogPage() {
                   })}
                 </time>
                 <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">
-                  {post.title}
+                  {post.code} - {post.name}
                 </h3>
                 <p className="text-gray-700 line-clamp-3 mb-4">
                   {post.excerpt}

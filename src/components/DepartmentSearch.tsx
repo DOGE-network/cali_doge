@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export type Department = {
   id: string;
-  title: string;
+  code: string;
+  name: string;
   date: string;
   excerpt: string;
   image?: string;
@@ -27,6 +28,20 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoCloseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Reset auto-close timer
+  const resetAutoCloseTimer = useCallback(() => {
+    if (autoCloseTimeoutRef.current) {
+      clearTimeout(autoCloseTimeoutRef.current);
+    }
+    if (isOpen || isHovering) {
+      autoCloseTimeoutRef.current = setTimeout(() => {
+        onClose();
+        setIsHovering(false);
+      }, 3000);
+    }
+  }, [isOpen, isHovering, onClose]);
 
   // Fetch departments on component mount or when opened
   useEffect(() => {
@@ -50,6 +65,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
 
     if (isOpen || isHovering) {
       fetchDepartments();
+      resetAutoCloseTimer();
       // Focus the input when opened
       if (isOpen) {
         setTimeout(() => {
@@ -57,7 +73,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
         }, 100);
       }
     }
-  }, [isOpen, isHovering]);
+  }, [isOpen, isHovering, resetAutoCloseTimer]);
 
   // Filter departments based on search term
   useEffect(() => {
@@ -68,11 +84,12 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
 
     const filtered = departments.filter(
       (dept) =>
-        dept.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        dept.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         dept.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredDepartments(filtered);
-  }, [searchTerm, departments]);
+    resetAutoCloseTimer();
+  }, [searchTerm, departments, resetAutoCloseTimer]);
 
   // Handle click outside to close
   useEffect(() => {
@@ -105,7 +122,11 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
     }
+    if (autoCloseTimeoutRef.current) {
+      clearTimeout(autoCloseTimeoutRef.current);
+    }
     setIsHovering(true);
+    resetAutoCloseTimer();
   };
 
   const handleMouseLeave = () => {
@@ -121,14 +142,22 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
     }, 300);
   };
 
-  // Clean up timeout on unmount
+  // Clean up timeouts on unmount
   useEffect(() => {
     return () => {
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current);
       }
+      if (autoCloseTimeoutRef.current) {
+        clearTimeout(autoCloseTimeoutRef.current);
+      }
     };
   }, []);
+
+  // Reset auto-close timer on user interaction
+  const handleUserInteraction = () => {
+    resetAutoCloseTimer();
+  };
 
   if (!isOpen && !isHovering) return null;
 
@@ -138,6 +167,9 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
       className="absolute right-0 top-12 w-96 bg-white rounded-lg shadow-lg border border-odi-gray-300 z-50 transition-all duration-200 ease-in-out"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onMouseMove={handleUserInteraction}
+      onClick={handleUserInteraction}
+      onKeyDown={handleUserInteraction}
     >
       <div className="p-4">
         <div className="relative mb-4">
@@ -185,7 +217,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                         <div className="relative w-12 h-12">
                           <Image
                             src={dept.image.replace('/assets/img/', '/')}
-                            alt={dept.title}
+                            alt={dept.name}
                             fill
                             className="rounded object-cover"
                           />
@@ -193,7 +225,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                       </div>
                     )}
                     <div>
-                      <h4 className="font-medium text-gray-900">{dept.title}</h4>
+                      <h4 className="font-medium text-gray-900">{dept.name}</h4>
                       <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
                     </div>
                   </Link>
@@ -219,7 +251,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                       <div className="relative w-12 h-12">
                         <Image
                           src={dept.image.replace('/assets/img/', '/')}
-                          alt={dept.title}
+                          alt={dept.name}
                           fill
                           className="rounded object-cover"
                         />
@@ -227,7 +259,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                     </div>
                   )}
                   <div>
-                    <h4 className="font-medium text-gray-900">{dept.title}</h4>
+                    <h4 className="font-medium text-gray-900">{dept.name}</h4>
                     <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
                   </div>
                 </Link>
