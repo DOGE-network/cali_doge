@@ -74,7 +74,7 @@ const mappings = fileNames
     );
     
     // Find matching names in workforce data
-    const workforceMatch = workforceData.find(
+    const workforceMatch = workforceData.departments?.find(
       dept => nameVariations.some(variation => 
         dept.name === variation || 
         dept.name.toLowerCase() === variation.toLowerCase()
