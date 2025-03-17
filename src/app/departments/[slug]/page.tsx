@@ -53,7 +53,7 @@ export default async function BlogPost({ params }: Props) {
   const typedSpendingData = spendingData as SpendingData
 
   // Find workforce data for this department
-  const departmentWorkforceData = workforceName ? workforceData.find(d => d.name === workforceName) : null
+  const departmentWorkforceData = workforceName ? workforceData.departments.find(d => d.name === workforceName) : null
 
   // Transform workforce data to match WorkforceData type
   const typedWorkforceData: WorkforceData | null = departmentWorkforceData ? {

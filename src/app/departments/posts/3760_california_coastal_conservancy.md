@@ -3,11 +3,6 @@ title: California Coastal Conservancy
 description: Overview of the California Coastal Conservancy budget and operations
 author: California State
 date: 2024-01-03
-tags:
-  - coastal protection
-  - environmental conservation
-  - public access
-  - natural resources
 ---
 
 ## Budget Trends and Highlights

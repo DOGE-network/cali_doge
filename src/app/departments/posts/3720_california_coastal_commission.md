@@ -3,11 +3,6 @@ title: California Coastal Commission
 description: Overview of the California Coastal Commission budget and operations
 author: California State
 date: 2024-01-03
-tags:
-  - coastal management
-  - environmental protection
-  - public access
-  - marine resources
 ---
 
 ## Budget Trends and Highlights

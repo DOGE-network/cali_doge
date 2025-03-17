@@ -3,11 +3,6 @@ title: Native American Heritage Commission
 description: Overview of the Native American Heritage Commission budget and operations
 author: California State
 date: 2024-01-03
-tags:
-  - cultural resources
-  - tribal relations
-  - sacred sites
-  - heritage preservation
 ---
 
 ## Budget Trends and Highlights
