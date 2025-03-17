@@ -9,7 +9,8 @@ const postsDirectory = path.join(process.cwd(), 'src/app/departments/posts')
 
 export type BlogPost = {
   id: string
-  title: string
+  code: string
+  name: string
   date: string
   excerpt: string
   content: string
@@ -166,7 +167,8 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     // Combine the data
     return {
       id,
-      title: matterResult.data.title || '',
+      code: matterResult.data.code || '',
+      name: matterResult.data.name || '',
       date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : '',
       excerpt,
       content: processedContent,

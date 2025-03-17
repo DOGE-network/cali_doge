@@ -663,6 +663,23 @@ function WorkforcePageContent() {
           </div>
         </div>
       )}
+
+      {/* Sources */}
+      <div className="mt-12 pt-8 border-t">
+        <h3 className="text-lg font-semibold mb-2">Sources</h3>
+        <ul className="list-disc pl-5 text-sm text-gray-600">
+          <li>
+            <a 
+              href="https://lao.ca.gov/Publications/Report/4648"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Legislative Analyst&apos;s Office (LAO) - California&apos;s State Workforce Report
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 } 

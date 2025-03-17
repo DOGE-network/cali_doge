@@ -8,7 +8,8 @@ export async function GET() {
     // Map to a simpler structure for the API
     const departments = posts.map(post => ({
       id: post.id,
-      title: post.title,
+      code: post.code,
+      name: post.name,
       date: post.date,
       excerpt: post.excerpt,
       image: post.image

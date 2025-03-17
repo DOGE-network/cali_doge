@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node src/scripts/generate-department-mappings.js && next dev",
+    "build": "node src/scripts/generate-department-mappings.js && next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "typecheck": "tsc --noEmit",
     "fetch-tweets": "ts-node --project tsconfig.json src/scripts/fetch-tweets.ts",
-    "favicon-check": "npx realfavicon check http://localhost:3000"
+    "favicon-check": "npx realfavicon check http://localhost:3000",
+    "generate-mappings": "node src/scripts/generate-department-mappings.js"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
@@ -34,6 +35,7 @@
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
+    "server-only": "^0.0.1",
     "tailwind-merge": "^3.0.2",
     "twitter-api-v2": "^1.20.1"
   },

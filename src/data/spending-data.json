@@ -2,6 +2,44 @@
   "fiscalYears": ["FY2023", "FY2024", "FY2025", "FY2017", "FY2018", "FY2019", "FY2020", "FY2021", "FY2022"],
   "agencies": [
     {
+      "name": "Air Resources Board",
+      "spending": {
+        "FY2017": "$1.63B",
+        "FY2018": "$1.43B",
+        "FY2019": "$1.63B",
+        "FY2020": "$1.72B",
+        "FY2021": "$2.63B",
+        "FY2022": "$3.31B",
+        "FY2023": "$1.30B",
+        "FY2024": "$1.01B",
+        "FY2025": "$1.20B"
+      },
+      "stateOperations": {
+        "FY2017": "$0.85B",
+        "FY2018": "$0.89B",
+        "FY2019": "$0.95B",
+        "FY2020": "$1.02B",
+        "FY2021": "$0.35B",
+        "FY2022": "$0.59B",
+        "FY2023": "$0.50B",
+        "FY2024": "$1.01B",
+        "FY2025": "$1.20B"
+      },
+      "majorPrograms": [
+        {"code": "3500", "name": "Mobile Source"},
+        {"code": "3505", "name": "Stationary Source"},
+        {"code": "3510", "name": "Climate Change"},
+        {"code": "3515", "name": "Subvention"},
+        {"code": "3530", "name": "Community Air Protection"}
+      ],
+      "fundingSources": [
+        {"code": "0001", "name": "General Fund"},
+        {"code": "0115", "name": "Air Pollution Control Fund"},
+        {"code": "3228", "name": "Greenhouse Gas Reduction Fund"},
+        {"code": "3237", "name": "Cost of Implementation Account"}
+      ]
+    },
+    {
       "name": "California Department of Forestry and Fire Protection",
       "spending": {
         "FY2023": "$4.32B",
@@ -48,38 +86,6 @@
         "FY2024": "$2.15B",
         "FY2025": "$2.20B"
       }
-    },
-    {
-      "name": "Air Resources Board",
-      "spending": {
-        "FY2017": "$1.63B",
-        "FY2018": "$1.43B",
-        "FY2019": "$1.63B",
-        "FY2020": "$1.72B",
-        "FY2021": "$2.63B",
-        "FY2022": "$3.31B",
-        "FY2023": "$1.30B",
-        "FY2024": "$1.01B",
-        "FY2025": "$1.20B"
-      },
-      "stateOperations": {
-        "FY2017": "$0.85B",
-        "FY2018": "$0.89B",
-        "FY2019": "$0.95B",
-        "FY2020": "$1.02B",
-        "FY2021": "$0.35B",
-        "FY2022": "$0.59B",
-        "FY2023": "$0.50B",
-        "FY2024": "$1.01B",
-        "FY2025": "$1.20B"
-      },
-      "majorPrograms": [
-        {"code": "3500", "name": "Mobile Source"},
-        {"code": "3505", "name": "Stationary Source"},
-        {"code": "3510", "name": "Climate Change"},
-        {"code": "3515", "name": "Subvention"},
-        {"code": "3530", "name": "Community Air Protection"}
-      ]
     },
     {
       "name": "Department of Toxic Substances Control",
@@ -164,17 +170,17 @@
     {
       "name": "California Department of State Hospitals",
       "spending": {
-        "FY2023": "$13.213B",
-        "FY2024": "$13.428B",
-        "FY2025": "$13.750B"
+        "FY2023": "$3.0B",
+        "FY2024": "$3.2B",
+        "FY2025": "$3.4B"
       }
     },
     {
       "name": "California Department of Developmental Services",
       "spending": {
-        "FY2023": "$5.858B",
-        "FY2024": "$5.982B",
-        "FY2025": "$6.130B"
+        "FY2023": "$12.8B",
+        "FY2024": "$13.6B",
+        "FY2025": "$14.2B"
       }
     },
     {
@@ -220,57 +226,233 @@
     {
       "name": "California Department of Food and Agriculture",
       "spending": {
-        "FY2023": "$1.929B",
-        "FY2024": "$1.972B",
-        "FY2025": "$2.020B"
+        "FY2023": "$0.711B",
+        "FY2024": "$0.682B",
+        "FY2025": "$0.695B"
       }
     },
     {
       "name": "California Department of Veterans Affairs",
       "spending": {
-        "FY2023": "$2.805B",
-        "FY2024": "$2.842B",
-        "FY2025": "$2.910B"
+        "FY2023": "$0.576B",
+        "FY2024": "$0.589B",
+        "FY2025": "$0.602B"
       }
     },
     {
       "name": "California Department of Human Resources",
       "spending": {
-        "FY2023": "$0.334B",
-        "FY2024": "$0.342B",
-        "FY2025": "$0.350B"
+        "FY2023": "$0.130B",
+        "FY2024": "$0.136B",
+        "FY2025": "$0.142B"
       }
     },
     {
       "name": "California Department of General Services",
       "spending": {
-        "FY2023": "$3.786B",
-        "FY2024": "$3.842B",
-        "FY2025": "$3.940B"
-      }
-    },
-    {
-      "name": "California Department of Motor Vehicles",
-      "spending": {
-        "FY2023": "$8.639B",
-        "FY2024": "$8.763B",
-        "FY2025": "$8.980B"
+        "FY2023": "$1.20B",
+        "FY2024": "$1.24B",
+        "FY2025": "$1.28B"
       }
     },
     {
       "name": "California Highway Patrol",
       "spending": {
-        "FY2023": "$11.255B",
-        "FY2024": "$11.342B",
-        "FY2025": "$11.620B"
+        "FY2023": "$2.95B",
+        "FY2024": "$3.05B",
+        "FY2025": "$3.15B"
       }
     },
     {
-      "name": "California Department of Technology",
+      "name": "Department of Motor Vehicles",
       "spending": {
-        "FY2023": "$1.244B",
-        "FY2024": "$1.286B",
-        "FY2025": "$1.320B"
+        "FY2023": "$1.45B",
+        "FY2024": "$1.52B",
+        "FY2025": "$1.58B"
+      }
+    },
+    {
+      "name": "Department of Justice",
+      "spending": {
+        "FY2023": "$1.15B",
+        "FY2024": "$1.22B",
+        "FY2025": "$1.28B"
+      }
+    },
+    {
+      "name": "State Controller",
+      "spending": {
+        "FY2023": "$0.245B",
+        "FY2024": "$0.255B",
+        "FY2025": "$0.265B"
+      }
+    },
+    {
+      "name": "Department of Insurance",
+      "spending": {
+        "FY2023": "$0.320B",
+        "FY2024": "$0.335B",
+        "FY2025": "$0.350B"
+      }
+    },
+    {
+      "name": "Secretary of State",
+      "spending": {
+        "FY2023": "$0.155B",
+        "FY2024": "$0.162B",
+        "FY2025": "$0.170B"
+      }
+    },
+    {
+      "name": "State Treasurer's Office",
+      "spending": {
+        "FY2023": "$0.042B",
+        "FY2024": "$0.044B",
+        "FY2025": "$0.046B"
+      }
+    },
+    {
+      "name": "Department of Consumer Affairs",
+      "spending": {
+        "FY2023": "$0.725B",
+        "FY2024": "$0.755B",
+        "FY2025": "$0.785B"
+      }
+    },
+    {
+      "name": "Civil Rights Department",
+      "spending": {
+        "FY2023": "$0.058B",
+        "FY2024": "$0.061B",
+        "FY2025": "$0.064B"
+      }
+    },
+    {
+      "name": "Department of Financial Protection and Innovation",
+      "spending": {
+        "FY2023": "$0.135B",
+        "FY2024": "$0.142B",
+        "FY2025": "$0.148B"
+      }
+    },
+    {
+      "name": "Horse Racing Board",
+      "spending": {
+        "FY2023": "$0.018B",
+        "FY2024": "$0.019B",
+        "FY2025": "$0.020B"
+      }
+    },
+    {
+      "name": "Governor's Office",
+      "spending": {
+        "FY2023": "$0.021B",
+        "FY2024": "$0.022B",
+        "FY2025": "$0.023B"
+      }
+    },
+    {
+      "name": "Governor's Office of Business and Economic Development",
+      "spending": {
+        "FY2023": "$0.045B",
+        "FY2024": "$0.047B",
+        "FY2025": "$0.048B"
+      }
+    },
+    {
+      "name": "Secretary for Government Operations",
+      "spending": {
+        "FY2023": "$0.012B",
+        "FY2024": "$0.013B",
+        "FY2025": "$0.014B"
+      }
+    },
+    {
+      "name": "Secretary of Business, Consumer Services and Housing",
+      "spending": {
+        "FY2023": "$0.015B",
+        "FY2024": "$0.016B",
+        "FY2025": "$0.017B"
+      }
+    },
+    {
+      "name": "Secretary of Transportation",
+      "spending": {
+        "FY2023": "$0.018B",
+        "FY2024": "$0.019B",
+        "FY2025": "$0.020B"
+      }
+    },
+    {
+      "name": "Secretary of Health and Human Services",
+      "spending": {
+        "FY2023": "$0.025B",
+        "FY2024": "$0.026B",
+        "FY2025": "$0.027B"
+      }
+    },
+    {
+      "name": "Secretary for Labor and Workforce Development",
+      "spending": {
+        "FY2023": "$0.016B",
+        "FY2024": "$0.017B",
+        "FY2025": "$0.018B"
+      }
+    },
+    {
+      "name": "Office of Planning and Research",
+      "spending": {
+        "FY2023": "$0.032B",
+        "FY2024": "$0.034B",
+        "FY2025": "$0.035B"
+      }
+    },
+    {
+      "name": "Office of Emergency Services",
+      "spending": {
+        "FY2023": "$2.150B",
+        "FY2024": "$1.980B",
+        "FY2025": "$1.850B"
+      }
+    },
+    {
+      "name": "Office of the Lieutenant Governor",
+      "spending": {
+        "FY2023": "$0.003B",
+        "FY2024": "$0.003B",
+        "FY2025": "$0.003B"
+      }
+    },
+    {
+      "name": "Colorado River Board",
+      "spending": {
+        "FY2023": "$0.002B",
+        "FY2024": "$0.002B",
+        "FY2025": "$0.002B"
+      }
+    },
+    {
+      "name": "Department of Conservation",
+      "spending": {
+        "FY2023": "$0.245B",
+        "FY2024": "$0.256B",
+        "FY2025": "$0.262B"
+      }
+    },
+    {
+      "name": "Wildlife Conservation Board",
+      "spending": {
+        "FY2023": "$0.125B",
+        "FY2024": "$0.130B",
+        "FY2025": "$0.134B"
+      }
+    },
+    {
+      "name": "Native American Heritage Commission",
+      "spending": {
+        "FY2023": "$0.004B",
+        "FY2024": "$0.004B",
+        "FY2025": "$0.004B"
       }
     }
   ],

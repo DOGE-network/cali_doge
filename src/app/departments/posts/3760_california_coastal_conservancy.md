@@ -1,90 +1,119 @@
 ---
-title: "California Coastal Conservancy"
-name: "California Coastal Conservancy"
-code: "3760"
-date: '2025-03-15'
-author: "Sean Roberts"
-description: "The California Coastal Conservancy protects, restores, and enhances coastal resources and provides public access to the California coast."
+title: California Coastal Conservancy
+description: Overview of the California Coastal Conservancy budget and operations
+author: California State
+date: 2024-01-03
+tags:
+  - coastal protection
+  - environmental conservation
+  - public access
+  - natural resources
 ---
 
-## Budget Highlights 2024-2025
+## Budget Trends and Highlights
 
-The California Coastal Conservancy has **76.0 positions** for 2024-25, an increase of 2.0 positions from 2023-24. The Conservancy's budget for 2024-25 is **$97.2 million**, a decrease of $15.3 million from the previous fiscal year.
+### Position Growth
+- 2022-23: 83.0 positions
+- 2023-24: 83.0 positions
+- 2024-25: 83.0 positions (projected)
 
-Major funding codes and sources include:
-- **3760-001-0001**: General Fund - $12.5 million
-- **3760-001-0565**: State Coastal Conservancy Fund - $2.8 million
-- **3760-001-0890**: Federal Trust Fund - $7.4 million
-- **3760-001-6029**: California Clean Water, Clean Air, Safe Neighborhood Parks, and Coastal Protection Fund - $5.3 million
-- **3760-001-6051**: Safe Drinking Water, Water Quality and Supply, Flood Control, River and Coastal Protection Fund of 2006 - $8.7 million
-- **3760-001-6088**: California Drought, Water, Parks, Climate, Coastal Protection, and Outdoor Access For All Fund - $60.5 million
+The Conservancy maintains a stable workforce with no changes in staffing levels over the three-year period.
+
+### Budget Fluctuations
+Total budget by fiscal year (in thousands):
+- 2022-23: $647,616
+- 2023-24: $252,573
+- 2024-25: $29,683 (projected)
+
+The budget shows a significant decrease over the three-year period, primarily due to the completion of major one-time projects and reductions in General Fund allocations.
+
+Key funding sources for 2024-25:
+- Federal Trust Fund: $10,590,000
+- California Environmental License Plate Fund: $4,690,000
+- Habitat Conservation Fund: $4,000,000
+- California Drought, Water, Parks, Climate Protection Fund: $4,265,000
+- State Coastal Conservancy Fund: $1,179,000
 
 ## Major Projects and Initiatives
 
-### Coastal Access and Recreation
-The Conservancy works to ensure that all Californians can enjoy the coast through projects that:
+### Coastal Conservancy Programs
+The Conservancy's work focuses on several key areas:
 
-- **California Coastal Trail**: Continuing development of the 1,200-mile trail system that will eventually span the entire California coastline.
-- **Urban Waterfront Projects**: Revitalizing urban waterfronts to provide public access and recreational opportunities in coastal cities.
-- **Lower-Cost Coastal Accommodations**: Expanding affordable overnight accommodations along the coast to ensure equitable access.
+1. Environmental Protection and Enhancement
+- Natural environment preservation
+- Agricultural land conservation
+- Scenic lands protection
+- Urban waterfront development
 
-### Coastal Resource Protection and Restoration
-The Conservancy leads efforts to protect and restore coastal resources through:
+2. Public Access and Recreation
+- Coastal access improvement
+- San Francisco Bay access enhancement
+- Trail development
+- Outdoor recreational opportunities expansion
 
-- **Wetland Restoration**: Large-scale projects to restore coastal wetlands, including the Ballona Wetlands in Los Angeles County and South San Francisco Bay Salt Ponds.
-- **Climate Adaptation**: Projects that help coastal communities adapt to sea level rise and other climate change impacts.
-- **Watershed Protection**: Protecting and restoring coastal watersheds to improve water quality and habitat connectivity.
+3. Climate Change Adaptation
+- Climate change impact preparation
+- Coastal region resilience
+- San Francisco Bay Area adaptation
 
-### Sea Level Rise Adaptation
-The Conservancy is at the forefront of addressing sea level rise through:
-
-- **Living Shorelines**: Implementing nature-based solutions to protect coastlines from erosion and flooding.
-- **Coastal Resilience Planning**: Supporting local governments in developing adaptation plans for sea level rise.
-- **Managed Retreat**: Piloting projects that demonstrate managed retreat strategies for vulnerable coastal infrastructure.
+4. Special Programs
+- San Francisco Bay Area Conservancy Program
+- Santa Ana River Conservancy Program
+- Lower-cost coastal accommodations development
 
 ## Administrative Structure
 
-The California Coastal Conservancy is governed by a seven-member Board of Directors, including:
-- Four members appointed by the Governor and confirmed by the Senate
-- One member appointed by the Senate Rules Committee
-- One member appointed by the Speaker of the Assembly
-- The Chair of the California Coastal Commission or their designee
+### Program Areas
+1. Coastal Conservancy Programs ($14,893,000)
+2. Local Assistance ($10,990,000)
+3. Capital Outlay ($3,800,000)
 
-The Conservancy's staff is led by an Executive Officer who oversees the following divisions:
-- **North Coast Division**: Manages projects from the Oregon border to the San Francisco Bay Area.
-- **Central Coast Division**: Oversees projects from San Francisco to Santa Barbara County.
-- **South Coast Division**: Handles projects from Ventura County to the Mexican border.
-- **San Francisco Bay Area Conservancy Program**: Focuses on projects around the San Francisco Bay.
-- **Climate Ready Program**: Coordinates climate adaptation and resilience projects statewide.
-- **Administration and Finance Division**: Manages budgeting, accounting, human resources, and information technology.
+### Core Functions
+1. Project Development and Implementation
+- Technical assistance provision
+- Direct funding management
+- Grant administration
+
+2. Regional Programs Management
+- Coastal watershed projects
+- San Francisco Bay Area initiatives
+- Ocean resource protection
+
+3. Conservation Planning
+- Natural resource assessment
+- Project prioritization
+- Partnership development
 
 ## Funding Allocation Process
 
-The Conservancy allocates funding through several mechanisms:
+The Conservancy utilizes a diverse funding portfolio to support its mission:
 
-### Project Prioritization
-Projects are prioritized based on their alignment with:
-- The Conservancy's Strategic Plan
-- The California Coastal Act
-- State climate adaptation strategies
-- Environmental justice and equity considerations
+1. Core Program Funding
+- Federal Trust Fund for coastal programs
+- Environmental License Plate Fund for environmental initiatives
+- Habitat Conservation Fund for conservation projects
+
+2. Special Purpose Funds
+- Coastal Access Account for public access projects
+- California Sea Otter Fund for species protection
+- Greenhouse Gas Reduction Fund for climate initiatives
+
+3. Project Implementation
+- Grant distribution to local agencies
+- Direct project funding
+- Partnership development with nonprofit organizations
+
+Funding priorities are based on:
+- Environmental protection needs
+- Public access requirements
+- Climate change adaptation urgency
 - Regional conservation priorities
+- Partnership opportunities
+- Available funding sources
 
-### Grant Programs
-The Conservancy administers competitive grant programs in the following areas:
-- Coastal Access
-- Climate Adaptation
-- Wetland Restoration
-- Urban Greening
-- Environmental Education
-- Explore the Coast
-
-### Project Development and Implementation
-The Conservancy's project development process includes:
-1. Initial project scoping and feasibility assessment
-2. Staff recommendation to the Board
-3. Board approval of project funding
-4. Project implementation through grants or direct Conservancy action
-5. Monitoring and evaluation of project outcomes
-
-The Conservancy leverages state funding with federal, local, and private sources, often achieving a match ratio of 3:1 or greater for its projects. 
+The Conservancy emphasizes:
+- Strategic project selection
+- Leveraging multiple funding sources
+- Long-term sustainability
+- Measurable environmental benefits
+- Public benefit maximization 

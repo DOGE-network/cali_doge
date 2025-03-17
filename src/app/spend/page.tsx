@@ -49,7 +49,7 @@ function SpendPageClient() {
       {/* Agency Spending */}
       <div className="mb-12">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold">California Department Spending</h1>
+          <h1 className="text-2xl font-bold"></h1>
           <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
             <Link href="/spend?view=top" passHref>
               <Button

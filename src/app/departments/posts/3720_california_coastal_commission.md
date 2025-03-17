@@ -1,98 +1,107 @@
 ---
-title: "California Coastal Commission"
-name: "California Coastal Commission"
-code: "3720"
-date: '2025-03-15'
-author: "Sean Roberts"
-description: "The California Coastal Commission plans and regulates the use of land and water in the coastal zone to protect, conserve, restore, and enhance environmental and human-based resources of the California coast."
+title: California Coastal Commission
+description: Overview of the California Coastal Commission budget and operations
+author: California State
+date: 2024-01-03
+tags:
+  - coastal management
+  - environmental protection
+  - public access
+  - marine resources
 ---
 
-## Budget Highlights 2024-2025
+## Budget Trends and Highlights
 
-The California Coastal Commission has **193.0 positions** for 2024-25, an increase of 7.0 positions from 2023-24. The Commission's budget for 2024-25 is **$35.7 million**, an increase of $1.8 million from the previous fiscal year.
+### Position Growth
+- 2022-23: 172.3 positions
+- 2023-24: 192.0 positions
+- 2024-25: 193.0 positions (projected)
 
-Major funding codes and sources include:
-- **3720-001-0001**: General Fund - $21.2 million
-- **3720-001-0371**: California Beach and Coastal Enhancement Account - $0.9 million
-- **3720-001-0890**: Federal Trust Fund - $3.1 million
-- **3720-001-3123**: Coastal Act Services Fund - $2.4 million
-- **3720-001-8086**: Protect Our Coast and Oceans Fund - $1.5 million
-- **3720-001-0565**: State Coastal Conservancy Fund - $6.6 million
+The Commission shows steady growth in staffing, with a notable increase of nearly 20 positions from 2022-23 to 2023-24, and a further modest increase planned for 2024-25.
+
+### Budget Fluctuations
+Total budget by fiscal year (in thousands):
+- 2022-23: $43,156
+- 2023-24: $71,519
+- 2024-25: $39,289 (projected)
+
+Key funding sources for 2024-25:
+- General Fund: $26,211,000
+- Federal Trust Fund: $3,684,000
+- Reimbursements: $3,955,000
+- Coastal Act Services Fund: $1,901,000
+- California Beach and Coastal Enhancement Account: $1,426,000
 
 ## Major Projects and Initiatives
 
-### Coastal Planning and Development
-The Commission regulates development in the coastal zone through:
+### Coastal Management Program
+The Commission's primary program focuses on implementing coastal resources conservation through planning and regulation. Key activities include:
 
-- **Local Coastal Programs (LCPs)**: Working with local governments to develop and update comprehensive coastal land use plans that balance development with resource protection.
-- **Coastal Development Permits**: Reviewing and approving permits for development in the coastal zone to ensure consistency with the Coastal Act.
-- **Public Access Program**: Ensuring and expanding public access to beaches and the shoreline through permit conditions and access management.
+1. Local Coastal Programs (LCPs)
+- Review and approval of LCPs
+- Oversight of port master plans
+- Management of university long-range development plans
 
-### Climate Change Adaptation
-The Commission is addressing climate change impacts through:
+2. Development Oversight
+- Review of coastal development permit applications
+- Monitoring and enforcement of permits
+- Federal activity consistency reviews
 
-- **Sea Level Rise Policy Guidance**: Providing guidance to local governments on incorporating sea level rise into planning and permitting decisions.
-- **Coastal Resilience Planning**: Supporting the development of adaptation strategies for vulnerable coastal areas.
-- **Living Shorelines**: Promoting nature-based solutions to coastal erosion and flooding as alternatives to hard armoring.
+3. Public Access and Environmental Protection
+- Protection and expansion of public coastal access
+- Implementation of coastal water quality protection
+- Coastal and ocean resource public education
 
-### Environmental Justice and Equity
-The Commission is working to advance environmental justice and equity through:
-
-- **Environmental Justice Policy**: Implementing the Commission's Environmental Justice Policy to ensure equitable coastal access and protection for underserved communities.
-- **Tribal Consultation Policy**: Engaging with California Native American tribes on coastal management issues.
-- **Lower-Cost Visitor-Serving Accommodations**: Protecting and expanding affordable accommodations along the coast.
+4. Energy and Infrastructure
+- Oversight of offshore energy projects
+- Review of power plant development
+- Assessment of liquefied natural gas facilities
 
 ## Administrative Structure
 
-The California Coastal Commission consists of 12 voting members and 3 non-voting members:
-- Four members appointed by the Governor
-- Four members appointed by the Senate Rules Committee
-- Four members appointed by the Speaker of the Assembly
-- Three non-voting members representing state agencies (Natural Resources Agency, Transportation Agency, and State Lands Commission)
+The California Coastal Commission is governed by 12 voting members appointed by:
+- Governor
+- Senate Rules Committee
+- Speaker of the Assembly
 
-The Commission's staff is led by an Executive Director who oversees the following divisions:
-- **North Coast District**: Manages coastal planning and permitting from the Oregon border to Sonoma County.
-- **North Central Coast District**: Covers Marin, San Francisco, and San Mateo Counties.
-- **Central Coast District**: Includes Santa Cruz, Monterey, and San Luis Obispo Counties.
-- **South Central Coast District**: Covers Santa Barbara and Ventura Counties.
-- **South Coast District**: Manages Los Angeles and Orange Counties.
-- **San Diego Coast District**: Covers San Diego County.
-- **Energy, Ocean Resources, and Federal Consistency Division**: Reviews offshore energy projects and federal activities.
-- **Enforcement Division**: Investigates and resolves violations of the Coastal Act.
-- **Legal Division**: Provides legal counsel and represents the Commission in litigation.
-- **Technical Services Division**: Provides technical support for planning and permitting decisions.
+The Commission operates under the California Coastal Act of 1976 and serves as the principal state coastal management agency for federal Coastal Zone Management Act implementation.
+
+### Program Areas
+1. Coastal Planning and Regulation
+2. Permit Review and Compliance
+3. Public Access and Recreation
+4. Marine Resource Protection
+5. Environmental Protection
+6. Energy and Industrial Development
+
+### Support Functions
+- Accounting and Business Services
+- Information Technology
+- Human Resources
+- Technical Assistance and Education
 
 ## Funding Allocation Process
 
-The Commission allocates funding through several mechanisms:
+The Commission's funding is allocated across multiple sources to ensure comprehensive coastal management:
 
-### Program Budgeting
-Funding is allocated to core programs including:
-- Coastal planning and Local Coastal Program development
-- Regulatory review and permitting
-- Enforcement
-- Public education and outreach
-- Technical assistance to local governments
-- Legal services
+1. Core Operations
+- General Fund allocation for basic operations and staffing
+- Federal Trust Fund support for coastal zone management
+- Reimbursements for specific services and projects
 
-### Grant Programs
-The Commission administers grant programs including:
-- **Local Coastal Program Grant Program**: Provides funding to local governments for developing and updating Local Coastal Programs.
-- **Whale Tail Grants**: Supports marine education projects for underserved communities.
-- **Climate Ready Grants**: Funds projects that address climate change impacts in the coastal zone.
+2. Special Programs
+- California Environmental License Plate Fund for environmental initiatives
+- Greenhouse Gas Reduction Fund for climate change-related projects
+- Protect Our Coast and Oceans Fund for voluntary tax contribution programs
 
-### Permit Fee Collection and Use
-The Commission collects permit fees that are used to:
-- Support the permit review process
-- Fund enforcement activities
-- Provide technical assistance to permit applicants
-- Maintain permit tracking systems
+3. Project-Specific Funding
+- Coastal Act Services Fund for permit processing
+- State Coastal Conservancy Fund for collaborative projects
+- Beach and Coastal Enhancement Account for specific enhancement initiatives
 
-### Interagency Coordination
-The Commission coordinates funding and resources with other state agencies including:
-- California Coastal Conservancy
-- State Lands Commission
-- Ocean Protection Council
-- Department of Parks and Recreation
-
-The Commission leverages state funding with federal coastal management grants from NOAA and other sources to maximize its effectiveness in protecting and enhancing California's coastal resources. 
+The Commission prioritizes funding based on:
+- Statutory requirements under the Coastal Act
+- Federal consistency review obligations
+- Public access and environmental protection needs
+- Local coastal program support and implementation
+- Enforcement and compliance activities 

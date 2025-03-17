@@ -1,76 +1,154 @@
 ---
-title: California Natural Resources Agency
-name: California Natural Resources Agency
+
+name: "California Natural Resources Agency"
 code: 0540
 date: '2025-03-15'
-author: Sean Roberts
-description: The California Natural Resources Agency oversees and coordinates the activities of 26 departments, boards, commissions, and conservancies responsible for protecting and managing California's natural, historical, and cultural resources.
+author: "Sean Roberts"
+image: 
+description: "The California Natural Resources Agency restores, protects, and manages the state's natural, historical, and cultural resources through science-based approaches and collaborative solutions."
 ---
 
-## Budget Highlights 2024-2025
+### Budget Trends and Highlights (2022-2025)
 
-### Position Growth
-- **Total Positions**: 215.4 positions in 2024-25
-- **Growth**: Increase of 32.6 positions (17.8%) from 2022-23 to 2024-25
-- **Key Areas**: Climate resilience, biodiversity conservation, and tribal affairs
+#### Position Growth
+- **Overall Trend**: Positions increased from 86.2 in 2022-23 to 126.3 in 2024-25 (46.5% growth)
+- **Staffing Expansion**: Net increase of 40.1 positions over three years
+- **Program Growth**: Significant staffing increase in Administration of Natural Resources Agency
+- **Current Workforce**: 126.3 positions dedicated to resource management and oversight
 
-### Budget Fluctuations
-- **Peak Funding**: FY 2022-23 saw $390 million in funding
-- **Current Budget**: $320 million for FY 2024-25
-- **Budget Trend**: Decrease of $70 million (17.9%) from 2022-23 to 2024-25
-- **General Fund**: Reduction from $210 million in 2022-23 to $150 million in 2024-25
+#### Budget Fluctuations
+- **Total Budget**: Decreased from $332.0 million in 2022-23 to $119.1 million in 2024-25
+- **General Fund**: Reduced from $261.2 million to $10.0 million
+- **Greenhouse Gas Reduction Fund**: Increased from -$0.3 million to $60.6 million
+- **Environmental Programs**: Maintained stable funding for key environmental initiatives
+
+#### Program Funding (2024-25)
+- **Administration**: $119.1 million total across all programs
+- **Environmental Enhancement**: $7.1 million (Environmental Enhancement and Mitigation Program Fund)
+- **Ocean Protection**: $6.5 million (California Ocean Protection Trust Fund)
+- **Climate Initiatives**: $60.6 million (Greenhouse Gas Reduction Fund)
 
 ### Major Funding Codes and Sources
 
 #### Program Codes
-- **0540010 - Administration of Natural Resources Agency**: $85 million in 2024-25
-- **0540020 - Ocean Protection Council**: $45 million in 2024-25
-- **0540030 - Climate Resilience**: $120 million in 2024-25
-- **0540040 - Tribal Affairs**: $70 million in 2024-25
+- **0320 - Administration of Natural Resources Agency**: Core operations and oversight
+- **Environmental Programs**: Grant administration and project management
+- **Conservation Initiatives**: Resource protection and preservation
+- **Cultural and Historical Programs**: Heritage preservation and education
 
 #### Funding Source Codes
-- **0001 - General Fund**: $150 million in 2024-25
-- **0140 - California Environmental License Plate Fund**: $25 million in 2024-25
-- **3228 - Greenhouse Gas Reduction Fund**: $80 million in 2024-25
-- **6051 - Safe Drinking Water, Water Quality and Supply, Flood Control, River and Coastal Protection Fund of 2006**: $35 million in 2024-25
-- **0995 - Reimbursements**: $30 million in 2024-25
+- **0001 - General Fund**: Core state funding ($10.0 million)
+- **0140 - California Environmental License Plate Fund**: Environmental programs ($8.4 million)
+- **0183 - Environmental Enhancement and Mitigation Program Fund**: Environmental projects ($7.1 million)
+- **3228 - Greenhouse Gas Reduction Fund**: Climate initiatives ($60.6 million)
+- **6076 - California Ocean Protection Trust Fund**: Ocean conservation ($6.5 million)
+- **6088 - California Drought, Water, Parks Fund**: Resource management ($2.1 million)
 
 ## Major Projects and Initiatives
 
-### 30x30 Conservation Initiative
+### Environmental Protection and Conservation
 
-The Natural Resources Agency leads California's 30x30 initiative, which aims to conserve 30 percent of the state's land and coastal waters by 2030. This effort supports biodiversity, expands access to nature, and helps build climate resilience.
+1. **Ocean Protection Council**:
+   - Marine ecosystem preservation
+   - Coastal resilience projects
+   - Scientific research coordination
 
-### Climate Resilience
+2. **Environmental Enhancement**:
+   - Habitat restoration
+   - Environmental mitigation
+   - Urban greening programs
 
-The agency coordinates the state's climate adaptation strategy, Safeguarding California, which outlines actions to protect communities, infrastructure, and ecosystems from climate impacts such as sea-level rise, extreme heat, and increased wildfire risk.
+3. **River Parkways**:
+   - Watershed protection
+   - Public access improvements
+   - Riparian habitat restoration
 
-### Tribal Engagement and Co-Management
+### Cultural and Historical Preservation
 
-The agency is implementing a Tribal Nature-Based Solutions Initiative that supports tribal-led efforts to protect natural and cultural resources, while advancing the state's commitment to tribal co-management of lands and waters.
+1. **Cultural Endowment Program**:
+   - Historical site preservation
+   - Cultural heritage protection
+   - Educational programming
+
+2. **Grant Programs**:
+   - Environmental enhancement
+   - Cultural preservation
+   - Community engagement
+
+### Climate Change and Sustainability
+
+1. **Climate Resilience**:
+   - Adaptation strategies
+   - Emissions reduction
+   - Environmental justice initiatives
+
+2. **Water Resources**:
+   - Drought response
+   - Water infrastructure
+   - Conservation programs
 
 ## Administrative Structure
 
-The California Natural Resources Agency is led by a Secretary appointed by the Governor and confirmed by the Senate. The agency is organized into the following divisions:
+The Natural Resources Agency oversees 27 departments, boards, commissions, and conservancies:
 
-1. **Executive Office**: Overall leadership and coordination
-2. **Ocean Protection Council**: Ocean and coastal policy
-3. **Climate Resilience**: Climate adaptation and resilience
-4. **Tribal Affairs**: Tribal engagement and co-management
-5. **External Affairs**: Communications and legislative affairs
-6. **Administration**: Budget, accounting, and human resources
+1. **Executive Leadership**:
+   - Secretary's Office
+   - Policy Development
+   - Legislative Affairs
+   - Communications
 
-The Secretary oversees 26 departments, boards, commissions, and conservancies, including the Department of Water Resources, Department of Fish and Wildlife, Department of Parks and Recreation, and Department of Forestry and Fire Protection.
+2. **Major Departments**:
+   - Forestry and Fire Protection
+   - Conservation
+   - Fish and Wildlife
+   - Parks and Recreation
+   - Water Resources
+
+3. **Key Boards and Commissions**:
+   - State Lands Commission
+   - Energy Commission
+   - Coastal Commission
+   - Wildlife Conservation Board
+   - Delta Protection Commission
+
+4. **Conservancies**:
+   - California Tahoe Conservancy
+   - State Coastal Conservancy
+   - Santa Monica Mountains Conservancy
+   - Sierra Nevada Conservancy
+   - Sacramento-San Joaquin Delta Conservancy
 
 ## Funding Allocation Process
 
-1. **Strategic Planning**: The agency develops a strategic plan that guides investment priorities
-2. **Interagency Coordination**: Coordination of funding across natural resource departments
-3. **Bond Fund Management**: Administration of natural resources bond funds
-4. **Grant Programs**: Competitive grants for conservation and climate resilience projects
-5. **Special Initiatives**: Targeted funding for high-priority initiatives like 30x30
+1. **Strategic Planning**:
+   - Resource assessment
+   - Priority identification
+   - Stakeholder engagement
+   - Scientific review
+
+2. **Grant Administration**:
+   - Program guidelines
+   - Application review
+   - Project selection
+   - Implementation oversight
+
+3. **Program Management**:
+   - Performance monitoring
+   - Financial tracking
+   - Compliance verification
+   - Impact assessment
+
+4. **Interagency Coordination**:
+   - Cross-department collaboration
+   - Resource sharing
+   - Joint initiatives
+   - Policy alignment
 
 Sources:
 [1] California State Budget 2024-25
-[2] California Natural Resources Agency Strategic Plan 2022-2027
-[3] https://resources.ca.gov/ 
+[2] Government Code Sections 12800, 12801, 12802.5
+[3] Public Resources Code Sections 32300, 36000, 85000
+[4] Education Code Sections 20053, 20080, 20092
+[5] Natural Resources Agency Strategic Plan
+[6] Environmental Enhancement and Mitigation Program Guidelines
+[7] Ocean Protection Council Strategic Plan 
