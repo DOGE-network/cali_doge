@@ -20,10 +20,10 @@
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from './AgencyDataVisualization';
 import executiveBranchData from '@/data/executive-branch-hierarchy.json';
 import { Agency } from '@/types/agency';
-import { useSearchParams } from 'next/navigation';
 import departmentsData from '@/data/departments.json';
 import { DepartmentsJSON } from '@/types/department';
 import { getDepartmentByName, normalizeForMatching } from '@/lib/departmentMapping';
@@ -458,7 +458,6 @@ function WorkforcePageContent() {
   const [_activeAgency, setActiveAgency] = useState<Agency | null>(null);
   const [activePath, setActivePath] = useState<string[]>([]);
   const [hierarchyData, setHierarchyData] = useState<Agency | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
   
   // Convert executive branch data to agency hierarchy
   useEffect(() => {
@@ -609,10 +608,6 @@ function WorkforcePageContent() {
     setSelectedAgencyName(agency.name);
   };
   
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-  
   if (!hierarchyData) {
     return <div className="p-4">Loading workforce data...</div>;
   }
@@ -651,54 +646,6 @@ function WorkforcePageContent() {
   // The last agency in the path is the active one
   const currentActiveAgency = pathAgencies.length > 0 ? pathAgencies[pathAgencies.length - 1] : null;
   
-  // Add a filtered agencies getter
-  const getFilteredAgencies = (agencies: Agency[], term: string): Agency[] => {
-    if (!term.trim()) return agencies;
-    
-    const searchLower = term.toLowerCase();
-    
-    return agencies.filter(agency => {
-      // Search by name
-      if (agency.name.toLowerCase().includes(searchLower)) {
-        return true;
-      }
-      
-      // Search by code/budget_code - ensure it's converted to string first
-      if (agency.budget_code) {
-        const codeStr = String(agency.budget_code).toLowerCase();
-        // Either the code includes the search term or the search term includes the code
-        if (codeStr.includes(searchLower) || searchLower.includes(codeStr)) {
-          return true;
-        }
-      }
-      
-      // If it has sub-agencies, check if any of them match (but don't return them)
-      if (agency.subAgencies) {
-        const hasMatchingSubAgency = agency.subAgencies.some(subAgency => {
-          // Match by name
-          if (subAgency.name.toLowerCase().includes(searchLower)) {
-            return true;
-          }
-          
-          // Match by code
-          if (subAgency.budget_code) {
-            const subCodeStr = String(subAgency.budget_code).toLowerCase();
-            // Either the code includes the search term or the search term includes the code
-            return subCodeStr.includes(searchLower) || searchLower.includes(subCodeStr);
-          }
-          
-          return false;
-        });
-        
-        if (hasMatchingSubAgency) {
-          return true;
-        }
-      }
-      
-      return false;
-    });
-  };
-  
   // Child agencies of the active agency (to display below)
   let childAgencies = currentActiveAgency && currentActiveAgency.subAgencies 
     ? currentActiveAgency.subAgencies 
@@ -709,51 +656,12 @@ function WorkforcePageContent() {
     childAgencies = childAgencies.filter(a => a.budget_status !== 'inactive');
   }
   
-  // Apply search filter if there's a search term
-  if (searchTerm.trim()) {
-    childAgencies = getFilteredAgencies(childAgencies, searchTerm);
-  }
-  
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8 flex justify-between items-center">
         <h1 className="text-2xl font-bold">California State Government Workforce</h1>
         
         <div className="flex items-center space-x-2">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search by name or code..."
-              value={searchTerm}
-              onChange={handleSearchChange}
-              className="p-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
-            />
-            <svg
-              className="absolute left-3 top-2.5 w-5 h-5 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              ></path>
-            </svg>
-            {searchTerm.length > 0 && (
-              <button
-                onClick={() => setSearchTerm('')}
-                className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                </svg>
-              </button>
-            )}
-          </div>
-          
           <div className="flex items-center space-x-1 border rounded-full p-1 bg-gray-100">
             <button
               className={`rounded-full px-3 py-1 text-xs ${showInactive ? 'bg-white shadow-sm' : ''}`}

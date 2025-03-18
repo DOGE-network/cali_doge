@@ -104,6 +104,16 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
   // Debug output
   console.log(`Workforce Agency ${agency.name} -> mapping: ${departmentMapping?.slug || 'no mapping found'}, markdown: ${markdownSlug || 'none'}`);
   
+  // Additional debug for Forestry department
+  if (agency.name.includes("Forest") || agency.name.includes("fire") || agency.name.includes("Fire")) {
+    console.log("FORESTRY DEBUG:", { 
+      agencyName: agency.name,
+      departmentMapping,
+      markdownSlug,
+      hasDepartmentPage: markdownSlug ? true : false
+    });
+  }
+
   // If no data, show placeholder
   if (!headCount2024 && !wages2024) {
     return (

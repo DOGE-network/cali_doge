@@ -24,7 +24,7 @@ const sortYearsChronologically = (years: string[]) => {
 function SpendPageClient() {
   const searchParams = useSearchParams();
   const [highlightedDepartment, setHighlightedDepartment] = useState<string | null>(null);
-  const [showAllDepartments, setShowAllDepartments] = useState(false);
+  const [showAllDepartments, setShowAllDepartments] = useState(true);
   
   useEffect(() => {
     // Get the department from URL query parameter

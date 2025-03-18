@@ -14,7 +14,7 @@ const typedDepartmentsData = departmentsData as DepartmentsJSON;
 // Generate this list using the generate-department-mappings.js script
 // This should be updated at build time
 // Do not manually edit this list - it will be overwritten
-const DEPARTMENT_SLUGS_WITH_PAGES = [
+export const DEPARTMENT_SLUGS_WITH_PAGES = [
 '0250_judicial_branch',
   '0500_governors_office',
   '0509_governors_office_of_business_and_economic_development',
