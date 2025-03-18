@@ -1,5 +1,8 @@
 import { TweetV2, UserV2, TweetEntitiesV2 } from 'twitter-api-v2';
 
+/**
+ * Twitter media object containing information about photos, videos, or GIFs
+ */
 export interface TwitterMedia {
   type: 'photo' | 'video' | 'animated_gif';
   url: string;
@@ -8,6 +11,9 @@ export interface TwitterMedia {
   height?: number;
 }
 
+/**
+ * Extended metadata for URLs in tweets
+ */
 export interface UrlMetadata {
   url: string;
   expanded_url: string;
@@ -21,10 +27,16 @@ export interface UrlMetadata {
   }>;
 }
 
+/**
+ * Enhanced tweet entities with URL metadata
+ */
 export interface EnrichedTweetEntities extends TweetEntitiesV2 {
   urls: (TweetEntitiesV2['urls'][0] & UrlMetadata)[];
 }
 
+/**
+ * Enhanced tweet with additional information
+ */
 export interface EnrichedTweet extends Omit<TweetV2, 'entities'> {
   media?: TwitterMedia[];
   author?: UserV2;
@@ -32,6 +44,9 @@ export interface EnrichedTweet extends Omit<TweetV2, 'entities'> {
   entities?: EnrichedTweetEntities;
 }
 
+/**
+ * Twitter API response structure
+ */
 export interface TwitterApiResponse {
   tweets: EnrichedTweet[];
   users: UserV2[];
@@ -47,7 +62,19 @@ export interface TwitterApiResponse {
   };
 }
 
+/**
+ * Twitter API error with additional information
+ */
 export interface TwitterError extends Error {
   code?: string;
   data?: any;
+}
+
+/**
+ * Twitter API rate limit information
+ */
+export interface RateLimitInfo {
+  remaining: number;
+  reset: string;
+  lastUpdated: string;
 } 

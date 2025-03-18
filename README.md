@@ -1,11 +1,46 @@
-# cali_doge
+# California State Government Data Explorer (Cali Doge)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Data Architecture](#data-architecture)
+  - [Fiscal Year Representation](#fiscal-year-representation)
+  - [Implementation in Data Files](#implementation-in-data-files)
+  - [Executive Branch Hierarchy](#executive-branch-hierarchy)
+  - [Data Sources](#data-sources)
+- [Key System Components](#key-system-components)
+  - [Markdown Processing](#markdown-processing)
+  - [Workforce Hierarchy System](#workforce-hierarchy-system)
+  - [Department Page Connection System](#department-page-connection-system)
+- [California Government Structure](#california-government-organizational-structure)
+  - [Hierarchical Levels](#hierarchical-levels)
+  - [Agency Structure](#agency-level-a)
+  - [Budget Documents](#budget-document-structure)
+- [Scripts](#scripts)
+  - [Data Processing Scripts](#data-processing-scripts)
+  - [Social Media Scripts](#social-media-scripts)
+  - [PDF Processing Scripts](#pdf-processing-scripts)
+  - [Utility Scripts](#utility-scripts)
+- [Development](#development)
+  - [Getting Started](#getting-started)
+  - [Installing Dependencies](#installing-dependencies)
+  - [Environment Variables](#environment-variables)
+  - [Running Locally](#running-locally)
+  - [Building for Production](#building-for-production)
+  - [Running Scripts](#running-scripts)
+  - [Linting and Testing](#linting-and-testing)
+  - [Deployment](#deployment)
+
+## Overview
 I am the love child of Elon Musk and Lanhee Chen. Godson of David Sacks. A fun mode parody account for educational purposes.
 
-## Fiscal Year Representation
+## Data Architecture
+
+### Fiscal Year Representation
 
 The website uses fiscal year data for budget and workforce information. Understanding how fiscal years are represented is important for interpreting the data correctly.
 
-### California Fiscal Year Convention
+#### California Fiscal Year Convention
 
 In California state government:
 
@@ -13,7 +48,7 @@ In California state government:
 - Official state documents represent fiscal years as "YYYY-YY" (e.g., "2023-24")
 - This indicates the fiscal year begins on July 1, 2023 and ends on June 30, 2024
 
-### Fiscal Year Representation in Our Data
+#### Fiscal Year Representation in Our Data
 
 For simplicity and consistency across our application:
 
@@ -29,10 +64,46 @@ For simplicity and consistency across our application:
 
 This convention is applied consistently across our data sources:
 
-- **Spending Data** (`src/data/spending-data.json`): Uses "FY" prefix followed by year (e.g., "FY2023")
-- **Workforce Data** (`src/data/workforce-data.json`): Uses year only (e.g., "2023")
+- **Spending Data** (`src/data/spending-data.json`): Each entry includes the fiscal year in single-year format
+- **Workforce Data** (`src/data/workforce-data.json`): Demographic and employment statistics are organized by fiscal year
+- **Department Data** (`src/data/departments.json`): Historical data is organized chronologically by fiscal year
+- **Budget Documentation**: All budget documents follow the fiscal year naming conventions
 
-When interpreting the data, remember that each year represents the beginning of a fiscal year period that extends into the following calendar year.
+When interpreting any data, charts, or visualizations on the site, remember that a year value like "2023" refers to the entire fiscal year period from July 1, 2023, through June 30, 2024.
+
+### Executive Branch Hierarchy
+
+The application maintains a hierarchical representation of California's executive branch structure in the `src/data/executive-branch-hierarchy.json` file. This hierarchy is used for organizational navigation and data visualization.
+
+#### Structure Format
+
+The hierarchy is structured as a nested JSON object with the following key properties:
+
+- **name**: The name of the organizational unit
+- **budget_code**: The California Department of Finance budget code (when applicable)
+- **is_active**: Boolean indicating if the unit is currently active
+- **key_functions**: List of primary responsibilities
+- **children**: Array of child organizations that report to this unit
+
+#### Hierarchy Levels
+
+The hierarchy follows the official California Department of Finance organizational structure:
+
+1. **Governor**: Top level of the hierarchy
+2. **Agency Level**: Major cabinet-level agencies
+3. **Department Level**: Departments, boards, commissions, and other units
+4. **Division Level**: Major subdivisions within departments (when available)
+
+#### Usage in the Application
+
+This hierarchy powers several features:
+
+- The organizational chart visualization in the workforce section
+- Navigation between related departments
+- Context for understanding department functions and relationships
+- Budget code lookup for connecting with spending data
+
+The hierarchy structure is validated during build time to ensure consistent structure and prevent duplicates.
 
 ## Markdown Processing and Source Formatting
 
@@ -305,7 +376,8 @@ If cross-linking is not working correctly:
 
 ## Data Sources
 
-- Example data 
+Example data structure:
+
 ```json
 {
   "name": "Executive Branch",
@@ -436,16 +508,13 @@ Budget documents follow the URL pattern:
 ebudget.ca.gov/[FISCAL-YEAR]/pdf/[DOCUMENT-TYPE]/[AGENCY-CODE]/[DEPARTMENT-CODE].pdf
 ```
 
-## California department of finance codes
+### California department of finance codes
 https://dof.ca.gov/accounting/accounting-policies-and-procedures/accounting-policies-and-procedures-uniform-codes-manual-organization-codes/
 
-## structural listing of codes
+### structural listing of codes
 https://dof.ca.gov/wp-content/uploads/sites/352/2024/07/3orgstruc.pdf
 
-## program code structure
-https://dof.ca.gov/accounting/accounting-policies-and-procedures/department-program-codes/
-
-## glossary of terms
+### glossary of terms
 https://ebudget.ca.gov/reference/GlossaryOfTerms.pdf
 
 # California Government Organizational Structure Parser
@@ -454,66 +523,326 @@ https://ebudget.ca.gov/reference/GlossaryOfTerms.pdf
 
 This project includes tools to parse and analyze the organizational structure of California state government from official PDF documents. The system extracts hierarchical relationships between agencies, departments, and other organizational units based on their position in the document.
 
-## Components
+## Scripts
 
-### PDF Structure Extraction (`extract_codes.py`)
+The project includes various utility scripts for data processing, maintenance, and development tasks. These scripts are located in the `src/scripts` directory and serve different purposes in the application lifecycle.
 
-The `extract_codes.py` script uses PyMuPDF (also known as fitz) to parse the California state government's organizational structure from PDF documents. It identifies hierarchical relationships based on horizontal positioning in the document.
+### Data Processing Scripts
 
-#### How It Works
+#### `mergeDataSources.js`
+- **Purpose**: Merges spending and workforce data into a unified departments.json file
+- **Operations**:
+  - Reads data from separate spending and workforce JSON files
+  - Normalizes department names for consistent matching
+  - Generates slugs for department URLs
+  - Creates a unified data structure with all information
+  - Adds validation to ensure data integrity
+- **Usage**: Run once to initialize or rebuild the departments.json file
 
-1. **Position Analysis**: The script analyzes the horizontal positions (x-coordinates) of codes and descriptions in the PDF to determine their hierarchical level.
+#### `updateDepartmentCodes.js`
+- **Purpose**: Updates department codes in departments.json based on budget document filenames
+- **Operations**:
+  - Scans budget document files in the data directory
+  - Extracts department codes from filenames
+  - Matches department names using normalization
+  - Updates the corresponding entries in departments.json
+- **Usage**: Run after adding new budget documents to update department codes
 
-2. **Hierarchical Classification**: Based on the horizontal position, each entry is classified into one of five levels:
-   - **Level A**: Agency level (top-level organizational units)
-   - **Level B**: Subagency level (breakdown of agencies)
-   - **Level 1**: Department level (organizations receiving appropriations)
-   - **Level 2**: Suborganization level (divisions, bureaus, boards, commissions)
-   - **Level 3**: Suborganization of Level 2 (bureaus, offices, units)
+#### `generate-department-mappings.js`
+- **Purpose**: Generates department mappings for the application
+- **Operations**:
+  - Reads all department markdown files
+  - Extracts department metadata
+  - Creates mappings between slugs and department names in different contexts
+  - Updates the departmentMapping.ts file with the latest mappings
+- **Usage**: Run during build process to ensure mappings are up to date
 
-3. **Data Extraction**: For each entry, the script extracts:
-   - The 4-digit code
-   - The description
-   - The hierarchical level (A, B, 1, 2, or 3)
-   - The page number
-   - The horizontal position
+### Social Media Scripts
 
-4. **Output**: The extracted data is saved to a CSV file (`org_structure.csv`) for further analysis and use in other scripts.
+#### `fetch-tweets.ts`
+- **Purpose**: Fetches tweets from Twitter API and stores them locally
+- **Operations**:
+  - Performs incremental updates (only fetches new tweets)
+  - Respects Twitter API rate limits
+  - Downloads and stores media files locally
+  - Enriches tweets with URL metadata
+  - Merges new tweets with existing archive
+- **Usage**: Run regularly to update the tweets.json file and media directory
 
-#### Special Notations
+#### `remove-tweets.js`
+- **Purpose**: Removes specific tweets from the local tweets.json file
+- **Operations**:
+  - Takes a list of tweet IDs to remove
+  - Filters out those tweets from the dataset
+  - Updates the tweets.json file
+- **Usage**: Run when specific tweets need to be removed from the site
 
-The organizational structure includes entries marked with "DO NOT USE", which indicate:
-- Abolished or discontinued entities
-- Renamed or renumbered entities
-- Merged entities
-- Codes reserved for special purposes
+### PDF Processing Scripts
 
-These entries are maintained for historical record-keeping and to prevent code reuse.
+#### `extract_pdf_text.py`
+- **Purpose**: Extracts text from PDF budget documents
+- **Operations**:
+  - Uses PyMuPDF to parse PDF files
+  - Extracts text content while preserving structure
+  - Saves extracted text to files for further processing
+- **Usage**: Run to extract text from new budget document PDFs
 
-### Budget Document Downloader (`download_budgets.sh`)
+#### `extract_codes.py`
+- **Purpose**: Parses California government organizational structure from PDF documents
+- **Operations**:
+  - Analyzes horizontal positions of codes and descriptions
+  - Classifies entries into hierarchical levels (A, B, 1, 2, 3)
+  - Extracts codes, descriptions, and hierarchy information
+  - Outputs structured data to CSV
+- **Usage**: Run to update the organizational structure data
 
-The `download_budgets.sh` script uses the organizational structure data to download budget documents for California state government entities. It maps department codes to their parent agency codes to construct the correct URLs for budget documents.
+#### `download_budgets.sh`
+- **Purpose**: Downloads budget documents for California state government entities
+- **Operations**:
+  - Uses organizational structure data to identify departments
+  - Constructs URLs for budget documents
+  - Downloads documents for specified fiscal years
+  - Organizes files in a consistent directory structure
+- **Usage**: Run to download budget documents for new fiscal years
 
-## Usage
+### Utility Scripts
 
-### Extracting Organizational Structure
+#### `load-env.ts`
+- **Purpose**: Manages environment variable loading for scripts
+- **Operations**:
+  - Detects running environment (local vs. GitHub Actions)
+  - Loads appropriate environment variables
+  - Provides fallback mechanisms for different environments
+- **Usage**: Imported by other TypeScript scripts that need environment variables
 
+By leveraging these scripts, the project maintains data consistency, automates repetitive tasks, and ensures proper connections between different data sources in the application.
+
+## Key System Components
+
+### Markdown Processing
+
+The application uses a sophisticated markdown processing system for content management:
+
+- **Remark Ecosystem**: Uses [remark](https://github.com/remarkjs/remark) and [rehype](https://github.com/rehypejs/rehype) for Markdown-to-HTML conversion
+- **Custom Components**: Implements custom MDX components for enhanced content display:
+  - Expandable sections
+  - Interactive charts
+  - Department callouts
+  - Budget comparisons
+- **Frontmatter Support**: Each markdown file contains structured frontmatter for metadata:
+  - Title, date, author
+  - Department references
+  - Related links
+  - Keywords and tags
+- **Code Formatting**: Uses Prettier for consistent code formatting in markdown files
+
+The markdown processing pipeline includes:
+1. Parsing frontmatter metadata
+2. Converting markdown to HTML
+3. Applying syntax highlighting
+4. Transforming custom components
+5. Optimizing output for performance
+
+### Workforce Hierarchy System
+
+The application includes an interactive workforce hierarchy visualization system that:
+
+- **Renders Organizational Structure**: 
+  - Visualizes the executive branch organizational chart
+  - Supports collapsible/expandable nodes for navigation
+  - Provides detail views for each organizational unit
+
+- **Data Structure**:
+  - Uses a tree-based structure defined in `src/data/executive-branch-hierarchy.json`
+  - Maps departments to their parent agencies
+  - Includes metadata like budget codes and key functions
+
+- **Component Architecture**:
+  - `AgencyHierarchyTree`: Top-level component managing the hierarchy
+  - `AgencyNode`: Individual node component with expand/collapse
+  - `AgencyDetail`: Detail panel showing expanded information
+  - `AgencySearch`: Search component for finding specific agencies
+
+- **Integration Points**:
+  - Connects with department pages via mapping system
+  - Links to budget data through budget codes
+  - Provides navigation to related workforce data
+
+### Department Page Connection System
+
+The application implements a mapping system to connect different data sources through department pages:
+
+#### Mapping Framework
+
+The mapping system (`src/lib/departmentMapping.ts`) creates connections between:
+- Department pages (markdown content)
+- Spending data entries
+- Workforce visualization nodes
+
+#### Key Components
+
+- **Mapping Definition**: Each department has a mapping entry with:
+  - `slug`: URL-friendly identifier used in department pages
+  - `fullName`: Official department name
+  - `spendingName`: Name as it appears in spending data (if different)
+  - `workforceName`: Name as it appears in workforce data (if different)
+
+- **Lookup Functions**:
+  - `getDepartmentBySlug`: Finds department mapping by URL slug
+  - `getDepartmentBySpendingName`: Looks up department from spending data names
+  - `getDepartmentByWorkforceName`: Looks up department from workforce data names
+  - `getSpendingUrlForDepartment`: Generates URL to spending page for a department
+  - `getWorkforceUrlForDepartment`: Generates URL to workforce visualization for a department
+
+#### Cross-Navigation Implementation
+
+1. **Department Page** (`src/app/departments/[slug]/page.tsx`):
+   - Uses `getDepartmentBySlug` to load department information
+   - Uses `getSpendingUrlForDepartment` and `getWorkforceUrlForDepartment` to create navigation links
+
+2. **Workforce Visualization** (`src/app/workforce/AgencyDataVisualization.tsx`):
+   - Uses `getDepartmentByWorkforceName` to check if a department page exists for the current agency
+   - Creates "Details" links that navigate to the corresponding department page
+
+3. **Spending Page** (`src/app/spend/page.tsx`):
+   - Uses `getDepartmentBySpendingName` to check if a department page exists for the current spending entry
+   - Creates links that navigate to the corresponding department page
+
+#### How to Update When Creating New Department Pages
+
+When creating a new department page, follow these steps to ensure proper cross-linking:
+
+1. **Add a New Mapping Entry**:
+   Add a new entry to the `departmentMappings` array in `src/lib/departmentMapping.ts`:
+   ```typescript
+   {
+     slug: '3900_air_resources_board',  // Format: <dept_code>_<name_in_snake_case>
+     fullName: 'Air Resources Board',  // Official name
+     spendingName: 'Air Resources Board',  // Optional: only if different from fullName
+     workforceName: 'Air Resources Board'  // Optional: only if different from fullName
+   }
+   ```
+
+2. **Create the Department Page**:
+   Create a new markdown file at `src/app/departments/posts/<dept_code>_<name_in_snake_case>.md` using the same format as the slug.
+   Example: `src/app/departments/posts/3900_air_resources_board.md`
+
+3. **Verify Data Consistency**:
+   - Ensure the `spendingName` matches exactly how the department appears in `src/data/spending-data.json`
+   - Ensure the `workforceName` matches exactly how the department appears in `src/data/workforce-data.json`
+   - If names differ slightly between datasets, use the optional fields to specify the exact names
+
+4. **Test Cross-Navigation**:
+   After implementation, test that:
+   - The department page has working links to spending and workforce pages
+   - The department appears correctly in the workforce visualization with a "Details" link
+   - The department appears correctly in the spending page with a link to its department page
+
+#### Troubleshooting Connection Issues
+
+If cross-linking is not working correctly:
+
+1. **Check Name Consistency**: Verify that the names in the mapping exactly match the names in the data files
+2. **Verify Slug Format**: Ensure the slug is URL-friendly (lowercase, hyphens instead of spaces)
+3. **Check Component Implementation**: Ensure the components are using the lookup functions correctly
+4. **Debug with Console Logs**: Add temporary console logs to trace the mapping process:
+   ```typescript
+   console.log('Looking up department:', name);
+   console.log('Found mapping:', getDepartmentByWorkforceName(name));
+   ``` 
+
+## Development
+
+### Getting Started
+
+To get started with this project, you'll need the following prerequisites:
+
+- Node.js (v18 or later)
+- npm or yarn
+- Git
+
+### Installing Dependencies
+
+1. Clone the repository:
 ```bash
-python src/scripts/extract_codes.py path/to/3orgstruc.pdf
+git clone https://github.com/your-username/cali_doge.git
+cd cali_doge
 ```
 
-### Downloading Budget Documents
-
+2. Install dependencies:
 ```bash
-bash src/scripts/download_budgets.sh
+npm install
 ```
 
-## Data Files
+### Environment Variables
 
-- **org_structure.csv**: Contains the extracted organizational structure with levels, codes, and descriptions
-- **budget_docs/**: Directory containing downloaded budget documents
+Create a `.env.local` file in the root directory with the following environment variables:
 
-## Dependencies
+```
+NEXT_PUBLIC_API_URL=your_api_url
+TWITTER_BEARER_TOKEN=your_twitter_token  # Only needed if using tweet fetching
+```
 
-- **PyMuPDF (fitz)**: For PDF parsing (`pip install PyMuPDF`)
-- **Standard Python libraries**: re, statistics, os, sys, csv, collections 
+### Running Locally
+
+To run the development server:
+
+```bash
+npm run dev
+```
+
+This will start the Next.js development server on [http://localhost:3000](http://localhost:3000).
+
+### Building for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+To test the production build locally:
+
+```bash
+npm run start
+```
+
+### Running Scripts
+
+To run any of the data processing or utility scripts:
+
+```bash
+# For JavaScript scripts
+node src/scripts/scriptName.js
+
+# For TypeScript scripts
+npx ts-node src/scripts/scriptName.ts
+
+# For Python scripts
+python src/scripts/scriptName.py
+```
+
+### Linting and Testing
+
+To run linting:
+
+```bash
+npm run lint
+```
+
+To run tests:
+
+```bash
+npm test
+```
+
+### Deployment
+
+The project is configured for deployment on Vercel. Pushing to the main branch will trigger an automatic deployment to production.
+
+For manual deployment:
+
+```bash
+npm run build
+vercel deploy --prod
+``` 

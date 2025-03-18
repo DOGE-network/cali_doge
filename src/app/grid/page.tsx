@@ -1,7 +1,7 @@
 import { TweetGrid } from '@/components/tweets/TweetGrid';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { TwitterApiResponse } from '@/lib/twitter/types';
+import { TwitterApiResponse } from '@/types/twitter';
 import Link from 'next/link';
 
 async function getLatestTweets(): Promise<TwitterApiResponse | null> {

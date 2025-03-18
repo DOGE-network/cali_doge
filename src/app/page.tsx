@@ -1,7 +1,7 @@
 import { TweetThread } from '@/components/tweets/TweetThread';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { TwitterApiResponse } from '@/lib/twitter/types';
+import { TwitterApiResponse } from '@/types/twitter';
 import { groupTweetsIntoThreads } from '@/lib/twitter/utils';
 import Link from 'next/link';
 

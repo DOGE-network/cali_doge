@@ -1,31 +1,61 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { getDepartmentBySpendingName } from '@/lib/departmentMapping';
-import { SpendingData } from '@/types/spending';
+import { 
+  getDepartmentBySpendingName, 
+  debugDepartmentPages, 
+  compareSlugFormats,
+  findMarkdownForDepartment
+} from '@/lib/departmentMapping';
+import { DepartmentsJSON } from '@/types/department';
 
 interface SpendingDisplayProps {
-  spendingData: SpendingData;
+  departmentsData: DepartmentsJSON;
   highlightedDepartment?: string | null;
   showTopSpendOnly?: boolean;
 }
 
 const SpendingDisplay: React.FC<SpendingDisplayProps> = ({ 
-  spendingData, 
+  departmentsData, 
   highlightedDepartment,
   showTopSpendOnly = false
 }) => {
   const [showAllYears, setShowAllYears] = useState(false);
   
+  // Debug on mount
+  useEffect(() => {
+    // Debug Air Resources Board as an example
+    debugDepartmentPages('air_resources_board');
+    
+    // Try another slug format that includes the code
+    debugDepartmentPages('3900_air_resources_board');
+
+    // Compare slug formats
+    compareSlugFormats();
+  }, []);
+  
   // Default years to show (FY2023-2025)
-  const defaultYears = spendingData.fiscalYears.filter(year => 
+  const fiscalYears = useMemo(() => {
+    const allYears = new Set<string>();
+    
+    // Collect all fiscal years from each department's spending data
+    departmentsData.departments.forEach(dept => {
+      if (dept.spending?.yearly) {
+        Object.keys(dept.spending.yearly).forEach(year => allYears.add(year));
+      }
+    });
+    
+    return Array.from(allYears);
+  }, [departmentsData]);
+  
+  const defaultYears = fiscalYears.filter(year => 
     ['FY2023', 'FY2024', 'FY2025'].includes(year)
   );
   
   // Years to display based on toggle state
-  const unsortedYears = showAllYears ? spendingData.fiscalYears : defaultYears;
+  const unsortedYears = showAllYears ? fiscalYears : defaultYears;
   
   // Sort years chronologically from oldest to latest
   const yearsToDisplay = [...unsortedYears].sort((a, b) => {
@@ -37,9 +67,19 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   // Get the most recent year for sorting by spending
   const mostRecentYear = yearsToDisplay.length > 0 ? yearsToDisplay[yearsToDisplay.length - 1] : 'FY2024';
 
+  // Convert departments to agency-like structure for sorting and display
+  const agencies = useMemo(() => {
+    return departmentsData.departments
+      .filter(dept => dept.spending?.yearly)
+      .map(dept => ({
+        name: dept.name,
+        spending: dept.spending?.yearly || {}
+      }));
+  }, [departmentsData]);
+
   // Sort agencies by spending for the most recent year
   const sortedAgencies = useMemo(() => {
-    return [...spendingData.agencies].sort((a, b) => {
+    return [...agencies].sort((a, b) => {
       const spendingA = a.spending[mostRecentYear] || '$0';
       const spendingB = b.spending[mostRecentYear] || '$0';
       
@@ -53,7 +93,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
       
       return (valueB * multiplierB) - (valueA * multiplierA);
     });
-  }, [spendingData.agencies, mostRecentYear]);
+  }, [agencies, mostRecentYear]);
 
   // Limit to top 10 if showTopSpendOnly is true
   const agenciesToDisplay = showTopSpendOnly ? sortedAgencies.slice(0, 10) : sortedAgencies;
@@ -94,7 +134,18 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
           </thead>
           <tbody>
             {agenciesToDisplay.map((agency, index) => {
-              const departmentMapping = getDepartmentBySpendingName(agency.name);
+              // Only get department mappings that have markdown pages
+              const allDeptMapping = getDepartmentBySpendingName(agency.name, false);
+              const departmentMapping = getDepartmentBySpendingName(agency.name, true);
+              
+              // Try to find markdown file directly
+              const markdownSlug = findMarkdownForDepartment(agency.name);
+              
+              // Detailed debug output
+              if (allDeptMapping && !departmentMapping && markdownSlug) {
+                console.log(`Department '${agency.name}' has mapping to slug '${allDeptMapping.slug}' with markdown page '${markdownSlug}'`);
+              }
+              
               const isHighlighted = highlightedDepartment === agency.name;
               
               return (
@@ -103,9 +154,9 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
                   className={`border-t border-gray-200 ${isHighlighted ? 'bg-blue-50' : ''}`}
                 >
                   <td className="py-3 px-4">
-                    {departmentMapping ? (
+                    {markdownSlug ? (
                       <Link 
-                        href={`/departments/${departmentMapping.slug}`}
+                        href={`/departments/${markdownSlug}`}
                         className="text-blue-600 hover:underline"
                       >
                         {agency.name}

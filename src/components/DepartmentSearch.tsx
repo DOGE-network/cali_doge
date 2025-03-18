@@ -50,6 +50,13 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
         setIsLoading(true);
         const response = await fetch('/api/departments');
         const data = await response.json();
+        
+        // Debug code types
+        console.log('Department codes:');
+        data.slice(0, 5).forEach((dept: Department) => {
+          console.log(`${dept.name}: code=${dept.code}, type=${typeof dept.code}`);
+        });
+        
         setDepartments(data);
         
         // Set recent departments (3 most recent)
@@ -82,11 +89,30 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
       return;
     }
 
-    const filtered = departments.filter(
-      (dept) =>
-        dept.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        dept.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const searchLower = searchTerm.toLowerCase();
+    const filtered = departments.filter((dept) => {
+      // Search by name
+      if (dept.name.toLowerCase().includes(searchLower)) {
+        return true;
+      }
+      
+      // Search by code - convert to string to handle numeric codes
+      if (dept.code) {
+        const codeStr = String(dept.code).toLowerCase();
+        // Either the code includes the search term or the search term includes the code
+        if (codeStr.includes(searchLower) || searchLower.includes(codeStr)) {
+          return true;
+        }
+      }
+      
+      // Search by excerpt/description
+      if (dept.excerpt && dept.excerpt.toLowerCase().includes(searchLower)) {
+        return true;
+      }
+      
+      return false;
+    });
+    
     setFilteredDepartments(filtered);
     resetAutoCloseTimer();
   }, [searchTerm, departments, resetAutoCloseTimer]);
@@ -176,7 +202,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search departments..."
+            placeholder="Search by name or code..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-odi-blue"
@@ -225,7 +251,14 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                       </div>
                     )}
                     <div>
-                      <h4 className="font-medium text-gray-900">{dept.name}</h4>
+                      <h4 className="font-medium text-gray-900">
+                        {dept.name}
+                        {dept.code && (
+                          <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                            {dept.code}
+                          </span>
+                        )}
+                      </h4>
                       <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
                     </div>
                   </Link>
@@ -259,7 +292,14 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                     </div>
                   )}
                   <div>
-                    <h4 className="font-medium text-gray-900">{dept.name}</h4>
+                    <h4 className="font-medium text-gray-900">
+                      {dept.name}
+                      {dept.code && (
+                        <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                          {dept.code}
+                        </span>
+                      )}
+                    </h4>
                     <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
                   </div>
                 </Link>

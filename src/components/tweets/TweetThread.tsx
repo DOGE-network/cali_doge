@@ -1,6 +1,6 @@
 'use client';
 
-import { EnrichedTweet } from '@/lib/twitter/types';
+import { EnrichedTweet } from '@/types/twitter';
 import { TweetCard } from './TweetCard';
 import { useState } from 'react';
 

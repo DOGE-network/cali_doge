@@ -1,7 +1,8 @@
 ---
-title: California Coastal Conservancy
+name: California Coastal Conservancy
 description: Overview of the California Coastal Conservancy budget and operations
-author: California State
+author: Sean Roberts
+code: 3760
 date: 2024-01-03
 ---
 

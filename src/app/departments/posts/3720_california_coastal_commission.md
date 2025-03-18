@@ -1,7 +1,8 @@
 ---
-title: California Coastal Commission
+name: California Coastal Commission
 description: Overview of the California Coastal Commission budget and operations
-author: California State
+author: Sean Roberts
+code: 3720
 date: 2024-01-03
 ---
 

@@ -1,4 +1,4 @@
-import { EnrichedTweet } from '@/lib/twitter/types';
+import { EnrichedTweet } from '@/types/twitter';
 import { TweetCard } from './TweetCard';
 import { TweetThread } from './TweetThread';
 import { groupTweetsIntoThreads } from '@/lib/twitter/utils';

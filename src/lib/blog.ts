@@ -167,7 +167,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     // Combine the data
     return {
       id,
-      code: matterResult.data.code || '',
+      code: matterResult.data.code ? String(matterResult.data.code) : '',
       name: matterResult.data.name || '',
       date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : '',
       excerpt,

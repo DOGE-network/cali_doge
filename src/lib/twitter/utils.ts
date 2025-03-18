@@ -1,6 +1,6 @@
 import { TweetV2, UserV2 } from 'twitter-api-v2';
 import { format } from 'date-fns';
-import { EnrichedTweet, TwitterMedia } from './types';
+import { EnrichedTweet, TwitterMedia } from '@/types/twitter';
 
 export const TWEETS_PER_MONTH = 100;
 
