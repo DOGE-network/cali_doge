@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { v2Client } from '../lib/twitter/client';
 import { enrichTweet, handleTwitterError, validateRateLimit, TWEETS_PER_MONTH } from '../lib/twitter/utils';
-import { EnrichedTweet, TwitterApiResponse } from '../lib/twitter/types';
+import { EnrichedTweet, TwitterApiResponse, RateLimitInfo } from '@/types/twitter';
 
 // Determine if we're running in a GitHub Actions environment
 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
@@ -12,12 +12,6 @@ const TWEETS_DIR = path.join(process.cwd(), 'src/data/tweets');
 const MEDIA_DIR = path.join(process.cwd(), 'src/data/media');
 const RATE_LIMIT_FILE = path.join(TWEETS_DIR, 'rate_limit.json');
 const TWEETS_FILE = path.join(TWEETS_DIR, 'tweets.json');
-
-interface RateLimitInfo {
-  remaining: number;
-  reset: string;
-  lastUpdated: string;
-}
 
 // Ensure directories exist
 if (!fs.existsSync(TWEETS_DIR)) fs.mkdirSync(TWEETS_DIR, { recursive: true });

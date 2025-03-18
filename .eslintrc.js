@@ -2,7 +2,7 @@ module.exports = {
   extends: ['next/core-web-vitals', 'prettier'],
   rules: {
     'no-unused-vars': ['error', { 'argsIgnorePattern': '^_', 'varsIgnorePattern': '^_' }],
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-console': 'off',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
   },

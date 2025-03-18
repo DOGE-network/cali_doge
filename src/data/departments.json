@@ -1,0 +1,2133 @@
+{
+  "departments": [
+    {
+      "name": "California State Government",
+      "slug": "california_state_government",
+      "canonicalName": "California State Government",
+      "aliases": ["California Government"],
+      "workforce": {
+        "averageTenureYears": 13,
+        "averageSalary": 86142,
+        "averageAge": 47,
+        "yearlyHeadCount": [
+          {"year": "2017", "headCount": 390000},
+          {"year": "2018", "headCount": 375000},
+          {"year": "2019", "headCount": 400000},
+          {"year": "2020", "headCount": 389000},
+          {"year": "2021", "headCount": 384000},
+          {"year": "2023", "headCount": 399000},
+          {"year": "2024", "headCount": 397000}
+        ],
+        "yearlyWages": [
+          {"year": "2017", "wages": 22000000000},
+          {"year": "2018", "wages": 22040000000},
+          {"year": "2019", "wages": 24540000000},
+          {"year": "2020", "wages": 25060000000},
+          {"year": "2021", "wages": 25920000000},
+          {"year": "2023", "wages": 28870000000},
+          {"year": "2024", "wages": 29820000000}
+        ],
+        "_note": "This data will be replaced with calculated aggregates once all department data is loaded"
+      }
+    },
+    {
+      "name": "Air Resources Board",
+      "slug": "air_resources_board",
+      "canonicalName": "California Air Resources Board",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2017": "$1.63B",
+          "FY2018": "$1.43B",
+          "FY2019": "$1.63B",
+          "FY2020": "$1.72B",
+          "FY2021": "$2.63B",
+          "FY2022": "$3.31B",
+          "FY2023": "$1.30B",
+          "FY2024": "$1.01B",
+          "FY2025": "$1.20B"
+        },
+        "stateOperations": {
+          "FY2017": "$0.85B",
+          "FY2018": "$0.89B",
+          "FY2019": "$0.95B",
+          "FY2020": "$1.02B",
+          "FY2021": "$0.35B",
+          "FY2022": "$0.59B",
+          "FY2023": "$0.50B",
+          "FY2024": "$1.01B",
+          "FY2025": "$1.20B"
+        }
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 1803
+          },
+          {
+            "year": "2023",
+            "headCount": 1899
+          },
+          {
+            "year": "2024",
+            "headCount": 1953
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 180300000
+          },
+          {
+            "year": "2023",
+            "wages": 189900000
+          },
+          {
+            "year": "2024",
+            "wages": 195300000
+          }
+        ]
+      },
+      "code": "3900"
+    },
+    {
+      "name": "California Department of Forestry and Fire Protection",
+      "slug": "california_department_of_forestry_and_fire_protection",
+      "canonicalName": "California Department of Forestry and Fire Protection",
+      "aliases": ["Department of Forestry and Fire Protection", "CAL FIRE"],
+      "spending": {
+        "yearly": {
+          "FY2023": "$4.32B",
+          "FY2024": "$4.22B",
+          "FY2025": "$4.35B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 8492
+          },
+          {
+            "year": "2023",
+            "headCount": 9120
+          },
+          {
+            "year": "2024",
+            "headCount": 9749
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 849200000
+          },
+          {
+            "year": "2023",
+            "wages": 912000000
+          },
+          {
+            "year": "2024",
+            "wages": 974900000
+          }
+        ]
+      },
+      "code": "3540"
+    },
+    {
+      "name": "Department of Water Resources",
+      "slug": "department_of_water_resources",
+      "canonicalName": "Department of Water Resources",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$7.48B",
+          "FY2024": "$3.19B",
+          "FY2025": "$3.25B"
+        },
+        "stateOperations": {}
+      },
+      "code": "3860"
+    },
+    {
+      "name": "Department of Parks and Recreation",
+      "slug": "department_of_parks_and_recreation",
+      "canonicalName": "Department of Parks and Recreation",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$1.99B",
+          "FY2024": "$0.88B",
+          "FY2025": "$0.92B"
+        },
+        "stateOperations": {}
+      },
+      "code": "3790"
+    },
+    {
+      "name": "Energy Commission",
+      "slug": "energy_commission",
+      "canonicalName": "California Energy Commission",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$1.32B",
+          "FY2024": "$1.15B",
+          "FY2025": "$1.18B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 760
+          },
+          {
+            "year": "2023",
+            "headCount": 782
+          },
+          {
+            "year": "2024",
+            "headCount": 785
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 76000000
+          },
+          {
+            "year": "2023",
+            "wages": 78200000
+          },
+          {
+            "year": "2024",
+            "wages": 78500000
+          }
+        ]
+      },
+      "code": "3360"
+    },
+    {
+      "name": "Department of Fish and Wildlife",
+      "slug": "department_of_fish_and_wildlife",
+      "canonicalName": "Department of Fish and Wildlife",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$1.12B",
+          "FY2024": "$0.68B",
+          "FY2025": "$0.71B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 2980
+          },
+          {
+            "year": "2023",
+            "headCount": 3188
+          },
+          {
+            "year": "2024",
+            "headCount": 3239
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 298000000
+          },
+          {
+            "year": "2023",
+            "wages": 318800000
+          },
+          {
+            "year": "2024",
+            "wages": 323900000
+          }
+        ]
+      },
+      "code": "3600"
+    },
+    {
+      "name": "Water Resources Control Board",
+      "slug": "water_resources_control_board",
+      "canonicalName": "Water Resources Control Board",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$3.94B",
+          "FY2024": "$2.15B",
+          "FY2025": "$2.20B"
+        },
+        "stateOperations": {}
+      },
+      "code": "3940"
+    },
+    {
+      "name": "Department of Toxic Substances Control",
+      "slug": "department_of_toxic_substances_control",
+      "canonicalName": "Department of Toxic Substances Control",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.82B",
+          "FY2024": "$0.58B",
+          "FY2025": "$0.60B"
+        },
+        "stateOperations": {}
+      },
+      "code": "3960"
+    },
+    {
+      "name": "California Conservation Corps",
+      "slug": "california_conservation_corps",
+      "canonicalName": "California Conservation Corps",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.16B",
+          "FY2024": "$0.15B",
+          "FY2025": "$0.16B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 298
+          },
+          {
+            "year": "2023",
+            "headCount": 312
+          },
+          {
+            "year": "2024",
+            "headCount": 318
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 29800000
+          },
+          {
+            "year": "2023",
+            "wages": 31200000
+          },
+          {
+            "year": "2024",
+            "wages": 31800000
+          }
+        ]
+      },
+      "code": "3340"
+    },
+    {
+      "name": "California Natural Resources Agency",
+      "slug": "california_natural_resources_agency",
+      "canonicalName": "California Natural Resources Agency",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.39B",
+          "FY2024": "$0.32B",
+          "FY2025": "$0.33B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 183
+          },
+          {
+            "year": "2023",
+            "headCount": 198
+          },
+          {
+            "year": "2024",
+            "headCount": 215
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 27450000
+          },
+          {
+            "year": "2023",
+            "wages": 29700000
+          },
+          {
+            "year": "2024",
+            "wages": 32250000
+          }
+        ]
+      },
+      "code": "0540"
+    },
+    {
+      "name": "Exposition Park",
+      "slug": "exposition_park",
+      "canonicalName": "Exposition Park",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.055B",
+          "FY2024": "$0.048B",
+          "FY2025": "$0.046B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 142
+          },
+          {
+            "year": "2023",
+            "headCount": 182
+          },
+          {
+            "year": "2024",
+            "headCount": 186
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 54962000
+          },
+          {
+            "year": "2023",
+            "wages": 48026000
+          },
+          {
+            "year": "2024",
+            "wages": 45789000
+          }
+        ]
+      },
+      "code": "3100"
+    },
+    {
+      "name": "California Tahoe Conservancy",
+      "slug": "california_tahoe_conservancy",
+      "canonicalName": "California Tahoe Conservancy",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.028B",
+          "FY2024": "$0.056B",
+          "FY2025": "$0.013B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 48
+          },
+          {
+            "year": "2023",
+            "headCount": 51
+          },
+          {
+            "year": "2024",
+            "headCount": 51
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 4800000
+          },
+          {
+            "year": "2023",
+            "wages": 5100000
+          },
+          {
+            "year": "2024",
+            "wages": 5100000
+          }
+        ]
+      },
+      "code": "3125"
+    },
+    {
+      "name": "California Coastal Conservancy",
+      "slug": "california_coastal_conservancy",
+      "canonicalName": "California Coastal Conservancy",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.074B",
+          "FY2024": "$0.076B",
+          "FY2025": "$0.078B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 72
+          },
+          {
+            "year": "2023",
+            "headCount": 74
+          },
+          {
+            "year": "2024",
+            "headCount": 76
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 7200000
+          },
+          {
+            "year": "2023",
+            "wages": 7400000
+          },
+          {
+            "year": "2024",
+            "wages": 7600000
+          }
+        ]
+      },
+      "code": "3760"
+    },
+    {
+      "name": "California Coastal Commission",
+      "slug": "california_coastal_commission",
+      "canonicalName": "California Coastal Commission",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.186B",
+          "FY2024": "$0.193B",
+          "FY2025": "$0.198B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 178
+          },
+          {
+            "year": "2023",
+            "headCount": 186
+          },
+          {
+            "year": "2024",
+            "headCount": 193
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 17800000
+          },
+          {
+            "year": "2023",
+            "wages": 18600000
+          },
+          {
+            "year": "2024",
+            "wages": 19300000
+          }
+        ]
+      },
+      "code": "3720"
+    },
+    {
+      "name": "California State Lands Commission",
+      "slug": "california_state_lands_commission",
+      "canonicalName": "California State Lands Commission",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.234B",
+          "FY2024": "$0.242B",
+          "FY2025": "$0.248B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 226
+          },
+          {
+            "year": "2023",
+            "headCount": 234
+          },
+          {
+            "year": "2024",
+            "headCount": 242
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 22600000
+          },
+          {
+            "year": "2023",
+            "wages": 23400000
+          },
+          {
+            "year": "2024",
+            "wages": 24200000
+          }
+        ]
+      },
+      "code": "3560"
+    },
+    {
+      "name": "California Department of Public Health",
+      "slug": "california_department_of_public_health",
+      "canonicalName": "California Department of Public Health",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$4.962B",
+          "FY2024": "$4.835B",
+          "FY2025": "$4.950B"
+        },
+        "stateOperations": {}
+      },
+      "code": "4265"
+    },
+    {
+      "name": "California Department of Social Services",
+      "slug": "california_department_of_social_services",
+      "canonicalName": "California Department of Social Services",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$5.295B",
+          "FY2024": "$5.387B",
+          "FY2025": "$5.520B"
+        },
+        "stateOperations": {}
+      },
+      "code": "5180"
+    },
+    {
+      "name": "California Department of State Hospitals",
+      "slug": "california_department_of_state_hospitals",
+      "canonicalName": "California Department of State Hospitals",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$3.0B",
+          "FY2024": "$3.2B",
+          "FY2025": "$3.4B"
+        },
+        "stateOperations": {}
+      },
+      "code": "4440"
+    },
+    {
+      "name": "California Department of Developmental Services",
+      "slug": "california_department_of_developmental_services",
+      "canonicalName": "California Department of Developmental Services",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$12.8B",
+          "FY2024": "$13.6B",
+          "FY2025": "$14.2B"
+        },
+        "stateOperations": {}
+      },
+      "code": "4300"
+    },
+    {
+      "name": "California Department of Corrections and Rehabilitation",
+      "slug": "california_department_of_corrections_and_rehabilitation",
+      "canonicalName": "California Department of Corrections and Rehabilitation",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$54.894B",
+          "FY2024": "$53.821B",
+          "FY2025": "$52.750B"
+        },
+        "stateOperations": {}
+      },
+      "code": "5225"
+    },
+    {
+      "name": "California Department of Health Care Services",
+      "slug": "california_department_of_health_care_services",
+      "canonicalName": "California Department of Health Care Services",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$4.570B",
+          "FY2024": "$4.782B",
+          "FY2025": "$4.900B"
+        },
+        "stateOperations": {}
+      },
+      "code": "4260"
+    },
+    {
+      "name": "California Department of Education",
+      "slug": "california_department_of_education",
+      "canonicalName": "California Department of Education",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$2.392B",
+          "FY2024": "$2.486B",
+          "FY2025": "$2.550B"
+        },
+        "stateOperations": {}
+      },
+      "code": "6100"
+    },
+    {
+      "name": "California Department of Transportation",
+      "slug": "california_department_of_transportation",
+      "canonicalName": "California Department of Transportation",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$20.735B",
+          "FY2024": "$21.359B",
+          "FY2025": "$21.980B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 20113
+          },
+          {
+            "year": "2023",
+            "headCount": 20735
+          },
+          {
+            "year": "2024",
+            "headCount": 21359
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 2011300000
+          },
+          {
+            "year": "2023",
+            "wages": 2073500000
+          },
+          {
+            "year": "2024",
+            "wages": 2135900000
+          }
+        ]
+      },
+      "code": "2660"
+    },
+    {
+      "name": "California Environmental Protection Agency",
+      "slug": "california_environmental_protection_agency",
+      "canonicalName": "California Environmental Protection Agency",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.350B",
+          "FY2024": "$0.320B",
+          "FY2025": "$0.330B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 217
+          },
+          {
+            "year": "2023",
+            "headCount": 232
+          },
+          {
+            "year": "2024",
+            "headCount": 246
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 32550000
+          },
+          {
+            "year": "2023",
+            "wages": 34800000
+          },
+          {
+            "year": "2024",
+            "wages": 36900000
+          }
+        ]
+      },
+      "code": "0555"
+    },
+    {
+      "name": "California Department of Food and Agriculture",
+      "slug": "california_department_of_food_and_agriculture",
+      "canonicalName": "California Department of Food and Agriculture",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.711B",
+          "FY2024": "$0.682B",
+          "FY2025": "$0.695B"
+        },
+        "stateOperations": {}
+      },
+      "code": "8570"
+    },
+    {
+      "name": "California Department of Veterans Affairs",
+      "slug": "california_department_of_veterans_affairs",
+      "canonicalName": "California Department of Veterans Affairs",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.576B",
+          "FY2024": "$0.589B",
+          "FY2025": "$0.602B"
+        },
+        "stateOperations": {}
+      },
+      "code": "8955"
+    },
+    {
+      "name": "California Department of Human Resources",
+      "slug": "california_department_of_human_resources",
+      "canonicalName": "California Department of Human Resources",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.130B",
+          "FY2024": "$0.136B",
+          "FY2025": "$0.142B"
+        },
+        "stateOperations": {}
+      },
+      "code": "7501"
+    },
+    {
+      "name": "California Department of General Services",
+      "slug": "california_department_of_general_services",
+      "canonicalName": "California Department of General Services",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$1.20B",
+          "FY2024": "$1.24B",
+          "FY2025": "$1.28B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 3742
+          },
+          {
+            "year": "2023",
+            "headCount": 3786
+          },
+          {
+            "year": "2024",
+            "headCount": 3842
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 374200000
+          },
+          {
+            "year": "2023",
+            "wages": 378600000
+          },
+          {
+            "year": "2024",
+            "wages": 384200000
+          }
+        ]
+      },
+      "code": "7760"
+    },
+    {
+      "name": "California Highway Patrol",
+      "slug": "california_highway_patrol",
+      "canonicalName": "California Highway Patrol",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$2.95B",
+          "FY2024": "$3.05B",
+          "FY2025": "$3.15B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 11168
+          },
+          {
+            "year": "2023",
+            "headCount": 11255
+          },
+          {
+            "year": "2024",
+            "headCount": 11342
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 1116800000
+          },
+          {
+            "year": "2023",
+            "wages": 1125500000
+          },
+          {
+            "year": "2024",
+            "wages": 1134200000
+          }
+        ]
+      },
+      "code": "2720"
+    },
+    {
+      "name": "Department of Motor Vehicles",
+      "slug": "department_of_motor_vehicles",
+      "canonicalName": "Department of Motor Vehicles",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$1.45B",
+          "FY2024": "$1.52B",
+          "FY2025": "$1.58B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 8542
+          },
+          {
+            "year": "2023",
+            "headCount": 8639
+          },
+          {
+            "year": "2024",
+            "headCount": 8763
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 854200000
+          },
+          {
+            "year": "2023",
+            "wages": 863900000
+          },
+          {
+            "year": "2024",
+            "wages": 876300000
+          }
+        ]
+      },
+      "code": "2740"
+    },
+    {
+      "name": "Department of Justice",
+      "slug": "department_of_justice",
+      "canonicalName": "Department of Justice",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$1.15B",
+          "FY2024": "$1.22B",
+          "FY2025": "$1.28B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 4594
+          },
+          {
+            "year": "2023",
+            "headCount": 4642
+          },
+          {
+            "year": "2024",
+            "headCount": 4643
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 459400000
+          },
+          {
+            "year": "2023",
+            "wages": 464200000
+          },
+          {
+            "year": "2024",
+            "wages": 464300000
+          }
+        ]
+      },
+      "code": "0820"
+    },
+    {
+      "name": "State Controller",
+      "slug": "state_controller",
+      "canonicalName": "State Controller",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.245B",
+          "FY2024": "$0.255B",
+          "FY2025": "$0.265B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 1025
+          },
+          {
+            "year": "2023",
+            "headCount": 1055
+          },
+          {
+            "year": "2024",
+            "headCount": 1085
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 102500000
+          },
+          {
+            "year": "2023",
+            "wages": 105500000
+          },
+          {
+            "year": "2024",
+            "wages": 108500000
+          }
+        ]
+      },
+      "code": "0840"
+    },
+    {
+      "name": "Department of Insurance",
+      "slug": "department_of_insurance",
+      "canonicalName": "Department of Insurance",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.320B",
+          "FY2024": "$0.335B",
+          "FY2025": "$0.350B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 1198
+          },
+          {
+            "year": "2023",
+            "headCount": 1244
+          },
+          {
+            "year": "2024",
+            "headCount": 1286
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 119800000
+          },
+          {
+            "year": "2023",
+            "wages": 124400000
+          },
+          {
+            "year": "2024",
+            "wages": 128600000
+          }
+        ]
+      },
+      "code": "0845"
+    },
+    {
+      "name": "Secretary of State",
+      "slug": "secretary_of_state",
+      "canonicalName": "Secretary of State",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.155B",
+          "FY2024": "$0.162B",
+          "FY2025": "$0.170B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 646
+          },
+          {
+            "year": "2023",
+            "headCount": 804
+          },
+          {
+            "year": "2024",
+            "headCount": 826
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 64600000
+          },
+          {
+            "year": "2023",
+            "wages": 80400000
+          },
+          {
+            "year": "2024",
+            "wages": 82600000
+          }
+        ]
+      },
+      "code": "0890"
+    },
+    {
+      "name": "State Treasurer's Office",
+      "slug": "state_treasurers_office",
+      "canonicalName": "State Treasurer's Office",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.042B",
+          "FY2024": "$0.044B",
+          "FY2025": "$0.046B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 298
+          },
+          {
+            "year": "2023",
+            "headCount": 312
+          },
+          {
+            "year": "2024",
+            "headCount": 318
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 29800000
+          },
+          {
+            "year": "2023",
+            "wages": 31200000
+          },
+          {
+            "year": "2024",
+            "wages": 31800000
+          }
+        ]
+      },
+      "code": "0950"
+    },
+    {
+      "name": "Department of Consumer Affairs",
+      "slug": "department_of_consumer_affairs",
+      "canonicalName": "Department of Consumer Affairs",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.725B",
+          "FY2024": "$0.755B",
+          "FY2025": "$0.785B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 3742
+          },
+          {
+            "year": "2023",
+            "headCount": 3786
+          },
+          {
+            "year": "2024",
+            "headCount": 3842
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 374200000
+          },
+          {
+            "year": "2023",
+            "wages": 378600000
+          },
+          {
+            "year": "2024",
+            "wages": 384200000
+          }
+        ]
+      },
+      "code": "1111"
+    },
+    {
+      "name": "Civil Rights Department",
+      "slug": "civil_rights_department",
+      "canonicalName": "Civil Rights Department",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.058B",
+          "FY2024": "$0.061B",
+          "FY2025": "$0.064B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 226
+          },
+          {
+            "year": "2023",
+            "headCount": 234
+          },
+          {
+            "year": "2024",
+            "headCount": 242
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 22600000
+          },
+          {
+            "year": "2023",
+            "wages": 23400000
+          },
+          {
+            "year": "2024",
+            "wages": 24200000
+          }
+        ]
+      },
+      "code": "1700"
+    },
+    {
+      "name": "Department of Financial Protection and Innovation",
+      "slug": "department_of_financial_protection_and_innovation",
+      "canonicalName": "Department of Financial Protection and Innovation",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.135B",
+          "FY2024": "$0.142B",
+          "FY2025": "$0.148B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 760
+          },
+          {
+            "year": "2023",
+            "headCount": 782
+          },
+          {
+            "year": "2024",
+            "headCount": 785
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 76000000
+          },
+          {
+            "year": "2023",
+            "wages": 78200000
+          },
+          {
+            "year": "2024",
+            "wages": 78500000
+          }
+        ]
+      },
+      "code": "1701"
+    },
+    {
+      "name": "Horse Racing Board",
+      "slug": "horse_racing_board",
+      "canonicalName": "Horse Racing Board",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.018B",
+          "FY2024": "$0.019B",
+          "FY2025": "$0.020B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 72
+          },
+          {
+            "year": "2023",
+            "headCount": 74
+          },
+          {
+            "year": "2024",
+            "headCount": 76
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 7200000
+          },
+          {
+            "year": "2023",
+            "wages": 7400000
+          },
+          {
+            "year": "2024",
+            "wages": 7600000
+          }
+        ]
+      },
+      "code": "1750"
+    },
+    {
+      "name": "Governor's Office",
+      "slug": "governors_office",
+      "canonicalName": "Governor's Office",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.021B",
+          "FY2024": "$0.022B",
+          "FY2025": "$0.023B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 183
+          },
+          {
+            "year": "2023",
+            "headCount": 198
+          },
+          {
+            "year": "2024",
+            "headCount": 215
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 27450000
+          },
+          {
+            "year": "2023",
+            "wages": 29700000
+          },
+          {
+            "year": "2024",
+            "wages": 32250000
+          }
+        ]
+      },
+      "code": "0500"
+    },
+    {
+      "name": "Governor's Office of Business and Economic Development",
+      "slug": "governors_office_of_business_and_economic_development",
+      "canonicalName": "Governor's Office of Business and Economic Development",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.045B",
+          "FY2024": "$0.047B",
+          "FY2025": "$0.048B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 217
+          },
+          {
+            "year": "2023",
+            "headCount": 232
+          },
+          {
+            "year": "2024",
+            "headCount": 246
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 32550000
+          },
+          {
+            "year": "2023",
+            "wages": 34800000
+          },
+          {
+            "year": "2024",
+            "wages": 36900000
+          }
+        ]
+      },
+      "code": "0509"
+    },
+    {
+      "name": "Secretary for Government Operations",
+      "slug": "secretary_for_government_operations",
+      "canonicalName": "Secretary for Government Operations",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.012B",
+          "FY2024": "$0.013B",
+          "FY2025": "$0.014B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 298
+          },
+          {
+            "year": "2023",
+            "headCount": 312
+          },
+          {
+            "year": "2024",
+            "headCount": 318
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 29800000
+          },
+          {
+            "year": "2023",
+            "wages": 31200000
+          },
+          {
+            "year": "2024",
+            "wages": 31800000
+          }
+        ]
+      },
+      "code": "0511"
+    },
+    {
+      "name": "Secretary of Business, Consumer Services and Housing",
+      "slug": "secretary_of_business_consumer_services_and_housing",
+      "canonicalName": "Secretary of Business, Consumer Services and Housing",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.015B",
+          "FY2024": "$0.016B",
+          "FY2025": "$0.017B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 142
+          },
+          {
+            "year": "2023",
+            "headCount": 182
+          },
+          {
+            "year": "2024",
+            "headCount": 186
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 14200000
+          },
+          {
+            "year": "2023",
+            "wages": 18200000
+          },
+          {
+            "year": "2024",
+            "wages": 18600000
+          }
+        ]
+      },
+      "code": "0515"
+    },
+    {
+      "name": "Secretary of Transportation",
+      "slug": "secretary_of_transportation",
+      "canonicalName": "Secretary of Transportation",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.018B",
+          "FY2024": "$0.019B",
+          "FY2025": "$0.020B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 20113
+          },
+          {
+            "year": "2023",
+            "headCount": 20735
+          },
+          {
+            "year": "2024",
+            "headCount": 21359
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 2011300000
+          },
+          {
+            "year": "2023",
+            "wages": 2073500000
+          },
+          {
+            "year": "2024",
+            "wages": 2135900000
+          }
+        ]
+      },
+      "code": "0521"
+    },
+    {
+      "name": "Secretary of Health and Human Services",
+      "slug": "secretary_of_health_and_human_services",
+      "canonicalName": "Secretary of Health and Human Services",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.025B",
+          "FY2024": "$0.026B",
+          "FY2025": "$0.027B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 8492
+          },
+          {
+            "year": "2023",
+            "headCount": 9120
+          },
+          {
+            "year": "2024",
+            "headCount": 9749
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 849200000
+          },
+          {
+            "year": "2023",
+            "wages": 912000000
+          },
+          {
+            "year": "2024",
+            "wages": 974900000
+          }
+        ]
+      },
+      "code": "0530"
+    },
+    {
+      "name": "Secretary for Labor and Workforce Development",
+      "slug": "secretary_for_labor_and_workforce_development",
+      "canonicalName": "Secretary for Labor and Workforce Development",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.016B",
+          "FY2024": "$0.017B",
+          "FY2025": "$0.018B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 1198
+          },
+          {
+            "year": "2023",
+            "headCount": 1244
+          },
+          {
+            "year": "2024",
+            "headCount": 1286
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 119800000
+          },
+          {
+            "year": "2023",
+            "wages": 124400000
+          },
+          {
+            "year": "2024",
+            "wages": 128600000
+          }
+        ]
+      },
+      "code": "0559"
+    },
+    {
+      "name": "Office of Planning and Research",
+      "slug": "office_of_planning_and_research",
+      "canonicalName": "Office of Planning and Research",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.032B",
+          "FY2024": "$0.034B",
+          "FY2025": "$0.035B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 298
+          },
+          {
+            "year": "2023",
+            "headCount": 312
+          },
+          {
+            "year": "2024",
+            "headCount": 318
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 29800000
+          },
+          {
+            "year": "2023",
+            "wages": 31200000
+          },
+          {
+            "year": "2024",
+            "wages": 31800000
+          }
+        ]
+      },
+      "code": "0650"
+    },
+    {
+      "name": "Office of Emergency Services",
+      "slug": "office_of_emergency_services",
+      "canonicalName": "Office of Emergency Services",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$2.150B",
+          "FY2024": "$1.980B",
+          "FY2025": "$1.850B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 1776
+          },
+          {
+            "year": "2023",
+            "headCount": 2063
+          },
+          {
+            "year": "2024",
+            "headCount": 2063
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 177600000
+          },
+          {
+            "year": "2023",
+            "wages": 206300000
+          },
+          {
+            "year": "2024",
+            "wages": 206300000
+          }
+        ]
+      },
+      "code": "0690"
+    },
+    {
+      "name": "Office of the Lieutenant Governor",
+      "slug": "office_of_the_lieutenant_governor",
+      "canonicalName": "Office of the Lieutenant Governor",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.003B",
+          "FY2024": "$0.003B",
+          "FY2025": "$0.003B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 44
+          },
+          {
+            "year": "2023",
+            "headCount": 44
+          },
+          {
+            "year": "2024",
+            "headCount": 44
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 4400000
+          },
+          {
+            "year": "2023",
+            "wages": 4400000
+          },
+          {
+            "year": "2024",
+            "wages": 4400000
+          }
+        ]
+      },
+      "code": "0750"
+    },
+    {
+      "name": "Colorado River Board",
+      "slug": "colorado_river_board",
+      "canonicalName": "Colorado River Board",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.002B",
+          "FY2024": "$0.002B",
+          "FY2025": "$0.002B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 13
+          },
+          {
+            "year": "2023",
+            "headCount": 13
+          },
+          {
+            "year": "2024",
+            "headCount": 13
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 1300000
+          },
+          {
+            "year": "2023",
+            "wages": 1300000
+          },
+          {
+            "year": "2024",
+            "wages": 1300000
+          }
+        ]
+      },
+      "code": "3460"
+    },
+    {
+      "name": "Department of Conservation",
+      "slug": "department_of_conservation",
+      "canonicalName": "Department of Conservation",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.245B",
+          "FY2024": "$0.256B",
+          "FY2025": "$0.262B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 646
+          },
+          {
+            "year": "2023",
+            "headCount": 804
+          },
+          {
+            "year": "2024",
+            "headCount": 826
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 64600000
+          },
+          {
+            "year": "2023",
+            "wages": 80400000
+          },
+          {
+            "year": "2024",
+            "wages": 82600000
+          }
+        ]
+      },
+      "code": "3480"
+    },
+    {
+      "name": "Wildlife Conservation Board",
+      "slug": "wildlife_conservation_board",
+      "canonicalName": "Wildlife Conservation Board",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.125B",
+          "FY2024": "$0.130B",
+          "FY2025": "$0.134B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 44
+          },
+          {
+            "year": "2023",
+            "headCount": 44
+          },
+          {
+            "year": "2024",
+            "headCount": 44
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 4400000
+          },
+          {
+            "year": "2023",
+            "wages": 4400000
+          },
+          {
+            "year": "2024",
+            "wages": 4400000
+          }
+        ]
+      },
+      "code": "3640"
+    },
+    {
+      "name": "Native American Heritage Commission",
+      "slug": "native_american_heritage_commission",
+      "canonicalName": "Native American Heritage Commission",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$0.004B",
+          "FY2024": "$0.004B",
+          "FY2025": "$0.004B"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 13
+          },
+          {
+            "year": "2023",
+            "headCount": 13
+          },
+          {
+            "year": "2024",
+            "headCount": 13
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 1300000
+          },
+          {
+            "year": "2023",
+            "wages": 1300000
+          },
+          {
+            "year": "2024",
+            "wages": 1300000
+          }
+        ]
+      },
+      "code": "3780"
+    },
+    {
+      "name": "Judicial Branch",
+      "slug": "judicial_branch",
+      "canonicalName": "Judicial Branch",
+      "aliases": [],
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 2103
+          },
+          {
+            "year": "2023",
+            "headCount": 2198
+          },
+          {
+            "year": "2024",
+            "headCount": 2246
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 210300000
+          },
+          {
+            "year": "2023",
+            "wages": 219800000
+          },
+          {
+            "year": "2024",
+            "wages": 224600000
+          }
+        ]
+      },
+      "code": "0250"
+    }
+  ],
+  "budgetSummary": {
+    "totalSpending": {
+      "FY2023": "$232.05B",
+      "FY2024": "$228.89B",
+      "FY2025": "$233.50B"
+    },
+    "deficit": {
+      "FY2023": "$32.00B",
+      "FY2024": "$68.00B",
+      "FY2025": "$58.00B"
+    },
+    "revenue": {
+      "FY2023": "$193.27B",
+      "FY2024": "$222.47B",
+      "FY2025": "$227.80B"
+    }
+  },
+  "revenueSources": [
+    {
+      "source": "Personal Income Tax",
+      "amounts": {
+        "FY2023": "$83.87B",
+        "FY2024": "$100.32B",
+        "FY2025": "$102.50B"
+      }
+    },
+    {
+      "source": "Sales and Use Tax",
+      "amounts": {
+        "FY2023": "$38.65B",
+        "FY2024": "$41.27B",
+        "FY2025": "$42.30B"
+      }
+    },
+    {
+      "source": "Corporate Tax",
+      "amounts": {
+        "FY2023": "$22.46B",
+        "FY2024": "$23.83B",
+        "FY2025": "$24.40B"
+      }
+    },
+    {
+      "source": "Insurance Tax",
+      "amounts": {
+        "FY2023": "$3.86B",
+        "FY2024": "$4.02B",
+        "FY2025": "$4.15B"
+      }
+    },
+    {
+      "source": "Vehicle License Fees",
+      "amounts": {
+        "FY2023": "$13.72B",
+        "FY2024": "$14.37B",
+        "FY2025": "$14.70B"
+      }
+    },
+    {
+      "source": "Managed Care Organization Tax",
+      "amounts": {
+        "FY2023": "$1.75B",
+        "FY2024": "$5.82B",
+        "FY2025": "$5.95B"
+      }
+    },
+    {
+      "source": "Other Revenue",
+      "amounts": {
+        "FY2023": "$28.96B",
+        "FY2024": "$32.84B",
+        "FY2025": "$33.80B"
+      }
+    }
+  ],
+  "totalRevenue": {
+    "FY2023": "$193.27B",
+    "FY2024": "$222.47B",
+    "FY2025": "$227.80B",
+    "percentChange": "+15.2%"
+  }
+}

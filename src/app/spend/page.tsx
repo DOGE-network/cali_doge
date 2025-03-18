@@ -1,15 +1,15 @@
 'use client';
 
-import spendingData from '@/data/spending-data.json';
+import departmentsData from '@/data/departments.json';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 import SpendingDisplay from '@/components/SpendingDisplay';
-import { SpendingData } from '@/types/spending';
+import { DepartmentsJSON } from '@/types/department';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 // Type assertion for our imported data
-const typedSpendingData = spendingData as SpendingData;
+const typedDepartmentsData = departmentsData as DepartmentsJSON;
 
 // Helper function to sort years chronologically
 const sortYearsChronologically = (years: string[]) => {
@@ -40,9 +40,22 @@ function SpendPageClient() {
     }
   }, [searchParams]);
   
+  // Extract budget summary data and years from the departments data
+  const budgetSummary = typedDepartmentsData.budgetSummary || {
+    totalSpending: {},
+    revenue: {},
+    deficit: {}
+  };
+  
+  // Extract revenue sources from departments data
+  const revenueSources = typedDepartmentsData.revenueSources || [];
+  const totalRevenue = typedDepartmentsData.totalRevenue || {};
+  
   // Get sorted years for budget summary and revenue sources
-  const budgetYears = sortYearsChronologically(Object.keys(typedSpendingData.budgetSummary.totalSpending));
-  const revenueYears = sortYearsChronologically(Object.keys(typedSpendingData.revenueSources[0].amounts));
+  const budgetYears = sortYearsChronologically(Object.keys(budgetSummary.totalSpending));
+  const revenueYears = sortYearsChronologically(
+    revenueSources.length > 0 ? Object.keys(revenueSources[0].amounts) : []
+  );
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-7xl">
@@ -75,7 +88,7 @@ function SpendPageClient() {
         </div>
         
         <SpendingDisplay 
-          spendingData={typedSpendingData} 
+          departmentsData={typedDepartmentsData} 
           highlightedDepartment={highlightedDepartment}
           showTopSpendOnly={!showAllDepartments}
         />
@@ -91,7 +104,7 @@ function SpendPageClient() {
               {budgetYears.map(year => (
                 <div key={year} className="flex justify-between">
                   <span>{year}:</span>
-                  <span className="font-medium">{typedSpendingData.budgetSummary.totalSpending[year]}</span>
+                  <span className="font-medium">{budgetSummary.totalSpending[year]}</span>
                 </div>
               ))}
             </div>
@@ -103,7 +116,7 @@ function SpendPageClient() {
               {budgetYears.map(year => (
                 <div key={year} className="flex justify-between">
                   <span>{year}:</span>
-                  <span className="font-medium">{typedSpendingData.budgetSummary.revenue[year]}</span>
+                  <span className="font-medium">{budgetSummary.revenue[year]}</span>
                 </div>
               ))}
             </div>
@@ -115,7 +128,7 @@ function SpendPageClient() {
               {budgetYears.map(year => (
                 <div key={year} className="flex justify-between">
                   <span>{year}:</span>
-                  <span className="font-medium">{typedSpendingData.budgetSummary.deficit[year]}</span>
+                  <span className="font-medium">{budgetSummary.deficit[year]}</span>
                 </div>
               ))}
             </div>
@@ -137,7 +150,7 @@ function SpendPageClient() {
               </tr>
             </thead>
             <tbody>
-              {typedSpendingData.revenueSources.map((source, index) => (
+              {revenueSources.map((source, index) => (
                 <tr key={index} className="border-t border-gray-200">
                   <td className="py-3 px-4">{source.source}</td>
                   {revenueYears.map(year => (
@@ -149,7 +162,7 @@ function SpendPageClient() {
                 <td className="py-3 px-4">Total Revenue</td>
                 {revenueYears.map(year => (
                   <td key={year} className="py-3 px-4 text-right">
-                    {typedSpendingData.totalRevenue[year]}
+                    {totalRevenue[year]}
                   </td>
                 ))}
               </tr>
@@ -157,7 +170,7 @@ function SpendPageClient() {
           </table>
         </div>
         <div className="mt-2 text-right text-sm text-gray-600">
-          Year-over-year change: {typedSpendingData.totalRevenue.percentChange}
+          Year-over-year change: {totalRevenue.percentChange}
         </div>
       </div>
 
@@ -165,7 +178,7 @@ function SpendPageClient() {
       <div className="mt-16">
         <h2 className="text-xl font-bold mb-4">Sources</h2>
         <ul className="list-disc pl-5 space-y-2">
-          {typedSpendingData.sources.map((source, index) => (
+          {typedDepartmentsData.sources ? typedDepartmentsData.sources.map((source, index) => (
             <li key={index}>
               <a 
                 href={source.url} 
@@ -176,7 +189,47 @@ function SpendPageClient() {
                 {source.name}
               </a>
             </li>
-          ))}
+          )) : null}
+          <li>
+            <a 
+              href="https://www.ebudget.ca.gov/2023-24/pdf/Enacted/BudgetSummary/FullBudgetSummary.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              California State Budget 2023-24
+            </a>
+          </li>
+          <li>
+            <a 
+              href="https://www.ebudget.ca.gov/2024-25/pdf/Enacted/BudgetSummary/FullBudgetSummary.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              California State Budget 2024-25
+            </a>
+          </li>
+          <li>
+            <a 
+              href="https://lao.ca.gov/Publications/Report/4704" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Legislative Analyst&apos;s Office - The 2023-24 Budget: Overview of the California Spending Plan
+            </a>
+          </li>
+          <li>
+            <a 
+              href="https://dof.ca.gov/budget/historical-budget-information/historical-budget-publications/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Department of Finance - Historical Budget Publications
+            </a>
+          </li>
         </ul>
       </div>
     </main>

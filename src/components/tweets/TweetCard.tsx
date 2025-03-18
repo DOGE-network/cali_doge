@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { EnrichedTweet } from '@/lib/twitter/types';
+import { EnrichedTweet } from '@/types/twitter';
 import { format } from 'date-fns';
 
 interface TweetCardProps {
@@ -265,10 +265,11 @@ export function TweetCard({ tweet }: TweetCardProps) {
               {/* Use YouTube thumbnail URL for YouTube videos */}
               {isYouTubeLink && youtubeThumbnailUrl ? (
                 <div className="relative w-full h-52">
-                  <img
+                  <Image
                     src={youtubeThumbnailUrl}
                     alt={mainUrl.title || 'YouTube video'}
-                    className="w-full h-full object-cover"
+                    className="object-cover"
+                    fill
                   />
                   {/* Play button overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">

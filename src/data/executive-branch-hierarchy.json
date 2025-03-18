@@ -153,7 +153,7 @@
               {
                 "name": "Department of General Services",
                 "org_level": 4,
-                "budget_code": "1760",
+                "budget_code": "7760",
                 "budget_level": "2",
                 "budget_status": "active",
                 "keyFunctions": "Serves as the business manager for the state, providing procurement, real estate management, design and construction, fleet administration, printing, and other services to state agencies",
@@ -280,15 +280,6 @@
             "keyFunctions": "Operation of state prisons, rehabilitation programs, parole supervision, and juvenile justice facilities"
           },
           {
-            "name": "California Coastal Conservancy",
-            "org_level": 3,
-            "budget_code": "3760",
-            "budget_level": "2",
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": "Protection and restoration of coastal resources, providing public access to the California coast, and addressing sea level rise"
-          },
-          {
             "name": "California Department of Education",
             "org_level": 3,
             "budget_code": "6100",
@@ -296,15 +287,6 @@
             "budget_status": "active",
             "reportsTo": "",
             "keyFunctions": "Oversight of the state's public school system, curriculum development, and educational policy"
-          },
-          {
-            "name": "California Department of Transportation",
-            "org_level": 3,
-            "budget_code": "2660",
-            "budget_level": "2",
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": "Planning, designing, building, operating, and maintaining California's state highway system"
           },
           {
             "name": "California Environmental Protection Agency",
@@ -315,6 +297,14 @@
             "reportsTo": "",
             "keyFunctions": "Oversees environmental protection, pollution control, and climate change programs",
             "subAgencies": [
+              {
+                "name": "Air Resources Board",
+                "org_level": 4,
+                "budget_code": "3900",
+                "budget_level": "2",
+                "budget_status": "active",
+                "keyFunctions": "Regulates air pollution, implements climate change programs, and administers clean transportation incentives"
+              },
               {
                 "name": "Energy Commission",
                 "org_level": 4,
@@ -399,24 +389,6 @@
             "budget_status": "active",
             "reportsTo": "",
             "keyFunctions": "Management of state parks, beaches, and historic sites"
-          },
-          {
-            "name": "California State Lands Commission",
-            "org_level": 3,
-            "budget_code": "3560",
-            "budget_level": "2",
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": "Management of state-owned public trust lands, waterways, and resources for the benefit of all Californians"
-          },
-          {
-            "name": "California Coastal Commission",
-            "org_level": 3,
-            "budget_code": "3720",
-            "budget_level": "2",
-            "budget_status": "active",
-            "reportsTo": "",
-            "keyFunctions": "Planning and regulation of land and water use in the coastal zone to protect coastal resources and ensure public access"
           },
           {
             "name": "California Department of Public Health",
@@ -1947,69 +1919,6 @@
             "budget_level": "2",
             "budget_status": "active",
             "keyFunctions": "Teacher certification and standards"
-          },
-          {
-            "name": "Constitutional Offices",
-            "org_level": 3,
-            "budget_status": "active",
-            "subAgencies": [
-              {
-                "name": "Governor's Office",
-                "org_level": 4,
-                "budget_code": "0500",
-                "budget_level": "1",
-                "budget_status": "active",
-                "keyFunctions": "Executive leadership of state government"
-              },
-              {
-                "name": "Lieutenant Governor's Office",
-                "org_level": 4,
-                "budget_code": "0750",
-                "budget_level": "1",
-                "budget_status": "active",
-                "keyFunctions": "President of Senate, acting governor"
-              },
-              {
-                "name": "Office of the Attorney General",
-                "org_level": 4,
-                "budget_code": "0820",
-                "budget_level": "1",
-                "budget_status": "active",
-                "keyFunctions": "Chief law officer of the state"
-              },
-              {
-                "name": "Secretary of State's Office",
-                "org_level": 4,
-                "budget_code": "0890",
-                "budget_level": "1",
-                "budget_status": "active",
-                "keyFunctions": "Elections, business filings, state archives"
-              },
-              {
-                "name": "State Controller's Office",
-                "org_level": 4,
-                "budget_code": "0840",
-                "budget_level": "1",
-                "budget_status": "active",
-                "keyFunctions": "State fiscal officer, audits, payroll"
-              },
-              {
-                "name": "State Treasurer's Office",
-                "org_level": 4,
-                "budget_code": "0950",
-                "budget_level": "1",
-                "budget_status": "active",
-                "keyFunctions": "Banking and investment of state funds"
-              },
-              {
-                "name": "Insurance Commissioner's Office",
-                "org_level": 4,
-                "budget_code": "0845",
-                "budget_level": "1",
-                "budget_status": "active",
-                "keyFunctions": "Insurance industry regulation"
-              }
-            ]
           }
         ],
         "Education Systems": [

@@ -3,6 +3,7 @@
 /**
  * This script reads all department markdown files and generates code to populate
  * the departmentMappings array in src/lib/departmentMapping.ts
+ * runs every build to ensure the mappings are up to date
  */
 
 const fs = require('fs');
@@ -12,8 +13,7 @@ const matter = require('gray-matter');
 // Path to department markdown files
 const postsDirectory = path.join(process.cwd(), 'src/app/departments/posts');
 const targetFile = path.join(process.cwd(), 'src/lib/departmentMapping.ts');
-const spendingDataFile = path.join(process.cwd(), 'src/data/spending-data.json');
-const workforceDataFile = path.join(process.cwd(), 'src/data/workforce-data.json');
+const departmentsJsonFile = path.join(process.cwd(), 'src/data/departments.json');
 
 // Check if directory exists
 if (!fs.existsSync(postsDirectory)) {
@@ -21,9 +21,20 @@ if (!fs.existsSync(postsDirectory)) {
   process.exit(1);
 }
 
-// Load spending and workforce data
-const spendingData = JSON.parse(fs.readFileSync(spendingDataFile, 'utf8'));
-const workforceData = JSON.parse(fs.readFileSync(workforceDataFile, 'utf8'));
+// Load departments data
+let departmentsData = { departments: [] };
+try {
+  if (fs.existsSync(departmentsJsonFile)) {
+    departmentsData = JSON.parse(fs.readFileSync(departmentsJsonFile, 'utf8'));
+    console.log(`Loaded ${departmentsData.departments.length} departments from departments.json`);
+  } else {
+    console.warn('Departments data file not found:', departmentsJsonFile);
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('Error loading departments data:', error.message);
+  process.exit(1);
+}
 
 // Helper function to escape special characters for TypeScript string literals
 function escapeString(str) {
@@ -32,6 +43,7 @@ function escapeString(str) {
 
 // Get all markdown files
 const fileNames = fs.readdirSync(postsDirectory);
+console.log(`Found ${fileNames.length} markdown files in posts directory`);
 
 // Process each file to extract department information
 const mappings = fileNames
@@ -56,42 +68,42 @@ const mappings = fileNames
       return null;
     }
     
-    // Generate name variations for matching with data sources
-    const nameVariations = [
-      name,
-      name.replace('California ', ''),
-      name.startsWith('California ') ? name : `California ${name}`,
-      // Add more specific variations to handle edge cases
-      name === 'Air Resources Board' ? 'California Air Resources Board' : null,
-    ].filter(Boolean); // Remove null values
-    
-    // Find matching names in spending data
-    const spendingMatch = spendingData.agencies?.find(
-      dept => nameVariations.some(variation => 
-        dept.name === variation || 
-        dept.name.toLowerCase() === variation.toLowerCase()
-      )
+    // Find the matching department in departments.json
+    const matchingDept = departmentsData.departments.find(dept => 
+      dept.name === name || 
+      dept.canonicalName === name || 
+      (dept.aliases && dept.aliases.includes(name)) ||
+      // Also match by code in case name is slightly different
+      (dept.code && dept.code.toString() === code.toString())
     );
     
-    // Find matching names in workforce data
-    const workforceMatch = workforceData.departments?.find(
-      dept => nameVariations.some(variation => 
-        dept.name === variation || 
-        dept.name.toLowerCase() === variation.toLowerCase()
-      )
-    );
+    // If we found a match, use department data from departments.json
+    if (matchingDept) {
+      return {
+        slug,
+        name: matchingDept.name,
+        code,
+        // Use the actual names from departments.json
+        fullName: matchingDept.canonicalName || matchingDept.name,
+        spendingName: matchingDept.name,
+        workforceName: matchingDept.name
+      };
+    }
     
-    // Return mapping using the markdown name as the primary key
+    // If no match, just use data from the markdown file
+    console.warn(`No matching department found in departments.json for: ${name} (code: ${code}), using markdown data only`);
     return {
       slug,
       name,
       code,
-      // Use the actual name from the data source if found, otherwise use the markdown name
-      spendingName: spendingMatch?.name || name,
-      workforceName: workforceMatch?.name || name
+      fullName: name,
+      spendingName: name,
+      workforceName: name
     };
   })
   .filter(item => item !== null);
+
+console.log(`Processed ${mappings.length} department mappings from markdown files`);
 
 // Read the current departmentMapping.ts file
 const fileContent = fs.readFileSync(targetFile, 'utf8');
@@ -104,11 +116,18 @@ const mappingsEndPattern = /\];/;
 const mappingsCode = mappings.map(mapping => {
   return `  {
     slug: '${escapeString(mapping.slug)}',
-    fullName: '${escapeString(mapping.name)}',
+    name: '${escapeString(mapping.name)}',
+    canonicalName: '${escapeString(mapping.fullName)}',
+    code: '${escapeString(mapping.code.toString())}',
+    fullName: '${escapeString(mapping.fullName)}',
     spendingName: '${escapeString(mapping.spendingName)}',
     workforceName: '${escapeString(mapping.workforceName)}'
   }`;
 }).join(',\n');
+
+// Generate the list of slugs with pages
+const slugs = mappings.map(mapping => `'${escapeString(mapping.slug)}'`);
+const slugsCode = slugs.join(',\n  ');
 
 // Find the start and end positions of the mappings array
 const contentLines = fileContent.split('\n');
@@ -128,6 +147,30 @@ for (let i = 0; i < contentLines.length; i++) {
 // Replace the existing mappings with the new ones
 if (startLineIndex !== -1 && endLineIndex !== -1) {
   contentLines.splice(startLineIndex + 1, endLineIndex - startLineIndex - 1, mappingsCode);
+  
+  // Now update the DEPARTMENT_SLUGS_WITH_PAGES array
+  const slugsStartPattern = /const DEPARTMENT_SLUGS_WITH_PAGES = \[/;
+  const slugsEndPattern = /\];/;
+  
+  let slugsStartLineIndex = -1;
+  let slugsEndLineIndex = -1;
+  
+  for (let i = 0; i < contentLines.length; i++) {
+    if (slugsStartPattern.test(contentLines[i])) {
+      slugsStartLineIndex = i;
+    }
+    if (slugsStartLineIndex !== -1 && i > slugsStartLineIndex && slugsEndPattern.test(contentLines[i])) {
+      slugsEndLineIndex = i;
+      break;
+    }
+  }
+  
+  if (slugsStartLineIndex !== -1 && slugsEndLineIndex !== -1) {
+    contentLines.splice(slugsStartLineIndex + 1, slugsEndLineIndex - slugsStartLineIndex - 1, slugsCode);
+  } else {
+    console.warn('Could not find DEPARTMENT_SLUGS_WITH_PAGES array in the target file');
+  }
+  
   const updatedContent = contentLines.join('\n');
   fs.writeFileSync(targetFile, updatedContent);
   console.log(`Generated mappings for ${mappings.length} departments`);

@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "node src/scripts/generate-department-mappings.js && next dev",
+    "dev": "next dev",
     "build": "node src/scripts/generate-department-mappings.js && next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install",
-    "lint-staged": "lint-staged",
     "typecheck": "tsc --noEmit",
     "fetch-tweets": "ts-node --project tsconfig.json src/scripts/fetch-tweets.ts",
     "favicon-check": "npx realfavicon check http://localhost:3000",

@@ -21,11 +21,15 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import AgencyDataVisualization from './AgencyDataVisualization';
-import agencyData from '@/data/workforce-data.json';
 import executiveBranchData from '@/data/executive-branch-hierarchy.json';
-import type { Agency } from './types';
+import { Agency } from '@/types/agency';
 import { useSearchParams } from 'next/navigation';
-import { Button } from '@/components/ui/button';
+import departmentsData from '@/data/departments.json';
+import { DepartmentsJSON } from '@/types/department';
+import { getDepartmentByName, normalizeForMatching } from '@/lib/departmentMapping';
+
+// Cast imported data to proper types
+const typedDepartmentsData = departmentsData as DepartmentsJSON;
 
 // Convert executive branch JSON to Agency structure
 const convertExecutiveBranchToAgency = (data: any): Agency => {
@@ -211,30 +215,34 @@ const _findAgencyByNameRecursive = (
 };
 
 // Update the mergeAgencyData function to handle the array structure
-const mergeAgencyData = (structure: Agency[], data: any[]): Agency[] => {
-  if (!data || !Array.isArray(data)) {
-    console.log('No valid data provided for merging');
-    return structure;
-  }
-  
+const mergeAgencyData = (structure: Agency[]): Agency[] => {
   console.log('Starting new data merge process...');
   
-  // Map special cases - known naming differences between the two data sets
-  const specialCaseMap: Record<string, string> = {
-    "California State Government": "California Government",
-    "Executive Branch": "California Government",
-    "Government Operations Agency": "Government Operations",
-    "Labor & Workforce Development": "Labor and Workforce Development Agency"
-  };
-
-  // Function to find matching data in the workforce data array
-  const findMatchingData = (name: string): any => {
+  // Function to find matching data in the departments data array
+  const findMatchingData = (name: string) => {
     // Try direct match
-    let match = data.find(d => d.name === name);
+    let match = typedDepartmentsData.departments.find(d => d.name === name);
     
-    // Try special case mapping if no direct match
-    if (!match && specialCaseMap[name]) {
-      match = data.find(d => d.name === specialCaseMap[name]);
+    // Try with canonical name
+    if (!match) {
+      match = typedDepartmentsData.departments.find(d => d.canonicalName === name);
+    }
+    
+    // Try with aliases
+    if (!match) {
+      match = typedDepartmentsData.departments.find(d => 
+        d.aliases && d.aliases.includes(name)
+      );
+    }
+    
+    // Try with normalized name (removing 'California', 'Department of', etc.)
+    if (!match) {
+      const normalizedName = normalizeForMatching(name);
+      match = typedDepartmentsData.departments.find(d => 
+        normalizeForMatching(d.name) === normalizedName || 
+        normalizeForMatching(d.canonicalName) === normalizedName ||
+        (d.aliases && d.aliases.some(alias => normalizeForMatching(alias) === normalizedName))
+      );
     }
     
     return match;
@@ -242,47 +250,40 @@ const mergeAgencyData = (structure: Agency[], data: any[]): Agency[] => {
 
   // Function to apply agency data recursively
   const applyAgencyData = (agency: Agency): Agency => {
-    const matchingData = findMatchingData(agency.name);
+    // Find matching data for this agency
+    const agencyData = findMatchingData(agency.name);
     
-    if (matchingData) {
-      console.log(`📍 Found matching data for ${agency.name}`);
-      
-      // Create merged agency with data from matching agency
-      const merged: Agency = {
-        ...agency,
-        yearlyHeadCount: matchingData.yearlyHeadCount,
-        yearlyWages: matchingData.yearlyWages,
-        tenureDistribution: matchingData.tenureDistribution,
-        salaryDistribution: matchingData.salaryDistribution,
-        ageDistribution: matchingData.ageDistribution,
-        averageTenureYears: matchingData.averageTenureYears,
-        averageSalary: matchingData.averageSalary,
-        averageAge: matchingData.averageAge,
+    // If we found matching data, apply it to the agency
+    if (agencyData && agencyData.workforce) {
+      agency.employeeData = {
+        headCount: agencyData.workforce.yearlyHeadCount?.map(item => ({
+          year: item.year,
+          count: item.headCount
+        })),
+        wages: agencyData.workforce.yearlyWages?.map(item => ({
+          year: item.year,
+          amount: item.wages
+        })),
+        averageTenure: agencyData.workforce.averageTenureYears,
+        averageSalary: agencyData.workforce.averageSalary,
+        averageAge: agencyData.workforce.averageAge,
+        tenureDistribution: agencyData.workforce.tenureDistribution,
+        salaryDistribution: agencyData.workforce.salaryDistribution,
+        ageDistribution: agencyData.workforce.ageDistribution
       };
-      
-      // Process subagencies if they exist
-      if (agency.subAgencies) {
-        merged.subAgencies = agency.subAgencies.map(subAgency => 
-          applyAgencyData(subAgency)
-        );
-      }
-      
-      return merged;
     }
     
-    // No matching data found, but still process subagencies
+    // Recursively apply to subagencies
     if (agency.subAgencies) {
-      return {
-        ...agency,
-        subAgencies: agency.subAgencies.map(subAgency => applyAgencyData(subAgency))
-      };
+      agency.subAgencies = agency.subAgencies.map(subAgency => 
+        applyAgencyData(subAgency)
+      );
     }
     
-    // Return original agency if no match and no subagencies
     return agency;
   };
-  
-  // Process the entire structure
+
+  // Apply data to all agencies in the structure
   return structure.map(agency => applyAgencyData(agency));
 };
 
@@ -309,6 +310,11 @@ function AgencyCard({
               {agency.name}
               {agency.abbreviation && <span className="ml-2 text-sm text-gray-500">({agency.abbreviation})</span>}
               {agency.budget_status === 'inactive' && <span className="ml-2 text-xs text-gray-500 italic">(inactive)</span>}
+              {agency.budget_code && (
+                <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                  {agency.budget_code}
+                </span>
+              )}
             </h3>
             {agency.description && (
               <p className="mt-2 text-sm text-gray-600">{agency.description}</p>
@@ -452,6 +458,7 @@ function WorkforcePageContent() {
   const [_activeAgency, setActiveAgency] = useState<Agency | null>(null);
   const [activePath, setActivePath] = useState<string[]>([]);
   const [hierarchyData, setHierarchyData] = useState<Agency | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
   
   // Convert executive branch data to agency hierarchy
   useEffect(() => {
@@ -468,9 +475,29 @@ function WorkforcePageContent() {
     const agencyParam = searchParams.get('agency');
     const departmentParam = searchParams.get('department');
     
+    console.log('Workforce page params:', { agencyParam, departmentParam });
+    
     if (departmentParam) {
-      setSelectedAgencyName(departmentParam);
+      console.log(`Setting selected agency name to department: ${departmentParam}`);
+      
+      // Try to get the department by name to handle mapping
+      const dept = getDepartmentByName(departmentParam);
+      
+      if (dept) {
+        // If we have aliases, we might need to map to the primary name
+        if (dept.aliases && dept.aliases.includes(departmentParam) && dept.name !== departmentParam) {
+          console.log(`Mapped department name from ${departmentParam} to ${dept.name}`);
+          setSelectedAgencyName(dept.name);
+        } else {
+          // No mapping needed, use as is
+          setSelectedAgencyName(departmentParam);
+        }
+      } else {
+        // No mapping, use as is
+        setSelectedAgencyName(departmentParam);
+      }
     } else if (agencyParam) {
+      console.log(`Setting selected agency name to agency: ${agencyParam}`);
       setSelectedAgencyName(agencyParam);
     }
   }, [searchParams]);
@@ -492,10 +519,15 @@ function WorkforcePageContent() {
       targetName: string, 
       currentPath: string[] = []
     ): { agency: Agency | null; path: string[] } => {
+      console.log(`Looking for agency: "${targetName}"`);
+      
       for (const agency of agencies) {
         const updatedPath = [...currentPath, agency.name];
         
+        console.log(`Checking against: "${agency.name}"`);
+        
         if (agency.name === targetName) {
+          console.log(`Found exact match for "${targetName}"`);
           return { agency, path: updatedPath };
         }
         
@@ -507,6 +539,7 @@ function WorkforcePageContent() {
         }
       }
       
+      console.log(`No match found for "${targetName}"`);
       return { agency: null, path: [] };
     };
     
@@ -528,15 +561,56 @@ function WorkforcePageContent() {
       setActiveAgency(result.agency);
       setActivePath(result.path);
     } else {
-      // If not found, default to root
-      setActiveAgency(hierarchyData);
-      setActivePath([hierarchyData.name]);
+      // If not found in hierarchy, check workforce data directly
+      console.log(`Agency "${selectedAgencyName}" not found in hierarchy, checking workforce data...`);
+      
+      // Find in workforce data
+      const workforceDept = typedDepartmentsData.departments.find(dept => dept.name === selectedAgencyName);
+      
+      if (workforceDept) {
+        console.log(`Found "${selectedAgencyName}" in workforce data`);
+        // Create a synthetic agency for this department
+        const syntheticAgency: Agency = {
+          name: workforceDept.name,
+          org_level: 4, // Assume it's a department-level entity
+          budget_status: "active",
+          employeeData: workforceDept.workforce ? {
+            headCount: workforceDept.workforce.yearlyHeadCount?.map(item => ({
+              year: item.year,
+              count: item.headCount
+            })),
+            wages: workforceDept.workforce.yearlyWages?.map(item => ({
+              year: item.year,
+              amount: item.wages
+            })),
+            averageTenure: workforceDept.workforce.averageTenureYears,
+            averageSalary: workforceDept.workforce.averageSalary,
+            averageAge: workforceDept.workforce.averageAge,
+            tenureDistribution: workforceDept.workforce.tenureDistribution,
+            salaryDistribution: workforceDept.workforce.salaryDistribution,
+            ageDistribution: workforceDept.workforce.ageDistribution
+          } : undefined
+        };
+        
+        setActiveAgency(syntheticAgency);
+        // Use a path that includes the root and this agency
+        setActivePath([hierarchyData.name, syntheticAgency.name]);
+      } else {
+        console.log(`"${selectedAgencyName}" not found in workforce data either, defaulting to root`);
+        // If not found, default to root
+        setActiveAgency(hierarchyData);
+        setActivePath([hierarchyData.name]);
+      }
     }
   }, [selectedAgencyName, hierarchyData]);
   
   // Handle agency selection
   const handleSelectAgency = (agency: Agency) => {
     setSelectedAgencyName(agency.name);
+  };
+  
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
   };
   
   if (!hierarchyData) {
@@ -551,7 +625,7 @@ function WorkforcePageContent() {
   
   // Merge with workforce data
   const agenciesWithData = [hierarchyData];
-  const mergedAgencies = mergeAgencyData(agenciesWithData, agencyData.departments);
+  const mergedAgencies = mergeAgencyData(agenciesWithData);
   const enrichedHierarchy = mergedAgencies[0];
   
   // Get path agencies to display
@@ -577,34 +651,117 @@ function WorkforcePageContent() {
   // The last agency in the path is the active one
   const currentActiveAgency = pathAgencies.length > 0 ? pathAgencies[pathAgencies.length - 1] : null;
   
+  // Add a filtered agencies getter
+  const getFilteredAgencies = (agencies: Agency[], term: string): Agency[] => {
+    if (!term.trim()) return agencies;
+    
+    const searchLower = term.toLowerCase();
+    
+    return agencies.filter(agency => {
+      // Search by name
+      if (agency.name.toLowerCase().includes(searchLower)) {
+        return true;
+      }
+      
+      // Search by code/budget_code - ensure it's converted to string first
+      if (agency.budget_code) {
+        const codeStr = String(agency.budget_code).toLowerCase();
+        // Either the code includes the search term or the search term includes the code
+        if (codeStr.includes(searchLower) || searchLower.includes(codeStr)) {
+          return true;
+        }
+      }
+      
+      // If it has sub-agencies, check if any of them match (but don't return them)
+      if (agency.subAgencies) {
+        const hasMatchingSubAgency = agency.subAgencies.some(subAgency => {
+          // Match by name
+          if (subAgency.name.toLowerCase().includes(searchLower)) {
+            return true;
+          }
+          
+          // Match by code
+          if (subAgency.budget_code) {
+            const subCodeStr = String(subAgency.budget_code).toLowerCase();
+            // Either the code includes the search term or the search term includes the code
+            return subCodeStr.includes(searchLower) || searchLower.includes(subCodeStr);
+          }
+          
+          return false;
+        });
+        
+        if (hasMatchingSubAgency) {
+          return true;
+        }
+      }
+      
+      return false;
+    });
+  };
+  
   // Child agencies of the active agency (to display below)
-  const childAgencies = currentActiveAgency && currentActiveAgency.subAgencies 
-    ? showInactive 
-      ? currentActiveAgency.subAgencies 
-      : currentActiveAgency.subAgencies.filter(a => a.budget_status !== 'inactive')
+  let childAgencies = currentActiveAgency && currentActiveAgency.subAgencies 
+    ? currentActiveAgency.subAgencies 
     : [];
+  
+  // Apply active-only filter if needed
+  if (!showInactive) {
+    childAgencies = childAgencies.filter(a => a.budget_status !== 'inactive');
+  }
+  
+  // Apply search filter if there's a search term
+  if (searchTerm.trim()) {
+    childAgencies = getFilteredAgencies(childAgencies, searchTerm);
+  }
   
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8 flex justify-between items-center">
         <h1 className="text-2xl font-bold">California State Government Workforce</h1>
-        <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
-          <Button
-            variant={showInactive ? "ghost" : "secondary"}
-            size="sm"
-            className={`rounded-full text-xs ${!showInactive ? 'bg-white shadow-sm' : ''}`}
-            onClick={() => setShowInactive(false)}
-          >
-            Active Only
-          </Button>
-          <Button
-            variant={showInactive ? "secondary" : "ghost"}
-            size="sm"
-            className={`rounded-full text-xs ${showInactive ? 'bg-white shadow-sm' : ''}`}
-            onClick={() => setShowInactive(true)}
-          >
-            Include Inactive
-          </Button>
+        
+        <div className="flex items-center space-x-2">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search by name or code..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="p-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+            />
+            <svg
+              className="absolute left-3 top-2.5 w-5 h-5 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+            {searchTerm.length > 0 && (
+              <button
+                onClick={() => setSearchTerm('')}
+                className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+              </button>
+            )}
+          </div>
+          
+          <div className="flex items-center space-x-1 border rounded-full p-1 bg-gray-100">
+            <button
+              className={`rounded-full px-3 py-1 text-xs ${showInactive ? 'bg-white shadow-sm' : ''}`}
+              onClick={() => setShowInactive(!showInactive)}
+            >
+              {showInactive ? 'Show Active Only' : 'Show All'}
+            </button>
+          </div>
         </div>
       </div>
       
@@ -665,21 +822,49 @@ function WorkforcePageContent() {
       )}
 
       {/* Sources */}
-      <div className="mt-12 pt-8 border-t">
+      <div className="mt-16">
         <h3 className="text-lg font-semibold mb-2">Sources</h3>
         <ul className="list-disc pl-5 text-sm text-gray-600">
-          {agencyData.sources.map((source, index) => (
-            <li key={index}>
-              <a 
-                href={source.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                {source.name}
-              </a>
-            </li>
-          ))}
+          <li>
+            <a 
+              href="https://publicpay.ca.gov/Reports/State/State.aspx" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              California State Controller&apos;s Office - Government Compensation in California
+            </a>
+          </li>
+          <li>
+            <a 
+              href="https://www.calhr.ca.gov/pages/workforce-planning-statistics.aspx" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              California Department of Human Resources - Workforce Statistics
+            </a>
+          </li>
+          <li>
+            <a 
+              href="https://lao.ca.gov/StateWorkforce" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              California Legislative Analyst&apos;s Office - State Workforce Reports
+            </a>
+          </li>
+          <li>
+            <a 
+              href="https://dof.ca.gov/forecasting/demographics/state-and-county-population-projections/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              California Department of Finance - Employment Data
+            </a>
+          </li>
         </ul>
       </div>
     </div>
