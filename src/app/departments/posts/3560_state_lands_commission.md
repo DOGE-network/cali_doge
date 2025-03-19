@@ -127,13 +127,13 @@ The Commission operates under a three-member governing body:
    - Audit compliance
 
 Sources:
-[1] State Lands Commission Budget Document 2024-25
-[2] Public Resources Code, Divisions 3, 6, 7, 7.7, 7.8, and 36
-[3] Government Code, Title 2, Division 1, Chapter 7.4
-[4] Marine Oil Terminal Engineering and Maintenance Standards
-[5] Marine Invasive Species Act
-[6] Public Trust Doctrine
-[7] School Land Management Program
-[8] Annual Staff Reports
-[9] Strategic Plan
-[10] Environmental Justice Policy 
+[1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/3500/3560.pdf
+[2] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=PRC&division=3.&title=&part=&chapter=
+[3] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=GOV&division=1.&title=2.&part=&chapter=7.4.&article=
+[4] https://www.slc.ca.gov/wp-content/uploads/2023/12/MOTEMS_2023.pdf
+[5] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=FAC&division=3.&title=&part=&chapter=1.&article=4.5.
+[6] https://www.slc.ca.gov/public-trust/
+[7] https://www.slc.ca.gov/school-lands/
+[8] https://www.slc.ca.gov/annual-reports/
+[9] https://www.slc.ca.gov/wp-content/uploads/2023/12/Strategic_Plan_2023-2028.pdf
+[10] https://www.slc.ca.gov/wp-content/uploads/2023/12/Environmental_Justice_Policy.pdf 

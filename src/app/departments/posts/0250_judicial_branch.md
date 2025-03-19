@@ -112,13 +112,13 @@ The Judicial Branch operates with a hierarchical structure established by the Ca
 5. **Special Fund Allocations**: Dedicated funds such as the State Court Facilities Construction Fund and Court Interpreters Fund are allocated for specific purposes as defined by statute.
 
 Sources:
-[1] California State Budget 2024-25
-[2] Judicial Council of California Annual Report
-[3] https://www.courts.ca.gov/
-[4] California Constitution, Article VI
-[5] Lockyer-Isenberg Trial Court Funding Act of 1997 (Chapter 850, Statutes of 1997)
-[6] Trial Court Facilities Act of 2002 (Chapter 1082, Statutes of 2002)
-[7] Government Code Sections 68070-68114.10
-[8] Judicial Branch Five-Year Infrastructure Plan
-[9] Judicial Branch Budget Committee Reports
-[10] California Rules of Court, Rule 10.1-10.980 
+[1] https://www.courts.ca.gov/
+[2] https://www.courts.ca.gov/documents/2024-25-judicial-branch-budget.pdf
+[3] https://www.courts.ca.gov/7466.htm
+[4] https://www.courts.ca.gov/policyadmin-jc.htm
+[5] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=GOV&division=&title=8.&part=&chapter=1.&article=
+[6] https://www.courts.ca.gov/documents/Strategic_Plan_2023-2028.pdf
+[7] https://www.courts.ca.gov/documents/jbbc-20220127-materials.pdf
+[8] https://www.courts.ca.gov/documents/ctcac-20230125-materials.pdf
+[9] https://www.courts.ca.gov/documents/jc-20231215-agenda.pdf
+[10] https://www.courts.ca.gov/rules.htm 

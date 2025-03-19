@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 import remarkGfm from 'remark-gfm'
+import { getDepartmentBySlug } from '@/lib/departmentMapping'
 
 const postsDirectory = path.join(process.cwd(), 'src/app/departments/posts')
 
@@ -144,6 +145,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '')
 
+    // Get the standardized department data from our mappings
+    const departmentMapping = getDepartmentBySlug(id)
+
     // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
@@ -164,11 +168,11 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     // Extract a proper excerpt from the cleaned content
     const excerpt = extractExcerpt(cleanedContent)
 
-    // Combine the data
+    // Use the standardized mapping data instead of frontmatter
     return {
       id,
-      code: matterResult.data.code ? String(matterResult.data.code) : '',
-      name: matterResult.data.name || '',
+      code: departmentMapping?.code || '',
+      name: departmentMapping?.name || matterResult.data.name || '',
       date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : '',
       excerpt,
       content: processedContent,

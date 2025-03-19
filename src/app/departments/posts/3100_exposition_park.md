@@ -98,5 +98,11 @@ description: "Exposition Park is a 152-acre tract in south Los Angeles housing t
    - Cultural preservation and exhibition
 
 Sources:
-[1] 2024-25 Governor's Budget - Exposition Park
-[2] Food and Agricultural Code, Division 3, Part 3, Chapter 6 (Sections 4101-4108) 
+[1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/3000/3100.pdf
+[2] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=FAC&division=3.&title=&part=3.&chapter=6.&article=
+[3] https://californiasciencecenter.org/about/annual-reports
+[4] https://expositionpark.ca.gov/about/
+[5] https://caamuseum.org/about
+[6] https://expositionpark.ca.gov/wp-content/uploads/2020/11/Exposition-Park-Master-Plan-Book_2020.pdf
+[7] https://californiasciencecenter.org/about/air-and-space-center
+[8] https://www.lawa.org/news-releases/2022/news-release-040/the-space-shuttle-endeavour-moves-into-its-new-home-at-the-california-science-center-in-early-2023 

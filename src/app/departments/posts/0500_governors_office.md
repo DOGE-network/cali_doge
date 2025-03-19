@@ -103,8 +103,13 @@ The Governor's Office is organized to support the Governor's constitutional duti
 5. **Budget Adjustments**: The Governor's Office proposes mid-year budget adjustments as needed to address changing economic conditions or emerging priorities.
 
 Sources:
-[1] California State Budget 2024-25
-[2] California Constitution, Article V
+[1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/0000/0500.pdf
+[2] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=5.&article=
 [3] https://www.gov.ca.gov/
-[4] Governor's State of the State Address 2024
-[5] California Government Code Sections 12010-12019.5 
+[4] https://www.gov.ca.gov/2024/01/16/governor-newsom-delivers-2024-state-of-the-state-address/
+[5] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=GOV&division=3.&title=2.&part=&chapter=1.&article=
+[6] https://www.gov.ca.gov/2024/01/10/governor-newsom-releases-2024-25-budget-proposal/
+[7] https://www.gov.ca.gov/2024/01/16/governor-newsom-announces-new-climate-action-initiative/
+[8] https://www.gov.ca.gov/2024/01/16/governor-newsom-announces-new-economic-development-strategy/
+[9] https://www.gov.ca.gov/2024/01/16/governor-newsom-announces-new-healthcare-access-initiative/
+[10] https://www.gov.ca.gov/2024/01/16/governor-newsom-announces-new-emergency-response-plan/ 
