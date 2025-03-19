@@ -64,7 +64,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0250_judicial_branch',
     name: 'Judicial Branch',
     canonicalName: 'Judicial Branch',
-    code: '168',
+    code: '0250',
     fullName: 'Judicial Branch',
     spendingName: 'Judicial Branch',
     workforceName: 'Judicial Branch'
@@ -73,7 +73,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0500_governors_office',
     name: 'Governor\'s Office',
     canonicalName: 'Governor\'s Office',
-    code: '320',
+    code: '0500',
     fullName: 'Governor\'s Office',
     spendingName: 'Governor\'s Office',
     workforceName: 'Governor\'s Office'
@@ -91,7 +91,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0511_secretary_for_government_operations',
     name: 'Secretary for Government Operations',
     canonicalName: 'Secretary for Government Operations',
-    code: '329',
+    code: '0511',
     fullName: 'Secretary for Government Operations',
     spendingName: 'Secretary for Government Operations',
     workforceName: 'Secretary for Government Operations'
@@ -100,7 +100,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0515_secretary_of_business_consumer_services_and_housing',
     name: 'Secretary of Business, Consumer Services and Housing',
     canonicalName: 'Secretary of Business, Consumer Services and Housing',
-    code: '333',
+    code: '0515',
     fullName: 'Secretary of Business, Consumer Services and Housing',
     spendingName: 'Secretary of Business, Consumer Services and Housing',
     workforceName: 'Secretary of Business, Consumer Services and Housing'
@@ -109,7 +109,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0521_secretary_of_transportation',
     name: 'Secretary of Transportation',
     canonicalName: 'Secretary of Transportation',
-    code: '337',
+    code: '0521',
     fullName: 'Secretary of Transportation',
     spendingName: 'Secretary of Transportation',
     workforceName: 'Secretary of Transportation'
@@ -118,7 +118,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0530_secretary_of_health_and_human_services',
     name: 'Secretary of Health and Human Services',
     canonicalName: 'Secretary of Health and Human Services',
-    code: '344',
+    code: '0530',
     fullName: 'Secretary of Health and Human Services',
     spendingName: 'Secretary of Health and Human Services',
     workforceName: 'Secretary of Health and Human Services'
@@ -127,7 +127,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0540_california_natural_resources_agency',
     name: 'California Natural Resources Agency',
     canonicalName: 'California Natural Resources Agency',
-    code: '352',
+    code: '0540',
     fullName: 'California Natural Resources Agency',
     spendingName: 'California Natural Resources Agency',
     workforceName: 'California Natural Resources Agency'
@@ -136,7 +136,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0555_california_environmental_protection_agency',
     name: 'California Environmental Protection Agency',
     canonicalName: 'California Environmental Protection Agency',
-    code: '365',
+    code: '0555',
     fullName: 'California Environmental Protection Agency',
     spendingName: 'California Environmental Protection Agency',
     workforceName: 'California Environmental Protection Agency'
@@ -154,7 +154,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0650_office_of_planning_and_research',
     name: 'Office of Planning and Research',
     canonicalName: 'Office of Planning and Research',
-    code: '424',
+    code: '0650',
     fullName: 'Office of Planning and Research',
     spendingName: 'Office of Planning and Research',
     workforceName: 'Office of Planning and Research'
@@ -172,7 +172,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0750_office_of_the_lieutenant_governor',
     name: 'Office of the Lieutenant Governor',
     canonicalName: 'Office of the Lieutenant Governor',
-    code: '488',
+    code: '0750',
     fullName: 'Office of the Lieutenant Governor',
     spendingName: 'Office of the Lieutenant Governor',
     workforceName: 'Office of the Lieutenant Governor'

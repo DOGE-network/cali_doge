@@ -68,13 +68,19 @@ const mappings = fileNames
       return null;
     }
     
+    // Extract code from filename (e.g., 0250_judicial_branch.md -> 0250)
+    const fileCode = fileName.split('_')[0];
+    
+    // Use the code from the filename as the source of truth
+    const standardizedCode = fileCode;
+    
     // Find the matching department in departments.json
     const matchingDept = departmentsData.departments.find(dept => 
       dept.name === name || 
       dept.canonicalName === name || 
       (dept.aliases && dept.aliases.includes(name)) ||
       // Also match by code in case name is slightly different
-      (dept.code && dept.code.toString() === code.toString())
+      (dept.code && dept.code.toString() === standardizedCode.toString())
     );
     
     // If we found a match, use department data from departments.json
@@ -82,7 +88,7 @@ const mappings = fileNames
       return {
         slug,
         name: matchingDept.name,
-        code,
+        code: standardizedCode,
         // Use the actual names from departments.json
         fullName: matchingDept.canonicalName || matchingDept.name,
         spendingName: matchingDept.name,
@@ -91,11 +97,11 @@ const mappings = fileNames
     }
     
     // If no match, just use data from the markdown file
-    console.warn(`No matching department found in departments.json for: ${name} (code: ${code}), using markdown data only`);
+    console.warn(`No matching department found in departments.json for: ${name} (code: ${standardizedCode}), using markdown data only`);
     return {
       slug,
       name,
-      code,
+      code: standardizedCode,
       fullName: name,
       spendingName: name,
       workforceName: name

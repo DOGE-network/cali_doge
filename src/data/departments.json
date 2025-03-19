@@ -31,6 +31,55 @@
       }
     },
     {
+      "name": "Judicial Branch",
+      "slug": "0250_judicial_branch",
+      "canonicalName": "Judicial Branch",
+      "aliases": [],
+      "spending": {
+        "yearly": {
+          "FY2023": "$4.92B",
+          "FY2024": "$5.10B",
+          "FY2025": "$5.10B"
+        },
+        "stateOperations": {
+          "FY2023": "$3.12B",
+          "FY2024": "$3.20B",
+          "FY2025": "$3.20B"
+        }
+      },
+      "workforce": {
+        "yearlyHeadCount": [
+          {
+            "year": "2022",
+            "headCount": 1734
+          },
+          {
+            "year": "2023",
+            "headCount": 2144
+          },
+          {
+            "year": "2024",
+            "headCount": 2144
+          }
+        ],
+        "yearlyWages": [
+          {
+            "year": "2022",
+            "wages": 173400000
+          },
+          {
+            "year": "2023",
+            "wages": 214400000
+          },
+          {
+            "year": "2024",
+            "wages": 214400000
+          }
+        ]
+      },
+      "code": "0250"
+    },
+    {
       "name": "Air Resources Board",
       "slug": "air_resources_board",
       "canonicalName": "California Air Resources Board",
@@ -2010,43 +2059,6 @@
         ]
       },
       "code": "3780"
-    },
-    {
-      "name": "Judicial Branch",
-      "slug": "judicial_branch",
-      "canonicalName": "Judicial Branch",
-      "aliases": [],
-      "workforce": {
-        "yearlyHeadCount": [
-          {
-            "year": "2022",
-            "headCount": 2103
-          },
-          {
-            "year": "2023",
-            "headCount": 2198
-          },
-          {
-            "year": "2024",
-            "headCount": 2246
-          }
-        ],
-        "yearlyWages": [
-          {
-            "year": "2022",
-            "wages": 210300000
-          },
-          {
-            "year": "2023",
-            "wages": 219800000
-          },
-          {
-            "year": "2024",
-            "wages": 224600000
-          }
-        ]
-      },
-      "code": "0250"
     }
   ],
   "budgetSummary": {
