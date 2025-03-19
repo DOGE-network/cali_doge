@@ -5,6 +5,14 @@
       "slug": "california_state_government",
       "canonicalName": "California State Government",
       "aliases": ["California Government"],
+      "code": "0000",
+      "spending": {
+        "yearly": {
+          "FY2023": "$232.05B",
+          "FY2024": "$228.89B",
+          "FY2025": "$233.50B"
+        }
+      },
       "workforce": {
         "averageTenureYears": 13,
         "averageSalary": 86142,
