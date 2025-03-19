@@ -10,8 +10,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Path configurations
-const BUDGET_DOCS_DIR = path.join(__dirname, '../src/data/budget_docs/text');
-const DEPARTMENTS_JSON_PATH = path.join(__dirname, '../src/data/departments.json');
+const BUDGET_DOCS_DIR = path.join(__dirname, '../data/budget_docs/text');
+const DEPARTMENTS_JSON_PATH = path.join(__dirname, '../data/departments.json');
 
 // Helper function to normalize department names for matching
 function normalizeForMatching(name) {

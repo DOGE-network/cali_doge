@@ -4,8 +4,10 @@
       "name": "California State Government",
       "slug": "california_state_government",
       "canonicalName": "California State Government",
-      "aliases": ["California Government"],
-      "code": "0000",
+      "aliases": [
+        "California Government"
+      ],
+      "code": "8780",
       "spending": {
         "yearly": {
           "FY2023": "$232.05B",
@@ -18,22 +20,64 @@
         "averageSalary": 86142,
         "averageAge": 47,
         "yearlyHeadCount": [
-          {"year": "2017", "headCount": 390000},
-          {"year": "2018", "headCount": 375000},
-          {"year": "2019", "headCount": 400000},
-          {"year": "2020", "headCount": 389000},
-          {"year": "2021", "headCount": 384000},
-          {"year": "2023", "headCount": 399000},
-          {"year": "2024", "headCount": 397000}
+          {
+            "year": "2017",
+            "headCount": 390000
+          },
+          {
+            "year": "2018",
+            "headCount": 375000
+          },
+          {
+            "year": "2019",
+            "headCount": 400000
+          },
+          {
+            "year": "2020",
+            "headCount": 389000
+          },
+          {
+            "year": "2021",
+            "headCount": 384000
+          },
+          {
+            "year": "2023",
+            "headCount": 399000
+          },
+          {
+            "year": "2024",
+            "headCount": 397000
+          }
         ],
         "yearlyWages": [
-          {"year": "2017", "wages": 22000000000},
-          {"year": "2018", "wages": 22040000000},
-          {"year": "2019", "wages": 24540000000},
-          {"year": "2020", "wages": 25060000000},
-          {"year": "2021", "wages": 25920000000},
-          {"year": "2023", "wages": 28870000000},
-          {"year": "2024", "wages": 29820000000}
+          {
+            "year": "2017",
+            "wages": 22000000000
+          },
+          {
+            "year": "2018",
+            "wages": 22040000000
+          },
+          {
+            "year": "2019",
+            "wages": 24540000000
+          },
+          {
+            "year": "2020",
+            "wages": 25060000000
+          },
+          {
+            "year": "2021",
+            "wages": 25920000000
+          },
+          {
+            "year": "2023",
+            "wages": 28870000000
+          },
+          {
+            "year": "2024",
+            "wages": 29820000000
+          }
         ],
         "_note": "This data will be replaced with calculated aggregates once all department data is loaded"
       }
@@ -42,7 +86,9 @@
       "name": "Judicial Branch",
       "slug": "0250_judicial_branch",
       "canonicalName": "Judicial Branch",
-      "aliases": [],
+      "aliases": [
+        "Department of Judicial Branch"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$4.92B",
@@ -91,7 +137,9 @@
       "name": "Air Resources Board",
       "slug": "air_resources_board",
       "canonicalName": "California Air Resources Board",
-      "aliases": [],
+      "aliases": [
+        "State Air Resources Board"
+      ],
       "spending": {
         "yearly": {
           "FY2017": "$1.63B",
@@ -152,7 +200,11 @@
       "name": "California Department of Forestry and Fire Protection",
       "slug": "3540_department_of_forestry_and_fire_protection",
       "canonicalName": "California Department of Forestry and Fire Protection",
-      "aliases": ["Department of Forestry and Fire Protection", "CAL FIRE"],
+      "aliases": [
+        "CAL FIRE",
+        "Department of Forestry & Fire Protection",
+        "Department of Forestry and Fire Protection"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$4.32B",
@@ -212,7 +264,9 @@
       "name": "Department of Parks and Recreation",
       "slug": "department_of_parks_and_recreation",
       "canonicalName": "Department of Parks and Recreation",
-      "aliases": [],
+      "aliases": [
+        "Department of Parks & Recreation"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$1.99B",
@@ -272,7 +326,9 @@
       "name": "Department of Fish and Wildlife",
       "slug": "department_of_fish_and_wildlife",
       "canonicalName": "Department of Fish and Wildlife",
-      "aliases": [],
+      "aliases": [
+        "Department of Fish & Wildlife"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$1.12B",
@@ -347,7 +403,9 @@
       "name": "California Conservation Corps",
       "slug": "california_conservation_corps",
       "canonicalName": "California Conservation Corps",
-      "aliases": [],
+      "aliases": [
+        "Department of California Conservation Corps"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.16B",
@@ -392,7 +450,9 @@
       "name": "California Natural Resources Agency",
       "slug": "california_natural_resources_agency",
       "canonicalName": "California Natural Resources Agency",
-      "aliases": [],
+      "aliases": [
+        "Secretary of the Natural Resources Agency"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.39B",
@@ -437,7 +497,9 @@
       "name": "Exposition Park",
       "slug": "exposition_park",
       "canonicalName": "Exposition Park",
-      "aliases": [],
+      "aliases": [
+        "Department of Exposition Park"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.055B",
@@ -482,7 +544,9 @@
       "name": "California Tahoe Conservancy",
       "slug": "california_tahoe_conservancy",
       "canonicalName": "California Tahoe Conservancy",
-      "aliases": [],
+      "aliases": [
+        "Department of California Tahoe Conservancy"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.028B",
@@ -527,7 +591,10 @@
       "name": "California Coastal Conservancy",
       "slug": "california_coastal_conservancy",
       "canonicalName": "California Coastal Conservancy",
-      "aliases": [],
+      "aliases": [
+        "Department of State Coastal Conservancy",
+        "State Coastal Conservancy"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.074B",
@@ -722,7 +789,9 @@
       "name": "California Department of Corrections and Rehabilitation",
       "slug": "california_department_of_corrections_and_rehabilitation",
       "canonicalName": "California Department of Corrections and Rehabilitation",
-      "aliases": [],
+      "aliases": [
+        "Department of Corrections & Rehabilitation"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$54.894B",
@@ -857,7 +926,9 @@
       "name": "California Department of Food and Agriculture",
       "slug": "california_department_of_food_and_agriculture",
       "canonicalName": "California Department of Food and Agriculture",
-      "aliases": [],
+      "aliases": [
+        "Department of Food & Agriculture"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.711B",
@@ -1082,7 +1153,9 @@
       "name": "State Controller",
       "slug": "state_controller",
       "canonicalName": "State Controller",
-      "aliases": [],
+      "aliases": [
+        "Department of State Controller"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.245B",
@@ -1172,7 +1245,9 @@
       "name": "Secretary of State",
       "slug": "secretary_of_state",
       "canonicalName": "Secretary of State",
-      "aliases": [],
+      "aliases": [
+        "Department of Secretary of State"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.155B",
@@ -1217,7 +1292,10 @@
       "name": "State Treasurer's Office",
       "slug": "state_treasurers_office",
       "canonicalName": "State Treasurer's Office",
-      "aliases": [],
+      "aliases": [
+        "Department of State Treasurer",
+        "State Treasurer"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.042B",
@@ -1307,7 +1385,9 @@
       "name": "Civil Rights Department",
       "slug": "civil_rights_department",
       "canonicalName": "Civil Rights Department",
-      "aliases": [],
+      "aliases": [
+        "Department of Civil Rights Department"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.058B",
@@ -1352,7 +1432,9 @@
       "name": "Department of Financial Protection and Innovation",
       "slug": "department_of_financial_protection_and_innovation",
       "canonicalName": "Department of Financial Protection and Innovation",
-      "aliases": [],
+      "aliases": [
+        "Department of Financial Protection & Innovation"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.135B",
@@ -1442,7 +1524,10 @@
       "name": "Governor's Office",
       "slug": "governors_office",
       "canonicalName": "Governor's Office",
-      "aliases": [],
+      "aliases": [
+        "Governor's Office of Business & Economic Development (GO-Biz)",
+        "Governor's Office of Business and Economic Development (GO-Biz)"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.021B",
@@ -1487,7 +1572,11 @@
       "name": "Governor's Office of Business and Economic Development",
       "slug": "governors_office_of_business_and_economic_development",
       "canonicalName": "Governor's Office of Business and Economic Development",
-      "aliases": [],
+      "aliases": [
+        "Governor's Office",
+        "Governor's Office of Business & Economic Development (GO-Biz)",
+        "Governor's Office of Business and Economic Development (GO-Biz)"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.045B",
@@ -1532,7 +1621,9 @@
       "name": "Secretary for Government Operations",
       "slug": "secretary_for_government_operations",
       "canonicalName": "Secretary for Government Operations",
-      "aliases": [],
+      "aliases": [
+        "Secretary for Government Operations Agency"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.012B",
@@ -1712,7 +1803,10 @@
       "name": "Secretary for Labor and Workforce Development",
       "slug": "secretary_for_labor_and_workforce_development",
       "canonicalName": "Secretary for Labor and Workforce Development",
-      "aliases": [],
+      "aliases": [
+        "Secretary for Labor & Workforce Development Agency",
+        "Secretary for Labor and Workforce Development Agency"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.016B",
@@ -1757,7 +1851,9 @@
       "name": "Office of Planning and Research",
       "slug": "office_of_planning_and_research",
       "canonicalName": "Office of Planning and Research",
-      "aliases": [],
+      "aliases": [
+        "Office of Planning & Research"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.032B",
@@ -1892,7 +1988,9 @@
       "name": "Colorado River Board",
       "slug": "colorado_river_board",
       "canonicalName": "Colorado River Board",
-      "aliases": [],
+      "aliases": [
+        "Colorado River Board of California"
+      ],
       "spending": {
         "yearly": {
           "FY2023": "$0.002B",
