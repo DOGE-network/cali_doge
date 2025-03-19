@@ -16,15 +16,6 @@ export interface DepartmentData {
   keyFunctions: string;
   abbreviation: string;
   parentAgency: string;
-  hierarchy: {
-    level: number;
-    parent: string;
-    path: Array<{
-      name: string;
-      code: string;
-      level: number;
-    }>;
-  };
   spending: {
     yearly: Record<string, number>;
     stateOperations: Record<string, number>;
@@ -43,11 +34,6 @@ export interface DepartmentData {
     salaryDistribution?: { [key: string]: number };
     ageDistribution?: { [key: string]: number };
   };
-  subAgencies: Array<{
-    name: string;
-    code: string;
-    level: number;
-  }>;
 }
 
 /**

@@ -22,7 +22,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from './AgencyDataVisualization';
-import executiveBranchData from '@/data/executive-branch-hierarchy.json';
 import { Agency } from '@/types/agency';
 import departmentsData from '@/data/departments.json';
 import { DepartmentsJSON, DepartmentData } from '@/types/department';
@@ -30,6 +29,46 @@ import { getDepartmentByName, normalizeForMatching } from '@/lib/departmentMappi
 
 // Cast imported data to proper types
 const typedDepartmentsData = departmentsData as unknown as DepartmentsJSON;
+
+// Define executive branch data structure
+const executiveBranchData = {
+  name: "California State Government",
+  org_level: 0,
+  budget_status: "active",
+  subAgencies: [
+    {
+      name: "Executive Branch",
+      org_level: 1,
+      budget_status: "active",
+      subAgencies: [
+        {
+          name: "Governor's Office",
+          org_level: 2,
+          budget_status: "active",
+          subAgencies: []
+        },
+        {
+          name: "State Agencies",
+          org_level: 2,
+          budget_status: "active",
+          subAgencies: []
+        }
+      ]
+    },
+    {
+      name: "Legislative Branch",
+      org_level: 1,
+      budget_status: "active",
+      subAgencies: []
+    },
+    {
+      name: "Judicial Branch",
+      org_level: 1,
+      budget_status: "active",
+      subAgencies: []
+    }
+  ]
+};
 
 // Convert executive branch JSON to Agency structure
 const convertExecutiveBranchToAgency = (data: any): Agency => {
