@@ -10,14 +10,32 @@ export interface DepartmentData {
   slug: string;
   canonicalName: string;
   aliases: string[];
-  code?: string;
-  spending?: {
-    yearly: Record<string, string>;
-    stateOperations: Record<string, string>;
+  code: string;
+  org_level: number;
+  budget_status: string;
+  keyFunctions: string;
+  abbreviation: string;
+  parentAgency: string;
+  hierarchy: {
+    level: number;
+    parent: string;
+    path: Array<{
+      name: string;
+      code: string;
+      level: number;
+    }>;
   };
-  workforce?: {
-    yearlyHeadCount: Array<{ year: string; headCount: number }>;
-    yearlyWages: Array<{ year: string; wages: number }>;
+  spending: {
+    yearly: Record<string, number>;
+    stateOperations: Record<string, number>;
+  };
+  workforce: {
+    headCount: {
+      yearly: Record<string, number>;
+    };
+    wages: {
+      yearly: Record<string, number>;
+    };
     averageTenureYears?: number;
     averageSalary?: number;
     averageAge?: number;
@@ -25,6 +43,11 @@ export interface DepartmentData {
     salaryDistribution?: { [key: string]: number };
     ageDistribution?: { [key: string]: number };
   };
+  subAgencies: Array<{
+    name: string;
+    code: string;
+    level: number;
+  }>;
 }
 
 /**

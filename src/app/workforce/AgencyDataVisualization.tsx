@@ -24,19 +24,29 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
     }
   };
 
-  // Get employee data from either the new structure or the legacy structure
-  const employeeData = agency.employeeData || {
-    headCount: agency.yearlyHeadCount?.map(item => ({ year: item.year, count: item.headCount })),
-    wages: agency.yearlyWages?.map(item => ({ year: item.year, amount: item.wages })),
-    averageTenure: agency.averageTenureYears,
-    averageSalary: agency.averageSalary,
-    averageAge: agency.averageAge,
-    tenureDistribution: agency.tenureDistribution,
-    salaryDistribution: agency.salaryDistribution,
-    ageDistribution: agency.ageDistribution
+  const transformAgencyData = (agency: Agency) => {
+    return {
+      headCount: Object.entries(agency.workforce?.headCount?.yearly || {}).map(([year, count]) => ({
+        year,
+        count: Number(count)
+      })),
+      wages: Object.entries(agency.workforce?.wages?.yearly || {}).map(([year, amount]) => ({
+        year,
+        amount: Number(amount)
+      })),
+      averageTenure: agency.workforce?.averageTenureYears,
+      averageSalary: agency.workforce?.averageSalary,
+      averageAge: agency.workforce?.averageAge,
+      tenureDistribution: agency.workforce?.tenureDistribution,
+      salaryDistribution: agency.workforce?.salaryDistribution,
+      ageDistribution: agency.workforce?.ageDistribution
+    };
   };
 
-  // Get 2024 data from yearly arrays
+  // Get employee data from either the new structure or the legacy structure
+  const employeeData = transformAgencyData(agency);
+
+  // Get 2024 data from yearly objects
   const headCount2024 = employeeData.headCount?.find(item => item.year === "2024")?.count;
   const wages2024 = employeeData.wages?.find(item => item.year === "2024")?.amount;
 

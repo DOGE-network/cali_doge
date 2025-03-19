@@ -36,6 +36,20 @@ export interface Agency {
     salaryDistribution?: { [key: string]: number };
     ageDistribution?: { [key: string]: number };
   };
+  workforce?: {
+    headCount: {
+      yearly: Record<string, number>;
+    };
+    wages: {
+      yearly: Record<string, number>;
+    };
+    averageTenureYears?: number;
+    averageSalary?: number;
+    averageAge?: number;
+    tenureDistribution?: { [key: string]: number };
+    salaryDistribution?: { [key: string]: number };
+    ageDistribution?: { [key: string]: number };
+  };
 }
 
 /**

@@ -25,11 +25,11 @@ import AgencyDataVisualization from './AgencyDataVisualization';
 import executiveBranchData from '@/data/executive-branch-hierarchy.json';
 import { Agency } from '@/types/agency';
 import departmentsData from '@/data/departments.json';
-import { DepartmentsJSON } from '@/types/department';
+import { DepartmentsJSON, DepartmentData } from '@/types/department';
 import { getDepartmentByName, normalizeForMatching } from '@/lib/departmentMapping';
 
 // Cast imported data to proper types
-const typedDepartmentsData = departmentsData as DepartmentsJSON;
+const typedDepartmentsData = departmentsData as unknown as DepartmentsJSON;
 
 // Convert executive branch JSON to Agency structure
 const convertExecutiveBranchToAgency = (data: any): Agency => {
@@ -256,13 +256,13 @@ const mergeAgencyData = (structure: Agency[]): Agency[] => {
     // If we found matching data, apply it to the agency
     if (agencyData && agencyData.workforce) {
       agency.employeeData = {
-        headCount: agencyData.workforce.yearlyHeadCount?.map(item => ({
-          year: item.year,
-          count: item.headCount
+        headCount: Object.entries(agencyData.workforce.headCount?.yearly || {}).map(([year, count]) => ({
+          year,
+          count
         })),
-        wages: agencyData.workforce.yearlyWages?.map(item => ({
-          year: item.year,
-          amount: item.wages
+        wages: Object.entries(agencyData.workforce.wages?.yearly || {}).map(([year, amount]) => ({
+          year,
+          amount
         })),
         averageTenure: agencyData.workforce.averageTenureYears,
         averageSalary: agencyData.workforce.averageSalary,
@@ -573,22 +573,8 @@ function WorkforcePageContent() {
           name: workforceDept.name,
           org_level: 4, // Assume it's a department-level entity
           budget_status: "active",
-          employeeData: workforceDept.workforce ? {
-            headCount: workforceDept.workforce.yearlyHeadCount?.map(item => ({
-              year: item.year,
-              count: item.headCount
-            })),
-            wages: workforceDept.workforce.yearlyWages?.map(item => ({
-              year: item.year,
-              amount: item.wages
-            })),
-            averageTenure: workforceDept.workforce.averageTenureYears,
-            averageSalary: workforceDept.workforce.averageSalary,
-            averageAge: workforceDept.workforce.averageAge,
-            tenureDistribution: workforceDept.workforce.tenureDistribution,
-            salaryDistribution: workforceDept.workforce.salaryDistribution,
-            ageDistribution: workforceDept.workforce.ageDistribution
-          } : undefined
+          employeeData: transformWorkforceData(workforceDept),
+          workforce: workforceDept.workforce
         };
         
         setActiveAgency(syntheticAgency);
@@ -777,4 +763,23 @@ function WorkforcePageContent() {
       </div>
     </div>
   );
-} 
+}
+
+const transformWorkforceData = (workforceDept: DepartmentData) => {
+  return {
+    headCount: Object.entries(workforceDept.workforce?.headCount?.yearly || {}).map(([year, count]) => ({
+      year,
+      count: Number(count)
+    })),
+    wages: Object.entries(workforceDept.workforce?.wages?.yearly || {}).map(([year, amount]) => ({
+      year,
+      amount: Number(amount)
+    })),
+    averageTenure: workforceDept.workforce?.averageTenureYears,
+    averageSalary: workforceDept.workforce?.averageSalary,
+    averageAge: workforceDept.workforce?.averageAge,
+    tenureDistribution: workforceDept.workforce?.tenureDistribution,
+    salaryDistribution: workforceDept.workforce?.salaryDistribution,
+    ageDistribution: workforceDept.workforce?.ageDistribution
+  };
+}; 

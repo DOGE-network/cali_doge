@@ -24,6 +24,13 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
 }) => {
   const [showAllYears, setShowAllYears] = useState(false);
   
+  // Format spending value to display with $ and B
+  const formatSpending = (value: string | number | undefined): string => {
+    if (value === undefined) return 'N/A';
+    const numericValue = typeof value === 'string' ? parseFloat(value.replace(/[^\d.-]/g, '')) : value;
+    return `$${(numericValue / 1000000000).toFixed(2)}B`;
+  };
+  
   // Debug on mount
   useEffect(() => {
     // Debug Air Resources Board as an example
@@ -73,25 +80,16 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
       .filter(dept => dept.spending?.yearly)
       .map(dept => ({
         name: dept.name,
-        spending: dept.spending?.yearly || {}
+        spending: normalizeYearlyData(dept.spending?.yearly || {})
       }));
   }, [departmentsData]);
 
   // Sort agencies by spending for the most recent year
   const sortedAgencies = useMemo(() => {
     return [...agencies].sort((a, b) => {
-      const spendingA = a.spending[mostRecentYear] || '$0';
-      const spendingB = b.spending[mostRecentYear] || '$0';
-      
-      // Extract numeric values from spending strings (e.g., "$4.32B" -> 4.32)
-      const valueA = parseFloat(spendingA.replace(/[^0-9.]/g, ''));
-      const valueB = parseFloat(spendingB.replace(/[^0-9.]/g, ''));
-      
-      // Handle B, M, K multipliers
-      const multiplierA = spendingA.includes('B') ? 1000 : spendingA.includes('M') ? 1 : spendingA.includes('K') ? 0.001 : 0;
-      const multiplierB = spendingB.includes('B') ? 1000 : spendingB.includes('M') ? 1 : spendingB.includes('K') ? 0.001 : 0;
-      
-      return (valueB * multiplierB) - (valueA * multiplierA);
+      const spendingA = a.spending[mostRecentYear] || 0;
+      const spendingB = b.spending[mostRecentYear] || 0;
+      return spendingB - spendingA;
     });
   }, [agencies, mostRecentYear]);
 
@@ -167,7 +165,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
                   </td>
                   {yearsToDisplay.map(year => (
                     <td key={year} className="py-3 px-4 text-right">
-                      {agency.spending[year] || 'N/A'}
+                      {formatSpending(agency.spending[year] as string | number | undefined)}
                     </td>
                   ))}
                 </tr>
@@ -178,6 +176,13 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
       </div>
     </div>
   );
+};
+
+const normalizeYearlyData = (data: Record<string, string | number>) => {
+  return Object.entries(data).reduce((acc, [year, value]) => ({
+    ...acc,
+    [year]: typeof value === 'string' ? parseFloat((value as string).replace(/[^\d.-]/g, '')) : value
+  }), {} as Record<string, number>);
 };
 
 export default SpendingDisplay; 

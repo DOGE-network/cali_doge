@@ -1,7 +1,11 @@
 export interface WorkforceData {
   name: string;
-  yearlyHeadCount: Array<{ year: string; headCount: number }>;
-  yearlyWages: Array<{ year: string; wages: number }>;
+  headCount: {
+    yearly: Record<string, number>;
+  };
+  wages: {
+    yearly: Record<string, number>;
+  };
   tenureDistribution?: { [key: string]: number };
   salaryDistribution?: { [key: string]: number };
   ageDistribution?: { [key: string]: number };

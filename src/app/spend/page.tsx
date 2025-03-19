@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 // Type assertion for our imported data
-const typedDepartmentsData = departmentsData as DepartmentsJSON;
+const typedDepartmentsData = departmentsData as unknown as DepartmentsJSON;
 
 // Helper function to sort years chronologically
 const sortYearsChronologically = (years: string[]) => {
