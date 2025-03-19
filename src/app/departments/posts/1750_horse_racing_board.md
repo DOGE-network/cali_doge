@@ -99,7 +99,13 @@ description: "The California Horse Racing Board regulates parimutuel wagering an
 4. Financial performance metrics
 
 ## Sources
-- California State Budget 2024-25
-- Horse Racing Board Annual Report
-- Business and Professions Code Sections 19400-19705
-- State Constitution, Article IV, Section 19(b) 
+[1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/1700/1750.pdf
+[2] https://chrb.ca.gov/annual-reports/
+[3] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=BPC&division=8.&title=&part=&chapter=4.&article=
+[4] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=3.&article=
+[5] https://chrb.ca.gov/
+[6] https://chrb.ca.gov/licensing/
+[7] https://chrb.ca.gov/enforcement/
+[8] https://chrb.ca.gov/safety/
+[9] https://chrb.ca.gov/industry/
+[10] https://chrb.ca.gov/board-members/ 

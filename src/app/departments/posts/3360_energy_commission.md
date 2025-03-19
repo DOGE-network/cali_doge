@@ -127,13 +127,13 @@ The Energy Commission operates with five commissioners appointed by the Governor
    - Legislative reporting
 
 Sources:
-[1] Energy Commission Budget Document 2024-25
-[2] Public Resources Code, Division 15
-[3] Warren-Alquist Act
-[4] California Code of Regulations, Title 20
-[5] Building Energy Efficiency Standards (Title 24, Part 6)
-[6] Alternative and Renewable Fuel and Vehicle Technology Program Investment Plan
-[7] Electric Program Investment Charge (EPIC) Investment Plan
-[8] Natural Gas Research and Development Program
-[9] Integrated Energy Policy Report
-[10] California Energy Commission Strategic Plan 
+[1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/3300/3360.pdf
+[2] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=PRC&division=15.&title=&part=&chapter=
+[3] https://www.energy.ca.gov/about/commission
+[4] https://www.energy.ca.gov/regulations
+[5] https://www.energy.ca.gov/programs-and-topics/programs/building-energy-efficiency-standards
+[6] https://www.energy.ca.gov/programs-and-topics/programs/alternative-and-renewable-fuel-and-vehicle-technology-program
+[7] https://www.energy.ca.gov/programs-and-topics/programs/electric-program-investment-charge
+[8] https://www.energy.ca.gov/programs-and-topics/programs/natural-gas-research-and-development-program
+[9] https://www.energy.ca.gov/programs-and-topics/programs/greenhouse-gas-reduction
+[10] https://www.energy.ca.gov/sites/default/files/2023-12/2023_Integrated_Energy_Policy_Report_Update.pdf 

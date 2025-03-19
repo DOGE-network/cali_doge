@@ -145,10 +145,13 @@ The Department operates through specialized divisions:
    - Program adjustment
 
 Sources:
-[1] California State Budget 2024-25
-[2] Government Code Sections 12159-12179.1
-[3] California Constitution, Article 5, Section 11
-[4] Elections Code Sections 10 and 10.5
-[5] Business Programs Division Reports
-[6] State Archives Annual Report
-[7] Safe at Home Program Guidelines 
+[1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/0800/0890.pdf
+[2] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=GOV&division=3.&title=2.&part=&chapter=1.&article=3.
+[3] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=5.&article=
+[4] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=ELEC&division=&title=&part=&chapter=1.&article=
+[5] https://www.sos.ca.gov/business-programs
+[6] https://www.sos.ca.gov/archives
+[7] https://www.sos.ca.gov/registries/safe-home
+[8] https://www.sos.ca.gov/elections
+[9] https://www.sos.ca.gov/administration
+[10] https://www.sos.ca.gov/administration/reports 
