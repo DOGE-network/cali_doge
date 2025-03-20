@@ -87,10 +87,10 @@ const DepartmentWorkforceDisplay = ({ workforceData }: DepartmentWorkforceDispla
                   <tr key={year} className="border-t border-gray-200">
                     <td className="py-3 px-4">{year}</td>
                     <td className="py-3 px-4 text-right">
-                      {wages !== undefined ? formatCurrencyWithSuffix(wages) : '~'}
+                      {wages !== null && wages !== undefined ? formatCurrencyWithSuffix(wages) : '~'}
                     </td>
                     <td className="py-3 px-4 text-right">
-                      {headcount !== undefined ? formatNumber(headcount) : '~'}
+                      {headcount !== null && headcount !== undefined ? formatNumber(headcount) : '~'}
                     </td>
                   </tr>
                 );

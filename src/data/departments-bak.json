@@ -44,7 +44,7 @@
         "averageAge": 47,
         "_note": "This data will be replaced with calculated aggregates once all department data is loaded"
       },
-      "org_level": 0,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -52,79 +52,10 @@
       "code": null
     },
     {
-      "name": "Constitutional Officers",
-      "slug": "constitutional_officers",
-      "canonicalName": "Constitutional Officers",
-      "aliases": [
-        "Constitutional Office",
-        "Constitutional Officers of California"
-      ],
-      "spending": {
-        "yearly": {},
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {}
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 2,
-      "budget_status": "active",
-      "keyFunctions": "Oversight of constitutional offices and officers",
-      "abbreviation": "",
-      "parentAgency": "Executive Branch",
-      "code": null
-    },
-    {
-      "name": "California Conservation Corps",
-      "slug": "california_conservation_corps",
-      "canonicalName": "California Conservation Corps",
-      "aliases": [
-        "CCC",
-        "California Conservation Corps"
-      ],
-      "org_level": 3,
-      "budget_status": "active",
-      "keyFunctions": "Provides young adults opportunities to work on environmental conservation, disaster response, and energy projects while gaining life and work skills",
-      "abbreviation": "CCC",
-      "parentAgency": "Natural Resources Agency",
-      "spending": {
-        "yearly": {
-          "FY2023": 178629000,
-          "FY2024": 154810000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2023": 510.6,
-            "2024": 502.4
-          }
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "code": "3340"
-    },
-    {
       "name": "Department of Water Resources",
       "slug": "department_of_water_resources",
       "canonicalName": "Department of Water Resources",
-      "aliases": [
-        "California Department of Water Resources",
-        "DWR"
-      ],
+      "aliases": [],
       "spending": {
         "yearly": {
           "FY2023": 7480000000,
@@ -149,20 +80,17 @@
         "averageAge": null
       },
       "code": "3860",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Natural Resources Agency"
+      "parentAgency": null
     },
     {
       "name": "Water Resources Control Board",
       "slug": "water_resources_control_board",
       "canonicalName": "Water Resources Control Board",
-      "aliases": [
-        "State Water Resources Control Board",
-        "SWRCB"
-      ],
+      "aliases": [],
       "spending": {
         "yearly": {
           "FY2023": 3940000000,
@@ -187,20 +115,17 @@
         "averageAge": null
       },
       "code": "3940",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "California Environmental Protection Agency"
+      "parentAgency": null
     },
     {
       "name": "Department of Toxic Substances Control",
       "slug": "department_of_toxic_substances_control",
       "canonicalName": "Department of Toxic Substances Control",
-      "aliases": [
-        "California Department of Toxic Substances Control",
-        "DTSC"
-      ],
+      "aliases": [],
       "spending": {
         "yearly": {
           "FY2023": 820000000,
@@ -225,20 +150,17 @@
         "averageAge": null
       },
       "code": "3960",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "California Environmental Protection Agency"
+      "parentAgency": null
     },
     {
       "name": "California Department of Social Services",
       "slug": "california_department_of_social_services",
       "canonicalName": "California Department of Social Services",
-      "aliases": [
-        "Department of Social Services",
-        "CDSS"
-      ],
+      "aliases": [],
       "spending": {
         "yearly": {
           "FY2023": 5295000000,
@@ -263,19 +185,18 @@
         "averageAge": null
       },
       "code": "5180",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Health and Human Services Agency"
+      "parentAgency": null
     },
     {
       "name": "California Department of State Hospitals",
       "slug": "california_department_of_state_hospitals",
       "canonicalName": "California Department of State Hospitals",
       "aliases": [
-        "Department of State Hospitals",
-        "DSH"
+        "Department of State Hospitals"
       ],
       "spending": {
         "yearly": {
@@ -301,19 +222,18 @@
         "averageAge": null
       },
       "code": "4440",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Health and Human Services Agency"
+      "parentAgency": null
     },
     {
       "name": "California Department of Developmental Services",
       "slug": "california_department_of_developmental_services",
       "canonicalName": "California Department of Developmental Services",
       "aliases": [
-        "Department of Developmental Services",
-        "DDS"
+        "Department of Developmental Services"
       ],
       "spending": {
         "yearly": {
@@ -339,19 +259,19 @@
         "averageAge": null
       },
       "code": "4300",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Health and Human Services Agency"
+      "parentAgency": null
     },
     {
       "name": "California Department of Food and Agriculture",
       "slug": "california_department_of_food_and_agriculture",
       "canonicalName": "California Department of Food and Agriculture",
       "aliases": [
-        "Department of Food and Agriculture",
-        "CDFA"
+        "Department of Food & Agriculture",
+        "Department of Food and Agriculture"
       ],
       "spending": {
         "yearly": {
@@ -377,19 +297,18 @@
         "averageAge": null
       },
       "code": "8570",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Agriculture Agency"
+      "parentAgency": null
     },
     {
       "name": "California Department of Veterans Affairs",
       "slug": "california_department_of_veterans_affairs",
       "canonicalName": "California Department of Veterans Affairs",
       "aliases": [
-        "Department of Veterans Affairs",
-        "CalVet"
+        "Department of Veterans Affairs"
       ],
       "spending": {
         "yearly": {
@@ -415,19 +334,18 @@
         "averageAge": null
       },
       "code": "8955",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Veterans Affairs Agency"
+      "parentAgency": null
     },
     {
       "name": "Horse Racing Board",
       "slug": "horse_racing_board",
       "canonicalName": "Horse Racing Board",
       "aliases": [
-        "California Horse Racing Board",
-        "CHRB"
+        "California Horse Racing Board"
       ],
       "spending": {
         "yearly": {
@@ -457,19 +375,18 @@
         "averageAge": null
       },
       "code": "1750",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Business, Consumer Services, and Housing Agency"
+      "parentAgency": null
     },
     {
       "name": "Secretary of Health and Human Services",
       "slug": "secretary_of_health_and_human_services",
       "canonicalName": "Secretary of Health and Human Services",
       "aliases": [
-        "Health and Human Services Secretary",
-        "CHHS Secretary"
+        "Secretary for California Health and Human Services Agency"
       ],
       "spending": {
         "yearly": {
@@ -499,19 +416,19 @@
         "averageAge": null
       },
       "code": "0530",
-      "org_level": 3,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers"
+      "parentAgency": null
     },
     {
       "name": "Secretary for Labor and Workforce Development",
       "slug": "secretary_for_labor_and_workforce_development",
       "canonicalName": "Secretary for Labor and Workforce Development",
       "aliases": [
-        "Labor Secretary",
-        "Workforce Development Secretary"
+        "Secretary for Labor & Workforce Development Agency",
+        "Secretary for Labor and Workforce Development Agency"
       ],
       "spending": {
         "yearly": {
@@ -541,20 +458,17 @@
         "averageAge": null
       },
       "code": "0559",
-      "org_level": 3,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers"
+      "parentAgency": null
     },
     {
       "name": "Department of Conservation",
       "slug": "department_of_conservation",
       "canonicalName": "Department of Conservation",
-      "aliases": [
-        "California Department of Conservation",
-        "DOC"
-      ],
+      "aliases": [],
       "spending": {
         "yearly": {
           "FY2023": 245000000,
@@ -583,11 +497,234 @@
         "averageAge": null
       },
       "code": "3480",
-      "org_level": 4,
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
-      "parentAgency": "Natural Resources Agency"
+      "parentAgency": null
+    },
+    {
+      "name": "Department of Consumer Affairs",
+      "slug": "department_of_consumer_affairs",
+      "canonicalName": "Department of Consumer Affairs",
+      "aliases": [
+        "department of consumer affairs",
+        "consumer affairs"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": 725000000,
+          "FY2024": 755000000,
+          "FY2025": 785000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2022": 3742,
+            "2023": 3786,
+            "2024": 3842
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2022": 374200000,
+            "2023": 378600000,
+            "2024": 384200000
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Professional licensing boards and consumer protection",
+      "abbreviation": "",
+      "parentAgency": "Business, Consumer Services, and Housing Agency",
+      "code": "1111"
+    },
+    {
+      "name": "Department of Financial Protection and Innovation",
+      "slug": "department_of_financial_protection_and_innovation",
+      "canonicalName": "Department of Financial Protection and Innovation",
+      "aliases": [
+        "department of financial protection and innovation",
+        "financial protection and innovation",
+        "department of financial protection & innovation"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": 135000000,
+          "FY2024": 142000000,
+          "FY2025": 148000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2022": 760,
+            "2023": 782,
+            "2024": 785
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2022": 76000000,
+            "2023": 78200000,
+            "2024": 78500000
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Financial services regulation and consumer protection",
+      "abbreviation": "",
+      "parentAgency": "Business, Consumer Services, and Housing Agency",
+      "code": "1701"
+    },
+    {
+      "name": "Department of Real Estate",
+      "slug": "department_of_real_estate",
+      "canonicalName": "Department of Real Estate",
+      "aliases": [
+        "department of real estate",
+        "real estate"
+      ],
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Real estate licensing and regulation",
+      "abbreviation": "",
+      "parentAgency": "Business, Consumer Services, and Housing Agency",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": "2320"
+    },
+    {
+      "name": "California Department of Human Resources",
+      "slug": "california_department_of_human_resources",
+      "canonicalName": "California Department of Human Resources",
+      "aliases": [
+        "department of human resources"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": 130000000,
+          "FY2024": 136000000,
+          "FY2025": 142000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "": null
+          }
+        },
+        "wages": {
+          "yearly": {
+            "": null
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Manages state civil service system, including recruitment, selection, classification, compensation, benefits, and labor relations for state employees",
+      "abbreviation": "CalHR",
+      "parentAgency": "Government Operations Agency",
+      "code": "7501"
+    },
+    {
+      "name": "California Department of General Services",
+      "slug": "california_department_of_general_services",
+      "canonicalName": "California Department of General Services",
+      "aliases": [
+        "department of general services"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": 1200000000,
+          "FY2024": 1240000000,
+          "FY2025": 1280000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2022": 3742,
+            "2023": 3786,
+            "2024": 3842
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2022": 374200000,
+            "2023": 378600000,
+            "2024": 384200000
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Serves as the business manager for the state, providing procurement, real estate management, design and construction, fleet administration, printing, and other services to state agencies",
+      "abbreviation": "DGS",
+      "parentAgency": "Government Operations Agency",
+      "code": "7760"
+    },
+    {
+      "name": "Department of Technology",
+      "slug": "department_of_technology",
+      "canonicalName": "Department of Technology",
+      "aliases": [
+        "department of technology",
+        "technology"
+      ],
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Provides technology leadership, guidance, and oversight to state departments and is the guardian of public data, a leader in IT services and solutions, and an innovator in IT infrastructure",
+      "abbreviation": "CDT",
+      "parentAgency": "Government Operations Agency",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": "7502"
     },
     {
       "name": "Judicial Branch",
@@ -631,190 +768,395 @@
       "budget_status": "active",
       "keyFunctions": "Administrative body for judicial branch",
       "abbreviation": "",
-      "parentAgency": "California State Government",
+      "parentAgency": "Judicial Governance",
       "code": "0250"
     },
     {
-      "name": "Executive Branch",
-      "slug": "executive_branch",
-      "canonicalName": "Executive Branch",
+      "name": "California Department of Forestry and Fire Protection",
+      "slug": "3540_department_of_forestry_and_fire_protection",
+      "canonicalName": "California Department of Forestry and Fire Protection",
       "aliases": [
-        "executive branch"
+        "california department of forestry and fire protection",
+        "department of forestry and fire protection",
+        "california department of forestry & fire protection"
       ],
+      "spending": {
+        "yearly": {
+          "FY2023": 4320000000,
+          "FY2024": 4219999999.9999995,
+          "FY2025": 4350000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2022": 8492,
+            "2023": 9120,
+            "2024": 9749
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2022": 849200000,
+            "2023": 912000000,
+            "2024": 974900000
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
       "org_level": 1,
       "budget_status": "active",
-      "keyFunctions": "",
+      "keyFunctions": "Wildfire prevention and suppression",
       "abbreviation": "",
-      "parentAgency": "California State Government",
+      "parentAgency": "Natural Resources Agency",
+      "code": "3540"
+    },
+    {
+      "name": "Department of Fish and Wildlife",
+      "slug": "department_of_fish_and_wildlife",
+      "canonicalName": "Department of Fish and Wildlife",
+      "aliases": [
+        "department of fish and wildlife",
+        "fish and wildlife",
+        "department of fish & wildlife"
+      ],
       "spending": {
-        "yearly": {},
+        "yearly": {
+          "FY2023": 1120000000,
+          "FY2024": 680000000,
+          "FY2025": 710000000
+        },
         "stateOperations": {}
       },
       "workforce": {
         "headCount": {
-          "yearly": {}
+          "yearly": {
+            "2022": 2980,
+            "2023": 3188,
+            "2024": 3239
+          }
         },
         "wages": {
-          "yearly": {}
+          "yearly": {
+            "2022": 298000000,
+            "2023": 318800000,
+            "2024": 323900000
+          }
         },
         "averageTenureYears": null,
         "averageSalary": null,
         "averageAge": null
       },
-      "code": null
-    },
-    {
-      "name": "Legislative Branch",
-      "slug": "legislative_branch",
-      "canonicalName": "Legislative Branch",
-      "aliases": [
-        "legislative branch"
-      ],
       "org_level": 1,
       "budget_status": "active",
-      "keyFunctions": "",
+      "keyFunctions": "Wildlife conservation and management",
       "abbreviation": "",
-      "parentAgency": "California State Government",
-      "spending": {
-        "yearly": {},
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {}
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "code": "0110"
+      "parentAgency": "Natural Resources Agency",
+      "code": "3600"
     },
     {
-      "name": "Courts of Appeal",
-      "slug": "courts_of_appeal",
-      "canonicalName": "Courts of Appeal",
+      "name": "California Tahoe Conservancy",
+      "slug": "california_tahoe_conservancy",
+      "canonicalName": "California Tahoe Conservancy",
       "aliases": [
-        "courts of appeal"
+        "california tahoe conservancy",
+        "tahoe conservancy"
       ],
-      "org_level": 2,
-      "budget_status": "active",
-      "keyFunctions": "Appellate review of superior court cases",
-      "abbreviation": "",
-      "parentAgency": "Judicial Branch",
       "spending": {
-        "yearly": {},
+        "yearly": {
+          "FY2023": 28000000,
+          "FY2024": 56000000,
+          "FY2025": 13000000
+        },
         "stateOperations": {}
       },
       "workforce": {
         "headCount": {
-          "yearly": {}
+          "yearly": {
+            "2022": 48,
+            "2023": 51,
+            "2024": 51
+          }
         },
         "wages": {
-          "yearly": {}
+          "yearly": {
+            "2022": 4800000,
+            "2023": 5100000,
+            "2024": 5100000
+          }
         },
         "averageTenureYears": null,
         "averageSalary": null,
         "averageAge": null
       },
-      "code": null
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Environmental protection and restoration in the Lake Tahoe Basin",
+      "abbreviation": "",
+      "parentAgency": "Natural Resources Agency",
+      "code": "3125"
     },
     {
-      "name": "Supreme Court",
-      "slug": "supreme_court",
-      "canonicalName": "Supreme Court",
+      "name": "California Coastal Conservancy",
+      "slug": "california_coastal_conservancy",
+      "canonicalName": "California Coastal Conservancy",
       "aliases": [
-        "supreme court"
+        "california coastal conservancy",
+        "coastal conservancy"
       ],
-      "org_level": 2,
-      "budget_status": "active",
-      "keyFunctions": "Final appellate review",
-      "abbreviation": "",
-      "parentAgency": "Judicial Branch",
       "spending": {
-        "yearly": {},
+        "yearly": {
+          "FY2023": 74000000,
+          "FY2024": 76000000,
+          "FY2025": 78000000
+        },
         "stateOperations": {}
       },
       "workforce": {
         "headCount": {
-          "yearly": {}
+          "yearly": {
+            "2022": 72,
+            "2023": 74,
+            "2024": 76
+          }
         },
         "wages": {
-          "yearly": {}
+          "yearly": {
+            "2022": 7200000,
+            "2023": 7400000,
+            "2024": 7600000
+          }
         },
         "averageTenureYears": null,
         "averageSalary": null,
         "averageAge": null
       },
-      "code": null
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Coastal protection and access projects",
+      "abbreviation": "",
+      "parentAgency": "Natural Resources Agency",
+      "code": "3760"
     },
     {
-      "name": "Trial Courts",
-      "slug": "trial_courts",
-      "canonicalName": "Trial Courts",
+      "name": "California Coastal Commission",
+      "slug": "california_coastal_commission",
+      "canonicalName": "California Coastal Commission",
       "aliases": [
-        "trial courts"
+        "california coastal commission",
+        "coastal commission",
+        "california coastal",
+        "commission california coastal"
       ],
-      "org_level": 2,
-      "budget_status": "active",
-      "keyFunctions": "Trial court jurisdiction",
-      "abbreviation": "",
-      "parentAgency": "Judicial Branch",
       "spending": {
-        "yearly": {},
+        "yearly": {
+          "FY2023": 186000000,
+          "FY2024": 193000000,
+          "FY2025": 198000000
+        },
         "stateOperations": {}
       },
       "workforce": {
         "headCount": {
-          "yearly": {}
+          "yearly": {
+            "2022": 178,
+            "2023": 186,
+            "2024": 193
+          }
         },
         "wages": {
-          "yearly": {}
+          "yearly": {
+            "2022": 17800000,
+            "2023": 18600000,
+            "2024": 19300000
+          }
         },
         "averageTenureYears": null,
         "averageSalary": null,
         "averageAge": null
       },
-      "code": null
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Coastal zone planning and management",
+      "abbreviation": "",
+      "parentAgency": "Natural Resources Agency",
+      "code": "3720"
     },
     {
-      "name": "Legislature",
-      "slug": "legislature",
-      "canonicalName": "Legislature",
+      "name": "California State Lands Commission",
+      "slug": "california_state_lands_commission",
+      "canonicalName": "California State Lands Commission",
       "aliases": [
-        "legislature"
+        "state lands commission"
       ],
-      "org_level": 2,
-      "budget_status": "active",
-      "keyFunctions": "",
-      "abbreviation": "",
-      "parentAgency": "Legislative Branch",
       "spending": {
-        "yearly": {},
+        "yearly": {
+          "FY2023": 234000000,
+          "FY2024": 242000000,
+          "FY2025": 248000000
+        },
         "stateOperations": {}
       },
       "workforce": {
         "headCount": {
-          "yearly": {}
+          "yearly": {
+            "2022": 226,
+            "2023": 234,
+            "2024": 242
+          }
         },
         "wages": {
-          "yearly": {}
+          "yearly": {
+            "2022": 22600000,
+            "2023": 23400000,
+            "2024": 24200000
+          }
         },
         "averageTenureYears": null,
         "averageSalary": null,
         "averageAge": null
       },
-      "code": null
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Management of state lands and resources",
+      "abbreviation": "",
+      "parentAgency": "Natural Resources Agency",
+      "code": "3560"
+    },
+    {
+      "name": "California Department of Transportation",
+      "slug": "california_department_of_transportation",
+      "canonicalName": "California Department of Transportation",
+      "aliases": [
+        "department of transportation"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": 20735000000,
+          "FY2024": 21359000000,
+          "FY2025": 21980000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2022": 20113,
+            "2023": 20735,
+            "2024": 21359
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2022": 2011300000,
+            "2023": 2073500000,
+            "2024": 2135900000
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Highway and transportation infrastructure",
+      "abbreviation": "Caltrans",
+      "parentAgency": "Transportation Agency",
+      "code": "2660"
+    },
+    {
+      "name": "California Highway Patrol",
+      "slug": "california_highway_patrol",
+      "canonicalName": "California Highway Patrol",
+      "aliases": [
+        "california highway patrol",
+        "highway patrol"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": 2950000000,
+          "FY2024": 3050000000,
+          "FY2025": 3150000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2022": 11168,
+            "2023": 11255,
+            "2024": 11342
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2022": 1116800000,
+            "2023": 1125500000,
+            "2024": 1134200000
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Traffic safety and law enforcement",
+      "abbreviation": "CHP",
+      "parentAgency": "Transportation Agency",
+      "code": "2720"
+    },
+    {
+      "name": "Department of Motor Vehicles",
+      "slug": "department_of_motor_vehicles",
+      "canonicalName": "Department of Motor Vehicles",
+      "aliases": [
+        "department of motor vehicles",
+        "motor vehicles"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": 1450000000,
+          "FY2024": 1520000000,
+          "FY2025": 1580000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2022": 8542,
+            "2023": 8639,
+            "2024": 8763
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2022": 854200000,
+            "2023": 863900000,
+            "2024": 876300000
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 1,
+      "budget_status": "active",
+      "keyFunctions": "Vehicle registration and driver licensing",
+      "abbreviation": "DMV",
+      "parentAgency": "Transportation Agency",
+      "code": "2740"
     },
     {
       "name": "Department of Parks and Recreation",
       "slug": "department_of_parks_and_recreation",
       "canonicalName": "Department of Parks and Recreation",
       "aliases": [
-        "California Department of Parks and Recreation",
-        "State Parks"
+        "department of parks and recreation"
       ],
       "spending": {
         "yearly": {
@@ -839,12 +1181,54 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 4,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Management of state parks, beaches, and historic sites",
       "abbreviation": "",
-      "parentAgency": "Natural Resources Agency",
+      "parentAgency": "Executive Branch",
       "code": "3790"
+    },
+    {
+      "name": "California Conservation Corps",
+      "slug": "california_conservation_corps",
+      "canonicalName": "California Conservation Corps",
+      "aliases": [
+        "california conservation corps",
+        "conservation corps"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": 160000000,
+          "FY2024": 150000000,
+          "FY2025": 160000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2022": 298,
+            "2023": 312,
+            "2024": 318
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2022": 29800000,
+            "2023": 31200000,
+            "2024": 31800000
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 2,
+      "budget_status": "active",
+      "keyFunctions": "Conservation work and youth development",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "code": "3340"
     },
     {
       "name": "California Natural Resources Agency",
@@ -880,7 +1264,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Oversees and coordinates the state's natural resources programs",
       "abbreviation": "",
@@ -921,7 +1305,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Management of Exposition Park cultural and recreational facilities",
       "abbreviation": "",
@@ -959,7 +1343,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Protection of public health through disease prevention, health promotion, and health equity initiatives",
       "abbreviation": "",
@@ -998,7 +1382,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Operation of state prisons, rehabilitation programs, parole supervision, and juvenile justice facilities",
       "abbreviation": "",
@@ -1036,7 +1420,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Administration of Medi-Cal and other health care programs for low-income Californians",
       "abbreviation": "",
@@ -1048,36 +1432,36 @@
       "slug": "california_department_of_education",
       "canonicalName": "California Department of Education",
       "aliases": [
-        "Superintendent of Public Instruction",
-        "California Department of Education",
-        "State Department of Education"
+        "department of education"
       ],
-      "org_level": 3,
-      "budget_status": "active",
-      "keyFunctions": "Administration of TK-12 education programs, technical assistance to local school districts, and improving academic performance",
-      "abbreviation": "CDE",
-      "parentAgency": "Constitutional Officers",
       "spending": {
         "yearly": {
-          "FY2023": 105713944,
-          "FY2024": 105265968
+          "FY2023": 2392000000,
+          "FY2024": 2486000000,
+          "FY2025": 2550000000
         },
         "stateOperations": {}
       },
       "workforce": {
         "headCount": {
           "yearly": {
-            "2023": 2664.2,
-            "2024": 2660.2
+            "": null
           }
         },
         "wages": {
-          "yearly": {}
+          "yearly": {
+            "": null
+          }
         },
         "averageTenureYears": null,
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
+      "budget_status": "active",
+      "keyFunctions": "Oversight of the state's public school system, curriculum development, and educational policy",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
       "code": "6100"
     },
     {
@@ -1116,7 +1500,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Oversees environmental protection, pollution control, and climate change programs",
       "abbreviation": "",
@@ -1128,9 +1512,8 @@
       "slug": "department_of_justice",
       "canonicalName": "Department of Justice",
       "aliases": [
-        "Attorney General",
-        "Office of the Attorney General",
-        "California Department of Justice"
+        "department of justice",
+        "justice"
       ],
       "spending": {
         "yearly": {
@@ -1159,11 +1542,11 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Chief law officer, provides legal services to state government",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers",
+      "parentAgency": "Executive Branch",
       "code": "0820"
     },
     {
@@ -1171,8 +1554,8 @@
       "slug": "state_controller",
       "canonicalName": "State Controller",
       "aliases": [
-        "State Controller's Office",
-        "California State Controller"
+        "state controller",
+        "controller"
       ],
       "spending": {
         "yearly": {
@@ -1201,11 +1584,11 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Chief fiscal officer, responsible for state disbursements and financial controls",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers",
+      "parentAgency": "Executive Branch",
       "code": "0840"
     },
     {
@@ -1213,9 +1596,8 @@
       "slug": "department_of_insurance",
       "canonicalName": "Department of Insurance",
       "aliases": [
-        "Insurance Commissioner",
-        "California Department of Insurance",
-        "Office of the Insurance Commissioner"
+        "department of insurance",
+        "insurance"
       ],
       "spending": {
         "yearly": {
@@ -1244,11 +1626,11 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Regulates insurance industry and protects consumers",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers",
+      "parentAgency": "Executive Branch",
       "code": "0845"
     },
     {
@@ -1256,8 +1638,8 @@
       "slug": "secretary_of_state",
       "canonicalName": "Secretary of State",
       "aliases": [
-        "California Secretary of State",
-        "Secretary of State's Office"
+        "secretary of state",
+        "state"
       ],
       "spending": {
         "yearly": {
@@ -1286,22 +1668,20 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Chief elections officer, keeper of state records and business filings",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers",
+      "parentAgency": "Executive Branch",
       "code": "0890"
     },
     {
-      "name": "State Treasurer",
-      "slug": "state_treasurer",
-      "canonicalName": "State Treasurer",
+      "name": "State Treasurer's Office",
+      "slug": "state_treasurers_office",
+      "canonicalName": "State Treasurer's Office",
       "aliases": [
-        "State Treasurer's Office",
-        "California State Treasurer",
-        "Office of the State Treasurer",
-        "Treasurer's Office"
+        "Department of State Treasurer",
+        "State Treasurer"
       ],
       "spending": {
         "yearly": {
@@ -1330,11 +1710,11 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "State's banker, manages investments and debt",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers",
+      "parentAgency": "Executive Branch",
       "code": "0950"
     },
     {
@@ -1373,7 +1753,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Civil rights enforcement and protection",
       "abbreviation": "",
@@ -1415,7 +1795,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Chief executive of the state, responsible for implementing state laws and coordinating state agencies",
       "abbreviation": "",
@@ -1457,7 +1837,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Business development and economic growth",
       "abbreviation": "",
@@ -1469,8 +1849,7 @@
       "slug": "secretary_for_government_operations",
       "canonicalName": "Secretary for Government Operations",
       "aliases": [
-        "GovOps Secretary",
-        "Government Operations Secretary"
+        "government operations"
       ],
       "spending": {
         "yearly": {
@@ -1499,11 +1878,11 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Oversees state operations including procurement, technology, human resources, and administrative functions",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers",
+      "parentAgency": "Executive Branch",
       "code": "0511"
     },
     {
@@ -1511,8 +1890,7 @@
       "slug": "secretary_of_business_consumer_services_and_housing",
       "canonicalName": "Secretary of Business, Consumer Services and Housing",
       "aliases": [
-        "BCSH Secretary",
-        "Business and Consumer Services Secretary"
+        "business consumer services and housing"
       ],
       "spending": {
         "yearly": {
@@ -1541,11 +1919,11 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Oversees departments responsible for business oversight, consumer protection, housing policy, and professional licensing",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers",
+      "parentAgency": "Executive Branch",
       "code": "0515"
     },
     {
@@ -1553,8 +1931,7 @@
       "slug": "secretary_of_transportation",
       "canonicalName": "Secretary of Transportation",
       "aliases": [
-        "Transportation Secretary",
-        "CalSTA Secretary"
+        "transportation"
       ],
       "spending": {
         "yearly": {
@@ -1583,12 +1960,55 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Oversees state transportation systems and infrastructure",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers",
+      "parentAgency": "Executive Branch",
       "code": "0521"
+    },
+    {
+      "name": "Office of Planning and Research",
+      "slug": "office_of_planning_and_research",
+      "canonicalName": "Office of Planning and Research",
+      "aliases": [
+        "office of planning and research",
+        "planning and research",
+        "office of planning & research"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": 32000000,
+          "FY2024": 34000000,
+          "FY2025": 35000000
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2022": 298,
+            "2023": 312,
+            "2024": 318
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2022": 29800000,
+            "2023": 31200000,
+            "2024": 31800000
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 2,
+      "budget_status": "active",
+      "keyFunctions": "State planning and policy development",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "code": "0650"
     },
     {
       "name": "Office of Emergency Services",
@@ -1625,7 +2045,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Emergency management and disaster response coordination",
       "abbreviation": "",
@@ -1636,11 +2056,7 @@
       "name": "Office of the Lieutenant Governor",
       "slug": "office_of_the_lieutenant_governor",
       "canonicalName": "Office of the Lieutenant Governor",
-      "aliases": [
-        "Lieutenant Governor",
-        "Office of Lieutenant Governor",
-        "Lieutenant Governor's Office"
-      ],
+      "aliases": [],
       "spending": {
         "yearly": {
           "FY2023": 3000000,
@@ -1668,11 +2084,11 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Second highest executive officer, acting governor when governor is absent",
       "abbreviation": "",
-      "parentAgency": "Constitutional Officers",
+      "parentAgency": "Executive Branch",
       "code": "0750"
     },
     {
@@ -1711,7 +2127,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Colorado River water resources management",
       "abbreviation": "",
@@ -1754,7 +2170,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -1797,12 +2213,160 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 3,
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Protection of Native American cultural resources",
       "abbreviation": "",
       "parentAgency": "Executive Branch",
       "code": "3780"
+    },
+    {
+      "name": "Executive Branch",
+      "slug": "executive_branch",
+      "canonicalName": "Executive Branch",
+      "aliases": [
+        "executive branch"
+      ],
+      "org_level": 2,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "Legislative Branch",
+      "slug": "legislative_branch",
+      "canonicalName": "Legislative Branch",
+      "aliases": [
+        "legislative branch"
+      ],
+      "org_level": 2,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Legislative Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": "0110"
+    },
+    {
+      "name": "Courts of Appeal",
+      "slug": "courts_of_appeal",
+      "canonicalName": "Courts of Appeal",
+      "aliases": [
+        "courts of appeal"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "Appellate review of superior court cases",
+      "abbreviation": "",
+      "parentAgency": "Courts of Appeal",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "Franchise Tax Board",
+      "slug": "franchise_tax_board",
+      "canonicalName": "Franchise Tax Board",
+      "aliases": [
+        "franchise tax board",
+        "franchise tax",
+        "board franchise tax"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "Income tax collection",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": "7730"
+    },
+    {
+      "name": "High-Speed Rail Authority",
+      "slug": "high_speed_rail_authority",
+      "canonicalName": "High-Speed Rail Authority",
+      "aliases": [
+        "high-speed rail authority",
+        "high-speed rail"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "High-speed rail development",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": "2665"
     },
     {
       "name": "Senate Advisory Commission on cost Control in State Gov",
@@ -2323,6 +2887,37 @@
         "early childhood policy council",
         "early childhood policy",
         "council early childhood policy"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "Early Childhood Policy Council Parent Adv. Committee",
+      "slug": "early_childhood_policy_council_parent_adv_committee",
+      "canonicalName": "Early Childhood Policy Council Parent Adv. Committee",
+      "aliases": [
+        "early childhood policy council parent adv. committee",
+        "early childhood policy council parent adv.",
+        "committee early childhood policy council parent adv."
       ],
       "org_level": 3,
       "budget_status": "active",
@@ -3867,6 +4462,37 @@
       "code": null
     },
     {
+      "name": "Los Angeles Memorial Coliseum Commission",
+      "slug": "los_angeles_memorial_coliseum_commission",
+      "canonicalName": "Los Angeles Memorial Coliseum Commission",
+      "aliases": [
+        "los angeles memorial coliseum commission",
+        "los angeles memorial coliseum",
+        "commission los angeles memorial coliseum"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
       "name": "Marine Preservation, CA Endowment Board of Directors",
       "slug": "marine_preservation_ca_endowment_board_of_directors",
       "canonicalName": "Marine Preservation, CA Endowment Board of Directors",
@@ -4589,6 +5215,37 @@
       "canonicalName": "Pharmacy, State Board of",
       "aliases": [
         "pharmacy state board of"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "Physical Therapy Board",
+      "slug": "physical_therapy_board",
+      "canonicalName": "Physical Therapy Board",
+      "aliases": [
+        "physical therapy board",
+        "physical therapy",
+        "board physical therapy"
       ],
       "org_level": 3,
       "budget_status": "active",
@@ -6926,6 +7583,36 @@
       "code": null
     },
     {
+      "name": "Housing Committee - Housing and Homeless Acts 1988, 1990",
+      "slug": "housing_committee_housing_and_homeless_acts_1988_1990",
+      "canonicalName": "Housing Committee - Housing and Homeless Acts 1988, 1990",
+      "aliases": [
+        "housing committee - housing and homeless acts 1988 1990",
+        "housing committee - housing & homeless acts 1988 1990"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
       "name": "Housing Finance Committee",
       "slug": "housing_finance_committee",
       "canonicalName": "Housing Finance Committee",
@@ -7670,6 +8357,256 @@
       "code": null
     },
     {
+      "name": "California School Finance Authority",
+      "slug": "california_school_finance_authority",
+      "canonicalName": "California School Finance Authority",
+      "aliases": [
+        "california school finance authority",
+        "school finance authority",
+        "california school finance"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "Local Investment Advisory Board",
+      "slug": "local_investment_advisory_board",
+      "canonicalName": "Local Investment Advisory Board",
+      "aliases": [
+        "local investment advisory board",
+        "local investment advisory",
+        "board local investment advisory"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "California Competes Tax Credit Committee",
+      "slug": "california_competes_tax_credit_committee",
+      "canonicalName": "California Competes Tax Credit Committee",
+      "aliases": [
+        "california competes tax credit committee",
+        "competes tax credit committee",
+        "california competes tax credit",
+        "committee california competes tax credit"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "California Earthquake Authority",
+      "slug": "california_earthquake_authority",
+      "canonicalName": "California Earthquake Authority",
+      "aliases": [
+        "california earthquake authority",
+        "earthquake authority",
+        "california earthquake"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "California Housing Finance Agency",
+      "slug": "california_housing_finance_agency",
+      "canonicalName": "California Housing Finance Agency",
+      "aliases": [
+        "california housing finance agency",
+        "housing finance agency",
+        "california housing finance"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "California Infrastructure and Economic Development Bank",
+      "slug": "california_infrastructure_and_economic_development_bank",
+      "canonicalName": "California Infrastructure and Economic Development Bank",
+      "aliases": [
+        "california infrastructure and economic development bank",
+        "infrastructure and economic development bank",
+        "california infrastructure & economic development bank"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": "0971"
+    },
+    {
+      "name": "California State University Investment Advisory Committee",
+      "slug": "california_state_university_investment_advisory_committee",
+      "canonicalName": "California State University Investment Advisory Committee",
+      "aliases": [
+        "california state university investment advisory committee",
+        "state university investment advisory committee",
+        "california state university investment advisory",
+        "committee california state university investment advisory"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "No Place Like Home Program Advisory Board",
+      "slug": "no_place_like_home_program_advisory_board",
+      "canonicalName": "No Place Like Home Program Advisory Board",
+      "aliases": [
+        "no place like home program advisory board",
+        "no place like home program advisory",
+        "board no place like home program advisory"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
       "name": "California Clean Water, Clean Air, Safe Neighborhood Parks and Coastal Protection Act Finance Committee",
       "slug": "california_clean_water_clean_air_safe_neighborhood_parks_and_coastal_protection_act_finance_committee",
       "canonicalName": "California Clean Water, Clean Air, Safe Neighborhood Parks and Coastal Protection Act Finance Committee",
@@ -7863,6 +8800,65 @@
       "code": null
     },
     {
+      "name": "State Compensation Insurance Fund",
+      "slug": "state_compensation_insurance_fund",
+      "canonicalName": "State Compensation Insurance Fund",
+      "aliases": [
+        "state compensation insurance fund",
+        "compensation insurance fund"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "Workers' compensation insurance",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": "8885"
+    },
+    {
+      "name": "Commission on Teacher Credentialing",
+      "slug": "commission_on_teacher_credentialing",
+      "canonicalName": "Commission on Teacher Credentialing",
+      "aliases": [
+        "commission on teacher credentialing"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "Teacher certification and standards",
+      "abbreviation": "",
+      "parentAgency": "Executive Branch",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": "6360"
+    },
+    {
       "name": "K-12 Education",
       "slug": "k_12_education",
       "canonicalName": "K-12 Education",
@@ -7921,17 +8917,17 @@
       "code": "6440"
     },
     {
-      "name": "Student Aid Commission",
-      "slug": "student_aid_commission",
-      "canonicalName": "Student Aid Commission",
+      "name": "Legislature",
+      "slug": "legislature",
+      "canonicalName": "Legislature",
       "aliases": [
-        "student aid commission"
+        "legislature"
       ],
       "org_level": 3,
       "budget_status": "active",
-      "keyFunctions": "Financial aid administration for higher education",
-      "abbreviation": "CSAC",
-      "parentAgency": "Executive Branch",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "parentAgency": "Legislature",
       "spending": {
         "yearly": {},
         "stateOperations": {}
@@ -7947,7 +8943,65 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "code": "6980"
+      "code": null
+    },
+    {
+      "name": "Supreme Court",
+      "slug": "supreme_court",
+      "canonicalName": "Supreme Court",
+      "aliases": [
+        "supreme court"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "Final appellate review",
+      "abbreviation": "",
+      "parentAgency": "Supreme Court",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
+      "name": "Trial Courts",
+      "slug": "trial_courts",
+      "canonicalName": "Trial Courts",
+      "aliases": [
+        "trial courts"
+      ],
+      "org_level": 3,
+      "budget_status": "active",
+      "keyFunctions": "Trial court jurisdiction",
+      "abbreviation": "",
+      "parentAgency": "Trial Courts",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
     },
     {
       "name": "Assembly",
@@ -7956,11 +9010,11 @@
       "aliases": [
         "assembly"
       ],
-      "org_level": 3,
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "Lower house of legislature",
       "abbreviation": "",
-      "parentAgency": "Legislature",
+      "parentAgency": "Assembly",
       "spending": {
         "yearly": {},
         "stateOperations": {}
@@ -7977,179 +9031,6 @@
         "averageAge": null
       },
       "code": null
-    },
-    {
-      "name": "Legislative Counsel Bureau",
-      "slug": "legislative_counsel_bureau",
-      "canonicalName": "Legislative Counsel Bureau",
-      "aliases": [
-        "legislative counsel bureau"
-      ],
-      "org_level": 3,
-      "budget_status": "active",
-      "keyFunctions": "Legal services for legislature",
-      "abbreviation": "",
-      "parentAgency": "Legislature",
-      "spending": {
-        "yearly": {},
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {}
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "code": null
-    },
-    {
-      "name": "Senate",
-      "slug": "senate",
-      "canonicalName": "Senate",
-      "aliases": [
-        "senate"
-      ],
-      "org_level": 3,
-      "budget_status": "active",
-      "keyFunctions": "Upper house of legislature",
-      "abbreviation": "",
-      "parentAgency": "Legislature",
-      "spending": {
-        "yearly": {},
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {}
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "code": null
-    },
-    {
-      "name": "Department of Consumer Affairs",
-      "slug": "department_of_consumer_affairs",
-      "canonicalName": "Department of Consumer Affairs",
-      "aliases": [
-        "department of consumer affairs",
-        "consumer affairs"
-      ],
-      "spending": {
-        "yearly": {
-          "FY2023": 725000000,
-          "FY2024": 755000000,
-          "FY2025": 785000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2022": 3742,
-            "2023": 3786,
-            "2024": 3842
-          }
-        },
-        "wages": {
-          "yearly": {
-            "2022": 374200000,
-            "2023": 378600000,
-            "2024": 384200000
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Professional licensing boards and consumer protection",
-      "abbreviation": "",
-      "parentAgency": "Business, Consumer Services, and Housing Agency",
-      "code": "1111"
-    },
-    {
-      "name": "Department of Financial Protection and Innovation",
-      "slug": "department_of_financial_protection_and_innovation",
-      "canonicalName": "Department of Financial Protection and Innovation",
-      "aliases": [
-        "department of financial protection and innovation",
-        "financial protection and innovation",
-        "department of financial protection & innovation"
-      ],
-      "spending": {
-        "yearly": {
-          "FY2023": 135000000,
-          "FY2024": 142000000,
-          "FY2025": 148000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2022": 760,
-            "2023": 782,
-            "2024": 785
-          }
-        },
-        "wages": {
-          "yearly": {
-            "2022": 76000000,
-            "2023": 78200000,
-            "2024": 78500000
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Financial services regulation and consumer protection",
-      "abbreviation": "",
-      "parentAgency": "Business, Consumer Services, and Housing Agency",
-      "code": "1701"
-    },
-    {
-      "name": "Department of Real Estate",
-      "slug": "department_of_real_estate",
-      "canonicalName": "Department of Real Estate",
-      "aliases": [
-        "department of real estate",
-        "real estate"
-      ],
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Real estate licensing and regulation",
-      "abbreviation": "",
-      "parentAgency": "Business, Consumer Services, and Housing Agency",
-      "spending": {
-        "yearly": {},
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {}
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "code": "2320"
     },
     {
       "name": "Air Resources Board",
@@ -8250,19 +9131,17 @@
       "code": "3360"
     },
     {
-      "name": "Franchise Tax Board",
-      "slug": "franchise_tax_board",
-      "canonicalName": "Franchise Tax Board",
+      "name": "Student Aid Commission",
+      "slug": "student_aid_commission",
+      "canonicalName": "Student Aid Commission",
       "aliases": [
-        "franchise tax board",
-        "franchise tax",
-        "board franchise tax"
+        "student aid commission"
       ],
       "org_level": 4,
       "budget_status": "active",
-      "keyFunctions": "Income tax collection",
-      "abbreviation": "",
-      "parentAgency": "Executive Branch",
+      "keyFunctions": "Financial aid administration for higher education",
+      "abbreviation": "CSAC",
+      "parentAgency": "Higher Education",
       "spending": {
         "yearly": {},
         "stateOperations": {}
@@ -8278,204 +9157,7 @@
         "averageSalary": null,
         "averageAge": null
       },
-      "code": "7730"
-    },
-    {
-      "name": "High-Speed Rail Authority",
-      "slug": "high_speed_rail_authority",
-      "canonicalName": "High-Speed Rail Authority",
-      "aliases": [
-        "high-speed rail authority",
-        "high-speed rail"
-      ],
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "High-speed rail development",
-      "abbreviation": "",
-      "parentAgency": "Executive Branch",
-      "spending": {
-        "yearly": {},
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {}
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "code": "2665"
-    },
-    {
-      "name": "State Compensation Insurance Fund",
-      "slug": "state_compensation_insurance_fund",
-      "canonicalName": "State Compensation Insurance Fund",
-      "aliases": [
-        "state compensation insurance fund",
-        "compensation insurance fund"
-      ],
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Workers' compensation insurance",
-      "abbreviation": "",
-      "parentAgency": "Executive Branch",
-      "spending": {
-        "yearly": {},
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {}
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "code": "8885"
-    },
-    {
-      "name": "Commission on Teacher Credentialing",
-      "slug": "commission_on_teacher_credentialing",
-      "canonicalName": "Commission on Teacher Credentialing",
-      "aliases": [
-        "commission on teacher credentialing"
-      ],
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Teacher certification and standards",
-      "abbreviation": "",
-      "parentAgency": "Executive Branch",
-      "spending": {
-        "yearly": {},
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {}
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "code": "6360"
-    },
-    {
-      "name": "California Department of Human Resources",
-      "slug": "california_department_of_human_resources",
-      "canonicalName": "California Department of Human Resources",
-      "aliases": [
-        "department of human resources"
-      ],
-      "spending": {
-        "yearly": {
-          "FY2023": 130000000,
-          "FY2024": 136000000,
-          "FY2025": 142000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "": null
-          }
-        },
-        "wages": {
-          "yearly": {
-            "": null
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Manages state civil service system, including recruitment, selection, classification, compensation, benefits, and labor relations for state employees",
-      "abbreviation": "CalHR",
-      "parentAgency": "Government Operations Agency",
-      "code": "7501"
-    },
-    {
-      "name": "California Department of General Services",
-      "slug": "california_department_of_general_services",
-      "canonicalName": "California Department of General Services",
-      "aliases": [
-        "department of general services"
-      ],
-      "spending": {
-        "yearly": {
-          "FY2023": 1200000000,
-          "FY2024": 1240000000,
-          "FY2025": 1280000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2022": 3742,
-            "2023": 3786,
-            "2024": 3842
-          }
-        },
-        "wages": {
-          "yearly": {
-            "2022": 374200000,
-            "2023": 378600000,
-            "2024": 384200000
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Serves as the business manager for the state, providing procurement, real estate management, design and construction, fleet administration, printing, and other services to state agencies",
-      "abbreviation": "DGS",
-      "parentAgency": "Government Operations Agency",
-      "code": "7760"
-    },
-    {
-      "name": "Department of Technology",
-      "slug": "department_of_technology",
-      "canonicalName": "Department of Technology",
-      "aliases": [
-        "department of technology",
-        "technology"
-      ],
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Provides technology leadership, guidance, and oversight to state departments and is the guardian of public data, a leader in IT services and solutions, and an innovator in IT infrastructure",
-      "abbreviation": "CDT",
-      "parentAgency": "Government Operations Agency",
-      "spending": {
-        "yearly": {},
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {}
-        },
-        "wages": {
-          "yearly": {}
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "code": "7502"
+      "code": "6980"
     },
     {
       "name": "University of California",
@@ -8597,6 +9279,33 @@
       "code": null
     },
     {
+      "name": "Department of Education",
+      "slug": "department_of_education",
+      "canonicalName": "Department of Education",
+      "aliases": [],
+      "org_level": 4,
+      "budget_status": "active",
+      "keyFunctions": "Policy implementation",
+      "abbreviation": "",
+      "parentAgency": "K-12 Education",
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "code": null
+    },
+    {
       "name": "County Offices of Education (58)",
       "slug": "county_offices_of_education_58_",
       "canonicalName": "County Offices of Education (58)",
@@ -8655,342 +9364,62 @@
       "code": null
     },
     {
-      "name": "California Department of Forestry and Fire Protection",
-      "slug": "3540_department_of_forestry_and_fire_protection",
-      "canonicalName": "California Department of Forestry and Fire Protection",
+      "name": "Legislative Counsel Bureau",
+      "slug": "legislative_counsel_bureau",
+      "canonicalName": "Legislative Counsel Bureau",
       "aliases": [
-        "california department of forestry and fire protection",
-        "department of forestry and fire protection",
-        "california department of forestry & fire protection"
+        "legislative counsel bureau"
       ],
-      "spending": {
-        "yearly": {
-          "FY2023": 4320000000,
-          "FY2024": 4219999999.9999995,
-          "FY2025": 4350000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2022": 8492,
-            "2023": 9120,
-            "2024": 9749
-          }
-        },
-        "wages": {
-          "yearly": {
-            "2022": 849200000,
-            "2023": 912000000,
-            "2024": 974900000
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
       "org_level": 4,
       "budget_status": "active",
-      "keyFunctions": "Wildfire prevention and suppression",
+      "keyFunctions": "Legal services for legislature",
       "abbreviation": "",
-      "parentAgency": "Natural Resources Agency",
-      "code": "3540"
-    },
-    {
-      "name": "Department of Fish and Wildlife",
-      "slug": "department_of_fish_and_wildlife",
-      "canonicalName": "Department of Fish and Wildlife",
-      "aliases": [
-        "department of fish and wildlife",
-        "fish and wildlife",
-        "department of fish & wildlife"
-      ],
+      "parentAgency": "Legislative Counsel Bureau",
       "spending": {
-        "yearly": {
-          "FY2023": 1120000000,
-          "FY2024": 680000000,
-          "FY2025": 710000000
-        },
+        "yearly": {},
         "stateOperations": {}
       },
       "workforce": {
         "headCount": {
-          "yearly": {
-            "2022": 2980,
-            "2023": 3188,
-            "2024": 3239
-          }
+          "yearly": {}
         },
         "wages": {
-          "yearly": {
-            "2022": 298000000,
-            "2023": 318800000,
-            "2024": 323900000
-          }
+          "yearly": {}
         },
         "averageTenureYears": null,
         "averageSalary": null,
         "averageAge": null
       },
+      "code": null
+    },
+    {
+      "name": "Senate",
+      "slug": "senate",
+      "canonicalName": "Senate",
+      "aliases": [
+        "senate"
+      ],
       "org_level": 4,
       "budget_status": "active",
-      "keyFunctions": "Wildlife conservation and management",
+      "keyFunctions": "Upper house of legislature",
       "abbreviation": "",
-      "parentAgency": "Natural Resources Agency",
-      "code": "3600"
-    },
-    {
-      "name": "California Tahoe Conservancy",
-      "slug": "california_tahoe_conservancy",
-      "canonicalName": "California Tahoe Conservancy",
-      "aliases": [
-        "california tahoe conservancy",
-        "tahoe conservancy"
-      ],
+      "parentAgency": "Senate",
       "spending": {
-        "yearly": {
-          "FY2023": 28000000,
-          "FY2024": 56000000,
-          "FY2025": 13000000
-        },
+        "yearly": {},
         "stateOperations": {}
       },
       "workforce": {
         "headCount": {
-          "yearly": {
-            "2022": 48,
-            "2023": 51,
-            "2024": 51
-          }
+          "yearly": {}
         },
         "wages": {
-          "yearly": {
-            "2022": 4800000,
-            "2023": 5100000,
-            "2024": 5100000
-          }
+          "yearly": {}
         },
         "averageTenureYears": null,
         "averageSalary": null,
         "averageAge": null
       },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Environmental protection and restoration in the Lake Tahoe Basin",
-      "abbreviation": "",
-      "parentAgency": "Natural Resources Agency",
-      "code": "3125"
-    },
-    {
-      "name": "California Coastal Conservancy",
-      "slug": "california_coastal_conservancy",
-      "canonicalName": "California Coastal Conservancy",
-      "aliases": [
-        "california coastal conservancy",
-        "coastal conservancy"
-      ],
-      "spending": {
-        "yearly": {
-          "FY2023": 74000000,
-          "FY2024": 76000000,
-          "FY2025": 78000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2022": 72,
-            "2023": 74,
-            "2024": 76
-          }
-        },
-        "wages": {
-          "yearly": {
-            "2022": 7200000,
-            "2023": 7400000,
-            "2024": 7600000
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Coastal protection and access projects",
-      "abbreviation": "",
-      "parentAgency": "Natural Resources Agency",
-      "code": "3760"
-    },
-    {
-      "name": "California Coastal Commission",
-      "slug": "california_coastal_commission",
-      "canonicalName": "California Coastal Commission",
-      "aliases": [
-        "california coastal commission",
-        "coastal commission",
-        "california coastal",
-        "commission california coastal"
-      ],
-      "spending": {
-        "yearly": {
-          "FY2023": 186000000,
-          "FY2024": 193000000,
-          "FY2025": 198000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2022": 178,
-            "2023": 186,
-            "2024": 193
-          }
-        },
-        "wages": {
-          "yearly": {
-            "2022": 17800000,
-            "2023": 18600000,
-            "2024": 19300000
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Coastal zone planning and management",
-      "abbreviation": "",
-      "parentAgency": "Natural Resources Agency",
-      "code": "3720"
-    },
-    {
-      "name": "California State Lands Commission",
-      "slug": "california_state_lands_commission",
-      "canonicalName": "California State Lands Commission",
-      "aliases": [
-        "state lands commission"
-      ],
-      "spending": {
-        "yearly": {
-          "FY2023": 234000000,
-          "FY2024": 242000000,
-          "FY2025": 248000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2022": 226,
-            "2023": 234,
-            "2024": 242
-          }
-        },
-        "wages": {
-          "yearly": {
-            "2022": 22600000,
-            "2023": 23400000,
-            "2024": 24200000
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Management of state lands and resources",
-      "abbreviation": "",
-      "parentAgency": "Natural Resources Agency",
-      "code": "3560"
-    },
-    {
-      "name": "California Department of Transportation",
-      "slug": "california_department_of_transportation",
-      "canonicalName": "California Department of Transportation",
-      "aliases": [
-        "department of transportation"
-      ],
-      "spending": {
-        "yearly": {
-          "FY2023": 20735000000,
-          "FY2024": 21359000000,
-          "FY2025": 21980000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2022": 20113,
-            "2023": 20735,
-            "2024": 21359
-          }
-        },
-        "wages": {
-          "yearly": {
-            "2022": 2011300000,
-            "2023": 2073500000,
-            "2024": 2135900000
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Highway and transportation infrastructure",
-      "abbreviation": "Caltrans",
-      "parentAgency": "Transportation Agency",
-      "code": "2660"
-    },
-    {
-      "name": "Department of Motor Vehicles",
-      "slug": "department_of_motor_vehicles",
-      "canonicalName": "Department of Motor Vehicles",
-      "aliases": [
-        "department of motor vehicles",
-        "motor vehicles"
-      ],
-      "spending": {
-        "yearly": {
-          "FY2023": 1450000000,
-          "FY2024": 1520000000,
-          "FY2025": 1580000000
-        },
-        "stateOperations": {}
-      },
-      "workforce": {
-        "headCount": {
-          "yearly": {
-            "2022": 8542,
-            "2023": 8639,
-            "2024": 8763
-          }
-        },
-        "wages": {
-          "yearly": {
-            "2022": 854200000,
-            "2023": 863900000,
-            "2024": 876300000
-          }
-        },
-        "averageTenureYears": null,
-        "averageSalary": null,
-        "averageAge": null
-      },
-      "org_level": 4,
-      "budget_status": "active",
-      "keyFunctions": "Vehicle registration and driver licensing",
-      "abbreviation": "DMV",
-      "parentAgency": "Transportation Agency",
-      "code": "2740"
+      "code": null
     }
   ],
   "budgetSummary": {

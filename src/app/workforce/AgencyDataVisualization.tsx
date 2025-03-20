@@ -24,29 +24,19 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
     }
   };
 
-  const transformAgencyData = (agency: Agency) => {
-    return {
-      headCount: Object.entries(agency.workforce?.headCount?.yearly || {}).map(([year, count]) => ({
-        year,
-        count: Number(count)
-      })),
-      wages: Object.entries(agency.workforce?.wages?.yearly || {}).map(([year, amount]) => ({
-        year,
-        amount: Number(amount)
-      })),
-      averageTenure: agency.workforce?.averageTenureYears,
-      averageSalary: agency.workforce?.averageSalary,
-      averageAge: agency.workforce?.averageAge,
-      tenureDistribution: agency.workforce?.tenureDistribution,
-      salaryDistribution: agency.workforce?.salaryDistribution,
-      ageDistribution: agency.workforce?.ageDistribution
-    };
+  // Get employee data from either the new structure or the legacy structure
+  const employeeData = agency.employeeData || {
+    headCount: agency.yearlyHeadCount?.map(item => ({ year: item.year, count: item.headCount })),
+    wages: agency.yearlyWages?.map(item => ({ year: item.year, amount: item.wages })),
+    averageTenure: agency.averageTenureYears,
+    averageSalary: agency.averageSalary,
+    averageAge: agency.averageAge,
+    tenureDistribution: agency.tenureDistribution,
+    salaryDistribution: agency.salaryDistribution,
+    ageDistribution: agency.ageDistribution
   };
 
-  // Get employee data from either the new structure or the legacy structure
-  const employeeData = transformAgencyData(agency);
-
-  // Get 2024 data from yearly objects
+  // Get 2024 data from yearly arrays
   const headCount2024 = employeeData.headCount?.find(item => item.year === "2024")?.count;
   const wages2024 = employeeData.wages?.find(item => item.year === "2024")?.amount;
 
@@ -154,7 +144,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div>
           <div className="text-lg font-bold">
-            {headCount2024 !== undefined ? formatNumber(headCount2024) : '~'}
+            {headCount2024 !== null && headCount2024 !== undefined ? formatNumber(headCount2024) : '~'}
           </div>
           <div className="text-gray-600 text-sm">
             {markdownSlug ? (
@@ -177,7 +167,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
         </div>
         <div>
           <div className="text-lg font-bold">
-            {wages2024 !== undefined ? formatCurrencyWithSuffix(wages2024) : '~'}
+            {wages2024 !== null && wages2024 !== undefined ? formatCurrencyWithSuffix(wages2024) : '~'}
           </div>
           <div className="text-gray-600 text-sm">Total Wages (2024)</div>
         </div>

@@ -22,53 +22,27 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from './AgencyDataVisualization';
+import executiveBranchData from '@/data/executive-branch-hierarchy.json';
 import { Agency } from '@/types/agency';
 import departmentsData from '@/data/departments.json';
-import { DepartmentsJSON, DepartmentData } from '@/types/department';
+import { DepartmentsJSON } from '@/types/department';
 import { getDepartmentByName, normalizeForMatching } from '@/lib/departmentMapping';
 
 // Cast imported data to proper types
-const typedDepartmentsData = departmentsData as unknown as DepartmentsJSON;
-
-// Define executive branch data structure
-const executiveBranchData = {
-  name: "California State Government",
-  org_level: 0,
-  budget_status: "active",
-  subAgencies: [
-    {
-      name: "Executive Branch",
-      org_level: 1,
-      budget_status: "active",
-      subAgencies: [
-        {
-          name: "Governor's Office",
-          org_level: 2,
-          budget_status: "active",
-          subAgencies: []
-        },
-        {
-          name: "State Agencies",
-          org_level: 2,
-          budget_status: "active",
-          subAgencies: []
-        }
-      ]
-    },
-    {
-      name: "Legislative Branch",
-      org_level: 1,
-      budget_status: "active",
-      subAgencies: []
-    },
-    {
-      name: "Judicial Branch",
-      org_level: 1,
-      budget_status: "active",
-      subAgencies: []
-    }
-  ]
-};
+const typedDepartmentsData = {
+  departments: departmentsData.departments.map(dept => ({
+    ...dept,
+    org_level: dept.org_level || 0,
+    budget_status: dept.budget_status || 'active',
+    keyFunctions: dept.keyFunctions || '',
+    abbreviation: dept.abbreviation || '',
+    parentAgency: dept.parentAgency || '',
+    workforce: dept.workforce ? {
+      ...dept.workforce,
+      averageTenureYears: dept.workforce.averageTenureYears || undefined
+    } : undefined
+  }))
+} as DepartmentsJSON;
 
 // Convert executive branch JSON to Agency structure
 const convertExecutiveBranchToAgency = (data: any): Agency => {
@@ -293,16 +267,16 @@ const mergeAgencyData = (structure: Agency[]): Agency[] => {
     const agencyData = findMatchingData(agency.name);
     
     // If we found matching data, apply it to the agency
-    if (agencyData && agencyData.workforce) {
+    if (agencyData?.workforce) {
       agency.employeeData = {
-        headCount: Object.entries(agencyData.workforce.headCount?.yearly || {}).map(([year, count]) => ({
-          year,
-          count
-        })),
-        wages: Object.entries(agencyData.workforce.wages?.yearly || {}).map(([year, amount]) => ({
-          year,
-          amount
-        })),
+        headCount: agencyData.workforce.yearlyHeadCount?.map(item => ({
+          year: item.year,
+          count: item.headCount
+        })) || [],
+        wages: agencyData.workforce.yearlyWages?.map(item => ({
+          year: item.year,
+          amount: item.wages
+        })) || [],
         averageTenure: agencyData.workforce.averageTenureYears,
         averageSalary: agencyData.workforce.averageSalary,
         averageAge: agencyData.workforce.averageAge,
@@ -612,8 +586,22 @@ function WorkforcePageContent() {
           name: workforceDept.name,
           org_level: 4, // Assume it's a department-level entity
           budget_status: "active",
-          employeeData: transformWorkforceData(workforceDept),
-          workforce: workforceDept.workforce
+          employeeData: workforceDept.workforce ? {
+            headCount: workforceDept.workforce.yearlyHeadCount?.map(item => ({
+              year: item.year,
+              count: item.headCount
+            })),
+            wages: workforceDept.workforce.yearlyWages?.map(item => ({
+              year: item.year,
+              amount: item.wages
+            })),
+            averageTenure: workforceDept.workforce.averageTenureYears,
+            averageSalary: workforceDept.workforce.averageSalary,
+            averageAge: workforceDept.workforce.averageAge,
+            tenureDistribution: workforceDept.workforce.tenureDistribution,
+            salaryDistribution: workforceDept.workforce.salaryDistribution,
+            ageDistribution: workforceDept.workforce.ageDistribution
+          } : undefined
         };
         
         setActiveAgency(syntheticAgency);
@@ -802,23 +790,4 @@ function WorkforcePageContent() {
       </div>
     </div>
   );
-}
-
-const transformWorkforceData = (workforceDept: DepartmentData) => {
-  return {
-    headCount: Object.entries(workforceDept.workforce?.headCount?.yearly || {}).map(([year, count]) => ({
-      year,
-      count: Number(count)
-    })),
-    wages: Object.entries(workforceDept.workforce?.wages?.yearly || {}).map(([year, amount]) => ({
-      year,
-      amount: Number(amount)
-    })),
-    averageTenure: workforceDept.workforce?.averageTenureYears,
-    averageSalary: workforceDept.workforce?.averageSalary,
-    averageAge: workforceDept.workforce?.averageAge,
-    tenureDistribution: workforceDept.workforce?.tenureDistribution,
-    salaryDistribution: workforceDept.workforce?.salaryDistribution,
-    ageDistribution: workforceDept.workforce?.ageDistribution
-  };
-}; 
+} 

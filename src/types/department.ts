@@ -5,35 +5,43 @@
 /**
  * Structure of a department in departments.json
  */
+export interface WorkforceData {
+  yearlyHeadCount?: Array<{
+    year: string;
+    headCount: number;
+  }>;
+  yearlyWages?: Array<{
+    year: string;
+    wages: number;
+  }>;
+  averageTenureYears?: number;
+  averageSalary?: number;
+  averageAge?: number;
+  tenureDistribution?: Record<string, number>;
+  salaryDistribution?: Record<string, number>;
+  ageDistribution?: Record<string, number>;
+  _note?: string;
+  headCount?: {
+    yearly: Record<string, number>;
+  };
+}
+
 export interface DepartmentData {
   name: string;
   slug: string;
   canonicalName: string;
   aliases: string[];
-  code: string;
+  workforce?: WorkforceData;
+  spending?: {
+    yearly: Record<string, string>;
+    stateOperations: Record<string, string>;
+  };
+  code?: string;
   org_level: number;
   budget_status: string;
   keyFunctions: string;
   abbreviation: string;
   parentAgency: string;
-  spending: {
-    yearly: Record<string, number>;
-    stateOperations: Record<string, number>;
-  };
-  workforce: {
-    headCount: {
-      yearly: Record<string, number>;
-    };
-    wages: {
-      yearly: Record<string, number>;
-    };
-    averageTenureYears?: number;
-    averageSalary?: number;
-    averageAge?: number;
-    tenureDistribution?: { [key: string]: number };
-    salaryDistribution?: { [key: string]: number };
-    ageDistribution?: { [key: string]: number };
-  };
 }
 
 /**
