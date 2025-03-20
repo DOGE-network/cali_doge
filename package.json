@@ -19,6 +19,7 @@
     "@types/nodemailer": "^6.4.17",
     "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
+    "csv-parse": "^5.6.0",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.479.0",

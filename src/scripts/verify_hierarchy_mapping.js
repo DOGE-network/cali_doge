@@ -1,134 +1,243 @@
 #!/usr/bin/env node
 
+/**
+ * Department Hierarchy Verification and Logging Script
+ * 
+ * Purpose:
+ * - Reads latest report_hierarchy_mapping log file
+ * - Verifies department hierarchy matches
+ * - Logs new aliases and hierarchy mismatches
+ * - Generates verification log with results
+ * 
+ * Input:
+ * - Latest report_hierarchy_mapping log file
+ * - departments.json (for verification only)
+ * 
+ * Output:
+ * - verify_hierarchy_mapping_[timestamp].log
+ * 
+ * Functions:
+ * - findLatestReportLog: Finds most recent report log file
+ * - parseReportLog: Extracts detailed results from report log
+ * - verifyHierarchy: Checks department hierarchy matches
+ * - generateVerificationLog: Creates verification log
+ * 
+ * Hierarchy Rules:
+ * - Only 1 department at org_level:0
+ * - 3 departments at org_level:1
+ * - For org_level:0 or 1 mismatches:
+ *   - Skip if name/alias doesn't match level 0/1 records
+ *   - Log mismatch if name/alias matches but hierarchy differs
+ */
+
 const fs = require('fs');
 const path = require('path');
+const glob = require('glob');
 
-// Read both JSON files
-const hierarchyPath = path.join(__dirname, '../data/executive-branch-hierarchy.json');
-const departmentsPath = path.join(__dirname, '../data/departments.json');
-
-const hierarchyData = JSON.parse(fs.readFileSync(hierarchyPath, 'utf8'));
-const departmentsData = JSON.parse(fs.readFileSync(departmentsPath, 'utf8'));
-
-// Helper function to normalize department names for matching
-function normalizeForMatching(name) {
-  if (!name) return '';
-  return name
-    .toLowerCase()
-    .replace(/[,()]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
+// Helper function to generate timestamped filename
+function generateTimestampedFilename(scriptName) {
+  const now = new Date();
+  const timestamp = now.toISOString()
+    .replace(/[:.]/g, '-')
+    .replace('T', '_')
+    .replace('Z', '');
+  const baseName = path.basename(scriptName, '.js');
+  return `${baseName}_${timestamp}.log`;
 }
 
-// Function to flatten hierarchy and track parent agencies
-function flattenHierarchy(data) {
-  const flattened = [];
+// Find latest report log file
+function findLatestReportLog() {
+  const logFiles = glob.sync(path.join(__dirname, '../logs/report_hierarchy_mapping_*.log'));
+  if (logFiles.length === 0) {
+    throw new Error('No report log files found');
+  }
+  return logFiles.sort().pop(); // Get most recent file
+}
+
+// Parse report log to extract detailed results
+function parseReportLog(logPath) {
+  const content = fs.readFileSync(logPath, 'utf8');
+  const lines = content.split('\n');
+  const results = [];
+  let currentDepartment = null;
+
+  for (const line of lines) {
+    if (line.startsWith('Department: ')) {
+      if (currentDepartment) {
+        results.push(currentDepartment);
+      }
+      currentDepartment = {
+        name: line.replace('Department: ', ''),
+        status: '',
+        details: {}
+      };
+    } else if (currentDepartment && line.startsWith('Status: ')) {
+      currentDepartment.status = line.replace('Status: ', '');
+    } else if (currentDepartment && line.startsWith('- CSV name: ')) {
+      currentDepartment.details.csvName = line.replace('- CSV name: ', '');
+    } else if (currentDepartment && line.startsWith('- CSV org_level: ')) {
+      currentDepartment.details.csvOrgLevel = parseInt(line.replace('- CSV org_level: ', ''));
+    } else if (currentDepartment && line.startsWith('- JSON org_level: ')) {
+      currentDepartment.details.jsonOrgLevel = parseInt(line.replace('- JSON org_level: ', ''));
+    } else if (currentDepartment && line.startsWith('- CSV parentAgency: ')) {
+      currentDepartment.details.csvParentAgency = line.replace('- CSV parentAgency: ', '');
+    } else if (currentDepartment && line.startsWith('- JSON parentAgency: ')) {
+      currentDepartment.details.jsonParentAgency = line.replace('- JSON parentAgency: ', '');
+    } else if (currentDepartment && line.startsWith('- Potential new alias found:')) {
+      if (!currentDepartment.details.newAliases) {
+        currentDepartment.details.newAliases = [];
+      }
+      currentDepartment.details.newAliases.push(line.replace('- Potential new alias found:', '').trim());
+    }
+  }
+
+  if (currentDepartment) {
+    results.push(currentDepartment);
+  }
+
+  return results;
+}
+
+// Verify department hierarchy
+function verifyHierarchy(department, departmentsJson) {
+  const { csvOrgLevel, jsonOrgLevel, csvParentAgency, jsonParentAgency } = department.details;
   
-  function traverse(node, parentAgencies = []) {
-    if (node.name) {
-      flattened.push({
-        name: node.name,
-        budget_code: node.budget_code || '',
-        keyFunctions: node.keyFunctions || '',
-        org_level: node.org_level || 0,
-        parent_agencies: [...parentAgencies]
-      });
+  // Skip if org levels don't match
+  if (csvOrgLevel !== jsonOrgLevel) {
+    // For org_level 0 or 1, check if name/alias matches
+    if (csvOrgLevel <= 1 || jsonOrgLevel <= 1) {
+      const levelRecords = departmentsJson.departments.filter(d => d.org_level <= 1);
+      const nameMatches = levelRecords.some(d => 
+        d.canonicalName === department.name || 
+        (d.aliases && d.aliases.includes(department.name))
+      );
+      
+      if (!nameMatches) {
+        return { skip: true };
+      }
     }
     
-    if (node.subAgencies) {
-      const newParentAgencies = node.name ? [...parentAgencies, node.name] : parentAgencies;
-      
-      if (Array.isArray(node.subAgencies)) {
-        node.subAgencies.forEach(child => traverse(child, newParentAgencies));
-      } else if (typeof node.subAgencies === 'object') {
-        Object.values(node.subAgencies).forEach(agencyArray => {
-          if (Array.isArray(agencyArray)) {
-            agencyArray.forEach(child => traverse(child, newParentAgencies));
-          }
-        });
+    return {
+      skip: false,
+      mismatch: true,
+      message: `Org level mismatch: CSV=${csvOrgLevel}, JSON=${jsonOrgLevel}`
+    };
+  }
+
+  // Check parent agency match
+  if (csvParentAgency !== jsonParentAgency) {
+    return {
+      skip: false,
+      mismatch: true,
+      message: `Parent agency mismatch: CSV=${csvParentAgency}, JSON=${jsonParentAgency}`
+    };
+  }
+
+  return { skip: false, mismatch: false };
+}
+
+// Generate verification log
+function generateVerificationLog(results) {
+  const logContent = [
+    'Department Hierarchy Verification Results',
+    '=======================================',
+    `Date: ${new Date().toISOString()}`,
+    '',
+    'Purpose:',
+    '- Verify department hierarchy matches',
+    '- Log new aliases and hierarchy mismatches',
+    '- Generate verification report',
+    '',
+    'Summary:',
+    `Total Departments Processed: ${results.length}`,
+    `New Aliases Found: ${results.filter(r => r.status === 'matched_with_new_alias').length}`,
+    `Hierarchy Mismatches: ${results.filter(r => r.verification?.mismatch).length}`,
+    '',
+    'Detailed Results:',
+    '----------------'
+  ];
+
+  // Add new aliases section
+  const newAliases = results.filter(r => r.status === 'matched_with_new_alias' && r.details.newAliases);
+  if (newAliases.length > 0) {
+    logContent.push('\nNew Aliases Found:');
+    logContent.push('-----------------');
+    for (const result of newAliases) {
+      logContent.push(`\nDepartment: ${result.name}`);
+      for (const alias of result.details.newAliases) {
+        logContent.push(`- ${alias}`);
       }
     }
   }
-  
-  traverse(data);
-  return flattened;
-}
 
-// Function to check if two names match using the department's aliases
-function namesMatch(hierName, dept) {
-  const normalizedHierName = normalizeForMatching(hierName);
-  const normalizedCanonicalName = normalizeForMatching(dept.canonicalName);
-  const normalizedAliases = (dept.aliases || []).map(alias => normalizeForMatching(alias));
-  
-  return normalizedCanonicalName === normalizedHierName || 
-         normalizedAliases.includes(normalizedHierName);
-}
-
-// Flatten the hierarchy
-const flattenedHierarchy = flattenHierarchy(hierarchyData);
-
-// Match against departments
-const matches = {
-  matched: [],
-  unmatched: []
-};
-
-// Check each flattened hierarchy entry against departments
-for (const hierEntry of flattenedHierarchy) {
-  let found = false;
-  for (const dept of departmentsData.departments) {
-    if (namesMatch(hierEntry.name, dept)) {
-      matches.matched.push({
-        hierarchy: hierEntry,
-        department: dept
-      });
-      found = true;
-      break;
+  // Add hierarchy mismatches section
+  const mismatches = results.filter(r => r.verification?.mismatch);
+  if (mismatches.length > 0) {
+    logContent.push('\nHierarchy Mismatches:');
+    logContent.push('-------------------');
+    for (const result of mismatches) {
+      logContent.push(`\nDepartment: ${result.name}`);
+      logContent.push(`- ${result.verification.message}`);
+      logContent.push('Data comparison:');
+      logContent.push(`  CSV name: ${result.details.csvName}`);
+      logContent.push(`  CSV org_level: ${result.details.csvOrgLevel}`);
+      logContent.push(`  JSON org_level: ${result.details.jsonOrgLevel}`);
+      logContent.push(`  CSV parentAgency: ${result.details.csvParentAgency}`);
+      logContent.push(`  JSON parentAgency: ${result.details.jsonParentAgency}`);
     }
   }
-  if (!found) {
-    matches.unmatched.push(hierEntry);
+
+  // Add skipped departments section
+  const skipped = results.filter(r => r.verification?.skip);
+  if (skipped.length > 0) {
+    logContent.push('\nSkipped Departments:');
+    logContent.push('------------------');
+    for (const result of skipped) {
+      logContent.push(`\nDepartment: ${result.name}`);
+      logContent.push('Note: No matching level 0/1 record found');
+    }
   }
+
+  return logContent.join('\n');
 }
 
-// Print results
-console.log('\nHierarchy to Department Mapping Results:');
-console.log('----------------------------------------');
-console.log(`Total entries in flattened hierarchy: ${flattenedHierarchy.length}`);
-console.log(`Total departments: ${departmentsData.departments.length}`);
-console.log(`Matched entries: ${matches.matched.length}`);
-console.log(`Unmatched entries: ${matches.unmatched.length}`);
-
-if (matches.matched.length > 0) {
-  console.log('\nSuccessful Matches:');
-  console.log('------------------');
-  matches.matched.forEach(({ hierarchy, department }) => {
-    console.log(`\nHierarchy Name: "${hierarchy.name}"`);
-    console.log(`Department Name: "${department.canonicalName}"`);
-    console.log(`Budget Code: ${hierarchy.budget_code || 'N/A'}`);
-    console.log(`Org Level: ${hierarchy.org_level}`);
-    console.log(`Parent Agencies: ${hierarchy.parent_agencies.join(' > ')}`);
-    if (department.aliases && department.aliases.length > 0) {
-      console.log(`Department Aliases: ${department.aliases.join(', ')}`);
-    }
-  });
-}
-
-if (matches.unmatched.length > 0) {
-  console.log('\nUnmatched Hierarchy Entries:');
-  console.log('----------------------------');
-  matches.unmatched.forEach(entry => {
-    console.log(`\nName: "${entry.name}"`);
-    console.log(`Budget Code: ${entry.budget_code || 'N/A'}`);
-    console.log(`Org Level: ${entry.org_level}`);
-    console.log(`Parent Agencies: ${entry.parent_agencies.join(' > ')}`);
-    if (entry.keyFunctions) {
-      console.log(`Key Functions: ${entry.keyFunctions}`);
-    }
-  });
-}
-
-// Export the flattened structure
-const outputPath = path.join(__dirname, '../data/flattened-hierarchy.json');
-fs.writeFileSync(outputPath, JSON.stringify(flattenedHierarchy, null, 2));
-console.log(`\nFlattened hierarchy exported to: ${outputPath}`); 
+// Main execution
+try {
+  // Find and read latest report log
+  const reportLogPath = findLatestReportLog();
+  console.log(`Reading report log: ${reportLogPath}`);
+  
+  // Read departments.json for verification
+  const departmentsPath = path.join(__dirname, '../data/departments.json');
+  const departmentsJson = JSON.parse(fs.readFileSync(departmentsPath, 'utf8'));
+  
+  // Parse report log results
+  const reportResults = parseReportLog(reportLogPath);
+  
+  // Verify hierarchy for each department
+  for (const result of reportResults) {
+    result.verification = verifyHierarchy(result, departmentsJson);
+  }
+  
+  // Generate verification log
+  const logPath = path.join(__dirname, '../logs', generateTimestampedFilename(__filename));
+  const logContent = generateVerificationLog(reportResults, departmentsJson);
+  
+  // Ensure logs directory exists
+  const logsDir = path.dirname(logPath);
+  if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir, { recursive: true });
+  }
+  
+  // Write verification log
+  fs.writeFileSync(logPath, logContent);
+  
+  console.log(`\nVerification complete. Results logged to: ${logPath}`);
+  console.log(`Departments processed: ${reportResults.length}`);
+  console.log(`New aliases found: ${reportResults.filter(r => r.status === 'matched_with_new_alias').length}`);
+  console.log(`Hierarchy mismatches: ${reportResults.filter(r => r.verification?.mismatch).length}`);
+  
+} catch (error) {
+  console.error('Error:', error.message);
+  process.exit(1);
+} 
