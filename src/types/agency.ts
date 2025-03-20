@@ -7,7 +7,7 @@
  */
 export interface Agency {
   name: string;
-  org_level?: number;
+  orgLevel?: number;
   budget_code?: string;
   budget_level?: string;
   budget_status?: 'active' | 'inactive';

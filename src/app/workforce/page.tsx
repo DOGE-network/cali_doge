@@ -61,7 +61,7 @@ const createAgencyFromDepartment = (dept: any): Agency => {
 
   return {
     name: dept.name,
-    org_level: dept.org_level || 4,
+    orgLevel: dept.orgLevel || 4,
     budget_status: dept.budget_status || "active",
     description: dept.keyFunctions,
     abbreviation: dept.abbreviation,
@@ -95,114 +95,63 @@ const buildHierarchy = (): Agency => {
   const root: Agency = createAgencyFromDepartment(
     typedDepartmentsData.departments.find(d => d.name === "California State Government") || {
       name: "California State Government",
-      org_level: 0,
+      orgLevel: 0,
       budget_status: "active"
     }
   );
-
-  // Create main branches (Level 1)
-  const branches: Record<string, Agency> = {
-    "Executive Branch": {
-      name: "Executive Branch",
-      org_level: 1,
-      budget_status: "active",
-      subAgencies: [],
-      description: "Executive branch of California state government"
-    },
-    "Legislative Branch": {
-      name: "Legislative Branch",
-      org_level: 1,
-      budget_status: "active",
-      subAgencies: [],
-      description: "Legislative branch of California state government"
-    },
-    "Judicial Branch": {
-      name: "Judicial Branch",
-      org_level: 1,
-      budget_status: "active",
-      subAgencies: [],
-      description: "Judicial branch of California state government"
-    }
-  };
-
-  // Group departments by org_level
-  const departmentsByLevel: Record<number, any[]> = {};
-  typedDepartmentsData.departments.forEach(dept => {
-    if (dept.name === "California State Government") return; // Skip root
-    
-    const level = dept.org_level || 4; // Default to level 4 if not specified
-    if (!departmentsByLevel[level]) {
-      departmentsByLevel[level] = [];
-    }
-    departmentsByLevel[level].push(dept);
-  });
-
+  
   // Create a map to store all agencies by name for easy lookup
   const agencyMap: Record<string, Agency> = {
-    "Executive Branch": branches["Executive Branch"],
-    "Legislative Branch": branches["Legislative Branch"],
-    "Judicial Branch": branches["Judicial Branch"]
+    [root.name]: root
   };
 
-  // Process departments level by level (2 through 4)
-  [2, 3, 4].forEach(level => {
-    const depts = departmentsByLevel[level] || [];
-    depts.forEach(dept => {
-      const agency = createAgencyFromDepartment(dept);
-      agencyMap[dept.name] = agency;
+  // First pass: Create all agencies
+  typedDepartmentsData.departments.forEach(dept => {
+    if (dept.name === root.name) return; // Skip root as it's already created
+    
+    // Create the current agency
+    const agency = createAgencyFromDepartment(dept);
+    agencyMap[dept.name] = agency;
+  });
 
-      // Find parent agency
-      const parentName = dept.parentAgency;
-      if (parentName) {
-        let parentAgency = agencyMap[parentName];
-        
-        // If parent doesn't exist yet, create it
-        if (!parentAgency) {
-          parentAgency = {
-            name: parentName,
-            org_level: level - 1,
-            budget_status: "active",
-            subAgencies: [],
-            description: `Parent agency for ${dept.name}`
-          };
-          agencyMap[parentName] = parentAgency;
-          
-          // Add to Executive Branch by default if not already under another branch
-          if (!["Legislative Branch", "Judicial Branch"].includes(parentName)) {
-            if (!branches["Executive Branch"].subAgencies) {
-              branches["Executive Branch"].subAgencies = [];
-            }
-            branches["Executive Branch"].subAgencies.push(parentAgency);
-          }
-        }
-        
-        // Ensure parent agency has subAgencies array
+  // Second pass: Build parent-child relationships
+  typedDepartmentsData.departments.forEach(dept => {
+    if (dept.name === root.name) return; // Skip root
+    
+    const agency = agencyMap[dept.name];
+    const parentName = dept.parentAgency;
+
+    if (parentName) {
+      const parentAgency = agencyMap[parentName];
+      if (parentAgency) {
         if (!parentAgency.subAgencies) {
           parentAgency.subAgencies = [];
         }
-        
-        // Add this agency to its parent
         parentAgency.subAgencies.push(agency);
       } else {
-        // If no parent specified, add to Executive Branch by default
-        if (!branches["Executive Branch"].subAgencies) {
-          branches["Executive Branch"].subAgencies = [];
+        // If parent doesn't exist, add to root
+        if (!root.subAgencies) {
+          root.subAgencies = [];
         }
-        branches["Executive Branch"].subAgencies.push(agency);
+        root.subAgencies.push(agency);
       }
-    });
+    } else {
+      // If no parent, add to root
+      if (!root.subAgencies) {
+        root.subAgencies = [];
+      }
+      root.subAgencies.push(agency);
+    }
   });
-
-  // Add branches to root
-  root.subAgencies = Object.values(branches);
 
   // Calculate subordinate offices
   const calculateSubordinateOffices = (agency: Agency): number => {
-    if (!agency.subAgencies || agency.subAgencies.length === 0) {
+    const subAgencies = agency.subAgencies || [];
+    if (subAgencies.length === 0) {
       return 0;
     }
-    const directSubordinates = agency.subAgencies.length;
-    const nestedSubordinates = agency.subAgencies.reduce(
+    const directSubordinates = subAgencies.length;
+    const nestedSubordinates = subAgencies.reduce(
       (sum, subAgency) => sum + calculateSubordinateOffices(subAgency),
       0
     );
@@ -219,15 +168,18 @@ const filterInactiveAgencies = (agencies: Agency[] | undefined, showInactive: bo
   if (!agencies) return [];
   
   return agencies.map(agency => {
-    if (showInactive) return agency;
-    if (agency.budget_status === 'inactive') return null;
-    
-    if (agency.subAgencies) {
-      const filteredSubs = filterInactiveAgencies(agency.subAgencies, showInactive);
-      return {...agency, subAgencies: filteredSubs.filter(Boolean)};
+    // If showing all agencies or agency is active, process it
+    if (showInactive || agency.budget_status !== 'inactive') {
+      // Create a new agency object with filtered subAgencies
+      return {
+        ...agency,
+        subAgencies: agency.subAgencies 
+          ? filterInactiveAgencies(agency.subAgencies, showInactive)
+          : []
+      };
     }
-    
-    return agency;
+    // If agency is inactive and we're not showing inactive, return null
+    return null;
   }).filter(Boolean) as Agency[];
 };
 
@@ -416,22 +368,16 @@ function _AgencySection({
   activeAgencyPath: string[];
   onAgencyClick: { (_paths: string[]): void };
 }) {
-  // Check if this section is in the active path
-  const isInActivePath = activeAgencyPath.length > 0 && activeAgencyPath[0] === section.name;
+
   
   // Check if this section is the currently selected item
   const isActiveItem = activeAgencyPath.length === 1 && activeAgencyPath[0] === section.name;
   
-  // Show Executive Branch chart when:
-  // 1. Nothing is selected (activeAgencyPath.length === 0)
-  // 2. Executive Branch is specifically selected
-  const showChart = section.name === "Executive Branch" && 
-    (activeAgencyPath.length === 0 || isActiveItem);
+  // Always show chart for active items
+  const showChart = isActiveItem;
 
-  // Show subagencies when:
-  // 1. This is Executive Branch (always show its immediate children)
-  // 2. This section is in the active path
-  const showSubAgencies = section.name === "Executive Branch" || isInActivePath;
+  // Always show subagencies
+  const showSubAgencies = true;
 
   return (
     <div className="mb-8">
@@ -471,38 +417,38 @@ function SubAgencySection({
   activeAgencyPath: string[];
   onAgencyClick: (_path: string[]) => void;
 }) {
-  const currentPath = [...parentPath, agency.name];
+  // Check if this agency is in the active path
+  const _isInActivePath = activeAgencyPath.length > parentPath.length && 
+    activeAgencyPath[parentPath.length] === agency.name;
   
   // Check if this agency is the currently selected item
-  const isActiveItem = activeAgencyPath.length === currentPath.length &&
-    currentPath.every((name, i) => activeAgencyPath[i] === name);
+  const isActiveItem = activeAgencyPath.length === parentPath.length + 1 && 
+    activeAgencyPath[parentPath.length] === agency.name;
   
-  // Check if this agency is in the active path
-  const isInActivePath = activeAgencyPath.length >= currentPath.length &&
-    currentPath.every((name, i) => activeAgencyPath[i] === name);
-
-  // Show chart only for the actively selected item
+  // Show chart only when this agency is specifically selected
   const showChart = isActiveItem;
-
-  // Show subagencies only if this is in the active path
-  const showSubAgencies = isInActivePath;
-
+  
+  // Always show subagencies
+  const showSubAgencies = true;
+  
+  const fullPath = [...parentPath, agency.name];
+  
   return (
-    <div className="flex flex-col gap-2">
-      <AgencyCard
+    <div>
+      <AgencyCard 
         agency={agency}
         isActive={isActiveItem}
-        onClick={() => onAgencyClick(currentPath)}
+        onClick={() => onAgencyClick(fullPath)}
         showChart={showChart}
       />
-
-      {showSubAgencies && agency?.subAgencies && (
-        <div className="pl-4">
+      
+      {agency.subAgencies && showSubAgencies && (
+        <div className="grid grid-cols-1 gap-4 mt-4 ml-4">
           {agency.subAgencies.map((subAgency, index) => (
             <SubAgencySection
-              key={`${subAgency.name}-${index}`}
+              key={index}
               agency={subAgency}
-              parentPath={currentPath}
+              parentPath={fullPath}
               activeAgencyPath={activeAgencyPath}
               onAgencyClick={onAgencyClick}
             />
@@ -642,7 +588,7 @@ function WorkforcePageContent() {
         // Create a synthetic agency for this department
         const syntheticAgency: Agency = {
           name: workforceDept.name,
-          org_level: 4, // Assume it's a department-level entity
+          orgLevel: 4, // Assume it's a department-level entity
           budget_status: "active",
           employeeData: workforceDept.workforce ? {
             headCount: workforceDept.workforce.yearlyHeadCount?.map(item => ({
@@ -684,13 +630,13 @@ function WorkforcePageContent() {
   }
   
   // Filter inactive agencies if needed
-  const _filteredHierarchy = {
+  const filteredHierarchy = {
     ...hierarchyData,
     subAgencies: filterInactiveAgencies(hierarchyData.subAgencies, showInactive)
   };
   
   // Merge with workforce data
-  const agenciesWithData = [hierarchyData];
+  const agenciesWithData = [filteredHierarchy];
   const mergedAgencies = mergeAgencyData(agenciesWithData);
   const enrichedHierarchy = mergedAgencies[0];
   
@@ -722,10 +668,10 @@ function WorkforcePageContent() {
     ? currentActiveAgency.subAgencies 
     : [];
   
-  // Apply active-only filter if needed
-  if (!showInactive) {
-    childAgencies = childAgencies.filter(a => a.budget_status !== 'inactive');
-  }
+  // No need to filter here since we already filtered in filteredHierarchy
+  // if (!showInactive) {
+  //   childAgencies = childAgencies.filter(a => a.budget_status !== 'inactive');
+  // }
   
   return (
     <div className="container mx-auto px-4 py-8">
@@ -735,10 +681,10 @@ function WorkforcePageContent() {
         <div className="flex items-center space-x-2">
           <div className="flex items-center space-x-1 border rounded-full p-1 bg-gray-100">
             <button
-              className={`rounded-full px-3 py-1 text-xs ${showInactive ? 'bg-white shadow-sm' : ''}`}
+              className={`rounded-full px-3 py-1 text-xs ${!showInactive ? 'bg-white shadow-sm' : ''}`}
               onClick={() => setShowInactive(!showInactive)}
             >
-              {showInactive ? 'Show Active Only' : 'Show All'}
+              {!showInactive ? 'Show All' : 'Show Active Only'}
             </button>
           </div>
         </div>
