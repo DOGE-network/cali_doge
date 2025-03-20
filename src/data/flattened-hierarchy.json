@@ -1,0 +1,3526 @@
+[
+  {
+    "name": "California State Government",
+    "budget_code": "0000",
+    "keyFunctions": "",
+    "org_level": 0,
+    "parent_agencies": []
+  },
+  {
+    "name": "Executive Branch",
+    "budget_code": "0001",
+    "keyFunctions": "",
+    "org_level": 1,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "Governor's Office",
+    "budget_code": "0500",
+    "keyFunctions": "Chief executive of the state, responsible for implementing state laws and coordinating state agencies",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Lieutenant Governor",
+    "budget_code": "0750",
+    "keyFunctions": "Second highest executive officer, acting governor when governor is absent",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Secretary of State",
+    "budget_code": "0890",
+    "keyFunctions": "Chief elections officer, keeper of state records and business filings",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "State Controller",
+    "budget_code": "0840",
+    "keyFunctions": "Chief fiscal officer, responsible for state disbursements and financial controls",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "State Treasurer",
+    "budget_code": "0950",
+    "keyFunctions": "State's banker, manages investments and debt",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Attorney General",
+    "budget_code": "0820",
+    "keyFunctions": "Chief law officer, provides legal services to state government",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Insurance Commissioner",
+    "budget_code": "0845",
+    "keyFunctions": "Regulates insurance industry and protects consumers",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Business, Consumer Services, and Housing Agency",
+    "budget_code": "0515",
+    "keyFunctions": "Oversees departments responsible for business oversight, consumer protection, housing policy, and professional licensing",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Department of Financial Protection and Innovation",
+    "budget_code": "1701",
+    "keyFunctions": "Financial services regulation and consumer protection",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Business, Consumer Services, and Housing Agency"
+    ]
+  },
+  {
+    "name": "Department of Consumer Affairs",
+    "budget_code": "1111",
+    "keyFunctions": "Professional licensing boards and consumer protection",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Business, Consumer Services, and Housing Agency"
+    ]
+  },
+  {
+    "name": "Department of Real Estate",
+    "budget_code": "2320",
+    "keyFunctions": "Real estate licensing and regulation",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Business, Consumer Services, and Housing Agency"
+    ]
+  },
+  {
+    "name": "Transportation Agency",
+    "budget_code": "0521",
+    "keyFunctions": "Oversees state transportation systems and infrastructure",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Department of Transportation",
+    "budget_code": "2660",
+    "keyFunctions": "Highway and transportation infrastructure",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Transportation Agency"
+    ]
+  },
+  {
+    "name": "Department of Motor Vehicles",
+    "budget_code": "2740",
+    "keyFunctions": "Vehicle registration and driver licensing",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Transportation Agency"
+    ]
+  },
+  {
+    "name": "California Highway Patrol",
+    "budget_code": "2720",
+    "keyFunctions": "Traffic safety and law enforcement",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Transportation Agency"
+    ]
+  },
+  {
+    "name": "Government Operations Agency",
+    "budget_code": "0511",
+    "keyFunctions": "Oversees state operations including procurement, technology, human resources, and administrative functions",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Department of General Services",
+    "budget_code": "7760",
+    "keyFunctions": "Serves as the business manager for the state, providing procurement, real estate management, design and construction, fleet administration, printing, and other services to state agencies",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Government Operations Agency"
+    ]
+  },
+  {
+    "name": "Department of Technology",
+    "budget_code": "7502",
+    "keyFunctions": "Provides technology leadership, guidance, and oversight to state departments and is the guardian of public data, a leader in IT services and solutions, and an innovator in IT infrastructure",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Government Operations Agency"
+    ]
+  },
+  {
+    "name": "Department of Human Resources",
+    "budget_code": "7501",
+    "keyFunctions": "Manages state civil service system, including recruitment, selection, classification, compensation, benefits, and labor relations for state employees",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Government Operations Agency"
+    ]
+  },
+  {
+    "name": "Franchise Tax Board",
+    "budget_code": "",
+    "keyFunctions": "Income tax collection",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "High-Speed Rail Authority",
+    "budget_code": "",
+    "keyFunctions": "High-speed rail development",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Office of Emergency Services",
+    "budget_code": "0690",
+    "keyFunctions": "Emergency management and disaster response coordination",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Office of Planning and Research",
+    "budget_code": "0650",
+    "keyFunctions": "State planning and policy development",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Governor's Office of Business and Economic Development",
+    "budget_code": "0509",
+    "keyFunctions": "Business development and economic growth",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Civil Rights Department",
+    "budget_code": "1700",
+    "keyFunctions": "Civil rights enforcement and protection",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Conservation Corps",
+    "budget_code": "3340",
+    "keyFunctions": "Conservation work and youth development",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Colorado River Board",
+    "budget_code": "3460",
+    "keyFunctions": "Colorado River water resources management",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Native American Heritage Commission",
+    "budget_code": "3780",
+    "keyFunctions": "Protection of Native American cultural resources",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Exposition Park",
+    "budget_code": "3100",
+    "keyFunctions": "Management of Exposition Park cultural and recreational facilities",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Department of Health Care Services",
+    "budget_code": "4260",
+    "keyFunctions": "Administration of Medi-Cal and other health care programs for low-income Californians",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Department of Corrections and Rehabilitation",
+    "budget_code": "5225",
+    "keyFunctions": "Operation of state prisons, rehabilitation programs, parole supervision, and juvenile justice facilities",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Department of Education",
+    "budget_code": "6100",
+    "keyFunctions": "Oversight of the state's public school system, curriculum development, and educational policy",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Environmental Protection Agency",
+    "budget_code": "0555",
+    "keyFunctions": "Oversees environmental protection, pollution control, and climate change programs",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Air Resources Board",
+    "budget_code": "3900",
+    "keyFunctions": "Regulates air pollution, implements climate change programs, and administers clean transportation incentives",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "California Environmental Protection Agency"
+    ]
+  },
+  {
+    "name": "Energy Commission",
+    "budget_code": "3360",
+    "keyFunctions": "Energy policy and planning, renewable energy programs",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "California Environmental Protection Agency"
+    ]
+  },
+  {
+    "name": "Natural Resources Agency",
+    "budget_code": "0540",
+    "keyFunctions": "Oversees and coordinates the state's natural resources programs",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Department of Fish and Wildlife",
+    "budget_code": "3600",
+    "keyFunctions": "Wildlife conservation and management",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "California Department of Forestry and Fire Protection",
+    "budget_code": "3540",
+    "keyFunctions": "Wildfire prevention and suppression",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "California Coastal Commission",
+    "budget_code": "3720",
+    "keyFunctions": "Coastal zone planning and management",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "California Coastal Conservancy",
+    "budget_code": "3760",
+    "keyFunctions": "Coastal protection and access projects",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "State Lands Commission",
+    "budget_code": "3560",
+    "keyFunctions": "Management of state lands and resources",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "California Tahoe Conservancy",
+    "budget_code": "3125",
+    "keyFunctions": "Environmental protection and restoration in the Lake Tahoe Basin",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "Wildlife Conservation Board",
+    "budget_code": "3640",
+    "keyFunctions": "Wildlife habitat protection and restoration",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "California Department of Parks and Recreation",
+    "budget_code": "3790",
+    "keyFunctions": "Management of state parks, beaches, and historic sites",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Department of Public Health",
+    "budget_code": "4265",
+    "keyFunctions": "Protection of public health through disease prevention, health promotion, and health equity initiatives",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Senate Advisory Commission on cost Control in State Gov",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Court Reporters Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Covered California Governing Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Cradle-to-Career Data System Governing Board, California",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Crime Victims' Memorial Review Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Criminal Index and Identification System Advisory Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Criminal Justice and Behavioral Health, Council on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Cultural and Historical Endowment, California",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Debt and Investment Advisory Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Delta Conservancy Governing Board, Sac-San Joaquin",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Delta Protection Commission, Sac-San Joaquin",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Delta Stewardship Council",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Dental Examiners of CA, Board of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Dental Hygiene Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Disability Access, CA Commission on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Domestic Services, Advisory Committee on Household",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Domestic Violence Program Advisory Council OES (EMA)",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Early Childhood Policy Council",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Early Childhood Policy Council Parent Adv. Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Early Childhood Policy Council Workforce Adv. Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Earthquake Early Warning Advisory Board, CA",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Earthquake Insurance Authority Governing Board & Advisory Panel",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Economic Development, Commission on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Education Commission, CA Postsecondary",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Education Commission of the States",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Education, Awards for Innovation Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Education, Private Postsecondary, Adv. Com",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Education, Advisory Commission on Special",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Educational Excellence, CA Collaborative",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Educational Opportunity for Military Children, State Council",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Electricity Oversight Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Emergency Medical Services, Commission on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Emissions Market Advisory Committee, Independent",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Employment of People with Disabilities, CA Governor's Committee on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Employment Training Panel",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Engineers and Land Surveyors, Board for Professional",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Environmental Contaminant Biomonitoring Program Scientific Guidance",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Environmental Health Specialist Registration Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Environmental Safety, Board of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Exposition & State Fair Board of Directors",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Fiduciaries Advisory Committee, Professional",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Film Commission, Board of Commissioners",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Forestry Task Force, Western States Legislative",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Gang Database Technical Advisory Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Genocide Memorial Commission, International",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Hate, Commission on the State of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Health & Safety & Workers' Compensation, Commission on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Health Facilities Financing Authority",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Health Professions Education Foundation Board of Trustees",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Healthcare Workforce Education and Training Council, California",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Healthy CA For All Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Home, No Place Like, Program Advisory Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Homeless Coordinating and Financing Council",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Housing Finance Agency Board of Directors, CA",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Housing Partnership Board of Directors, CA",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Instructional Quality Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Insurance Guarantee Association, California, Board of Governors",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Investment Network Advisory Board, CA Organized",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Judicial Council of CA",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Judicial Council Information Technology Advisory Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Judicial Performance, Council on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Judicial Performance, Committee to Review the Operations and Structure of the Commission on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Landscape Architect Technical Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Law Revision Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Legal Service Trust Fund Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Library Services Board, CA",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Library Construction and Renovation Board, Public",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Lithium Extraction in CA, Blue Ribbon Commission on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Little Hoover Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Long-Term Care Insurance Task Force",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Los Angeles Memorial Coliseum Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Marine Preservation, CA Endowment Board of Directors",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Medical Board of CA",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Medicine, Institute for Regenerative, Citizen's Oversight Com.",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Medicine, Institute for Regenerative, Citizen's Financial Accountability Oversight Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Mental Health Services Oversight",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Military Council, Governor's",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Mobilehome Park Inspection Program Task Force",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Motor Vehicle Board, New",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Motor Vehicle Recovery Corporation, Board of Director",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Naturopathic Medicine Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Nursing, Registered, Board of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Nursing, Vocational & Psychiatric Technical Examiners, Board of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Occupational Therapy, Board of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Ocean Protection Council",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Off-Highway Motor Vehicle Recreation Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Oil Spill Technical Advisory Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Optometry, California State Board of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Osteopathic Medical Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Pacific Fisheries Legislative Task Force",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Paramedic Disciplinary Review Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Parks & Recreation Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Peace Officer Standards Accountability Advisory Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Peace Officer Standards & Training, Commission on",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Penal Code, Committee on Revision of the",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Pharmacy, State Board of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Physical Therapy Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Physician Assistant Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Podiatric Medicine, Board of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Prison Industry Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Privacy Protection Agency Board, California",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Psychology, Board of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Public Employees Retirement System Board of Administration",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Public Works Board, State",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Racial and Identity Profiling Advisory Board (RIPA)",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Rail Authority, High Speed",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Regents Selection Advisory Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Rehabilitation Oversight Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Reparation Proposals for African Americans, Task Force",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Respiratory Care Board of California",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "San Diego River Conservancy",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "San Francisco Water Emergency Transportation Authority",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "San Francisco Bay Conservation & Development Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "San Gabriel and Lower Los Angeles Rivers and Mountains Conservancy",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "San Joaquin River Conservancy Governing Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Santa Monica Mountains Conservancy",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Santa Monica Mountains Conservancy Advisory Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Scholarshare Investment Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "State School Building Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "School, Advisory Committee on Before and After Programs",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Sea Grant Advisory Panel Resources Agency",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Search & Rescue Memorial Review Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Seismic Safety Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Sex Offender Management Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Sierra Nevada Conservancy",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Small Business Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Speech-Language Pathology & Audiology Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Strategic Growth Council",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Structural Pest Control Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Student Aid Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Student Opportunity & Access Program Project Grant Advisory Com",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Tahoe Conservancy Governing Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Tahoe Regional Planning Agency (TRPA)",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Tax Credit Allocation Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Tax Credit Committee, CA Competes",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Tobacco Education & Research Oversight Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Transportation Commission",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Transportation Financing Authority",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Underground Facilities Safe Excavation Board, CA",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Unemployment Insurance Appeals Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Uniform State Laws",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Veterinary Medical Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Waste, Hazardous",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Western Climate Initiative, Inc. Board of Directors",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Wildfire Cost & Recovery, Commission on Catastrophic",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Wildfire Safety Advisory Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Wildfire Technology Research and Development Review Advisory Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Wildlife Conservation Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Women, Commission on the Status of",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Workforce Development Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Workforce Impacts of Transitioning Seaports Lower Carbon TF",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "World War II Japanese American Incarceration Memorial Advisory Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Youth Empowerment Commission, California",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Achieving a Better Life Experience (ABLE) Act Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Debt Limit Allocation Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Secure Choice Retirement Savings Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Stem Cell Research and Cures Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Streamlined Sales Tax Project - Board of Governance",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Urban Waterfront Area Restoration Financing Authority",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Water Resources Development Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Wildlife, Coastal and Park Land Conservation Program of 1988 Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Children's Hospital Bond Act Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Citizens Financial Accountability Oversight Committee (CFAOC)",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Clean Water and Water Conservation Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Clean Water and Water Reclamation Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Clean Water Finance Committee-Clean Water Bond Act of 1984",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "1986 County Correctional Facility Capital Expenditure Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "1988 County Correctional Facility Capital Expenditure and Youth Facility Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Disaster Preparedness and Flood Prevention Bond Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Economic Recovery Financing Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Golden State Tobacco Securitization Corporation",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Harbor Improvement Bond Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Higher Education Facilities Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "High-Speed Passenger Train Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Highway Safety, Traffic Reduction, Air Quality and Port Security Committee - Bond Act 2006",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Housing Committee - Housing and Homeless Acts 1988, 1990",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Housing Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "First Time Home Buyers Financing Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Lake Tahoe Acquisitions Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Parklands Program Finance Committee of 1980",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Parklands Program Finance Committee of 1984",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Passenger Rail Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Pooled Money Investment Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "1986 Prison Construction Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "1988 Prison Construction Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "1990 Prison Construction Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Safe, Clean, Reliable Water Supply Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Safe Drinking Water, Clean Water, Watershed Protection, and Flood Protection Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Safe Drinking Water, Water Quality and Supply, Flood Control, River and Coastal Protection Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Safe Neighborhood Parks, Clean Water, Clean Air and Coastal Protection (Villaraigosa-Keeley Act) Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "State Park and Recreation Finance Committee-Bond Act of 1976",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Veterans' Debenture Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Veterans' Finance Committee of 1943",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Veterans' Home Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Voting Modernization Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Water Conservation Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Water Conservation and Water Quality Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Water Quality, Supply, and Infrastructure Improvement Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Water Security, Clean Drinking Water, Coastal and Beach Protection Act of 2002 Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Wildlife Habitat Enhancement Program Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California School Finance Authority",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "ScholarShare Investment Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Local Investment Advisory Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Competes Tax Credit Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Earthquake Authority",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Housing Finance Agency",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Infrastructure and Economic Development Bank",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California State University Investment Advisory Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "No Place Like Home Program Advisory Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Clean Water, Clean Air, Safe Neighborhood Parks and Coastal Protection Act Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Drought, Water, Parks, Climate, Coastal Protection, and Outdoor Access For All Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Library Construction and Renovation Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "California Safe Drinking Water Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Housing for Veterans Finance Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "1984 Prison Construction Committee",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "State Compensation Insurance Fund",
+    "budget_code": "8770",
+    "keyFunctions": "Workers' compensation insurance",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "Commission on Teacher Credentialing",
+    "budget_code": "6360",
+    "keyFunctions": "Teacher certification and standards",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "K-12 Education",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "State Board of Education",
+    "budget_code": "",
+    "keyFunctions": "Curriculum standards, textbook approval",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "K-12 Education"
+    ]
+  },
+  {
+    "name": "Department of Education",
+    "budget_code": "",
+    "keyFunctions": "Policy implementation",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "K-12 Education"
+    ]
+  },
+  {
+    "name": "County Offices of Education (58)",
+    "budget_code": "",
+    "keyFunctions": "District oversight, services",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "K-12 Education"
+    ]
+  },
+  {
+    "name": "School Districts (1,037)",
+    "budget_code": "",
+    "keyFunctions": "Local school operations",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "K-12 Education"
+    ]
+  },
+  {
+    "name": "Higher Education",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch"
+    ]
+  },
+  {
+    "name": "University of California",
+    "budget_code": "6440",
+    "keyFunctions": "Public university system with 10 campuses",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Higher Education"
+    ]
+  },
+  {
+    "name": "California State University",
+    "budget_code": "6610",
+    "keyFunctions": "Public university system with 23 campuses",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Higher Education"
+    ]
+  },
+  {
+    "name": "California Community Colleges",
+    "budget_code": "6870",
+    "keyFunctions": "Public community college system with 116 colleges",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Higher Education"
+    ]
+  },
+  {
+    "name": "California Student Aid Commission",
+    "budget_code": "7980",
+    "keyFunctions": "Financial aid administration for higher education",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Executive Branch",
+      "Higher Education"
+    ]
+  },
+  {
+    "name": "Legislative Branch",
+    "budget_code": "0020",
+    "keyFunctions": "",
+    "org_level": 1,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "Legislature",
+    "budget_code": "0100",
+    "keyFunctions": "",
+    "org_level": 2,
+    "parent_agencies": [
+      "California State Government",
+      "Legislative Branch"
+    ]
+  },
+  {
+    "name": "Senate",
+    "budget_code": "0110",
+    "keyFunctions": "Upper house of legislature",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Legislative Branch",
+      "Legislature"
+    ]
+  },
+  {
+    "name": "Assembly",
+    "budget_code": "0120",
+    "keyFunctions": "Lower house of legislature",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Legislative Branch",
+      "Legislature"
+    ]
+  },
+  {
+    "name": "Legislative Counsel Bureau",
+    "budget_code": "0160",
+    "keyFunctions": "Legal services for legislature",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Legislative Branch",
+      "Legislature"
+    ]
+  },
+  {
+    "name": "Judicial Branch",
+    "budget_code": "0200",
+    "keyFunctions": "",
+    "org_level": 1,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "Supreme Court",
+    "budget_code": "0260",
+    "keyFunctions": "Final appellate review",
+    "org_level": 2,
+    "parent_agencies": [
+      "California State Government",
+      "Judicial Branch"
+    ]
+  },
+  {
+    "name": "Courts of Appeal",
+    "budget_code": "0280",
+    "keyFunctions": "Appellate review of superior court cases",
+    "org_level": 2,
+    "parent_agencies": [
+      "California State Government",
+      "Judicial Branch"
+    ]
+  },
+  {
+    "name": "Trial Courts",
+    "budget_code": "0290",
+    "keyFunctions": "Trial court jurisdiction",
+    "org_level": 2,
+    "parent_agencies": [
+      "California State Government",
+      "Judicial Branch"
+    ]
+  },
+  {
+    "name": "Judicial Governance",
+    "budget_code": "0250",
+    "keyFunctions": "Administrative body for judicial branch",
+    "org_level": 2,
+    "parent_agencies": [
+      "California State Government",
+      "Judicial Branch"
+    ]
+  },
+  {
+    "name": "Constitutional Officers",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 2,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "Office of the Lieutenant Governor",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of State",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "State Controller",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "State Treasurer",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Attorney General",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Insurance Commissioner",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Superintendent of Public Instruction",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of Health and Human Services",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary for Labor and Workforce Development",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary for Government Operations",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of Business, Consumer Services and Housing",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of Transportation",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Constitutional Officers",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 2,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "Office of Lieutenant Governor",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of State",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "State Controller",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "State Treasurer",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Department of Justice",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Department of Insurance",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Department of Education",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of Health and Human Services",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary for Labor and Workforce Development",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary for Government Operations",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of Business, Consumer Services and Housing",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of Transportation",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Natural Resources Agency",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "Department of Water Resources",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "Department of Conservation",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "Department of Parks and Recreation",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "Department of Water Resources",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "Department of Conservation",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "Department of Parks and Recreation",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Natural Resources Agency"
+    ]
+  },
+  {
+    "name": "California Environmental Protection Agency",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "Water Resources Control Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "California Environmental Protection Agency"
+    ]
+  },
+  {
+    "name": "Department of Toxic Substances Control",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "California Environmental Protection Agency"
+    ]
+  },
+  {
+    "name": "Water Resources Control Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "California Environmental Protection Agency"
+    ]
+  },
+  {
+    "name": "Department of Toxic Substances Control",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "California Environmental Protection Agency"
+    ]
+  },
+  {
+    "name": "Health and Human Services Agency",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "California Department of Social Services",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Health and Human Services Agency"
+    ]
+  },
+  {
+    "name": "California Department of State Hospitals",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Health and Human Services Agency"
+    ]
+  },
+  {
+    "name": "California Department of Developmental Services",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Health and Human Services Agency"
+    ]
+  },
+  {
+    "name": "California Department of Social Services",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Health and Human Services Agency"
+    ]
+  },
+  {
+    "name": "California Department of State Hospitals",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Health and Human Services Agency"
+    ]
+  },
+  {
+    "name": "California Department of Developmental Services",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Health and Human Services Agency"
+    ]
+  },
+  {
+    "name": "Agriculture Agency",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "California Department of Food and Agriculture",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Agriculture Agency"
+    ]
+  },
+  {
+    "name": "California Department of Food and Agriculture",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Agriculture Agency"
+    ]
+  },
+  {
+    "name": "Veterans Affairs Agency",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "California Department of Veterans Affairs",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Veterans Affairs Agency"
+    ]
+  },
+  {
+    "name": "California Department of Veterans Affairs",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Veterans Affairs Agency"
+    ]
+  },
+  {
+    "name": "Business, Consumer Services, and Housing Agency",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "Horse Racing Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Business, Consumer Services, and Housing Agency"
+    ]
+  },
+  {
+    "name": "Horse Racing Board",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 4,
+    "parent_agencies": [
+      "California State Government",
+      "Business, Consumer Services, and Housing Agency"
+    ]
+  },
+  {
+    "name": "Constitutional Officers",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 2,
+    "parent_agencies": [
+      "California State Government"
+    ]
+  },
+  {
+    "name": "Office of the Lieutenant Governor",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of State",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "State Controller",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "State Treasurer",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Department of Justice",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Department of Insurance",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Department of Education",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of Health and Human Services",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary for Labor and Workforce Development",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary for Government Operations",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of Business, Consumer Services and Housing",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  },
+  {
+    "name": "Secretary of Transportation",
+    "budget_code": "",
+    "keyFunctions": "",
+    "org_level": 3,
+    "parent_agencies": [
+      "California State Government",
+      "Constitutional Officers"
+    ]
+  }
+]

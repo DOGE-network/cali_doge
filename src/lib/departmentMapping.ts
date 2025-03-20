@@ -223,21 +223,21 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '0950_state_treasurer',
-    name: 'State Treasurer\'s Office',
-    canonicalName: 'State Treasurer\'s Office',
+    name: 'State Treasurer',
+    canonicalName: 'State Treasurer',
     code: '0950',
-    fullName: 'State Treasurer\'s Office',
-    spendingName: 'State Treasurer\'s Office',
-    workforceName: 'State Treasurer\'s Office'
+    fullName: 'State Treasurer',
+    spendingName: 'State Treasurer',
+    workforceName: 'State Treasurer'
   },
   {
     slug: '0950_state_treasurers_office',
-    name: 'State Treasurer\'s Office',
-    canonicalName: 'State Treasurer\'s Office',
+    name: 'State Treasurer',
+    canonicalName: 'State Treasurer',
     code: '0950',
-    fullName: 'State Treasurer\'s Office',
-    spendingName: 'State Treasurer\'s Office',
-    workforceName: 'State Treasurer\'s Office'
+    fullName: 'State Treasurer',
+    spendingName: 'State Treasurer',
+    workforceName: 'State Treasurer'
   },
   {
     slug: '1111_department_of_consumer_affairs',
@@ -277,12 +277,12 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '2660_department_of_transportation',
-    name: 'Department of Transportation',
-    canonicalName: 'Department of Transportation',
+    name: 'California Department of Transportation',
+    canonicalName: 'California Department of Transportation',
     code: '2660',
-    fullName: 'Department of Transportation',
-    spendingName: 'Department of Transportation',
-    workforceName: 'Department of Transportation'
+    fullName: 'California Department of Transportation',
+    spendingName: 'California Department of Transportation',
+    workforceName: 'California Department of Transportation'
   },
   {
     slug: '2720_california_highway_patrol',
@@ -332,9 +332,9 @@ export const departmentMappings: DepartmentMapping[] = [
   {
     slug: '3360_energy_commission',
     name: 'Energy Commission',
-    canonicalName: 'Energy Commission',
+    canonicalName: 'California Energy Commission',
     code: '3360',
-    fullName: 'Energy Commission',
+    fullName: 'California Energy Commission',
     spendingName: 'Energy Commission',
     workforceName: 'Energy Commission'
   },
@@ -358,21 +358,21 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '3540_department_of_forestry_and_fire_protection',
-    name: 'Department of Forestry and Fire Protection',
-    canonicalName: 'Department of Forestry and Fire Protection',
+    name: 'California Department of Forestry and Fire Protection',
+    canonicalName: 'California Department of Forestry and Fire Protection',
     code: '3540',
-    fullName: 'Department of Forestry and Fire Protection',
-    spendingName: 'Department of Forestry and Fire Protection',
-    workforceName: 'Department of Forestry and Fire Protection'
+    fullName: 'California Department of Forestry and Fire Protection',
+    spendingName: 'California Department of Forestry and Fire Protection',
+    workforceName: 'California Department of Forestry and Fire Protection'
   },
   {
     slug: '3560_state_lands_commission',
-    name: 'State Lands Commission',
-    canonicalName: 'State Lands Commission',
+    name: 'California State Lands Commission',
+    canonicalName: 'California State Lands Commission',
     code: '3560',
-    fullName: 'State Lands Commission',
-    spendingName: 'State Lands Commission',
-    workforceName: 'State Lands Commission'
+    fullName: 'California State Lands Commission',
+    spendingName: 'California State Lands Commission',
+    workforceName: 'California State Lands Commission'
   },
   {
     slug: '3600_department_of_fish_and_wildlife',
@@ -422,9 +422,9 @@ export const departmentMappings: DepartmentMapping[] = [
   {
     slug: '3900_air_resources_board',
     name: 'Air Resources Board',
-    canonicalName: 'Air Resources Board',
+    canonicalName: 'California Air Resources Board',
     code: '3900',
-    fullName: 'Air Resources Board',
+    fullName: 'California Air Resources Board',
     spendingName: 'Air Resources Board',
     workforceName: 'Air Resources Board'
   },
@@ -475,12 +475,12 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '7760_department_of_general_services',
-    name: 'Department of General Services',
-    canonicalName: 'Department of General Services',
+    name: 'California Department of General Services',
+    canonicalName: 'California Department of General Services',
     code: '7760',
-    fullName: 'Department of General Services',
-    spendingName: 'Department of General Services',
-    workforceName: 'Department of General Services'
+    fullName: 'California Department of General Services',
+    spendingName: 'California Department of General Services',
+    workforceName: 'California Department of General Services'
   },
   {
     slug: '8380_california_department_of_human_resources',

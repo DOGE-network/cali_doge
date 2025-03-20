@@ -32,9 +32,9 @@ export interface Agency {
     averageTenure?: number | null;
     averageSalary?: number | null;
     averageAge?: number | null;
-    tenureDistribution?: { [key: string]: number };
-    salaryDistribution?: { [key: string]: number };
-    ageDistribution?: { [key: string]: number };
+    tenureDistribution?: { [key: string]: number } | null;
+    salaryDistribution?: { [key: string]: number } | null;
+    ageDistribution?: { [key: string]: number } | null;
   };
   workforce?: {
     headCount: {
@@ -46,9 +46,9 @@ export interface Agency {
     averageTenureYears?: number | null;
     averageSalary?: number | null;
     averageAge?: number | null;
-    tenureDistribution?: { [key: string]: number };
-    salaryDistribution?: { [key: string]: number };
-    ageDistribution?: { [key: string]: number };
+    tenureDistribution?: { [key: string]: number } | null;
+    salaryDistribution?: { [key: string]: number } | null;
+    ageDistribution?: { [key: string]: number } | null;
   };
 }
 

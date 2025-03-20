@@ -31,9 +31,9 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
     averageTenure: agency.averageTenureYears,
     averageSalary: agency.averageSalary,
     averageAge: agency.averageAge,
-    tenureDistribution: agency.tenureDistribution,
-    salaryDistribution: agency.salaryDistribution,
-    ageDistribution: agency.ageDistribution
+    tenureDistribution: agency.tenureDistribution || null,
+    salaryDistribution: agency.salaryDistribution || null,
+    ageDistribution: agency.ageDistribution || null
   };
 
   // Get 2024 data from yearly arrays

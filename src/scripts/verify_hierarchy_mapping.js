@@ -20,22 +20,30 @@ function normalizeForMatching(name) {
     .trim();
 }
 
-// Function to extract all names from hierarchy recursively
-function extractHierarchyNames(data) {
-  const names = new Set();
+// Function to flatten hierarchy and track parent agencies
+function flattenHierarchy(data) {
+  const flattened = [];
   
-  function traverse(node) {
+  function traverse(node, parentAgencies = []) {
     if (node.name) {
-      names.add(node.name);
+      flattened.push({
+        name: node.name,
+        budget_code: node.budget_code || '',
+        keyFunctions: node.keyFunctions || '',
+        org_level: node.org_level || 0,
+        parent_agencies: [...parentAgencies]
+      });
     }
     
     if (node.subAgencies) {
+      const newParentAgencies = node.name ? [...parentAgencies, node.name] : parentAgencies;
+      
       if (Array.isArray(node.subAgencies)) {
-        node.subAgencies.forEach(traverse);
+        node.subAgencies.forEach(child => traverse(child, newParentAgencies));
       } else if (typeof node.subAgencies === 'object') {
         Object.values(node.subAgencies).forEach(agencyArray => {
           if (Array.isArray(agencyArray)) {
-            agencyArray.forEach(traverse);
+            agencyArray.forEach(child => traverse(child, newParentAgencies));
           }
         });
       }
@@ -43,11 +51,8 @@ function extractHierarchyNames(data) {
   }
   
   traverse(data);
-  return names;
+  return flattened;
 }
-
-// Get all names from hierarchy
-const hierarchyNames = extractHierarchyNames(hierarchyData);
 
 // Function to check if two names match using the department's aliases
 function namesMatch(hierName, dept) {
@@ -55,77 +60,75 @@ function namesMatch(hierName, dept) {
   const normalizedCanonicalName = normalizeForMatching(dept.canonicalName);
   const normalizedAliases = (dept.aliases || []).map(alias => normalizeForMatching(alias));
   
-  // Check against canonical name and aliases
   return normalizedCanonicalName === normalizedHierName || 
          normalizedAliases.includes(normalizedHierName);
 }
 
-// Find mismatches using the existing aliases
-const realMismatches = {
-  inHierarchyNotInDepartments: [],
-  inDepartmentsNotInHierarchy: []
+// Flatten the hierarchy
+const flattenedHierarchy = flattenHierarchy(hierarchyData);
+
+// Match against departments
+const matches = {
+  matched: [],
+  unmatched: []
 };
 
-// Check hierarchy names against departments
-for (const hierName of hierarchyNames) {
+// Check each flattened hierarchy entry against departments
+for (const hierEntry of flattenedHierarchy) {
   let found = false;
   for (const dept of departmentsData.departments) {
-    if (namesMatch(hierName, dept)) {
+    if (namesMatch(hierEntry.name, dept)) {
+      matches.matched.push({
+        hierarchy: hierEntry,
+        department: dept
+      });
       found = true;
       break;
     }
   }
   if (!found) {
-    realMismatches.inHierarchyNotInDepartments.push(hierName);
-  }
-}
-
-// Check department names against hierarchy
-for (const dept of departmentsData.departments) {
-  let found = false;
-  for (const hierName of hierarchyNames) {
-    if (namesMatch(hierName, dept)) {
-      found = true;
-      break;
-    }
-  }
-  if (!found) {
-    realMismatches.inDepartmentsNotInHierarchy.push(dept.canonicalName);
+    matches.unmatched.push(hierEntry);
   }
 }
 
 // Print results
-console.log('\nVerification Results (Using Existing Aliases):');
-console.log('--------------------------------------------');
-console.log(`Total names in hierarchy: ${hierarchyNames.size}`);
-console.log(`Total canonical names in departments: ${departmentsData.departments.length}`);
+console.log('\nHierarchy to Department Mapping Results:');
+console.log('----------------------------------------');
+console.log(`Total entries in flattened hierarchy: ${flattenedHierarchy.length}`);
+console.log(`Total departments: ${departmentsData.departments.length}`);
+console.log(`Matched entries: ${matches.matched.length}`);
+console.log(`Unmatched entries: ${matches.unmatched.length}`);
 
-if (realMismatches.inHierarchyNotInDepartments.length > 0) {
-  console.log('\nNames in hierarchy but not in departments:');
-  realMismatches.inHierarchyNotInDepartments.forEach(name => console.log(`- ${name}`));
-}
-
-if (realMismatches.inDepartmentsNotInHierarchy.length > 0) {
-  console.log('\nCanonical names in departments but not in hierarchy:');
-  realMismatches.inDepartmentsNotInHierarchy.forEach(name => console.log(`- ${name}`));
-}
-
-if (realMismatches.inHierarchyNotInDepartments.length === 0 && realMismatches.inDepartmentsNotInHierarchy.length === 0) {
-  console.log('\n✅ Perfect one-to-one mapping verified!');
-} else {
-  console.log('\n❌ Mapping issues found. See above for details.');
-  
-  // Print some examples of successful matches for verification
-  console.log('\nExample successful matches:');
-  let matchCount = 0;
-  for (const hierName of hierarchyNames) {
-    for (const dept of departmentsData.departments) {
-      if (namesMatch(hierName, dept) && hierName !== dept.canonicalName) {
-        console.log(`- "${hierName}" matches "${dept.canonicalName}"`);
-        matchCount++;
-        if (matchCount >= 5) break;
-      }
+if (matches.matched.length > 0) {
+  console.log('\nSuccessful Matches:');
+  console.log('------------------');
+  matches.matched.forEach(({ hierarchy, department }) => {
+    console.log(`\nHierarchy Name: "${hierarchy.name}"`);
+    console.log(`Department Name: "${department.canonicalName}"`);
+    console.log(`Budget Code: ${hierarchy.budget_code || 'N/A'}`);
+    console.log(`Org Level: ${hierarchy.org_level}`);
+    console.log(`Parent Agencies: ${hierarchy.parent_agencies.join(' > ')}`);
+    if (department.aliases && department.aliases.length > 0) {
+      console.log(`Department Aliases: ${department.aliases.join(', ')}`);
     }
-    if (matchCount >= 5) break;
-  }
-} 
+  });
+}
+
+if (matches.unmatched.length > 0) {
+  console.log('\nUnmatched Hierarchy Entries:');
+  console.log('----------------------------');
+  matches.unmatched.forEach(entry => {
+    console.log(`\nName: "${entry.name}"`);
+    console.log(`Budget Code: ${entry.budget_code || 'N/A'}`);
+    console.log(`Org Level: ${entry.org_level}`);
+    console.log(`Parent Agencies: ${entry.parent_agencies.join(' > ')}`);
+    if (entry.keyFunctions) {
+      console.log(`Key Functions: ${entry.keyFunctions}`);
+    }
+  });
+}
+
+// Export the flattened structure
+const outputPath = path.join(__dirname, '../data/flattened-hierarchy.json');
+fs.writeFileSync(outputPath, JSON.stringify(flattenedHierarchy, null, 2));
+console.log(`\nFlattened hierarchy exported to: ${outputPath}`); 

@@ -24,7 +24,8 @@ import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from './AgencyDataVisualization';
 import departmentsData from '@/data/departments.json';
 import { DepartmentsJSON } from '@/types/department';
-import { Agency } from '@/types/agency';
+import type { Agency } from '@/types/agency';
+import type { WorkforceData } from '@/types/workforce';
 import { getDepartmentByName, normalizeForMatching } from '@/lib/departmentMapping';
 
 // Cast imported data to proper types
@@ -36,6 +37,14 @@ const typedDepartmentsData = {
     keyFunctions: dept.keyFunctions || '',
     abbreviation: dept.abbreviation || '',
     parentAgency: dept.parentAgency || '',
+    spending: dept.spending ? {
+      yearly: Object.fromEntries(
+        Object.entries(dept.spending.yearly || {}).map(([key, value]) => [key, String(value)])
+      ),
+      stateOperations: Object.fromEntries(
+        Object.entries(dept.spending.stateOperations || {}).map(([key, value]) => [key, String(value)])
+      )
+    } : undefined,
     workforce: dept.workforce ? {
       ...dept.workforce,
       averageTenureYears: dept.workforce.averageTenureYears || undefined
@@ -57,7 +66,7 @@ const createAgencyFromDepartment = (dept: any): Agency => {
     description: dept.keyFunctions,
     abbreviation: dept.abbreviation,
     subAgencies: [],
-    employeeData: workforceData ? {
+    employeeData: {
       headCount: Object.entries(headCountYearly)
         .filter(([year, count]) => year && count !== null)
         .map(([year, count]) => ({
@@ -76,7 +85,7 @@ const createAgencyFromDepartment = (dept: any): Agency => {
       tenureDistribution: workforceData.tenureDistribution || null,
       salaryDistribution: workforceData.salaryDistribution || null,
       ageDistribution: workforceData.ageDistribution || null
-    } : undefined
+    }
   };
 };
 
@@ -264,7 +273,7 @@ const mergeAgencyData = (structure: Agency[]): Agency[] => {
   console.log('Starting new data merge process...');
   
   // Function to find matching data in the departments data array
-  const findMatchingData = (name: string) => {
+  const findMatchingData = (name: string): any => {
     // Try direct match
     let match = typedDepartmentsData.departments.find(d => d.name === name);
     
@@ -300,21 +309,38 @@ const mergeAgencyData = (structure: Agency[]): Agency[] => {
     
     // If we found matching data, apply it to the agency
     if (agencyData?.workforce) {
+      const workforceData = agencyData.workforce as WorkforceData;
       agency.employeeData = {
-        headCount: agencyData.workforce.yearlyHeadCount?.map(item => ({
-          year: item.year,
-          count: item.headCount
-        })) || [],
-        wages: agencyData.workforce.yearlyWages?.map(item => ({
-          year: item.year,
-          amount: item.wages
-        })) || [],
-        averageTenure: agencyData.workforce.averageTenureYears,
-        averageSalary: agencyData.workforce.averageSalary,
-        averageAge: agencyData.workforce.averageAge,
-        tenureDistribution: agencyData.workforce.tenureDistribution,
-        salaryDistribution: agencyData.workforce.salaryDistribution,
-        ageDistribution: agencyData.workforce.ageDistribution
+        headCount: Object.entries(workforceData.headCount?.yearly || {})
+          .filter(([year, count]) => year && count !== null)
+          .map(([year, count]) => ({
+            year: year.toString(),
+            count: count as number
+          })),
+        wages: Object.entries(workforceData.wages?.yearly || {})
+          .filter(([year, amount]) => year && amount !== null)
+          .map(([year, amount]) => ({
+            year: year.toString(),
+            amount: amount as number
+          })),
+        averageTenure: workforceData.averageTenureYears || null,
+        averageSalary: workforceData.averageSalary || null,
+        averageAge: workforceData.averageAge || null,
+        tenureDistribution: workforceData.tenureDistribution || null,
+        salaryDistribution: workforceData.salaryDistribution || null,
+        ageDistribution: workforceData.ageDistribution || null
+      };
+    } else {
+      // If no matching data found, ensure we have a valid employeeData structure
+      agency.employeeData = {
+        headCount: [],
+        wages: [],
+        averageTenure: null,
+        averageSalary: null,
+        averageAge: null,
+        tenureDistribution: null,
+        salaryDistribution: null,
+        ageDistribution: null
       };
     }
     
