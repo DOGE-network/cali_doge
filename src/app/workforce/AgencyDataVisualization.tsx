@@ -31,9 +31,9 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
     averageTenure: agency.averageTenureYears,
     averageSalary: agency.averageSalary,
     averageAge: agency.averageAge,
-    tenureDistribution: agency.tenureDistribution,
-    salaryDistribution: agency.salaryDistribution,
-    ageDistribution: agency.ageDistribution
+    tenureDistribution: agency.tenureDistribution || null,
+    salaryDistribution: agency.salaryDistribution || null,
+    ageDistribution: agency.ageDistribution || null
   };
 
   // Get 2024 data from yearly arrays
@@ -144,7 +144,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div>
           <div className="text-lg font-bold">
-            {headCount2024 !== undefined ? formatNumber(headCount2024) : '~'}
+            {headCount2024 !== null && headCount2024 !== undefined ? formatNumber(headCount2024) : '~'}
           </div>
           <div className="text-gray-600 text-sm">
             {markdownSlug ? (
@@ -167,7 +167,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
         </div>
         <div>
           <div className="text-lg font-bold">
-            {wages2024 !== undefined ? formatCurrencyWithSuffix(wages2024) : '~'}
+            {wages2024 !== null && wages2024 !== undefined ? formatCurrencyWithSuffix(wages2024) : '~'}
           </div>
           <div className="text-gray-600 text-sm">Total Wages (2024)</div>
         </div>

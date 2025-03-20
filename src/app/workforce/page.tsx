@@ -22,152 +22,206 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from './AgencyDataVisualization';
-import executiveBranchData from '@/data/executive-branch-hierarchy.json';
-import { Agency } from '@/types/agency';
 import departmentsData from '@/data/departments.json';
 import { DepartmentsJSON } from '@/types/department';
+import type { Agency } from '@/types/agency';
+import type { WorkforceData } from '@/types/workforce';
 import { getDepartmentByName, normalizeForMatching } from '@/lib/departmentMapping';
 
 // Cast imported data to proper types
-const typedDepartmentsData = departmentsData as DepartmentsJSON;
+const typedDepartmentsData = {
+  departments: departmentsData.departments.map(dept => ({
+    ...dept,
+    org_level: dept.org_level || 0,
+    budget_status: dept.budget_status || 'active',
+    keyFunctions: dept.keyFunctions || '',
+    abbreviation: dept.abbreviation || '',
+    parentAgency: dept.parentAgency || '',
+    spending: dept.spending ? {
+      yearly: Object.fromEntries(
+        Object.entries(dept.spending.yearly || {}).map(([key, value]) => [key, String(value)])
+      ),
+      stateOperations: Object.fromEntries(
+        Object.entries(dept.spending.stateOperations || {}).map(([key, value]) => [key, String(value)])
+      )
+    } : undefined,
+    workforce: dept.workforce ? {
+      ...dept.workforce,
+      averageTenureYears: dept.workforce.averageTenureYears || undefined
+    } : undefined
+  }))
+} as DepartmentsJSON;
 
-// Convert executive branch JSON to Agency structure
-const convertExecutiveBranchToAgency = (data: any): Agency => {
-  // Create top-level agency
-  const agency: Agency = {
-    name: data.name || "California State Government",
-    org_level: data.org_level || 0,
-    budget_status: data.budget_status || "active",
-    subAgencies: []
+// Helper function to create agency from department
+const createAgencyFromDepartment = (dept: any): Agency => {
+  // Get workforce data with proper null checks
+  const workforceData = dept.workforce || {};
+  const headCountYearly = workforceData.headCount?.yearly || {};
+  const wagesYearly = workforceData.wages?.yearly || {};
+
+  return {
+    name: dept.name,
+    org_level: dept.org_level || 4,
+    budget_status: dept.budget_status || "active",
+    description: dept.keyFunctions,
+    abbreviation: dept.abbreviation,
+    subAgencies: [],
+    employeeData: {
+      headCount: Object.entries(headCountYearly)
+        .filter(([year, count]) => year && count !== null)
+        .map(([year, count]) => ({
+          year: year.toString(),
+          count: count as number
+        })),
+      wages: Object.entries(wagesYearly)
+        .filter(([year, amount]) => year && amount !== null)
+        .map(([year, amount]) => ({
+          year: year.toString(),
+          amount: amount as number
+        })),
+      averageTenure: workforceData.averageTenureYears || null,
+      averageSalary: workforceData.averageSalary || null,
+      averageAge: workforceData.averageAge || null,
+      tenureDistribution: workforceData.tenureDistribution || null,
+      salaryDistribution: workforceData.salaryDistribution || null,
+      ageDistribution: workforceData.ageDistribution || null
+    }
   };
-
-  // Count total subordinate offices
-  let totalSubordinateOffices = 0;
-
-  // Process the branches (Executive, Legislative, Judicial)
-  if (data.subAgencies && Array.isArray(data.subAgencies)) {
-    data.subAgencies.forEach((branch: any) => {
-      const branchAgency: Agency = {
-        name: branch.name,
-        org_level: branch.org_level,
-        budget_status: branch.budget_status || "active",
-        subAgencies: []
-      };
-
-      let branchSubordinateOffices = 0;
-      
-      // Handle Executive Branch's special structure (object with categories)
-      if (branch.name === "Executive Branch" && branch.subAgencies && typeof branch.subAgencies === 'object' && !Array.isArray(branch.subAgencies)) {
-        // Process each category of sub-agencies
-        Object.entries(branch.subAgencies).forEach(([category, categoryAgencies]: [string, any]) => {
-          // Create a category agency
-          const categoryAgency: Agency = {
-            name: category,
-            org_level: 3, // Categories are level 3 under Executive
-            budget_status: "active",
-            subAgencies: []
-          };
-
-          // Count subordinate offices for this category
-          let categorySubordinateOffices = 0;
-
-          // Process agencies in this category
-          categoryAgencies.forEach((subAgencyData: any) => {
-            // Count this agency as a subordinate office
-            categorySubordinateOffices++;
-            
-            // Count sub-sub-agencies for this agency
-            let subAgencySubordinateOffices = 0;
-            if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
-              subAgencySubordinateOffices = subAgencyData.subAgencies.length;
-            }
-
-            const subAgency: Agency = {
-              name: subAgencyData.name,
-              org_level: subAgencyData.org_level,
-              budget_status: subAgencyData.budget_status || "active",
-              description: subAgencyData.keyFunctions,
-              subordinateOffices: subAgencySubordinateOffices
-            };
-
-            // Process sub-sub-agencies if they exist
-            if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
-              subAgency.subAgencies = subAgencyData.subAgencies.map((subSubAgencyData: any) => ({
-                name: subSubAgencyData.name,
-                org_level: subSubAgencyData.org_level,
-                budget_status: subSubAgencyData.budget_status || "active",
-                description: subSubAgencyData.keyFunctions,
-                abbreviation: subSubAgencyData.abbreviation,
-                subordinateOffices: 0 // Leaf nodes have no subordinates
-              }));
-            }
-
-            categoryAgency.subAgencies?.push(subAgency);
-          });
-
-          // Set subordinate offices count for this category
-          categoryAgency.subordinateOffices = categorySubordinateOffices;
-          branchSubordinateOffices += categorySubordinateOffices;
-
-          branchAgency.subAgencies?.push(categoryAgency);
-        });
-      } 
-      // Handle other branches with simple array structure
-      else if (branch.subAgencies && Array.isArray(branch.subAgencies)) {
-        branchAgency.subAgencies = branch.subAgencies.map((subAgencyData: any) => {
-          const subAgency: Agency = {
-            name: subAgencyData.name,
-            org_level: subAgencyData.org_level,
-            budget_status: subAgencyData.budget_status || "active",
-            description: subAgencyData.keyFunctions || subAgencyData.entity,
-            subordinateOffices: 0
-          };
-
-          // If this sub-agency has its own sub-agencies, process them
-          if (subAgencyData.subAgencies && Array.isArray(subAgencyData.subAgencies)) {
-            subAgency.subordinateOffices = subAgencyData.subAgencies.length;
-            branchSubordinateOffices += subAgency.subordinateOffices || 0;
-
-            subAgency.subAgencies = subAgencyData.subAgencies.map((subSubAgencyData: any) => ({
-              name: subSubAgencyData.name,
-              org_level: subSubAgencyData.org_level,
-              budget_status: subSubAgencyData.budget_status || "active",
-              description: subSubAgencyData.keyFunctions,
-              subordinateOffices: 0
-            }));
-          }
-
-          branchSubordinateOffices++;
-          return subAgency;
-        });
-      }
-
-      // Set subordinate offices count for this branch
-      branchAgency.subordinateOffices = branchSubordinateOffices;
-      totalSubordinateOffices += branchSubordinateOffices;
-
-      agency.subAgencies?.push(branchAgency);
-    });
-  }
-
-  // Set total subordinate offices for the government
-  agency.subordinateOffices = totalSubordinateOffices;
-
-  return agency;
 };
 
-// Function to filter inactive agencies
+// Build hierarchy from departments data
+const buildHierarchy = (): Agency => {
+  // Create root agency (California State Government)
+  const root: Agency = createAgencyFromDepartment(
+    typedDepartmentsData.departments.find(d => d.name === "California State Government") || {
+      name: "California State Government",
+      org_level: 0,
+      budget_status: "active"
+    }
+  );
+
+  // Create main branches (Level 1)
+  const branches: Record<string, Agency> = {
+    "Executive Branch": {
+      name: "Executive Branch",
+      org_level: 1,
+      budget_status: "active",
+      subAgencies: [],
+      description: "Executive branch of California state government"
+    },
+    "Legislative Branch": {
+      name: "Legislative Branch",
+      org_level: 1,
+      budget_status: "active",
+      subAgencies: [],
+      description: "Legislative branch of California state government"
+    },
+    "Judicial Branch": {
+      name: "Judicial Branch",
+      org_level: 1,
+      budget_status: "active",
+      subAgencies: [],
+      description: "Judicial branch of California state government"
+    }
+  };
+
+  // Group departments by org_level
+  const departmentsByLevel: Record<number, any[]> = {};
+  typedDepartmentsData.departments.forEach(dept => {
+    if (dept.name === "California State Government") return; // Skip root
+    
+    const level = dept.org_level || 4; // Default to level 4 if not specified
+    if (!departmentsByLevel[level]) {
+      departmentsByLevel[level] = [];
+    }
+    departmentsByLevel[level].push(dept);
+  });
+
+  // Create a map to store all agencies by name for easy lookup
+  const agencyMap: Record<string, Agency> = {
+    "Executive Branch": branches["Executive Branch"],
+    "Legislative Branch": branches["Legislative Branch"],
+    "Judicial Branch": branches["Judicial Branch"]
+  };
+
+  // Process departments level by level (2 through 4)
+  [2, 3, 4].forEach(level => {
+    const depts = departmentsByLevel[level] || [];
+    depts.forEach(dept => {
+      const agency = createAgencyFromDepartment(dept);
+      agencyMap[dept.name] = agency;
+
+      // Find parent agency
+      const parentName = dept.parentAgency;
+      if (parentName) {
+        let parentAgency = agencyMap[parentName];
+        
+        // If parent doesn't exist yet, create it
+        if (!parentAgency) {
+          parentAgency = {
+            name: parentName,
+            org_level: level - 1,
+            budget_status: "active",
+            subAgencies: [],
+            description: `Parent agency for ${dept.name}`
+          };
+          agencyMap[parentName] = parentAgency;
+          
+          // Add to Executive Branch by default if not already under another branch
+          if (!["Legislative Branch", "Judicial Branch"].includes(parentName)) {
+            if (!branches["Executive Branch"].subAgencies) {
+              branches["Executive Branch"].subAgencies = [];
+            }
+            branches["Executive Branch"].subAgencies.push(parentAgency);
+          }
+        }
+        
+        // Ensure parent agency has subAgencies array
+        if (!parentAgency.subAgencies) {
+          parentAgency.subAgencies = [];
+        }
+        
+        // Add this agency to its parent
+        parentAgency.subAgencies.push(agency);
+      } else {
+        // If no parent specified, add to Executive Branch by default
+        if (!branches["Executive Branch"].subAgencies) {
+          branches["Executive Branch"].subAgencies = [];
+        }
+        branches["Executive Branch"].subAgencies.push(agency);
+      }
+    });
+  });
+
+  // Add branches to root
+  root.subAgencies = Object.values(branches);
+
+  // Calculate subordinate offices
+  const calculateSubordinateOffices = (agency: Agency): number => {
+    if (!agency.subAgencies || agency.subAgencies.length === 0) {
+      return 0;
+    }
+    const directSubordinates = agency.subAgencies.length;
+    const nestedSubordinates = agency.subAgencies.reduce(
+      (sum, subAgency) => sum + calculateSubordinateOffices(subAgency),
+      0
+    );
+    agency.subordinateOffices = directSubordinates + nestedSubordinates;
+    return agency.subordinateOffices;
+  };
+
+  calculateSubordinateOffices(root);
+  return root;
+};
+
+// Filter inactive agencies
 const filterInactiveAgencies = (agencies: Agency[] | undefined, showInactive: boolean): Agency[] => {
   if (!agencies) return [];
   
   return agencies.map(agency => {
-    // Skip filtering if we're showing all
     if (showInactive) return agency;
-    
-    // Filter out inactive agencies
     if (agency.budget_status === 'inactive') return null;
     
-    // Recursively filter subagencies
     if (agency.subAgencies) {
       const filteredSubs = filterInactiveAgencies(agency.subAgencies, showInactive);
       return {...agency, subAgencies: filteredSubs.filter(Boolean)};
@@ -219,7 +273,7 @@ const mergeAgencyData = (structure: Agency[]): Agency[] => {
   console.log('Starting new data merge process...');
   
   // Function to find matching data in the departments data array
-  const findMatchingData = (name: string) => {
+  const findMatchingData = (name: string): any => {
     // Try direct match
     let match = typedDepartmentsData.departments.find(d => d.name === name);
     
@@ -254,22 +308,39 @@ const mergeAgencyData = (structure: Agency[]): Agency[] => {
     const agencyData = findMatchingData(agency.name);
     
     // If we found matching data, apply it to the agency
-    if (agencyData && agencyData.workforce) {
+    if (agencyData?.workforce) {
+      const workforceData = agencyData.workforce as WorkforceData;
       agency.employeeData = {
-        headCount: agencyData.workforce.yearlyHeadCount?.map(item => ({
-          year: item.year,
-          count: item.headCount
-        })),
-        wages: agencyData.workforce.yearlyWages?.map(item => ({
-          year: item.year,
-          amount: item.wages
-        })),
-        averageTenure: agencyData.workforce.averageTenureYears,
-        averageSalary: agencyData.workforce.averageSalary,
-        averageAge: agencyData.workforce.averageAge,
-        tenureDistribution: agencyData.workforce.tenureDistribution,
-        salaryDistribution: agencyData.workforce.salaryDistribution,
-        ageDistribution: agencyData.workforce.ageDistribution
+        headCount: Object.entries(workforceData.headCount?.yearly || {})
+          .filter(([year, count]) => year && count !== null)
+          .map(([year, count]) => ({
+            year: year.toString(),
+            count: count as number
+          })),
+        wages: Object.entries(workforceData.wages?.yearly || {})
+          .filter(([year, amount]) => year && amount !== null)
+          .map(([year, amount]) => ({
+            year: year.toString(),
+            amount: amount as number
+          })),
+        averageTenure: workforceData.averageTenureYears || null,
+        averageSalary: workforceData.averageSalary || null,
+        averageAge: workforceData.averageAge || null,
+        tenureDistribution: workforceData.tenureDistribution || null,
+        salaryDistribution: workforceData.salaryDistribution || null,
+        ageDistribution: workforceData.ageDistribution || null
+      };
+    } else {
+      // If no matching data found, ensure we have a valid employeeData structure
+      agency.employeeData = {
+        headCount: [],
+        wages: [],
+        averageTenure: null,
+        averageSalary: null,
+        averageAge: null,
+        tenureDistribution: null,
+        salaryDistribution: null,
+        ageDistribution: null
       };
     }
     
@@ -459,13 +530,13 @@ function WorkforcePageContent() {
   const [activePath, setActivePath] = useState<string[]>([]);
   const [hierarchyData, setHierarchyData] = useState<Agency | null>(null);
   
-  // Convert executive branch data to agency hierarchy
+  // Build hierarchy from departments data
   useEffect(() => {
     try {
-      const converted = convertExecutiveBranchToAgency(executiveBranchData);
-      setHierarchyData(converted);
+      const hierarchy = buildHierarchy();
+      setHierarchyData(hierarchy);
     } catch (error) {
-      console.error('Error converting hierarchy data:', error);
+      console.error('Error building hierarchy:', error);
     }
   }, []);
   

@@ -3,9 +3,6 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import BackButton from '@/components/BackButton'
 import Link from 'next/link'
-import departmentsData from '@/data/departments.json'
-import { WorkforceData } from '@/types/workforce'
-import { DepartmentsJSON } from '@/types/department'
 import { getDepartmentBySlug } from '@/lib/departmentMapping'
 
 type Props = {
@@ -13,9 +10,6 @@ type Props = {
     slug: string
   }
 }
-
-// Cast the imported data to the proper type
-const typedDepartmentsData = departmentsData as DepartmentsJSON;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const posts = await getAllPosts()
@@ -47,43 +41,9 @@ export default async function BlogPost({ params }: Props) {
     console.log(`No department found for slug: ${params.slug}. Make sure it has a matching entry in departments.json`);
   }
   
-  // Get department details from JSON
-  const departmentDetails = department ? 
-    typedDepartmentsData.departments.find(d => d.slug === department.slug) : 
-    null;
-  
   // Generate URLs for spending and workforce pages
   const spendingUrl = department ? `/spend?department=${encodeURIComponent(department.name)}` : null;
   const workforceUrl = department ? `/workforce?department=${encodeURIComponent(department.name)}` : null;
-  
-  // Get workforce data for this department
-  const workforceData = departmentDetails?.workforce;
-
-  // Transform workforce data to match WorkforceData type
-  let typedWorkforceData: WorkforceData | null = null;
-  
-  if (departmentDetails && workforceData) {
-    // Create a properly typed object
-    typedWorkforceData = {
-      name: departmentDetails.canonicalName,
-      yearlyHeadCount: workforceData.yearlyHeadCount || [],
-      yearlyWages: workforceData.yearlyWages || []
-      // Optional properties are not included if they don't exist
-    };
-    
-    // Add optional properties if they exist
-    if ('averageTenureYears' in workforceData) {
-      typedWorkforceData.averageTenureYears = workforceData.averageTenureYears as number;
-    }
-    
-    if ('averageSalary' in workforceData) {
-      typedWorkforceData.averageSalary = workforceData.averageSalary as number;
-    }
-    
-    if ('averageAge' in workforceData) {
-      typedWorkforceData.averageAge = workforceData.averageAge as number;
-    }
-  }
 
   return (
     <div className="container mx-auto px-4 pt-24">
@@ -103,7 +63,6 @@ export default async function BlogPost({ params }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Data Links */}
             <div className="md:col-span-2 mt-2">
-
               <div className="flex flex-wrap gap-2">
                 {spendingUrl && (
                   <Link href={spendingUrl} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">

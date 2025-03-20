@@ -1989,7 +1989,7 @@
                 "abbreviation": "CCC",
                 "org_level": 4,
                 "budget_code": "6870",
-                "budget_level": "2", 
+                "budget_level": "2",
                 "budget_status": "active",
                 "keyFunctions": "Public community college system with 116 colleges"
               },
@@ -2101,6 +2101,477 @@
           "composition": "Chief Justice + 20 voting members"
         }
       ]
+    },
+    {
+      "name": "Constitutional Officers",
+      "org_level": 2,
+      "subAgencies": [
+        {
+          "name": "Office of the Lieutenant Governor",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary of State",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "State Controller",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "State Treasurer",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "Attorney General",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "Insurance Commissioner",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "Superintendent of Public Instruction",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary of Health and Human Services",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary for Labor and Workforce Development",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary for Government Operations",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary of Business, Consumer Services and Housing",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary of Transportation",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        }
+      ]
+    },
+    {
+      "name": "Constitutional Officers",
+      "org_level": 2,
+      "subAgencies": [
+        {
+          "name": "Office of Lieutenant Governor",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "Lieutenant Governor"
+          ]
+        },
+        {
+          "name": "Secretary of State",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "State Controller",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "State Treasurer",
+          "org_level": 3,
+          "budget_status": "active"
+        },
+        {
+          "name": "Department of Justice",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "Attorney General"
+          ]
+        },
+        {
+          "name": "Department of Insurance",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "Insurance Commissioner"
+          ]
+        },
+        {
+          "name": "Department of Education",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "Superintendent of Public Instruction"
+          ]
+        },
+        {
+          "name": "Secretary of Health and Human Services",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary for Labor and Workforce Development",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary for Government Operations",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary of Business, Consumer Services and Housing",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        },
+        {
+          "name": "Secretary of Transportation",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active"
+        }
+      ]
+    },
+    {
+      "name": "Natural Resources Agency",
+      "org_level": 3,
+      "subAgencies": [
+        {
+          "name": "Department of Water Resources",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "Department of Conservation",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "Department of Parks and Recreation",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "Department of Water Resources",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "California Department of Water Resources",
+            "DWR"
+          ]
+        },
+        {
+          "name": "Department of Conservation",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "California Department of Conservation",
+            "DOC"
+          ]
+        },
+        {
+          "name": "Department of Parks and Recreation",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "California Department of Parks and Recreation",
+            "State Parks"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "California Environmental Protection Agency",
+      "org_level": 3,
+      "subAgencies": [
+        {
+          "name": "Water Resources Control Board",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "Department of Toxic Substances Control",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "Water Resources Control Board",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "State Water Resources Control Board",
+            "SWRCB"
+          ]
+        },
+        {
+          "name": "Department of Toxic Substances Control",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "California Department of Toxic Substances Control",
+            "DTSC"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Health and Human Services Agency",
+      "org_level": 3,
+      "subAgencies": [
+        {
+          "name": "California Department of Social Services",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "California Department of State Hospitals",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "California Department of Developmental Services",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "California Department of Social Services",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "Department of Social Services",
+            "CDSS"
+          ]
+        },
+        {
+          "name": "California Department of State Hospitals",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "Department of State Hospitals",
+            "DSH"
+          ]
+        },
+        {
+          "name": "California Department of Developmental Services",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "Department of Developmental Services",
+            "DDS"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Agriculture Agency",
+      "org_level": 3,
+      "subAgencies": [
+        {
+          "name": "California Department of Food and Agriculture",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "California Department of Food and Agriculture",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "Department of Food and Agriculture",
+            "CDFA"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Veterans Affairs Agency",
+      "org_level": 3,
+      "subAgencies": [
+        {
+          "name": "California Department of Veterans Affairs",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "California Department of Veterans Affairs",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "Department of Veterans Affairs",
+            "CalVet"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Business, Consumer Services, and Housing Agency",
+      "org_level": 3,
+      "subAgencies": [
+        {
+          "name": "Horse Racing Board",
+          "org_level": 4,
+          "budget_status": "active"
+        },
+        {
+          "name": "Horse Racing Board",
+          "org_level": 4,
+          "budget_status": "active",
+          "aliases": [
+            "California Horse Racing Board",
+            "CHRB"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Constitutional Officers",
+      "org_level": 2,
+      "aliases": [
+        "Constitutional Office",
+        "Constitutional Officers of California"
+      ],
+      "subAgencies": [
+        {
+          "name": "Office of the Lieutenant Governor",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "Lieutenant Governor",
+            "Office of Lieutenant Governor",
+            "Lieutenant Governor's Office"
+          ]
+        },
+        {
+          "name": "Secretary of State",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "California Secretary of State",
+            "Secretary of State's Office"
+          ]
+        },
+        {
+          "name": "State Controller",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "State Controller's Office",
+            "California State Controller"
+          ]
+        },
+        {
+          "name": "State Treasurer",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "State Treasurer's Office",
+            "California State Treasurer"
+          ]
+        },
+        {
+          "name": "Department of Justice",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "Attorney General",
+            "Office of the Attorney General",
+            "California Department of Justice"
+          ]
+        },
+        {
+          "name": "Department of Insurance",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "Insurance Commissioner",
+            "California Department of Insurance",
+            "Office of the Insurance Commissioner"
+          ]
+        },
+        {
+          "name": "Department of Education",
+          "org_level": 3,
+          "budget_status": "active",
+          "aliases": [
+            "Superintendent of Public Instruction",
+            "California Department of Education",
+            "State Department of Education"
+          ]
+        },
+        {
+          "name": "Secretary of Health and Human Services",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active",
+          "aliases": [
+            "Health and Human Services Secretary",
+            "CHHS Secretary"
+          ]
+        },
+        {
+          "name": "Secretary for Labor and Workforce Development",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active",
+          "aliases": [
+            "Labor Secretary",
+            "Workforce Development Secretary"
+          ]
+        },
+        {
+          "name": "Secretary for Government Operations",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active",
+          "aliases": [
+            "GovOps Secretary",
+            "Government Operations Secretary"
+          ]
+        },
+        {
+          "name": "Secretary of Business, Consumer Services and Housing",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active",
+          "aliases": [
+            "BCSH Secretary",
+            "Business and Consumer Services Secretary"
+          ]
+        },
+        {
+          "name": "Secretary of Transportation",
+          "org_level": 3,
+          "parentAgency": "Constitutional Officers",
+          "budget_status": "active",
+          "aliases": [
+            "Transportation Secretary",
+            "CalSTA Secretary"
+          ]
+        }
+      ]
     }
   ]
-} 
+}

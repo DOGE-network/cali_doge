@@ -27,14 +27,28 @@ export interface Agency {
   averageAge?: number;
   // New structure using departments.json
   employeeData?: {
-    headCount?: Array<{ year: string; count: number }>;
-    wages?: Array<{ year: string; amount: number }>;
-    averageTenure?: number;
-    averageSalary?: number;
-    averageAge?: number;
-    tenureDistribution?: { [key: string]: number };
-    salaryDistribution?: { [key: string]: number };
-    ageDistribution?: { [key: string]: number };
+    headCount?: Array<{ year: string; count: number | null }>;
+    wages?: Array<{ year: string; amount: number | null }>;
+    averageTenure?: number | null;
+    averageSalary?: number | null;
+    averageAge?: number | null;
+    tenureDistribution?: { [key: string]: number } | null;
+    salaryDistribution?: { [key: string]: number } | null;
+    ageDistribution?: { [key: string]: number } | null;
+  };
+  workforce?: {
+    headCount: {
+      yearly: Record<string, number | null>;
+    };
+    wages: {
+      yearly: Record<string, number | null>;
+    };
+    averageTenureYears?: number | null;
+    averageSalary?: number | null;
+    averageAge?: number | null;
+    tenureDistribution?: { [key: string]: number } | null;
+    salaryDistribution?: { [key: string]: number } | null;
+    ageDistribution?: { [key: string]: number } | null;
   };
 }
 
