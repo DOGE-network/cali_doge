@@ -24,6 +24,9 @@ export interface WorkforceData {
   headCount?: {
     yearly: Record<string, number>;
   };
+  wages?: {
+    yearly: Record<string, number>;
+  };
 }
 
 export interface DepartmentData {
@@ -34,14 +37,21 @@ export interface DepartmentData {
   workforce?: WorkforceData;
   spending?: {
     yearly: Record<string, string>;
-    stateOperations: Record<string, string>;
   };
   code?: string;
-  org_level: number;
+  orgLevel: number;
   budget_status: string;
   keyFunctions: string;
   abbreviation: string;
-  parentAgency: string;
+  parent_agency: string;
+}
+
+/**
+ * Extended interface for department hierarchy visualization
+ */
+export interface DepartmentHierarchy extends DepartmentData {
+  subDepartments?: DepartmentHierarchy[];
+  subordinateOffices?: number;
 }
 
 /**

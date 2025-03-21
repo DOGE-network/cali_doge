@@ -79,10 +79,10 @@ function parseReportLog(logPath) {
       currentDepartment.details.csvOrgLevel = parseInt(line.replace('- CSV org_level: ', ''));
     } else if (currentDepartment && line.startsWith('- JSON org_level: ')) {
       currentDepartment.details.jsonOrgLevel = parseInt(line.replace('- JSON org_level: ', ''));
-    } else if (currentDepartment && line.startsWith('- CSV parentAgency: ')) {
-      currentDepartment.details.csvParentAgency = line.replace('- CSV parentAgency: ', '');
-    } else if (currentDepartment && line.startsWith('- JSON parentAgency: ')) {
-      currentDepartment.details.jsonParentAgency = line.replace('- JSON parentAgency: ', '');
+    } else if (currentDepartment && line.startsWith('- CSV parent_agency: ')) {
+      currentDepartment.details.csvParent_agency = line.replace('- CSV parent_agency: ', '');
+    } else if (currentDepartment && line.startsWith('- JSON parent_agency: ')) {
+      currentDepartment.details.jsonParent_agency = line.replace('- JSON parent_agency: ', '');
     } else if (currentDepartment && line.startsWith('- Potential new alias found:')) {
       if (!currentDepartment.details.newAliases) {
         currentDepartment.details.newAliases = [];
@@ -100,7 +100,7 @@ function parseReportLog(logPath) {
 
 // Verify department hierarchy
 function verifyHierarchy(department, departmentsJson) {
-  const { csvOrgLevel, jsonOrgLevel, csvParentAgency, jsonParentAgency } = department.details;
+  const { csvOrgLevel, jsonOrgLevel, csvParent_agency, jsonParent_agency } = department.details;
   
   // Skip if org levels don't match
   if (csvOrgLevel !== jsonOrgLevel) {
@@ -125,11 +125,11 @@ function verifyHierarchy(department, departmentsJson) {
   }
 
   // Check parent agency match
-  if (csvParentAgency !== jsonParentAgency) {
+  if (csvParent_agency !== jsonParent_agency) {
     return {
       skip: false,
       mismatch: true,
-      message: `Parent agency mismatch: CSV=${csvParentAgency}, JSON=${jsonParentAgency}`
+      message: `Parent agency mismatch: CSV=${csvParent_agency}, JSON=${jsonParent_agency}`
     };
   }
 
@@ -182,8 +182,8 @@ function generateVerificationLog(results) {
       logContent.push(`  CSV name: ${result.details.csvName}`);
       logContent.push(`  CSV org_level: ${result.details.csvOrgLevel}`);
       logContent.push(`  JSON org_level: ${result.details.jsonOrgLevel}`);
-      logContent.push(`  CSV parentAgency: ${result.details.csvParentAgency}`);
-      logContent.push(`  JSON parentAgency: ${result.details.jsonParentAgency}`);
+      logContent.push(`  CSV parent_agency: ${result.details.csvParent_agency}`);
+      logContent.push(`  JSON parent_agency: ${result.details.jsonParent_agency}`);
     }
   }
 

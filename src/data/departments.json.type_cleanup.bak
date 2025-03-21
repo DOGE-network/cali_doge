@@ -96,8 +96,100 @@
       "budget_status": "Active",
       "keyFunctions": "State Government",
       "abbreviation": "CA",
-      "parent_agency": "",
-      "orgLevel": 0
+      "parent_agency": ""
+    },
+    {
+      "name": "Constitutional Officers",
+      "slug": "constitutional_officers",
+      "canonicalName": "Constitutional Officers",
+      "aliases": [
+        "Constitutional Office",
+        "Constitutional Officers of California"
+      ],
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "yearlyHeadCount": [],
+        "yearlyWages": [],
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "budget_status": "Active",
+      "keyFunctions": "Oversight of constitutional offices and officers",
+      "abbreviation": "",
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "California Conservation Corps",
+      "slug": "california_conservation_corps",
+      "canonicalName": "California Conservation Corps",
+      "aliases": [
+        "CCC",
+        "California Conservation Corps"
+      ],
+      "budget_status": "Active",
+      "keyFunctions": "Provides young adults opportunities to work on environmental conservation, disaster response, and energy projects while gaining life and work skills",
+      "abbreviation": "CCC",
+      "spending": {
+        "yearly": {
+          "FY2023": "178629000",
+          "FY2024": "154810000"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 510.6,
+            "2024": 502.4
+          }
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "parent_agency": "Natural Resources Agency"
+    },
+    {
+      "name": "Department of Water Resources",
+      "slug": "department_of_water_resources",
+      "canonicalName": "Department of Water Resources",
+      "aliases": [
+        "California Department of Water Resources",
+        "DWR"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": "7480000000",
+          "FY2024": "3190000000",
+          "FY2025": "3250000000"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "": null
+          }
+        },
+        "wages": {
+          "yearly": {
+            "": null
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      }
     },
     {
       "name": "Constitutional Officers",
@@ -201,7 +293,7 @@
       "keyFunctions": "",
       "abbreviation": "",
       "orgLevel": 4,
-      "parent_agency": "California Natural Resources Agency"
+      "parent_agency": "Natural Resources Agency"
     },
     {
       "name": "Water Resources Control Board",
@@ -429,7 +521,7 @@
       "keyFunctions": "",
       "abbreviation": "",
       "orgLevel": 4,
-      "parent_agency": "Executive Branch"
+      "parent_agency": ""
     },
     {
       "name": "California Department of Veterans Affairs",
@@ -1470,7 +1562,7 @@
       "abbreviation": "",
       "code": "0500",
       "orgLevel": 3,
-      "parent_agency": "Executive Branch"
+      "parent_agency": ""
     },
     {
       "name": "Governor's Office of Business and Economic Development",

@@ -1,32 +1,35 @@
 import { NextResponse } from 'next/server';
-import { getAllPosts } from '@/lib/blog';
+import departmentsData from '@/data/departments.json';
+import type { DepartmentData, DepartmentsJSON } from '@/types/department';
 
 export async function GET() {
-  try {
-    const posts = await getAllPosts();
+  // Type-safe cast of departments data
+  const typedData = departmentsData as unknown as DepartmentsJSON;
+  
+  const departments = typedData.departments.map((dept: DepartmentData) => {
+    // Normalize the department data
+    const normalized: DepartmentData = {
+      ...dept,
+      parent_agency: dept.parent_agency || '',
+      orgLevel: dept.orgLevel || 999,
+      budget_status: dept.budget_status || 'Active',
+      aliases: dept.aliases || []
+    };
     
-    // Map to a simpler structure for the API
-    const departments = posts.map(post => ({
-      id: post.id,
-      code: post.code ? String(post.code) : '',  // Ensure code is always a string
-      name: post.name,
-      date: post.date,
-      excerpt: post.excerpt,
-      image: post.image
-    }));
+    // Ensure workforce data exists
+    if (!normalized.workforce) {
+      normalized.workforce = {
+        headCount: { yearly: {} },
+        yearlyHeadCount: [],
+        yearlyWages: [],
+        averageTenureYears: undefined,
+        averageSalary: undefined,
+        averageAge: undefined
+      };
+    }
     
-    // Debug the first few departments to check their code types
-    console.log('API Departments (first 3):');
-    departments.slice(0, 3).forEach(dept => {
-      console.log(`${dept.name}: code=${dept.code}, type=${typeof dept.code}`);
-    });
-    
-    return NextResponse.json(departments);
-  } catch (error) {
-    console.error('Error fetching departments:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch departments' },
-      { status: 500 }
-    );
-  }
+    return normalized;
+  });
+
+  return NextResponse.json(departments);
 } 

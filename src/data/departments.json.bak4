@@ -93,11 +93,106 @@
         "averageAge": 47,
         "_note": "This data will be replaced with calculated aggregates once all department data is loaded"
       },
+      "org_level": 0,
       "budget_status": "Active",
       "keyFunctions": "State Government",
       "abbreviation": "CA",
-      "parent_agency": "",
-      "orgLevel": 0
+      "parent_agency": ""
+    },
+    {
+      "name": "Constitutional Officers",
+      "slug": "constitutional_officers",
+      "canonicalName": "Constitutional Officers",
+      "aliases": [
+        "Constitutional Office",
+        "Constitutional Officers of California"
+      ],
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "yearlyHeadCount": [],
+        "yearlyWages": [],
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "org_level": 1,
+      "budget_status": "Active",
+      "keyFunctions": "Oversight of constitutional offices and officers",
+      "abbreviation": "",
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "California Conservation Corps",
+      "slug": "california_conservation_corps",
+      "canonicalName": "California Conservation Corps",
+      "aliases": [
+        "CCC",
+        "California Conservation Corps"
+      ],
+      "org_level": 2,
+      "budget_status": "Active",
+      "keyFunctions": "Provides young adults opportunities to work on environmental conservation, disaster response, and energy projects while gaining life and work skills",
+      "abbreviation": "CCC",
+      "spending": {
+        "yearly": {
+          "FY2023": "178629000",
+          "FY2024": "154810000"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 510.6,
+            "2024": 502.4
+          }
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "parent_agency": "Natural Resources Agency"
+    },
+    {
+      "name": "Department of Water Resources",
+      "slug": "department_of_water_resources",
+      "canonicalName": "Department of Water Resources",
+      "aliases": [
+        "California Department of Water Resources",
+        "DWR"
+      ],
+      "spending": {
+        "yearly": {
+          "FY2023": "7480000000",
+          "FY2024": "3190000000",
+          "FY2025": "3250000000"
+        },
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "": null
+          }
+        },
+        "wages": {
+          "yearly": {
+            "": null
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      }
     },
     {
       "name": "Constitutional Officers",
@@ -122,6 +217,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Oversight of constitutional offices and officers",
       "abbreviation": "",
@@ -137,6 +233,7 @@
         "CCC",
         "California Conservation Corps"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Provides young adults opportunities to work on environmental conservation, disaster response, and energy projects while gaining life and work skills",
       "abbreviation": "CCC",
@@ -197,11 +294,12 @@
         "averageAge": null
       },
       "code": "3860",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
       "orgLevel": 4,
-      "parent_agency": "California Natural Resources Agency"
+      "parent_agency": "Natural Resources Agency"
     },
     {
       "name": "Water Resources Control Board",
@@ -235,6 +333,7 @@
         "averageAge": null
       },
       "code": "3940",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -273,6 +372,7 @@
         "averageAge": null
       },
       "code": "3960",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -311,6 +411,7 @@
         "averageAge": null
       },
       "code": "5180",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -349,6 +450,7 @@
         "averageAge": null
       },
       "code": "4440",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -387,6 +489,7 @@
         "averageAge": null
       },
       "code": "4300",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -425,11 +528,12 @@
         "averageAge": null
       },
       "code": "8570",
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
       "orgLevel": 4,
-      "parent_agency": "Executive Branch"
+      "parent_agency": ""
     },
     {
       "name": "California Department of Veterans Affairs",
@@ -463,6 +567,7 @@
         "averageAge": null
       },
       "code": "8955",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -506,6 +611,7 @@
         "averageAge": null
       },
       "code": "1750",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -549,6 +655,7 @@
         "averageAge": null
       },
       "code": "0530",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -591,6 +698,7 @@
         "averageAge": null
       },
       "code": "0559",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -633,6 +741,7 @@
         "averageAge": null
       },
       "code": "3480",
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -677,6 +786,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Administrative body for judicial branch",
       "abbreviation": "",
@@ -691,6 +801,7 @@
       "aliases": [
         "executive branch"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -720,6 +831,7 @@
       "aliases": [
         "legislative branch"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -749,6 +861,7 @@
       "aliases": [
         "courts of appeal"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Appellate review of superior court cases",
       "abbreviation": "",
@@ -778,6 +891,7 @@
       "aliases": [
         "supreme court"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Final appellate review",
       "abbreviation": "",
@@ -807,6 +921,7 @@
       "aliases": [
         "trial courts"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Trial court jurisdiction",
       "abbreviation": "",
@@ -836,6 +951,7 @@
       "aliases": [
         "legislature"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -889,6 +1005,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Management of state parks, beaches, and historic sites",
       "abbreviation": "",
@@ -930,6 +1047,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Oversees and coordinates the state's natural resources programs",
       "abbreviation": "",
@@ -971,6 +1089,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Management of Exposition Park cultural and recreational facilities",
       "abbreviation": "",
@@ -1009,6 +1128,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Protection of public health through disease prevention, health promotion, and health equity initiatives",
       "abbreviation": "",
@@ -1048,6 +1168,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Operation of state prisons, rehabilitation programs, parole supervision, and juvenile justice facilities",
       "abbreviation": "",
@@ -1086,6 +1207,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Administration of Medi-Cal and other health care programs for low-income Californians",
       "abbreviation": "",
@@ -1102,6 +1224,7 @@
         "California Department of Education",
         "State Department of Education"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Administration of TK-12 education programs, technical assistance to local school districts, and improving academic performance",
       "abbreviation": "CDE",
@@ -1166,6 +1289,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Oversees environmental protection, pollution control, and climate change programs",
       "abbreviation": "",
@@ -1209,6 +1333,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Chief law officer, provides legal services to state government",
       "abbreviation": "",
@@ -1251,6 +1376,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Chief fiscal officer, responsible for state disbursements and financial controls",
       "abbreviation": "",
@@ -1294,6 +1420,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Regulates insurance industry and protects consumers",
       "abbreviation": "",
@@ -1336,6 +1463,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Chief elections officer, keeper of state records and business filings",
       "abbreviation": "",
@@ -1380,6 +1508,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "State's banker, manages investments and debt",
       "abbreviation": "",
@@ -1423,6 +1552,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Civil rights enforcement and protection",
       "abbreviation": "",
@@ -1465,12 +1595,13 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "Chief executive of the state, responsible for implementing state laws and coordinating state agencies",
       "abbreviation": "",
       "code": "0500",
       "orgLevel": 3,
-      "parent_agency": "Executive Branch"
+      "parent_agency": ""
     },
     {
       "name": "Governor's Office of Business and Economic Development",
@@ -1507,6 +1638,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Business development and economic growth",
       "abbreviation": "",
@@ -1549,6 +1681,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Oversees state operations including procurement, technology, human resources, and administrative functions",
       "abbreviation": "",
@@ -1592,6 +1725,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Oversees departments responsible for business oversight, consumer protection, housing policy, and professional licensing",
       "abbreviation": "",
@@ -1635,6 +1769,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Oversees state transportation systems and infrastructure",
       "abbreviation": "",
@@ -1677,6 +1812,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Emergency management and disaster response coordination",
       "abbreviation": "",
@@ -1720,6 +1856,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Second highest executive officer, acting governor when governor is absent",
       "abbreviation": "",
@@ -1763,6 +1900,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Colorado River water resources management",
       "abbreviation": "",
@@ -1806,6 +1944,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -1849,6 +1988,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Protection of Native American cultural resources",
       "abbreviation": "",
@@ -1863,6 +2003,7 @@
       "aliases": [
         "senate advisory commission on cost control in state gov"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -1894,6 +2035,7 @@
         "court reporters",
         "board court reporters"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -1926,6 +2068,7 @@
         "board covered california governing",
         "Health Benefit Exchange Covered California"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -1955,6 +2098,7 @@
       "aliases": [
         "cradle-to-career data system governing board california"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -1986,6 +2130,7 @@
         "crime victims' memorial review",
         "committee crime victims' memorial review"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2018,6 +2163,7 @@
         "criminal index & identification system advisory committee",
         "committee criminal index and identification system advisory"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2048,6 +2194,7 @@
         "criminal justice and behavioral health council on",
         "criminal justice & behavioral health council on"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2078,6 +2225,7 @@
         "cultural and historical endowment california",
         "cultural & historical endowment california"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2110,6 +2258,7 @@
         "debt & investment advisory commission",
         "commission debt and investment advisory"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2140,6 +2289,7 @@
         "delta conservancy governing board sac-san joaquin",
         "Delta Protection Commission Sac-San Joaquin"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2170,6 +2320,7 @@
         "delta protection commission sac-san joaquin",
         "Delta Protection Commission Sac-San Joaquin"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2201,6 +2352,7 @@
         "delta stewardship",
         "council delta stewardship"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2230,6 +2382,7 @@
       "aliases": [
         "dental examiners of ca board of"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2261,6 +2414,7 @@
         "dental hygiene",
         "board dental hygiene"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2290,6 +2444,7 @@
       "aliases": [
         "disability access ca commission on"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2319,6 +2474,7 @@
       "aliases": [
         "domestic services advisory committee on household"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2348,6 +2504,7 @@
       "aliases": [
         "domestic violence program advisory council oes ema"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2379,6 +2536,7 @@
         "early childhood policy",
         "council early childhood policy"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2410,6 +2568,7 @@
         "early childhood policy council workforce adv.",
         "committee early childhood policy council workforce adv."
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2439,6 +2598,7 @@
       "aliases": [
         "earthquake early warning advisory board ca"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2470,6 +2630,7 @@
         "earthquake insurance authority governing board & advisory",
         "earthquake insurance authority governing board and advisory panel"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2499,6 +2660,7 @@
       "aliases": [
         "economic development commission on"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2528,6 +2690,7 @@
       "aliases": [
         "education commission ca postsecondary"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2557,6 +2720,7 @@
       "aliases": [
         "education commission of the states"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2588,6 +2752,7 @@
         "education awards for innovation",
         "committee education awards for innovation"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2617,6 +2782,7 @@
       "aliases": [
         "education private postsecondary adv. com"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2646,6 +2812,7 @@
       "aliases": [
         "education advisory commission on special"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2675,6 +2842,7 @@
       "aliases": [
         "educational excellence ca collaborative"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2706,6 +2874,7 @@
         "educational opportunity for military children state",
         "council educational opportunity for military children state"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2737,6 +2906,7 @@
         "electricity oversight",
         "board electricity oversight"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2766,6 +2936,7 @@
       "aliases": [
         "emergency medical services commission on"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2795,6 +2966,7 @@
       "aliases": [
         "emissions market advisory committee independent"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2824,6 +2996,7 @@
       "aliases": [
         "employment of people with disabilities ca governor's committee on"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2854,6 +3027,7 @@
         "employment training panel",
         "employment training"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2884,6 +3058,7 @@
         "engineers and land surveyors board for professional",
         "engineers & land surveyors board for professional"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2913,6 +3088,7 @@
       "aliases": [
         "environmental contaminant biomonitoring program scientific guidance"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2944,6 +3120,7 @@
         "environmental health specialist registration",
         "committee environmental health specialist registration"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -2973,6 +3150,7 @@
       "aliases": [
         "environmental safety board of"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3003,6 +3181,7 @@
         "exposition & state fair board of directors",
         "exposition and state fair board of directors"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3032,6 +3211,7 @@
       "aliases": [
         "fiduciaries advisory committee professional"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3061,6 +3241,7 @@
       "aliases": [
         "film commission board of commissioners"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3090,6 +3271,7 @@
       "aliases": [
         "forestry task force western states legislative"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3121,6 +3303,7 @@
         "gang database technical advisory",
         "committee gang database technical advisory"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3150,6 +3333,7 @@
       "aliases": [
         "genocide memorial commission international"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3179,6 +3363,7 @@
       "aliases": [
         "hate commission on the state of"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3209,6 +3394,7 @@
         "health & safety & workers' compensation commission on",
         "health and safety & workers' compensation commission on"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3239,6 +3425,7 @@
         "health facilities financing authority",
         "health facilities financing"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3268,6 +3455,7 @@
       "aliases": [
         "health professions education foundation board of trustees"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3298,6 +3486,7 @@
         "healthcare workforce education and training council california",
         "healthcare workforce education & training council california"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3329,6 +3518,7 @@
         "healthy ca for all",
         "commission healthy ca for all"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3360,6 +3550,7 @@
         "home no place like program advisory",
         "committee home no place like program advisory"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3392,6 +3583,7 @@
         "homeless coordinating & financing council",
         "council homeless coordinating and financing"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3421,6 +3613,7 @@
       "aliases": [
         "housing finance agency board of directors ca"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3450,6 +3643,7 @@
       "aliases": [
         "housing partnership board of directors ca"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3481,6 +3675,7 @@
         "instructional quality",
         "commission instructional quality"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3510,6 +3705,7 @@
       "aliases": [
         "insurance guarantee association california board of governors"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3539,6 +3735,7 @@
       "aliases": [
         "investment network advisory board ca organized"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3568,6 +3765,7 @@
       "aliases": [
         "judicial council of ca"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3599,6 +3797,7 @@
         "judicial council information technology advisory",
         "committee judicial council information technology advisory"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3628,6 +3827,7 @@
       "aliases": [
         "judicial performance council on"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3658,6 +3858,7 @@
         "judicial performance committee to review the operations and structure of the commission on",
         "judicial performance committee to review the operations & structure of the commission on"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3689,6 +3890,7 @@
         "landscape architect technical",
         "committee landscape architect technical"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3720,6 +3922,7 @@
         "law revision",
         "commission law revision"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3751,6 +3954,7 @@
         "legal service trust fund",
         "commission legal service trust fund"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3780,6 +3984,7 @@
       "aliases": [
         "library services board ca"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3810,6 +4015,7 @@
         "library construction and renovation board public",
         "library construction & renovation board public"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3839,6 +4045,7 @@
       "aliases": [
         "lithium extraction in ca blue ribbon commission on"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3870,6 +4077,7 @@
         "little hoover",
         "commission little hoover"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3899,6 +4107,7 @@
       "aliases": [
         "long-term care insurance task force"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3928,6 +4137,7 @@
       "aliases": [
         "marine preservation ca endowment board of directors"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3957,6 +4167,7 @@
       "aliases": [
         "medical board of ca"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -3986,6 +4197,7 @@
       "aliases": [
         "medicine institute for regenerative citizen's oversight com."
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4017,6 +4229,7 @@
         "medicine institute for regenerative citizen's financial accountability oversight",
         "committee medicine institute for regenerative citizen's financial accountability oversight"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4046,6 +4259,7 @@
       "aliases": [
         "mental health services oversight"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4075,6 +4289,7 @@
       "aliases": [
         "military council governor's"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4104,6 +4319,7 @@
       "aliases": [
         "mobilehome park inspection program task force"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4133,6 +4349,7 @@
       "aliases": [
         "motor vehicle board new"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4162,6 +4379,7 @@
       "aliases": [
         "motor vehicle recovery corporation board of director"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4193,6 +4411,7 @@
         "naturopathic medicine",
         "committee naturopathic medicine"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4222,6 +4441,7 @@
       "aliases": [
         "nursing registered board of"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4252,6 +4472,7 @@
         "nursing vocational & psychiatric technical examiners board of",
         "nursing vocational and psychiatric technical examiners board of"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4281,6 +4502,7 @@
       "aliases": [
         "occupational therapy board of"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4312,6 +4534,7 @@
         "ocean protection",
         "council ocean protection"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4343,6 +4566,7 @@
         "off-highway motor vehicle recreation",
         "commission off-highway motor vehicle recreation"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4374,6 +4598,7 @@
         "oil spill technical advisory",
         "committee oil spill technical advisory"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4403,6 +4628,7 @@
       "aliases": [
         "optometry california state board of"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4434,6 +4660,7 @@
         "osteopathic medical",
         "board osteopathic medical"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4463,6 +4690,7 @@
       "aliases": [
         "pacific fisheries legislative task force"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4494,6 +4722,7 @@
         "paramedic disciplinary review",
         "board paramedic disciplinary review"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4526,6 +4755,7 @@
         "parks and recreation commission",
         "commission parks & recreation"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4557,6 +4787,7 @@
         "peace officer standards accountability advisory",
         "board peace officer standards accountability advisory"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4587,6 +4818,7 @@
         "peace officer standards & training commission on",
         "peace officer standards and training commission on"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4616,6 +4848,7 @@
       "aliases": [
         "penal code committee on revision of the"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4645,6 +4878,7 @@
       "aliases": [
         "pharmacy state board of"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4676,6 +4910,7 @@
         "physician assistant",
         "board physician assistant"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4705,6 +4940,7 @@
       "aliases": [
         "podiatric medicine board of"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4736,6 +4972,7 @@
         "prison industry",
         "board prison industry"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4765,6 +5002,7 @@
       "aliases": [
         "privacy protection agency board california"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4794,6 +5032,7 @@
       "aliases": [
         "psychology board of"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4823,6 +5062,7 @@
       "aliases": [
         "public employees retirement system board of administration"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4852,6 +5092,7 @@
       "aliases": [
         "public works board state"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4882,6 +5123,7 @@
         "racial and identity profiling advisory board ripa",
         "racial & identity profiling advisory board ripa"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4911,6 +5153,7 @@
       "aliases": [
         "rail authority high speed"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4942,6 +5185,7 @@
         "regents selection advisory",
         "committee regents selection advisory"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -4973,6 +5217,7 @@
         "rehabilitation oversight",
         "board rehabilitation oversight"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5002,6 +5247,7 @@
       "aliases": [
         "reparation proposals for african americans task force"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5031,6 +5277,7 @@
       "aliases": [
         "respiratory care board of california"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5060,6 +5307,7 @@
       "aliases": [
         "san diego river conservancy"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5090,6 +5338,7 @@
         "san francisco water emergency transportation authority",
         "san francisco water emergency transportation"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5123,6 +5372,7 @@
         "commission san francisco bay conservation & development",
         "San Francisco Bay Conservation and Development Commission"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5153,6 +5403,7 @@
         "san gabriel and lower los angeles rivers and mountains conservancy",
         "san gabriel & lower los angeles rivers and mountains conservancy"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5184,6 +5435,7 @@
         "san joaquin river conservancy governing",
         "board san joaquin river conservancy governing"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5213,6 +5465,7 @@
       "aliases": [
         "santa monica mountains conservancy"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5244,6 +5497,7 @@
         "santa monica mountains conservancy advisory",
         "committee santa monica mountains conservancy advisory"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5275,6 +5529,7 @@
         "scholarshare investment",
         "board scholarshare investment"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5307,6 +5562,7 @@
         "state school building finance",
         "committee state school building finance"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5337,6 +5593,7 @@
         "school advisory committee on before and after programs",
         "school advisory committee on before & after programs"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5367,6 +5624,7 @@
         "sea grant advisory panel resources agency",
         "sea grant advisory panel resources"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5399,6 +5657,7 @@
         "search and rescue memorial review committee",
         "committee search & rescue memorial review"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5430,6 +5689,7 @@
         "seismic safety",
         "commission seismic safety"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5461,6 +5721,7 @@
         "sex offender management",
         "board sex offender management"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5490,6 +5751,7 @@
       "aliases": [
         "sierra nevada conservancy"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5521,6 +5783,7 @@
         "small business",
         "board small business"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5553,6 +5816,7 @@
         "speech-language pathology and audiology board",
         "board speech-language pathology & audiology"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5584,6 +5848,7 @@
         "strategic growth",
         "council strategic growth"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5615,6 +5880,7 @@
         "structural pest control",
         "board structural pest control"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5645,6 +5911,7 @@
         "student opportunity & access program project grant advisory com",
         "student opportunity and access program project grant advisory com"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5676,6 +5943,7 @@
         "tahoe conservancy governing",
         "board tahoe conservancy governing"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5705,6 +5973,7 @@
       "aliases": [
         "tahoe regional planning agency trpa"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5736,6 +6005,7 @@
         "tax credit allocation",
         "committee tax credit allocation"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5765,6 +6035,7 @@
       "aliases": [
         "tax credit committee ca competes"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5797,6 +6068,7 @@
         "tobacco education and research oversight committee",
         "committee tobacco education & research oversight"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5824,6 +6096,7 @@
       "slug": "transportation_commission",
       "canonicalName": "Transportation Commission",
       "aliases": [],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5854,6 +6127,7 @@
         "transportation financing authority",
         "transportation financing"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5883,6 +6157,7 @@
       "aliases": [
         "underground facilities safe excavation board ca"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5914,6 +6189,7 @@
         "unemployment insurance appeals",
         "board unemployment insurance appeals"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5943,6 +6219,7 @@
       "aliases": [
         "uniform state laws"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -5974,6 +6251,7 @@
         "veterinary medical",
         "board veterinary medical"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6003,6 +6281,7 @@
       "aliases": [
         "waste hazardous"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6032,6 +6311,7 @@
       "aliases": [
         "western climate initiative inc. board of directors"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6062,6 +6342,7 @@
         "wildfire cost & recovery commission on catastrophic",
         "wildfire cost and recovery commission on catastrophic"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6093,6 +6374,7 @@
         "wildfire safety advisory",
         "board wildfire safety advisory"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6125,6 +6407,7 @@
         "wildfire technology research & development review advisory board",
         "board wildfire technology research and development review advisory"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6154,6 +6437,7 @@
       "aliases": [
         "women commission on the status of"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6185,6 +6469,7 @@
         "workforce development",
         "board workforce development"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6214,6 +6499,7 @@
       "aliases": [
         "workforce impacts of transitioning seaports lower carbon tf"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6245,6 +6531,7 @@
         "world war ii japanese american incarceration memorial advisory",
         "committee world war ii japanese american incarceration memorial advisory"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6274,6 +6561,7 @@
       "aliases": [
         "youth empowerment commission california"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6305,6 +6593,7 @@
         "achieving a better life experience able act",
         "board achieving a better life experience able act"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6337,6 +6626,7 @@
         "california debt limit allocation",
         "committee california debt limit allocation"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6369,6 +6659,7 @@
         "california secure choice retirement savings",
         "board california secure choice retirement savings"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6402,6 +6693,7 @@
         "california stem cell research & cures finance committee",
         "committee california stem cell research and cures finance"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6432,6 +6724,7 @@
         "california streamlined sales tax project - board of governance",
         "streamlined sales tax project - board of governance"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6463,6 +6756,7 @@
         "urban waterfront area restoration financing authority",
         "california urban waterfront area restoration financing"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6495,6 +6789,7 @@
         "california water resources development finance",
         "committee california water resources development finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6529,6 +6824,7 @@
         "committee california wildlife coastal and park land conservation program of 1988 finance",
         "California Coastal Commission Coastal"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6560,6 +6856,7 @@
         "children's hospital bond act finance",
         "committee children's hospital bond act finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6589,6 +6886,7 @@
       "aliases": [
         "citizens financial accountability oversight committee cfaoc"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6621,6 +6919,7 @@
         "clean water & water conservation finance committee",
         "committee clean water and water conservation finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6653,6 +6952,7 @@
         "clean water & water reclamation finance committee",
         "committee clean water and water reclamation finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6682,6 +6982,7 @@
       "aliases": [
         "clean water finance committee-clean water bond act of 1984"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6713,6 +7014,7 @@
         "1986 county correctional facility capital expenditure finance",
         "committee 1986 county correctional facility capital expenditure finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6745,6 +7047,7 @@
         "1988 county correctional facility capital expenditure & youth facility finance committee",
         "committee 1988 county correctional facility capital expenditure and youth facility finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6777,6 +7080,7 @@
         "disaster preparedness & flood prevention bond finance committee",
         "committee disaster preparedness and flood prevention bond finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6808,6 +7112,7 @@
         "economic recovery financing",
         "committee economic recovery financing"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6837,6 +7142,7 @@
       "aliases": [
         "golden state tobacco securitization corporation"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6868,6 +7174,7 @@
         "harbor improvement bond",
         "committee harbor improvement bond"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6899,6 +7206,7 @@
         "higher education facilities finance",
         "committee higher education facilities finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6930,6 +7238,7 @@
         "high-speed passenger train finance",
         "committee high-speed passenger train finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6960,6 +7269,7 @@
         "highway safety traffic reduction air quality and port security committee - bond act 2006",
         "highway safety traffic reduction air quality & port security committee - bond act 2006"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -6991,6 +7301,7 @@
         "housing finance",
         "committee housing finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7022,6 +7333,7 @@
         "first time home buyers financing",
         "committee first time home buyers financing"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7053,6 +7365,7 @@
         "lake tahoe acquisitions finance",
         "committee lake tahoe acquisitions finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7082,6 +7395,7 @@
       "aliases": [
         "parklands program finance committee of 1980"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7111,6 +7425,7 @@
       "aliases": [
         "parklands program finance committee of 1984"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7142,6 +7457,7 @@
         "passenger rail finance",
         "committee passenger rail finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7173,6 +7489,7 @@
         "pooled money investment",
         "board pooled money investment"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7204,6 +7521,7 @@
         "1986 prison construction",
         "committee 1986 prison construction"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7235,6 +7553,7 @@
         "1988 prison construction",
         "committee 1988 prison construction"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7266,6 +7585,7 @@
         "1990 prison construction",
         "committee 1990 prison construction"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7298,6 +7618,7 @@
         "committee safe clean reliable water supply finance",
         "Achieving a Better Life Experience ABLE Act Board"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7330,6 +7651,7 @@
         "safe drinking water clean water watershed protection & flood protection finance committee",
         "committee safe drinking water clean water watershed protection and flood protection finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7363,6 +7685,7 @@
         "committee safe drinking water water quality and supply flood control river and coastal protection finance",
         "California Coastal Commission Coastal"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7396,6 +7719,7 @@
         "committee safe neighborhood parks clean water clean air and coastal protection villaraigosa-keeley act finance",
         "California Coastal Commission Coastal"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7427,6 +7751,7 @@
         "park and recreation finance committee-bond act of 1976",
         "state park & recreation finance committee-bond act of 1976"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7458,6 +7783,7 @@
         "veterans' debenture finance",
         "committee veterans' debenture finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7487,6 +7813,7 @@
       "aliases": [
         "veterans' finance committee of 1943"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7518,6 +7845,7 @@
         "veterans' home finance",
         "committee veterans' home finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7549,6 +7877,7 @@
         "voting modernization finance",
         "committee voting modernization finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7580,6 +7909,7 @@
         "water conservation finance",
         "committee water conservation finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7612,6 +7942,7 @@
         "water conservation & water quality finance committee",
         "committee water conservation and water quality finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7644,6 +7975,7 @@
         "water quality supply & infrastructure improvement finance committee",
         "committee water quality supply and infrastructure improvement finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7677,6 +8009,7 @@
         "committee water security clean drinking water coastal and beach protection act of 2002 finance",
         "California Coastal Commission Coastal"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7708,6 +8041,7 @@
         "wildlife habitat enhancement program finance",
         "committee wildlife habitat enhancement program finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7742,6 +8076,7 @@
         "committee california clean water clean air safe neighborhood parks and coastal protection act finance",
         "California Coastal Commission Coastal"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7776,6 +8111,7 @@
         "committee california drought water parks climate coastal protection and outdoor access for all finance",
         "California Coastal Commission Coastal"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7809,6 +8145,7 @@
         "california library construction & renovation finance committee",
         "committee california library construction and renovation finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7841,6 +8178,7 @@
         "california safe drinking water finance",
         "committee california safe drinking water finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7872,6 +8210,7 @@
         "housing for veterans finance",
         "committee housing for veterans finance"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7903,6 +8242,7 @@
         "1984 prison construction",
         "committee 1984 prison construction"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7932,6 +8272,7 @@
       "aliases": [
         "k-12 education"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7961,6 +8302,7 @@
       "aliases": [
         "higher education"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "",
       "abbreviation": "",
@@ -7990,6 +8332,7 @@
       "aliases": [
         "student aid commission"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Financial aid administration for higher education",
       "abbreviation": "CSAC",
@@ -8019,6 +8362,7 @@
       "aliases": [
         "assembly"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "Lower house of legislature",
       "abbreviation": "",
@@ -8048,6 +8392,7 @@
       "aliases": [
         "legislative counsel bureau"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "Legal services for legislature",
       "abbreviation": "",
@@ -8077,6 +8422,7 @@
       "aliases": [
         "senate"
       ],
+      "org_level": 3,
       "budget_status": "active",
       "keyFunctions": "Upper house of legislature",
       "abbreviation": "",
@@ -8134,6 +8480,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Professional licensing boards and consumer protection",
       "abbreviation": "",
@@ -8177,6 +8524,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Financial services regulation and consumer protection",
       "abbreviation": "",
@@ -8192,6 +8540,7 @@
         "department of real estate",
         "real estate"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Real estate licensing and regulation",
       "abbreviation": "",
@@ -8265,6 +8614,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Regulates air pollution, implements climate change programs, and administers clean transportation incentives",
       "abbreviation": "",
@@ -8306,6 +8656,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Energy policy and planning, renewable energy programs",
       "abbreviation": "",
@@ -8322,6 +8673,7 @@
         "franchise tax",
         "board franchise tax"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "Income tax collection",
       "abbreviation": "",
@@ -8352,6 +8704,7 @@
         "high-speed rail authority",
         "high-speed rail"
       ],
+      "org_level": 1,
       "budget_status": "active",
       "keyFunctions": "High-speed rail development",
       "abbreviation": "",
@@ -8382,6 +8735,7 @@
         "state compensation insurance fund",
         "compensation insurance fund"
       ],
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "Workers' compensation insurance",
       "abbreviation": "",
@@ -8411,6 +8765,7 @@
       "aliases": [
         "commission on teacher credentialing"
       ],
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "Teacher certification and standards",
       "abbreviation": "",
@@ -8463,6 +8818,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Manages state civil service system, including recruitment, selection, classification, compensation, benefits, and labor relations for state employees",
       "abbreviation": "CalHR",
@@ -8504,6 +8860,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Serves as the business manager for the state, providing procurement, real estate management, design and construction, fleet administration, printing, and other services to state agencies",
       "abbreviation": "DGS",
@@ -8519,6 +8876,7 @@
         "department of technology",
         "technology"
       ],
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Provides technology leadership, guidance, and oversight to state departments and is the guardian of public data, a leader in IT services and solutions, and an innovator in IT infrastructure",
       "abbreviation": "CDT",
@@ -8548,6 +8906,7 @@
       "aliases": [
         "university of california"
       ],
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "Public university system with 10 campuses",
       "abbreviation": "UC",
@@ -8578,6 +8937,7 @@
         "california state university",
         "state university"
       ],
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "Public university system with 23 campuses",
       "abbreviation": "CSU",
@@ -8608,6 +8968,7 @@
         "california community colleges",
         "community colleges"
       ],
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "Public community college system with 116 colleges",
       "abbreviation": "CCC",
@@ -8638,6 +8999,7 @@
         "state board of education",
         "board of education"
       ],
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "Curriculum standards, textbook approval",
       "abbreviation": "",
@@ -8667,6 +9029,7 @@
       "aliases": [
         "county offices of education 58"
       ],
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "District oversight, services",
       "abbreviation": "",
@@ -8696,6 +9059,7 @@
       "aliases": [
         "school districts 1037"
       ],
+      "org_level": 4,
       "budget_status": "active",
       "keyFunctions": "Local school operations",
       "abbreviation": "",
@@ -8754,6 +9118,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Wildfire prevention and suppression",
       "abbreviation": "",
@@ -8797,6 +9162,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Wildlife conservation and management",
       "abbreviation": "",
@@ -8839,6 +9205,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Environmental protection and restoration in the Lake Tahoe Basin",
       "abbreviation": "",
@@ -8882,6 +9249,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Coastal protection and access projects",
       "abbreviation": "",
@@ -8927,6 +9295,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Coastal zone planning and management",
       "abbreviation": "",
@@ -8968,6 +9337,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Management of state lands and resources",
       "abbreviation": "",
@@ -9009,6 +9379,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Highway and transportation infrastructure",
       "abbreviation": "Caltrans",
@@ -9051,6 +9422,7 @@
         "averageSalary": null,
         "averageAge": null
       },
+      "org_level": 2,
       "budget_status": "active",
       "keyFunctions": "Vehicle registration and driver licensing",
       "abbreviation": "DMV",

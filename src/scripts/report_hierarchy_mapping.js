@@ -19,7 +19,7 @@
  * type DepartmentResearchRecord = {
  *   '#': string;              // Sequential ID number
  *   'Department': string;     // Department name (may include abbreviations in parentheses)
- *   'parentAgency': string;   // Parent agency or organization
+ *   'parent_agency': string[];   // Parent agency or organization
  *   'org_level': string;      // Organizational level (1-4)
  *   'active': string;         // Activity status ('yes' or 'no')
  * }
@@ -305,11 +305,11 @@ function processDepartments() {
           csvData: {
             name: csvRecord.Department,
             org_level: csvRecord.org_level,
-            parentAgency: csvRecord.parentAgency
+            parent_agency: [csvRecord.parent_agency]
           },
           jsonData: {
             org_level: dept.org_level,
-            parentAgency: dept.parentAgency
+            parent_agency: dept.parent_agency
           },
           source: csvRecord.source || 'department-structure-research.csv'
         };
@@ -332,11 +332,11 @@ function processDepartments() {
           csvData: {
             name: fuzzyResult.match.Department,
             org_level: fuzzyResult.match.org_level,
-            parentAgency: fuzzyResult.match.parentAgency
+            parent_agency: [fuzzyResult.match.parent_agency]
           },
           jsonData: {
             org_level: dept.org_level,
-            parentAgency: dept.parentAgency
+            parent_agency: dept.parent_agency
           },
           source: fuzzyResult.match.source || 'department-structure-research.csv'
         });
@@ -408,8 +408,8 @@ results.details.forEach(detail => {
     logContent.push(`- CSV name: ${detail.csvData.name}`);
     logContent.push(`- CSV org_level: ${detail.csvData.org_level}`);
     logContent.push(`- JSON org_level: ${detail.jsonData.org_level}`);
-    logContent.push(`- CSV parentAgency: ${detail.csvData.parentAgency}`);
-    logContent.push(`- JSON parentAgency: ${detail.jsonData.parentAgency}`);
+    logContent.push(`- CSV parent_agency: ${detail.csvData.parent_agency?.[0] || ''}`);
+    logContent.push(`- JSON parent_agency: ${detail.jsonData.parent_agency?.[0] || ''}`);
     logContent.push(`- Source: ${detail.source}`);
   }
   

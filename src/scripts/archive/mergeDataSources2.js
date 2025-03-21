@@ -50,7 +50,7 @@ function processAgency(agency, parentName = null) {
     keyFunctions: agency.keyFunctions || agency.description || '',
     abbreviation: agency.abbreviation || '',
     code: agency.budget_code || agency.code || '',
-    parentAgency: parentName,
+    parent_agency: parentName,
     subAgencies: agency.subAgencies || []
   };
 
@@ -121,7 +121,7 @@ agencyMap.forEach((agencyData, agencyName) => {
         budget_status: agencyData.budget_status,
         keyFunctions: agencyData.keyFunctions,
         abbreviation: agencyData.abbreviation,
-        parentAgency: agencyData.parentAgency,
+        parent_agency: agencyData.parent_agency,
         subAgencies: agencyData.subAgencies
       });
       matched = true;
@@ -144,7 +144,7 @@ agencyMap.forEach((agencyData, agencyName) => {
         budget_status: agencyData.budget_status,
         keyFunctions: agencyData.keyFunctions,
         abbreviation: agencyData.abbreviation,
-        parentAgency: agencyData.parentAgency,
+        parent_agency: agencyData.parent_agency,
         subAgencies: agencyData.subAgencies
       });
       matched = true;
@@ -164,7 +164,7 @@ agencyMap.forEach((agencyData, agencyName) => {
       budget_status: agencyData.budget_status,
       keyFunctions: agencyData.keyFunctions,
       abbreviation: agencyData.abbreviation,
-      parentAgency: agencyData.parentAgency,
+      parent_agency: agencyData.parent_agency,
       subAgencies: agencyData.subAgencies,
       spending: {
         yearly: {},

@@ -88,12 +88,14 @@ function parseVerificationLog(logContent) {
       currentData.csvData.name = line.replace('  CSV name: ', '').trim();
     } else if (line.startsWith('  CSV org_level: ')) {
       currentData.csvData.org_level = parseInt(line.replace('  CSV org_level: ', '').trim());
-    } else if (line.startsWith('  CSV parentAgency: ')) {
-      currentData.csvData.parentAgency = line.replace('  CSV parentAgency: ', '').trim();
+    } else if (line.startsWith('  CSV parent_agency: ')) {
+      currentData.csvData.parent_agency = line.replace('  CSV parent_agency: ', '').trim();
+      currentData.csvData.parent_agency = [currentData.csvData.parent_agency];
     } else if (line.startsWith('  JSON org_level: ')) {
       currentData.jsonData.org_level = parseInt(line.replace('  JSON org_level: ', '').trim());
-    } else if (line.startsWith('  JSON parentAgency: ')) {
-      currentData.jsonData.parentAgency = line.replace('  JSON parentAgency: ', '').trim();
+    } else if (line.startsWith('  JSON parent_agency: ')) {
+      currentData.jsonData.parent_agency = line.replace('  JSON parent_agency: ', '').trim();
+      currentData.jsonData.parent_agency = [currentData.jsonData.parent_agency];
     }
   });
 
@@ -105,11 +107,11 @@ function parseVerificationLog(logContent) {
 }
 
 // Function to find parent agency's org level
-function findParentAgencyLevel(parentAgency, departments) {
-  if (!parentAgency) return null;
+function findParentAgencyLevel(parent_agency, departments) {
+  if (!parent_agency) return null;
   
   // Find parent agency in departments
-  const parentDept = departments.find(d => d.canonicalName === parentAgency);
+  const parentDept = departments.find(d => d.canonicalName === parent_agency);
   if (!parentDept) return null;
   
   return parentDept.org_level;
@@ -145,18 +147,18 @@ function processDepartments() {
 
     if (verifData) {
       // Check parent agency
-      if (dept.parentAgency !== verifData.csvData.parentAgency) {
+      if (dept.parent_agency?.[0] !== verifData.csvData.parent_agency?.[0]) {
         changes.push({
-          field: 'parentAgency',
-          old: dept.parentAgency,
-          new: verifData.csvData.parentAgency
+          field: 'parent_agency',
+          old: dept.parent_agency?.[0],
+          new: verifData.csvData.parent_agency?.[0]
         });
-        dept.parentAgency = verifData.csvData.parentAgency;
+        dept.parent_agency = verifData.csvData.parent_agency;
       }
 
       // Update org_level based on parent agency's level
-      if (dept.parentAgency) {
-        const parentLevel = findParentAgencyLevel(dept.parentAgency, departmentsData.departments);
+      if (dept.parent_agency?.[0]) {
+        const parentLevel = findParentAgencyLevel(dept.parent_agency[0], departmentsData.departments);
         if (parentLevel !== null) {
           const newLevel = calculateNewOrgLevel(parentLevel, dept.org_level);
           if (dept.org_level !== newLevel) {

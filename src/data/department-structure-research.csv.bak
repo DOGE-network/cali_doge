@@ -20,7 +20,7 @@
 # https://publicpay.ca.gov/Reports/State/State.aspx
 # https://ucsd.libguides.com/cagovinfo/executive
 # https://www.calhr.ca.gov/Pages/home.aspx
-"#","Department","parent_agency","org_level","active"
+"#","Department","parentAgency","org_level","active"
 "1","Governor's Office","Executive Branch","1","yes"
 "2","Legislative Branch","State Government","1","yes"
 "3","Judicial Branch","State Government","1","yes"
