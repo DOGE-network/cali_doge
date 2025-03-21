@@ -6,14 +6,26 @@ export async function GET() {
   // Type-safe cast of departments data
   const typedData = departmentsData as unknown as DepartmentsJSON;
   
+  console.log('Raw departments from JSON:', typedData.departments.length);
+  
   const departments = typedData.departments.map((dept: DepartmentData) => {
     // Normalize the department data
-    const normalized: DepartmentData = {
+    const normalized = {
       ...dept,
-      parent_agency: dept.parent_agency || '',
-      orgLevel: dept.orgLevel || 999,
-      budget_status: dept.budget_status || 'active',
-      aliases: dept.aliases || []
+      id: dept.slug,
+      date: new Date().toISOString(), // Use current date as fallback
+      excerpt: dept.keyFunctions || '',
+      workforceName: dept.workforceName || dept.name,
+      hasWorkforceData: Boolean(dept.workforce && (
+        (dept.workforce.headCount?.yearly && Object.keys(dept.workforce.headCount.yearly).length > 0) ||
+        (dept.workforce.wages?.yearly && Object.keys(dept.workforce.wages.yearly).length > 0) ||
+        dept.workforce.averageTenureYears !== null ||
+        dept.workforce.averageSalary !== null ||
+        dept.workforce.averageAge !== null ||
+        (dept.workforce.tenureDistribution && Object.keys(dept.workforce.tenureDistribution).length > 0) ||
+        (dept.workforce.salaryDistribution && Object.keys(dept.workforce.salaryDistribution).length > 0) ||
+        (dept.workforce.ageDistribution && Object.keys(dept.workforce.ageDistribution).length > 0)
+      ))
     };
 
     // Fix reporting structure based on data
@@ -32,52 +44,50 @@ export async function GET() {
       normalized.workforce = {
         headCount: { yearly: {} },
         wages: { yearly: {} },
-        yearlyHeadCount: [],
-        yearlyWages: [],
         averageTenureYears: null,
         averageSalary: null,
-        averageAge: null
+        averageAge: null,
+        tenureDistribution: {},
+        salaryDistribution: {},
+        ageDistribution: {}
       };
     } else {
-      // Initialize arrays if they don't exist
-      normalized.workforce.yearlyHeadCount = normalized.workforce.yearlyHeadCount || [];
-      normalized.workforce.yearlyWages = normalized.workforce.yearlyWages || [];
-
-      // If we have headCount.yearly data but no yearlyHeadCount array, create it
-      if (normalized.workforce.headCount?.yearly && Object.keys(normalized.workforce.headCount.yearly).length > 0) {
-        const yearlyEntries = Object.entries(normalized.workforce.headCount.yearly)
-          .filter(([_, value]) => value !== null && value !== undefined)
-          .map(([year, headCount]) => ({
-            year,
-            headCount: headCount as number // Safe to cast since we filtered out null/undefined
-          }));
-        normalized.workforce.yearlyHeadCount = yearlyEntries;
-      }
-
-      // If we have wages.yearly data but no yearlyWages array, create it
-      if (normalized.workforce.wages?.yearly && Object.keys(normalized.workforce.wages.yearly).length > 0) {
-        const yearlyEntries = Object.entries(normalized.workforce.wages.yearly)
-          .filter(([_, value]) => value !== null && value !== undefined)
-          .map(([year, wages]) => ({
-            year,
-            wages: wages as number // Safe to cast since we filtered out null/undefined
-          }));
-        normalized.workforce.yearlyWages = yearlyEntries;
-      }
-
-      // Ensure all required properties exist
+      // Ensure all required properties exist with defaults
       normalized.workforce = {
         ...normalized.workforce,
         headCount: normalized.workforce.headCount || { yearly: {} },
         wages: normalized.workforce.wages || { yearly: {} },
         averageTenureYears: normalized.workforce.averageTenureYears || null,
         averageSalary: normalized.workforce.averageSalary || null,
-        averageAge: normalized.workforce.averageAge || null
+        averageAge: normalized.workforce.averageAge || null,
+        tenureDistribution: normalized.workforce.tenureDistribution || {},
+        salaryDistribution: normalized.workforce.salaryDistribution || {},
+        ageDistribution: normalized.workforce.ageDistribution || {}
       };
     }
     
     return normalized;
   });
+
+  console.log('Total departments from API:', departments.length);
+  console.log('Active departments:', departments.filter(d => d.budget_status.toLowerCase() === 'active').length);
+  console.log('Departments with any workforce data:', departments.filter(d => d.hasWorkforceData).length);
+
+  // Log departments by level
+  const levelCounts = departments.reduce((acc, dept) => {
+    const level = dept.orgLevel;
+    acc[level] = (acc[level] || 0) + 1;
+    return acc;
+  }, {} as Record<number, number>);
+  console.log('Departments by level:', levelCounts);
+
+  // Log parent agency distribution
+  const parentAgencyCounts = departments.reduce((acc, dept) => {
+    const parent = dept.parent_agency || 'NO_PARENT';
+    acc[parent] = (acc[parent] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  console.log('Departments by parent agency:', parentAgencyCounts);
 
   return NextResponse.json(departments);
 } 

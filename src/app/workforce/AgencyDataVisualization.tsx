@@ -19,10 +19,18 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
     }
   };
 
+  // Transform yearly data from Record to arrays
+  const transformYearlyData = (yearlyRecord: Record<string, number | null> | undefined) => {
+    if (!yearlyRecord) return [];
+    return Object.entries(yearlyRecord)
+      .filter(([_, value]) => value !== null)
+      .map(([year, value]) => ({ year, value: value as number }));
+  };
+
   // Get employee data from the workforce structure with safe defaults
   const employeeData = {
-    yearlyHeadCount: department.workforce?.yearlyHeadCount || [],
-    yearlyWages: department.workforce?.yearlyWages || [],
+    headCount: transformYearlyData(department.workforce?.headCount?.yearly),
+    wages: transformYearlyData(department.workforce?.wages?.yearly),
     averageTenureYears: department.workforce?.averageTenureYears || null,
     averageSalary: department.workforce?.averageSalary || null,
     averageAge: department.workforce?.averageAge || null,
@@ -31,9 +39,9 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
     ageDistribution: department.workforce?.ageDistribution || {}
   };
 
-  // Get 2024 data from yearly arrays
-  const headCount2024 = employeeData.yearlyHeadCount?.find(item => item.year === "2024")?.headCount;
-  const wages2024 = employeeData.yearlyWages?.find(item => item.year === "2024")?.wages;
+  // Get 2023 data from yearly arrays
+  const headCount2023 = employeeData.headCount.find(item => item.year === "2023")?.value;
+  const wages2023 = employeeData.wages.find(item => item.year === "2023")?.value;
 
   const CustomTooltip = ({ active, payload, label, type }: any) => {
     if (active && payload && payload.length) {
@@ -66,16 +74,7 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
   // Try to find markdown file directly
   const markdownSlug = findMarkdownForDepartment(department.name);
 
-  // If no data, show placeholder
-  if (!headCount2024 && !wages2024) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <h3 className="text-xl font-semibold mb-4">Workforce Data</h3>
-        <p className="text-gray-500">No workforce data available for this organization</p>
-      </div>
-    );
-  }
-
+  // Always show the department card, with placeholders for missing data
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -96,7 +95,7 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div>
           <div className="text-lg font-bold">
-            {headCount2024 !== null && headCount2024 !== undefined ? formatNumber(headCount2024) : '~'}
+            {headCount2023 !== null && headCount2023 !== undefined ? formatNumber(headCount2023) : '—'}
           </div>
           <div className="text-gray-600 text-sm">
             {markdownSlug ? (
@@ -104,18 +103,18 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
                 href={`/departments/${markdownSlug}`}
                 className="text-blue-600 hover:underline"
               >
-                Headcount (2024)
+                Headcount (2023)
               </Link>
             ) : (
-              "Headcount (2024)"
+              "Headcount (2023)"
             )}
           </div>
         </div>
         <div>
           <div className="text-lg font-bold">
-            {wages2024 !== null && wages2024 !== undefined ? formatCurrencyWithSuffix(wages2024) : '~'}
+            {wages2023 !== null && wages2023 !== undefined ? formatCurrencyWithSuffix(wages2023) : '—'}
           </div>
-          <div className="text-gray-600 text-sm">Total Wages (2024)</div>
+          <div className="text-gray-600 text-sm">Total Wages (2023)</div>
         </div>
       </div>
 
@@ -166,7 +165,7 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
                 />
               </div>
             )}
-            <p className="text-gray-600 text-xs mt-1">Average tenure: {employeeData.averageTenureYears || '~'} years</p>
+            <p className="text-gray-600 text-xs mt-1">Average tenure: {employeeData.averageTenureYears || '—'} years</p>
           </div>
 
           <div className="chart-section">
@@ -193,7 +192,7 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
                 />
               </div>
             )}
-            <p className="text-gray-600 text-xs mt-1">Average salary: {employeeData.averageSalary ? formatCurrencyWithSuffix(employeeData.averageSalary) : '~'}/yr</p>
+            <p className="text-gray-600 text-xs mt-1">Average salary: {employeeData.averageSalary ? formatCurrencyWithSuffix(employeeData.averageSalary) : '—'}/yr</p>
           </div>
 
           <div className="chart-section">
@@ -220,7 +219,7 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
                 />
               </div>
             )}
-            <p className="text-gray-600 text-xs mt-1">Average age: {employeeData.averageAge || '~'} years</p>
+            <p className="text-gray-600 text-xs mt-1">Average age: {employeeData.averageAge || '—'} years</p>
           </div>
         </div>
       </div>

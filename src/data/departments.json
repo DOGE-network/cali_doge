@@ -28,74 +28,26 @@
             "2024": 397000
           }
         },
-        "yearlyHeadCount": [
-          {
-            "year": "2017",
-            "headCount": 390000
-          },
-          {
-            "year": "2018",
-            "headCount": 375000
-          },
-          {
-            "year": "2019",
-            "headCount": 400000
-          },
-          {
-            "year": "2020",
-            "headCount": 389000
-          },
-          {
-            "year": "2021",
-            "headCount": 384000
-          },
-          {
-            "year": "2023",
-            "headCount": 399000
-          },
-          {
-            "year": "2024",
-            "headCount": 397000
-          }
-        ],
-        "yearlyWages": [
-          {
-            "year": "2017",
-            "wages": 22000000000
-          },
-          {
-            "year": "2018",
-            "wages": 22040000000
-          },
-          {
-            "year": "2019",
-            "wages": 24540000000
-          },
-          {
-            "year": "2020",
-            "wages": 25060000000
-          },
-          {
-            "year": "2021",
-            "wages": 25920000000
-          },
-          {
-            "year": "2023",
-            "wages": 28870000000
-          },
-          {
-            "year": "2024",
-            "wages": 29820000000
-          }
-        ],
         "averageTenureYears": 13,
         "averageSalary": 86142,
         "averageAge": 47,
-        "_note": "This data will be replaced with calculated aggregates once all department data is loaded"
+        "_note": "This data will be replaced with calculated aggregates once all department data is loaded",
+        "wages": {
+          "yearly": {
+            "2017": 22000000000,
+            "2018": 22040000000,
+            "2019": 24540000000,
+            "2020": 25060000000,
+            "2021": 25920000000,
+            "2023": 28870000000,
+            "2024": 29820000000
+          }
+        }
       },
       "budget_status": "Active",
       "keyFunctions": "State Government",
       "abbreviation": "CA",
+      "code": null,
       "parent_agency": "",
       "orgLevel": 0
     },

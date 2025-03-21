@@ -6,14 +6,12 @@
  * Structure of a department in departments.json
  */
 export interface WorkforceData {
-  yearlyHeadCount?: Array<{
-    year: string;
-    headCount: number;
-  }>;
-  yearlyWages?: Array<{
-    year: string;
-    wages: number;
-  }>;
+  headCount: {
+    yearly: Record<string, number | null>;
+  };
+  wages: {
+    yearly: Record<string, number | null>;
+  };
   averageTenureYears?: number | null;
   averageSalary?: number | null;
   averageAge?: number | null;
@@ -21,12 +19,6 @@ export interface WorkforceData {
   salaryDistribution?: Record<string, number>;
   ageDistribution?: Record<string, number>;
   _note?: string;
-  headCount?: {
-    yearly: Record<string, number | null>;
-  };
-  wages?: {
-    yearly: Record<string, number | null>;
-  };
 }
 
 export interface DepartmentData {
@@ -44,6 +36,7 @@ export interface DepartmentData {
   keyFunctions: string;
   abbreviation: string;
   parent_agency: string;
+  workforceName?: string;
 }
 
 /**
@@ -51,7 +44,7 @@ export interface DepartmentData {
  */
 export interface DepartmentHierarchy extends DepartmentData {
   subDepartments?: DepartmentHierarchy[];
-  subordinateOffices?: number;
+  subordinateOffices: number;
 }
 
 /**

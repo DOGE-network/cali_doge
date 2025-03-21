@@ -52,11 +52,11 @@
 
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from './AgencyDataVisualization';
-import type { DepartmentData, DepartmentHierarchy } from '@/types/department';
-import { getDepartmentByName } from '@/lib/departmentMapping';
+import { DepartmentData, DepartmentHierarchy } from '@/types/department';
+import { getDepartmentByName, getDepartmentByWorkforceName } from '@/lib/departmentMapping';
 
 // Fetch departments from API
 async function fetchDepartments(): Promise<DepartmentData[]> {
@@ -67,20 +67,43 @@ async function fetchDepartments(): Promise<DepartmentData[]> {
   return response.json();
 }
 
+// Helper function to count total departments in hierarchy
+function countDepartments(hierarchy: DepartmentHierarchy | DepartmentHierarchy[]): number {
+  if (!hierarchy) return 0;
+  if (Array.isArray(hierarchy)) {
+    return hierarchy.reduce((sum, dept) => sum + countDepartments(dept), 0);
+  }
+  let count = 1; // Count current department
+  if (hierarchy.subDepartments) {
+    count += hierarchy.subDepartments.reduce((acc, dept) => acc + countDepartments(dept), 0);
+  }
+  return count;
+}
+
 function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
-  // Create root department
+  console.log('Building hierarchy with departments:', departments.length);
+  
+  // Find the California State Government department from the data
+  const rootDept = departments.find(d => d.name === 'California State Government');
+  
+  // Create root department using actual data
   const root: DepartmentHierarchy = {
-    name: 'California State Government',
-    slug: 'california_state_government',
-    canonicalName: 'California State Government',
-    aliases: [],
-    orgLevel: 0,
-    budget_status: 'Active',
-    keyFunctions: 'State Government',
-    abbreviation: 'CA',
-    parent_agency: '',
+    ...(rootDept || {
+      name: 'California State Government',
+      slug: 'california_state_government',
+      canonicalName: 'California State Government',
+      aliases: [],
+      orgLevel: 0,
+      budget_status: 'Active',
+      keyFunctions: 'State Government',
+      abbreviation: 'CA',
+      parent_agency: '',
+    }),
+    // Always ensure these hierarchy-specific fields exist
     subDepartments: [],
-    subordinateOffices: 0
+    subordinateOffices: 0,
+    orgLevel: 0, // Force root level
+    parent_agency: '', // Force no parent
   };
 
   // Create maps for lookup
@@ -90,6 +113,9 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
   
   // First pass: Initialize all departments and build lookup maps
   departments.forEach(dept => {
+    // Skip the root department as we've already handled it
+    if (dept.name === 'California State Government') return;
+    
     const department: DepartmentHierarchy = {
       ...dept,
       subDepartments: [],
@@ -147,35 +173,47 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
   };
 
   // Second pass: Build hierarchy by orgLevel
+  const unattachedDepts = new Set(deptMap.keys());
+  unattachedDepts.delete(root.name);
+
   for (let level = 1; level <= Math.max(...Array.from(levelMap.keys())); level++) {
     const depts = levelMap.get(level) || [];
     
     for (const dept of depts) {
+      let attached = false;
       if (!dept.parent_agency) {
         // If no parent specified but it's level 1, attach to root
         if (level === 1) {
           root.subDepartments?.push(dept);
-        }
-        continue;
-      }
-
-      // Find parent using helper function
-      const parent = findParent(dept.parent_agency, level);
-      
-      if (parent) {
-        // Only add if not already a child of this parent
-        if (!parent.subDepartments?.some((d: DepartmentHierarchy) => d.name === dept.name)) {
-          parent.subDepartments = parent.subDepartments || [];
-          parent.subDepartments.push(dept);
+          attached = true;
         }
       } else {
-        // If no parent found but it's level 1 or 2, attach to root
-        if (level <= 2) {
-          root.subDepartments?.push(dept);
+        // Find parent using helper function
+        const parent = findParent(dept.parent_agency, level);
+        
+        if (parent) {
+          // Only add if not already a child of this parent
+          if (!parent.subDepartments?.some((d: DepartmentHierarchy) => d.name === dept.name)) {
+            parent.subDepartments = parent.subDepartments || [];
+            parent.subDepartments.push(dept);
+            attached = true;
+          }
         }
+      }
+
+      if (attached) {
+        unattachedDepts.delete(dept.name);
       }
     }
   }
+
+  // Add any remaining unattached departments to root
+  unattachedDepts.forEach(deptName => {
+    const dept = deptMap.get(deptName);
+    if (dept && !root.subDepartments?.some(d => d.name === dept.name)) {
+      root.subDepartments?.push(dept);
+    }
+  });
 
   // Sort subDepartments alphabetically at each level
   const sortDepartments = (dept: DepartmentHierarchy) => {
@@ -195,14 +233,18 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
   };
   calculateSubordinates(root);
 
+  // After building hierarchy
+  console.log('Departments in hierarchy:', countDepartments(root));
   return root;
 }
 
 // Filter inactive departments
 function filterInactiveDepartments(departments: DepartmentHierarchy[], showInactive: boolean): DepartmentHierarchy[] {
+  console.log('Filtering inactive departments from hierarchy with total:', countDepartments(departments));
+  
   if (!departments) return [];
   
-  return departments.map(dept => {
+  const filtered = departments.map(dept => {
     if (showInactive || dept.budget_status.toLowerCase() !== 'inactive') {
       return {
         ...dept,
@@ -213,6 +255,10 @@ function filterInactiveDepartments(departments: DepartmentHierarchy[], showInact
     }
     return null;
   }).filter(Boolean) as DepartmentHierarchy[];
+  
+  // After filtering
+  console.log('Departments after filtering:', countDepartments(filtered));
+  return filtered;
 }
 
 interface DepartmentCardProps {
@@ -312,7 +358,82 @@ function SubDepartmentSection({
   );
 }
 
-// Client component that uses useSearchParams
+// Add this before the DepartmentList component
+function flattenHierarchy(departments: DepartmentHierarchy[], parentPath: string[] = []): Array<{dept: DepartmentHierarchy, path: string[]}> {
+  return departments.reduce((acc, dept) => {
+    const currentPath = [...parentPath, dept.name];
+    acc.push({ dept, path: currentPath });
+    if (dept.subDepartments?.length) {
+      acc.push(...flattenHierarchy(dept.subDepartments, currentPath));
+    }
+    return acc;
+  }, [] as Array<{dept: DepartmentHierarchy, path: string[]}>);
+}
+
+function DepartmentList({ 
+  departments, 
+  onDepartmentClick
+}: { 
+  departments: DepartmentHierarchy[], 
+  onDepartmentClick: (_dept: DepartmentData) => void 
+}) {
+  const [page, setPage] = useState(0);
+  const itemsPerPage = 50;
+  
+  // Flatten the hierarchy but keep track of paths
+  const flatDepartments = useMemo(() => 
+    flattenHierarchy(departments), [departments]
+  );
+  
+  const totalPages = Math.ceil(flatDepartments.length / itemsPerPage);
+  const displayDepartments = flatDepartments.slice(
+    page * itemsPerPage, 
+    (page + 1) * itemsPerPage
+  );
+
+  return (
+    <div>
+      <div className="grid grid-cols-1 gap-4">
+        {displayDepartments.map(({dept}) => (
+          <div 
+            key={dept.name}
+            className={`ml-${(dept.orgLevel || 0) * 4}`}
+          >
+            <DepartmentCard 
+              department={dept}
+              isActive={false}
+              onClick={() => onDepartmentClick(dept)}
+              showChart={false}
+            />
+          </div>
+        ))}
+      </div>
+      
+      {totalPages > 1 && (
+        <div className="mt-4 flex justify-center gap-2">
+          <button
+            onClick={() => setPage(p => Math.max(0, p - 1))}
+            disabled={page === 0}
+            className="px-3 py-1 bg-gray-100 rounded disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="px-3 py-1">
+            Page {page + 1} of {totalPages}
+          </span>
+          <button
+            onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+            disabled={page === totalPages - 1}
+            className="px-3 py-1 bg-gray-100 rounded disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function WorkforcePage() {
   return (
     <Suspense fallback={<div className="p-4">Loading workforce data...</div>}>
@@ -327,29 +448,27 @@ function WorkforcePageContent() {
   const [showInactive, setShowInactive] = useState<boolean>(false);
   const [activePath, setActivePath] = useState<string[]>([]);
   const [hierarchyData, setHierarchyData] = useState<DepartmentHierarchy | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Fetch departments and build hierarchy
   useEffect(() => {
     async function loadDepartments() {
-    try {
-        setIsLoading(true);
+      try {
         setError(null);
         const departments = await fetchDepartments();
+        console.log('Fetched departments:', departments.length);
         const hierarchy = buildHierarchy(departments);
-      setHierarchyData(hierarchy);
+        console.log('Final hierarchy departments:', countDepartments(hierarchy));
+        setHierarchyData(hierarchy);
       } catch (err) {
         console.error('Error loading departments:', err);
         setError('Failed to load department data');
-      } finally {
-        setIsLoading(false);
       }
     }
     
     loadDepartments();
   }, []);
-  
+
   // Get the department from URL query parameter
   useEffect(() => {
     const agencyParam = searchParams.get('agency');
@@ -360,7 +479,13 @@ function WorkforcePageContent() {
       if (dept) {
         setSelectedDepartmentName(dept.name);
       } else {
-        setSelectedDepartmentName(departmentParam);
+        // Try to find the department by workforce name
+        const workforceDept = getDepartmentByWorkforceName(departmentParam);
+        if (workforceDept) {
+          setSelectedDepartmentName(workforceDept.name);
+        } else {
+          setSelectedDepartmentName(departmentParam);
+        }
       }
     } else if (agencyParam) {
       setSelectedDepartmentName(agencyParam);
@@ -385,7 +510,9 @@ function WorkforcePageContent() {
       for (const dept of departments) {
         const updatedPath = [...currentPath, dept.name];
         
-        if (dept.name === targetName) {
+        // Check for exact match or workforce name match
+        if (dept.name === targetName || 
+            (dept.workforce && dept.workforceName === targetName)) {
           return { department: dept, path: updatedPath };
         }
         
@@ -417,7 +544,7 @@ function WorkforcePageContent() {
       setActivePath(result.path);
     } else {
       // If not found in hierarchy, set to root
-        setActivePath([hierarchyData.name]);
+      setActivePath([hierarchyData.name]);
     }
   }, [selectedDepartmentName, hierarchyData]);
   
@@ -435,7 +562,7 @@ function WorkforcePageContent() {
     );
   }
   
-  if (isLoading || !hierarchyData) {
+  if (!hierarchyData) {
     return (
       <div className="p-4">
         <div className="animate-pulse">
@@ -458,6 +585,9 @@ function WorkforcePageContent() {
     ...hierarchyData,
     subDepartments: filterInactiveDepartments(hierarchyData.subDepartments || [], false)
   };
+
+  // Log counts after filtering
+  console.log('Final hierarchy departments:', countDepartments(filteredHierarchy));
   
   // Get path departments to display
   const pathDepartments: DepartmentData[] = [];
@@ -484,11 +614,20 @@ function WorkforcePageContent() {
   
   // Child departments of the active department (to display below)
   const childDepartments = currentActiveDepartment?.subDepartments || [];
+
+  // Log final display counts
+  const totalDisplayed = pathDepartments.length + childDepartments.length;
+  console.log('Path departments:', pathDepartments.length);
+  console.log('Child departments:', childDepartments.length);
+  console.log('Total displayed:', totalDisplayed);
   
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">California State Government Workforce</h1>
+        <div>
+          <h1 className="text-2xl font-bold">California State Government Workforce</h1>
+
+        </div>
         
         <div className="flex items-center space-x-2">
           <div className="flex items-center space-x-1 border rounded-full p-1 bg-gray-100">
@@ -538,25 +677,14 @@ function WorkforcePageContent() {
         )}
       </div>
       
-      {/* Child departments */}
-      {childDepartments.length > 0 && (
-        <div>
-          <h2 className="text-xl font-bold mb-4">
-            {currentActiveDepartment?.name} Subdepartments
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {childDepartments.map((dept: DepartmentHierarchy) => (
-              <DepartmentCard 
-                key={dept.name}
-                department={dept}
-                isActive={false} 
-                onClick={() => handleSelectDepartment(dept)}
-                showChart={false} 
-              />
-            ))}
-          </div>
-        </div>
-      )}
+      {/* All departments */}
+      <div>
+        <h2 className="text-xl font-bold mb-4">All Departments</h2>
+        <DepartmentList 
+          departments={filteredHierarchy.subDepartments || []} 
+          onDepartmentClick={handleSelectDepartment}
+        />
+      </div>
 
       {/* Sources */}
       <div className="mt-16">
