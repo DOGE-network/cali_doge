@@ -78,6 +78,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   const agencies = useMemo(() => {
     return departmentsData.departments
       .filter(dept => dept.spending?.yearly)
+      .filter(dept => dept.name !== "California State Government")
       .map(dept => ({
         name: dept.name,
         spending: normalizeYearlyData(dept.spending?.yearly || {})

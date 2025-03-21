@@ -11,6 +11,8 @@ export type Department = {
   date: string;
   excerpt: string;
   image?: string;
+  workforceName?: string;
+  hasWorkforceData?: boolean;
 };
 
 interface DepartmentSearchProps {
@@ -107,6 +109,11 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
       
       // Search by excerpt/description
       if (dept.excerpt && dept.excerpt.toLowerCase().includes(searchLower)) {
+        return true;
+      }
+
+      // Search by workforce name
+      if (dept.workforceName && dept.workforceName.toLowerCase().includes(searchLower)) {
         return true;
       }
       
@@ -232,12 +239,59 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
             {filteredDepartments.length > 0 ? (
               <div className="space-y-3">
                 {filteredDepartments.map((dept) => (
-                  <Link
-                    key={dept.id}
-                    href={`/departments/${dept.id}`}
-                    className="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors"
-                    onClick={onClose}
-                  >
+                  <div key={dept.id} className="flex flex-col space-y-2">
+                    <div className="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                      {dept.image && (
+                        <div className="flex-shrink-0 mr-3">
+                          <div className="relative w-12 h-12">
+                            <Image
+                              src={dept.image.replace('/assets/img/', '/')}
+                              alt={dept.name}
+                              fill
+                              className="rounded object-cover"
+                            />
+                          </div>
+                        </div>
+                      )}
+                      <div className="flex-grow">
+                        <div className="flex items-center justify-between">
+                          <Link
+                            href={`/workforce?department=${encodeURIComponent(dept.workforceName || dept.name)}`}
+                            className="font-medium text-gray-900 hover:text-blue-600"
+                            onClick={onClose}
+                          >
+                            {dept.name}
+                            {dept.code && (
+                              <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                                {dept.code}
+                              </span>
+                            )}
+                          </Link>
+                          <Link
+                            href={`/departments/${dept.id}`}
+                            className="text-sm text-gray-500 hover:text-blue-600 ml-2"
+                            onClick={onClose}
+                          >
+                            Details →
+                          </Link>
+                        </div>
+                        <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-center py-4 text-gray-500">No departments found</p>
+            )}
+          </div>
+        ) : (
+          <div>
+            <h3 className="font-medium text-gray-900 mb-2">Recent Departments</h3>
+            <div className="space-y-3 max-h-80 overflow-y-auto">
+              {recentDepartments.map((dept) => (
+                <div key={dept.id} className="flex flex-col space-y-2">
+                  <div className="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
                     {dept.image && (
                       <div className="flex-shrink-0 mr-3">
                         <div className="relative w-12 h-12">
@@ -250,59 +304,32 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                         </div>
                       </div>
                     )}
-                    <div>
-                      <h4 className="font-medium text-gray-900">
-                        {dept.name}
-                        {dept.code && (
-                          <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                            {dept.code}
-                          </span>
-                        )}
-                      </h4>
+                    <div className="flex-grow">
+                      <div className="flex items-center justify-between">
+                        <Link
+                          href={`/workforce?department=${encodeURIComponent(dept.workforceName || dept.name)}`}
+                          className="font-medium text-gray-900 hover:text-blue-600"
+                          onClick={onClose}
+                        >
+                          {dept.name}
+                          {dept.code && (
+                            <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                              {dept.code}
+                            </span>
+                          )}
+                        </Link>
+                        <Link
+                          href={`/departments/${dept.id}`}
+                          className="text-sm text-gray-500 hover:text-blue-600 ml-2"
+                          onClick={onClose}
+                        >
+                          Details →
+                        </Link>
+                      </div>
                       <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
                     </div>
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <p className="text-center py-4 text-gray-500">No departments found</p>
-            )}
-          </div>
-        ) : (
-          <div>
-            <h3 className="font-medium text-gray-900 mb-2">Recent Departments</h3>
-            <div className="space-y-3 max-h-80 overflow-y-auto">
-              {recentDepartments.map((dept) => (
-                <Link
-                  key={dept.id}
-                  href={`/departments/${dept.id}`}
-                  className="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors"
-                  onClick={onClose}
-                >
-                  {dept.image && (
-                    <div className="flex-shrink-0 mr-3">
-                      <div className="relative w-12 h-12">
-                        <Image
-                          src={dept.image.replace('/assets/img/', '/')}
-                          alt={dept.name}
-                          fill
-                          className="rounded object-cover"
-                        />
-                      </div>
-                    </div>
-                  )}
-                  <div>
-                    <h4 className="font-medium text-gray-900">
-                      {dept.name}
-                      {dept.code && (
-                        <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                          {dept.code}
-                        </span>
-                      )}
-                    </h4>
-                    <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>

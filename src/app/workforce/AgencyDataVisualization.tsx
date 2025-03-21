@@ -1,16 +1,11 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import type { Agency } from '@/types/agency';
+import type { DepartmentData } from '@/types/department';
 import Image from 'next/image';
 import Link from 'next/link';
-import { 
-  getDepartmentByWorkforceName, 
-  findMarkdownForDepartment 
-} from '@/lib/departmentMapping';
+import { findMarkdownForDepartment } from '@/lib/departmentMapping';
 
-const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
-  console.log('Received agency data:', agency);
-
+const AgencyDataVisualization = ({ department }: { department: DepartmentData }) => {
   const formatNumber = (num: number) => num.toLocaleString();
 
   // Format currency with appropriate suffix (B for billions, M for millions)
@@ -24,41 +19,29 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
     }
   };
 
-  // Get employee data from either the new structure or the legacy structure
-  const employeeData = agency.employeeData || {
-    headCount: agency.yearlyHeadCount?.map(item => ({ year: item.year, count: item.headCount })),
-    wages: agency.yearlyWages?.map(item => ({ year: item.year, amount: item.wages })),
-    averageTenure: agency.averageTenureYears,
-    averageSalary: agency.averageSalary,
-    averageAge: agency.averageAge,
-    tenureDistribution: agency.tenureDistribution || null,
-    salaryDistribution: agency.salaryDistribution || null,
-    ageDistribution: agency.ageDistribution || null
+  // Transform yearly data from Record to arrays
+  const transformYearlyData = (yearlyRecord: Record<string, number | null> | undefined) => {
+    if (!yearlyRecord) return [];
+    return Object.entries(yearlyRecord)
+      .filter(([_, value]) => value !== null)
+      .map(([year, value]) => ({ year, value: value as number }));
   };
 
-  // Get 2024 data from yearly arrays
-  const headCount2024 = employeeData.headCount?.find(item => item.year === "2024")?.count;
-  const wages2024 = employeeData.wages?.find(item => item.year === "2024")?.amount;
+  // Get employee data from the workforce structure with safe defaults
+  const employeeData = {
+    headCount: transformYearlyData(department.workforce?.headCount?.yearly),
+    wages: transformYearlyData(department.workforce?.wages?.yearly),
+    averageTenureYears: department.workforce?.averageTenureYears || null,
+    averageSalary: department.workforce?.averageSalary || null,
+    averageAge: department.workforce?.averageAge || null,
+    tenureDistribution: department.workforce?.tenureDistribution || {},
+    salaryDistribution: department.workforce?.salaryDistribution || {},
+    ageDistribution: department.workforce?.ageDistribution || {}
+  };
 
-  // Enhanced debug logs
-  console.log('AgencyDataVisualization received:', {
-    name: agency.name,
-    headCount2024,
-    wages2024,
-    subordinateOffices: agency.subordinateOffices,
-    hasDistributions: {
-      tenure: !!employeeData.tenureDistribution && Object.keys(employeeData.tenureDistribution).length > 0,
-      salary: !!employeeData.salaryDistribution && Object.keys(employeeData.salaryDistribution).length > 0,
-      age: !!employeeData.ageDistribution && Object.keys(employeeData.ageDistribution).length > 0
-    }
-  });
-
-  // Debug logs to check data
-  console.log('Agency data:', agency);
-  console.log('Subordinate Offices:', agency.subordinateOffices);
-  console.log('Tenure data:', Object.entries(employeeData.tenureDistribution || {}).map(([key, value]) => ({ name: key, value })));
-  console.log('Salary data:', Object.entries(employeeData.salaryDistribution || {}).map(([key, value]) => ({ name: key, value })));
-  console.log('Age data:', Object.entries(employeeData.ageDistribution || {}).map(([key, value]) => ({ name: key, value })));
+  // Get 2023 data from yearly arrays
+  const headCount2023 = employeeData.headCount.find(item => item.year === "2023")?.value;
+  const wages2023 = employeeData.wages.find(item => item.year === "2023")?.value;
 
   const CustomTooltip = ({ active, payload, label, type }: any) => {
     if (active && payload && payload.length) {
@@ -84,46 +67,14 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
     return null;
   };
 
-  const tenureData = Object.entries(employeeData.tenureDistribution || {}).map(([key, value]) => ({ name: key, value }));
-  const salaryData = Object.entries(employeeData.salaryDistribution || {}).map(([key, value]) => ({ name: key, value }));
-  const ageData = Object.entries(employeeData.ageDistribution || {}).map(([key, value]) => ({ name: key, value }));
-
-  console.log('Prepared chart data:', {
-    name: agency.name,
-    tenureDataPoints: tenureData.length,
-    salaryDataPoints: salaryData.length,
-    ageDataPoints: ageData.length
-  });
-
-  // Check if we have a corresponding department page
-  const departmentMapping = getDepartmentByWorkforceName(agency.name, true);
+  const tenureData = Object.entries(employeeData.tenureDistribution).map(([key, value]) => ({ name: key, value }));
+  const salaryData = Object.entries(employeeData.salaryDistribution).map(([key, value]) => ({ name: key, value }));
+  const ageData = Object.entries(employeeData.ageDistribution).map(([key, value]) => ({ name: key, value }));
   
   // Try to find markdown file directly
-  const markdownSlug = findMarkdownForDepartment(agency.name);
-  
-  // Debug output
-  console.log(`Workforce Agency ${agency.name} -> mapping: ${departmentMapping?.slug || 'no mapping found'}, markdown: ${markdownSlug || 'none'}`);
-  
-  // Additional debug for Forestry department
-  if (agency.name.includes("Forest") || agency.name.includes("fire") || agency.name.includes("Fire")) {
-    console.log("FORESTRY DEBUG:", { 
-      agencyName: agency.name,
-      departmentMapping,
-      markdownSlug,
-      hasDepartmentPage: markdownSlug ? true : false
-    });
-  }
+  const markdownSlug = findMarkdownForDepartment(department.name);
 
-  // If no data, show placeholder
-  if (!headCount2024 && !wages2024) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <h3 className="text-xl font-semibold mb-4">Workforce Data</h3>
-        <p className="text-gray-500">No workforce data available for this organization</p>
-      </div>
-    );
-  }
-
+  // Always show the department card, with placeholders for missing data
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -133,10 +84,10 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
               href={`/departments/${markdownSlug}`}
               className="text-blue-600 hover:underline"
             >
-              {agency.name} Details
+             {department.name} Details
             </Link>
           ) : (
-            `${agency.name} Workforce`
+            ""
           )}
         </h3>
       </div>
@@ -144,7 +95,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div>
           <div className="text-lg font-bold">
-            {headCount2024 !== null && headCount2024 !== undefined ? formatNumber(headCount2024) : '~'}
+            {headCount2023 !== null && headCount2023 !== undefined ? formatNumber(headCount2023) : '—'}
           </div>
           <div className="text-gray-600 text-sm">
             {markdownSlug ? (
@@ -152,24 +103,18 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
                 href={`/departments/${markdownSlug}`}
                 className="text-blue-600 hover:underline"
               >
-                Headcount (2024)
+                Headcount (2023)
               </Link>
             ) : (
-              "Headcount (2024)"
+              "Headcount (2023)"
             )}
           </div>
         </div>
         <div>
           <div className="text-lg font-bold">
-            {agency.subordinateOffices !== undefined ? formatNumber(agency.subordinateOffices) : '~'}
+            {wages2023 !== null && wages2023 !== undefined ? formatCurrencyWithSuffix(wages2023) : '—'}
           </div>
-          <div className="text-gray-600 text-sm">Subordinate Offices</div>
-        </div>
-        <div>
-          <div className="text-lg font-bold">
-            {wages2024 !== null && wages2024 !== undefined ? formatCurrencyWithSuffix(wages2024) : '~'}
-          </div>
-          <div className="text-gray-600 text-sm">Total Wages (2024)</div>
+          <div className="text-gray-600 text-sm">Total Wages (2023)</div>
         </div>
       </div>
 
@@ -183,7 +128,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
           </div>
           <div>
             <div className="text-lg font-bold">
-              {employeeData.averageTenure ? `${employeeData.averageTenure} years` : '—'}
+              {employeeData.averageTenureYears ? `${employeeData.averageTenureYears} years` : '—'}
             </div>
             <div className="text-gray-600 text-sm">Average Tenure</div>
           </div>
@@ -220,7 +165,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
                 />
               </div>
             )}
-            <p className="text-gray-600 text-xs mt-1">Average tenure: {employeeData.averageTenure || '~'} years</p>
+            <p className="text-gray-600 text-xs mt-1">Average tenure: {employeeData.averageTenureYears || '—'} years</p>
           </div>
 
           <div className="chart-section">
@@ -247,7 +192,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
                 />
               </div>
             )}
-            <p className="text-gray-600 text-xs mt-1">Average salary: {employeeData.averageSalary ? formatCurrencyWithSuffix(employeeData.averageSalary) : '~'}/yr</p>
+            <p className="text-gray-600 text-xs mt-1">Average salary: {employeeData.averageSalary ? formatCurrencyWithSuffix(employeeData.averageSalary) : '—'}/yr</p>
           </div>
 
           <div className="chart-section">
@@ -274,7 +219,7 @@ const AgencyDataVisualization = ({ agency }: { agency: Agency }) => {
                 />
               </div>
             )}
-            <p className="text-gray-600 text-xs mt-1">Average age: {employeeData.averageAge || '~'} years</p>
+            <p className="text-gray-600 text-xs mt-1">Average age: {employeeData.averageAge || '—'} years</p>
           </div>
         </div>
       </div>

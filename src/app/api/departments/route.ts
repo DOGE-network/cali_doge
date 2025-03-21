@@ -1,32 +1,93 @@
 import { NextResponse } from 'next/server';
-import { getAllPosts } from '@/lib/blog';
+import departmentsData from '@/data/departments.json';
+import type { DepartmentData, DepartmentsJSON } from '@/types/department';
 
 export async function GET() {
-  try {
-    const posts = await getAllPosts();
+  // Type-safe cast of departments data
+  const typedData = departmentsData as unknown as DepartmentsJSON;
+  
+  console.log('Raw departments from JSON:', typedData.departments.length);
+  
+  const departments = typedData.departments.map((dept: DepartmentData) => {
+    // Normalize the department data
+    const normalized = {
+      ...dept,
+      id: dept.slug,
+      date: new Date().toISOString(), // Use current date as fallback
+      excerpt: dept.keyFunctions || '',
+      workforceName: dept.workforceName || dept.name,
+      hasWorkforceData: Boolean(dept.workforce && (
+        (dept.workforce.headCount?.yearly && Object.keys(dept.workforce.headCount.yearly).length > 0) ||
+        (dept.workforce.wages?.yearly && Object.keys(dept.workforce.wages.yearly).length > 0) ||
+        dept.workforce.averageTenureYears !== null ||
+        dept.workforce.averageSalary !== null ||
+        dept.workforce.averageAge !== null ||
+        (dept.workforce.tenureDistribution && Object.keys(dept.workforce.tenureDistribution).length > 0) ||
+        (dept.workforce.salaryDistribution && Object.keys(dept.workforce.salaryDistribution).length > 0) ||
+        (dept.workforce.ageDistribution && Object.keys(dept.workforce.ageDistribution).length > 0)
+      ))
+    };
+
+    // Fix reporting structure based on data
+    if (normalized.parent_agency === 'California State Government') {
+      normalized.orgLevel = 1;
+      normalized.budget_status = 'active';
+    }
+
+    if (normalized.orgLevel === 1) {
+      normalized.parent_agency = 'California State Government';
+      normalized.budget_status = 'active';
+    }
     
-    // Map to a simpler structure for the API
-    const departments = posts.map(post => ({
-      id: post.id,
-      code: post.code ? String(post.code) : '',  // Ensure code is always a string
-      name: post.name,
-      date: post.date,
-      excerpt: post.excerpt,
-      image: post.image
-    }));
+    // Ensure workforce data exists and normalize its structure
+    if (!normalized.workforce) {
+      normalized.workforce = {
+        headCount: { yearly: {} },
+        wages: { yearly: {} },
+        averageTenureYears: null,
+        averageSalary: null,
+        averageAge: null,
+        tenureDistribution: {},
+        salaryDistribution: {},
+        ageDistribution: {}
+      };
+    } else {
+      // Ensure all required properties exist with defaults
+      normalized.workforce = {
+        ...normalized.workforce,
+        headCount: normalized.workforce.headCount || { yearly: {} },
+        wages: normalized.workforce.wages || { yearly: {} },
+        averageTenureYears: normalized.workforce.averageTenureYears || null,
+        averageSalary: normalized.workforce.averageSalary || null,
+        averageAge: normalized.workforce.averageAge || null,
+        tenureDistribution: normalized.workforce.tenureDistribution || {},
+        salaryDistribution: normalized.workforce.salaryDistribution || {},
+        ageDistribution: normalized.workforce.ageDistribution || {}
+      };
+    }
     
-    // Debug the first few departments to check their code types
-    console.log('API Departments (first 3):');
-    departments.slice(0, 3).forEach(dept => {
-      console.log(`${dept.name}: code=${dept.code}, type=${typeof dept.code}`);
-    });
-    
-    return NextResponse.json(departments);
-  } catch (error) {
-    console.error('Error fetching departments:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch departments' },
-      { status: 500 }
-    );
-  }
+    return normalized;
+  });
+
+  console.log('Total departments from API:', departments.length);
+  console.log('Active departments:', departments.filter(d => d.budget_status.toLowerCase() === 'active').length);
+  console.log('Departments with any workforce data:', departments.filter(d => d.hasWorkforceData).length);
+
+  // Log departments by level
+  const levelCounts = departments.reduce((acc, dept) => {
+    const level = dept.orgLevel;
+    acc[level] = (acc[level] || 0) + 1;
+    return acc;
+  }, {} as Record<number, number>);
+  console.log('Departments by level:', levelCounts);
+
+  // Log parent agency distribution
+  const parentAgencyCounts = departments.reduce((acc, dept) => {
+    const parent = dept.parent_agency || 'NO_PARENT';
+    acc[parent] = (acc[parent] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  console.log('Departments by parent agency:', parentAgencyCounts);
+
+  return NextResponse.json(departments);
 } 

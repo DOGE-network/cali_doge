@@ -26,7 +26,7 @@ function mergeDepartmentData(hierarchyDept, existingDept) {
     budget_status: existingDept.budget_status || hierarchyDept.budget_status,
     keyFunctions: existingDept.keyFunctions || hierarchyDept.keyFunctions,
     abbreviation: existingDept.abbreviation || hierarchyDept.abbreviation,
-    parentAgency: existingDept.parentAgency || hierarchyDept.parentAgency
+    parent_agency: existingDept.parent_agency || hierarchyDept.parent_agency
   };
 }
 

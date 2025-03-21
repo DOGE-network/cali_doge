@@ -257,7 +257,7 @@ function namesMatch(name1, entity) {
   return false;
 }
 
-// Update department records with correct org_levels, parentAgency, and aliases
+// Update department records with correct org_levels, parent_agency, and aliases
 departmentsData.departments.forEach(dept => {
   // Update Constitutional Officers and their departments
   const constitutionalOfficer = constitutionalOfficers.subAgencies.find(
@@ -265,7 +265,7 @@ departmentsData.departments.forEach(dept => {
   );
   if (constitutionalOfficer) {
     dept.org_level = constitutionalOfficer.org_level;
-    dept.parentAgency = "Constitutional Officers";
+    dept.parent_agency = ["Constitutional Officers"];
     dept.aliases = constitutionalOfficer.aliases || [];
   }
 
@@ -274,7 +274,7 @@ departmentsData.departments.forEach(dept => {
     const subAgency = agency.subAgencies.find(sa => namesMatch(dept.name, sa));
     if (subAgency) {
       dept.org_level = subAgency.org_level;
-      dept.parentAgency = agencyName;
+      dept.parent_agency = [agencyName];
       dept.aliases = subAgency.aliases || [];
     }
   });
