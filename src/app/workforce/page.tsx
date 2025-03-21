@@ -467,9 +467,8 @@ function WorkforcePageContent() {
       for (const dept of departments) {
         const updatedPath = [...currentPath, dept.name];
         
-        // Check for exact match or workforce name match
-        if (dept.name === targetName || 
-            (dept.workforce && dept.workforceName === targetName)) {
+        // Check for exact match only (workforceName doesn't exist on DepartmentHierarchy)
+        if (dept.name === targetName) {
           return { department: dept, path: updatedPath };
         }
         

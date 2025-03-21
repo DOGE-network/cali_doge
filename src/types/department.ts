@@ -5,6 +5,12 @@
 /**
  * Structure of a department in departments.json
  */
+// salary distribution array as "<20000": number, "30000": number, ..., >500000": number
+// tenure distribution array as "<1": number, "2": number, "3": number, "4": number, "5": number, "10": number, "15": number, "20": number, "25": number, "30": number,  ">35": number
+// age distribution array as "<20": number, "30": number, ..., ">60": number
+
+// averageSalary, wages, salaryDistribution use the california state government definition of wages plus benefits, or as we define as total compensation in the code
+
 export interface WorkforceData {
   headCount: {
     yearly: Record<string, number | null>;
@@ -36,7 +42,6 @@ export interface DepartmentData {
   keyFunctions: string;
   abbreviation: string;
   parent_agency: string;
-  workforceName?: string;
 }
 
 /**

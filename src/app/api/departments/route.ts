@@ -15,7 +15,7 @@ export async function GET() {
       id: dept.slug,
       date: new Date().toISOString(), // Use current date as fallback
       excerpt: dept.keyFunctions || '',
-      workforceName: dept.workforceName || dept.name,
+      workforceName: dept.name, // Just use the name as workforceName since DepartmentData doesn't have workforceName
       hasWorkforceData: Boolean(dept.workforce && (
         (dept.workforce.headCount?.yearly && Object.keys(dept.workforce.headCount.yearly).length > 0) ||
         (dept.workforce.wages?.yearly && Object.keys(dept.workforce.wages.yearly).length > 0) ||

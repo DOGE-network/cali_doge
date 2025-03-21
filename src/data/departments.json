@@ -52,6 +52,66 @@
       "orgLevel": 0
     },
     {
+      "name": "California State University Board of Trustees",
+      "slug": "california_state_university_board_of_trustees",
+      "canonicalName": "California State University Board of Trustees",
+      "aliases": [
+        "California State University Board of Trustees",
+        "CSUBOT"
+      ],
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "Oversight of California State University",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "University of California Board of Regents",
+      "slug": "university_of_california_board_of_regents",
+      "canonicalName": "University of California Board of Regents",
+      "aliases": [
+        "University of California Board of Regents",
+        "UCBOT"
+      ],
+      "spending": {
+        "yearly": {},
+        "stateOperations": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "Oversight of Universities of California",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
       "name": "Constitutional Officers",
       "slug": "constitutional_officers",
       "canonicalName": "Constitutional Officers",
@@ -9009,6 +9069,68 @@
       "code": "2740",
       "orgLevel": 4,
       "parent_agency": "Transportation Agency"
+    },
+    {
+      "name": "Chancellor's Office",
+      "slug": "chancellors_office",
+      "canonicalName": "Chancellor's Office",
+      "aliases": [
+        "chancellor's office"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 843
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 123328771.51999979
+          }
+        },
+        "averageSalary": 146297,
+        "averageTenureYears": null,
+        "averageAge": null,
+        "salaryDistribution": {
+          "20000": 20,
+          "30000": 18,
+          "40000": 19,
+          "50000": 14,
+          "60000": 12,
+          "70000": 24,
+          "80000": 15,
+          "90000": 40,
+          "100000": 31,
+          "110000": 56,
+          "120000": 47,
+          "130000": 43,
+          "140000": 35,
+          "150000": 32,
+          "160000": 41,
+          "170000": 37,
+          "180000": 32,
+          "190000": 41,
+          "200000": 117,
+          "250000": 49,
+          "300000": 20,
+          "350000": 12,
+          "400000": 3,
+          "450000": 2,
+          "500000": 0,
+          "<20000": 80,
+          ">500000": 3
+        },
+        "_note": "2023 salary data from 2023_CaliforniaStateUniversity.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "California State University Board of Trustees"
     }
   ],
   "budgetSummary": {
