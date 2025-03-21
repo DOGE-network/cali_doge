@@ -272,7 +272,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                             className="text-sm text-gray-500 hover:text-blue-600 ml-2"
                             onClick={onClose}
                           >
-                            Details →
+                          
                           </Link>
                         </div>
                         <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
@@ -323,7 +323,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                           className="text-sm text-gray-500 hover:text-blue-600 ml-2"
                           onClick={onClose}
                         >
-                          Details →
+                        
                         </Link>
                       </div>
                       <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
