@@ -99,12 +99,7 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
           </div>
           <div className="text-gray-600 text-sm">
             {markdownSlug ? (
-              <Link 
-                href={`/departments/${markdownSlug}`}
-                className="text-blue-600 hover:underline"
-              >
-                Headcount (2023)
-              </Link>
+              "Headcount (2023)"
             ) : (
               "Headcount (2023)"
             )}
