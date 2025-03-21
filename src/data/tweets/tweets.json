@@ -1,6 +1,180 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1903145885049163909"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 40,
+            "end": 85,
+            "probability": 0.6036,
+            "type": "Other",
+            "normalized_text": "The Federal Mediation and Conciliation Service"
+          },
+          {
+            "start": 88,
+            "end": 91,
+            "probability": 0.4097,
+            "type": "Other",
+            "normalized_text": "FMCS"
+          },
+          {
+            "start": 140,
+            "end": 155,
+            "probability": 0.8124,
+            "type": "Organization",
+            "normalized_text": "California State"
+          }
+        ],
+        "urls": [
+          {
+            "start": 250,
+            "end": 273,
+            "url": "https://t.co/DoXwNHrlBX",
+            "expanded_url": "https://www.dailywire.com/news/fmcs-slush-fund-abolished-by-trump",
+            "display_url": "dailywire.com/news/fmcs-slus…",
+            "status": 200,
+            "title": "Inside The Now-Shuttered Federal Agency Where Employees Lived ‘Like Reigning Kings’",
+            "description": "The Federal Mediation and Conciliation Service (FMCS) occupied a nine-story office tower on D.C.’s K Street for only 60 employees prior to the pandemic. Its managers had luxury suites with full bathrooms; one would often be “in the shower” when she was needed. FMCS recorded its director as being on a six-year-long business trip so he could have all of his meals and living expenses covered by taxpayers.",
+            "unwound_url": "https://www.dailywire.com/news/fmcs-slush-fund-abolished-by-trump"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 212,
+            "end": 217,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 218,
+            "end": 227,
+            "username": "CA__DOGE",
+            "id": "1861563798248988672"
+          },
+          {
+            "start": 228,
+            "end": 236,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 237,
+            "end": 248,
+            "username": "carldemaio",
+            "id": "18027450"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1903145885049163909",
+      "created_at": "2025-03-21T18:05:12.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "The abuse and likely fraud committed by The Federal Mediation and Conciliation Service (FMCS) detailed recently. Without DOGE oversight of  California State government, can we be sure that this is not happening? @DOGE @CA__DOGE @joffemd @carldemaio \nhttps://t.co/DoXwNHrlBX",
+      "created_at_formatted": "Mar 21, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -4254,8 +4428,8 @@
     }
   ],
   "meta": {
-    "result_count": 44,
-    "newest_id": "1900230289882046930",
+    "result_count": 45,
+    "newest_id": "1903145885049163909",
     "oldest_id": "1882144700762878208"
   }
 }
