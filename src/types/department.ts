@@ -14,18 +14,18 @@ export interface WorkforceData {
     year: string;
     wages: number;
   }>;
-  averageTenureYears?: number;
-  averageSalary?: number;
-  averageAge?: number;
+  averageTenureYears?: number | null;
+  averageSalary?: number | null;
+  averageAge?: number | null;
   tenureDistribution?: Record<string, number>;
   salaryDistribution?: Record<string, number>;
   ageDistribution?: Record<string, number>;
   _note?: string;
   headCount?: {
-    yearly: Record<string, number>;
+    yearly: Record<string, number | null>;
   };
   wages?: {
-    yearly: Record<string, number>;
+    yearly: Record<string, number | null>;
   };
 }
 

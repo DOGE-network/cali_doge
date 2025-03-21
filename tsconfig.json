@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/scripts/archive/verify_hierarchy.js"  ],
   "exclude": [
     "node_modules"
   ]
