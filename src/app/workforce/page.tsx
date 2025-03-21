@@ -50,9 +50,15 @@
 // Show only immediate children of active card. do not display data
 // Hide all other branches
 
+// Display Rules:
+// - Always show path to root and ancestors (no data/charts)
+// - Show active card with data and charts
+// - Show immediate children of active card (no data)
+// - Hide all other branches
+
 'use client';
 
-import React, { useState, useEffect, Suspense, useMemo } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from './AgencyDataVisualization';
 import { DepartmentData, DepartmentHierarchy } from '@/types/department';
@@ -320,17 +326,44 @@ function SubDepartmentSection({
   activeAgencyPath,
   onDepartmentClick
 }: SubDepartmentSectionProps) {
+  // Check if this is the root department "California State Government"
+  const isRoot = department.name === 'California State Government';
+  
   // Check if this department is the currently selected item
   const isActiveItem = activeAgencyPath.length === parentPath.length + 1 && 
+    activeAgencyPath[parentPath.length] === department.name;
+  
+  // Check if this is a direct child of the active item
+  const isChildOfActive = parentPath.length > 0 && 
+    parentPath.join('/') === activeAgencyPath.join('/') &&
+    !activeAgencyPath.includes(department.name);
+  
+  // Check if this is an ancestor in the path to the active item
+  const isAncestorOfActive = activeAgencyPath.length > parentPath.length + 1 && 
     activeAgencyPath[parentPath.length] === department.name;
   
   // Show chart only when this department is specifically selected
   const showChart = isActiveItem;
   
-  // Always show subdepartments
-  const showSubDepartments = true;
+  // Show subdepartments only if this is active or an ancestor of active
+  const showSubDepartments = isActiveItem || isAncestorOfActive;
   
   const fullPath = [...parentPath, department.name];
+  
+  // Don't render this department if it's not in the path to active, not active, and not a child of active
+  if (!isActiveItem && !isAncestorOfActive && !isChildOfActive) {
+    return null;
+  }
+  
+  // Get departments to display as children
+  let displaySubDepartments = department.subDepartments || [];
+  
+  // Special handling for root level - only show direct children with parent_agency == "California State Government"
+  if (isRoot && isActiveItem) {
+    displaySubDepartments = displaySubDepartments.filter(dept => 
+      dept.parent_agency === 'California State Government'
+    );
+  }
   
   return (
     <div>
@@ -341,9 +374,9 @@ function SubDepartmentSection({
         showChart={showChart}
       />
       
-      {department.subDepartments && showSubDepartments && (
+      {displaySubDepartments && showSubDepartments && (
         <div className="grid grid-cols-1 gap-4 mt-4 ml-4">
-          {department.subDepartments.map((subDept) => (
+          {displaySubDepartments.map((subDept) => (
             <SubDepartmentSection
               key={subDept.name}
               department={subDept}
@@ -352,82 +385,6 @@ function SubDepartmentSection({
               onDepartmentClick={onDepartmentClick}
             />
           ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// Add this before the DepartmentList component
-function flattenHierarchy(departments: DepartmentHierarchy[], parentPath: string[] = []): Array<{dept: DepartmentHierarchy, path: string[]}> {
-  return departments.reduce((acc, dept) => {
-    const currentPath = [...parentPath, dept.name];
-    acc.push({ dept, path: currentPath });
-    if (dept.subDepartments?.length) {
-      acc.push(...flattenHierarchy(dept.subDepartments, currentPath));
-    }
-    return acc;
-  }, [] as Array<{dept: DepartmentHierarchy, path: string[]}>);
-}
-
-function DepartmentList({ 
-  departments, 
-  onDepartmentClick
-}: { 
-  departments: DepartmentHierarchy[], 
-  onDepartmentClick: (_dept: DepartmentData) => void 
-}) {
-  const [page, setPage] = useState(0);
-  const itemsPerPage = 50;
-  
-  // Flatten the hierarchy but keep track of paths
-  const flatDepartments = useMemo(() => 
-    flattenHierarchy(departments), [departments]
-  );
-  
-  const totalPages = Math.ceil(flatDepartments.length / itemsPerPage);
-  const displayDepartments = flatDepartments.slice(
-    page * itemsPerPage, 
-    (page + 1) * itemsPerPage
-  );
-
-  return (
-    <div>
-      <div className="grid grid-cols-1 gap-4">
-        {displayDepartments.map(({dept}) => (
-          <div 
-            key={dept.name}
-            className={`ml-${(dept.orgLevel || 0) * 4}`}
-          >
-            <DepartmentCard 
-              department={dept}
-              isActive={false}
-              onClick={() => onDepartmentClick(dept)}
-              showChart={false}
-            />
-          </div>
-        ))}
-      </div>
-      
-      {totalPages > 1 && (
-        <div className="mt-4 flex justify-center gap-2">
-          <button
-            onClick={() => setPage(p => Math.max(0, p - 1))}
-            disabled={page === 0}
-            className="px-3 py-1 bg-gray-100 rounded disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span className="px-3 py-1">
-            Page {page + 1} of {totalPages}
-          </span>
-          <button
-            onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
-            disabled={page === totalPages - 1}
-            className="px-3 py-1 bg-gray-100 rounded disabled:opacity-50"
-          >
-            Next
-          </button>
         </div>
       )}
     </div>
@@ -615,10 +572,16 @@ function WorkforcePageContent() {
   // Child departments of the active department (to display below)
   const childDepartments = currentActiveDepartment?.subDepartments || [];
 
+  // Filter child departments to only include direct children at the root level
+  // At root level, only show departments with parent_agency == "California State Government"
+  const childDepartmentsToDisplay = currentActiveDepartment?.name === 'California State Government' ?
+    childDepartments.filter(dept => dept.parent_agency === 'California State Government') :
+    childDepartments;
+
   // Log final display counts
-  const totalDisplayed = pathDepartments.length + childDepartments.length;
+  const totalDisplayed = pathDepartments.length + childDepartmentsToDisplay.length;
   console.log('Path departments:', pathDepartments.length);
-  console.log('Child departments:', childDepartments.length);
+  console.log('Child departments:', childDepartmentsToDisplay.length);
   console.log('Total displayed:', totalDisplayed);
   
   return (
@@ -642,6 +605,7 @@ function WorkforcePageContent() {
       </div>
       
       <div className="mb-10">
+        {/* Breadcrumb navigation showing path to root */}
         <nav className="mb-4">
           <ol className="flex flex-wrap items-center">
             {pathDepartments.map((dept, index) => (
@@ -675,19 +639,38 @@ function WorkforcePageContent() {
             />
           </div>
         )}
+        
+        {/* Immediate children of active department (no data) */}
+        {childDepartmentsToDisplay.length > 0 && (
+          <div>
+            <h2 className="text-lg font-semibold mb-3">Departments</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {childDepartmentsToDisplay.map(dept => (
+                <DepartmentCard
+                  key={dept.name}
+                  department={dept}
+                  isActive={false}
+                  onClick={() => handleSelectDepartment(dept)}
+                  showChart={false}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       
-      {/* All departments */}
-      <div>
-        <h2 className="text-xl font-bold mb-4">All Departments</h2>
-        <DepartmentList 
-          departments={filteredHierarchy.subDepartments || []} 
-          onDepartmentClick={handleSelectDepartment}
-        />
+      {/* Help information for navigating the hierarchy */}
+      <div className="bg-blue-50 p-4 rounded-lg mb-8">
+        <h3 className="text-md font-semibold mb-2">Understanding the Hierarchy</h3>
+        <ul className="list-disc pl-5 text-sm text-gray-600">
+          <li>Click on any department to view its details and subdivisions</li>
+          <li>Use the breadcrumb navigation above to return to previous levels</li>
+          <li>Toggle between showing active departments only or all departments</li>
+        </ul>
       </div>
 
       {/* Sources */}
-      <div className="mt-16">
+      <div className="mt-8">
         <h3 className="text-lg font-semibold mb-2">Sources</h3>
         <ul className="list-disc pl-5 text-sm text-gray-600">
           <li>

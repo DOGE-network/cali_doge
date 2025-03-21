@@ -84,10 +84,10 @@ const AgencyDataVisualization = ({ department }: { department: DepartmentData })
               href={`/departments/${markdownSlug}`}
               className="text-blue-600 hover:underline"
             >
-              {department.name} Details
+             {department.name} Details
             </Link>
           ) : (
-            `${department.name} Workforce`
+            ""
           )}
         </h3>
       </div>
