@@ -29,6 +29,11 @@ interface DepartmentChartsProps {
   averageSalary: number | null;
   averageTenureYears: number | null;
   averageAge: number | null;
+  aggregatedDistributions?: {
+    tenureDistribution: RawDistributionItem[];
+    salaryDistribution: RawDistributionItem[];
+    ageDistribution: RawDistributionItem[];
+  };
 }
 
 const CustomTooltip = ({ active, payload, type, headCount }: CustomTooltipProps) => {
@@ -126,7 +131,7 @@ const NoDataDisplay = () => (
   <div className="flex flex-col items-center justify-center h-64 bg-gray-50 rounded-lg border border-gray-200">
     <Image 
       src="/no-data-yet.svg" 
-      alt="No Data Available" 
+      alt="No public data available" 
       width={100} 
       height={100} 
       priority
@@ -135,7 +140,13 @@ const NoDataDisplay = () => (
   </div>
 );
 
-export default function DepartmentCharts({ employeeData, averageSalary, averageTenureYears, averageAge }: DepartmentChartsProps) {
+export default function DepartmentCharts({ 
+  employeeData, 
+  averageSalary, 
+  averageTenureYears, 
+  averageAge,
+  aggregatedDistributions 
+}: DepartmentChartsProps) {
   const headCount = employeeData.headcount.length > 0 
     ? employeeData.headcount[employeeData.headcount.length - 1].value 
     : null;
@@ -152,30 +163,43 @@ export default function DepartmentCharts({ employeeData, averageSalary, averageT
     console.log('Raw Data:', {
       tenure: employeeData.tenureDistribution,
       salary: employeeData.salaryDistribution,
-      age: employeeData.ageDistribution
+      age: employeeData.ageDistribution,
+      aggregated: aggregatedDistributions
     });
     
     const transformed = {
-      tenure: transformDistributionData(employeeData.tenureDistribution, headCount ?? 0, 'tenure'),
-      salary: transformDistributionData(employeeData.salaryDistribution, headCount ?? 0, 'salary'),
-      age: transformDistributionData(employeeData.ageDistribution, headCount ?? 0, 'age')
+      tenure: transformDistributionData(
+        aggregatedDistributions?.tenureDistribution || employeeData.tenureDistribution, 
+        headCount ?? 0, 
+        'tenure'
+      ),
+      salary: transformDistributionData(
+        aggregatedDistributions?.salaryDistribution || employeeData.salaryDistribution, 
+        headCount ?? 0, 
+        'salary'
+      ),
+      age: transformDistributionData(
+        aggregatedDistributions?.ageDistribution || employeeData.ageDistribution, 
+        headCount ?? 0, 
+        'age'
+      )
     };
     
     console.log('Transformed Data:', transformed);
     return transformed;
-  }, [employeeData, headCount]);
+  }, [employeeData, headCount, aggregatedDistributions]);
 
   // Calculate averages from distributions first if available, otherwise use provided averages
   const effectiveAverageTenure = employeeData.tenureDistribution?.length > 0 
-    ? calculateAverageFromDistribution(employeeData.tenureDistribution) 
+    ? calculateAverageFromDistribution(aggregatedDistributions?.tenureDistribution || employeeData.tenureDistribution) 
     : averageTenureYears;
 
   const effectiveAverageSalary = employeeData.salaryDistribution?.length > 0
-    ? calculateAverageFromDistribution(employeeData.salaryDistribution)
+    ? calculateAverageFromDistribution(aggregatedDistributions?.salaryDistribution || employeeData.salaryDistribution)
     : averageSalary;
 
   const effectiveAverageAge = employeeData.ageDistribution?.length > 0
-    ? calculateAverageFromDistribution(employeeData.ageDistribution)
+    ? calculateAverageFromDistribution(aggregatedDistributions?.ageDistribution || employeeData.ageDistribution)
     : averageAge;
 
   const formatCurrency = (amount: number | null) => {

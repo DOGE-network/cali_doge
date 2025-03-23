@@ -8,6 +8,8 @@
 # Level 2: Suborganization level (divisions, bureaus, boards, commissions)
 # Level 3: Suborganization of Level 2 (bureaus, offices, units)
 #
+// known problem that the state controller does not put many documents in this easy to use location
+// we will need to use browser automation to download the documents from the state controller website
 
 # Define target directories
 TARGET_DIR="./src/data/budget_docs"

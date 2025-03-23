@@ -61,7 +61,7 @@
 import React, { useState, useEffect, Suspense, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from './AgencyDataVisualization';
-import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug, BudgetStatus } from '@/types/department';
+import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug, BudgetStatus, RawDistributionItem } from '@/types/department';
 import { getDepartmentByName, getDepartmentByWorkforceName } from '@/lib/departmentMapping';
 
 // Fetch departments from API
@@ -89,6 +89,74 @@ function countDepartments(hierarchy: DepartmentHierarchy | DepartmentHierarchy[]
     count += hierarchy.subDepartments.reduce((acc, dept) => acc + countDepartments(dept), 0);
   }
   return count;
+}
+
+// Helper function to aggregate distribution arrays
+function aggregateDistributions(departments: DepartmentHierarchy[]): {
+  tenureDistribution: RawDistributionItem[];
+  salaryDistribution: RawDistributionItem[];
+  ageDistribution: RawDistributionItem[];
+} {
+  const result = {
+    tenureDistribution: [] as RawDistributionItem[],
+    salaryDistribution: [] as RawDistributionItem[],
+    ageDistribution: [] as RawDistributionItem[]
+  };
+
+  // Helper to aggregate a single distribution type
+  const aggregateDistribution = (distributions: RawDistributionItem[][]): RawDistributionItem[] => {
+    const rangeMap = new Map<string, number>();
+
+    distributions.forEach(dist => {
+      if (!dist) return;
+      dist.forEach(item => {
+        const key = `${item.range[0]}-${item.range[1]}`;
+        rangeMap.set(key, (rangeMap.get(key) || 0) + item.count);
+      });
+    });
+
+    return Array.from(rangeMap.entries()).map(([key, count]) => ({
+      range: key.split('-').map(Number) as [number, number],
+      count
+    }));
+  };
+
+  // Get all distributions from departments and their subdepartments recursively
+  const getAllDistributions = (depts: DepartmentHierarchy[]) => {
+    const distributions = {
+      tenure: [] as RawDistributionItem[][],
+      salary: [] as RawDistributionItem[][],
+      age: [] as RawDistributionItem[][]
+    };
+
+    depts.forEach(dept => {
+      if (dept.workforce?.tenureDistribution) {
+        distributions.tenure.push(dept.workforce.tenureDistribution);
+      }
+      if (dept.workforce?.salaryDistribution) {
+        distributions.salary.push(dept.workforce.salaryDistribution);
+      }
+      if (dept.workforce?.ageDistribution) {
+        distributions.age.push(dept.workforce.ageDistribution);
+      }
+      if (dept.subDepartments?.length) {
+        const subDist = getAllDistributions(dept.subDepartments);
+        distributions.tenure.push(...subDist.tenure);
+        distributions.salary.push(...subDist.salary);
+        distributions.age.push(...subDist.age);
+      }
+    });
+
+    return distributions;
+  };
+
+  const allDistributions = getAllDistributions(departments);
+  
+  result.tenureDistribution = aggregateDistribution(allDistributions.tenure);
+  result.salaryDistribution = aggregateDistribution(allDistributions.salary);
+  result.ageDistribution = aggregateDistribution(allDistributions.age);
+
+  return result;
 }
 
 function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
@@ -235,14 +303,23 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
   };
   sortDepartments(root);
 
-  // Calculate subordinate offices
-  const calculateSubordinates = (dept: DepartmentHierarchy): number => {
-    if (!dept.subDepartments) return 0;
+  // Calculate subordinate offices and aggregate distributions
+  const calculateSubordinatesAndAggregateData = (dept: DepartmentHierarchy): number => {
+    if (!dept.subDepartments?.length) return 0;
+    
+    // Calculate subordinates
     dept.subordinateOffices = dept.subDepartments.reduce((sum: number, child: DepartmentHierarchy) => 
-      sum + calculateSubordinates(child) + 1, 0);
+      sum + calculateSubordinatesAndAggregateData(child) + 1, 0);
+    
+    // Aggregate distributions from children
+    if (dept.subDepartments.length > 0) {
+      const aggregatedData = aggregateDistributions(dept.subDepartments);
+      dept.aggregatedDistributions = aggregatedData;
+    }
+    
     return dept.subordinateOffices;
   };
-  calculateSubordinates(root);
+  calculateSubordinatesAndAggregateData(root);
 
   // After building hierarchy
   console.log('Departments in hierarchy:', countDepartments(root));

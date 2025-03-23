@@ -112,6 +112,11 @@ export interface DepartmentData {
   parent_agency: string;
 }
 
+export interface RawDistributionItem {
+  range: [number, number];
+  count: number;
+}
+
 /**
  * Extended interface for department hierarchy visualization
  * this is deprecated and not used anymore
@@ -119,6 +124,11 @@ export interface DepartmentData {
 export interface DepartmentHierarchy extends DepartmentData {
   subDepartments?: DepartmentHierarchy[];
   subordinateOffices: number;
+  aggregatedDistributions?: {
+    tenureDistribution: RawDistributionItem[];
+    salaryDistribution: RawDistributionItem[];
+    ageDistribution: RawDistributionItem[];
+  };
 }
 
 /**
