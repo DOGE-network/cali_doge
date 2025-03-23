@@ -5,31 +5,37 @@
 - [Overview](#overview)
 - [Data Architecture](#data-architecture)
   - [Fiscal Year Representation](#fiscal-year-representation)
-  - [Implementation in Data Files](#implementation-in-data-files)
+  - [Data Processing Pipeline](#data-processing)
   - [Executive Branch Hierarchy](#executive-branch-hierarchy)
   - [Data Sources](#data-sources)
 - [Key System Components](#key-system-components)
   - [Markdown Processing](#markdown-processing)
   - [Workforce Hierarchy System](#workforce-hierarchy-system)
   - [Department Page Connection System](#department-page-connection-system)
+  - [Data Visualization](#data-visualization)
 - [California Government Structure](#california-government-organizational-structure)
   - [Hierarchical Levels](#hierarchical-levels)
   - [Agency Structure](#agency-level-a)
   - [Budget Documents](#budget-document-structure)
-- [Scripts](#scripts)
+- [Scripts and Tools](#scripts)
   - [Data Processing Scripts](#data-processing-scripts)
   - [Social Media Scripts](#social-media-scripts)
   - [PDF Processing Scripts](#pdf-processing-scripts)
   - [Utility Scripts](#utility-scripts)
 - [Development](#development)
-  - [Getting Started](#getting-started)
-  - [Installing Dependencies](#installing-dependencies)
+  - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
   - [Environment Variables](#environment-variables)
   - [Running Locally](#running-locally)
   - [Building for Production](#building-for-production)
   - [Running Scripts](#running-scripts)
   - [Linting and Testing](#linting-and-testing)
   - [Deployment](#deployment)
+- [Data Strategy](#data-strategy)
+  - [Data Gathering](#1-data-gathering)
+  - [Data Processing](#2-data-processing)
+  - [Data Presentation](#3-data-presentation)
+- [Contributing](#contributing)
 
 ## Overview
 I am the love child of Elon Musk and Lanhee Chen. Godson of David Sacks. A fun mode parody account for educational purposes.
@@ -845,4 +851,110 @@ For manual deployment:
 ```bash
 npm run build
 vercel deploy --prod
-``` 
+```
+
+# California State Government Workforce Data
+
+A comprehensive visualization of California State Government workforce data, including employee counts, salaries, and organizational relationships.
+
+## Data Strategy
+
+### 1. Data Gathering
+- Source data from California State Controller's Office workforce CSV files
+- Files are stored in `src/data/workforce` with naming pattern `YYYY_*.csv`
+- Each file contains detailed employee records with:
+  - Base wages and benefits
+  - Department/subdivision information
+  - Employment type and status
+
+### 2. Data Processing
+The data processing pipeline consists of several stages:
+
+#### a. CSV Processing (`src/scripts/process_departments.js`)
+- Reads and parses workforce CSV files
+- Calculates department-level statistics:
+  - Total headcount
+  - Total wages and benefits
+  - Average salary (total compensation)
+  - Salary distributions
+  - Age and tenure distributions
+- Maintains parent-child relationships between departments
+- Updates `departments.json` with processed data
+
+#### b. Data Structure
+- Departments are organized in a hierarchical structure
+- Each department contains:
+  ```typescript
+  {
+    name: string;
+    workforce: {
+      headCount: { yearly: Record<string, number> };
+      wages: { yearly: Record<string, number> };
+      salaryDistribution: Array<{range: [number, number], count: number}>;
+      // ... other metrics
+    }
+  }
+  ```
+
+### 3. Data Presentation
+The application uses several optimization strategies for efficient data presentation:
+
+#### a. Performance Optimizations
+- Server-side caching with revalidation
+- Dynamic imports for chart components
+- Intersection Observer for lazy loading
+- Memoized calculations for expensive operations
+
+#### b. Component Structure
+- Root level: `WorkforcePage`
+  - Handles data fetching and state management
+  - Builds department hierarchy
+  - Manages navigation and filtering
+- Visualization: `AgencyDataVisualization`
+  - Dynamically loaded charts
+  - Responsive data displays
+  - Interactive tooltips and filters
+
+#### c. Data Loading Strategy
+```typescript
+// Server-side caching
+const response = await fetch('/api/departments', {
+  next: { revalidate: 3600 }
+});
+
+// Dynamic imports
+const DynamicCharts = dynamic(
+  () => import('./components/DepartmentCharts'),
+  { ssr: false }
+);
+
+// Intersection Observer for lazy loading
+const observer = new IntersectionObserver(
+  ([entry]) => {
+    setIsVisible(entry.isIntersecting);
+  }
+);
+```
+
+## Development
+
+### Prerequisites
+- Node.js 16+
+- npm
+
+### Setup
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Place workforce CSV files in `src/data/workforce`
+4. Run data processing: `node src/scripts/process_departments.js`
+5. Start development server: `npm run dev`
+
+### Data Updates
+To update workforce data:
+1. Add new CSV files to `src/data/workforce`
+2. Run processing script
+3. Verify updates in `departments.json`
+4. Test visualizations in development environment
+
+## Contributing
+Please see CONTRIBUTING.md for guidelines on contributing to this project.

@@ -9,12 +9,17 @@ import {
   compareSlugFormats,
   findMarkdownForDepartment
 } from '@/lib/departmentMapping';
-import { DepartmentsJSON } from '@/types/department';
+import { DepartmentsJSON, FiscalYearKey } from '@/types/department';
 
 interface SpendingDisplayProps {
   departmentsData: DepartmentsJSON;
   highlightedDepartment?: string | null;
   showTopSpendOnly?: boolean;
+}
+
+interface AgencySpending {
+  name: string;
+  spending: Record<FiscalYearKey, number | {}>;
 }
 
 const SpendingDisplay: React.FC<SpendingDisplayProps> = ({ 
@@ -25,10 +30,9 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   const [showAllYears, setShowAllYears] = useState(false);
   
   // Format spending value to display with $ and B
-  const formatSpending = (value: string | number | undefined): string => {
-    if (value === undefined) return 'N/A';
-    const numericValue = typeof value === 'string' ? parseFloat(value.replace(/[^\d.-]/g, '')) : value;
-    return `$${(numericValue / 1000000000).toFixed(2)}B`;
+  const formatSpending = (value: number | {} | undefined): string => {
+    if (value === undefined || typeof value !== 'number') return 'N/A';
+    return `$${(value / 1000000000).toFixed(2)}B`;
   };
   
   // Debug on mount
@@ -45,12 +49,12 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   
   // Default years to show (FY2023-2025)
   const fiscalYears = useMemo(() => {
-    const allYears = new Set<string>();
+    const allYears = new Set<FiscalYearKey>();
     
     // Collect all fiscal years from each department's spending data
     departmentsData.departments.forEach(dept => {
       if (dept.spending?.yearly) {
-        Object.keys(dept.spending.yearly).forEach(year => allYears.add(year));
+        Object.keys(dept.spending.yearly).forEach(year => allYears.add(year as FiscalYearKey));
       }
     });
     
@@ -58,7 +62,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   }, [departmentsData]);
   
   const defaultYears = fiscalYears.filter(year => 
-    ['FY2023', 'FY2024', 'FY2025'].includes(year)
+    year.startsWith('FY2023') || year.startsWith('FY2024') || year.startsWith('FY2025')
   );
   
   // Years to display based on toggle state
@@ -66,13 +70,13 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   
   // Sort years chronologically from oldest to latest
   const yearsToDisplay = [...unsortedYears].sort((a, b) => {
-    const yearA = parseInt(a.replace('FY', ''));
-    const yearB = parseInt(b.replace('FY', ''));
+    const yearA = parseInt(a.slice(2, 6));
+    const yearB = parseInt(b.slice(2, 6));
     return yearA - yearB;
   });
 
   // Get the most recent year for sorting by spending
-  const mostRecentYear = yearsToDisplay.length > 0 ? yearsToDisplay[yearsToDisplay.length - 1] : 'FY2024';
+  const mostRecentYear = yearsToDisplay.length > 0 ? yearsToDisplay[yearsToDisplay.length - 1] : 'FY2023-FY2024' as FiscalYearKey;
 
   // Convert departments to agency-like structure for sorting and display
   const agencies = useMemo(() => {
@@ -81,15 +85,15 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
       .filter(dept => dept.name !== "California State Government")
       .map(dept => ({
         name: dept.name,
-        spending: normalizeYearlyData(dept.spending?.yearly || {})
-      }));
+        spending: dept.spending?.yearly || {} as Record<FiscalYearKey, number | {}>
+      })) as AgencySpending[];
   }, [departmentsData]);
 
   // Sort agencies by spending for the most recent year
   const sortedAgencies = useMemo(() => {
     return [...agencies].sort((a, b) => {
-      const spendingA = a.spending[mostRecentYear] || 0;
-      const spendingB = b.spending[mostRecentYear] || 0;
+      const spendingA = typeof a.spending[mostRecentYear] === 'number' ? a.spending[mostRecentYear] as number : 0;
+      const spendingB = typeof b.spending[mostRecentYear] === 'number' ? b.spending[mostRecentYear] as number : 0;
       return spendingB - spendingA;
     });
   }, [agencies, mostRecentYear]);
@@ -98,88 +102,65 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   const agenciesToDisplay = showTopSpendOnly ? sortedAgencies.slice(0, 10) : sortedAgencies;
 
   return (
-    <div className="mb-12">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Department Spending</h2>
-        <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
+    <div className="w-full overflow-x-auto">
+      <table className="min-w-full table-auto">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="px-4 py-2 text-left">Department</th>
+            {yearsToDisplay.map((year) => (
+              <th key={year} className="px-4 py-2 text-right">{year}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {agenciesToDisplay.map((agency) => {
+            const departmentMapping = getDepartmentBySpendingName(agency.name);
+            const markdownPath = departmentMapping ? findMarkdownForDepartment(departmentMapping.slug) : null;
+            const isHighlighted = highlightedDepartment && agency.name === highlightedDepartment;
+
+            return (
+              <tr 
+                key={agency.name}
+                className={`border-t ${isHighlighted ? 'bg-yellow-50' : ''} hover:bg-gray-50`}
+              >
+                <td className="px-4 py-2">
+                  {markdownPath ? (
+                    <Link 
+                      href={`/departments/${departmentMapping?.slug}`}
+                      className="text-blue-600 hover:text-blue-800 hover:underline"
+                    >
+                      {agency.name}
+                    </Link>
+                  ) : (
+                    agency.name
+                  )}
+                </td>
+                {yearsToDisplay.map((year) => (
+                  <td key={year} className="px-4 py-2 text-right">
+                    {formatSpending(agency.spending[year as FiscalYearKey])}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      
+      {!showTopSpendOnly && (
+        <div className="mt-4 flex justify-center">
           <Button
-            variant={showAllYears ? "ghost" : "secondary"}
-            size="sm"
-            className={`rounded-full text-xs ${!showAllYears ? 'bg-white shadow-sm' : ''}`}
-            onClick={() => setShowAllYears(false)}
+            onClick={() => setShowAllYears(!showAllYears)}
+            variant="outline"
           >
-            Recent Years
-          </Button>
-          <Button
-            variant={showAllYears ? "secondary" : "ghost"}
-            size="sm"
-            className={`rounded-full text-xs ${showAllYears ? 'bg-white shadow-sm' : ''}`}
-            onClick={() => setShowAllYears(true)}
-          >
-            All Years
+            {showAllYears ? 'Show Recent Years' : 'Show All Years'}
           </Button>
         </div>
-      </div>
-      
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="py-3 px-4 text-left">Department</th>
-              {yearsToDisplay.map(year => (
-                <th key={year} className="py-3 px-4 text-right">{year}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {agenciesToDisplay.map((agency, index) => {
-              // Only get department mappings that have markdown pages
-              const allDeptMapping = getDepartmentBySpendingName(agency.name, false);
-              const departmentMapping = getDepartmentBySpendingName(agency.name, true);
-              
-              // Try to find markdown file directly
-              const markdownSlug = findMarkdownForDepartment(agency.name);
-              
-              // Detailed debug output
-              if (allDeptMapping && !departmentMapping && markdownSlug) {
-                console.log(`Department '${agency.name}' has mapping to slug '${allDeptMapping.slug}' with markdown page '${markdownSlug}'`);
-              }
-              
-              const isHighlighted = highlightedDepartment === agency.name;
-              
-              return (
-                <tr 
-                  key={index} 
-                  className={`border-t border-gray-200 ${isHighlighted ? 'bg-blue-50' : ''}`}
-                >
-                  <td className="py-3 px-4">
-                    {markdownSlug ? (
-                      <Link 
-                        href={`/departments/${markdownSlug}`}
-                        className="text-blue-600 hover:underline"
-                      >
-                        {agency.name}
-                      </Link>
-                    ) : (
-                      agency.name
-                    )}
-                  </td>
-                  {yearsToDisplay.map(year => (
-                    <td key={year} className="py-3 px-4 text-right">
-                      {formatSpending(agency.spending[year] as string | number | undefined)}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      )}
     </div>
   );
 };
 
-const normalizeYearlyData = (data: Record<string, string | number>) => {
+const _normalizeYearlyData = (data: Record<string, string | number>) => {
   return Object.entries(data).reduce((acc, [year, value]) => ({
     ...acc,
     [year]: typeof value === 'string' ? parseFloat((value as string).replace(/[^\d.-]/g, '')) : value

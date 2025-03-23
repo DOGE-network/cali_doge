@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import type { WorkforceData } from '@/types/workforce';
+import type { WorkforceData, AnnualYear } from '@/types/department';
 
 interface DepartmentWorkforceDisplayProps {
-  workforceData: WorkforceData;
+  workforceData: Required<WorkforceData>;
 }
 
 const DepartmentWorkforceDisplay = ({ workforceData }: DepartmentWorkforceDisplayProps) => {
@@ -13,18 +13,20 @@ const DepartmentWorkforceDisplay = ({ workforceData }: DepartmentWorkforceDispla
 
   // Get all years from the data
   const years = [...new Set([
-    ...Object.keys(workforceData.headCount?.yearly || {}),
-    ...Object.keys(workforceData.wages?.yearly || {})
+    ...Object.keys(workforceData.headCount.yearly),
+    ...Object.keys(workforceData.wages.yearly)
   ])].sort((yearA, yearB) => {
-    // Convert fiscal years to numbers for comparison
-    const getYear = (year: string) => parseInt(year.split('-')[0]);
+    // Convert years to numbers for comparison
+    const getYear = (year: string) => parseInt(year);
     return getYear(yearB) - getYear(yearA); // Sort descending
-  });
+  }) as AnnualYear[];
 
   const formatNumber = (num: number) => num.toLocaleString();
 
   // Format currency with appropriate suffix (B for billions, M for millions)
-  const formatCurrencyWithSuffix = (amount: number): string => {
+  const formatCurrencyWithSuffix = (amount: number | {}): string => {
+    if (typeof amount !== 'number') return '~';
+    
     if (amount >= 1000000000) {
       return `$${(amount / 1000000000).toFixed(2)}B`;
     } else if (amount >= 1000000) {
@@ -72,7 +74,7 @@ const DepartmentWorkforceDisplay = ({ workforceData }: DepartmentWorkforceDispla
         <table className="min-w-full bg-white border border-gray-200">
           <thead>
             <tr className="bg-gray-100">
-              <th className="py-3 px-4 text-left">Fiscal Year</th>
+              <th className="py-3 px-4 text-left">Year</th>
               <th className="py-3 px-4 text-right">Budget</th>
               <th className="py-3 px-4 text-right">Headcount</th>
             </tr>
@@ -81,16 +83,16 @@ const DepartmentWorkforceDisplay = ({ workforceData }: DepartmentWorkforceDispla
             {years
               .filter(year => showAllYears || parseInt(year) >= 2023)
               .map(year => {
-                const headcount = workforceData.headCount?.yearly[year];
-                const wages = workforceData.wages?.yearly[year];
+                const headcount = workforceData.headCount.yearly[year];
+                const wages = workforceData.wages.yearly[year];
                 return (
                   <tr key={year} className="border-t border-gray-200">
                     <td className="py-3 px-4">{year}</td>
                     <td className="py-3 px-4 text-right">
-                      {wages !== null && wages !== undefined ? formatCurrencyWithSuffix(wages) : '~'}
+                      {formatCurrencyWithSuffix(wages)}
                     </td>
                     <td className="py-3 px-4 text-right">
-                      {headcount !== null && headcount !== undefined ? formatNumber(headcount) : '~'}
+                      {typeof headcount === 'number' ? formatNumber(headcount) : '~'}
                     </td>
                   </tr>
                 );

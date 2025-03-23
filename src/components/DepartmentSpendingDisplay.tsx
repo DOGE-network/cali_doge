@@ -2,42 +2,57 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { SpendingData } from '@/types/spending';
+import type { DepartmentData, FiscalYearKey } from '@/types/department';
 
 interface DepartmentSpendingDisplayProps {
-  departmentName: string;
-  spendingData: SpendingData;
+  spendingData: Required<Pick<DepartmentData, 'spending'>>;
 }
 
 const DepartmentSpendingDisplay: React.FC<DepartmentSpendingDisplayProps> = ({ 
-  departmentName, 
   spendingData 
 }) => {
   const [showAllYears, setShowAllYears] = useState(false);
   
-  // Find the department data
-  const departmentData = spendingData.agencies.find(
-    agency => agency.name === departmentName
-  );
+  // Get all fiscal years
+  const fiscalYears = Object.keys(spendingData.spending.yearly) as FiscalYearKey[];
   
-  if (!departmentData) {
-    return <div>No spending data available for this department.</div>;
-  }
-  
-  // Default years to show (FY2023-2025)
-  const defaultYears = spendingData.fiscalYears.filter(year => 
-    ['FY2023', 'FY2024', 'FY2025'].includes(year)
-  );
+  // Default years to show (most recent 3 years)
+  const defaultYears = fiscalYears
+    .sort((a, b) => {
+      const yearA = parseInt(a.slice(2, 6));
+      const yearB = parseInt(b.slice(2, 6));
+      return yearB - yearA;
+    })
+    .slice(0, 3);
   
   // Years to display based on toggle state
-  const unsortedYears = showAllYears ? spendingData.fiscalYears : defaultYears;
+  const yearsToDisplay = showAllYears ? fiscalYears : defaultYears;
   
-  // Sort years chronologically from oldest to latest
-  const sortedYears = [...unsortedYears].sort((a, b) => {
-    const yearA = parseInt(a.replace('FY', ''));
-    const yearB = parseInt(b.replace('FY', ''));
+  // Sort years chronologically
+  const sortedYears = [...yearsToDisplay].sort((a, b) => {
+    const yearA = parseInt(a.slice(2, 6));
+    const yearB = parseInt(b.slice(2, 6));
     return yearA - yearB;
   });
+
+  // Format spending value to display with appropriate suffix
+  const formatSpending = (value: number | {}): string => {
+    if (typeof value !== 'number') return 'N/A';
+    
+    // Now TypeScript knows value is a number
+    if (value >= 1000000000) {
+      return `$${(value / 1000000000).toFixed(2)}B`;
+    } 
+    if (value >= 1000000) {
+      return `$${(value / 1000000).toFixed(2)}M`;
+    }
+    return `$${value.toLocaleString()}`;
+  };
+
+  // If no data or empty data, show message
+  if (!fiscalYears.length) {
+    return <div>No spending data available for this department.</div>;
+  }
 
   return (
     <div className="mb-12">
@@ -63,30 +78,21 @@ const DepartmentSpendingDisplay: React.FC<DepartmentSpendingDisplayProps> = ({
         </div>
       </div>
       
-      {/* Spending Data Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200">
           <thead>
             <tr className="bg-gray-100">
               <th className="py-3 px-4 text-left">Fiscal Year</th>
               <th className="py-3 px-4 text-right">Spend</th>
-              {departmentData.stateOperations && (
-                <th className="py-3 px-4 text-right">State Operations</th>
-              )}
             </tr>
           </thead>
           <tbody>
             {sortedYears.map(year => (
               <tr key={year} className="border-t border-gray-200">
-                <td className="py-3 px-4">{year.replace('FY', '')}</td>
+                <td className="py-3 px-4">{year}</td>
                 <td className="py-3 px-4 text-right">
-                  {departmentData.spending[year] || 'N/A'}
+                  {formatSpending(spendingData.spending.yearly[year])}
                 </td>
-                {departmentData.stateOperations && (
-                  <td className="py-3 px-4 text-right">
-                    {departmentData.stateOperations[year] || 'N/A'}
-                  </td>
-                )}
               </tr>
             ))}
           </tbody>
