@@ -30,6 +30,7 @@ function SpendPageClient() {
     // Get the department from URL query parameter
     const departmentParam = searchParams.get('department');
     if (departmentParam) {
+      // The department param is now a slug, so use it directly
       setHighlightedDepartment(departmentParam);
     }
     

@@ -733,7 +733,14 @@ export function getSpendingUrlForDepartment(slug: string): string | null {
     return null;
   }
   
-  return `/spend?department=${encodeURIComponent(dept.name)}`;
+  // Find the markdown slug that corresponds to this department
+  const markdownSlug = findMarkdownForDepartment(dept.name);
+  if (!markdownSlug) {
+    console.log(`No markdown file found for department: ${dept.name}`);
+    return null;
+  }
+  
+  return `/spend?department=${encodeURIComponent(markdownSlug)}`;
 }
 
 /**
@@ -746,7 +753,14 @@ export function getWorkforceUrlForDepartment(slug: string): string | null {
     return null;
   }
   
-  return `/workforce?department=${encodeURIComponent(dept.name)}`;
+  // Find the markdown slug that corresponds to this department
+  const markdownSlug = findMarkdownForDepartment(dept.name);
+  if (!markdownSlug) {
+    console.log(`No markdown file found for department: ${dept.name}`);
+    return null;
+  }
+  
+  return `/workforce?department=${encodeURIComponent(markdownSlug)}`;
 }
 
 /**
