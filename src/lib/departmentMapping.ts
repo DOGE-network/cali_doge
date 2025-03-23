@@ -1,11 +1,12 @@
 // This file provides mapping between department slugs and their corresponding names
 // in the spending and workforce data
 import departmentsData from '@/data/departments.json';
-import { SpendingData } from '@/types/spending';
 import { 
   DepartmentsJSON, 
   DepartmentMapping, 
-  VerificationResult 
+  VerificationResult,
+  FiscalYearKey,
+  ValidSlug
 } from '@/types/department';
 
 // Cast the imported data to the proper type
@@ -763,7 +764,7 @@ export function normalizeForMatching(name: string): string {
  * Used by scripts to ensure data integrity
  */
 export function verifyDepartmentData(
-  spendingData: SpendingData,
+  spendingData: { agencies: Array<{ name: string; spending: Record<string, string | number> }> },
   workforceData: {
     departments: Array<{
       name: string;
@@ -812,8 +813,8 @@ export function verifyDepartmentData(
       return;
     }
     
-    // Check a sample value
-    const sampleYear = 'FY2023';
+    // Check a sample value using FiscalYearKey
+    const sampleYear = 'FY2023-FY2024' as FiscalYearKey;
     if (unifiedDept.spending?.yearly[sampleYear]?.toString() !== agency.spending[sampleYear]?.toString()) {
       result.dataMismatches.push(`Spending mismatch for ${sampleYear}`);
     }
@@ -861,8 +862,6 @@ export function verifyDepartmentData(
 
 /**
  * Verify that all department posts have a corresponding entry in departments.json
- * This is useful for debugging when departments aren't showing data properly
- * @param postSlugs Array of slugs extracted from post filenames (e.g., ['3900_air_resources_board', ...])
  */
 export function verifyDepartmentPosts(postSlugs: string[]): { 
   matched: string[], 
@@ -874,7 +873,9 @@ export function verifyDepartmentPosts(postSlugs: string[]): {
   };
 
   postSlugs.forEach(slug => {
-    const dept = getDepartmentBySlug(slug);
+    // Cast the slug to ValidSlug since we know it matches the pattern
+    const validSlug = slug as ValidSlug;
+    const dept = getDepartmentBySlug(validSlug);
     if (dept) {
       result.matched.push(`${slug} -> ${dept.name} (${dept.code})`);
     } else {
@@ -914,19 +915,23 @@ export function debugDepartmentPages(checkSlug?: string): void {
 }
 
 /**
- * Utility function to compare department slugs with markdown file slugs
- * This helps identify departments that don't have corresponding markdown files
+ * Type guard to check if a string is a valid slug
  */
+function isValidSlugFormat(str: string): str is ValidSlug {
+  return /^[a-z0-9]+(?:_[a-z0-9]+)*$/.test(str);
+}
+
 export function compareSlugFormats(): void {
   console.log('Comparing department slugs with markdown file slugs:');
   
   const departmentSlugs = typedDepartmentsData.departments.map(dept => dept.slug);
+  const validPageSlugs = DEPARTMENT_SLUGS_WITH_PAGES.filter(isValidSlugFormat);
   
   console.log(`Found ${departmentSlugs.length} department slugs and ${DEPARTMENT_SLUGS_WITH_PAGES.length} markdown page slugs`);
   
   // Find department slugs that don't match any markdown page slugs directly
   const unmatchedDeptSlugs = departmentSlugs.filter(slug => 
-    !DEPARTMENT_SLUGS_WITH_PAGES.includes(slug) && 
+    !validPageSlugs.includes(slug) && 
     !hasDepartmentPage(slug)
   );
   
@@ -938,8 +943,8 @@ export function compareSlugFormats(): void {
       console.log(`  - ${slug} (${dept?.name || 'unknown'})`);
       
       // Try to find a close match in the markdown files
-      const potentialMatches = DEPARTMENT_SLUGS_WITH_PAGES.filter(pageSlug => 
-        pageSlug.includes(slug) || slug.includes(pageSlug)
+      const potentialMatches = validPageSlugs.filter(pageSlug => 
+        pageSlug.includes(slug.toString()) || slug.toString().includes(pageSlug)
       );
       
       if (potentialMatches.length > 0) {
@@ -950,7 +955,7 @@ export function compareSlugFormats(): void {
   }
   
   // Find markdown page slugs that don't match any department slugs
-  const unmatchedPageSlugs = DEPARTMENT_SLUGS_WITH_PAGES.filter(pageSlug => 
+  const unmatchedPageSlugs = validPageSlugs.filter(pageSlug => 
     !departmentSlugs.includes(pageSlug)
   );
   
@@ -962,7 +967,7 @@ export function compareSlugFormats(): void {
       // For each unmatched page slug, try to find the department that would match it
       const matchedDept = typedDepartmentsData.departments.find(dept => 
         hasDepartmentPage(dept.slug) && 
-        !DEPARTMENT_SLUGS_WITH_PAGES.includes(dept.slug)
+        !validPageSlugs.includes(dept.slug)
       );
       
       if (matchedDept) {

@@ -10,7 +10,6 @@ const fs = require('fs');
 const path = require('path');
 const { parse } = require('csv-parse/sync');
 const prompt = require('prompt-sync')({ sigint: true });
-const { execSync } = require('child_process');
 
 // Configuration - Fixed paths relative to project root
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
@@ -18,12 +17,34 @@ const CSV_DIR = path.join(PROJECT_ROOT, 'src/data/workforce');
 const DEPARTMENTS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/departments.json');
 const CSV_PATTERN = /2023_.*\.csv$/;
 
-// Define the order of keys for salary distribution - with <20000 first and >500000 last
-const SALARY_DISTRIBUTION_ORDER = [
-  "<20000", "20000", "30000", "40000", "50000", "60000", "70000", "80000", "90000", 
-  "100000", "110000", "120000", "130000", "140000", "150000", "160000", "170000", 
-  "180000", "190000", "200000", "250000", "300000", "350000", "400000", "450000", 
-  "500000", ">500000"
+// Define the salary ranges to match SalaryRange interface exactly
+const SALARY_RANGES = [
+  [0, 19999],       // Under 20k
+  [20000, 29999],   // 20-30k
+  [30000, 39999],   // 30-40k
+  [40000, 49999],   // 40-50k
+  [50000, 59999],   // 50-60k
+  [60000, 69999],   // 60-70k
+  [70000, 79999],   // 70-80k
+  [80000, 89999],   // 80-90k
+  [90000, 99999],   // 90-100k
+  [100000, 109999], // 100-110k
+  [110000, 119999], // 110-120k
+  [120000, 129999], // 120-130k
+  [130000, 139999], // 130-140k
+  [140000, 149999], // 140-150k
+  [150000, 159999], // 150-160k
+  [160000, 169999], // 160-170k
+  [170000, 179999], // 170-180k
+  [180000, 189999], // 180-190k
+  [190000, 199999], // 190-200k
+  [200000, 249999], // 200-250k
+  [250000, 299999], // 250-300k
+  [300000, 349999], // 300-350k
+  [350000, 399999], // 350-400k
+  [400000, 449999], // 400-450k
+  [450000, 499999], // 450-500k
+  [500000, 10000000] // 500k-10M
 ];
 
 // Utility functions
@@ -43,18 +64,9 @@ const readDepartmentsJson = () => {
 
 const writeDepartmentsJson = (data) => {
   try {
-    // First write the standard JSON
-    fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(data, null, 2), 'utf8');
-    
-    // Construct the sed command dynamically based on the salaryDistribution
-    const sedCommand = SALARY_DISTRIBUTION_ORDER.map(key => {
-      const value = data.departments[0]?.workforce?.salaryDistribution?.[key] ?? 0;
-      return `          "${key}": ${value}`;
-    }).join(',\n');
-
-    // Use sed command to ensure salaryDistribution is written in the specified order
-    execSync(`printf '${sedCommand}\n' | sed -n 'p' > salary_data.txt && cat salary_data.txt`);
-    
+    // Convert to string with pretty printing
+    const jsonString = JSON.stringify(data, null, 2);
+    fs.writeFileSync(DEPARTMENTS_JSON_PATH, jsonString, 'utf8');
     console.log('Successfully updated departments.json');
   } catch (error) {
     console.error('Error writing departments.json:', error);
@@ -64,90 +76,33 @@ const writeDepartmentsJson = (data) => {
 
 const calculateSalaryDistribution = (rows) => {
   const headCount = rows.length;
-  if (headCount === 0) return {};
+  if (headCount === 0) return [];
   
-  // Create an empty object to store the distribution
-  const distribution = {};
-  
-  // Initialize distribution object with keys in the desired order and zero values
-  for (const key of SALARY_DISTRIBUTION_ORDER) {
-    distribution[key] = 0;
-  }
+  // Initialize distribution array with SalaryRange format
+  const distribution = SALARY_RANGES.map(([min, max]) => ({
+    range: [min, max],
+    count: 0
+  }));
   
   rows.forEach(row => {
     // Calculate total compensation including benefits for salary distribution
-    // as required by the updated type definition
     const totalCompensation = parseFloat(row.TotalWages || 0) + 
                           parseFloat(row.DefinedBenefitPlanContribution || 0) + 
                           parseFloat(row.EmployeesRetirementCostCovered || 0) + 
                           parseFloat(row.DeferredCompensationPlan || 0) + 
                           parseFloat(row.HealthDentalVision || 0);
     
-    // Use total compensation for distribution (not just wages)
-    if (totalCompensation < 20000) {
-      distribution["<20000"]++;
-    } else if (totalCompensation < 30000) {
-      distribution["20000"]++;
-    } else if (totalCompensation < 40000) {
-      distribution["30000"]++;
-    } else if (totalCompensation < 50000) {
-      distribution["40000"]++;
-    } else if (totalCompensation < 60000) {
-      distribution["50000"]++;
-    } else if (totalCompensation < 70000) {
-      distribution["60000"]++;
-    } else if (totalCompensation < 80000) {
-      distribution["70000"]++;
-    } else if (totalCompensation < 90000) {
-      distribution["80000"]++;
-    } else if (totalCompensation < 100000) {
-      distribution["90000"]++;
-    } else if (totalCompensation < 110000) {
-      distribution["100000"]++;
-    } else if (totalCompensation < 120000) {
-      distribution["110000"]++;
-    } else if (totalCompensation < 130000) {
-      distribution["120000"]++;
-    } else if (totalCompensation < 140000) {
-      distribution["130000"]++;
-    } else if (totalCompensation < 150000) {
-      distribution["140000"]++;
-    } else if (totalCompensation < 160000) {
-      distribution["150000"]++;
-    } else if (totalCompensation < 170000) {
-      distribution["160000"]++;
-    } else if (totalCompensation < 180000) {
-      distribution["170000"]++;
-    } else if (totalCompensation < 190000) {
-      distribution["180000"]++;
-    } else if (totalCompensation < 200000) {
-      distribution["190000"]++;
-    } else if (totalCompensation < 250000) {
-      distribution["200000"]++;
-    } else if (totalCompensation < 300000) {
-      distribution["250000"]++;
-    } else if (totalCompensation < 350000) {
-      distribution["300000"]++;
-    } else if (totalCompensation < 400000) {
-      distribution["350000"]++;
-    } else if (totalCompensation < 450000) {
-      distribution["400000"]++;
-    } else if (totalCompensation < 500000) {
-      distribution["450000"]++;
-    } else if (totalCompensation === 500000) {
-      distribution["500000"]++;
-    } else if (totalCompensation > 500000) {
-      distribution[">500000"]++;
+    // Find the appropriate range and increment count
+    const rangeIndex = SALARY_RANGES.findIndex(([min, max]) => 
+      totalCompensation >= min && totalCompensation <= max
+    );
+    
+    if (rangeIndex !== -1) {
+      distribution[rangeIndex].count++;
     }
   });
 
-  // Calculate percentages from distribution
-  const percentages = {};
-  for (const key of SALARY_DISTRIBUTION_ORDER) {
-    percentages[key] = parseFloat(((distribution[key] / headCount) * 100).toFixed(1));
-  }
-
-  return { distribution, percentages };
+  return distribution;
 };
 
 // Function to show differences between objects
@@ -269,9 +224,13 @@ const processCSVFile = async (filePath) => {
         wages: {
           yearly: {}
         },
-        averageSalary: null,
         averageTenureYears: null,
-        averageAge: null
+        averageSalary: null,
+        averageAge: null,
+        tenureDistribution: [],
+        salaryDistribution: [],
+        ageDistribution: [],
+        _note: null
       },
       budget_status: "active",
       keyFunctions: "",
@@ -352,10 +311,9 @@ const processCSVFile = async (filePath) => {
     }, 0);
     
     const totalCompensation = totalWages + totalBenefits;
-    // Use total compensation for averageSalary as per type definition
     const averageSalary = Math.round(totalCompensation / headCount);
     
-    const { distribution: salaryDistribution, percentages: salaryPercentages } = calculateSalaryDistribution(employerRecords);
+    const salaryDistribution = calculateSalaryDistribution(employerRecords);
     
     // Get employer information
     const employerType = employerRecords[0].EmployerType;
@@ -403,11 +361,13 @@ const processCSVFile = async (filePath) => {
     console.log(`Total Compensation: $${formatCurrency(totalCompensation)}`);
     console.log(`Average Salary: $${averageSalary}`);
     console.log('Salary Distribution:');
-    // Ensure proper order when displaying distribution data
-    for (const range of SALARY_DISTRIBUTION_ORDER) {
-      if (salaryDistribution[range] > 0) {
-        console.log(`  ${range}: ${salaryPercentages[range]}% (${salaryDistribution[range]} employees)`);
-      }
+    for (const item of salaryDistribution) {
+      const [min, max] = item.range;
+      const displayRange = min === 0 ? "Under 20k" :
+                          min === 500000 ? "500k-10M" :
+                          min >= 1000000 ? `${(min/1000000).toFixed(0)}M-${(max/1000000).toFixed(0)}M` :
+                          `${min/1000}k-${max/1000}k`;
+      console.log(`  ${displayRange}: ${item.count} employees`);
     }
     console.log('----------------------------------------------\n');
     
@@ -422,77 +382,55 @@ const processCSVFile = async (filePath) => {
     if (department) {
       console.log('Updating existing department record');
       
-      // Merge with existing data preserving structure
+      // Ensure workforce structure exists and matches interface
       if (!department.workforce) {
-        department.workforce = {};
+        department.workforce = {
+          headCount: { yearly: {} },
+          wages: { yearly: {} },
+          averageTenureYears: null,
+          averageSalary: null,
+          averageAge: null,
+          tenureDistribution: [],
+          salaryDistribution: [],
+          ageDistribution: [],
+          _note: null
+        };
       }
       
-      // Update or create headCount structure
+      // Update headCount
       if (!department.workforce.headCount) {
         department.workforce.headCount = { yearly: {} };
-      } else if (!department.workforce.headCount.yearly) {
+      }
+      if (!department.workforce.headCount.yearly) {
         department.workforce.headCount.yearly = {};
       }
       department.workforce.headCount.yearly["2023"] = headCount;
       
-      // Update or create wages structure - store as number
+      // Update wages
       if (!department.workforce.wages) {
         department.workforce.wages = { yearly: {} };
-      } else if (!department.workforce.wages.yearly) {
+      }
+      if (!department.workforce.wages.yearly) {
         department.workforce.wages.yearly = {};
       }
-      // Store total compensation (wages + benefits) in the wages field as per type definition
       department.workforce.wages.yearly["2023"] = totalCompensation;
       
-      // Update averageSalary if it exists using total compensation as per type definition
-      if (department.workforce.averageSalary !== undefined) {
-        department.workforce.averageSalary = averageSalary;
-      }
-      
-      // Update salaryDistribution if it exists
-      if (department.workforce.salaryDistribution !== undefined) {
-        // Ensure salaryDistribution is correctly structured before saving
-        if (!department.workforce.salaryDistribution) {
-          department.workforce.salaryDistribution = {};
-        }
-        for (const key of SALARY_DISTRIBUTION_ORDER) {
-          department.workforce.salaryDistribution[key] = salaryDistribution[key] || 0;
-        }
-
-        // Log the salaryDistribution to verify its structure
-        console.log('Salary Distribution before saving:', JSON.stringify(department.workforce.salaryDistribution, null, 2));
-      }
-      
-      // Add _note field
+      // Update salary data
+      department.workforce.averageSalary = averageSalary;
+      department.workforce.salaryDistribution = salaryDistribution;
       department.workforce._note = noteText;
       
-      // Update parent_agency based on rules
+      // Update parent_agency and orgLevel
       department.parent_agency = parentAgency;
-      
-      // Update orgLevel based on parent's orgLevel
       department.orgLevel = orgLevel;
       
       // Save after update
       writeDepartmentsJson(departmentsData);
       
-      // Show the updated record
-      console.log('Original department data:');
-      console.log(JSON.stringify(originalDepartment, null, 2));
-      
-      console.log('\nUpdated department data:');
-      console.log(JSON.stringify(department, null, 2));
-      
       // Show differences
       showDiff(originalDepartment, department);
     } else {
-      console.log('Creating new department record - confirm this won\'t violate structure');
-      const confirmCreate = prompt('This will add a new department record. Continue? (Y/n): ');
-      if (confirmCreate.toLowerCase() !== 'y' && confirmCreate !== '') {
-        console.log('Skipping this department');
-        continue;
-      }
-      
-      // Create a new department with all fields from the type definition
+      console.log('Creating new department record');
       const newDepartmentData = {
         name: employerName,
         slug: slug,
@@ -509,14 +447,15 @@ const processCSVFile = async (filePath) => {
           },
           wages: {
             yearly: {
-              "2023": totalCompensation  // Use total compensation as per type definition
+              "2023": totalCompensation
             }
           },
-          averageSalary,  // Already using total compensation as defined earlier
           averageTenureYears: null,
+          averageSalary: averageSalary,
           averageAge: null,
-          // Create an ordered salary distribution object
-          salaryDistribution: salaryDistribution, // Already ordered from calculateSalaryDistribution
+          salaryDistribution: salaryDistribution,
+          tenureDistribution: [],
+          ageDistribution: [],
           _note: noteText
         },
         budget_status: "active",

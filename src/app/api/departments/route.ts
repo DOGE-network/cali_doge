@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import departmentsData from '@/data/departments.json';
-import type { DepartmentData, DepartmentsJSON } from '@/types/department';
+import type { DepartmentData, DepartmentsJSON, NonNegativeInteger, AnnualYear } from '@/types/department';
 
 export async function GET() {
   // Type-safe cast of departments data
@@ -30,7 +30,7 @@ export async function GET() {
 
     // Fix reporting structure based on data
     if (normalized.parent_agency === 'California State Government') {
-      normalized.orgLevel = 1;
+      normalized.orgLevel = (1 as NonNegativeInteger);
       normalized.budget_status = 'active';
     }
 
@@ -42,27 +42,27 @@ export async function GET() {
     // Ensure workforce data exists and normalize its structure
     if (!normalized.workforce) {
       normalized.workforce = {
-        headCount: { yearly: {} },
-        wages: { yearly: {} },
+        headCount: { yearly: {} as Record<AnnualYear, number | {}> },
+        wages: { yearly: {} as Record<AnnualYear, number | {}> },
         averageTenureYears: null,
         averageSalary: null,
         averageAge: null,
-        tenureDistribution: {},
-        salaryDistribution: {},
-        ageDistribution: {}
+        tenureDistribution: [],
+        salaryDistribution: [],
+        ageDistribution: []
       };
     } else {
       // Ensure all required properties exist with defaults
       normalized.workforce = {
         ...normalized.workforce,
-        headCount: normalized.workforce.headCount || { yearly: {} },
-        wages: normalized.workforce.wages || { yearly: {} },
+        headCount: normalized.workforce.headCount || { yearly: {} as Record<AnnualYear, number | {}> },
+        wages: normalized.workforce.wages || { yearly: {} as Record<AnnualYear, number | {}> },
         averageTenureYears: normalized.workforce.averageTenureYears || null,
         averageSalary: normalized.workforce.averageSalary || null,
         averageAge: normalized.workforce.averageAge || null,
-        tenureDistribution: normalized.workforce.tenureDistribution || {},
-        salaryDistribution: normalized.workforce.salaryDistribution || {},
-        ageDistribution: normalized.workforce.ageDistribution || {}
+        tenureDistribution: normalized.workforce.tenureDistribution || [],
+        salaryDistribution: normalized.workforce.salaryDistribution || [],
+        ageDistribution: normalized.workforce.ageDistribution || []
       };
     }
     

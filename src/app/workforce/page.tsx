@@ -58,15 +58,20 @@
 
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from './AgencyDataVisualization';
-import { DepartmentData, DepartmentHierarchy } from '@/types/department';
+import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug, BudgetStatus } from '@/types/department';
 import { getDepartmentByName, getDepartmentByWorkforceName } from '@/lib/departmentMapping';
 
 // Fetch departments from API
 async function fetchDepartments(): Promise<DepartmentData[]> {
-  const response = await fetch('/api/departments');
+  // Add caching headers
+  const response = await fetch('/api/departments', {
+    next: {
+      revalidate: 3600 // Cache for 1 hour
+    }
+  });
   if (!response.ok) {
     throw new Error('Failed to fetch departments');
   }
@@ -96,11 +101,11 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
   const root: DepartmentHierarchy = {
     ...(rootDept || {
       name: 'California State Government',
-      slug: 'california_state_government',
+      slug: ('california_state_government' as ValidSlug),
       canonicalName: 'California State Government',
       aliases: [],
-      orgLevel: 0,
-      budget_status: 'Active',
+      orgLevel: (0 as NonNegativeInteger),
+      budget_status: 'active' as BudgetStatus,
       keyFunctions: 'State Government',
       abbreviation: 'CA',
       parent_agency: '',
@@ -108,7 +113,7 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
     // Always ensure these hierarchy-specific fields exist
     subDepartments: [],
     subordinateOffices: 0,
-    orgLevel: 0, // Force root level
+    orgLevel: (0 as NonNegativeInteger), // Force root level
     parent_agency: '', // Force no parent
   };
 
@@ -404,7 +409,11 @@ function WorkforcePageContent() {
   const [selectedDepartmentName, setSelectedDepartmentName] = useState<string | null>(null);
   const [showInactive, setShowInactive] = useState<boolean>(false);
   const [activePath, setActivePath] = useState<string[]>([]);
-  const [hierarchyData, setHierarchyData] = useState<DepartmentHierarchy | null>(null);
+  const [departments, setDepartments] = useState<DepartmentData[] | null>(null);
+  const hierarchyData = useMemo(() => {
+    if (!departments) return null;
+    return buildHierarchy(departments);
+  }, [departments]);
   const [error, setError] = useState<string | null>(null);
 
   // Fetch departments and build hierarchy
@@ -412,17 +421,13 @@ function WorkforcePageContent() {
     async function loadDepartments() {
       try {
         setError(null);
-        const departments = await fetchDepartments();
-        console.log('Fetched departments:', departments.length);
-        const hierarchy = buildHierarchy(departments);
-        console.log('Final hierarchy departments:', countDepartments(hierarchy));
-        setHierarchyData(hierarchy);
+        const deps = await fetchDepartments();
+        setDepartments(deps);
       } catch (err) {
         console.error('Error loading departments:', err);
         setError('Failed to load department data');
       }
     }
-    
     loadDepartments();
   }, []);
 

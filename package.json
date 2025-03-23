@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "fetch-tweets": "ts-node --project tsconfig.json src/scripts/fetch-tweets.ts",
     "favicon-check": "npx realfavicon check http://localhost:3000",
-    "generate-mappings": "node src/scripts/generate-department-mappings.js"
+    "generate-mappings": "node src/scripts/generate-department-mappings.js",
+    "validate-departments_json_types": "ts-node --project tsconfig.json src/scripts/update_department_json_to_type.ts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
