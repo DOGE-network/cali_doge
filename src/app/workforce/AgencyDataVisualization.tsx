@@ -58,6 +58,7 @@ export default function AgencyDataVisualization({ department }: AgencyDataVisual
         averageSalary={workforce.averageSalary ?? null}
         averageTenureYears={workforce.averageTenureYears ?? null}
         averageAge={workforce.averageAge ?? null}
+        aggregatedDistributions={department.aggregatedDistributions}
       />
     </div>
   );
