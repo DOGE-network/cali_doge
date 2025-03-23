@@ -8980,30 +8980,214 @@
         "headCount": {
           "yearly": {
             "2022": 1803,
-            "2023": 1899,
+            "2023": 1884,
             "2024": 1953
           }
         },
         "wages": {
           "yearly": {
             "2022": 180300000,
-            "2023": 189900000,
+            "2023": 272521592.2099995,
             "2024": 195300000
           }
         },
         "averageTenureYears": null,
-        "averageSalary": null,
+        "averageSalary": 144651,
         "averageAge": null,
-        "salaryDistribution": [],
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 89
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 33
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 40
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 42
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 55
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 47
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 56
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 56
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 71
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 65
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 92
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 74
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 50
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 82
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 103
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 102
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 145
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 193
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 161
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 269
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 54
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
         "tenureDistribution": [],
-        "ageDistribution": []
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_StateDepartment.csv"
       },
       "budget_status": "active",
       "keyFunctions": "Regulates air pollution, implements climate change programs, and administers clean transportation incentives",
       "abbreviation": "",
       "code": "3900",
       "orgLevel": 4,
-      "parent_agency": "California Environmental Protection Agency"
+      "parent_agency": "Governor's Office"
     },
     {
       "name": "Energy Commission",
@@ -10290,6 +10474,7014 @@
       "code": null,
       "orgLevel": 3,
       "parent_agency": "California State University Board of Trustees"
+    },
+    {
+      "name": "State Polytech University, Pomona",
+      "slug": "statepolytechuniversitypomona",
+      "canonicalName": "State Polytech University, Pomona",
+      "aliases": [
+        "state polytech university, pomona"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 5172
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 304256632.5500004
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 58828,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 2588
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 164
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 132
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 116
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 106
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 149
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 168
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 237
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 189
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 179
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 154
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 136
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 128
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 89
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 99
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 80
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 82
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 69
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 54
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 178
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 55
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 14
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 1
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_CaliforniaStateUniversity.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "California State University Board of Trustees"
+    },
+    {
+      "name": "State Polytech University, San Luis Obispo",
+      "slug": "statepolytechuniversitysanluisobispo",
+      "canonicalName": "State Polytech University, San Luis Obispo",
+      "aliases": [
+        "state polytech university, san luis obispo"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 8337
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 381320316.97000194
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 45738,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 5285
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 168
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 125
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 127
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 124
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 157
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 154
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 204
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 210
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 187
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 190
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 190
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 174
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 151
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 157
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 141
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 133
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 103
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 69
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 206
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 46
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 18
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 9
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 2
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_CaliforniaStateUniversity.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "California State University Board of Trustees"
+    },
+    {
+      "name": "State University, Bakersfield",
+      "slug": "stateuniversitybakersfield",
+      "canonicalName": "State University, Bakersfield",
+      "aliases": [
+        "state university, bakersfield"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 2601
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 146764866.7799999
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 56426,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 1358
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 69
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 54
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 56
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 60
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 71
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 77
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 115
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 99
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 87
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 87
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 78
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 62
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 50
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 42
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 42
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 41
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 29
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 32
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 57
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 24
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 1
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_CaliforniaStateUniversity.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "California State University Board of Trustees"
+    },
+    {
+      "name": "State University, CA Maritime Academy",
+      "slug": "stateuniversitycamaritimeacademy",
+      "canonicalName": "State University, CA Maritime Academy",
+      "aliases": [
+        "state university, ca maritime academy"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 748
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 39779622.580000035
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 53181,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 435
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 21
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 20
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 11
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 21
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 13
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 14
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 23
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 19
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 19
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 19
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 18
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 17
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 8
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 32
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 1
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_CaliforniaStateUniversity.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "California State University Board of Trustees"
+    },
+    {
+      "name": "State University, Channel Islands",
+      "slug": "stateuniversitychannelislands",
+      "canonicalName": "State University, Channel Islands",
+      "aliases": [
+        "state university, channel islands"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 2026
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 120920130.86999986
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 59684,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 1059
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 49
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 23
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 41
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 39
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 48
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 62
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 95
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 74
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 64
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 49
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 54
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 54
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 53
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 47
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 26
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 33
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 29
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 30
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 69
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 19
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 6
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 1
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_CaliforniaStateUniversity.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "California State University Board of Trustees"
+    },
+    {
+      "name": "State University, Chico",
+      "slug": "stateuniversitychico",
+      "canonicalName": "State University, Chico",
+      "aliases": [
+        "state university, chico"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 4302
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 213253717.3999996
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 49571,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 2456
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 62
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 60
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 48
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 96
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 144
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 168
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 155
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 163
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 142
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 132
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 128
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 108
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 92
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 67
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 54
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 63
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 35
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 25
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 74
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 19
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_CaliforniaStateUniversity.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "California State University Board of Trustees"
+    },
+    {
+      "name": "State University, Dominguez Hills",
+      "slug": "stateuniversitydominguezhills",
+      "canonicalName": "State University, Dominguez Hills",
+      "aliases": [
+        "state university, dominguez hills"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 3036
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 192668942.71999985
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 63461,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 1383
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 127
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 100
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 64
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 75
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 92
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 115
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 126
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 114
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 107
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 90
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 90
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 86
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 77
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 60
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 46
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 49
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 36
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 42
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 110
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 34
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 6
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 1
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_CaliforniaStateUniversity.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "California State University Board of Trustees"
+    },
+    {
+      "name": "Administrative Law, Office of",
+      "slug": "administrativelawofficeof",
+      "canonicalName": "Administrative Law, Office of",
+      "aliases": [
+        "administrative law, office of"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 24
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 4068600.2899999996
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 169525,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 7
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_StateDepartment.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 4,
+      "parent_agency": "Governor's Office"
+    },
+    {
+      "name": "African American Museum, California",
+      "slug": "africanamericanmuseumcalifornia",
+      "canonicalName": "African American Museum, California",
+      "aliases": [
+        "african american museum, california"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 30
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 2059261.7499999995
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 68642,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 14
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_StateDepartment.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 4,
+      "parent_agency": "Governor's Office"
+    },
+    {
+      "name": "Aging, Department of",
+      "slug": "agingdepartmentof",
+      "canonicalName": "Aging, Department of",
+      "aliases": [
+        "aging, department of"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 290
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 31096235.690000013
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 107228,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 23
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 6
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 6
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 8
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 15
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 13
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 19
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 27
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 32
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 34
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 25
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 21
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 11
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 12
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 8
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_StateDepartment.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 4,
+      "parent_agency": "Governor's Office"
+    },
+    {
+      "name": "Agricultural Labor Relations Board",
+      "slug": "agriculturallaborrelationsboard",
+      "canonicalName": "Agricultural Labor Relations Board",
+      "aliases": [
+        "agricultural labor relations board"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 68
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 9224564.299999999
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 135655,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 7
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 6
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 14
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_StateDepartment.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 4,
+      "parent_agency": "Governor's Office"
+    },
+    {
+      "name": "Alcoholic Beverage Control Appeals Board",
+      "slug": "alcoholicbeveragecontrolappealsboard",
+      "canonicalName": "Alcoholic Beverage Control Appeals Board",
+      "aliases": [
+        "alcoholic beverage control appeals board"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 9
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 982569.2200000001
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 109174,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_StateDepartment.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 4,
+      "parent_agency": "Governor's Office"
+    },
+    {
+      "name": "Alameda County Superior Court",
+      "slug": "alamedacountysuperiorcourt",
+      "canonicalName": "Alameda County Superior Court",
+      "aliases": [
+        "alameda county superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 849
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 107002034
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 126033,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 73
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 27
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 27
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 23
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 13
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 18
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 38
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 30
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 39
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 42
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 70
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 76
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 49
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 40
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 37
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 31
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 33
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 32
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 17
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 98
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 32
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_SuperiorCourt.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Civil"
+    },
+    {
+      "name": "Alpine County Superior Court",
+      "slug": "alpinecountysuperiorcourt",
+      "canonicalName": "Alpine County Superior Court",
+      "aliases": [
+        "alpine county superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 8
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 1070427
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 133803,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_SuperiorCourt.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Alpine"
+    },
+    {
+      "name": "Amador County Superior Court",
+      "slug": "amadorcountysuperiorcourt",
+      "canonicalName": "Amador County Superior Court",
+      "aliases": [
+        "amador county superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 41
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 3105379
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 75741,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_SuperiorCourt.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Administration"
+    },
+    {
+      "name": "Butte County Superior Court",
+      "slug": "buttecountysuperiorcourt",
+      "canonicalName": "Butte County Superior Court",
+      "aliases": [
+        "butte county superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 159
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 12163101
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 76497,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 23
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 11
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 8
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 13
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 17
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 15
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 16
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 13
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 11
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_SuperiorCourt.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Administration"
+    },
+    {
+      "name": "Calaveras County Superior Court",
+      "slug": "calaverascountysuperiorcourt",
+      "canonicalName": "Calaveras County Superior Court",
+      "aliases": [
+        "calaveras county superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 35
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 2869587
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 81988,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 6
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 6
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_SuperiorCourt.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Commissioner"
+    },
+    {
+      "name": "Colusa County Superior Court",
+      "slug": "colusacountysuperiorcourt",
+      "canonicalName": "Colusa County Superior Court",
+      "aliases": [
+        "colusa county superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 23
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 1984661
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 86290,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_SuperiorCourt.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Court Operations"
+    },
+    {
+      "name": "Contra Costa County Superior Court",
+      "slug": "contracostacountysuperiorcourt",
+      "canonicalName": "Contra Costa County Superior Court",
+      "aliases": [
+        "contra costa county superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 413
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 49653834
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 120227,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 33
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 14
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 9
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 16
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 15
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 13
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 24
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 24
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 23
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 31
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 39
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 32
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 25
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 12
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 7
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 7
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 14
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 8
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 36
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 19
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_SuperiorCourt.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Appeals"
+    },
+    {
+      "name": "Del Norte County Superior Court",
+      "slug": "delnortecountysuperiorcourt",
+      "canonicalName": "Del Norte County Superior Court",
+      "aliases": [
+        "del norte county superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 27
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 2920774
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 108177,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_SuperiorCourt.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Court Operations"
+    },
+    {
+      "name": "El Dorado County Superior Court",
+      "slug": "eldoradocountysuperiorcourt",
+      "canonicalName": "El Dorado County Superior Court",
+      "aliases": [
+        "el dorado county superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 97
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 8724332.75
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 89942,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 6
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 9
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 9
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 9
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 8
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 9
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 12
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 3
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_SuperiorCourt.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Administration"
+    },
+    {
+      "name": "University of California, Berkeley",
+      "slug": "universityofcaliforniaberkeley",
+      "canonicalName": "University of California, Berkeley",
+      "aliases": [
+        "university of california, berkeley"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 35510
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 1893369788
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 53319,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 18949
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 2021
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 1422
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 1258
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 788
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 714
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 1123
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 1136
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 1037
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 920
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 819
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 698
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 588
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 511
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 449
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 413
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 339
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 283
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 258
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 781
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 402
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 225
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 142
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 95
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 69
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 69
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, Davis",
+      "slug": "universityofcaliforniadavis",
+      "canonicalName": "University of California, Davis",
+      "aliases": [
+        "university of california, davis"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 50868
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 4132486257
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 81239,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 17048
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 2558
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 2707
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 1465
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 1568
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 1832
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 2262
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 2910
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 2482
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 2021
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 1552
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 1299
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 1008
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 924
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 1021
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 877
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 946
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 793
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 714
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 2648
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 1013
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 460
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 245
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 174
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 106
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 235
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, Irvine",
+      "slug": "universityofcaliforniairvine",
+      "canonicalName": "University of California, Irvine",
+      "aliases": [
+        "university of california, irvine"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 31991
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 2471225060
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 77248,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 11406
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 1879
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 1788
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 1070
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 1020
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 1328
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 1562
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 1520
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 1489
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 1101
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 845
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 739
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 630
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 629
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 578
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 566
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 471
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 477
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 394
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 1074
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 477
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 282
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 192
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 123
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 81
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 270
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, Los Angeles",
+      "slug": "universityofcalifornialosangeles",
+      "canonicalName": "University of California, Los Angeles",
+      "aliases": [
+        "university of california, los angeles"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 72176
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 6246042904
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 86539,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 23304
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 3701
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 3023
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 2579
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 2232
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 3128
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 4221
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 4115
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 3747
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 3182
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 2356
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 1851
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 1608
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 1402
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 1194
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 1087
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 1009
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 903
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 806
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 2598
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 1294
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 720
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 534
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 363
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 292
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 926
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, Merced",
+      "slug": "universityofcaliforniamerced",
+      "canonicalName": "University of California, Merced",
+      "aliases": [
+        "university of california, merced"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 5867
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 246886981
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 42081,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 3391
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 358
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 302
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 105
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 118
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 172
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 186
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 169
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 155
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 146
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 135
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 100
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 71
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 75
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 78
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 47
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 43
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 36
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 31
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 91
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 25
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 14
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 13
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 4
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 1
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, Office of the President",
+      "slug": "universityofcaliforniaofficeofthepresident",
+      "canonicalName": "University of California, Office of the President",
+      "aliases": [
+        "university of california, office of the president"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 2359
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 322153921
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 136564,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 147
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 68
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 57
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 64
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 58
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 64
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 106
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 123
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 170
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 136
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 132
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 161
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 134
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 117
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 108
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 104
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 106
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 72
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 54
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 195
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 78
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 40
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 27
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 2
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 26
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, Riverside",
+      "slug": "universityofcaliforniariverside",
+      "canonicalName": "University of California, Riverside",
+      "aliases": [
+        "university of california, riverside"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 14176
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 661457341
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 46660,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 7616
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 944
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 888
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 278
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 305
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 393
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 545
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 497
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 391
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 325
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 284
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 241
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 188
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 178
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 169
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 150
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 102
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 94
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 66
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 241
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 136
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 75
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 35
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 17
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 12
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 6
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, San Diego",
+      "slug": "universityofcaliforniasandiego",
+      "canonicalName": "University of California, San Diego",
+      "aliases": [
+        "university of california, san diego"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 52701
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 4225686327
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 80182,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 17719
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 2730
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 2721
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 1879
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 1689
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 2197
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 2781
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 2610
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 2734
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 2119
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 1679
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 1300
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 1190
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 1104
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 1007
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 906
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 815
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 753
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 610
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 1744
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 781
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 492
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 332
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 278
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 158
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 372
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, San Francisco",
+      "slug": "universityofcaliforniasanfrancisco",
+      "canonicalName": "University of California, San Francisco",
+      "aliases": [
+        "university of california, san francisco"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 38270
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 5246623239
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 137095,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 3893
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 1156
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 1221
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 1584
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 1161
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 1414
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 2008
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 2278
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 2180
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 2288
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 1992
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 1612
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 1282
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 1098
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 1002
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 869
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 863
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 802
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 777
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 3959
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 2382
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 870
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 481
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 300
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 208
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 590
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, Santa Barbara",
+      "slug": "universityofcaliforniasantabarbara",
+      "canonicalName": "University of California, Santa Barbara",
+      "aliases": [
+        "university of california, santa barbara"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 17369
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 770738649
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 44374,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 9925
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 953
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 1089
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 499
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 293
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 404
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 589
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 573
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 510
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 370
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 270
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 228
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 209
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 164
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 159
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 128
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 120
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 108
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 76
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 291
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 182
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 85
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 60
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 40
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 19
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 25
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
+    },
+    {
+      "name": "University of California, Santa Cruz",
+      "slug": "universityofcaliforniasantacruz",
+      "canonicalName": "University of California, Santa Cruz",
+      "aliases": [
+        "university of california, santa cruz"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 13538
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 599548528
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 44286,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 7658
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 801
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 675
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 424
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 282
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 290
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 403
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 425
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 395
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 327
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 228
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 196
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 205
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 164
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 173
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 151
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 109
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 100
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 83
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 225
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 126
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 54
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 28
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 9
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 5
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 2
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "University of California Board of Regents"
     }
   ],
   "budgetSummary": {

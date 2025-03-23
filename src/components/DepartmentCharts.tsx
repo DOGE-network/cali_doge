@@ -14,14 +14,14 @@ interface RawDistributionItem {
 }
 
 interface EmployeeData {
-  headcount: { year: string; value: number }[];
-  wages: { year: string; value: number }[];
+  headcount: { year: string; value: number | null }[];
+  wages: { year: string; value: number | null }[];
   tenureDistribution: RawDistributionItem[];
   salaryDistribution: RawDistributionItem[];
   ageDistribution: RawDistributionItem[];
-  averageSalary: number;
-  averageTenure: number;
-  averageAge: number;
+  averageSalary: number | null;
+  averageTenure: number | null;
+  averageAge: number | null;
 }
 
 interface DepartmentChartsProps {
@@ -138,7 +138,7 @@ const NoDataDisplay = () => (
 export default function DepartmentCharts({ employeeData, averageSalary, averageTenureYears, averageAge }: DepartmentChartsProps) {
   const headCount = employeeData.headcount.length > 0 
     ? employeeData.headcount[employeeData.headcount.length - 1].value 
-    : 0;
+    : null;
 
   const latestYear = employeeData.headcount.length > 0
     ? employeeData.headcount[employeeData.headcount.length - 1].year
@@ -146,7 +146,7 @@ export default function DepartmentCharts({ employeeData, averageSalary, averageT
 
   const totalWages = employeeData.wages.length > 0
     ? employeeData.wages[employeeData.wages.length - 1].value
-    : 0;
+    : null;
   
   const chartData = useMemo(() => {
     console.log('Raw Data:', {
@@ -156,9 +156,9 @@ export default function DepartmentCharts({ employeeData, averageSalary, averageT
     });
     
     const transformed = {
-      tenure: transformDistributionData(employeeData.tenureDistribution, headCount, 'tenure'),
-      salary: transformDistributionData(employeeData.salaryDistribution, headCount, 'salary'),
-      age: transformDistributionData(employeeData.ageDistribution, headCount, 'age')
+      tenure: transformDistributionData(employeeData.tenureDistribution, headCount ?? 0, 'tenure'),
+      salary: transformDistributionData(employeeData.salaryDistribution, headCount ?? 0, 'salary'),
+      age: transformDistributionData(employeeData.ageDistribution, headCount ?? 0, 'age')
     };
     
     console.log('Transformed Data:', transformed);
@@ -178,7 +178,8 @@ export default function DepartmentCharts({ employeeData, averageSalary, averageT
     ? calculateAverageFromDistribution(employeeData.ageDistribution)
     : averageAge;
 
-  const formatCurrency = (amount: number) => {
+  const formatCurrency = (amount: number | null) => {
+    if (amount === null) return 'No data';
     if (amount >= 1_000_000_000) {
       return `$${(amount / 1_000_000_000).toFixed(1)}B`;
     }
@@ -201,7 +202,7 @@ export default function DepartmentCharts({ employeeData, averageSalary, averageT
       <div className="grid grid-cols-2 gap-6 mb-8">
         <div>
           <div className="text-lg font-semibold">
-            {headCount.toLocaleString()}
+            {headCount !== null ? headCount.toLocaleString() : 'No data'}
           </div>
           <div className="text-sm text-gray-600">
             Headcount ({latestYear})
@@ -240,7 +241,7 @@ export default function DepartmentCharts({ employeeData, averageSalary, averageT
                     />
                     <YAxis hide={true} />
                     <Tooltip
-                      content={(props) => <CustomTooltip {...props} type="tenure" headCount={headCount} />}
+                      content={(props) => <CustomTooltip {...props} type="tenure" headCount={headCount ?? 0} />}
                       cursor={{ fill: 'rgba(79, 70, 229, 0.1)' }}
                       wrapperStyle={{ zIndex: 1000 }}
                     />
@@ -278,7 +279,7 @@ export default function DepartmentCharts({ employeeData, averageSalary, averageT
                     />
                     <YAxis hide={true} />
                     <Tooltip
-                      content={(props) => <CustomTooltip {...props} type="salary" headCount={headCount} />}
+                      content={(props) => <CustomTooltip {...props} type="salary" headCount={headCount ?? 0} />}
                       cursor={{ fill: 'rgba(79, 70, 229, 0.1)' }}
                       wrapperStyle={{ zIndex: 1000 }}
                     />
@@ -316,7 +317,7 @@ export default function DepartmentCharts({ employeeData, averageSalary, averageT
                     />
                     <YAxis hide={true} />
                     <Tooltip
-                      content={(props) => <CustomTooltip {...props} type="age" headCount={headCount} />}
+                      content={(props) => <CustomTooltip {...props} type="age" headCount={headCount ?? 0} />}
                       cursor={{ fill: 'rgba(79, 70, 229, 0.1)' }}
                       wrapperStyle={{ zIndex: 1000 }}
                     />

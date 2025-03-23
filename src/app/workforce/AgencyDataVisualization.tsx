@@ -8,14 +8,14 @@ interface RawDistributionItem {
 }
 
 interface _EmployeeData {
-  headcount: { year: string; value: number }[];
-  wages: { year: string; value: number }[];
+  headcount: { year: string; value: number | null }[];
+  wages: { year: string; value: number | null }[];
   tenureDistribution: RawDistributionItem[];
   salaryDistribution: RawDistributionItem[];
   ageDistribution: RawDistributionItem[];
-  averageSalary: number;
-  averageTenure: number;
-  averageAge: number;
+  averageSalary: number | null;
+  averageTenure: number | null;
+  averageAge: number | null;
 }
 
 interface AgencyDataVisualizationProps {
@@ -30,11 +30,11 @@ export default function AgencyDataVisualization({ department }: AgencyDataVisual
     
     // Transform yearly data into arrays
     const headcount = Object.entries(workforce.headCount.yearly)
-      .map(([year, value]) => ({ year, value: typeof value === 'number' ? value : 0 }))
+      .map(([year, value]) => ({ year, value: typeof value === 'number' ? value : null }))
       .sort((a, b) => a.year.localeCompare(b.year));
 
     const wages = Object.entries(workforce.wages.yearly)
-      .map(([year, value]) => ({ year, value: typeof value === 'number' ? value : 0 }))
+      .map(([year, value]) => ({ year, value: typeof value === 'number' ? value : null }))
       .sort((a, b) => a.year.localeCompare(b.year));
 
     return {
@@ -43,9 +43,9 @@ export default function AgencyDataVisualization({ department }: AgencyDataVisual
       tenureDistribution: workforce.tenureDistribution || [],
       salaryDistribution: workforce.salaryDistribution || [],
       ageDistribution: workforce.ageDistribution || [],
-      averageSalary: workforce.averageSalary || 0,
-      averageTenure: workforce.averageTenureYears || 0,
-      averageAge: workforce.averageAge || 0
+      averageSalary: workforce.averageSalary || null,
+      averageTenure: workforce.averageTenureYears || null,
+      averageAge: workforce.averageAge || null
     };
   }, [workforce]);
 
