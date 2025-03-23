@@ -115,8 +115,8 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
         <tbody>
           {agenciesToDisplay.map((agency) => {
             const departmentMapping = getDepartmentBySpendingName(agency.name);
-            const markdownPath = departmentMapping ? findMarkdownForDepartment(departmentMapping.slug) : null;
-            const isHighlighted = highlightedDepartment && agency.name === highlightedDepartment;
+            const markdownSlug = departmentMapping ? findMarkdownForDepartment(departmentMapping.name) : null;
+            const isHighlighted = highlightedDepartment && markdownSlug === highlightedDepartment;
 
             return (
               <tr 
@@ -124,9 +124,9 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
                 className={`border-t ${isHighlighted ? 'bg-yellow-50' : ''} hover:bg-gray-50`}
               >
                 <td className="px-4 py-2">
-                  {markdownPath ? (
+                  {markdownSlug ? (
                     <Link 
-                      href={`/departments/${departmentMapping?.slug}`}
+                      href={`/departments/${markdownSlug}`}
                       className="text-blue-600 hover:text-blue-800 hover:underline"
                     >
                       {agency.name}
