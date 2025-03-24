@@ -45,13 +45,14 @@ Step 3: Court Processing Loop
     b. Navigate to URL
     c. Wait for .entity_export element
     d. Find CSV download link
-    e. Configure download behavior
-    f. Trigger download
-    g. Wait for download
-    h. Wait before next court
-    i. Verify download success
-    j. Log completion
-    k. rename file as entityId_entityName_YYYY.csv
+    e. from expected filename, check if file already exists and skip to next entity if so
+    f. Configure download behavior
+    g. Trigger download
+    h. Wait for download
+    i. Wait before next court
+    j. Verify download success
+    k. Log completion
+    l. rename file as entityId_entityName_YYYY.csv
 3.2 repeat steps 3.1 until all entities are downloaded
 
 Step 4: Process Completion
@@ -183,13 +184,109 @@ const log = (message, logFile) => {
 // Helper function to find temporary download file
 const findTempDownloadFile = (downloadDir) => {
   const files = fs.readdirSync(downloadDir);
-  return files.find(file => file.endsWith('.csv.crdownload') || file.endsWith('.csv.download'));
+  const tempFile = files.find(file => 
+    file.endsWith('.csv.crdownload') || 
+    file.endsWith('.csv.download') || 
+    file.endsWith('.download') ||
+    file.endsWith('.crdownload')
+  );
+  return tempFile;
+};
+
+// Helper function to find any CSV file that might match our entity
+const _findMatchingCSV = (downloadDir, entityName, logFile) => {
+  try {
+    const files = fs.readdirSync(downloadDir);
+    const csvFiles = files.filter(file => file.endsWith('.csv'));
+    
+    // Log all found CSV files for debugging
+    log(`Found ${csvFiles.length} CSV files in directory:`, logFile);
+    csvFiles.forEach(file => log(`- ${file}`, logFile));
+    
+    // First try to find exact match
+    const exactMatch = csvFiles.find(file => file.includes(entityName));
+    if (exactMatch) {
+      log(`Found exact matching CSV file: ${exactMatch}`, logFile);
+      return exactMatch;
+    }
+    
+    // If no exact match, try to find a file containing parts of the entity name
+    const nameParts = entityName.split(/[,\s]+/).filter(part => part.length > 3);
+    for (const file of csvFiles) {
+      for (const part of nameParts) {
+        if (file.includes(part)) {
+          log(`Found partial matching CSV file: ${file} (matched: ${part})`, logFile);
+          return file;
+        }
+      }
+    }
+    
+    return null;
+  } catch (error) {
+    log(`Error searching for matching CSV: ${error.message}`, logFile);
+    return null;
+  }
+};
+
+// Helper function to find and verify GccExport CSV file
+const findAndVerifyGccExport = async (downloadDir, entityName, logFile) => {
+  try {
+    const files = fs.readdirSync(downloadDir);
+    const today = new Date();
+    const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
+    const expectedPrefix = `GccExport-${dateStr}`;
+    
+    log(`Looking for export file with prefix: ${expectedPrefix}`, logFile);
+    
+    const gccFiles = files.filter(file => 
+      file.startsWith('GccExport-') && 
+      file.endsWith('.csv')
+    );
+    
+    if (gccFiles.length === 0) {
+      log(`No GccExport CSV files found in directory`, logFile);
+      return null;
+    }
+    
+    log(`Found ${gccFiles.length} GccExport files:`, logFile);
+    gccFiles.forEach(file => log(`- ${file}`, logFile));
+    
+    // Check each GccExport file's contents for the entity name
+    for (const file of gccFiles) {
+      const filePath = path.join(downloadDir, file);
+      log(`Checking contents of ${file} for "${entityName}"`, logFile);
+      
+      try {
+        // Use child_process.execSync to grep the file
+        const cmd = `grep -l "${entityName}" "${filePath}"`;
+        const result = require('child_process').execSync(cmd, { encoding: 'utf8' });
+        
+        if (result.includes(filePath)) {
+          log(`Found matching entity "${entityName}" in file: ${file}`, logFile);
+          return file;
+        }
+      } catch (grepError) {
+        // grep returns non-zero exit code if no match found
+        log(`No match found in ${file}`, logFile);
+      }
+    }
+    
+    log(`Entity "${entityName}" not found in any GccExport files`, logFile);
+    return null;
+  } catch (error) {
+    log(`Error searching for GccExport file: ${error.message}`, logFile);
+    return null;
+  }
 };
 
 // Helper function to wait for download to complete
-const waitForDownload = async (downloadDir, logFile, timeout = 30000) => {
+const waitForDownload = async (downloadDir, logFile, entityName, timeout = 30000) => {
   const startTime = Date.now();
   let tempFile = null;
+  
+  // Log directory contents before waiting
+  log(`Current directory contents before download:`, logFile);
+  fs.readdirSync(downloadDir).forEach(file => log(`- ${file}`, logFile));
   
   // First wait for temp file to appear
   while (Date.now() - startTime < timeout) {
@@ -201,8 +298,17 @@ const waitForDownload = async (downloadDir, logFile, timeout = 30000) => {
     await sleep(100);
   }
   
+  // If no temp file found, check for GccExport file
   if (!tempFile) {
-    throw new Error('Download did not start - no temporary file found');
+    log(`No temporary file found, checking for GccExport file...`, logFile);
+    const matchingFile = await findAndVerifyGccExport(downloadDir, entityName, logFile);
+    
+    if (matchingFile) {
+      log(`Found and verified GccExport file: ${matchingFile}`, logFile);
+      return matchingFile;
+    }
+    
+    throw new Error('Download did not start - no temporary file or verified GccExport found');
   }
   
   // Then wait for temp file to disappear (download complete)
@@ -210,7 +316,17 @@ const waitForDownload = async (downloadDir, logFile, timeout = 30000) => {
     if (!findTempDownloadFile(downloadDir)) {
       // Wait a bit more to ensure file is fully written
       await sleep(1000);
-      return true;
+      
+      // Verify the downloaded file
+      log(`Checking for downloaded GccExport file...`, logFile);
+      const matchingFile = await findAndVerifyGccExport(downloadDir, entityName, logFile);
+      
+      if (matchingFile) {
+        log(`Found and verified GccExport file after download: ${matchingFile}`, logFile);
+        return matchingFile;
+      }
+      
+      throw new Error('Download completed but GccExport file not found or not verified');
     }
     await sleep(100);
   }
@@ -658,6 +774,22 @@ async function processEntityDownload(page, entity, downloadDir, logFile, current
     log(`Step 3.1: Processing entity ${currentIndex + 1} of ${totalEntities}: ${entity.name}`, logFile);
     log(`Step 3.1.a: Starting download for ${entity.name} (${entity.type}, ID: ${entity.id})`, logFile);
 
+    // Step 3.1.e: Check if file already exists
+    const sanitizedName = entity.name.replace(/[^a-zA-Z0-9]/g, '_');
+    const expectedFilename = `${entity.id}_${sanitizedName}_${YEAR}.csv`;
+    const filePath = path.join(downloadDir, expectedFilename);
+    
+    // Check if file exists and has content
+    if (fs.existsSync(filePath)) {
+      const stats = fs.statSync(filePath);
+      if (stats.size > 0) {
+        log(`Step 3.1.e: File ${expectedFilename} already exists and has content, skipping download`, logFile);
+        return true;
+      }
+    }
+    
+    log(`Step 3.1.e: File ${expectedFilename} does not exist or is empty, proceeding with download`, logFile);
+
     // Create CDP session for download handling
     const client = await page.target().createCDPSession();
     log(`Created CDP session for download handling`, logFile);
@@ -724,35 +856,35 @@ async function processEntityDownload(page, entity, downloadDir, logFile, current
     // Random sleep before configuring download
     await randomSleep(logFile);
 
-    // Step 3.1.e: Configure download behavior
-    log(`Step 3.1.e: Configuring download behavior...`, logFile);
+    // Step 3.1.f: Configure download behavior
+    log(`Step 3.1.f: Configuring download behavior...`, logFile);
     await client.send('Browser.setDownloadBehavior', {
       behavior: 'allow',
       downloadPath: downloadDir,
       eventsEnabled: true
     });
-    log(`Step 3.1.e: Download path set to: ${downloadDir}`, logFile);
+    log(`Step 3.1.f: Download path set to: ${downloadDir}`, logFile);
 
     // Random sleep before triggering download
     await randomSleep(logFile);
 
-    // Step 3.1.f: Trigger download
-    log(`Step 3.1.f: Initiating download...`, logFile);
+    // Step 3.1.g: Trigger download
+    log(`Step 3.1.g: Initiating download...`, logFile);
     await csvLink.click();
-    log(`Step 3.1.f: Download triggered`, logFile);
+    log(`Step 3.1.g: Download triggered`, logFile);
 
-    // Step 3.1.g: Wait for download to complete
-    log(`Step 3.1.g: Waiting for download to complete...`, logFile);
-    await waitForDownload(downloadDir, logFile);
-    log(`Step 3.1.g: Download completed`, logFile);
+    // Step 3.1.h: Wait for download to complete
+    log(`Step 3.1.h: Waiting for download to complete...`, logFile);
+    await waitForDownload(downloadDir, logFile, entity.name);
+    log(`Step 3.1.h: Download completed`, logFile);
 
     // Random sleep before renaming
     await randomSleep(logFile);
 
-    // Step 3.1.k: Rename downloaded file
-    log(`Step 3.1.k: Renaming downloaded file...`, logFile);
+    // Step 3.1.l: Rename downloaded file
+    log(`Step 3.1.l: Renaming downloaded file...`, logFile);
     const newFilePath = await findAndRenameDownload(downloadDir, entity, logFile);
-    log(`Step 3.1.k: Successfully renamed file to: ${path.basename(newFilePath)}`, logFile);
+    log(`Step 3.1.l: Successfully renamed file to: ${path.basename(newFilePath)}`, logFile);
 
     // Random sleep before next entity
     await randomSleep(logFile);
@@ -760,20 +892,52 @@ async function processEntityDownload(page, entity, downloadDir, logFile, current
     // Cleanup CDP session
     await client.detach();
 
-    // Step 3.1.j: Log completion
-    log(`Step 3.1.j: Successfully completed download for ${entity.name}`, logFile);
+    // Step 3.1.k: Log completion
+    log(`Step 3.1.k: Successfully completed download for ${entity.name}`, logFile);
     return true;
 
   } catch (error) {
     log(`Error in entity download process: ${error.message}`, logFile);
+    
+    // Enhanced error logging
     try {
+      // Log the full page state
       const pageContent = await page.content();
-      // Only log relevant parts of the HTML for debugging
       const truncatedContent = pageContent.substring(0, 500) + '... [truncated]';
-      log(`Page content at time of error (truncated):\n${truncatedContent}`, logFile);
+      log(`Page content at time of error:\n${truncatedContent}`, logFile);
+      
+      // Log all page errors
+      const pageErrors = await page.evaluate(() => {
+        return Array.from(document.querySelectorAll('.error-message, .alert, .error'))
+          .map(el => el.textContent);
+      });
+      if (pageErrors.length > 0) {
+        log(`Page error messages:\n${pageErrors.join('\n')}`, logFile);
+      }
+      
+      // If error was during download, check for GccExport file
+      if (error.message.includes('Download did not start') || 
+          error.message.includes('Download did not complete')) {
+        log(`Double checking for GccExport file...`, logFile);
+        const matchingFile = await findAndVerifyGccExport(downloadDir, entity.name, logFile);
+        
+        if (matchingFile) {
+          log(`Found and verified GccExport file despite error: ${matchingFile}`, logFile);
+          // Rename the file to our expected format
+          const sanitizedName = entity.name.replace(/[^a-zA-Z0-9]/g, '_');
+          const newFilename = `${entity.id}_${sanitizedName}_${YEAR}.csv`;
+          const oldPath = path.join(downloadDir, matchingFile);
+          const newPath = path.join(downloadDir, newFilename);
+          
+          fs.renameSync(oldPath, newPath);
+          log(`Renamed verified file to: ${newFilename}`, logFile);
+          return true;
+        }
+      }
     } catch (e) {
-      log(`Failed to get page content: ${e.message}`, logFile);
+      log(`Error during enhanced error handling: ${e.message}`, logFile);
     }
+    
     return false;
   }
 }

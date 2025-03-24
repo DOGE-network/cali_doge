@@ -15,7 +15,7 @@ const prompt = require('prompt-sync')({ sigint: true });
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const CSV_DIR = path.join(PROJECT_ROOT, 'src/data/workforce');
 const DEPARTMENTS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/departments.json');
-const CSV_PATTERN = /2023_.*\.csv$/;
+const CSV_PATTERN = /.*\.csv$/;
 
 // Define the salary ranges to match SalaryRange interface exactly
 const SALARY_RANGES = [
