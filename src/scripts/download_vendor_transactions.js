@@ -27,9 +27,11 @@ Step 2: Table Data Processing
 2.6 Extract information from table:
     - for all rows in tbody
     - For each row:
-      a. Extract all cell values
-      b. Map to transaction record structure
-      c. Store complete transaction object
+     a. Extract all cell values
+     b. Map to transaction record structure
+     c. Store complete transaction object
+     d. Filter out any invalid entries
+     e. Verify transaction array is not empty
 2.7 For each random row in vendor page table array
     a. Log current processing
     b. Navigate to Download button
@@ -43,16 +45,10 @@ Step 2: Table Data Processing
     j. Verify download success
     k. Log completion
     l. dont rename file, the FileName is correct
-2.8 repeat 2.6a-l steps until all files are downloaded
-2.9. If Next button is found and existing page row count is 100:
+2.8. If Next button is found and existing page row count is 100:
      a. Click Next button
      b. Wait for table update
-     c. Repeat steps 2.5-2.6
-     d. Filter out any invalid entries
-     e. Verify transaction array is not empty
-2.10. else 
-     a. Filter out any invalid entries
-     b. Verify transaction array is not empty
+     c. Go to step 2.6
 
 Step 3: Process Completion
 4.1. Verify total transaction count
@@ -211,205 +207,153 @@ const waitForDownload = async (downloadDir, logFile, fileName, timeout = 30000) 
 };
 
 // Process current page of vendor transactions
-async function processCurrentPage(page, browser, downloadDir, logFile) {
+async function processCurrentPage(page, browser, downloadDir, logFile, isFirstPage = true) {
   try {
-    // Add page load debugging
-    log('Current URL:', logFile);
-    log(await page.url(), logFile);
-    
-    // Log page title
-    const pageTitle = await page.title();
-    log(`Page title: ${pageTitle}`, logFile);
-    
-    // Log page content for analysis
-    const pageContent = await page.content();
-    log('Page HTML structure:', logFile);
-    log(pageContent.substring(0, 2000) + '...', logFile);
-    
-    // Step 2.1: Wait for table element with retries
-    log('Step 2.1: Waiting for table element...', logFile);
-    let tableElement = null;
-    let retries = 0;
-    
-    while (retries < MAX_RETRIES) {
+    if (isFirstPage) {
+      // Steps 2.1-2.5 only run on first page
+      log('Step 2.1: Waiting for table element...', logFile);
+      let tableElement = null;
+      let retries = 0;
+      
+      while (retries < MAX_RETRIES) {
+        try {
+          const selectors = [
+            '#table-container-table',
+            'table.dataTable',
+            'table.display',
+            'table#vendorTransactionsTable',
+            'table'
+          ];
+          
+          for (const selector of selectors) {
+            log(`Step 2.1: Trying selector: ${selector}`, logFile);
+            tableElement = await page.$(selector);
+            if (tableElement) {
+              log(`Step 2.1: Found table with selector: ${selector}`, logFile);
+              break;
+            }
+          }
+          
+          if (tableElement) break;
+          
+          retries++;
+          if (retries < MAX_RETRIES) {
+            log(`Step 2.1: Table not found, retrying (${retries}/${MAX_RETRIES})...`, logFile);
+            await sleep(5000);
+            await page.reload({ waitUntil: ['networkidle0', 'domcontentloaded'] });
+          }
+        } catch (error) {
+          log(`Step 2.1: Error finding table (attempt ${retries + 1}): ${error.message}`, logFile);
+          retries++;
+          if (retries < MAX_RETRIES) {
+            await sleep(5000);
+            await page.reload({ waitUntil: ['networkidle0', 'domcontentloaded'] });
+          }
+        }
+      }
+      
+      if (!tableElement) {
+        throw new Error('Step 2.1: Failed to find table element after ${MAX_RETRIES} retries');
+      }
+      
+      // Step 2.2: Wait for table rows
+      log('Step 2.2: Waiting for table rows...', logFile);
+      retries = 0;
+      let rows = [];
+      
+      while (retries < MAX_RETRIES) {
+        try {
+          const rowSelectors = [
+            '#table-container-table tbody tr',
+            'table tbody tr',
+            'tr[role="row"]',
+            'tr'
+          ];
+          
+          for (const selector of rowSelectors) {
+            rows = await page.$$(selector);
+            if (rows.length > 0) {
+              log(`Step 2.2: Found ${rows.length} rows with selector: ${selector}`, logFile);
+              break;
+            }
+          }
+          
+          if (rows.length > 0) break;
+          
+          retries++;
+          if (retries < MAX_RETRIES) {
+            log(`Step 2.2: No rows found, retrying (${retries}/${MAX_RETRIES})...`, logFile);
+            await sleep(2000);
+          }
+        } catch (error) {
+          log(`Step 2.2: Error finding rows (attempt ${retries + 1}): ${error.message}`, logFile);
+          retries++;
+          if (retries < MAX_RETRIES) {
+            await sleep(2000);
+          }
+        }
+      }
+      
+      // Step 2.3-2.4: Set entries to 100
+      log('Step 2.3: Attempting to set entries to show 100...', logFile);
       try {
-        // Try different possible selectors
-        const selectors = [
-          '#table-container-table',
-          'table.dataTable',
-          'table.display',
-          'table#vendorTransactionsTable',
-          'table'
+        const lengthSelectors = [
+          'select[name="table-container-table_length"]',
+          'select.form-select',
+          'select'
         ];
         
-        for (const selector of selectors) {
-          log(`Trying selector: ${selector}`, logFile);
-          tableElement = await page.$(selector);
-          if (tableElement) {
-            // Log table structure
-            const tableHtml = await page.evaluate(table => table.outerHTML, tableElement);
-            log(`Found table with selector: ${selector}`, logFile);
-            log('Table HTML structure:', logFile);
-            log(tableHtml, logFile);
+        for (const selector of lengthSelectors) {
+          const selectElement = await page.$(selector);
+          if (selectElement) {
+            log(`Step 2.3: Found length selector: ${selector}`, logFile);
+            await page.select(selector, '100');
+            log('Step 2.4: Successfully set entries to 100', logFile);
+            await sleep(2000);
+            break;
+          }
+        }
+      } catch (error) {
+        log(`Step 2.4: Warning: Could not set entries to 100: ${error.message}`, logFile);
+      }
+      
+      // Step 2.5: Search for FY23
+      log('Step 2.5: Finding search field and entering "FY23"...', logFile);
+      try {
+        const searchSelectors = [
+          'input[type="search"]',
+          '.dataTables_filter input',
+          'input[aria-controls="table-container-table"]'
+        ];
+        
+        let searchField = null;
+        for (const selector of searchSelectors) {
+          searchField = await page.$(selector);
+          if (searchField) {
+            log(`Step 2.5: Found search field with selector: ${selector}`, logFile);
             break;
           }
         }
         
-        if (tableElement) break;
-        
-        retries++;
-        if (retries < MAX_RETRIES) {
-          log(`Table not found, retrying (${retries}/${MAX_RETRIES})...`, logFile);
-          await sleep(5000);
-          await page.reload({ waitUntil: ['networkidle0', 'domcontentloaded'] });
-        }
-      } catch (error) {
-        log(`Error finding table (attempt ${retries + 1}): ${error.message}`, logFile);
-        retries++;
-        if (retries < MAX_RETRIES) {
-          await sleep(5000);
-          await page.reload({ waitUntil: ['networkidle0', 'domcontentloaded'] });
-        }
-      }
-    }
-    
-    if (!tableElement) {
-      throw new Error(`Failed to find table element after ${MAX_RETRIES} retries`);
-    }
-    
-    // Step 2.2: Wait for table rows with retries
-    log('Step 2.2: Waiting for table rows...', logFile);
-    retries = 0;
-    let rows = [];
-    
-    while (retries < MAX_RETRIES) {
-      try {
-        // Try different row selectors
-        const rowSelectors = [
-          '#table-container-table tbody tr',
-          'table tbody tr',
-          'tr[role="row"]',
-          'tr'
-        ];
-        
-        for (const selector of rowSelectors) {
-          rows = await page.$$(selector);
-          if (rows.length > 0) {
-            // Log first row structure
-            const firstRowHtml = await page.evaluate(row => row.outerHTML, rows[0]);
-            log(`Found ${rows.length} rows with selector: ${selector}`, logFile);
-            log('First row HTML structure:', logFile);
-            log(firstRowHtml, logFile);
-            break;
-          }
-        }
-        
-        if (rows.length > 0) break;
-        
-        retries++;
-        if (retries < MAX_RETRIES) {
-          log(`No rows found, retrying (${retries}/${MAX_RETRIES})...`, logFile);
-          await sleep(2000);
-        }
-      } catch (error) {
-        log(`Error finding rows (attempt ${retries + 1}): ${error.message}`, logFile);
-        retries++;
-        if (retries < MAX_RETRIES) {
-          await sleep(2000);
-        }
-      }
-    }
-    
-    if (rows.length === 0) {
-      throw new Error('No rows found in table');
-    }
-    
-    // Step 2.3: Try to set entries to show 100
-    log('Step 2.3: Attempting to set entries to show 100...', logFile);
-    try {
-      const lengthSelectors = [
-        'select[name="table-container-table_length"]',
-        'select.form-select',
-        'select'
-      ];
-      
-      for (const selector of lengthSelectors) {
-        const selectElement = await page.$(selector);
-        if (selectElement) {
-          // Log select element structure
-          const selectHtml = await page.evaluate(select => select.outerHTML, selectElement);
-          log(`Found length selector: ${selector}`, logFile);
-          log('Select element HTML:', logFile);
-          log(selectHtml, logFile);
-          
-          // Get available options
-          const options = await page.evaluate(select => {
-            return Array.from(select.options).map(option => ({
-              value: option.value,
-              text: option.text
-            }));
-          }, selectElement);
-          log('Available options:', logFile);
-          log(JSON.stringify(options, null, 2), logFile);
-          
-          await page.select(selector, '100');
-          log('Successfully set entries to 100', logFile);
-          await sleep(2000);
-          break;
-        }
-      }
-    } catch (error) {
-      log(`Warning: Could not set entries to 100: ${error.message}`, logFile);
-      // Continue with available rows
-    }
-    
-    // Step 2.5: Find the Search field and enter "FY23"
-    log('Step 2.5: Finding search field and entering "FY23"...', logFile);
-    try {
-      const searchSelectors = [
-        'input[type="search"]',
-        '.dataTables_filter input',
-        'input[aria-controls="table-container-table"]'
-      ];
-      
-      let searchField = null;
-      for (const selector of searchSelectors) {
-        searchField = await page.$(selector);
         if (searchField) {
-          log(`Found search field with selector: ${selector}`, logFile);
-          break;
+          await page.evaluate(el => el.value = '', searchField);
+          await searchField.type('FY23');
+          log('Step 2.5: Entered "FY23" in search field', logFile);
+          await sleep(2000);
         }
+      } catch (error) {
+        log(`Step 2.5: Error setting search field: ${error.message}`, logFile);
       }
-      
-      if (searchField) {
-        // Clear existing search value
-        await page.evaluate(el => el.value = '', searchField);
-        await searchField.type('FY23');
-        log('Entered "FY23" in search field', logFile);
-        
-        // Wait for table to update
-        await sleep(2000);
-        await page.waitForFunction(() => {
-          const processing = document.querySelector('#table-container-table_processing');
-          return !processing || window.getComputedStyle(processing).display === 'none';
-        }, { timeout: 10000 });
-        
-        // Log updated row count
-        const updatedRows = await page.$$('#table-container-table tbody tr');
-        log(`Table updated after search, found ${updatedRows.length} rows`, logFile);
-        rows = updatedRows;
-      } else {
-        log('Warning: Could not find search field', logFile);
-      }
-    } catch (error) {
-      log(`Error setting search field: ${error.message}`, logFile);
-      // Continue with available rows
     }
+
+    // Get current rows after setup
+    const rows = await page.$$('#table-container-table tbody tr');
     
-    // Step 2.6: Extract table data
-    log('Step 2.6: Extracting table data...', logFile);
-    const rowsData = await Promise.all(rows.map(async (row) => {
+    // Steps 2.6-2.7: Process rows on current page
+    log('Step 2.6: Extracting information from table...', logFile);
+    const rowsData = await Promise.all(rows.map(async (row, index) => {
       try {
+        log(`Step 2.6.a: Extracting cell values from row ${index + 1}`, logFile);
         const data = await page.evaluate(row => {
           const cells = Array.from(row.querySelectorAll('td'));
           const fileName = cells[0]?.textContent?.trim() || '';
@@ -434,90 +378,119 @@ async function processCurrentPage(page, browser, downloadDir, logFile) {
         }, row);
         
         if (!data) {
-          log('Row data extraction failed - invalid format', logFile);
+          log(`Step 2.6.a: Row ${index + 1} data extraction failed - invalid format`, logFile);
           return null;
         }
         
-        log(`Extracted data from row:`, logFile);
+        log(`Step 2.6.b: Mapping row ${index + 1} to transaction record structure:`, logFile);
         log(JSON.stringify(data, null, 2), logFile);
         
+        log(`Step 2.6.c: Storing complete transaction object for row ${index + 1}`, logFile);
         return data;
       } catch (error) {
-        log(`Error extracting data from row: ${error.message}`, logFile);
+        log(`Step 2.6: Error processing row ${index + 1}: ${error.message}`, logFile);
         return null;
       }
     }));
     
     // Filter out any null rows and invalid entries
+    log('Step 2.6.d: Filtering out invalid entries', logFile);
     const validRowsData = rowsData.filter(data => data !== null && data.fiscal_year === 'FY23');
-    log(`Extracted valid FY23 data from ${validRowsData.length} rows`, logFile);
+    log(`Step 2.6.e: Found ${validRowsData.length} valid FY23 entries`, logFile);
     
     // Verify transaction array is not empty
     if (validRowsData.length === 0) {
-      throw new Error('No valid FY23 transaction data found in table');
+      throw new Error('Step 2.6: No valid FY23 transaction data found in table');
     }
     
     // Step 2.7: Process each row for download
+    log('Step 2.7: Starting download process for valid rows', logFile);
     for (let i = 0; i < validRowsData.length; i++) {
       const rowData = validRowsData[i];
-      log(`Processing row ${i + 1} of ${validRowsData.length}`, logFile);
+      log(`Step 2.7.a: Processing row ${i + 1} of ${validRowsData.length}`, logFile);
       
       if (rowData.downloadUrl) {
         try {
-          // Configure download behavior
+          log(`Step 2.7.b: Navigating to Download button for ${rowData.fileName}`, logFile);
+          
+          log(`Step 2.7.c: Waiting for download elements`, logFile);
+          
+          log(`Step 2.7.d: Found CSV download link`, logFile);
+          
+          log(`Step 2.7.e: Checking if file ${rowData.fileName} already exists`, logFile);
+          if (fs.existsSync(path.join(downloadDir, rowData.fileName))) {
+            log(`Step 2.7.e: File already exists, skipping to next row`, logFile);
+            continue;
+          }
+          
+          log(`Step 2.7.f: Configuring download behavior`, logFile);
           const client = await page.target().createCDPSession();
           await client.send('Browser.setDownloadBehavior', {
             behavior: 'allow',
             downloadPath: downloadDir
           });
           
-          // Check if file already exists
-          if (fs.existsSync(path.join(downloadDir, rowData.fileName))) {
-            log(`File ${rowData.fileName} already exists, skipping...`, logFile);
-            continue;
-          }
-          
-          // Click download button
-          log(`Initiating download for ${rowData.fileName}`, logFile);
+          log(`Step 2.7.g: Triggering download`, logFile);
           await page.evaluate((url) => {
             singleDownload(url);
           }, rowData.downloadUrl);
           
-          // Wait for download to complete
+          log(`Step 2.7.h: Waiting for download to complete`, logFile);
           await waitForDownload(downloadDir, logFile, rowData.fileName);
-          log(`Successfully downloaded ${rowData.fileName}`, logFile);
           
-          // Random sleep before next download
+          log(`Step 2.7.i: Waiting before next row`, logFile);
           await randomSleep(logFile);
           
+          log(`Step 2.7.j: Verifying download success`, logFile);
+          const downloadedPath = path.join(downloadDir, rowData.fileName);
+          if (fs.existsSync(downloadedPath)) {
+            const stats = fs.statSync(downloadedPath);
+            if (stats.size > 0) {
+              log(`Step 2.7.k: Successfully downloaded ${rowData.fileName}`, logFile);
+            } else {
+              throw new Error('Downloaded file is empty');
+            }
+          } else {
+            throw new Error('Downloaded file not found');
+          }
+          
+          log(`Step 2.7.l: Download completed with correct filename`, logFile);
+          
         } catch (error) {
-          log(`Error downloading row ${i + 1}: ${error.message}`, logFile);
-          log(`Row data:`, logFile);
+          log(`Step 2.7: Error downloading row ${i + 1}: ${error.message}`, logFile);
+          log(`Step 2.7: Row data:`, logFile);
           log(JSON.stringify(rowData, null, 2), logFile);
         }
       } else {
-        log(`No download URL found for row ${i + 1}:`, logFile);
+        log(`Step 2.7: No download URL found for row ${i + 1}:`, logFile);
         log(JSON.stringify(rowData, null, 2), logFile);
       }
     }
     
-    // Step 2.8: Check for next page
+    // Step 2.8: Check for next page (should only happen once)
+    log('Step 2.8.a: Checking for next page button', logFile);
     const hasNextPage = await page.$('#table-container-table_next:not(.disabled)');
     const currentRowCount = validRowsData.length;
     
     if (hasNextPage && currentRowCount === 100) {
-      log('Found next page, continuing to next page...', logFile);
+      log('Step 2.8.b: Found next page, clicking next button', logFile);
       await page.click('#table-container-table_next');
+      
+      log('Step 2.8.c: Waiting for table update', logFile);
       await sleep(2000);
-      return processCurrentPage(page, browser, downloadDir, logFile);
+      await page.waitForFunction(() => {
+        const processing = document.querySelector('#table-container-table_processing');
+        return !processing || window.getComputedStyle(processing).display === 'none';
+      }, { timeout: 10000 });
+      
+      // Process remaining rows
+      return processCurrentPage(page, browser, downloadDir, logFile, false);
     }
     
+    log('Step 2.8: No more pages to process', logFile);
     return true;
   } catch (error) {
     log(`Error in page processing: ${error.message}`, logFile);
-    if (error.stack) {
-      log(`Error stack: ${error.stack}`, logFile);
-    }
     throw error;
   }
 }

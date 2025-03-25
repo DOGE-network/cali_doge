@@ -190,7 +190,7 @@
       },
       "code": "3340",
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Department of Water Resources",
@@ -856,7 +856,7 @@
       "keyFunctions": "",
       "abbreviation": "",
       "orgLevel": 4,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Judicial Branch",
@@ -899,7 +899,7 @@
       "abbreviation": "",
       "code": "0250",
       "orgLevel": 1,
-      "parent_agency": "State Government"
+      "parent_agency": "California State Government"
     },
     {
       "name": "Executive Branch",
@@ -963,7 +963,7 @@
       },
       "code": "0110",
       "orgLevel": 1,
-      "parent_agency": "State Government"
+      "parent_agency": "California State Government"
     },
     {
       "name": "Courts of Appeal",
@@ -1128,7 +1128,7 @@
       "abbreviation": "",
       "code": "3790",
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "California Natural Resources Agency",
@@ -1216,7 +1216,7 @@
       "abbreviation": "",
       "code": "3100",
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "California Department of Public Health",
@@ -3149,7 +3149,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Debt and Investment Advisory Commission",
@@ -3184,7 +3184,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "Delta Conservancy Governing Board, Sac-San Joaquin",
@@ -3217,7 +3217,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Delta Protection Commission, Sac-San Joaquin",
@@ -3250,7 +3250,7 @@
       },
       "code": "3840",
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Delta Stewardship Council",
@@ -4290,7 +4290,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Department of Public Health"
+      "parent_agency": "California Department of Public Health"
     },
     {
       "name": "Environmental Safety, Board of",
@@ -4355,7 +4355,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Fiduciaries Advisory Committee, Professional",
@@ -4451,7 +4451,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Gang Database Technical Advisory Committee",
@@ -4615,7 +4615,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "Health Professions Education Foundation Board of Trustees",
@@ -5275,7 +5275,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Little Hoover Commission",
@@ -5373,7 +5373,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Medical Board of CA",
@@ -5796,7 +5796,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Off-Highway Motor Vehicle Recreation Commission",
@@ -5830,7 +5830,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Oil Spill Technical Advisory Committee",
@@ -6031,7 +6031,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Peace Officer Standards Accountability Advisory Board",
@@ -7285,7 +7285,7 @@
       },
       "code": "3825",
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "San Joaquin River Conservancy Governing Board",
@@ -7319,7 +7319,7 @@
       },
       "code": "3830",
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Santa Monica Mountains Conservancy",
@@ -7573,7 +7573,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Scholarshare Investment Board",
@@ -7607,7 +7607,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "State School Building Finance Committee",
@@ -7642,7 +7642,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "School, Advisory Committee on Before and After Programs",
@@ -7708,7 +7708,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Search & Rescue Memorial Review Committee",
@@ -8235,7 +8235,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Tahoe Regional Planning Agency (TRPA)",
@@ -8301,7 +8301,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "Tax Credit Committee, CA Competes",
@@ -8368,7 +8368,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Department of Public Health"
+      "parent_agency": "California Department of Public Health"
     },
     {
       "name": "Transportation Commission",
@@ -9115,7 +9115,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "California Debt Limit Allocation Committee",
@@ -9150,7 +9150,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "California Secure Choice Retirement Savings Board",
@@ -9185,7 +9185,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "California Stem Cell Research and Cures Finance Committee",
@@ -9221,7 +9221,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "California Streamlined Sales Tax Project - Board of Governance",
@@ -9288,7 +9288,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "California Water Resources Development Finance Committee",
@@ -9360,7 +9360,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Children's Hospital Bond Act Finance Committee",
@@ -10204,7 +10204,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "State Treasurer's Office"
+      "parent_agency": "State Treasurer"
     },
     {
       "name": "Safe Drinking Water, Clean Water, Watershed Protection, and Flood Protection Finance Committee",
@@ -10275,7 +10275,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Safe Neighborhood Parks, Clean Water, Clean Air and Coastal Protection (Villaraigosa-Keeley Act) Finance Committee",
@@ -10311,7 +10311,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "State Park and Recreation Finance Committee-Bond Act of 1976",
@@ -10619,7 +10619,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Wildlife Habitat Enhancement Program Finance Committee",
@@ -10690,7 +10690,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "California Drought, Water, Parks, Climate, Coastal Protection, and Outdoor Access For All Finance Committee",
@@ -10727,7 +10727,7 @@
       },
       "code": null,
       "orgLevel": 3,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "California Library Construction and Renovation Finance Committee",
@@ -12709,7 +12709,7 @@
       "abbreviation": "",
       "code": "3540",
       "orgLevel": 4,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "Department of Fish and Wildlife",
@@ -12755,7 +12755,7 @@
       "abbreviation": "",
       "code": "3600",
       "orgLevel": 4,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "California Tahoe Conservancy",
@@ -12800,7 +12800,7 @@
       "abbreviation": "",
       "code": "3125",
       "orgLevel": 4,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "California Coastal Conservancy",
@@ -12846,7 +12846,7 @@
       "abbreviation": "",
       "code": "3760",
       "orgLevel": 4,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "California Coastal Commission",
@@ -12894,7 +12894,7 @@
       "abbreviation": "",
       "code": "3720",
       "orgLevel": 4,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "California State Lands Commission",
@@ -12938,7 +12938,7 @@
       "abbreviation": "",
       "code": "3560",
       "orgLevel": 4,
-      "parent_agency": "Natural Resources Agency"
+      "parent_agency": "California Natural Resources Agency"
     },
     {
       "name": "California Department of Transportation",
@@ -18276,7 +18276,7 @@
         ],
         "tenureDistribution": [],
         "ageDistribution": [],
-        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv, 2023 salary data from 8239_University_of_California__Berkeley_2023.csv"
       },
       "budget_status": "active",
       "keyFunctions": "",
@@ -18714,7 +18714,7 @@
         ],
         "tenureDistribution": [],
         "ageDistribution": [],
-        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv, 2023 salary data from 8243_University_of_California__Irvine_2023.csv"
       },
       "budget_status": "active",
       "keyFunctions": "",
@@ -18933,7 +18933,7 @@
         ],
         "tenureDistribution": [],
         "ageDistribution": [],
-        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv, 2023 salary data from 8241_University_of_California__Los_Angeles_2023.csv"
       },
       "budget_status": "active",
       "keyFunctions": "",
@@ -19809,7 +19809,7 @@
         ],
         "tenureDistribution": [],
         "ageDistribution": [],
-        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv"
+        "_note": "2023 salary data from 2023_UniversityOfCalifornia.csv, 2023 salary data from 8245_University_of_California__San_Diego_2023.csv"
       },
       "budget_status": "active",
       "keyFunctions": "",
@@ -62655,6 +62655,1175 @@
       "code": null,
       "orgLevel": 4,
       "parent_agency": "Governor's Office"
+    },
+    {
+      "name": "CDCR/Administration",
+      "slug": "cdcradministration",
+      "canonicalName": "CDCR/Administration",
+      "aliases": [
+        "cdcr/administration"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Corrections & Rehabilitation, Department of",
+      "slug": "correctionsrehabilitationdepartmentof",
+      "canonicalName": "Corrections & Rehabilitation, Department of",
+      "aliases": [
+        "corrections & rehabilitation, department of"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 55741
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 8273322102
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 148424,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 2843
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 1022
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 830
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 1052
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 1463
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 1871
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 2273
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 2100
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 2129
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 2431
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 2636
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 2454
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 2010
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 2006
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 2278
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 2713
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 3400
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 3679
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 3065
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 9575
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 2811
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 440
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 198
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 233
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 127
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 86
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 3761_Corrections___Rehabilitation__Department_of_2023.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "CDCR/Administration"
+    },
+    {
+      "name": "Headquarters Operations",
+      "slug": "headquartersoperations",
+      "canonicalName": "Headquarters Operations",
+      "aliases": [
+        "headquarters operations"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Transportation, Department of",
+      "slug": "transportationdepartmentof",
+      "canonicalName": "Transportation, Department of",
+      "aliases": [
+        "transportation, department of"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 23926
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 3133197014
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 130954,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 1084
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 478
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 453
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 464
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 538
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 729
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 967
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 1139
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 1310
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 1608
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 1960
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 1893
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 1564
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 1316
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 1062
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 914
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 967
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 915
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 974
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 3048
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 476
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 54
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 10
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 1
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 0
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 0
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 3854_Transportation__Department_of_2023.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Headquarters Operations"
+    },
+    {
+      "name": "Patton State Hospital",
+      "slug": "pattonstatehospital",
+      "canonicalName": "Patton State Hospital",
+      "aliases": [
+        "patton state hospital"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Hospitals, Department of State",
+      "slug": "hospitalsdepartmentofstate",
+      "canonicalName": "Hospitals, Department of State",
+      "aliases": [
+        "hospitals, department of state"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {
+            "2023": 12433
+          }
+        },
+        "wages": {
+          "yearly": {
+            "2023": 1529456547
+          }
+        },
+        "averageTenureYears": null,
+        "averageSalary": 123016,
+        "averageAge": null,
+        "salaryDistribution": [
+          {
+            "range": [
+              0,
+              19999
+            ],
+            "count": 970
+          },
+          {
+            "range": [
+              20000,
+              29999
+            ],
+            "count": 376
+          },
+          {
+            "range": [
+              30000,
+              39999
+            ],
+            "count": 366
+          },
+          {
+            "range": [
+              40000,
+              49999
+            ],
+            "count": 371
+          },
+          {
+            "range": [
+              50000,
+              59999
+            ],
+            "count": 330
+          },
+          {
+            "range": [
+              60000,
+              69999
+            ],
+            "count": 505
+          },
+          {
+            "range": [
+              70000,
+              79999
+            ],
+            "count": 604
+          },
+          {
+            "range": [
+              80000,
+              89999
+            ],
+            "count": 672
+          },
+          {
+            "range": [
+              90000,
+              99999
+            ],
+            "count": 652
+          },
+          {
+            "range": [
+              100000,
+              109999
+            ],
+            "count": 779
+          },
+          {
+            "range": [
+              110000,
+              119999
+            ],
+            "count": 835
+          },
+          {
+            "range": [
+              120000,
+              129999
+            ],
+            "count": 804
+          },
+          {
+            "range": [
+              130000,
+              139999
+            ],
+            "count": 713
+          },
+          {
+            "range": [
+              140000,
+              149999
+            ],
+            "count": 608
+          },
+          {
+            "range": [
+              150000,
+              159999
+            ],
+            "count": 612
+          },
+          {
+            "range": [
+              160000,
+              169999
+            ],
+            "count": 604
+          },
+          {
+            "range": [
+              170000,
+              179999
+            ],
+            "count": 508
+          },
+          {
+            "range": [
+              180000,
+              189999
+            ],
+            "count": 441
+          },
+          {
+            "range": [
+              190000,
+              199999
+            ],
+            "count": 346
+          },
+          {
+            "range": [
+              200000,
+              249999
+            ],
+            "count": 798
+          },
+          {
+            "range": [
+              250000,
+              299999
+            ],
+            "count": 192
+          },
+          {
+            "range": [
+              300000,
+              349999
+            ],
+            "count": 56
+          },
+          {
+            "range": [
+              350000,
+              399999
+            ],
+            "count": 80
+          },
+          {
+            "range": [
+              400000,
+              449999
+            ],
+            "count": 111
+          },
+          {
+            "range": [
+              450000,
+              499999
+            ],
+            "count": 41
+          },
+          {
+            "range": [
+              500000,
+              10000000
+            ],
+            "count": 57
+          }
+        ],
+        "tenureDistribution": [],
+        "ageDistribution": [],
+        "_note": "2023 salary data from 3884_Hospitals__Department_of_State_2023.csv"
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 3,
+      "parent_agency": "Patton State Hospital"
+    },
+    {
+      "name": "Executive Office",
+      "slug": "executiveoffice",
+      "canonicalName": "Executive Office",
+      "aliases": [
+        "executive office"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Judge's Retire System Member",
+      "slug": "judgesretiresystemmember",
+      "canonicalName": "Judge's Retire System Member",
+      "aliases": [
+        "judge's retire system member"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Executive Offices",
+      "slug": "executiveoffices",
+      "canonicalName": "Executive Offices",
+      "aliases": [
+        "executive offices"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Superior Court",
+      "slug": "superiorcourt",
+      "canonicalName": "Superior Court",
+      "aliases": [
+        "superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Court Administration",
+      "slug": "courtadministration",
+      "canonicalName": "Court Administration",
+      "aliases": [
+        "court administration"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Placer County  Superior Court",
+      "slug": "placercountysuperiorcourt",
+      "canonicalName": "Placer County  Superior Court",
+      "aliases": [
+        "placer county  superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Countrywide Legal Services",
+      "slug": "countrywidelegalservices",
+      "canonicalName": "Countrywide Legal Services",
+      "aliases": [
+        "countrywide legal services"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "CEO-Executive",
+      "slug": "ceoexecutive",
+      "canonicalName": "CEO-Executive",
+      "aliases": [
+        "ceo-executive"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Administration",
+      "slug": "administration",
+      "canonicalName": "Administration",
+      "aliases": [
+        "administration"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Judge's Retirement System Member",
+      "slug": "judgesretirementsystemmember",
+      "canonicalName": "Judge's Retirement System Member",
+      "aliases": [
+        "judge's retirement system member"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Executive",
+      "slug": "executive",
+      "canonicalName": "Executive",
+      "aliases": [
+        "executive"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Judicial Officers",
+      "slug": "judicialofficers",
+      "canonicalName": "Judicial Officers",
+      "aliases": [
+        "judicial officers"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
+    },
+    {
+      "name": "Ventura Superior Court",
+      "slug": "venturasuperiorcourt",
+      "canonicalName": "Ventura Superior Court",
+      "aliases": [
+        "ventura superior court"
+      ],
+      "spending": {
+        "yearly": {}
+      },
+      "workforce": {
+        "headCount": {
+          "yearly": {}
+        },
+        "wages": {
+          "yearly": {}
+        },
+        "averageTenureYears": null,
+        "averageSalary": null,
+        "averageAge": null,
+        "tenureDistribution": [],
+        "salaryDistribution": [],
+        "ageDistribution": [],
+        "_note": null
+      },
+      "budget_status": "active",
+      "keyFunctions": "",
+      "abbreviation": "",
+      "code": null,
+      "orgLevel": 2,
+      "parent_agency": "Executive Branch"
     }
   ],
   "budgetSummary": {
