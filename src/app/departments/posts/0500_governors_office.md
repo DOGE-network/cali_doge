@@ -1,7 +1,7 @@
 ---
 
 name: "Governor's Office"
-code: 0500
+budgetCode: 0500
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 
@@ -28,7 +28,7 @@ description: "The Governor's Office exercises the supreme executive power of Cal
 
 ### Major Funding Codes and Sources
 
-The Governor's Office receives funding from various sources, each designated by specific codes in the state budget:
+The Governor's Office receives funding from various sources, each designated by specific budgetCodes in the state budget:
 
 #### Program Codes
 - **0210 - Governor's Office**: Primary executive office of the state
@@ -104,10 +104,10 @@ The Governor's Office is organized to support the Governor's constitutional duti
 
 Sources:
 [1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/0000/0500.pdf
-[2] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=5.&article=
+[2] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=5.&article=
 [3] https://www.gov.ca.gov/
 [4] https://www.gov.ca.gov/2024/01/16/governor-newsom-delivers-2024-state-of-the-state-address/
-[5] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=GOV&division=3.&title=2.&part=&chapter=1.&article=
+[5] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=GOV&division=3.&title=2.&part=&chapter=1.&article=
 [6] https://www.gov.ca.gov/2024/01/10/governor-newsom-releases-2024-25-budget-proposal/
 [7] https://www.gov.ca.gov/2024/01/16/governor-newsom-announces-new-climate-action-initiative/
 [8] https://www.gov.ca.gov/2024/01/16/governor-newsom-announces-new-economic-development-strategy/

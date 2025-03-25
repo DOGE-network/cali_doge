@@ -1,7 +1,7 @@
 ---
 
 name: "Exposition Park"
-code: 3100
+budgetCode: 3100
 date: '2024-03-16'
 author: "Sean Roberts"
 image: 
@@ -99,7 +99,7 @@ description: "Exposition Park is a 152-acre tract in south Los Angeles housing t
 
 Sources:
 [1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/3000/3100.pdf
-[2] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=FAC&division=3.&title=&part=3.&chapter=6.&article=
+[2] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=FAC&division=3.&title=&part=3.&chapter=6.&article=
 [3] https://californiasciencecenter.org/about/annual-reports
 [4] https://expositionpark.ca.gov/about/
 [5] https://caamuseum.org/about

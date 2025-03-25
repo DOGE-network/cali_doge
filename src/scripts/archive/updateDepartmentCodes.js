@@ -60,8 +60,8 @@ let departmentsData = JSON.parse(fs.readFileSync(DEPARTMENTS_JSON_PATH, 'utf8'))
 console.log('Checking existing department codes...');
 const existingCodes = new Set();
 departmentsData.departments.forEach(dept => {
-  if (dept.code) {
-    existingCodes.add(dept.code);
+  if (dept.budgetCode) {
+    existingCodes.add(dept.budgetCode);
   }
 });
 
@@ -166,9 +166,9 @@ const budgetDocsMap = {};
 budgetFiles.forEach(file => {
   // If there are multiple files for the same code, keep the most recent one
   const year = file.filename.split('_')[1];
-  if (!budgetDocsMap[file.code] || year > budgetDocsMap[file.code].year) {
-    budgetDocsMap[file.code] = {
-      code: file.code,
+  if (!budgetDocsMap[file.budgetCode] || year > budgetDocsMap[file.budgetCode].year) {
+    budgetDocsMap[file.budgetCode] = {
+      code: file.budgetCode,
       year,
       filename: file.filename
     };
@@ -341,7 +341,7 @@ function findBestTwoWordMatch(deptName, budgetDeptNames) {
     console.log(`Multiple patterns found for "${deptName}":`);
     topMatches.forEach(match => {
       console.log(`- Pattern: "${match.pattern}" matches ${match.matchCount} departments`);
-      match.matches.forEach(m => console.log(`  * ${m.name} (${m.code}) - Score: ${m.score}`));
+      match.matches.forEach(m => console.log(`  * ${m.name} (${m.budgetCode}) - Score: ${m.score}`));
     });
   }
   
@@ -366,7 +366,7 @@ let aliasUpdates = 0;
 
 departmentsData.departments.forEach(dept => {
   // Store existing code if any
-  const existingCode = dept.code;
+  const existingCode = dept.budgetCode;
   
   // If department has a code, check if there's a matching budget file
   if (existingCode) {
@@ -397,7 +397,7 @@ departmentsData.departments.forEach(dept => {
   // First, check manual mappings
   if (manualMappings[dept.name] && !codesAssigned[manualMappings[dept.name]]) {
     const code = manualMappings[dept.name];
-    dept.code = code;
+    dept.budgetCode = code;
     updatedCount++;
     codesAssigned[code] = true;
     console.log(`✓ Assigned code ${code} to "${dept.name}" (manual mapping)`);
@@ -413,7 +413,7 @@ departmentsData.departments.forEach(dept => {
   for (const variation of [...nameVariations, ...canonicalVariations, ...aliasVariations]) {
     if (normalizedBudgetDeptNames[variation] && !codesAssigned[normalizedBudgetDeptNames[variation]]) {
       const code = normalizedBudgetDeptNames[variation];
-      dept.code = code;
+      dept.budgetCode = code;
       updatedCount++;
       codesAssigned[code] = true;
       console.log(`✓ Assigned code ${code} to "${dept.name}" (matched variation: "${variation}")`);
@@ -423,16 +423,16 @@ departmentsData.departments.forEach(dept => {
   
   // Try two-word matching if no exact match found
   const twoWordMatch = findBestTwoWordMatch(dept.name, normalizedBudgetDeptNames);
-  if (twoWordMatch && !codesAssigned[twoWordMatch.code]) {
-    dept.code = twoWordMatch.code;
+  if (twoWordMatch && !codesAssigned[twoWordMatch.budgetCode]) {
+    dept.budgetCode = twoWordMatch.budgetCode;
     updatedCount++;
-    codesAssigned[twoWordMatch.code] = true;
-    console.log(`✓ Assigned code ${twoWordMatch.code} to "${dept.name}" (two-word match: "${twoWordMatch.name}")`);
+    codesAssigned[twoWordMatch.budgetCode] = true;
+    console.log(`✓ Assigned code ${twoWordMatch.budgetCode} to "${dept.name}" (two-word match: "${twoWordMatch.name}")`);
     return;
   }
   
   // No match found - set to null
-  dept.code = null;
+  dept.budgetCode = null;
   console.log(`✗ No code found for "${dept.name}"`);
 });
 
@@ -450,7 +450,7 @@ if (unusedCodes.length > 0) {
 if (preservedCodes.size > 0) {
   console.log(`\nAll preserved codes (${preservedCodes.size} total):`);
   Array.from(preservedCodes).sort().forEach(code => {
-    const dept = departmentsData.departments.find(d => d.code === code);
+    const dept = departmentsData.departments.find(d => d.budgetCode === code);
     const budgetName = budgetDocsMap[code] ? extractDepartmentNameFromBudgetFile(budgetDocsMap[code].filename) : null;
     if (budgetName) {
       console.log(`- Code ${code}: "${dept.name}" (matches budget file: "${budgetName}")`);
@@ -465,7 +465,7 @@ const preservedNonBudgetCodes = Array.from(preservedCodes).filter(code => !budge
 if (preservedNonBudgetCodes.length > 0) {
   console.log(`\n${preservedNonBudgetCodes.length} preserved codes that don't match budget files:`);
   preservedNonBudgetCodes.forEach(code => {
-    const dept = departmentsData.departments.find(d => d.code === code);
+    const dept = departmentsData.departments.find(d => d.budgetCode === code);
     console.log(`- Code ${code}: "${dept.name}"`);
   });
 }

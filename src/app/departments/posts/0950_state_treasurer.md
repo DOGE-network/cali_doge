@@ -1,7 +1,7 @@
 ---
 
 name: "State Treasurer's Office"
-code: 0950
+budgetCode: 0950
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

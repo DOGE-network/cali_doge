@@ -1,7 +1,7 @@
 ---
 
 name: "Department of Financial Protection and Innovation"
-code: 1701
+budgetCode: 1701
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

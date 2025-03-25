@@ -1,7 +1,7 @@
 ---
 
 name: "Judicial Branch"
-code: 0250
+budgetCode: 0250
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 
@@ -32,7 +32,7 @@ description: "The Judicial Branch resolves disputes arising under the law and in
 
 ### Major Funding Codes and Sources
 
-The Judicial Branch receives funding from various sources, each designated by specific codes in the state budget:
+The Judicial Branch receives funding from various sources, each designated by specific budgetCodes in the state budget:
 
 #### Program Codes
 - **0130 - Supreme Court**: California's highest court, with final appellate jurisdiction
@@ -116,7 +116,7 @@ Sources:
 [2] https://www.courts.ca.gov/documents/2024-25-judicial-branch-budget.pdf
 [3] https://www.courts.ca.gov/7466.htm
 [4] https://www.courts.ca.gov/policyadmin-jc.htm
-[5] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=GOV&division=&title=8.&part=&chapter=1.&article=
+[5] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=GOV&division=&title=8.&part=&chapter=1.&article=
 [6] https://www.courts.ca.gov/documents/Strategic_Plan_2023-2028.pdf
 [7] https://www.courts.ca.gov/documents/jbbc-20220127-materials.pdf
 [8] https://www.courts.ca.gov/documents/ctcac-20230125-materials.pdf

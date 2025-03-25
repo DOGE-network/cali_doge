@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${post.code} - ${post.name}`
+    title: `${post.budgetCode} - ${post.name}`
   }
 }
 
@@ -49,7 +49,7 @@ export default async function BlogPost({ params }: Props) {
     <div className="container mx-auto px-4 pt-24">
       <BackButton />
       <article className="prose prose-lg max-w-none">
-        <h1 className="text-4xl font-bold mb-4">{post.code} - {post.name}</h1>
+        <h1 className="text-4xl font-bold mb-4">{post.budgetCode} - {post.name}</h1>
         <time className="text-gray-600 block mb-4">
           {new Date(post.date).toLocaleDateString('en-US', {
             year: 'numeric',

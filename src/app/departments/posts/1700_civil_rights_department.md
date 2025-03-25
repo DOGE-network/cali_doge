@@ -1,7 +1,7 @@
 ---
 
 name: "Civil Rights Department"
-code: 1700
+budgetCode: 1700
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

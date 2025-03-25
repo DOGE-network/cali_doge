@@ -1,7 +1,7 @@
 ---
 
 name: "Secretary of Health and Human Services"
-code: 0530
+budgetCode: 0530
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

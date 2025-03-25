@@ -5,12 +5,13 @@ import { remark } from 'remark'
 import html from 'remark-html'
 import remarkGfm from 'remark-gfm'
 import { getDepartmentBySlug } from '@/lib/departmentMapping'
+import { NonNegativeInteger } from '@/types/department'
 
 const postsDirectory = path.join(process.cwd(), 'src/app/departments/posts')
 
 export type BlogPost = {
   id: string
-  code: string
+  budgetCode: number
   name: string
   date: string
   excerpt: string
@@ -138,6 +139,11 @@ function extractExcerpt(content: string): string {
   return firstParagraph
 }
 
+function toNonNegativeInteger(value: string | number | undefined): NonNegativeInteger {
+  const num = typeof value === 'string' ? parseInt(value, 10) : (value || 0);
+  return num as NonNegativeInteger;
+}
+
 export async function getAllPosts(): Promise<BlogPost[]> {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory)
@@ -171,7 +177,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     // Use the standardized mapping data instead of frontmatter
     return {
       id,
-      code: departmentMapping?.code || '',
+      code: departmentMapping?.budgetCode || '',
       name: departmentMapping?.name || matterResult.data.name || '',
       date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : '',
       excerpt,
@@ -182,5 +188,15 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   }))
 
   // Sort posts by date
-  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1))
+  return allPostsData.map(post => ({
+    id: post.id,
+    code: post.code,
+    budgetCode: toNonNegativeInteger(post.code),
+    name: post.name,
+    date: post.date,
+    excerpt: post.excerpt,
+    content: post.content,
+    image: post.image,
+    sources: post.sources
+  })).sort((a, b) => (a.date < b.date ? 1 : -1));
 } 

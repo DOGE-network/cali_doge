@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export type Department = {
   id: string;
-  code: string;
+  budgetCode: number;
   name: string;
   date: string;
   excerpt: string;
@@ -56,7 +56,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
         // Debug code types
         console.log('Department codes:');
         data.slice(0, 5).forEach((dept: Department) => {
-          console.log(`${dept.name}: code=${dept.code}, type=${typeof dept.code}`);
+          console.log(`${dept.name}: code=${dept.budgetCode}, type=${typeof dept.budgetCode}`);
         });
         
         setDepartments(data);
@@ -99,8 +99,8 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
       }
       
       // Search by code - convert to string to handle numeric codes
-      if (dept.code) {
-        const codeStr = String(dept.code).toLowerCase();
+      if (dept.budgetCode) {
+        const codeStr = String(dept.budgetCode).toLowerCase();
         // Either the code includes the search term or the search term includes the code
         if (codeStr.includes(searchLower) || searchLower.includes(codeStr)) {
           return true;
@@ -261,9 +261,9 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                             onClick={onClose}
                           >
                             {dept.name}
-                            {dept.code && (
+                            {dept.budgetCode && (
                               <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                                {dept.code}
+                                {dept.budgetCode}
                               </span>
                             )}
                           </Link>
@@ -312,9 +312,9 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                           onClick={onClose}
                         >
                           {dept.name}
-                          {dept.code && (
+                          {dept.budgetCode && (
                             <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                              {dept.code}
+                              {dept.budgetCode}
                             </span>
                           )}
                         </Link>

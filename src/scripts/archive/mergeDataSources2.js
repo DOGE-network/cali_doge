@@ -45,11 +45,11 @@ function normalizeName(name) {
 function processAgency(agency, parentName = null) {
   const agencyData = {
     name: agency.name,
-    org_level: agency.org_level,
+    orgLevel: agency.orgLevel,
     budget_status: agency.budget_status || 'active',
     keyFunctions: agency.keyFunctions || agency.description || '',
     abbreviation: agency.abbreviation || '',
-    code: agency.budget_code || agency.code || '',
+    code: agency.budget_code || agency.budgetCode || '',
     parent_agency: parentName,
     subAgencies: agency.subAgencies || []
   };
@@ -113,11 +113,11 @@ agencyMap.forEach((agencyData, agencyName) => {
   let matched = false;
 
   // Try to match by budget code first
-  if (agencyData.code) {
-    const deptMatch = departments.departments.find(dept => dept.code === agencyData.code);
+  if (agencyData.budgetCode) {
+    const deptMatch = departments.departments.find(dept => dept.budgetCode === agencyData.budgetCode);
     if (deptMatch) {
       Object.assign(deptMatch, {
-        org_level: agencyData.org_level,
+        orgLevel: agencyData.orgLevel,
         budget_status: agencyData.budget_status,
         keyFunctions: agencyData.keyFunctions,
         abbreviation: agencyData.abbreviation,
@@ -140,7 +140,7 @@ agencyMap.forEach((agencyData, agencyName) => {
 
     if (deptMatch) {
       Object.assign(deptMatch, {
-        org_level: agencyData.org_level,
+        orgLevel: agencyData.orgLevel,
         budget_status: agencyData.budget_status,
         keyFunctions: agencyData.keyFunctions,
         abbreviation: agencyData.abbreviation,
@@ -159,8 +159,8 @@ agencyMap.forEach((agencyData, agencyName) => {
       slug: agencyName.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
       canonicalName: agencyName,
       aliases: [],
-      code: agencyData.code,
-      org_level: agencyData.org_level,
+      code: agencyData.budgetCode,
+      orgLevel: agencyData.orgLevel,
       budget_status: agencyData.budget_status,
       keyFunctions: agencyData.keyFunctions,
       abbreviation: agencyData.abbreviation,
@@ -183,8 +183,8 @@ agencyMap.forEach((agencyData, agencyName) => {
   }
 
   // Check for unexpected data
-  if (agencyData.code && !matched) {
-    warnings.push(`Agency with code ${agencyData.code} (${agencyName}) not matched`);
+  if (agencyData.budgetCode && !matched) {
+    warnings.push(`Agency with code ${agencyData.budgetCode} (${agencyName}) not matched`);
   }
 });
 

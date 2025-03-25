@@ -237,7 +237,7 @@ const findDepartmentByName = (name, departmentsData) => {
       alias.toLowerCase() === cleanName.toLowerCase()
     )) ||
     // Also match by code in case name is slightly different
-    (dept.code && dept.code.toString() === cleanName.toString())
+    (dept.budgetCode && dept.budgetCode.toString() === cleanName.toString())
   );
 };
 

@@ -1,13 +1,7 @@
 #!/bin/bash
 
 # California State Government Budget Document Downloader
-# Based on the Department of Finance's Uniform Codes Manual organizational structure:
-# Level A: Agency level (groups of departments under agency secretaries)
-# Level B: Subagency level (breakdown of agencies into subagency groupings)
-# Level 1: Department level (organizations receiving appropriations)
-# Level 2: Suborganization level (divisions, bureaus, boards, commissions)
-# Level 3: Suborganization of Level 2 (bureaus, offices, units)
-#
+
 // known problem that the state controller does not put many documents in this easy to use location
 // we will need to use browser automation to download the documents from the state controller website
 
