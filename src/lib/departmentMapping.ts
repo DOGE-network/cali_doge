@@ -70,7 +70,390 @@ export const DEPARTMENT_SLUGS_WITH_PAGES = [
 // These mappings are generated automatically by the generate-department-mappings.js script
 // Do not manually edit this array - it will be overwritten
 export const departmentMappings: DepartmentMapping[] = [
-
+  {
+    slug: '0250_judicial_branch',
+    name: 'California Courts',
+    canonicalName: 'Courts, California',
+    budgetCode: toNonNegativeInteger(250),
+    spendingName: 'California Courts',
+    workforceName: 'California Courts'
+  },
+  {
+    slug: '0500_governors_office',
+    name: 'Office of the Governor',
+    canonicalName: 'Governor, Office of the',
+    budgetCode: toNonNegativeInteger(500),
+    spendingName: 'Office of the Governor',
+    workforceName: 'Office of the Governor'
+  },
+  {
+    slug: '0509_governors_office_of_business_and_economic_development',
+    name: 'Governor\'s Office of Business and Economic Development',
+    canonicalName: 'Business and Economic Development, Governor\'s Office of',
+    budgetCode: toNonNegativeInteger(509),
+    spendingName: 'Governor\'s Office of Business and Economic Development',
+    workforceName: 'Governor\'s Office of Business and Economic Development'
+  },
+  {
+    slug: '0511_secretary_for_government_operations',
+    name: 'Government Operations Agency',
+    canonicalName: 'Government Operations Agency',
+    budgetCode: toNonNegativeInteger(511),
+    spendingName: 'Government Operations Agency',
+    workforceName: 'Government Operations Agency'
+  },
+  {
+    slug: '0515_secretary_of_business_consumer_services_and_housing',
+    name: 'Business, Consumer Services and Housing Agency',
+    canonicalName: 'Business, Consumer Services, and Housing Agency, California',
+    budgetCode: toNonNegativeInteger(515),
+    spendingName: 'Business, Consumer Services and Housing Agency',
+    workforceName: 'Business, Consumer Services and Housing Agency'
+  },
+  {
+    slug: '0521_secretary_of_transportation',
+    name: 'Secretary of Transportation',
+    canonicalName: 'Secretary of Transportation',
+    budgetCode: toNonNegativeInteger(521),
+    spendingName: 'Secretary of Transportation',
+    workforceName: 'Secretary of Transportation'
+  },
+  {
+    slug: '0530_secretary_of_health_and_human_services',
+    name: 'California Health and Human Services Agency',
+    canonicalName: 'Health and Human Services Agency, California',
+    budgetCode: toNonNegativeInteger(530),
+    spendingName: 'California Health and Human Services Agency',
+    workforceName: 'California Health and Human Services Agency'
+  },
+  {
+    slug: '0540_california_natural_resources_agency',
+    name: 'Natural Resources Agency',
+    canonicalName: 'Natural Resources Agency, California',
+    budgetCode: toNonNegativeInteger(540),
+    spendingName: 'Natural Resources Agency',
+    workforceName: 'Natural Resources Agency'
+  },
+  {
+    slug: '0555_california_environmental_protection_agency',
+    name: 'California Environmental Protection Agency',
+    canonicalName: 'Environmental Protection Agency',
+    budgetCode: toNonNegativeInteger(555),
+    spendingName: 'California Environmental Protection Agency',
+    workforceName: 'California Environmental Protection Agency'
+  },
+  {
+    slug: '0559_secretary_for_labor_and_workforce_development',
+    name: 'Labor and Workforce Development Agency',
+    canonicalName: 'Labor and Workforce Development Agency',
+    budgetCode: toNonNegativeInteger(559),
+    spendingName: 'Labor and Workforce Development Agency',
+    workforceName: 'Labor and Workforce Development Agency'
+  },
+  {
+    slug: '0650_office_of_planning_and_research',
+    name: 'Governor\'s Office of Planning and Research',
+    canonicalName: 'Governor\'s Office of Planning and Research',
+    budgetCode: toNonNegativeInteger(650),
+    spendingName: 'Governor\'s Office of Planning and Research',
+    workforceName: 'Governor\'s Office of Planning and Research'
+  },
+  {
+    slug: '0690_office_of_emergency_services',
+    name: 'Governor\'s Office of Emergency Services',
+    canonicalName: 'Emergency Services, Governor\'s Office of',
+    budgetCode: toNonNegativeInteger(690),
+    spendingName: 'Governor\'s Office of Emergency Services',
+    workforceName: 'Governor\'s Office of Emergency Services'
+  },
+  {
+    slug: '0750_office_of_the_lieutenant_governor',
+    name: 'Lieutenant Governor',
+    canonicalName: 'Lieutenant Governor, Office of',
+    budgetCode: toNonNegativeInteger(750),
+    spendingName: 'Lieutenant Governor',
+    workforceName: 'Lieutenant Governor'
+  },
+  {
+    slug: '0820_department_of_justice',
+    name: 'Justice',
+    canonicalName: 'Justice, Department of',
+    budgetCode: toNonNegativeInteger(820),
+    spendingName: 'Justice',
+    workforceName: 'Justice'
+  },
+  {
+    slug: '0840_state_controller',
+    name: 'State Controller',
+    canonicalName: 'State Controller',
+    budgetCode: toNonNegativeInteger(840),
+    spendingName: 'State Controller',
+    workforceName: 'State Controller'
+  },
+  {
+    slug: '0845_department_of_insurance',
+    name: 'Department of Insurance',
+    canonicalName: 'Insurance, Department of',
+    budgetCode: toNonNegativeInteger(845),
+    spendingName: 'Department of Insurance',
+    workforceName: 'Department of Insurance'
+  },
+  {
+    slug: '0890_secretary_of_state',
+    name: 'Office of the Secretary of State',
+    canonicalName: 'Secretary of State, Office of the',
+    budgetCode: toNonNegativeInteger(890),
+    spendingName: 'Office of the Secretary of State',
+    workforceName: 'Office of the Secretary of State'
+  },
+  {
+    slug: '0950_state_treasurer',
+    name: 'State Treasurer\'s Office',
+    canonicalName: 'State Treasurer\'s Office',
+    budgetCode: toNonNegativeInteger(950),
+    spendingName: 'State Treasurer\'s Office',
+    workforceName: 'State Treasurer\'s Office'
+  },
+  {
+    slug: '0950_state_treasurers_office',
+    name: 'State Treasurer\'s Office',
+    canonicalName: 'State Treasurer\'s Office',
+    budgetCode: toNonNegativeInteger(950),
+    spendingName: 'State Treasurer\'s Office',
+    workforceName: 'State Treasurer\'s Office'
+  },
+  {
+    slug: '1111_department_of_consumer_affairs',
+    name: 'Department of Consumer Affairs',
+    canonicalName: 'Consumer Affairs, Department of',
+    budgetCode: toNonNegativeInteger(1111),
+    spendingName: 'Department of Consumer Affairs',
+    workforceName: 'Department of Consumer Affairs'
+  },
+  {
+    slug: '1700_civil_rights_department',
+    name: 'Civil Rights Department',
+    canonicalName: 'Civil Rights Department',
+    budgetCode: toNonNegativeInteger(1700),
+    spendingName: 'Civil Rights Department',
+    workforceName: 'Civil Rights Department'
+  },
+  {
+    slug: '1701_department_of_financial_protection_and_innovation',
+    name: 'Department of Financial Protection and Innovation',
+    canonicalName: 'Financial Protection and Innovation, Department of',
+    budgetCode: toNonNegativeInteger(1701),
+    spendingName: 'Department of Financial Protection and Innovation',
+    workforceName: 'Department of Financial Protection and Innovation'
+  },
+  {
+    slug: '1750_horse_racing_board',
+    name: 'California Horse Racing Board',
+    canonicalName: 'Horse Racing Board, California',
+    budgetCode: toNonNegativeInteger(1750),
+    spendingName: 'California Horse Racing Board',
+    workforceName: 'California Horse Racing Board'
+  },
+  {
+    slug: '2660_department_of_transportation',
+    name: 'Transportation',
+    canonicalName: 'Transportation, Department of',
+    budgetCode: toNonNegativeInteger(2660),
+    spendingName: 'Transportation',
+    workforceName: 'Transportation'
+  },
+  {
+    slug: '2720_california_highway_patrol',
+    name: 'California Highway Patrol',
+    canonicalName: 'Highway Patrol, California',
+    budgetCode: toNonNegativeInteger(2720),
+    spendingName: 'California Highway Patrol',
+    workforceName: 'California Highway Patrol'
+  },
+  {
+    slug: '2740_department_of_motor_vehicles',
+    name: 'Motor Vehicles',
+    canonicalName: 'Motor Vehicles, Department of',
+    budgetCode: toNonNegativeInteger(2740),
+    spendingName: 'Motor Vehicles',
+    workforceName: 'Motor Vehicles'
+  },
+  {
+    slug: '3100_exposition_park',
+    name: 'Exposition Park',
+    canonicalName: 'Exposition Park',
+    budgetCode: toNonNegativeInteger(3100),
+    spendingName: 'Exposition Park',
+    workforceName: 'Exposition Park'
+  },
+  {
+    slug: '3125_california_tahoe_conservancy',
+    name: 'Tahoe Conservancy',
+    canonicalName: 'Tahoe Conservancy',
+    budgetCode: toNonNegativeInteger(3125),
+    spendingName: 'Tahoe Conservancy',
+    workforceName: 'Tahoe Conservancy'
+  },
+  {
+    slug: '3340_california_conservation_corps',
+    name: 'California Conservation Corps',
+    canonicalName: 'Conservation Corps, California',
+    budgetCode: toNonNegativeInteger(3340),
+    spendingName: 'California Conservation Corps',
+    workforceName: 'California Conservation Corps'
+  },
+  {
+    slug: '3360_energy_commission',
+    name: 'State Energy Resources Conservation and Development Commission',
+    canonicalName: 'State Energy Resources Conservation and Development Commission',
+    budgetCode: toNonNegativeInteger(3360),
+    spendingName: 'State Energy Resources Conservation and Development Commission',
+    workforceName: 'State Energy Resources Conservation and Development Commission'
+  },
+  {
+    slug: '3460_colorado_river_board',
+    name: 'Colorado River Board of California',
+    canonicalName: 'Colorado River Board of California',
+    budgetCode: toNonNegativeInteger(3460),
+    spendingName: 'Colorado River Board of California',
+    workforceName: 'Colorado River Board of California'
+  },
+  {
+    slug: '3480_department_of_conservation',
+    name: 'Department of Conservation',
+    canonicalName: 'Conservation, Department of',
+    budgetCode: toNonNegativeInteger(3480),
+    spendingName: 'Department of Conservation',
+    workforceName: 'Department of Conservation'
+  },
+  {
+    slug: '3540_department_of_forestry_and_fire_protection',
+    name: 'Board of Forestry and Fire Protection',
+    canonicalName: 'Forestry and Fire Protection, Board of',
+    budgetCode: toNonNegativeInteger(3540),
+    spendingName: 'Board of Forestry and Fire Protection',
+    workforceName: 'Board of Forestry and Fire Protection'
+  },
+  {
+    slug: '3560_state_lands_commission',
+    name: 'Lands Commission',
+    canonicalName: 'Lands Commission, California State',
+    budgetCode: toNonNegativeInteger(3560),
+    spendingName: 'Lands Commission',
+    workforceName: 'Lands Commission'
+  },
+  {
+    slug: '3600_department_of_fish_and_wildlife',
+    name: 'Department of Fish and Wildlife',
+    canonicalName: 'Fish and Wildlife, Department of',
+    budgetCode: toNonNegativeInteger(3600),
+    spendingName: 'Department of Fish and Wildlife',
+    workforceName: 'Department of Fish and Wildlife'
+  },
+  {
+    slug: '3640_wildlife_conservation_board',
+    name: 'Wildlife Conservation Board',
+    canonicalName: 'Wildlife Conservation Board',
+    budgetCode: toNonNegativeInteger(3640),
+    spendingName: 'Wildlife Conservation Board',
+    workforceName: 'Wildlife Conservation Board'
+  },
+  {
+    slug: '3720_california_coastal_commission',
+    name: 'California Coastal Commission',
+    canonicalName: 'Coastal Commission, California',
+    budgetCode: toNonNegativeInteger(3720),
+    spendingName: 'California Coastal Commission',
+    workforceName: 'California Coastal Commission'
+  },
+  {
+    slug: '3760_california_coastal_conservancy',
+    name: 'State Coastal Conservancy',
+    canonicalName: 'Coastal Conservancy, State',
+    budgetCode: toNonNegativeInteger(3760),
+    spendingName: 'State Coastal Conservancy',
+    workforceName: 'State Coastal Conservancy'
+  },
+  {
+    slug: '3780_native_american_heritage_commission',
+    name: 'Native American Heritage Commission',
+    canonicalName: 'Native American Heritage Commission',
+    budgetCode: toNonNegativeInteger(3780),
+    spendingName: 'Native American Heritage Commission',
+    workforceName: 'Native American Heritage Commission'
+  },
+  {
+    slug: '3900_air_resources_board',
+    name: 'California Air Resources Board',
+    canonicalName: 'Air Resources Board',
+    budgetCode: toNonNegativeInteger(3900),
+    spendingName: 'California Air Resources Board',
+    workforceName: 'California Air Resources Board'
+  },
+  {
+    slug: '4260_california_department_of_health_care_services',
+    name: 'Department of Health Care Services',
+    canonicalName: 'Health Care Services, Department of',
+    budgetCode: toNonNegativeInteger(4260),
+    spendingName: 'Department of Health Care Services',
+    workforceName: 'Department of Health Care Services'
+  },
+  {
+    slug: '4300_california_department_of_developmental_services',
+    name: 'Department of Developmental Services',
+    canonicalName: 'Developmental Services, Department of',
+    budgetCode: toNonNegativeInteger(4300),
+    spendingName: 'Department of Developmental Services',
+    workforceName: 'Department of Developmental Services'
+  },
+  {
+    slug: '4440_california_department_of_state_hospitals',
+    name: 'State Hospitals',
+    canonicalName: 'State Hospitals, Department of',
+    budgetCode: toNonNegativeInteger(4440),
+    spendingName: 'State Hospitals',
+    workforceName: 'State Hospitals'
+  },
+  {
+    slug: '5180_california_department_of_social_services',
+    name: 'Department of Social Services',
+    canonicalName: 'Social Services, Department of',
+    budgetCode: toNonNegativeInteger(5180),
+    spendingName: 'Department of Social Services',
+    workforceName: 'Department of Social Services'
+  },
+  {
+    slug: '5225_california_department_of_corrections_and_rehabilitation',
+    name: 'Department of Corrections and Rehabilitation',
+    canonicalName: 'Corrections and Rehabilitation, California Department of',
+    budgetCode: toNonNegativeInteger(5225),
+    spendingName: 'Department of Corrections and Rehabilitation',
+    workforceName: 'Department of Corrections and Rehabilitation'
+  },
+  {
+    slug: '7760_department_of_general_services',
+    name: 'Department of General Services',
+    canonicalName: 'General Services, Department of',
+    budgetCode: toNonNegativeInteger(7760),
+    spendingName: 'Department of General Services',
+    workforceName: 'Department of General Services'
+  },
+  {
+    slug: '8380_california_department_of_human_resources',
+    name: 'California Department of Human Resources',
+    canonicalName: 'California Department of Human Resources',
+    budgetCode: toNonNegativeInteger(8380),
+    spendingName: 'California Department of Human Resources',
+    workforceName: 'California Department of Human Resources'
+  },
+  {
+    slug: '8955_california_department_of_veterans_affairs',
+    name: 'Veterans Affairs',
+    canonicalName: 'Veterans Affairs, Department of',
+    budgetCode: toNonNegativeInteger(8955),
+    spendingName: 'Veterans Affairs',
+    workforceName: 'Veterans Affairs'
+  }
 ];
 
 /**
