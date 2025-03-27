@@ -8214,37 +8214,17 @@
         "state government"
       ],
       "spending": {
-        "yearly": {
-          "FY2023-FY2024": 232050000000,
-          "FY2024-FY2025": 228890000000,
-          "FY2025-FY2026": 233500000000
-        }
+        "yearly": {}
       },
       "headCount": {
-        "yearly": {
-          "2017": 390000,
-          "2018": 375000,
-          "2019": 400000,
-          "2020": 389000,
-          "2021": 384000,
-          "2023": 399000,
-          "2024": 397000
-        }
+        "yearly": {}
       },
       "wages": {
-        "yearly": {
-          "2017": 22000000000,
-          "2018": 22040000000,
-          "2019": 24540000000,
-          "2020": 25060000000,
-          "2021": 25920000000,
-          "2023": 28870000000,
-          "2024": 29820000000
-        }
+        "yearly": {}
       },
-      "averageTenureYears": 13,
-      "averageSalary": 86142,
-      "averageAge": 47,
+      "averageTenureYears": null,
+      "averageSalary": null,
+      "averageAge": null,
       "tenureDistribution": {
         "yearly": {}
       },
