@@ -61,16 +61,32 @@ export default function AgencyDataVisualization({ department, viewMode }: Agency
       };
     }
     
-    // In aggregated mode, directly use aggregatedDistributions without any fallback
+    // In aggregated mode, use aggregatedDistributions if available, otherwise fall back to department's own data
     if (viewMode === 'aggregated') {
+      const aggregatedDistributions = department.aggregatedDistributions;
+      const hasAggregatedData = aggregatedDistributions && (
+        (aggregatedDistributions.tenureDistribution?.length ?? 0) > 0 ||
+        (aggregatedDistributions.salaryDistribution?.length ?? 0) > 0 ||
+        (aggregatedDistributions.ageDistribution?.length ?? 0) > 0
+      );
+
+      if (hasAggregatedData) {
+        return {
+          tenureDistribution: aggregatedDistributions.tenureDistribution || [],
+          salaryDistribution: aggregatedDistributions.salaryDistribution || [],
+          ageDistribution: aggregatedDistributions.ageDistribution || []
+        };
+      }
+
+      // Fall back to department's own distributions if no aggregated data
       return {
-        tenureDistribution: department.aggregatedDistributions?.tenureDistribution || [],
-        salaryDistribution: department.aggregatedDistributions?.salaryDistribution || [],
-        ageDistribution: department.aggregatedDistributions?.ageDistribution || []
+        tenureDistribution: department.tenureDistribution?.yearly?.["2023"] || [],
+        salaryDistribution: department.salaryDistribution?.yearly?.["2023"] || [],
+        ageDistribution: department.ageDistribution?.yearly?.["2023"] || []
       };
     }
 
-    // Fallback to department's own distributions
+    // Default fallback to department's own distributions
     return {
       tenureDistribution: department.tenureDistribution?.yearly?.["2023"] || [],
       salaryDistribution: department.salaryDistribution?.yearly?.["2023"] || [],
