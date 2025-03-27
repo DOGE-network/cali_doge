@@ -9,17 +9,10 @@ interface DepartmentWorkforceDisplayProps {
 }
 
 const DepartmentWorkforceDisplay = ({ workforceData }: DepartmentWorkforceDisplayProps) => {
-  const [showAllYears, setShowAllYears] = useState(false);
+  const [selectedYear, setSelectedYear] = useState<AnnualYear>('2023');
 
-  // Get all years from the data
-  const years = [...new Set([
-    ...Object.keys(workforceData.headCount.yearly),
-    ...Object.keys(workforceData.wages.yearly)
-  ])].sort((yearA, yearB) => {
-    // Convert years to numbers for comparison
-    const getYear = (year: string) => parseInt(year);
-    return getYear(yearB) - getYear(yearA); // Sort descending
-  }) as AnnualYear[];
+  // Generate fiscal years from 2010 to 2025
+  const fiscalYears = Array.from({ length: 16 }, (_, i) => (2010 + i).toString() as AnnualYear);
 
   const formatNumber = (num: number) => num.toLocaleString();
 
@@ -51,22 +44,17 @@ const DepartmentWorkforceDisplay = ({ workforceData }: DepartmentWorkforceDispla
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Department Workforce</h2>
         <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
-          <Button
-            variant={showAllYears ? "ghost" : "secondary"}
-            size="sm"
-            className={`rounded-full text-xs ${!showAllYears ? 'bg-white shadow-sm' : ''}`}
-            onClick={() => setShowAllYears(false)}
-          >
-            Recent Years
-          </Button>
-          <Button
-            variant={showAllYears ? "secondary" : "ghost"}
-            size="sm"
-            className={`rounded-full text-xs ${showAllYears ? 'bg-white shadow-sm' : ''}`}
-            onClick={() => setShowAllYears(true)}
-          >
-            All Years
-          </Button>
+          {fiscalYears.map(year => (
+            <Button
+              key={year}
+              variant={selectedYear === year ? "secondary" : "ghost"}
+              size="sm"
+              className={`rounded-full text-xs ${selectedYear === year ? 'bg-white shadow-sm' : ''}`}
+              onClick={() => setSelectedYear(year)}
+            >
+              FY{year}
+            </Button>
+          ))}
         </div>
       </div>
 
@@ -80,23 +68,17 @@ const DepartmentWorkforceDisplay = ({ workforceData }: DepartmentWorkforceDispla
             </tr>
           </thead>
           <tbody>
-            {years
-              .filter(year => showAllYears || parseInt(year) >= 2023)
-              .map(year => {
-                const headcount = workforceData.headCount.yearly[year];
-                const wages = workforceData.wages.yearly[year];
-                return (
-                  <tr key={year} className="border-t border-gray-200">
-                    <td className="py-3 px-4">{year}</td>
-                    <td className="py-3 px-4 text-right">
-                      {formatCurrencyWithSuffix(wages)}
-                    </td>
-                    <td className="py-3 px-4 text-right">
-                      {typeof headcount === 'number' ? formatNumber(headcount) : '~'}
-                    </td>
-                  </tr>
-                );
-              })}
+            <tr className="border-t border-gray-200">
+              <td className="py-3 px-4">{selectedYear}</td>
+              <td className="py-3 px-4 text-right">
+                {formatCurrencyWithSuffix(workforceData.wages.yearly[selectedYear])}
+              </td>
+              <td className="py-3 px-4 text-right">
+                {typeof workforceData.headCount.yearly[selectedYear] === 'number' 
+                  ? formatNumber(workforceData.headCount.yearly[selectedYear] as number) 
+                  : '~'}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
