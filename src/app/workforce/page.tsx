@@ -980,24 +980,28 @@ function WorkforcePageContent() {
   }, [hierarchyData, selectedDepartmentName, activePath, error, transactionId]);
 
   // Get path departments to display
-  const pathDepartments: DepartmentData[] = [];
-  let currentDepartments = [hierarchyData];
-  
-  for (let i = 0; i < activePath.length; i++) {
-    const currentName = activePath[i];
-    const foundDepartment = currentDepartments.find(d => d?.name === currentName);
+  const pathDepartments = useMemo(() => {
+    const departments: DepartmentData[] = [];
+    let currentDepartments = [hierarchyData];
     
-    if (foundDepartment) {
-      pathDepartments.push(foundDepartment);
-      if (foundDepartment.subDepartments) {
-        currentDepartments = foundDepartment.subDepartments;
+    for (let i = 0; i < activePath.length; i++) {
+      const currentName = activePath[i];
+      const foundDepartment = currentDepartments.find(d => d?.name === currentName);
+      
+      if (foundDepartment) {
+        departments.push(foundDepartment);
+        if (foundDepartment.subDepartments) {
+          currentDepartments = foundDepartment.subDepartments;
+        } else {
+          break;
+        }
       } else {
         break;
       }
-    } else {
-      break;
     }
-  }
+    
+    return departments;
+  }, [hierarchyData, activePath]);
   
   // The last department in the path is the active one
   const currentActiveDepartment = pathDepartments[pathDepartments.length - 1] as DepartmentHierarchy;

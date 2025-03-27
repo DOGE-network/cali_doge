@@ -79,11 +79,11 @@ export const DEPARTMENT_SLUGS_WITH_PAGES = [
 export const departmentMappings: DepartmentMapping[] = [
   {
     slug: '0250_judicial_branch',
-    name: 'California Courts',
-    canonicalName: 'Courts, California',
+    name: 'Judicial Branch',
+    canonicalName: 'California Judicial Branch',
     budgetCode: toNonNegativeInteger(250),
-    spendingName: 'California Courts',
-    workforceName: 'California Courts'
+    spendingName: 'Judicial Branch',
+    workforceName: 'Judicial Branch'
   },
   {
     slug: '0500_governors_office',
