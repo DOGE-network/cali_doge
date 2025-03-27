@@ -224,7 +224,8 @@ export interface RequiredDepartmentJSONFields {
   orgLevel: OrgLevel;
   parent_agency?: string;  // Optional only for root node, required name of parent agency
   budget_status: BudgetStatus;
-  budgetCode: BudgetCode | null;  // Required but can be null
+  budgetCode: BudgetCode | null;  // Required but can be null, published as DEPARTMENT OF FINANCE UNIFORM CODES
+  entityCode: number | null;  // Required but can be null, first four digits of any salary report csv file
   spending: {
     yearly: Record<FiscalYearKey, number| {}>;  // Empty object allowed
   };
@@ -246,4 +247,5 @@ export interface RequiredDepartmentJSONFields {
   ageDistribution: {
     yearly: Record<AnnualYear, AgeRange[]>;  // Empty array allowed but field required
   };
+  _note?: string;
 } 

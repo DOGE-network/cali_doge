@@ -4,6 +4,8 @@
 
 // known problem that the state controller does not put many documents in this easy to use location
 // we will need to use browser automation to download the documents from the state controller website
+// budgets documents https://ebudget.ca.gov/
+// budget use DEPARTMENT OF FINANCE UNIFORM CODES or budget codes
 
 # Define target directories
 TARGET_DIR="./src/data/budget_docs"

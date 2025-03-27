@@ -19,10 +19,11 @@
  *    b. Extract department information
  *    c. Calculate salary distributions
  *    d. match the CSV file name with the name, aliases or canonicalName field in departments.json. ignore the number as it is an entity id and not used. 
- *    e. may never create new department records, only update existing ones
- *    f. may not update parent_agency field or the budgetCode field
- *    g. log the differences between the original and updated record
- *    h. Log department details
+ *    e. for every match where there is a diff of the json record and the new data, ask if user wants to update the json record with the new data.
+ *    f. may never create new department records, only update existing ones
+ *    g. may not update parent_agency field or the budgetCode field
+ *    h. log the differences between the original and updated record
+ *    i. Log department details
  *    i. match _note with the csv file name or append to the existing note
  *    j. save the changes using the CSV filename annual year
  *    k. continue until all files are processed
@@ -93,117 +94,6 @@ const normalizeDepartmentData = (dept) => {
   }
   
   return normalized;
-};
-
-// Data Structure Validation
-const validateDepartmentUpdate = (dept, update, log) => {
-  if (!dept) {
-    log('Error: Department object is null or undefined', 'error');
-    return false;
-  }
-
-  // Ensure required structure exists
-  if (!dept.headCount) dept.headCount = { yearly: {} };
-  if (!dept.wages) dept.wages = { yearly: {} };
-  if (!dept.salaryDistribution) dept.salaryDistribution = { yearly: {} };
-  
-  // Validate update data
-  if (update.headCount && typeof update.headCount !== 'object') {
-    log('Error: Invalid headCount structure in update', 'error');
-    return false;
-  }
-  
-  if (update.wages && typeof update.wages !== 'object') {
-    log('Error: Invalid wages structure in update', 'error');
-    return false;
-  }
-  
-  // Validate salary distribution structure
-  if (update.salaryDistribution) {
-    if (!update.salaryDistribution.yearly || typeof update.salaryDistribution.yearly !== 'object') {
-      log('Error: Invalid salaryDistribution.yearly structure', 'error');
-      return false;
-    }
-
-    // Check each year's distribution
-    for (const [year, distribution] of Object.entries(update.salaryDistribution.yearly)) {
-      if (!Array.isArray(distribution)) {
-        log(`Error: Invalid salary distribution for year ${year}: not an array`, 'error');
-        return false;
-      }
-
-      // Validate each range in the distribution
-      for (const range of distribution) {
-        if (!range || typeof range !== 'object') {
-          log(`Error: Invalid range object in salary distribution for year ${year}`, 'error');
-          return false;
-        }
-
-        if (!Array.isArray(range.range) || range.range.length !== 2) {
-          log(`Error: Invalid range array in salary distribution for year ${year}`, 'error');
-          return false;
-        }
-
-        if (typeof range.count !== 'number' || range.count < 0) {
-          log(`Error: Invalid count in salary distribution for year ${year}`, 'error');
-          return false;
-        }
-
-        // Validate range matches predefined ranges
-        const isValidRange = SALARY_RANGES.some(([min, max]) => 
-          range.range[0] === min && range.range[1] === max
-        );
-
-        if (!isValidRange) {
-          log(`Error: Invalid salary range ${range.range[0]}-${range.range[1]} in year ${year}`, 'error');
-          return false;
-        }
-      }
-    }
-  }
-  
-  return true;
-};
-
-// Safe Department Update
-const safeUpdateDepartment = (dept, update, log) => {
-  try {
-    // Create backup
-    const backup = backupDepartment(dept);
-    
-    // Prevent updates to critical fields
-    const protectedFields = ['name', 'canonicalName', 'aliases'];
-    const hasProtectedFields = Object.keys(update).some(field => protectedFields.includes(field));
-    
-    if (hasProtectedFields) {
-      log('Error: Attempted to update protected fields (name, canonicalName, aliases)', 'error');
-      return false;
-    }
-    
-    // Validate structure
-    if (!validateDepartmentUpdate(dept, update, log)) {
-      return false;
-    }
-    
-    // Apply update
-    Object.assign(dept, update);
-    
-    // Validate result
-    const validation = validateDepartmentStructure(dept);
-    if (!validation.isValid) {
-      log(`Validation failed: ${validation.errors.join(', ')}`, 'error');
-      // Restore backup
-      Object.assign(dept, backup);
-      return false;
-    }
-    
-    return true;
-  } catch (error) {
-    log(`Error updating department: ${error.message}`, 'error');
-    // Restore backup
-    Object.assign(dept, backup);
-    return false;
-  }
 };
 
 // Validation Functions
@@ -286,11 +176,6 @@ const createValidationLogger = (log) => {
   };
 };
 
-// Data Recovery
-const backupDepartment = (dept) => {
-  return JSON.parse(JSON.stringify(dept));
-};
-
 // Configuration - Fixed paths relative to project root
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const CSV_DIR = path.join(PROJECT_ROOT, 'src/data/workforce');
@@ -306,6 +191,16 @@ const extractAnnualYear = (filename) => {
     throw new Error(`Could not extract annual year from filename: ${filename}`);
   }
   return yearMatch[1];
+};
+
+// Function to extract entity code from CSV filename
+const extractEntityCode = (filename) => {
+  // Extract first 4 digits from filename (e.g., "1234_workforce_2023.csv" -> "1234")
+  const entityMatch = filename.match(/^(\d{4})_/);
+  if (!entityMatch) {
+    throw new Error(`Could not extract entity code from filename: ${filename}`);
+  }
+  return entityMatch[1];
 };
 
 // Define the salary ranges to match SalaryRange interface exactly
@@ -361,6 +256,10 @@ const setupLogging = () => {
 // Utility functions
 const formatCurrency = (amount) => {
   return Math.round(parseFloat(amount || 0));
+};
+
+const formatNumber = (num) => {
+  return parseFloat(num || 0).toFixed(1);
 };
 
 const _readDepartmentsJson = async () => {
@@ -440,8 +339,8 @@ const calculateSalaryDistribution = (rows, log) => {
     }
   });
 
-  // Calculate average salary
-  const averageSalary = totalCount > 0 ? totalSalary / totalCount : null;
+  // Calculate average salary and round to 1 decimal place
+  const averageSalary = totalCount > 0 ? Number((totalSalary / totalCount).toFixed(1)) : null;
 
   // Validate total count matches
   const distributionTotal = distribution.reduce((sum, range) => sum + range.count, 0);
@@ -525,6 +424,9 @@ function normalizeForMatching(name) {
     .replace(/\b(workers|worker's)\s+compensation\b/g, 'workers compensation') // Normalize workers compensation
     .replace(/\b(department|office|board|commission|authority|agency|council|panel)\b/g, '') // Remove common entity types
     .replace(/\b(california|state)\b/g, '') // Remove state references
+    .replace(/\b(csu|california state university|california state|state university)\b/g, 'csu') // Normalize CSU
+    .replace(/\b(uc|university of california)\b/g, 'uc') // Normalize UC
+    .replace(/\b(san francisco|los angeles|san diego|sacramento|fresno|long beach|fullerton|hayward|northridge|pomona|san bernardino|san jose|san luis obispo|san marcos|sonoma|stanislaus|chico|dominguez hills|east bay|monterey bay|northridge|pomona|sacramento|san bernardino|san diego|san francisco|san jose|san luis obispo|san marcos|sonoma|stanislaus)\b/g, '') // Remove campus names
     .trim();
 }
 
@@ -573,6 +475,18 @@ function getNameVariations(name) {
   // Add variations for workers compensation
   if (normalized.includes('workers compensation')) {
     variations.add(normalized.replace(/\b(workers|worker's)\s+compensation\b/g, 'workers compensation'));
+  }
+
+  // Add variations for universities - now with strict separation between CSU and UC
+  if (normalized.includes('csu') || normalized.includes('california state university') || normalized.includes('state university')) {
+    variations.add('csu');
+    variations.add('california state university');
+    variations.add('state university');
+    // Don't add UC variations for CSU
+  } else if (normalized.includes('uc') || normalized.includes('university of california')) {
+    variations.add('uc');
+    variations.add('university of california');
+    // Don't add CSU variations for UC
   }
 
   // Add variations without common entity types
@@ -638,32 +552,13 @@ function calculateMatchScore(str1, str2) {
   return score;
 }
 
-// eslint-disable-next-line no-unused-vars
-let matchType = 'partialNameMatch';
-
-// eslint-disable-next-line no-unused-vars
-let validationLogger;
-
-// Used in:
-// 1. Logging salary distribution calculation results
-// 2. Creating updateData object for department
-// 3. Validating salary distribution structure
-// eslint-disable-next-line no-unused-vars
-const { distribution: salaryDistribution, averageSalary: calculatedAverageSalary } = calculateSalaryDistribution(employerRecords, log);
-
-// eslint-disable-next-line no-unused-vars
-const annualYear = extractAnnualYear(filename);
-
 // Function to calculate match score between CSV name and department
-const calculateDepartmentMatchScore = (csvName, department) => {
-  // eslint-disable-next-line no-unused-vars
-  let matchType = 'partialNameMatch';
-  
+const calculateDepartmentMatchScore = (csvName, department, _entityCode) => {
   const cleanCsvName = csvName.trim().toLowerCase();
   const nameVariations = getNameVariations(cleanCsvName);
   const deptVariations = getNameVariations(department.name.toLowerCase());
   
-  // Check exact matches first (case insensitive)
+  // Check exact matches (case insensitive)
   if (department.name.toLowerCase() === cleanCsvName) {
     return { totalScore: 100, details: { exactNameMatch: 100, canonicalNameMatch: 0, aliasMatch: 0, partialNameMatch: 0 } };
   }
@@ -680,17 +575,26 @@ const calculateDepartmentMatchScore = (csvName, department) => {
   
   // Calculate best partial match score
   let bestScore = 0;
-  let bestMatch = null;
+  let _bestMatch = null;
   
   for (const nameVar of nameVariations) {
     for (const deptVar of deptVariations) {
       const score = calculateMatchScore(nameVar, deptVar);
       if (score > bestScore) {
         bestScore = score;
-        // eslint-disable-next-line no-unused-vars
-        bestMatch = deptVar;
+        _bestMatch = deptVar;
       }
     }
+  }
+  
+  // Penalize mismatches between CSU and UC
+  if ((cleanCsvName.includes('csu') || cleanCsvName.includes('state university')) && 
+      (department.name.toLowerCase().includes('uc') || department.name.toLowerCase().includes('university of california'))) {
+    bestScore = 0; // Force no match
+  }
+  if ((cleanCsvName.includes('uc') || cleanCsvName.includes('university of california')) && 
+      (department.name.toLowerCase().includes('csu') || department.name.toLowerCase().includes('state university'))) {
+    bestScore = 0; // Force no match
   }
   
   return {
@@ -705,9 +609,9 @@ const calculateDepartmentMatchScore = (csvName, department) => {
 };
 
 // Function to find department by name with improved matching
-const findDepartmentByName = (name, departments, log) => {
-  // eslint-disable-next-line no-unused-vars
+const findDepartmentByName = (name, departments, log, entityCode) => {
   let bestMatch = null;
+  let bestScoreObj = null;
   
   const _matchType = 'exact';
   const _nameVariations = getNameVariations(name);
@@ -721,32 +625,136 @@ const findDepartmentByName = (name, departments, log) => {
   
   if (exactMatch) {
     log(`Found exact match for department: ${exactMatch.name}`);
-    return exactMatch;
+    log(`Match Details:`);
+    log(`- Department Name: ${exactMatch.name}`);
+    log(`- Canonical Name: ${exactMatch.canonicalName}`);
+    log(`- Aliases: ${exactMatch.aliases?.join(', ') || 'None'}`);
+    log(`- Budget Code: ${exactMatch.budgetCode || 'None'}`);
+    log(`- Entity Code: ${entityCode || 'None'}`);
+    log(`- Source Data:`);
+    log(`  CSV Name: "${name}"`);
+    log(`  JSON Name: "${exactMatch.name}"`);
+    log(`  JSON Canonical: "${exactMatch.canonicalName}"`);
+    log(`  JSON Aliases: ${exactMatch.aliases?.map(a => `"${a}"`).join(', ') || 'None'}`);
+    log(`  CSV Entity Code: "${entityCode}"`);
+    return { department: exactMatch, isPartialMatch: false };
   }
   
   // Then try fuzzy matching with better scoring
   let bestScore = 0;
   
   for (const dept of departments) {
-    const score = calculateDepartmentMatchScore(name, dept);
+    const score = calculateDepartmentMatchScore(name, dept, entityCode);
     if (score.totalScore > bestScore && score.totalScore > 80) {
       bestScore = score.totalScore;
       bestMatch = dept;
+      bestScoreObj = score;
     }
   }
   
   if (bestMatch) {
-    log(`Found fuzzy match for department: ${bestMatch.name} (score: ${bestScore})`);
-    return bestMatch;
+    log(`Found fuzzy match for department: ${bestMatch.name} (score: ${formatNumber(bestScore)}%)`);
+    log(`Match Details:`);
+    log(`- Department Name: ${bestMatch.name}`);
+    log(`- Canonical Name: ${bestMatch.canonicalName}`);
+    log(`- Aliases: ${bestMatch.aliases?.join(', ') || 'None'}`);
+    log(`- Budget Code: ${bestMatch.budgetCode || 'None'}`);
+    log(`- Entity Code: ${entityCode || 'None'}`);
+    log(`- Source Data:`);
+    log(`  CSV Name: "${name}"`);
+    log(`  JSON Name: "${bestMatch.name}"`);
+    log(`  JSON Canonical: "${bestMatch.canonicalName}"`);
+    log(`  JSON Aliases: ${bestMatch.aliases?.map(a => `"${a}"`).join(', ') || 'None'}`);
+    log(`  CSV Entity Code: "${entityCode}"`);
+    log(`- Match Score Breakdown:`);
+    Object.entries(bestScoreObj.details).forEach(([type, score]) => {
+      log(`  * ${type}: ${formatNumber(score)}%`);
+    });
+    return { department: bestMatch, isPartialMatch: true };
   }
   
   log(`No match found for department: ${name}`, 'error');
   return null;
 };
 
+// Function to compare department data and ask for user confirmation
+const compareAndConfirmUpdate = (department, updateData, log, isPartialMatch, employerName) => {
+  const differences = [];
+  
+  // Compare entity code
+  if (updateData.entityCode && department.entityCode !== updateData.entityCode) {
+    differences.push(`Entity Code: ${department.entityCode || 'None'} → ${updateData.entityCode}`);
+  }
+  
+  // Compare headCount
+  if (updateData.headCount?.yearly) {
+    Object.entries(updateData.headCount.yearly).forEach(([year, count]) => {
+      const currentCount = department.headCount?.yearly?.[year];
+      if (currentCount !== count) {
+        differences.push(`HeadCount for ${year}: ${currentCount} → ${count}`);
+      }
+    });
+  }
+  
+  // Compare wages
+  if (updateData.wages?.yearly) {
+    Object.entries(updateData.wages.yearly).forEach(([year, amount]) => {
+      const currentAmount = department.wages?.yearly?.[year];
+      if (currentAmount !== amount) {
+        differences.push(`Wages for ${year}: ${currentAmount} → ${amount}`);
+      }
+    });
+  }
+  
+  // Compare average salary with epsilon for floating point comparison
+  const EPSILON = 0.0001; // Small value for floating point comparison
+  if (updateData.averageSalary !== undefined && 
+      department.averageSalary !== undefined && 
+      Math.abs(updateData.averageSalary - department.averageSalary) > EPSILON) {
+    differences.push(`Average Salary: ${formatNumber(department.averageSalary)} → ${formatNumber(updateData.averageSalary)}`);
+  }
+  
+  // Compare salary distribution
+  if (updateData.salaryDistribution?.yearly) {
+    Object.entries(updateData.salaryDistribution.yearly).forEach(([year, distribution]) => {
+      const currentDistribution = department.salaryDistribution?.yearly?.[year];
+      if (JSON.stringify(currentDistribution) !== JSON.stringify(distribution)) {
+        differences.push(`Salary Distribution for ${year}: Updated`);
+      }
+    });
+  }
+
+  // Add alias update information for partial matches
+  if (isPartialMatch && !department.aliases?.some(alias => alias.toLowerCase() === employerName.toLowerCase())) {
+    differences.push(`Aliases: Adding "${employerName}" to department aliases`);
+  }
+  
+  if (differences.length === 0) {
+    log(`No differences found for department: ${department.name}`);
+    return false;
+  }
+  
+  // Display differences and ask for confirmation
+  log(`\nDifferences found for department: ${department.name}`);
+  differences.forEach(diff => log(`- ${diff}`));
+  
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  
+  return new Promise((resolve) => {
+    readline.question('\nDo you want to update this department? (y/n): ', (answer) => {
+      readline.close();
+      resolve(answer.toLowerCase() === 'y');
+    });
+  });
+};
+
 // Main execution
 const main = async () => {
   let log;
+  let logFile;
   // eslint-disable-next-line no-unused-vars
   let validationLogger = createValidationLogger(log);
   let departmentsData;
@@ -759,7 +767,12 @@ const main = async () => {
   
   try {
     // Step 1: Initial Setup
-    log = setupLogging().log;
+    const loggingSetup = setupLogging();
+    log = loggingSetup.log;
+    logFile = loggingSetup.logFile;
+    
+    // Initialize processedDepartments map
+    const processedDepartments = new Map();
     
     // Step 1a: Load departments.json
     log('Step 1a: Loading departments.json...');
@@ -815,12 +828,31 @@ const main = async () => {
     
     log(`Found ${files.length} CSV files: ${files.map(f => path.basename(f)).join(', ')}`);
     
+    // Initialize processedDepartments with all CSV employers
+    for (const file of files) {
+      const _filename = path.basename(file);
+      const records = parse(fs.readFileSync(file, 'utf8'), {
+        columns: true,
+        skip_empty_lines: true,
+        trim: true
+      });
+      
+      const employerNames = [...new Set(records.map(record => record.EmployerName))];
+      for (const employerName of employerNames) {
+        processedDepartments.set(employerName, {
+          updated: false,
+          reason: 'Failed to update',
+          details: 'No matching CSV data found'
+        });
+      }
+    }
+    
     // Process each file
     for (const file of files) {
-      const filename = path.basename(file);
-      // eslint-disable-next-line no-unused-vars
-      const annualYear = extractAnnualYear(filename);
-      log(`\nProcessing file: ${filename} (Annual Year: ${annualYear})`);
+      const _filename = path.basename(file);
+      const annualYear = extractAnnualYear(_filename);
+      const entityCode = extractEntityCode(_filename);
+      log(`\nProcessing file: ${_filename} (Annual Year: ${annualYear}, Entity Code: ${entityCode})`);
       
       // Step 2a: Read and parse CSV
       log('Step 2a: Reading and parsing CSV file...');
@@ -832,7 +864,7 @@ const main = async () => {
       });
       
       if (!Array.isArray(records) || records.length === 0) {
-        log(`No valid records found in ${filename}`, 'error');
+        log(`No valid records found in ${_filename}`, 'error');
         continue;
       }
       
@@ -857,16 +889,17 @@ const main = async () => {
         
         // Step 2d: Calculate salary distribution
         log(`Step 2d: Calculating salary distribution for ${employerName}...`);
-        // eslint-disable-next-line no-unused-vars
         const { distribution: salaryDistribution, averageSalary: calculatedAverageSalary } = calculateSalaryDistribution(employerRecords, log);
         
-        // Step 2e: Find department by name/aliases/canonicalName
+        // Step 2e: Find department by name/aliases/canonicalName/entityCode
         log('Step 2e: Finding department...');
-        const department = findDepartmentByName(employerName, departmentsData.departments, log);
-        if (!department) {
+        const matchResult = findDepartmentByName(employerName, departmentsData.departments, log, entityCode);
+        if (!matchResult) {
           log(`No matching department found for ${employerName}`, 'error');
           continue;
         }
+        
+        const { department, isPartialMatch } = matchResult;
         
         // Step 2f: Update department data
         log(`Step 2f: Updating department data for ${department.name}...`);
@@ -881,23 +914,24 @@ const main = async () => {
             return sum + wages + benefits;
           }, 0);
           
-          // Calculate headcount
-          const headCount = employerRecords.length;
+          // Calculate headcount from salary distribution
+          const headCount = salaryDistribution.reduce((sum, range) => sum + range.count, 0);
           
           // Log salary distribution calculation results
           log('Salary Distribution Calculation Results:');
           log(`Total Records: ${employerRecords.length}`);
-        log(`Total Compensation: $${formatCurrency(totalCompensation)}`);
+          log(`Total Compensation: $${formatCurrency(totalCompensation)}`);
           log(`Average Salary: $${formatCurrency(calculatedAverageSalary)}`);
+          log(`Headcount from Distribution: ${headCount}`);
           
           if (salaryDistribution && salaryDistribution.length > 0) {
             log('Distribution Ranges:');
             salaryDistribution.forEach(range => {
               const [min, max] = range.range;
-          const displayRange = min === 0 ? "Under 20k" :
-                              min === 500000 ? "500k-10M" :
-                              min >= 1000000 ? `${(min/1000000).toFixed(0)}M-${(max/1000000).toFixed(0)}M` :
-                              `${min/1000}k-${max/1000}k`;
+              const displayRange = min === 0 ? "Under 20k" :
+                                  min === 500000 ? "500k-10M" :
+                                  min >= 1000000 ? `${(min/1000000).toFixed(1)}M-${(max/1000000).toFixed(1)}M` :
+                                  `${(min/1000).toFixed(1)}k-${(max/1000).toFixed(1)}k`;
               log(`  ${displayRange}: ${range.count} employees`);
             });
           } else {
@@ -921,12 +955,9 @@ const main = async () => {
               yearly: {
                 [annualYear]: salaryDistribution
               }
-            }
+            },
+            entityCode: entityCode
           };
-          
-          // Log the complete update data structure
-          log('\nUpdate Data Structure:');
-          log(JSON.stringify(updateData, null, 2));
           
           // Validate the update data structure before applying
           if (!salaryDistribution || !Array.isArray(salaryDistribution) || salaryDistribution.length === 0) {
@@ -934,21 +965,75 @@ const main = async () => {
             return false;
           }
           
-          // Update department data safely
-          if (safeUpdateDepartment(department, updateData, log)) {
+          // Compare and confirm update
+          const shouldUpdate = await compareAndConfirmUpdate(department, updateData, log, isPartialMatch, employerName);
+          
+          // Update department data directly if confirmed
+          if (shouldUpdate) {
+            // If this is a partial match, add the CSV name to aliases if not already present
+            if (isPartialMatch && !department.aliases?.some(alias => alias.toLowerCase() === employerName.toLowerCase())) {
+              if (!department.aliases) {
+                department.aliases = [];
+              }
+              department.aliases.push(employerName);
+              log(`Added "${employerName}" to department aliases`);
+            }
+            
+            // Directly update the department data
+            if (updateData.headCount?.yearly) {
+              department.headCount = department.headCount || { yearly: {} };
+              Object.assign(department.headCount.yearly, updateData.headCount.yearly);
+            }
+            
+            if (updateData.wages?.yearly) {
+              department.wages = department.wages || { yearly: {} };
+              Object.assign(department.wages.yearly, updateData.wages.yearly);
+            }
+            
+            if (updateData.averageSalary !== undefined) {
+              department.averageSalary = Number(updateData.averageSalary.toFixed(1));
+            }
+            
+            if (updateData.salaryDistribution?.yearly) {
+              department.salaryDistribution = department.salaryDistribution || { yearly: {} };
+              Object.assign(department.salaryDistribution.yearly, updateData.salaryDistribution.yearly);
+            }
+            
+            // Handle note matching
+            const newNote = `Salary data from ${_filename}`;
+            if (!department._note) {
+              department._note = newNote;
+            } else if (!department._note.includes(newNote)) {
+              department._note = `${department._note}, ${newNote}`;
+            }
+            
+            // Update entity code if not present or different
+            if (updateData.entityCode && (!department.entityCode || department.entityCode !== updateData.entityCode)) {
+              department.entityCode = updateData.entityCode;
+              log(`Updated entity code to ${updateData.entityCode}`);
+            }
+            
+            // Update the processedDepartments tracking
+            const processed = processedDepartments.get(employerName);
+            if (processed) {
+              processed.updated = true;
+              processed.reason = 'Successfully updated';
+              processed.details = `Updated with data from ${_filename}`;
+            }
+            
             totalUpdatedDepartments++;
             log(`Successfully updated department data for ${department.name}`);
-    } else {
-            log(`Failed to update department data for ${department.name}`, 'error');
+            
+            // Write to file immediately after each successful update
+            try {
+              fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(departmentsData, null, 2));
+              log(`Successfully wrote updated departments.json`);
+            } catch (error) {
+              log(`Error writing departments.json: ${error.message}`, 'error');
+            }
+          } else {
+            log(`Skipping update for department: ${department.name}`);
             continue;
-          }
-          
-          // Handle note matching
-          const newNote = `Salary data from ${filename}`;
-          if (!department._note) {
-            department._note = newNote;
-          } else if (!department._note.includes(newNote)) {
-            department._note = `${department._note}, ${newNote}`;
           }
           
         } catch (error) {
@@ -990,28 +1075,6 @@ const main = async () => {
       details: ''
     }));
 
-    // Create a map of processed departments
-    const processedDepartments = new Map();
-    for (const file of files) {
-      const filename = path.basename(file);
-      // eslint-disable-next-line no-unused-vars
-      const annualYear = extractAnnualYear(filename);
-      const records = parse(fs.readFileSync(file, 'utf8'), {
-        columns: true,
-        skip_empty_lines: true,
-        trim: true
-      });
-      
-      const employerNames = [...new Set(records.map(record => record.EmployerName))];
-      for (const employerName of employerNames) {
-        processedDepartments.set(employerName, {
-          updated: false,
-          reason: 'Failed to update',
-          details: 'No matching CSV data found'
-        });
-      }
-    }
-
     // Update the status of processed departments
     for (const dept of allDepartments) {
       const processed = processedDepartments.get(dept.name);
@@ -1037,15 +1100,21 @@ const main = async () => {
     }, {});
 
     // Build summary
-    summary.push(`\nUpdated Departments: ${updatedDepartments.length}`);
+    summary.push(`\nUpdated Departments (${updatedDepartments.length}):`);
+    summary.push('----------------------------------------');
+    updatedDepartments.forEach(d => {
+      summary.push(`${d.budgetCode}_${d.name}`);
+      if (d.details) {
+        summary.push(`  Details: ${d.details}`);
+      }
+    });
 
-    summary.push('\nNot Updated Departments:');
-    summary.push(`Total: ${notUpdatedDepartments.length}`);
+    summary.push(`\nNot Updated Departments (${notUpdatedDepartments.length}):`);
+    summary.push('----------------------------------------');
 
     // Add each group with its departments
     Object.entries(groupedNotUpdated).forEach(([reason, departments]) => {
       summary.push(`\n${reason}: ${departments.length} departments`);
-      summary.push('----------------------------------------');
       departments.forEach(d => {
         summary.push(`${d.budgetCode}_${d.name}`);
         if (d.details) {
@@ -1057,7 +1126,7 @@ const main = async () => {
     // Write summary to both console and log file
     const summaryText = summary.join('\n');
     console.log(summaryText);
-    fs.appendFileSync(log.logFile, summaryText + '\n');
+    fs.appendFileSync(logFile, summaryText + '\n');
 
     // Step 3d: Final validation check
     log('\nPerforming final validation check...');
@@ -1074,16 +1143,16 @@ const main = async () => {
     try {
       fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(departmentsData, null, 2));
       log('Successfully wrote updated departments.json');
-  } catch (error) {
+    } catch (error) {
       log(`Error writing departments.json: ${error.message}`, 'error');
-    process.exit(1);
-  }
+      process.exit(1);
+    }
 
     log('\nProcessing complete');
 
   } catch (error) {
     log(`Error in main execution: ${error.message}`, 'error');
-  process.exit(1);
+    process.exit(1);
   }
 };
 
