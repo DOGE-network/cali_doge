@@ -1,7 +1,7 @@
 ---
 
 name: "California Natural Resources Agency"
-code: 0540
+budgetCode: 0540
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

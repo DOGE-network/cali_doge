@@ -5,15 +5,15 @@
  * 
  * Purpose:
  * - Updates department hierarchy based on verification log
- * - Sets org_level to (parent_agency.org_level - 1) for departments with specific parent agencies
- * - Never modifies org_level for departments with level 0 or 1 (locked)
+ * - Sets orgLevel to (parent_agency.orgLevel - 1) for departments with specific parent agencies
+ * - Never modifies orgLevel for departments with level 0 or 1 (locked)
  * - Updates parent agencies to match CSV data
  * - Adds new aliases from verification log
  * - Generates detailed report of changes
  * 
  * Rules:
  * - Org levels 0 and 1 are locked and cannot be modified
- * - New org_level is calculated as (parent_agency.org_level - 1)
+ * - New orgLevel is calculated as (parent_agency.orgLevel - 1)
  * - If calculated level would be 0 or 1, current level is preserved
  * 
  * Input:
@@ -86,13 +86,13 @@ function parseVerificationLog(logContent) {
       currentData.status = line.replace('Status: ', '').trim();
     } else if (line.startsWith('  CSV name: ')) {
       currentData.csvData.name = line.replace('  CSV name: ', '').trim();
-    } else if (line.startsWith('  CSV org_level: ')) {
-      currentData.csvData.org_level = parseInt(line.replace('  CSV org_level: ', '').trim());
+    } else if (line.startsWith('  CSV orgLevel: ')) {
+      currentData.csvData.orgLevel = parseInt(line.replace('  CSV orgLevel: ', '').trim());
     } else if (line.startsWith('  CSV parent_agency: ')) {
       currentData.csvData.parent_agency = line.replace('  CSV parent_agency: ', '').trim();
       currentData.csvData.parent_agency = [currentData.csvData.parent_agency];
-    } else if (line.startsWith('  JSON org_level: ')) {
-      currentData.jsonData.org_level = parseInt(line.replace('  JSON org_level: ', '').trim());
+    } else if (line.startsWith('  JSON orgLevel: ')) {
+      currentData.jsonData.orgLevel = parseInt(line.replace('  JSON orgLevel: ', '').trim());
     } else if (line.startsWith('  JSON parent_agency: ')) {
       currentData.jsonData.parent_agency = line.replace('  JSON parent_agency: ', '').trim();
       currentData.jsonData.parent_agency = [currentData.jsonData.parent_agency];
@@ -114,7 +114,7 @@ function findParentAgencyLevel(parent_agency, departments) {
   const parentDept = departments.find(d => d.canonicalName === parent_agency);
   if (!parentDept) return null;
   
-  return parentDept.org_level;
+  return parentDept.orgLevel;
 }
 
 // Function to calculate new org level based on parent
@@ -156,18 +156,18 @@ function processDepartments() {
         dept.parent_agency = verifData.csvData.parent_agency;
       }
 
-      // Update org_level based on parent agency's level
+      // Update orgLevel based on parent agency's level
       if (dept.parent_agency?.[0]) {
         const parentLevel = findParentAgencyLevel(dept.parent_agency[0], departmentsData.departments);
         if (parentLevel !== null) {
-          const newLevel = calculateNewOrgLevel(parentLevel, dept.org_level);
-          if (dept.org_level !== newLevel) {
+          const newLevel = calculateNewOrgLevel(parentLevel, dept.orgLevel);
+          if (dept.orgLevel !== newLevel) {
             changes.push({
-              field: 'org_level',
-              old: dept.org_level,
+              field: 'orgLevel',
+              old: dept.orgLevel,
               new: newLevel
             });
-            dept.org_level = newLevel;
+            dept.orgLevel = newLevel;
           }
         }
       }

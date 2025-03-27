@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import departmentsData from '@/data/departments.json';
-import type { DepartmentData, DepartmentsJSON, NonNegativeInteger, AnnualYear } from '@/types/department';
+import type { DepartmentData, DepartmentsJSON, NonNegativeInteger, AnnualYear, TenureRange, SalaryRange, AgeRange } from '@/types/department';
 
 export async function GET() {
   // Type-safe cast of departments data
@@ -10,21 +10,21 @@ export async function GET() {
   
   const departments = typedData.departments.map((dept: DepartmentData) => {
     // Normalize the department data
-    const normalized = {
+    let normalized = {
       ...dept,
       id: dept.slug,
       date: new Date().toISOString(), // Use current date as fallback
       excerpt: dept.keyFunctions || '',
       workforceName: dept.name, // Just use the name as workforceName since DepartmentData doesn't have workforceName
-      hasWorkforceData: Boolean(dept.workforce && (
-        (dept.workforce.headCount?.yearly && Object.keys(dept.workforce.headCount.yearly).length > 0) ||
-        (dept.workforce.wages?.yearly && Object.keys(dept.workforce.wages.yearly).length > 0) ||
-        dept.workforce.averageTenureYears !== null ||
-        dept.workforce.averageSalary !== null ||
-        dept.workforce.averageAge !== null ||
-        (dept.workforce.tenureDistribution && Object.keys(dept.workforce.tenureDistribution).length > 0) ||
-        (dept.workforce.salaryDistribution && Object.keys(dept.workforce.salaryDistribution).length > 0) ||
-        (dept.workforce.ageDistribution && Object.keys(dept.workforce.ageDistribution).length > 0)
+      hasWorkforceData: Boolean(dept && (
+        (dept.headCount?.yearly && Object.keys(dept.headCount.yearly).length > 0) ||
+        (dept.wages?.yearly && Object.keys(dept.wages.yearly).length > 0) ||
+        dept.averageTenureYears !== null ||
+        dept.averageSalary !== null ||
+        dept.averageAge !== null ||
+        (dept.tenureDistribution?.yearly && Object.keys(dept.tenureDistribution.yearly).length > 0) ||
+        (dept.salaryDistribution?.yearly && Object.keys(dept.salaryDistribution.yearly).length > 0) ||
+        (dept.ageDistribution?.yearly && Object.keys(dept.ageDistribution.yearly).length > 0)
       ))
     };
 
@@ -40,29 +40,18 @@ export async function GET() {
     }
     
     // Ensure workforce data exists and normalize its structure
-    if (!normalized.workforce) {
-      normalized.workforce = {
-        headCount: { yearly: {} as Record<AnnualYear, number | {}> },
-        wages: { yearly: {} as Record<AnnualYear, number | {}> },
-        averageTenureYears: null,
-        averageSalary: null,
-        averageAge: null,
-        tenureDistribution: [],
-        salaryDistribution: [],
-        ageDistribution: []
-      };
-    } else {
+    if (normalized.hasWorkforceData) {
       // Ensure all required properties exist with defaults
-      normalized.workforce = {
-        ...normalized.workforce,
-        headCount: normalized.workforce.headCount || { yearly: {} as Record<AnnualYear, number | {}> },
-        wages: normalized.workforce.wages || { yearly: {} as Record<AnnualYear, number | {}> },
-        averageTenureYears: normalized.workforce.averageTenureYears || null,
-        averageSalary: normalized.workforce.averageSalary || null,
-        averageAge: normalized.workforce.averageAge || null,
-        tenureDistribution: normalized.workforce.tenureDistribution || [],
-        salaryDistribution: normalized.workforce.salaryDistribution || [],
-        ageDistribution: normalized.workforce.ageDistribution || []
+      normalized = {
+        ...normalized,
+        headCount: normalized.headCount || { yearly: {} as Record<AnnualYear, number | {}> },
+        wages: normalized.wages || { yearly: {} as Record<AnnualYear, number | {}> },
+        averageTenureYears: normalized.averageTenureYears || null,
+        averageSalary: normalized.averageSalary || null,
+        averageAge: normalized.averageAge || null,
+        tenureDistribution: normalized.tenureDistribution || { yearly: {} as Record<AnnualYear, TenureRange[]> },
+        salaryDistribution: normalized.salaryDistribution || { yearly: {} as Record<AnnualYear, SalaryRange[]> },
+        ageDistribution: normalized.ageDistribution || { yearly: {} as Record<AnnualYear, AgeRange[]> }
       };
     }
     

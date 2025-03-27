@@ -23,9 +23,9 @@
  * - generateVerificationLog: Creates verification log
  * 
  * Hierarchy Rules:
- * - Only 1 department at org_level:0
- * - 3 departments at org_level:1
- * - For org_level:0 or 1 mismatches:
+ * - Only 1 department at orgLevel:0
+ * - 3 departments at orgLevel:1
+ * - For orgLevel:0 or 1 mismatches:
  *   - Skip if name/alias doesn't match level 0/1 records
  *   - Log mismatch if name/alias matches but hierarchy differs
  */
@@ -75,10 +75,10 @@ function parseReportLog(logPath) {
       currentDepartment.status = line.replace('Status: ', '');
     } else if (currentDepartment && line.startsWith('- CSV name: ')) {
       currentDepartment.details.csvName = line.replace('- CSV name: ', '');
-    } else if (currentDepartment && line.startsWith('- CSV org_level: ')) {
-      currentDepartment.details.csvOrgLevel = parseInt(line.replace('- CSV org_level: ', ''));
-    } else if (currentDepartment && line.startsWith('- JSON org_level: ')) {
-      currentDepartment.details.jsonOrgLevel = parseInt(line.replace('- JSON org_level: ', ''));
+    } else if (currentDepartment && line.startsWith('- CSV orgLevel: ')) {
+      currentDepartment.details.csvOrgLevel = parseInt(line.replace('- CSV orgLevel: ', ''));
+    } else if (currentDepartment && line.startsWith('- JSON orgLevel: ')) {
+      currentDepartment.details.jsonOrgLevel = parseInt(line.replace('- JSON orgLevel: ', ''));
     } else if (currentDepartment && line.startsWith('- CSV parent_agency: ')) {
       currentDepartment.details.csvParent_agency = line.replace('- CSV parent_agency: ', '');
     } else if (currentDepartment && line.startsWith('- JSON parent_agency: ')) {
@@ -104,9 +104,9 @@ function verifyHierarchy(department, departmentsJson) {
   
   // Skip if org levels don't match
   if (csvOrgLevel !== jsonOrgLevel) {
-    // For org_level 0 or 1, check if name/alias matches
+    // For orgLevel 0 or 1, check if name/alias matches
     if (csvOrgLevel <= 1 || jsonOrgLevel <= 1) {
-      const levelRecords = departmentsJson.departments.filter(d => d.org_level <= 1);
+      const levelRecords = departmentsJson.departments.filter(d => d.orgLevel <= 1);
       const nameMatches = levelRecords.some(d => 
         d.canonicalName === department.name || 
         (d.aliases && d.aliases.includes(department.name))
@@ -180,8 +180,8 @@ function generateVerificationLog(results) {
       logContent.push(`- ${result.verification.message}`);
       logContent.push('Data comparison:');
       logContent.push(`  CSV name: ${result.details.csvName}`);
-      logContent.push(`  CSV org_level: ${result.details.csvOrgLevel}`);
-      logContent.push(`  JSON org_level: ${result.details.jsonOrgLevel}`);
+      logContent.push(`  CSV orgLevel: ${result.details.csvOrgLevel}`);
+      logContent.push(`  JSON orgLevel: ${result.details.jsonOrgLevel}`);
       logContent.push(`  CSV parent_agency: ${result.details.csvParent_agency}`);
       logContent.push(`  JSON parent_agency: ${result.details.jsonParent_agency}`);
     }

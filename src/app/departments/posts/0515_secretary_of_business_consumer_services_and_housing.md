@@ -1,6 +1,6 @@
 ---
 name: "Secretary of Business, Consumer Services and Housing"
-code: 0515
+budgetCode: 0515
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 
@@ -27,7 +27,7 @@ description: "The Business, Consumer Services, and Housing Agency oversees depar
 
 ### Major Funding Codes and Sources
 
-The Secretary of Business, Consumer Services and Housing receives funding from various sources, each designated by specific codes in the state budget:
+The Secretary of Business, Consumer Services and Housing receives funding from various sources, each designated by specific budgetCodes in the state budget:
 
 #### Program Codes
 - **0260 - Support**: Core operations of the Business, Consumer Services, and Housing Agency

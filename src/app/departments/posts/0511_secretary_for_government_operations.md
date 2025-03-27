@@ -1,7 +1,7 @@
 ---
 
 name: "Secretary for Government Operations"
-code: 0511
+budgetCode: 0511
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 
@@ -29,7 +29,7 @@ description: "The Government Operations Agency coordinates and oversees state op
 
 ### Major Funding Codes and Sources
 
-The Secretary for Government Operations receives funding from various sources, each designated by specific codes in the state budget:
+The Secretary for Government Operations receives funding from various sources, each designated by specific budgetCodes in the state budget:
 
 #### Program Codes
 - **0250 - Office of the Secretary of Government Operations**: Core operations of the Government Operations Agency

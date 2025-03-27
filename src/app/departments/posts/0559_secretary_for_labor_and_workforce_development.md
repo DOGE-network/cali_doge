@@ -1,6 +1,6 @@
 ---
 name: "Secretary for Labor and Workforce Development"
-code: 0559
+budgetCode: 0559
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

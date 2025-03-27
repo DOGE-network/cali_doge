@@ -86,7 +86,7 @@ The application maintains a hierarchical representation of California's executiv
 The hierarchy is structured as a nested JSON object with the following key properties:
 
 - **name**: The name of the organizational unit
-- **budget_code**: The California Department of Finance budget code (when applicable)
+- **budget_budgetCode**: The California Department of Finance budget budgetCode (when applicable)
 - **is_active**: Boolean indicating if the unit is currently active
 - **key_functions**: List of primary responsibilities
 - **children**: Array of child organizations that report to this unit
@@ -107,7 +107,7 @@ This hierarchy powers several features:
 - The organizational chart visualization in the workforce section
 - Navigation between related departments
 - Context for understanding department functions and relationships
-- Budget code lookup for connecting with spending data
+- Budget budgetCode lookup for connecting with spending data
 
 The hierarchy structure is validated during build time to ensure consistent structure and prevent duplicates.
 
@@ -345,7 +345,7 @@ When creating a new department page, follow these steps to ensure proper cross-l
    Add a new entry to the `departmentMappings` array in `src/lib/departmentMapping.ts`:
    ```typescript
    {
-     slug: '3900_air_resources_board',  // Format: <dept_code>_<name_in_snake_case>
+     slug: '3900_air_resources_board',  // Format: <dept_budgetCode>_<name_in_snake_case>
      fullName: 'Air Resources Board',  // Official name
      spendingName: 'Air Resources Board',  // Optional: only if different from fullName
      workforceName: 'Air Resources Board'  // Optional: only if different from fullName
@@ -353,7 +353,7 @@ When creating a new department page, follow these steps to ensure proper cross-l
    ```
 
 2. **Create the Department Page**:
-   Create a new markdown file at `src/app/departments/posts/<dept_code>_<name_in_snake_case>.md` using the same format as the slug.
+   Create a new markdown file at `src/app/departments/posts/<dept_budgetCode>_<name_in_snake_case>.md` using the same format as the slug.
    Example: `src/app/departments/posts/3900_air_resources_board.md`
 
 3. **Verify Data Consistency**:
@@ -464,7 +464,7 @@ The script is designed to run regularly (e.g., via GitHub Actions) while minimiz
 
 ## California State Government Organizational Structure
 
-According to the [Department of Finance's Uniform Codes Manual](https://dof.ca.gov/wp-content/uploads/sites/352/Accounting/Policies_and_Procedures/Uniform_Codes_Manual/UCM_2-Organization_Codes-Introduction.pdf), California state government organization codes are structured in five hierarchical levels:
+According to the [Department of Finance's Uniform Codes Manual](https://dof.ca.gov/wp-content/uploads/sites/352/Accounting/Policies_and_Procedures/Uniform_Codes_Manual/UCM_2-Organization_Codes-Introduction.pdf), California state government organization budgetCodes are structured in five hierarchical levels:
 
 ### Hierarchical Levels
 - **Level A**: Agency level - Groups of departments under agency secretaries or broad functional groupings
@@ -514,10 +514,10 @@ Budget documents follow the URL pattern:
 ebudget.ca.gov/[FISCAL-YEAR]/pdf/[DOCUMENT-TYPE]/[AGENCY-CODE]/[DEPARTMENT-CODE].pdf
 ```
 
-### California department of finance codes
-https://dof.ca.gov/accounting/accounting-policies-and-procedures/accounting-policies-and-procedures-uniform-codes-manual-organization-codes/
+### California department of finance budgetCodes
+https://dof.ca.gov/accounting/accounting-policies-and-procedures/accounting-policies-and-procedures-uniform-budgetCodes-manual-organization-budgetCodes/
 
-### structural listing of codes
+### structural listing of budgetCodes
 https://dof.ca.gov/wp-content/uploads/sites/352/2024/07/3orgstruc.pdf
 
 ### glossary of terms
@@ -546,13 +546,13 @@ The project includes various utility scripts for data processing, maintenance, a
 - **Usage**: Run once to initialize or rebuild the departments.json file
 
 #### `updateDepartmentCodes.js`
-- **Purpose**: Updates department codes in departments.json based on budget document filenames
+- **Purpose**: Updates department budgetCodes in departments.json based on budget document filenames
 - **Operations**:
   - Scans budget document files in the data directory
-  - Extracts department codes from filenames
+  - Extracts department budgetCodes from filenames
   - Matches department names using normalization
   - Updates the corresponding entries in departments.json
-- **Usage**: Run after adding new budget documents to update department codes
+- **Usage**: Run after adding new budget documents to update department budgetCodes
 
 #### `generate-department-mappings.js`
 - **Purpose**: Generates department mappings for the application
@@ -593,12 +593,12 @@ The project includes various utility scripts for data processing, maintenance, a
   - Saves extracted text to files for further processing
 - **Usage**: Run to extract text from new budget document PDFs
 
-#### `extract_codes.py`
+#### `extract_budgetCodes.py`
 - **Purpose**: Parses California government organizational structure from PDF documents
 - **Operations**:
-  - Analyzes horizontal positions of codes and descriptions
+  - Analyzes horizontal positions of budgetCodes and descriptions
   - Classifies entries into hierarchical levels (A, B, 1, 2, 3)
-  - Extracts codes, descriptions, and hierarchy information
+  - Extracts budgetCodes, descriptions, and hierarchy information
   - Outputs structured data to CSV
 - **Usage**: Run to update the organizational structure data
 
@@ -640,7 +640,7 @@ The application uses a sophisticated markdown processing system for content mana
   - Department references
   - Related links
   - Keywords and tags
-- **Code Formatting**: Uses Prettier for consistent code formatting in markdown files
+- **Code Formatting**: Uses Prettier for consistent budgetCode formatting in markdown files
 
 The markdown processing pipeline includes:
 1. Parsing frontmatter metadata
@@ -661,7 +661,7 @@ The application includes an interactive workforce hierarchy visualization system
 - **Data Structure**:
   - Uses a tree-based structure defined in `src/data/executive-branch-hierarchy.json`
   - Maps departments to their parent agencies
-  - Includes metadata like budget codes and key functions
+  - Includes metadata like budget budgetCodes and key functions
 
 - **Component Architecture**:
   - `AgencyHierarchyTree`: Top-level component managing the hierarchy
@@ -671,7 +671,7 @@ The application includes an interactive workforce hierarchy visualization system
 
 - **Integration Points**:
   - Connects with department pages via mapping system
-  - Links to budget data through budget codes
+  - Links to budget data through budget budgetCodes
   - Provides navigation to related workforce data
 
 ### Department Page Connection System
@@ -722,7 +722,7 @@ When creating a new department page, follow these steps to ensure proper cross-l
    Add a new entry to the `departmentMappings` array in `src/lib/departmentMapping.ts`:
    ```typescript
    {
-     slug: '3900_air_resources_board',  // Format: <dept_code>_<name_in_snake_case>
+     slug: '3900_air_resources_board',  // Format: <dept_budgetCode>_<name_in_snake_case>
      fullName: 'Air Resources Board',  // Official name
      spendingName: 'Air Resources Board',  // Optional: only if different from fullName
      workforceName: 'Air Resources Board'  // Optional: only if different from fullName
@@ -730,7 +730,7 @@ When creating a new department page, follow these steps to ensure proper cross-l
    ```
 
 2. **Create the Department Page**:
-   Create a new markdown file at `src/app/departments/posts/<dept_code>_<name_in_snake_case>.md` using the same format as the slug.
+   Create a new markdown file at `src/app/departments/posts/<dept_budgetCode>_<name_in_snake_case>.md` using the same format as the slug.
    Example: `src/app/departments/posts/3900_air_resources_board.md`
 
 3. **Verify Data Consistency**:

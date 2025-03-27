@@ -6,6 +6,10 @@
 # Environment variables
 .env.local
 
+# Raw Data files
+src/data/workforce/*.csv
+src/data/vendors/*.csv
+
 # User-specific files
 *.rsuser
 *.suo

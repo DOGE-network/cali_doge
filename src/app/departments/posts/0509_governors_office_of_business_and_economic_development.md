@@ -1,7 +1,7 @@
 ---
 
 name: "Governor's Office of Business and Economic Development"
-code: 0509
+budgetCode: 0509
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 
@@ -33,7 +33,7 @@ description: "GO-Biz serves as the Governor's lead entity for economic strategy,
 
 ### Major Funding Codes and Sources
 
-The Governor's Office of Business and Economic Development receives funding from various sources, each designated by specific codes in the state budget:
+The Governor's Office of Business and Economic Development receives funding from various sources, each designated by specific budgetCodes in the state budget:
 
 #### Program Codes
 - **0220 - GO-Biz**: Core operations of the Governor's Office of Business and Economic Development

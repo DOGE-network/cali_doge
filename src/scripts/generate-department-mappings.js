@@ -1,34 +1,73 @@
 #!/usr/bin/env node
 
 /**
- * This script reads all department markdown files and generates code to populate
- * the departmentMappings array in src/lib/departmentMapping.ts
- * runs every build to ensure the mappings are up to date
+ * Department Mappings Generator Script
+ * 
+ * This script processes department markdown files and generates TypeScript code
+ * for department mappings used throughout the application. It handles:
+ * - Reading department markdown files
+ * - Matching departments with departments.json data
+ * - Generating TypeScript code for department mappings
+ * - Updating the departmentMapping.ts file
+ * 
+ * Workflow:
+ * 1. Initial Setup
+ *    a. Load departments.json
+ *    b. Setup file paths
+ *    c. Validate directories
+ * 
+ * 2. File Processing
+ *    a. Read markdown files
+ *    b. Extract department information
+ *    c. Match with departments.json data
+ *    d. Generate standardized mappings
+ * 
+ * 3. Code Generation
+ *    a. Generate departmentMappings array
+ *    b. Generate DEPARTMENT_SLUGS_WITH_PAGES array
+ *    c. Update departmentMapping.ts file
+ * 
+ * 4. Results Summary
+ *    a. Log processing statistics
+ *    b. Report any warnings or issues
+ * 
+ * Usage:
+ * ```bash
+ * node generate-department-mappings.js
+ * ```
  */
 
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-// Path to department markdown files
-const postsDirectory = path.join(process.cwd(), 'src/app/departments/posts');
-const targetFile = path.join(process.cwd(), 'src/lib/departmentMapping.ts');
-const departmentsJsonFile = path.join(process.cwd(), 'src/data/departments.json');
+// Configuration - Fixed paths relative to project root
+const PROJECT_ROOT = process.cwd();
+const POSTS_DIR = path.join(PROJECT_ROOT, 'src/app/departments/posts');
+const TARGET_FILE = path.join(PROJECT_ROOT, 'src/lib/departmentMapping.ts');
+const DEPARTMENTS_JSON_FILE = path.join(PROJECT_ROOT, 'src/data/departments.json');
 
-// Check if directory exists
-if (!fs.existsSync(postsDirectory)) {
-  console.error('Department posts directory not found:', postsDirectory);
+/**
+ * Step 1a: Validate directories and files
+ * Exits if required directories or files are not found
+ */
+if (!fs.existsSync(POSTS_DIR)) {
+  console.error('Department posts directory not found:', POSTS_DIR);
   process.exit(1);
 }
 
-// Load departments data
+/**
+ * Step 1b: Load departments data
+ * Loads and validates departments.json file
+ * Exits if file is not found or invalid
+ */
 let departmentsData = { departments: [] };
 try {
-  if (fs.existsSync(departmentsJsonFile)) {
-    departmentsData = JSON.parse(fs.readFileSync(departmentsJsonFile, 'utf8'));
+  if (fs.existsSync(DEPARTMENTS_JSON_FILE)) {
+    departmentsData = JSON.parse(fs.readFileSync(DEPARTMENTS_JSON_FILE, 'utf8'));
     console.log(`Loaded ${departmentsData.departments.length} departments from departments.json`);
   } else {
-    console.warn('Departments data file not found:', departmentsJsonFile);
+    console.warn('Departments data file not found:', DEPARTMENTS_JSON_FILE);
     process.exit(1);
   }
 } catch (error) {
@@ -36,16 +75,29 @@ try {
   process.exit(1);
 }
 
-// Helper function to escape special characters for TypeScript string literals
+/**
+ * Utility function to escape special characters in strings
+ * Used for generating valid TypeScript string literals
+ * @param {string} str - The string to escape
+ * @returns {string} The escaped string
+ */
 function escapeString(str) {
   return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
 }
 
-// Get all markdown files
-const fileNames = fs.readdirSync(postsDirectory);
+/**
+ * Step 2a: Get all markdown files
+ * Lists all .md files in the posts directory
+ */
+const fileNames = fs.readdirSync(POSTS_DIR);
 console.log(`Found ${fileNames.length} markdown files in posts directory`);
 
-// Process each file to extract department information
+/**
+ * Step 2b: Process markdown files
+ * Extracts department information from each markdown file
+ * Matches with departments.json data
+ * Generates standardized mappings
+ */
 const mappings = fileNames
   .filter(fileName => fileName.endsWith('.md'))
   .map(fileName => {
@@ -53,7 +105,7 @@ const mappings = fileNames
     const slug = fileName.replace(/\.md$/, '');
     
     // Read the file content
-    const fullPath = path.join(postsDirectory, fileName);
+    const fullPath = path.join(POSTS_DIR, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     
     // Parse frontmatter
@@ -61,7 +113,7 @@ const mappings = fileNames
     
     // Extract department name and code
     const name = data.name || '';
-    const code = data.code || '';
+    const code = data.budgetCode || '';
     
     if (!name || !code) {
       console.warn(`Missing name or code in department file: ${fileName}`);
@@ -80,7 +132,7 @@ const mappings = fileNames
       dept.canonicalName === name || 
       (dept.aliases && dept.aliases.includes(name)) ||
       // Also match by code in case name is slightly different
-      (dept.code && dept.code.toString() === standardizedCode.toString())
+      (dept.budgetCode && dept.budgetCode.toString() === standardizedCode.toString())
     );
     
     // If we found a match, use department data from departments.json
@@ -111,31 +163,44 @@ const mappings = fileNames
 
 console.log(`Processed ${mappings.length} department mappings from markdown files`);
 
-// Read the current departmentMapping.ts file
-const fileContent = fs.readFileSync(targetFile, 'utf8');
+/**
+ * Step 3a: Read current departmentMapping.ts file
+ * Prepares for updating the file with new mappings
+ */
+const fileContent = fs.readFileSync(TARGET_FILE, 'utf8');
 
 // Find the section with the departmentMappings array
 const mappingsStartPattern = /export const departmentMappings: DepartmentMapping\[\] = \[/;
 const mappingsEndPattern = /\];/;
 
-// Generate the mappings code
+/**
+ * Step 3b: Generate mappings code
+ * Creates TypeScript code for departmentMappings array
+ */
 const mappingsCode = mappings.map(mapping => {
+  // Convert the code to a regular decimal number by removing leading zeros
+  const decimalCode = parseInt(mapping.code, 10);
   return `  {
     slug: '${escapeString(mapping.slug)}',
     name: '${escapeString(mapping.name)}',
     canonicalName: '${escapeString(mapping.fullName)}',
-    code: '${escapeString(mapping.code.toString())}',
-    fullName: '${escapeString(mapping.fullName)}',
+    budgetCode: toNonNegativeInteger(${decimalCode}),
     spendingName: '${escapeString(mapping.spendingName)}',
     workforceName: '${escapeString(mapping.workforceName)}'
   }`;
 }).join(',\n');
 
-// Generate the list of slugs with pages
+/**
+ * Step 3c: Generate slugs code
+ * Creates TypeScript code for DEPARTMENT_SLUGS_WITH_PAGES array
+ */
 const slugs = mappings.map(mapping => `'${escapeString(mapping.slug)}'`);
 const slugsCode = slugs.join(',\n  ');
 
-// Find the start and end positions of the mappings array
+/**
+ * Step 3d: Find array positions
+ * Locates the start and end positions of arrays in the target file
+ */
 const contentLines = fileContent.split('\n');
 let startLineIndex = -1;
 let endLineIndex = -1;
@@ -150,7 +215,10 @@ for (let i = 0; i < contentLines.length; i++) {
   }
 }
 
-// Replace the existing mappings with the new ones
+/**
+ * Step 3e: Update target file
+ * Replaces existing arrays with new generated code
+ */
 if (startLineIndex !== -1 && endLineIndex !== -1) {
   contentLines.splice(startLineIndex + 1, endLineIndex - startLineIndex - 1, mappingsCode);
   
@@ -178,7 +246,7 @@ if (startLineIndex !== -1 && endLineIndex !== -1) {
   }
   
   const updatedContent = contentLines.join('\n');
-  fs.writeFileSync(targetFile, updatedContent);
+  fs.writeFileSync(TARGET_FILE, updatedContent);
   console.log(`Generated mappings for ${mappings.length} departments`);
 } else {
   console.error('Could not find departmentMappings array in the target file');

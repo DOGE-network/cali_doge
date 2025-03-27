@@ -6,7 +6,15 @@ import {
   DepartmentMapping, 
   VerificationResult,
   FiscalYearKey,
-  ValidSlug
+  ValidSlug,
+  NonNegativeInteger
+} from '@/types/department';
+import type {
+  DepartmentData,
+  AnnualYear,
+  SalaryRange,
+  TenureRange,
+  AgeRange
 } from '@/types/department';
 
 // Cast the imported data to the proper type
@@ -72,45 +80,40 @@ export const departmentMappings: DepartmentMapping[] = [
   {
     slug: '0250_judicial_branch',
     name: 'Judicial Branch',
-    canonicalName: 'Judicial Branch',
-    code: '0250',
-    fullName: 'Judicial Branch',
+    canonicalName: 'California Judicial Branch',
+    budgetCode: toNonNegativeInteger(250),
     spendingName: 'Judicial Branch',
     workforceName: 'Judicial Branch'
   },
   {
     slug: '0500_governors_office',
-    name: 'Governor\'s Office',
-    canonicalName: 'Governor\'s Office',
-    code: '0500',
-    fullName: 'Governor\'s Office',
-    spendingName: 'Governor\'s Office',
-    workforceName: 'Governor\'s Office'
+    name: 'Office of the Governor',
+    canonicalName: 'Governor, Office of the',
+    budgetCode: toNonNegativeInteger(500),
+    spendingName: 'Office of the Governor',
+    workforceName: 'Office of the Governor'
   },
   {
     slug: '0509_governors_office_of_business_and_economic_development',
     name: 'Governor\'s Office of Business and Economic Development',
-    canonicalName: 'Governor\'s Office of Business and Economic Development',
-    code: '0509',
-    fullName: 'Governor\'s Office of Business and Economic Development',
+    canonicalName: 'Business and Economic Development, Governor\'s Office of',
+    budgetCode: toNonNegativeInteger(509),
     spendingName: 'Governor\'s Office of Business and Economic Development',
     workforceName: 'Governor\'s Office of Business and Economic Development'
   },
   {
     slug: '0511_secretary_for_government_operations',
-    name: 'Secretary for Government Operations',
-    canonicalName: 'Secretary for Government Operations',
-    code: '0511',
-    fullName: 'Secretary for Government Operations',
-    spendingName: 'Secretary for Government Operations',
-    workforceName: 'Secretary for Government Operations'
+    name: 'Government Operations Agency',
+    canonicalName: 'Government Operations Agency',
+    budgetCode: toNonNegativeInteger(511),
+    spendingName: 'Government Operations Agency',
+    workforceName: 'Government Operations Agency'
   },
   {
     slug: '0515_secretary_of_business_consumer_services_and_housing',
     name: 'Secretary of Business, Consumer Services and Housing',
     canonicalName: 'Secretary of Business, Consumer Services and Housing',
-    code: '0515',
-    fullName: 'Secretary of Business, Consumer Services and Housing',
+    budgetCode: toNonNegativeInteger(515),
     spendingName: 'Secretary of Business, Consumer Services and Housing',
     workforceName: 'Secretary of Business, Consumer Services and Housing'
   },
@@ -118,134 +121,119 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0521_secretary_of_transportation',
     name: 'Secretary of Transportation',
     canonicalName: 'Secretary of Transportation',
-    code: '0521',
-    fullName: 'Secretary of Transportation',
+    budgetCode: toNonNegativeInteger(521),
     spendingName: 'Secretary of Transportation',
     workforceName: 'Secretary of Transportation'
   },
   {
     slug: '0530_secretary_of_health_and_human_services',
-    name: 'Secretary of Health and Human Services',
-    canonicalName: 'Secretary of Health and Human Services',
-    code: '0530',
-    fullName: 'Secretary of Health and Human Services',
-    spendingName: 'Secretary of Health and Human Services',
-    workforceName: 'Secretary of Health and Human Services'
+    name: 'California Health and Human Services Agency',
+    canonicalName: 'Health and Human Services Agency, California',
+    budgetCode: toNonNegativeInteger(530),
+    spendingName: 'California Health and Human Services Agency',
+    workforceName: 'California Health and Human Services Agency'
   },
   {
     slug: '0540_california_natural_resources_agency',
-    name: 'California Natural Resources Agency',
-    canonicalName: 'California Natural Resources Agency',
-    code: '0540',
-    fullName: 'California Natural Resources Agency',
-    spendingName: 'California Natural Resources Agency',
-    workforceName: 'California Natural Resources Agency'
+    name: 'Natural Resources Agency',
+    canonicalName: 'Natural Resources Agency, California',
+    budgetCode: toNonNegativeInteger(540),
+    spendingName: 'Natural Resources Agency',
+    workforceName: 'Natural Resources Agency'
   },
   {
     slug: '0555_california_environmental_protection_agency',
     name: 'California Environmental Protection Agency',
-    canonicalName: 'California Environmental Protection Agency',
-    code: '0555',
-    fullName: 'California Environmental Protection Agency',
+    canonicalName: 'Environmental Protection Agency',
+    budgetCode: toNonNegativeInteger(555),
     spendingName: 'California Environmental Protection Agency',
     workforceName: 'California Environmental Protection Agency'
   },
   {
     slug: '0559_secretary_for_labor_and_workforce_development',
-    name: 'Secretary for Labor and Workforce Development',
-    canonicalName: 'Secretary for Labor and Workforce Development',
-    code: '0559',
-    fullName: 'Secretary for Labor and Workforce Development',
-    spendingName: 'Secretary for Labor and Workforce Development',
-    workforceName: 'Secretary for Labor and Workforce Development'
+    name: 'Labor and Workforce Development Agency',
+    canonicalName: 'Labor and Workforce Development Agency',
+    budgetCode: toNonNegativeInteger(559),
+    spendingName: 'Labor and Workforce Development Agency',
+    workforceName: 'Labor and Workforce Development Agency'
   },
   {
     slug: '0650_office_of_planning_and_research',
-    name: 'Office of Planning and Research',
-    canonicalName: 'Office of Planning and Research',
-    code: '0650',
-    fullName: 'Office of Planning and Research',
-    spendingName: 'Office of Planning and Research',
-    workforceName: 'Office of Planning and Research'
+    name: 'Governor\'s Office of Planning and Research',
+    canonicalName: 'Governor\'s Office of Planning and Research',
+    budgetCode: toNonNegativeInteger(650),
+    spendingName: 'Governor\'s Office of Planning and Research',
+    workforceName: 'Governor\'s Office of Planning and Research'
   },
   {
     slug: '0690_office_of_emergency_services',
-    name: 'Office of Emergency Services',
-    canonicalName: 'Office of Emergency Services',
-    code: '0690',
-    fullName: 'Office of Emergency Services',
-    spendingName: 'Office of Emergency Services',
-    workforceName: 'Office of Emergency Services'
+    name: 'Governor\'s Office of Emergency Services',
+    canonicalName: 'Emergency Services, Governor\'s Office of',
+    budgetCode: toNonNegativeInteger(690),
+    spendingName: 'Governor\'s Office of Emergency Services',
+    workforceName: 'Governor\'s Office of Emergency Services'
   },
   {
     slug: '0750_office_of_the_lieutenant_governor',
-    name: 'Office of the Lieutenant Governor',
-    canonicalName: 'Office of the Lieutenant Governor',
-    code: '0750',
-    fullName: 'Office of the Lieutenant Governor',
-    spendingName: 'Office of the Lieutenant Governor',
-    workforceName: 'Office of the Lieutenant Governor'
+    name: 'Lieutenant Governor',
+    canonicalName: 'Lieutenant Governor, Office of',
+    budgetCode: toNonNegativeInteger(750),
+    spendingName: 'Lieutenant Governor',
+    workforceName: 'Lieutenant Governor'
   },
   {
     slug: '0820_department_of_justice',
-    name: 'Department of Justice',
-    canonicalName: 'Department of Justice',
-    code: '0820',
-    fullName: 'Department of Justice',
-    spendingName: 'Department of Justice',
-    workforceName: 'Department of Justice'
+    name: 'Justice',
+    canonicalName: 'Justice, Department of',
+    budgetCode: toNonNegativeInteger(820),
+    spendingName: 'Justice',
+    workforceName: 'Justice'
   },
   {
     slug: '0840_state_controller',
     name: 'State Controller',
     canonicalName: 'State Controller',
-    code: '0840',
-    fullName: 'State Controller',
+    budgetCode: toNonNegativeInteger(840),
     spendingName: 'State Controller',
     workforceName: 'State Controller'
   },
   {
     slug: '0845_department_of_insurance',
     name: 'Department of Insurance',
-    canonicalName: 'Department of Insurance',
-    code: '0845',
-    fullName: 'Department of Insurance',
+    canonicalName: 'Insurance, Department of',
+    budgetCode: toNonNegativeInteger(845),
     spendingName: 'Department of Insurance',
     workforceName: 'Department of Insurance'
   },
   {
     slug: '0890_secretary_of_state',
-    name: 'Secretary of State',
-    canonicalName: 'Secretary of State',
-    code: '0890',
-    fullName: 'Secretary of State',
-    spendingName: 'Secretary of State',
-    workforceName: 'Secretary of State'
+    name: 'Office of the Secretary of State',
+    canonicalName: 'Secretary of State, Office of the',
+    budgetCode: toNonNegativeInteger(890),
+    spendingName: 'Office of the Secretary of State',
+    workforceName: 'Office of the Secretary of State'
   },
   {
     slug: '0950_state_treasurer',
-    name: 'State Treasurer',
-    canonicalName: 'State Treasurer',
-    code: '0950',
-    fullName: 'State Treasurer',
-    spendingName: 'State Treasurer',
-    workforceName: 'State Treasurer'
+    name: 'State Treasurer\'s Office',
+    canonicalName: 'State Treasurer\'s Office',
+    budgetCode: toNonNegativeInteger(950),
+    spendingName: 'State Treasurer\'s Office',
+    workforceName: 'State Treasurer\'s Office'
   },
   {
     slug: '0950_state_treasurers_office',
-    name: 'State Treasurer',
-    canonicalName: 'State Treasurer',
-    code: '0950',
-    fullName: 'State Treasurer',
-    spendingName: 'State Treasurer',
-    workforceName: 'State Treasurer'
+    name: 'State Treasurer\'s Office',
+    canonicalName: 'State Treasurer\'s Office',
+    budgetCode: toNonNegativeInteger(950),
+    spendingName: 'State Treasurer\'s Office',
+    workforceName: 'State Treasurer\'s Office'
   },
   {
     slug: '1111_department_of_consumer_affairs',
     name: 'Department of Consumer Affairs',
-    canonicalName: 'Department of Consumer Affairs',
-    code: '1111',
-    fullName: 'Department of Consumer Affairs',
+    canonicalName: 'Consumer Affairs, Department of',
+    budgetCode: toNonNegativeInteger(1111),
     spendingName: 'Department of Consumer Affairs',
     workforceName: 'Department of Consumer Affairs'
   },
@@ -253,134 +241,119 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '1700_civil_rights_department',
     name: 'Civil Rights Department',
     canonicalName: 'Civil Rights Department',
-    code: '1700',
-    fullName: 'Civil Rights Department',
+    budgetCode: toNonNegativeInteger(1700),
     spendingName: 'Civil Rights Department',
     workforceName: 'Civil Rights Department'
   },
   {
     slug: '1701_department_of_financial_protection_and_innovation',
     name: 'Department of Financial Protection and Innovation',
-    canonicalName: 'Department of Financial Protection and Innovation',
-    code: '1701',
-    fullName: 'Department of Financial Protection and Innovation',
+    canonicalName: 'Financial Protection and Innovation, Department of',
+    budgetCode: toNonNegativeInteger(1701),
     spendingName: 'Department of Financial Protection and Innovation',
     workforceName: 'Department of Financial Protection and Innovation'
   },
   {
     slug: '1750_horse_racing_board',
-    name: 'Horse Racing Board',
-    canonicalName: 'Horse Racing Board',
-    code: '1750',
-    fullName: 'Horse Racing Board',
-    spendingName: 'Horse Racing Board',
-    workforceName: 'Horse Racing Board'
+    name: 'California Horse Racing Board',
+    canonicalName: 'Horse Racing Board, California',
+    budgetCode: toNonNegativeInteger(1750),
+    spendingName: 'California Horse Racing Board',
+    workforceName: 'California Horse Racing Board'
   },
   {
     slug: '2660_department_of_transportation',
-    name: 'California Department of Transportation',
-    canonicalName: 'California Department of Transportation',
-    code: '2660',
-    fullName: 'California Department of Transportation',
-    spendingName: 'California Department of Transportation',
-    workforceName: 'California Department of Transportation'
+    name: 'Transportation',
+    canonicalName: 'Transportation, Department of',
+    budgetCode: toNonNegativeInteger(2660),
+    spendingName: 'Transportation',
+    workforceName: 'Transportation'
   },
   {
     slug: '2720_california_highway_patrol',
     name: 'California Highway Patrol',
-    canonicalName: 'California Highway Patrol',
-    code: '2720',
-    fullName: 'California Highway Patrol',
+    canonicalName: 'Highway Patrol, California',
+    budgetCode: toNonNegativeInteger(2720),
     spendingName: 'California Highway Patrol',
     workforceName: 'California Highway Patrol'
   },
   {
     slug: '2740_department_of_motor_vehicles',
-    name: 'Department of Motor Vehicles',
-    canonicalName: 'Department of Motor Vehicles',
-    code: '2740',
-    fullName: 'Department of Motor Vehicles',
-    spendingName: 'Department of Motor Vehicles',
-    workforceName: 'Department of Motor Vehicles'
+    name: 'Motor Vehicles',
+    canonicalName: 'Motor Vehicles, Department of',
+    budgetCode: toNonNegativeInteger(2740),
+    spendingName: 'Motor Vehicles',
+    workforceName: 'Motor Vehicles'
   },
   {
     slug: '3100_exposition_park',
     name: 'Exposition Park',
     canonicalName: 'Exposition Park',
-    code: '3100',
-    fullName: 'Exposition Park',
+    budgetCode: toNonNegativeInteger(3100),
     spendingName: 'Exposition Park',
     workforceName: 'Exposition Park'
   },
   {
     slug: '3125_california_tahoe_conservancy',
-    name: 'California Tahoe Conservancy',
-    canonicalName: 'California Tahoe Conservancy',
-    code: '3125',
-    fullName: 'California Tahoe Conservancy',
-    spendingName: 'California Tahoe Conservancy',
-    workforceName: 'California Tahoe Conservancy'
+    name: 'Tahoe Conservancy',
+    canonicalName: 'Tahoe Conservancy',
+    budgetCode: toNonNegativeInteger(3125),
+    spendingName: 'Tahoe Conservancy',
+    workforceName: 'Tahoe Conservancy'
   },
   {
     slug: '3340_california_conservation_corps',
     name: 'California Conservation Corps',
-    canonicalName: 'California Conservation Corps',
-    code: '3340',
-    fullName: 'California Conservation Corps',
+    canonicalName: 'Conservation Corps, California',
+    budgetCode: toNonNegativeInteger(3340),
     spendingName: 'California Conservation Corps',
     workforceName: 'California Conservation Corps'
   },
   {
     slug: '3360_energy_commission',
-    name: 'Energy Commission',
-    canonicalName: 'California Energy Commission',
-    code: '3360',
-    fullName: 'California Energy Commission',
-    spendingName: 'Energy Commission',
-    workforceName: 'Energy Commission'
+    name: 'State Energy Resources Conservation and Development Commission',
+    canonicalName: 'State Energy Resources Conservation and Development Commission',
+    budgetCode: toNonNegativeInteger(3360),
+    spendingName: 'State Energy Resources Conservation and Development Commission',
+    workforceName: 'State Energy Resources Conservation and Development Commission'
   },
   {
     slug: '3460_colorado_river_board',
-    name: 'Colorado River Board',
-    canonicalName: 'Colorado River Board',
-    code: '3460',
-    fullName: 'Colorado River Board',
-    spendingName: 'Colorado River Board',
-    workforceName: 'Colorado River Board'
+    name: 'Colorado River Board of California',
+    canonicalName: 'Colorado River Board of California',
+    budgetCode: toNonNegativeInteger(3460),
+    spendingName: 'Colorado River Board of California',
+    workforceName: 'Colorado River Board of California'
   },
   {
     slug: '3480_department_of_conservation',
     name: 'Department of Conservation',
-    canonicalName: 'Department of Conservation',
-    code: '3480',
-    fullName: 'Department of Conservation',
+    canonicalName: 'Conservation, Department of',
+    budgetCode: toNonNegativeInteger(3480),
     spendingName: 'Department of Conservation',
     workforceName: 'Department of Conservation'
   },
   {
     slug: '3540_department_of_forestry_and_fire_protection',
-    name: 'California Department of Forestry and Fire Protection',
-    canonicalName: 'California Department of Forestry and Fire Protection',
-    code: '3540',
-    fullName: 'California Department of Forestry and Fire Protection',
-    spendingName: 'California Department of Forestry and Fire Protection',
-    workforceName: 'California Department of Forestry and Fire Protection'
+    name: 'Department of Forestry and Fire Protection',
+    canonicalName: 'Forestry and Fire Protection, California Department of',
+    budgetCode: toNonNegativeInteger(3540),
+    spendingName: 'Department of Forestry and Fire Protection',
+    workforceName: 'Department of Forestry and Fire Protection'
   },
   {
     slug: '3560_state_lands_commission',
-    name: 'California State Lands Commission',
-    canonicalName: 'California State Lands Commission',
-    code: '3560',
-    fullName: 'California State Lands Commission',
-    spendingName: 'California State Lands Commission',
-    workforceName: 'California State Lands Commission'
+    name: 'Lands Commission',
+    canonicalName: 'Lands Commission, California State',
+    budgetCode: toNonNegativeInteger(3560),
+    spendingName: 'Lands Commission',
+    workforceName: 'Lands Commission'
   },
   {
     slug: '3600_department_of_fish_and_wildlife',
     name: 'Department of Fish and Wildlife',
-    canonicalName: 'Department of Fish and Wildlife',
-    code: '3600',
-    fullName: 'Department of Fish and Wildlife',
+    canonicalName: 'Fish and Wildlife, Department of',
+    budgetCode: toNonNegativeInteger(3600),
     spendingName: 'Department of Fish and Wildlife',
     workforceName: 'Department of Fish and Wildlife'
   },
@@ -388,118 +361,105 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3640_wildlife_conservation_board',
     name: 'Wildlife Conservation Board',
     canonicalName: 'Wildlife Conservation Board',
-    code: '3640',
-    fullName: 'Wildlife Conservation Board',
+    budgetCode: toNonNegativeInteger(3640),
     spendingName: 'Wildlife Conservation Board',
     workforceName: 'Wildlife Conservation Board'
   },
   {
     slug: '3720_california_coastal_commission',
     name: 'California Coastal Commission',
-    canonicalName: 'California Coastal Commission',
-    code: '3720',
-    fullName: 'California Coastal Commission',
+    canonicalName: 'Coastal Commission, California',
+    budgetCode: toNonNegativeInteger(3720),
     spendingName: 'California Coastal Commission',
     workforceName: 'California Coastal Commission'
   },
   {
     slug: '3760_california_coastal_conservancy',
-    name: 'California Coastal Conservancy',
-    canonicalName: 'California Coastal Conservancy',
-    code: '3760',
-    fullName: 'California Coastal Conservancy',
-    spendingName: 'California Coastal Conservancy',
-    workforceName: 'California Coastal Conservancy'
+    name: 'State Coastal Conservancy',
+    canonicalName: 'Coastal Conservancy, State',
+    budgetCode: toNonNegativeInteger(3760),
+    spendingName: 'State Coastal Conservancy',
+    workforceName: 'State Coastal Conservancy'
   },
   {
     slug: '3780_native_american_heritage_commission',
     name: 'Native American Heritage Commission',
     canonicalName: 'Native American Heritage Commission',
-    code: '3780',
-    fullName: 'Native American Heritage Commission',
+    budgetCode: toNonNegativeInteger(3780),
     spendingName: 'Native American Heritage Commission',
     workforceName: 'Native American Heritage Commission'
   },
   {
     slug: '3900_air_resources_board',
-    name: 'Air Resources Board',
-    canonicalName: 'California Air Resources Board',
-    code: '3900',
-    fullName: 'California Air Resources Board',
-    spendingName: 'Air Resources Board',
-    workforceName: 'Air Resources Board'
+    name: 'California Air Resources Board',
+    canonicalName: 'Air Resources Board',
+    budgetCode: toNonNegativeInteger(3900),
+    spendingName: 'California Air Resources Board',
+    workforceName: 'California Air Resources Board'
   },
   {
     slug: '4260_california_department_of_health_care_services',
-    name: 'California Department of Health Care Services',
-    canonicalName: 'California Department of Health Care Services',
-    code: '4260',
-    fullName: 'California Department of Health Care Services',
-    spendingName: 'California Department of Health Care Services',
-    workforceName: 'California Department of Health Care Services'
+    name: 'Department of Health Care Services',
+    canonicalName: 'Health Care Services, Department of',
+    budgetCode: toNonNegativeInteger(4260),
+    spendingName: 'Department of Health Care Services',
+    workforceName: 'Department of Health Care Services'
   },
   {
     slug: '4300_california_department_of_developmental_services',
-    name: 'California Department of Developmental Services',
-    canonicalName: 'California Department of Developmental Services',
-    code: '4300',
-    fullName: 'California Department of Developmental Services',
-    spendingName: 'California Department of Developmental Services',
-    workforceName: 'California Department of Developmental Services'
+    name: 'Department of Developmental Services',
+    canonicalName: 'Developmental Services, Department of',
+    budgetCode: toNonNegativeInteger(4300),
+    spendingName: 'Department of Developmental Services',
+    workforceName: 'Department of Developmental Services'
   },
   {
     slug: '4440_california_department_of_state_hospitals',
-    name: 'California Department of State Hospitals',
-    canonicalName: 'California Department of State Hospitals',
-    code: '4440',
-    fullName: 'California Department of State Hospitals',
-    spendingName: 'California Department of State Hospitals',
-    workforceName: 'California Department of State Hospitals'
+    name: 'State Hospitals',
+    canonicalName: 'State Hospitals, Department of',
+    budgetCode: toNonNegativeInteger(4440),
+    spendingName: 'State Hospitals',
+    workforceName: 'State Hospitals'
   },
   {
     slug: '5180_california_department_of_social_services',
-    name: 'California Department of Social Services',
-    canonicalName: 'California Department of Social Services',
-    code: '5180',
-    fullName: 'California Department of Social Services',
-    spendingName: 'California Department of Social Services',
-    workforceName: 'California Department of Social Services'
+    name: 'Department of Social Services',
+    canonicalName: 'Social Services, Department of',
+    budgetCode: toNonNegativeInteger(5180),
+    spendingName: 'Department of Social Services',
+    workforceName: 'Department of Social Services'
   },
   {
     slug: '5225_california_department_of_corrections_and_rehabilitation',
-    name: 'California Department of Corrections and Rehabilitation',
-    canonicalName: 'California Department of Corrections and Rehabilitation',
-    code: '5225',
-    fullName: 'California Department of Corrections and Rehabilitation',
-    spendingName: 'California Department of Corrections and Rehabilitation',
-    workforceName: 'California Department of Corrections and Rehabilitation'
+    name: 'Department of Corrections and Rehabilitation',
+    canonicalName: 'Corrections and Rehabilitation, California Department of',
+    budgetCode: toNonNegativeInteger(5225),
+    spendingName: 'Department of Corrections and Rehabilitation',
+    workforceName: 'Department of Corrections and Rehabilitation'
   },
   {
     slug: '7760_department_of_general_services',
-    name: 'California Department of General Services',
-    canonicalName: 'California Department of General Services',
-    code: '7760',
-    fullName: 'California Department of General Services',
-    spendingName: 'California Department of General Services',
-    workforceName: 'California Department of General Services'
+    name: 'Department of General Services',
+    canonicalName: 'General Services, Department of',
+    budgetCode: toNonNegativeInteger(7760),
+    spendingName: 'Department of General Services',
+    workforceName: 'Department of General Services'
   },
   {
     slug: '8380_california_department_of_human_resources',
     name: 'California Department of Human Resources',
     canonicalName: 'California Department of Human Resources',
-    code: '8380',
-    fullName: 'California Department of Human Resources',
+    budgetCode: toNonNegativeInteger(8380),
     spendingName: 'California Department of Human Resources',
     workforceName: 'California Department of Human Resources'
   },
   {
     slug: '8955_california_department_of_veterans_affairs',
-    name: 'California Department of Veterans Affairs',
-    canonicalName: 'California Department of Veterans Affairs',
-    code: '8955',
-    fullName: 'California Department of Veterans Affairs',
-    spendingName: 'California Department of Veterans Affairs',
-    workforceName: 'California Department of Veterans Affairs'
+    name: 'Veterans Affairs',
+    canonicalName: 'Veterans Affairs, Department of',
+    budgetCode: toNonNegativeInteger(8955),
+    spendingName: 'Veterans Affairs',
+    workforceName: 'Veterans Affairs'
   }
 ];
 
@@ -553,10 +513,10 @@ export function hasDepartmentPage(slug: string): boolean {
  */
 export function getDepartmentMappings(): DepartmentMapping[] {
   return typedDepartmentsData.departments.map(dept => ({
-    slug: dept.slug,
+    slug: dept.slug as ValidSlug,
     name: dept.name,
     canonicalName: dept.canonicalName,
-    code: dept.code || '',
+    budgetCode: toNonNegativeInteger(dept.budgetCode),
     aliases: dept.aliases || []
   }));
 }
@@ -583,7 +543,10 @@ export function getDepartmentBySlug(slug: string): DepartmentMapping | undefined
       // If still not found, try matching by code
       if (!dept && slug.includes('_')) {
         const codeFromSlug = slug.substring(0, slug.indexOf('_'));
-        dept = typedDepartmentsData.departments.find(d => d.code === codeFromSlug);
+        dept = typedDepartmentsData.departments.find(d => 
+          (typeof d.budgetCode === 'string' ? parseInt(d.budgetCode, 10) : d.budgetCode) === 
+          (typeof codeFromSlug === 'string' ? parseInt(codeFromSlug, 10) : codeFromSlug)
+        );
         
         // If still not found, try matching by name similarity
         if (!dept) {
@@ -600,10 +563,10 @@ export function getDepartmentBySlug(slug: string): DepartmentMapping | undefined
   if (!dept) return undefined;
   
   return {
-    slug: dept.slug,
+    slug: dept.slug as ValidSlug,
     name: dept.name,
     canonicalName: dept.canonicalName,
-    code: dept.code || '',
+    budgetCode: toNonNegativeInteger(dept.budgetCode),
     aliases: dept.aliases || []
   };
 }
@@ -621,10 +584,10 @@ export function getDepartmentByName(name: string): DepartmentMapping | undefined
   if (!dept) return undefined;
   
   return {
-    slug: dept.slug,
+    slug: dept.slug as ValidSlug,
     name: dept.name,
     canonicalName: dept.canonicalName,
-    code: dept.code || '',
+    budgetCode: toNonNegativeInteger(dept.budgetCode),
     aliases: dept.aliases || []
   };
 }
@@ -660,10 +623,10 @@ export function getDepartmentByWorkforceName(name: string, checkForMarkdown: boo
   }
   
   const mapping = {
-    slug: matchedDept.slug,
+    slug: matchedDept.slug as ValidSlug,
     name: matchedDept.name,
     canonicalName: matchedDept.canonicalName,
-    code: matchedDept.code || '',
+    budgetCode: toNonNegativeInteger(matchedDept.budgetCode),
     aliases: matchedDept.aliases || []
   };
   
@@ -707,10 +670,10 @@ export function getDepartmentBySpendingName(name: string, checkForMarkdown: bool
   }
   
   const mapping = {
-    slug: matchedDept.slug,
+    slug: matchedDept.slug as ValidSlug,
     name: matchedDept.name,
     canonicalName: matchedDept.canonicalName,
-    code: matchedDept.code || '',
+    budgetCode: toNonNegativeInteger(matchedDept.budgetCode),
     aliases: matchedDept.aliases || []
   };
   
@@ -891,7 +854,7 @@ export function verifyDepartmentPosts(postSlugs: string[]): {
     const validSlug = slug as ValidSlug;
     const dept = getDepartmentBySlug(validSlug);
     if (dept) {
-      result.matched.push(`${slug} -> ${dept.name} (${dept.code})`);
+      result.matched.push(`${slug} -> ${dept.name} (${dept.budgetCode})`);
     } else {
       result.unmatched.push(slug);
     }
@@ -1012,14 +975,14 @@ export function findMarkdownForDepartment(departmentName: string): string | null
     }
     
     // Step 3: Try to match based on department code
-    if (dept.code) {
-      const codePrefix = `${dept.code}_`;
+    if (dept.budgetCode) {
+      const codePrefix = `${dept.budgetCode}_`;
       const markdownWithCode = DEPARTMENT_SLUGS_WITH_PAGES.find(pageSlug => 
         pageSlug.startsWith(codePrefix)
       );
       
       if (markdownWithCode) {
-        console.log(`Found code match: ${markdownWithCode} for code ${dept.code}`);
+        console.log(`Found code match: ${markdownWithCode} for code ${dept.budgetCode}`);
         return markdownWithCode;
       }
     }
@@ -1071,4 +1034,53 @@ export function findMarkdownForDepartment(departmentName: string): string | null
   
   console.log(`No markdown found for: "${departmentName}"`);
   return null;
+}
+
+function toNonNegativeInteger(value: string | number | undefined): NonNegativeInteger {
+  const num = typeof value === 'string' ? parseInt(value, 10) : (value || 0);
+  return num as NonNegativeInteger;
+}
+
+// Update the unification function to handle workforce data
+function _unifyDepartmentData(department: DepartmentData): DepartmentData {
+  const _headCount = department.headCount?.yearly || {};
+  const _wages = department.wages?.yearly || {};
+  const _salaryDistribution = department.salaryDistribution?.yearly || {};
+  const _tenureDistribution = department.tenureDistribution?.yearly || {};
+  const _ageDistribution = department.ageDistribution?.yearly || {};
+  
+  const unifiedDept = { ...department };
+
+  // Initialize workforce data if missing
+  if (!unifiedDept.workforce) {
+    unifiedDept.workforce = {
+      headCount: { yearly: {} as Record<AnnualYear, number | {}> },
+      wages: { yearly: {} as Record<AnnualYear, number | {}> },
+      averageTenureYears: null,
+      averageSalary: null,
+      averageAge: null,
+      salaryDistribution: { yearly: {} as Record<AnnualYear, SalaryRange[]> },
+      tenureDistribution: { yearly: {} as Record<AnnualYear, TenureRange[]> },
+      ageDistribution: { yearly: {} as Record<AnnualYear, AgeRange[]> }
+    };
+  }
+
+  // Copy main department data to workforce if workforce data is empty
+  if (!unifiedDept.workforce?.headCount?.yearly || Object.keys(unifiedDept.workforce.headCount.yearly).length === 0) {
+    unifiedDept.workforce.headCount = unifiedDept.headCount;
+  }
+  if (!unifiedDept.workforce?.wages?.yearly || Object.keys(unifiedDept.workforce.wages.yearly).length === 0) {
+    unifiedDept.workforce.wages = unifiedDept.wages;
+  }
+  if (unifiedDept.workforce.averageSalary === null && unifiedDept.averageSalary !== null) {
+    unifiedDept.workforce.averageSalary = unifiedDept.averageSalary;
+  }
+  if (unifiedDept.workforce.averageTenureYears === null && unifiedDept.averageTenureYears !== null) {
+    unifiedDept.workforce.averageTenureYears = unifiedDept.averageTenureYears;
+  }
+  if (unifiedDept.workforce.averageAge === null && unifiedDept.averageAge !== null) {
+    unifiedDept.workforce.averageAge = unifiedDept.averageAge;
+  }
+
+  return unifiedDept;
 } 

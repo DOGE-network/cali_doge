@@ -33,7 +33,7 @@ export default function RegulationsPage() {
             <p className="text-5xl font-bold mb-4">21.2 Million</p>
             <p>
               The California Code of Regulations contains 21.2 million words. It would take an individual 
-              about 1,176 hours—or more than 29 weeks—to read the entire code, assuming 40 hours per week 
+              about 1,176 hours—or more than 29 weeks—to read the entire budgetCode, assuming 40 hours per week 
               at 300 words per minute.
             </p>
           </div>

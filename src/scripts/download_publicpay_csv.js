@@ -5,7 +5,10 @@
 // It also handles the download of the CSV file
 // It also handles the closing of the browser
 
+// NOTE salary reporting uses Entity Codes that are not well publicized. find the entity code as the first four digits of any salary report csv file.
+
 // sources of csv files:
+// data dictionary: https://publicpay.ca.gov/Reports/DataDictionary.aspx
 // https://publicpay.ca.gov/Reports/State/State.aspx
 // https://publicpay.ca.gov/Reports/SuperiorCourts/SuperiorCourts.aspx
 // https://publicpay.ca.gov/Reports/HigherEducations/UniversityOfCalifornia.aspx

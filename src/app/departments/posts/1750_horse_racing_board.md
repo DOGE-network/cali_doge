@@ -1,7 +1,7 @@
 ---
 
 name: "Horse Racing Board"
-code: "1750"
+budgetCode: "1750"
 author: "Sean Roberts"
 date: "2024-03-15"
 description: "The California Horse Racing Board regulates parimutuel wagering and promotes the horse racing and breeding industries in California, ensuring public protection and industry integrity through oversight of racing meetings, licensing, and enforcement."
@@ -101,8 +101,8 @@ description: "The California Horse Racing Board regulates parimutuel wagering an
 ## Sources
 [1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/1700/1750.pdf
 [2] https://chrb.ca.gov/annual-reports/
-[3] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=BPC&division=8.&title=&part=&chapter=4.&article=
-[4] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=3.&article=
+[3] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=BPC&division=8.&title=&part=&chapter=4.&article=
+[4] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=3.&article=
 [5] https://chrb.ca.gov/
 [6] https://chrb.ca.gov/licensing/
 [7] https://chrb.ca.gov/enforcement/

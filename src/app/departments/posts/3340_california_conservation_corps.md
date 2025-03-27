@@ -1,6 +1,6 @@
 ---
 name: 'California Conservation Corps'
-code: '3340'
+budgetCode: '3340'
 date: '2024-03-16'
 author: 'State of California'
 image: '/images/departments/3340.png'

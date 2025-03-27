@@ -136,7 +136,7 @@ const NoDataDisplay = () => (
       height={100} 
       priority
     />
-    <p className="text-gray-500 mt-4">No data available</p>
+    <p className="text-gray-500 mt-4">No public data available</p>
   </div>
 );
 
@@ -147,16 +147,22 @@ export default function DepartmentCharts({
   averageAge,
   aggregatedDistributions 
 }: DepartmentChartsProps) {
-  const headCount = employeeData.headcount.length > 0 
-    ? employeeData.headcount[employeeData.headcount.length - 1].value 
+  const _headcount = employeeData.headcount;
+  const _wages = employeeData.wages;
+  const _averageSalary = employeeData.averageSalary;
+  const _averageTenure = employeeData.averageTenure;
+  const _averageAge = employeeData.averageAge;
+
+  const headCount = _headcount.length > 0 
+    ? _headcount[_headcount.length - 1].value 
     : null;
 
-  const latestYear = employeeData.headcount.length > 0
-    ? employeeData.headcount[employeeData.headcount.length - 1].year
+  const latestYear = _headcount.length > 0
+    ? _headcount[_headcount.length - 1].year
     : new Date().getFullYear().toString();
 
-  const totalWages = employeeData.wages.length > 0
-    ? employeeData.wages[employeeData.wages.length - 1].value
+  const totalWages = _wages.length > 0
+    ? _wages[_wages.length - 1].value
     : null;
   
   const chartData = useMemo(() => {

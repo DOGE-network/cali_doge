@@ -6,9 +6,13 @@ import Link from 'next/link';
 
 async function getLatestTweets(): Promise<TwitterApiResponse | null> {
   try {
-    const tweetsFile = join(process.cwd(), 'src/data/tweets/tweets.json');
-    const fileContent = readFileSync(tweetsFile, 'utf-8');
-    return JSON.parse(fileContent);
+    // Only attempt to read file if we're not in a build context
+    if (process.env.NODE_ENV !== 'production' || process.env.NEXT_PHASE !== 'build') {
+      const tweetsFile = join(process.cwd(), 'src/data/tweets/tweets.json');
+      const fileContent = readFileSync(tweetsFile, 'utf-8');
+      return JSON.parse(fileContent);
+    }
+    return null;
   } catch (error) {
     console.error('Error loading tweets:', error);
     return null;

@@ -1,6 +1,6 @@
 ---
 name: "Secretary of State"
-code: 0890
+budgetCode: 0890
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 
@@ -146,9 +146,9 @@ The Department operates through specialized divisions:
 
 Sources:
 [1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/0800/0890.pdf
-[2] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=GOV&division=3.&title=2.&part=&chapter=1.&article=3.
-[3] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=5.&article=
-[4] https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=ELEC&division=&title=&part=&chapter=1.&article=
+[2] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=GOV&division=3.&title=2.&part=&chapter=1.&article=3.
+[3] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=5.&article=
+[4] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=ELEC&division=&title=&part=&chapter=1.&article=
 [5] https://www.sos.ca.gov/business-programs
 [6] https://www.sos.ca.gov/archives
 [7] https://www.sos.ca.gov/registries/safe-home
