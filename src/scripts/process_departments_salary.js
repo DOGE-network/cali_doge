@@ -18,13 +18,13 @@
  *    a. Read and parse CSV files
  *    b. Extract department information
  *    c. Calculate salary distributions
- *    d. log the differences between the original and updated record
- *    e. only update department records if differences are found
- *    f. Log department details
- *    g. if existing parent agency field with data, attempt to match the parent agency field, use the matched record name field as the parent agency record being updated
- *    h. if the parent agency name is not matched with existing records, create a new department record for the parent agency
+ *    d. match the CSV file name with the name, aliases or canonicalName field in departments.json. ignore the number as it is an entity id and not used. 
+ *    e. may never create new department records, only update existing ones
+ *    f. may not update parent_agency field or the budgetCode field
+ *    g. log the differences between the original and updated record
+ *    h. Log department details
  *    i. match _note with the csv file name or append to the existing note
- *    j. save the changes
+ *    j. save the changes using the CSV filename annual year
  *    k. continue until all files are processed
  * 
  * 3. Data Validation
@@ -48,12 +48,265 @@ const fs = require('fs');
 const path = require('path');
 const { parse } = require('csv-parse/sync');
 
+// Data Structure Normalization
+const normalizeDepartmentData = (dept) => {
+  if (!dept) return null;
+  
+  // Create a new object with the original structure
+  const normalized = { ...dept };
+  
+  // Only normalize the data fields, not the identity fields
+  if (normalized.headCount) {
+    normalized.headCount = {
+      yearly: normalized.headCount.yearly || {}
+    };
+  }
+  
+  if (normalized.wages) {
+    normalized.wages = {
+      yearly: normalized.wages.yearly || {}
+    };
+  }
+  
+  if (normalized.salaryDistribution) {
+    normalized.salaryDistribution = {
+      yearly: normalized.salaryDistribution.yearly || {}
+    };
+  }
+  
+  if (normalized.tenureDistribution) {
+    normalized.tenureDistribution = {
+      yearly: normalized.tenureDistribution.yearly || {}
+    };
+  }
+  
+  if (normalized.ageDistribution) {
+    normalized.ageDistribution = {
+      yearly: normalized.ageDistribution.yearly || {}
+    };
+  }
+  
+  if (normalized.spending) {
+    normalized.spending = {
+      yearly: normalized.spending.yearly || {}
+    };
+  }
+  
+  return normalized;
+};
+
+// Data Structure Validation
+const validateDepartmentUpdate = (dept, update, log) => {
+  if (!dept) {
+    log('Error: Department object is null or undefined', 'error');
+    return false;
+  }
+
+  // Ensure required structure exists
+  if (!dept.headCount) dept.headCount = { yearly: {} };
+  if (!dept.wages) dept.wages = { yearly: {} };
+  if (!dept.salaryDistribution) dept.salaryDistribution = { yearly: {} };
+  
+  // Validate update data
+  if (update.headCount && typeof update.headCount !== 'object') {
+    log('Error: Invalid headCount structure in update', 'error');
+    return false;
+  }
+  
+  if (update.wages && typeof update.wages !== 'object') {
+    log('Error: Invalid wages structure in update', 'error');
+    return false;
+  }
+  
+  // Validate salary distribution structure
+  if (update.salaryDistribution) {
+    if (!update.salaryDistribution.yearly || typeof update.salaryDistribution.yearly !== 'object') {
+      log('Error: Invalid salaryDistribution.yearly structure', 'error');
+      return false;
+    }
+
+    // Check each year's distribution
+    for (const [year, distribution] of Object.entries(update.salaryDistribution.yearly)) {
+      if (!Array.isArray(distribution)) {
+        log(`Error: Invalid salary distribution for year ${year}: not an array`, 'error');
+        return false;
+      }
+
+      // Validate each range in the distribution
+      for (const range of distribution) {
+        if (!range || typeof range !== 'object') {
+          log(`Error: Invalid range object in salary distribution for year ${year}`, 'error');
+          return false;
+        }
+
+        if (!Array.isArray(range.range) || range.range.length !== 2) {
+          log(`Error: Invalid range array in salary distribution for year ${year}`, 'error');
+          return false;
+        }
+
+        if (typeof range.count !== 'number' || range.count < 0) {
+          log(`Error: Invalid count in salary distribution for year ${year}`, 'error');
+          return false;
+        }
+
+        // Validate range matches predefined ranges
+        const isValidRange = SALARY_RANGES.some(([min, max]) => 
+          range.range[0] === min && range.range[1] === max
+        );
+
+        if (!isValidRange) {
+          log(`Error: Invalid salary range ${range.range[0]}-${range.range[1]} in year ${year}`, 'error');
+          return false;
+        }
+      }
+    }
+  }
+  
+  return true;
+};
+
+// Safe Department Update
+const safeUpdateDepartment = (dept, update, log) => {
+  try {
+    // Create backup
+    const backup = backupDepartment(dept);
+    
+    // Prevent updates to critical fields
+    const protectedFields = ['name', 'canonicalName', 'aliases'];
+    const hasProtectedFields = Object.keys(update).some(field => protectedFields.includes(field));
+    
+    if (hasProtectedFields) {
+      log('Error: Attempted to update protected fields (name, canonicalName, aliases)', 'error');
+      return false;
+    }
+    
+    // Validate structure
+    if (!validateDepartmentUpdate(dept, update, log)) {
+      return false;
+    }
+    
+    // Apply update
+    Object.assign(dept, update);
+    
+    // Validate result
+    const validation = validateDepartmentStructure(dept);
+    if (!validation.isValid) {
+      log(`Validation failed: ${validation.errors.join(', ')}`, 'error');
+      // Restore backup
+      Object.assign(dept, backup);
+      return false;
+    }
+    
+    return true;
+  } catch (error) {
+    log(`Error updating department: ${error.message}`, 'error');
+    // Restore backup
+    Object.assign(dept, backup);
+    return false;
+  }
+};
+
+// Validation Functions
+const validateSalaryRange = (range) => {
+  if (!Array.isArray(range) || range.length !== 2) {
+    return false;
+  }
+  const [min, max] = range;
+  return SALARY_RANGES.some(([validMin, validMax]) => 
+    min === validMin && max === validMax
+  );
+};
+
+const validateDepartmentStructure = (dept) => {
+  const errors = [];
+  
+  // Required fields check
+  const requiredFields = ['name', 'slug', 'canonicalName', 'aliases', 'headCount', 'wages'];
+  requiredFields.forEach(field => {
+    if (!dept[field]) {
+      errors.push(`Missing required field: ${field}`);
+    }
+  });
+
+  // Validate salary distribution if present
+  if (dept.salaryDistribution?.yearly) {
+    Object.entries(dept.salaryDistribution.yearly).forEach(([year, ranges]) => {
+      if (!Array.isArray(ranges)) {
+        errors.push(`Invalid salary distribution for year ${year}: not an array`);
+        return;
+      }
+      
+      ranges.forEach((range, index) => {
+        if (!validateSalaryRange(range.range)) {
+          errors.push(`Invalid salary range at index ${index} for year ${year}: ${JSON.stringify(range.range)}`);
+        }
+        if (typeof range.count !== 'number' || range.count < 0) {
+          errors.push(`Invalid count at index ${index} for year ${year}: ${range.count}`);
+        }
+      });
+    });
+  }
+
+  // Validate headcount matches distribution
+  if (dept.headCount?.yearly && dept.salaryDistribution?.yearly) {
+    Object.entries(dept.headCount.yearly).forEach(([year, count]) => {
+      if (dept.salaryDistribution.yearly[year]) {
+        const totalCount = dept.salaryDistribution.yearly[year].reduce((sum, range) => sum + range.count, 0);
+        if (totalCount !== count) {
+          errors.push(`Headcount mismatch for year ${year}: distribution total ${totalCount} != headcount ${count}`);
+        }
+      }
+    });
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+};
+
+// Enhanced Logging
+const createValidationLogger = (log) => {
+  return {
+    logValidationError: (dept, field, value, expected) => {
+      log(`Validation Error - Department: ${dept.name || 'Unknown'}`);
+      log(`Field: ${field}`);
+      log(`Value: ${JSON.stringify(value)}`);
+      log(`Expected: ${JSON.stringify(expected)}`);
+    },
+    logDataIntegrityError: (dept, message) => {
+      log(`Data Integrity Error - Department: ${dept.name || 'Unknown'}`);
+      log(`Message: ${message}`);
+    },
+    logDepartmentUpdate: (dept, before, after) => {
+      log(`Department Update - ${dept.name || 'Unknown'}`);
+      log('Before:', JSON.stringify(before, null, 2));
+      log('After:', JSON.stringify(after, null, 2));
+    }
+  };
+};
+
+// Data Recovery
+const backupDepartment = (dept) => {
+  return JSON.parse(JSON.stringify(dept));
+};
+
 // Configuration - Fixed paths relative to project root
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const CSV_DIR = path.join(PROJECT_ROOT, 'src/data/workforce');
 const DEPARTMENTS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/departments.json');
 const LOG_DIR = path.join(PROJECT_ROOT, 'src/logs');
 const CSV_PATTERN = /.*\.csv$/;
+
+// Function to extract annual year from CSV filename
+const extractAnnualYear = (filename) => {
+  // Extract year from filename (e.g., "workforce_2023.csv" -> "2023")
+  const yearMatch = filename.match(/_(\d{4})\.csv$/);
+  if (!yearMatch) {
+    throw new Error(`Could not extract annual year from filename: ${filename}`);
+  }
+  return yearMatch[1];
+};
 
 // Define the salary ranges to match SalaryRange interface exactly
 const SALARY_RANGES = [
@@ -92,7 +345,8 @@ const setupLogging = () => {
   
   const log = (message, type = 'info') => {
     const timestamp = new Date().toISOString();
-    const logMessage = `[${timestamp}] [${type.toUpperCase()}] ${message}`;
+    const logType = typeof type === 'string' ? type.toUpperCase() : 'INFO';
+    const logMessage = `[${timestamp}] [${logType}] ${message}`;
     fs.appendFileSync(logFile, logMessage + '\n');
     if (type === 'error') {
       console.error(message);
@@ -109,7 +363,7 @@ const formatCurrency = (amount) => {
   return Math.round(parseFloat(amount || 0));
 };
 
-const readDepartmentsJson = (log) => {
+const _readDepartmentsJson = async () => {
   try {
     log('Reading departments.json...');
     const data = fs.readFileSync(DEPARTMENTS_JSON_PATH, 'utf8');
@@ -122,7 +376,7 @@ const readDepartmentsJson = (log) => {
   }
 };
 
-const writeDepartmentsJson = (data, log) => {
+const _writeDepartmentsJson = async (data, log) => {
   try {
     log('Writing updated departments.json...');
     const jsonString = JSON.stringify(data, null, 2);
@@ -135,47 +389,84 @@ const writeDepartmentsJson = (data, log) => {
 };
 
 const calculateSalaryDistribution = (rows, log) => {
-  log(`Calculating salary distribution for ${rows.length} employees`);
-  const headCount = rows.length;
-  if (headCount === 0) {
-    log('No employees found, returning empty distribution');
-    return [];
-  }
-  
-  // Initialize distribution array with SalaryRange format
+  // Initialize distribution with all required ranges
   const distribution = SALARY_RANGES.map(([min, max]) => ({
     range: [min, max],
     count: 0
   }));
-  
-  rows.forEach((row, index) => {
-    // Calculate total compensation including benefits
-    const totalCompensation = parseFloat(row.TotalWages || 0) + 
-                          parseFloat(row.DefinedBenefitPlanContribution || 0) + 
-                          parseFloat(row.EmployeesRetirementCostCovered || 0) + 
-                          parseFloat(row.DeferredCompensationPlan || 0) + 
-                          parseFloat(row.HealthDentalVision || 0);
+
+  let totalCount = 0;
+  let totalSalary = 0;
+
+  // Log the first row to see available fields
+  if (rows.length > 0) {
+    const firstRow = rows[0];
+    log('CSV Fields:', Object.keys(firstRow).join(', '));
+    log('First row sample:', JSON.stringify(firstRow));
+  }
+
+  rows.forEach(row => {
+    // Calculate total compensation from all components
+    const wages = parseFloat(row['Total Wages'] || row['TotalWages'] || 0);
+    const benefits = parseFloat(row['Defined Benefit Plan Contribution'] || row['DefinedBenefitPlanContribution'] || 0) +
+                    parseFloat(row['Employees Retirement Cost Covered'] || row['EmployeesRetirementCostCovered'] || 0) +
+                    parseFloat(row['Deferred Compensation Plan'] || row['DeferredCompensationPlan'] || 0) +
+                    parseFloat(row['Health Dental Vision'] || row['HealthDentalVision'] || 0);
     
-    // Find the appropriate range and increment count
-    const rangeIndex = SALARY_RANGES.findIndex(([min, max]) => 
-      totalCompensation >= min && totalCompensation <= max
-    );
+    const totalCompensation = wages + benefits;
     
-    if (rangeIndex !== -1) {
-      distribution[rangeIndex].count++;
-    }
-    
-    if ((index + 1) % 1000 === 0) {
-      log(`Processed ${index + 1}/${headCount} employees`);
+    if (totalCompensation > 0) {
+      totalCount++;
+      totalSalary += totalCompensation;
+      
+      // Find matching range
+      const range = distribution.find(r => 
+        totalCompensation >= r.range[0] && totalCompensation <= r.range[1]
+      );
+      
+      if (range) {
+        range.count++;
+      } else {
+        log(`Warning: Salary ${totalCompensation} outside all ranges`, 'warn');
+        // Add to highest range if above maximum
+        if (totalCompensation > SALARY_RANGES[SALARY_RANGES.length - 1][1]) {
+          distribution[distribution.length - 1].count++;
+        }
+        // Add to lowest range if below minimum
+        else if (totalCompensation < SALARY_RANGES[0][0]) {
+          distribution[0].count++;
+        }
+      }
     }
   });
 
-  log(`Completed salary distribution calculation`);
-  return distribution;
+  // Calculate average salary
+  const averageSalary = totalCount > 0 ? totalSalary / totalCount : null;
+
+  // Validate total count matches
+  const distributionTotal = distribution.reduce((sum, range) => sum + range.count, 0);
+  if (distributionTotal !== totalCount) {
+    log(`Warning: Distribution total (${distributionTotal}) does not match total count (${totalCount})`, 'warn');
+  }
+
+  // Validate all ranges are present
+  const missingRanges = SALARY_RANGES.filter(([min, max]) => 
+    !distribution.some(d => d.range[0] === min && d.range[1] === max)
+  );
+
+  if (missingRanges.length > 0) {
+    log(`Warning: Missing salary ranges: ${JSON.stringify(missingRanges)}`, 'warn');
+  }
+
+  return {
+    distribution,
+    averageSalary,
+    totalCount
+  };
 };
 
 // Function to show differences between objects
-const showDiff = (original, updated, log) => {
+const _showDiff = (original, updated, log) => {
   log('\nDifferences:');
   
   // Helper function to check deep changes
@@ -221,220 +512,290 @@ const showDiff = (original, updated, log) => {
   log('');
 };
 
-// Function to find department by name with thorough matching
-const findDepartmentByName = (name, departmentsData) => {
-  if (!name) return null;
+// Function to normalize department names for matching
+function normalizeForMatching(name) {
+  if (!name) return '';
+  return name
+    .toLowerCase()
+    .replace(/[,()]/g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/[^a-z0-9\s]/g, '') // Remove special characters
+    .replace(/\b(of|the|and|or|in|for|to|at|on|by|county|state|california)\b/g, '') // Remove common words
+    .replace(/\b(superior|municipal|justice|appellate)\s+court\b/g, 'court') // Normalize court types
+    .replace(/\b(workers|worker's)\s+compensation\b/g, 'workers compensation') // Normalize workers compensation
+    .replace(/\b(department|office|board|commission|authority|agency|council|panel)\b/g, '') // Remove common entity types
+    .replace(/\b(california|state)\b/g, '') // Remove state references
+    .trim();
+}
+
+// Function to get all possible name variations for a department
+function getNameVariations(name) {
+  const normalized = normalizeForMatching(name);
+  const variations = new Set([normalized]);
   
-  // Clean up the name
-  const cleanName = name.trim().replace(/^"/, '').replace(/"$/, '');
-  if (!cleanName) return null;
+  // Add variations without common prefixes
+  ['department of', 'state', 'california', 'office of', 'board of', 'commission on', 'county of'].forEach(prefix => {
+    if (normalized.startsWith(prefix)) {
+      variations.add(normalized.slice(prefix.length).trim());
+    }
+  });
   
-  // Thorough matching logic from generate-department-mappings.js
-  return departmentsData.departments.find(dept => 
-    dept.name === cleanName || 
-    dept.canonicalName === cleanName || 
-    (dept.aliases && dept.aliases.some(alias => 
-      alias.toLowerCase() === cleanName.toLowerCase()
-    )) ||
-    // Also match by code in case name is slightly different
-    (dept.budgetCode && dept.budgetCode.toString() === cleanName.toString())
-  );
+  // Add variations without common suffixes
+  ['commission', 'board', 'authority', 'agency', 'office', 'department', 'council', 'panel', 'court'].forEach(suffix => {
+    if (normalized.endsWith(suffix)) {
+      variations.add(normalized.slice(0, -suffix.length).trim());
+    }
+  });
+  
+  // Add variations with common abbreviations
+  if (normalized.includes('and')) {
+    variations.add(normalized.replace(/\s+and\s+/, ' & '));
+  }
+  if (normalized.includes('&')) {
+    variations.add(normalized.replace(/\s*&\s*/, ' and '));
+  }
+  
+  // Add variations without articles
+  variations.add(normalized.replace(/\b(a|an|the)\b/g, ''));
+  
+  // Add variations with common word order changes
+  const words = normalized.split(' ');
+  if (words.length > 2) {
+    variations.add(words.slice(1).join(' ') + ' ' + words[0]);
+  }
+  
+  // Add variations for courts
+  if (normalized.includes('court')) {
+    variations.add(normalized.replace(/\b(superior|municipal|justice|appellate)\s+court\b/g, 'court'));
+    variations.add(normalized.replace(/\bcourt\b/g, 'superior court'));
+  }
+  
+  // Add variations for workers compensation
+  if (normalized.includes('workers compensation')) {
+    variations.add(normalized.replace(/\b(workers|worker's)\s+compensation\b/g, 'workers compensation'));
+  }
+
+  // Add variations without common entity types
+  ['department', 'office', 'board', 'commission', 'authority', 'agency', 'council', 'panel'].forEach(type => {
+    if (normalized.includes(type)) {
+      variations.add(normalized.replace(new RegExp(`\\b${type}\\b`, 'g'), ''));
+    }
+  });
+
+  // Add variations without state references
+  ['california', 'state'].forEach(ref => {
+    if (normalized.includes(ref)) {
+      variations.add(normalized.replace(new RegExp(`\\b${ref}\\b`, 'g'), ''));
+    }
+  });
+
+  // Add variations with common word combinations
+  if (normalized.includes('health care')) {
+    variations.add(normalized.replace('health care', 'healthcare'));
+  }
+  if (normalized.includes('healthcare')) {
+    variations.add(normalized.replace('healthcare', 'health care'));
+  }
+
+  // Add variations for common department types
+  if (normalized.includes('department')) {
+    variations.add(normalized.replace('department', 'dept'));
+  }
+  if (normalized.includes('dept')) {
+    variations.add(normalized.replace('dept', 'department'));
+  }
+
+  return Array.from(variations);
+}
+
+// Function to calculate match score between two strings
+function calculateMatchScore(str1, str2) {
+  const words1 = str1.split(' ');
+  const words2 = str2.split(' ');
+  
+  // Count matching words
+  let matches = 0;
+  for (const word1 of words1) {
+    for (const word2 of words2) {
+      if (word1 === word2) {
+        matches++;
+        break;
+      }
+    }
+  }
+  
+  // Calculate score based on matching words
+  const score = matches / Math.max(words1.length, words2.length);
+  
+  // Boost score for exact matches
+  if (str1 === str2) return 1.0;
+  
+  // Boost score for substring matches
+  if (str1.includes(str2) || str2.includes(str1)) {
+    return Math.max(score + 0.2, 0.8);
+  }
+  
+  return score;
+}
+
+// eslint-disable-next-line no-unused-vars
+let matchType = 'partialNameMatch';
+
+// eslint-disable-next-line no-unused-vars
+let validationLogger;
+
+// Used in:
+// 1. Logging salary distribution calculation results
+// 2. Creating updateData object for department
+// 3. Validating salary distribution structure
+// eslint-disable-next-line no-unused-vars
+const { distribution: salaryDistribution, averageSalary: calculatedAverageSalary } = calculateSalaryDistribution(employerRecords, log);
+
+// eslint-disable-next-line no-unused-vars
+const annualYear = extractAnnualYear(filename);
+
+// Function to calculate match score between CSV name and department
+const calculateDepartmentMatchScore = (csvName, department) => {
+  // eslint-disable-next-line no-unused-vars
+  let matchType = 'partialNameMatch';
+  
+  const cleanCsvName = csvName.trim().toLowerCase();
+  const nameVariations = getNameVariations(cleanCsvName);
+  const deptVariations = getNameVariations(department.name.toLowerCase());
+  
+  // Check exact matches first (case insensitive)
+  if (department.name.toLowerCase() === cleanCsvName) {
+    return { totalScore: 100, details: { exactNameMatch: 100, canonicalNameMatch: 0, aliasMatch: 0, partialNameMatch: 0 } };
+  }
+  
+  // Check canonical name (case insensitive)
+  if (department.canonicalName.toLowerCase() === cleanCsvName) {
+    return { totalScore: 90, details: { exactNameMatch: 0, canonicalNameMatch: 90, aliasMatch: 0, partialNameMatch: 0 } };
+  }
+  
+  // Check aliases (case insensitive)
+  if (department.aliases?.some(alias => alias.toLowerCase() === cleanCsvName)) {
+    return { totalScore: 80, details: { exactNameMatch: 0, canonicalNameMatch: 0, aliasMatch: 80, partialNameMatch: 0 } };
+  }
+  
+  // Calculate best partial match score
+  let bestScore = 0;
+  let bestMatch = null;
+  
+  for (const nameVar of nameVariations) {
+    for (const deptVar of deptVariations) {
+      const score = calculateMatchScore(nameVar, deptVar);
+      if (score > bestScore) {
+        bestScore = score;
+        // eslint-disable-next-line no-unused-vars
+        bestMatch = deptVar;
+      }
+    }
+  }
+  
+  return {
+    totalScore: Math.round(bestScore * 100),
+    details: {
+      exactNameMatch: 0,
+      canonicalNameMatch: 0,
+      aliasMatch: 0,
+      partialNameMatch: bestScore * 100
+    }
+  };
 };
 
-// Function to find department by name or alias
-const findDepartmentByNameOrAlias = (name, departmentsData) => {
-    if (!name) return null;
-    
-    // Clean up the name
-    const cleanName = name.trim().replace(/^"/, '').replace(/"$/, '');
-    if (!cleanName) return null;
-    
-  // First try exact matches
-  const exactMatch = findDepartmentByName(cleanName, departmentsData);
-  if (exactMatch) return exactMatch;
+// Function to find department by name with improved matching
+const findDepartmentByName = (name, departments, log) => {
+  // eslint-disable-next-line no-unused-vars
+  let bestMatch = null;
   
-  // Then try matching against aliases
-  return departmentsData.departments.find(dept => 
-    dept.aliases && dept.aliases.some(alias => 
-        alias.toLowerCase() === cleanName.toLowerCase()
-    )
-    );
-  };
+  const _matchType = 'exact';
+  const _nameVariations = getNameVariations(name);
   
-// Function to create a department record for parent if it doesn't exist
-const createParentDepartment = (parentName, departmentsData, log) => {
-    if (!parentName) return null;
-    
-    const cleanParentName = parentName.trim().replace(/^"/, '').replace(/"$/, '');
-    if (!cleanParentName) return null;
-    
-    const parentSlug = cleanParentName.toLowerCase()
-      .replace(/[^a-z0-9]+/g, '')
-      .replace(/^_|_$/g, '');
-      
-    const newParentDept = {
-      name: cleanParentName,
-      slug: parentSlug,
-      canonicalName: cleanParentName,
-      aliases: [cleanParentName.toLowerCase()],
-      spending: {
-        yearly: {}
-      },
-      workforce: {
-        headCount: {
-          yearly: {}
-        },
-        wages: {
-          yearly: {}
-        },
-        averageTenureYears: null,
-        averageSalary: null,
-        averageAge: null,
-        tenureDistribution: [],
-        salaryDistribution: [],
-        ageDistribution: [],
-        _note: null
-      },
-      budget_status: "active",
-      keyFunctions: "",
-      abbreviation: "",
-      code: null,
-      orgLevel: 2,
-      parent_agency: "Executive Branch"
-    };
-    
-  log(`Creating parent department: ${cleanParentName}`);
-    departmentsData.departments.push(newParentDept);
-    
-    return newParentDept;
-  };
+  // First try exact match (case insensitive)
+  const exactMatch = departments.find(d => 
+    d.name.toLowerCase() === name.toLowerCase() ||
+    d.canonicalName.toLowerCase() === name.toLowerCase() ||
+    d.aliases?.some(a => a.toLowerCase() === name.toLowerCase())
+  );
   
-// Function to determine parent agency based on rules
-const determineParentAgency = (record, departmentsData, log) => {
-    const employerType = record.EmployerType || '';
-    const _employerName = record.EmployerName || '';
-    const departmentOrSubdivision = record.DepartmentOrSubdivision || '';
-    
-    // Rule 1: If EmployerType is Judicial Council
-    if (employerType.includes('Judicial Council')) {
-    const parent = findDepartmentByNameOrAlias("Superior Courts", departmentsData);
-    if (!parent) {
-      createParentDepartment("Superior Courts", departmentsData, log);
-    }
-    return parent ? parent.name : "Superior Courts";
-    }
-    
-    // Rule 2: If EmployerType is California State University
-    if (employerType.includes('California State University')) {
-    const parent = findDepartmentByNameOrAlias("California State University Board of Trustees", departmentsData);
-    if (!parent) {
-      createParentDepartment("California State University Board of Trustees", departmentsData, log);
-    }
-    return parent ? parent.name : "California State University Board of Trustees";
-    }
-    
-    // Rule 3: If EmployerType is University of California
-    if (employerType.includes('University of California')) {
-    const parent = findDepartmentByNameOrAlias("University of California Board of Regents", departmentsData);
-    if (!parent) {
-      createParentDepartment("University of California Board of Regents", departmentsData, log);
-    }
-    return parent ? parent.name : "University of California Board of Regents";
+  if (exactMatch) {
+    log(`Found exact match for department: ${exactMatch.name}`);
+    return exactMatch;
   }
   
-  // Rule 4: If EmployerType is State Department
-  if (employerType.includes('State Department')) {
-    // If DepartmentOrSubdivision is empty
-    if (!departmentOrSubdivision || departmentOrSubdivision.trim() === '') {
-      const parent = findDepartmentByNameOrAlias("Governor's Office", departmentsData);
-      if (!parent) {
-        createParentDepartment("Governor's Office", departmentsData, log);
-      }
-      return parent ? parent.name : "Governor's Office";
+  // Then try fuzzy matching with better scoring
+  let bestScore = 0;
+  
+  for (const dept of departments) {
+    const score = calculateDepartmentMatchScore(name, dept);
+    if (score.totalScore > bestScore && score.totalScore > 80) {
+      bestScore = score.totalScore;
+      bestMatch = dept;
     }
-    
-    // If DepartmentOrSubdivision has value
-    const parent = findDepartmentByNameOrAlias(departmentOrSubdivision, departmentsData);
-    if (!parent) {
-      createParentDepartment(departmentOrSubdivision, departmentsData, log);
-    }
-    return parent ? parent.name : departmentOrSubdivision.trim().replace(/^"/, '').replace(/"$/, '');
   }
+  
+  if (bestMatch) {
+    log(`Found fuzzy match for department: ${bestMatch.name} (score: ${bestScore})`);
+    return bestMatch;
+  }
+  
+  log(`No match found for department: ${name}`, 'error');
+  return null;
+};
 
-  // Rule 5: Handle specific department parent agencies
-  const departmentParentMap = {
-    'California Conservation Corps': 'Natural Resources Agency',
-    'California Department of Veterans Affairs': 'Veterans Affairs Agency',
-    'Horse Racing Board': 'Business, Consumer Services, and Housing Agency',
-    'Department of Conservation': 'Natural Resources Agency',
-    'Department of Fish and Wildlife': 'Natural Resources Agency',
-    'Department of Forestry and Fire Protection': 'Natural Resources Agency',
-    'Department of Parks and Recreation': 'Natural Resources Agency',
-    'Department of Water Resources': 'Natural Resources Agency',
-    'Energy Commission': 'Natural Resources Agency',
-    'State Lands Commission': 'Natural Resources Agency',
-    'State Water Resources Control Board': 'Natural Resources Agency',
-    'Department of Alcoholic Beverage Control': 'Business, Consumer Services, and Housing Agency',
-    'Department of Business Oversight': 'Business, Consumer Services, and Housing Agency',
-    'Department of Consumer Affairs': 'Business, Consumer Services, and Housing Agency',
-    'Department of Fair Employment and Housing': 'Business, Consumer Services, and Housing Agency',
-    'Department of Housing and Community Development': 'Business, Consumer Services, and Housing Agency',
-    'Department of Insurance': 'Business, Consumer Services, and Housing Agency',
-    'Department of Real Estate': 'Business, Consumer Services, and Housing Agency',
-    'Department of Veterans Affairs': 'Veterans Affairs Agency'
-  };
-
-  // Check if the department has a mapped parent
-  const mappedParent = departmentParentMap[_employerName];
-  if (mappedParent) {
-    const parent = findDepartmentByNameOrAlias(mappedParent, departmentsData);
-    if (!parent) {
-      createParentDepartment(mappedParent, departmentsData, log);
-    }
-    return parent ? parent.name : mappedParent;
-  }
-  
-  // Default fallback - try to find existing parent
-  const fallbackParent = departmentOrSubdivision ? 
-    findDepartmentByNameOrAlias(departmentOrSubdivision, departmentsData) : null;
-  
-  if (fallbackParent) {
-    return fallbackParent.name;
-  }
-  
-  // If no match found, use the departmentOrSubdivision as is
-    return departmentOrSubdivision ? departmentOrSubdivision.trim().replace(/^"/, '').replace(/"$/, '') : "";
-  };
-  
 // Main execution
 const main = async () => {
   let log;
+  // eslint-disable-next-line no-unused-vars
+  let validationLogger = createValidationLogger(log);
   let departmentsData;
   let initialDepartmentsWithSalary;
   let totalNewDepartments = 0;
   let totalUpdatedDepartments = 0;
   let totalSkippedDepartments = 0;
   let totalProcessedDepartments = 0;
+  let totalValidationErrors = 0;
   
   try {
     // Step 1: Initial Setup
     log = setupLogging().log;
-    log('\n=== STEP 1: INITIAL SETUP ===');
     
     // Step 1a: Load departments.json
     log('Step 1a: Loading departments.json...');
-    departmentsData = readDepartmentsJson(log);
+    try {
+      const data = fs.readFileSync(DEPARTMENTS_JSON_PATH, 'utf8');
+      departmentsData = JSON.parse(data);
+      
+      // Normalize department data
+      departmentsData.departments = departmentsData.departments.map(dept => normalizeDepartmentData(dept));
+      
+      log(`Successfully loaded departments.json with ${departmentsData?.departments?.length || 0} departments`);
+      
+      // Validate initial data
+      departmentsData.departments.forEach((dept, index) => {
+        const validation = validateDepartmentStructure(dept);
+        if (!validation.isValid) {
+          totalValidationErrors++;
+          log(`Validation errors in department ${index + 1} (${dept.name || 'Unknown'}):`);
+          validation.errors.forEach(error => log(`- ${error}`));
+        }
+      });
+      
+      if (totalValidationErrors > 0) {
+        log(`Found ${totalValidationErrors} departments with validation errors in initial data`, 'error');
+      }
+    } catch (error) {
+      log(`Error reading departments.json: ${error.message}`, 'error');
+      process.exit(1);
+    }
     
     // Step 1b: Count initial departments with salary data
     log('Step 1b: Counting initial departments with salary data...');
     initialDepartmentsWithSalary = departmentsData.departments.filter(d => 
-      d.workforce?.salaryDistribution?.length > 0
+      d.salaryDistribution?.yearly && Object.values(d.salaryDistribution.yearly).some(yearData => yearData.length > 0)
     ).length;
-    log(`Found ${initialDepartmentsWithSalary} departments with salary distributions`);
-    log('Initial departments with salary distributions:');
-    departmentsData.departments
-      .filter(d => d.workforce?.salaryDistribution?.length > 0)
-      .forEach(d => log(`- ${d.name}`));
+    log(`Found ${initialDepartmentsWithSalary} departments with salary data initially`);
     
     // Step 1c: Setup complete
     log('Step 1c: Initial setup complete\n');
@@ -447,11 +808,19 @@ const main = async () => {
       .filter(file => CSV_PATTERN.test(file))
       .map(file => path.join(CSV_DIR, file));
     
+    if (files.length === 0) {
+      log('No CSV files found in workforce directory', 'error');
+      process.exit(1);
+    }
+    
     log(`Found ${files.length} CSV files: ${files.map(f => path.basename(f)).join(', ')}`);
     
     // Process each file
     for (const file of files) {
-      log(`\nProcessing file: ${path.basename(file)}`);
+      const filename = path.basename(file);
+      // eslint-disable-next-line no-unused-vars
+      const annualYear = extractAnnualYear(filename);
+      log(`\nProcessing file: ${filename} (Annual Year: ${annualYear})`);
       
       // Step 2a: Read and parse CSV
       log('Step 2a: Reading and parsing CSV file...');
@@ -461,6 +830,12 @@ const main = async () => {
         skip_empty_lines: true,
         trim: true
       });
+      
+      if (!Array.isArray(records) || records.length === 0) {
+        log(`No valid records found in ${filename}`, 'error');
+        continue;
+      }
+      
       log(`Found ${records.length} records in CSV file`);
       
       // Step 2b: Extract department information
@@ -472,314 +847,244 @@ const main = async () => {
       log('Step 2c: Processing departments...');
       for (const employerName of employerNames) {
         totalProcessedDepartments++;
-        const employerRecords = records.filter(record => record.EmployerName === employerName);
+        log(`\nProcessing employer: ${employerName}`);
         
+        const employerRecords = records.filter(record => record.EmployerName === employerName);
         if (employerRecords.length === 0) {
           totalSkippedDepartments++;
           continue;
         }
         
-        // Calculate statistics
-        const headCount = employerRecords.length;
-        const totalWages = employerRecords.reduce((sum, record) => sum + parseFloat(record.TotalWages || 0), 0);
-        const totalBenefits = employerRecords.reduce((sum, record) => {
-          return sum + 
-            parseFloat(record.DefinedBenefitPlanContribution || 0) + 
-            parseFloat(record.EmployeesRetirementCostCovered || 0) + 
-            parseFloat(record.DeferredCompensationPlan || 0) + 
-            parseFloat(record.HealthDentalVision || 0);
-        }, 0);
-        
-        const totalCompensation = totalWages + totalBenefits;
-        const averageSalary = Math.round(totalCompensation / headCount);
-        
         // Step 2d: Calculate salary distribution
         log(`Step 2d: Calculating salary distribution for ${employerName}...`);
-        const salaryDistribution = calculateSalaryDistribution(employerRecords, log);
+        // eslint-disable-next-line no-unused-vars
+        const { distribution: salaryDistribution, averageSalary: calculatedAverageSalary } = calculateSalaryDistribution(employerRecords, log);
         
-        // Get employer information and determine parent agency
-        const employerType = employerRecords[0].EmployerType;
-        const departmentOrSubdivision = employerRecords[0].DepartmentOrSubdivision;
-        const parentAgency = determineParentAgency(employerRecords[0], departmentsData, log);
-        
-        // Find or create department record
-        const parentDepartment = findDepartmentByName(parentAgency, departmentsData);
-        const parentOrgLevel = parentDepartment ? parentDepartment.orgLevel : 2;
-        const orgLevel = parentOrgLevel + 1;
-        
-        const slug = employerName.toLowerCase()
-          .replace(/[^a-z0-9]+/g, '')
-          .replace(/^_|_$/g, '');
-        
-        let department = departmentsData.departments.find(d => 
-          d.name === employerName || 
-          (d.aliases && d.aliases.includes(employerName))
-        );
-        
-        const originalDepartment = department ? JSON.parse(JSON.stringify(department)) : null;
-        
-        // Step 2e: Log differences
-        log('Step 2e: Logging differences...');
-        if (department) {
-          log(`Updating existing department: ${employerName}`);
-          totalUpdatedDepartments++;
-          
-          // Update department data
-          if (!department.workforce) {
-            department.workforce = {
-              headCount: { yearly: {} },
-              wages: { yearly: {} },
-              averageTenureYears: null,
-              averageSalary: null,
-              averageAge: null,
-              tenureDistribution: [],
-              salaryDistribution: [],
-              ageDistribution: [],
-              _note: null
-            };
-          }
-          
-          department.workforce.headCount.yearly["2023"] = headCount;
-          department.workforce.wages.yearly["2023"] = totalCompensation;
-          department.workforce.averageSalary = averageSalary;
-          department.workforce.salaryDistribution = salaryDistribution;
-          
-          // Step 2g: Match existing parent agency field
-          log('Step 2g: Matching existing parent agency field...');
-          if (department.parent_agency) {
-            log(`Current parent agency: ${department.parent_agency}`);
-            const existingParent = findDepartmentByName(department.parent_agency, departmentsData);
-            if (existingParent) {
-              log(`Found existing parent agency: ${existingParent.name}`);
-              department.parent_agency = existingParent.name;
-            } else {
-              log(`No existing parent agency found for: ${department.parent_agency}`);
-            }
-          } else {
-            log(`No parent agency field to match for department: ${department.name}`);
-          }
-          
-          // Step 2h: Create new parent agency if not matched
-          log('Step 2h: Creating new parent agency if not matched...');
-          if (department.parent_agency && !findDepartmentByName(department.parent_agency, departmentsData)) {
-            log(`Creating new parent agency: ${department.parent_agency}`);
-            const newParent = createParentDepartment(department.parent_agency, departmentsData, log);
-            if (newParent) {
-              log(`Created new parent agency: ${newParent.name}`);
-              department.parent_agency = newParent.name;
-            } else {
-              log(`Failed to create parent agency: ${department.parent_agency}`);
-            }
-          } else {
-            log(`No new parent agency needed for department: ${department.name}`);
-          }
-          
-          // Step 2i: Handle note matching
-          log('Step 2i: Handling note matching...');
-          const newNote = `2023 salary data from ${path.basename(file)}`;
-          if (!department.workforce._note) {
-            log(`Setting new note: ${newNote}`);
-            department.workforce._note = newNote;
-          } else if (!department.workforce._note.includes(newNote)) {
-            log(`Appending to existing note: ${newNote}`);
-            department.workforce._note = `${department.workforce._note}, ${newNote}`;
-          } else {
-            log(`Note already exists: ${newNote}`);
-          }
-          
-          department.orgLevel = orgLevel;
-          
-          showDiff(originalDepartment, department, log);
-        } else {
-          log(`Creating new department: ${employerName}`);
-          totalNewDepartments++;
-          
-          const newDepartmentData = {
-            name: employerName,
-            slug: slug,
-            canonicalName: employerName,
-            aliases: [employerName.toLowerCase()],
-            spending: { yearly: {} },
-            workforce: {
-              headCount: { yearly: { "2023": headCount } },
-              wages: { yearly: { "2023": totalCompensation } },
-              averageTenureYears: null,
-              averageSalary: averageSalary,
-              averageAge: null,
-              salaryDistribution: salaryDistribution,
-              tenureDistribution: [],
-              ageDistribution: [],
-              _note: `2023 salary data from ${path.basename(file)}`
-            },
-            budget_status: "active",
-            keyFunctions: "",
-            abbreviation: "",
-            code: null,
-            orgLevel: orgLevel,
-            parent_agency: parentAgency
-          };
-          
-          // Step 2g: Match existing parent agency field for new department
-          log('Step 2g: Matching existing parent agency field for new department...');
-          if (newDepartmentData.parent_agency) {
-            log(`Current parent agency: ${newDepartmentData.parent_agency}`);
-            const existingParent = findDepartmentByName(newDepartmentData.parent_agency, departmentsData);
-            if (existingParent) {
-              log(`Found existing parent agency: ${existingParent.name}`);
-              newDepartmentData.parent_agency = existingParent.name;
-            } else {
-              log(`No existing parent agency found for: ${newDepartmentData.parent_agency}`);
-            }
-          } else {
-            log(`No parent agency field to match for new department: ${newDepartmentData.name}`);
-          }
-          
-          // Step 2h: Create new parent agency if not matched for new department
-          log('Step 2h: Creating new parent agency if not matched for new department...');
-          if (newDepartmentData.parent_agency && !findDepartmentByName(newDepartmentData.parent_agency, departmentsData)) {
-            log(`Creating new parent agency: ${newDepartmentData.parent_agency}`);
-            const newParent = createParentDepartment(newDepartmentData.parent_agency, departmentsData, log);
-            if (newParent) {
-              log(`Created new parent agency: ${newParent.name}`);
-              newDepartmentData.parent_agency = newParent.name;
-            } else {
-              log(`Failed to create parent agency: ${newDepartmentData.parent_agency}`);
-            }
-          } else {
-            log(`No new parent agency needed for new department: ${newDepartmentData.name}`);
-          }
-          
-          departmentsData.departments.push(newDepartmentData);
-          log('New department data:');
-          log(JSON.stringify(newDepartmentData, null, 2));
+        // Step 2e: Find department by name/aliases/canonicalName
+        log('Step 2e: Finding department...');
+        const department = findDepartmentByName(employerName, departmentsData.departments, log);
+        if (!department) {
+          log(`No matching department found for ${employerName}`, 'error');
+          continue;
         }
         
-        // Step 2f: Log department details
-        log(`\n----------------------------------------------`);
-        log(`Department: ${employerName}`);
-        log(`Type: ${employerType}`);
-        log(`Subdivision: ${departmentOrSubdivision}`);
-        log(`Determined Parent Agency: ${parentAgency}`);
-        if (parentDepartment) {
-          log(`Found parent department: ${parentDepartment.name} (Level ${parentOrgLevel})`);
-          log(`Setting orgLevel to: ${orgLevel}`);
-        } else {
-          log(`No parent department found. Setting default orgLevel: ${orgLevel}`);
-        }
-        log(`Headcount: ${headCount}`);
-        log(`Total Wages: $${formatCurrency(totalWages)}`);
-        log(`Total Benefits: $${formatCurrency(totalBenefits)}`);
+        // Step 2f: Update department data
+        log(`Step 2f: Updating department data for ${department.name}...`);
+        try {
+          // Calculate total compensation
+          const totalCompensation = employerRecords.reduce((sum, row) => {
+            const wages = parseFloat(row.TotalWages || 0);
+            const benefits = parseFloat(row.DefinedBenefitPlanContribution || 0) +
+                            parseFloat(row.EmployeesRetirementCostCovered || 0) +
+                            parseFloat(row.DeferredCompensationPlan || 0) +
+                            parseFloat(row.HealthDentalVision || 0);
+            return sum + wages + benefits;
+          }, 0);
+          
+          // Calculate headcount
+          const headCount = employerRecords.length;
+          
+          // Log salary distribution calculation results
+          log('Salary Distribution Calculation Results:');
+          log(`Total Records: ${employerRecords.length}`);
         log(`Total Compensation: $${formatCurrency(totalCompensation)}`);
-        log(`Average Salary: $${averageSalary}`);
-        log('Salary Distribution:');
-        for (const item of salaryDistribution) {
-          const [min, max] = item.range;
+          log(`Average Salary: $${formatCurrency(calculatedAverageSalary)}`);
+          
+          if (salaryDistribution && salaryDistribution.length > 0) {
+            log('Distribution Ranges:');
+            salaryDistribution.forEach(range => {
+              const [min, max] = range.range;
           const displayRange = min === 0 ? "Under 20k" :
                               min === 500000 ? "500k-10M" :
                               min >= 1000000 ? `${(min/1000000).toFixed(0)}M-${(max/1000000).toFixed(0)}M` :
                               `${min/1000}k-${max/1000}k`;
-          log(`  ${displayRange}: ${item.count} employees`);
-        }
-        log('----------------------------------------------\n');
-        
-        // Step 2j: Save changes
-        log('Step 2j: Saving changes...');
-        writeDepartmentsJson(departmentsData, log);
-        log(`Saved changes for department: ${employerName}`);
-      }
-      
-      log(`Completed processing ${path.basename(file)}`);
-    }
-    
-    // Step 3: Data Validation
-    log('\n=== STEP 3: DATA VALIDATION ===');
-    log('Step 3a: Verifying salary ranges...');
-    const invalidRanges = departmentsData.departments
-      .filter(d => d.workforce?.salaryDistribution)
-      .filter(d => !d.workforce.salaryDistribution.every(item => 
-        SALARY_RANGES.some(([min, max]) => 
-          item.range[0] === min && item.range[1] === max
-        )
-      ));
-    
-    if (invalidRanges.length > 0) {
-      log(`Found ${invalidRanges.length} departments with invalid salary ranges:`, 'error');
-      invalidRanges.forEach(d => log(`- ${d.name}`, 'error'));
+              log(`  ${displayRange}: ${range.count} employees`);
+            });
+          } else {
+            log('Warning: No salary distribution data available', 'warn');
+          }
+          
+          // Prepare update data
+          const updateData = {
+            headCount: {
+              yearly: {
+                [annualYear]: headCount
+              }
+            },
+            wages: {
+              yearly: {
+                [annualYear]: totalCompensation
+              }
+            },
+            averageSalary: calculatedAverageSalary,
+            salaryDistribution: {
+              yearly: {
+                [annualYear]: salaryDistribution
+              }
+            }
+          };
+          
+          // Log the complete update data structure
+          log('\nUpdate Data Structure:');
+          log(JSON.stringify(updateData, null, 2));
+          
+          // Validate the update data structure before applying
+          if (!salaryDistribution || !Array.isArray(salaryDistribution) || salaryDistribution.length === 0) {
+            log('Error: Salary distribution array is empty or invalid', 'error');
+            return false;
+          }
+          
+          // Update department data safely
+          if (safeUpdateDepartment(department, updateData, log)) {
+            totalUpdatedDepartments++;
+            log(`Successfully updated department data for ${department.name}`);
     } else {
-      log('All salary ranges are valid');
-    }
-    
-    log('Step 3b: Checking department hierarchy...');
-    let updatedParentAgencies = 0;
-    const invalidHierarchy = departmentsData.departments.filter(d => {
-      if (!d.parent_agency) return false;
-      
-      // Use the same matching logic as findDepartmentByName
-      const matchedParent = findDepartmentByName(d.parent_agency, departmentsData);
-      
-      if (matchedParent) {
-        // Only log and update if there's an actual change
-        if (d.parent_agency !== matchedParent.name) {
-          log(`Found parent agency mismatch for ${d.name}:`);
-          log(`  Current: ${d.parent_agency}`);
-          log(`  Matched: ${matchedParent.name}`);
-          log(`  Updating to: ${matchedParent.name}`);
-          d.parent_agency = matchedParent.name;
-          updatedParentAgencies++;
+            log(`Failed to update department data for ${department.name}`, 'error');
+            continue;
+          }
+          
+          // Handle note matching
+          const newNote = `Salary data from ${filename}`;
+          if (!department._note) {
+            department._note = newNote;
+          } else if (!department._note.includes(newNote)) {
+            department._note = `${department._note}, ${newNote}`;
+          }
+          
+        } catch (error) {
+          log(`Error updating department data: ${error.message}`, 'error');
+          continue;
         }
-        return false;
       }
-      
-      return true;
-    });
-    
-    if (updatedParentAgencies > 0) {
-      log(`Updated ${updatedParentAgencies} parent agency fields to match department names`);
-      log('Saving updated parent agency fields...');
-      writeDepartmentsJson(departmentsData, log);
-      log('Successfully saved parent agency updates');
     }
     
-    if (invalidHierarchy.length > 0) {
-      log(`Found ${invalidHierarchy.length} departments with invalid parent agencies:`, 'error');
-      invalidHierarchy.forEach(d => {
-        log(`Department: ${d.name}`, 'error');
-        log(`  Parent Agency: ${d.parent_agency}`, 'error');
-        log(`  No matching department found`, 'error');
-      });
-    } else {
-      log('All department hierarchies are valid');
-    }
+    // Step 3: Final Processing
+    log('\n=== STEP 3: FINAL PROCESSING ===');
     
-    // Step 4: Results Summary
-    log('\n=== STEP 4: RESULTS SUMMARY ===');
+    // Step 3a: Count final departments with salary data
     const finalDepartmentsWithSalary = departmentsData.departments.filter(d => 
-      d.workforce?.salaryDistribution?.length > 0
+      d.salaryDistribution?.yearly && Object.values(d.salaryDistribution.yearly).some(yearData => yearData.length > 0)
     ).length;
     
-    log('Step 4a: Processing Statistics:');
+    // Step 3b: Log final statistics
+    log('\nFinal Statistics:');
     log(`- Initial departments with salary distributions: ${initialDepartmentsWithSalary}`);
     log(`- Final departments with salary distributions: ${finalDepartmentsWithSalary}`);
     log(`- New departments created: ${totalNewDepartments}`);
     log(`- Existing departments updated: ${totalUpdatedDepartments}`);
     log(`- Departments skipped: ${totalSkippedDepartments}`);
     log(`- Total departments processed: ${totalProcessedDepartments}`);
+    log(`- Total validation errors: ${totalValidationErrors}`);
     
-    log('\nStep 4b: Final departments with salary distributions:');
-    departmentsData.departments
-      .filter(d => d.workforce?.salaryDistribution?.length > 0)
-      .forEach(d => log(`- ${d.name}`));
-    
-    log('\nStep 4c: Processing complete');
-    
+    // Step 3c: Department Update Summary
+    const summary = [];
+    summary.push('\nDepartment Update Summary:');
+    summary.push('------------------------');
+
+    // Get all departments from JSON
+    const allDepartments = departmentsData.departments.map(d => ({
+      name: d.name,
+      budgetCode: d.budgetCode || 'NO_BUDGET_CODE',
+      updated: false,
+      reason: 'Not processed',
+      details: ''
+    }));
+
+    // Create a map of processed departments
+    const processedDepartments = new Map();
+    for (const file of files) {
+      const filename = path.basename(file);
+      // eslint-disable-next-line no-unused-vars
+      const annualYear = extractAnnualYear(filename);
+      const records = parse(fs.readFileSync(file, 'utf8'), {
+        columns: true,
+        skip_empty_lines: true,
+        trim: true
+      });
+      
+      const employerNames = [...new Set(records.map(record => record.EmployerName))];
+      for (const employerName of employerNames) {
+        processedDepartments.set(employerName, {
+          updated: false,
+          reason: 'Failed to update',
+          details: 'No matching CSV data found'
+        });
+      }
+    }
+
+    // Update the status of processed departments
+    for (const dept of allDepartments) {
+      const processed = processedDepartments.get(dept.name);
+      if (processed) {
+        dept.updated = processed.updated;
+        dept.reason = processed.reason;
+        dept.details = processed.details;
+      }
+    }
+
+    // Group departments by status
+    const updatedDepartments = allDepartments.filter(d => d.updated);
+    const notUpdatedDepartments = allDepartments.filter(d => !d.updated);
+
+    // Group not updated departments by reason
+    const groupedNotUpdated = notUpdatedDepartments.reduce((acc, dept) => {
+      const key = dept.reason;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(dept);
+      return acc;
+    }, {});
+
+    // Build summary
+    summary.push(`\nUpdated Departments: ${updatedDepartments.length}`);
+
+    summary.push('\nNot Updated Departments:');
+    summary.push(`Total: ${notUpdatedDepartments.length}`);
+
+    // Add each group with its departments
+    Object.entries(groupedNotUpdated).forEach(([reason, departments]) => {
+      summary.push(`\n${reason}: ${departments.length} departments`);
+      summary.push('----------------------------------------');
+      departments.forEach(d => {
+        summary.push(`${d.budgetCode}_${d.name}`);
+        if (d.details) {
+          summary.push(`  Details: ${d.details}`);
+        }
+      });
+    });
+
+    // Write summary to both console and log file
+    const summaryText = summary.join('\n');
+    console.log(summaryText);
+    fs.appendFileSync(log.logFile, summaryText + '\n');
+
+    // Step 3d: Final validation check
+    log('\nPerforming final validation check...');
+    departmentsData.departments.forEach((dept, index) => {
+      const validation = validateDepartmentStructure(dept);
+      if (!validation.isValid) {
+        log(`Final validation errors in department ${index + 1} (${dept.name || 'Unknown'}):`, 'error');
+        validation.errors.forEach(error => log(`- ${error}`, 'error'));
+      }
+    });
+
+    // Step 3e: Write updated departments.json
+    log('\nWriting updated departments.json...');
+    try {
+      fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(departmentsData, null, 2));
+      log('Successfully wrote updated departments.json');
   } catch (error) {
-    log(`Error: ${error.message}`, 'error');
+      log(`Error writing departments.json: ${error.message}`, 'error');
     process.exit(1);
+  }
+
+    log('\nProcessing complete');
+
+  } catch (error) {
+    log(`Error in main execution: ${error.message}`, 'error');
+  process.exit(1);
   }
 };
 
-// Run the script
-main().catch(error => {
-  console.error('Unhandled error:', error);
-  process.exit(1);
-}); 
+main();

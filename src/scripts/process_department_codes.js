@@ -287,38 +287,33 @@ const main = async () => {
 
     // Process each department
     for (const dept of departmentsData.departments) {
-      log(`\n=== Processing Department: ${dept.name} ===`);
+      log('\n=== Processing Department: ${dept.name} ===');
       
-      // Show all data sources for this department
-      log('\n=== DATA SOURCES FOR THIS DEPARTMENT ===');
-      log('=====================================');
+      // 1. Show JSON Record - Summarized
+      log('\nJSON Record:');
+      log(`Name: ${dept.name}`);
+      log(`Canonical Name: ${dept.canonicalName || 'None'}`);
+      log(`Current Budget Code: ${dept.budgetCode || 'None'}`);
+      if (dept.aliases && dept.aliases.length > 0) {
+        log(`Aliases: ${dept.aliases.join(', ')}`);
+      }
       
-      // 1. Show JSON Record
-      log('\n1. JSON Record:');
-      log('--------------');
-      log(JSON.stringify(dept, null, 2));
-      
-      // 2. Show CSV Matches
-      log('\n2. CSV Matches:');
-      log('-------------');
+      // 2. Show CSV Matches - Summarized
       const csvMatches = budgetCodesData.filter(row => {
         const csvName = row['Department Name'].trim();
         return csvName.toLowerCase().includes(dept.name.toLowerCase()) ||
                dept.name.toLowerCase().includes(csvName.toLowerCase());
       });
+      log('\nCSV Matches:');
       if (csvMatches.length > 0) {
         csvMatches.forEach(match => {
-          log(`Found in CSV:`);
-          log(`  Code: ${match['Department Code']}`);
-          log(`  Name: ${match['Department Name']}`);
+          log(`${match['Department Code']}: ${match['Department Name']}`);
         });
       } else {
-        log('No matches found in CSV');
+        log('No matches found');
       }
       
-      // 3. Show Text File Matches
-      log('\n3. Text File Matches:');
-      log('-------------------');
+      // 3. Show Text File Matches - Summarized
       const textMatches = [];
       budgetCodeVariations.forEach((variations, code) => {
         if (variations.some(v => 
@@ -328,162 +323,147 @@ const main = async () => {
           textMatches.push({ code, variations });
         }
       });
+      log('\nText File Matches:');
       if (textMatches.length > 0) {
         textMatches.forEach(match => {
-          log(`Found in Text Files:`);
-          log(`  Code: ${match.code}`);
-          log(`  Variations: ${match.variations.join(', ')}`);
+          log(`${match.code}: ${match.variations.join(', ')}`);
         });
       } else {
-        log('No matches found in text files');
+        log('No matches found');
       }
-      
-      // 4. Show Name Variations Being Tried
-      log('\n4. Name Variations to Try:');
-      log('------------------------');
-      const nameVariations = getNameVariations(dept.name);
-      const canonicalVariations = dept.canonicalName ? getNameVariations(dept.canonicalName) : [];
-      const aliasVariations = (dept.aliases || []).flatMap(alias => getNameVariations(alias));
-      
-      // 5. Show Matching Process
-      log('\n5. Matching Process:');
-      log('------------------');
-      let matched = false;
-      let matchedCode = null;
-      let matchedName = null;
-      let bestMatch = null;
-      let bestMatchScore = 0;
-      
-      // Try to match any variation against the budget department names
-      for (const variation of [...nameVariations, ...canonicalVariations, ...aliasVariations]) {
-        log(`\nTrying variation: "${variation}"`);
-        
-        // Try exact match first
-        if (budgetDeptMap[variation]) {
-          matched = true;
-          matchedCode = budgetDeptMap[variation];
-          matchedName = variation;
-          log(`✓ Exact match found!`);
-          log(`  Code: ${matchedCode}`);
-          log(`  Name: ${matchedName}`);
-          break;
-        }
-        
-        // Try fuzzy matching if exact match fails
-        log('No exact match, trying fuzzy matching...');
-        for (const [budgetName, code] of Object.entries(budgetDeptMap)) {
-          const score = calculateMatchScore(variation, budgetName);
-          log(`  Against "${budgetName}": score = ${score.toFixed(2)}`);
-          if (score > bestMatchScore) {
-            bestMatchScore = score;
-            bestMatch = { name: budgetName, code };
-          }
-        }
-      }
-      
-      // 6. Show Final Match Decision
-      log('\n6. Final Match Decision:');
-      log('----------------------');
-      if (matched) {
-        log(`✓ Exact Match Found:`);
-        log(`  Code: ${matchedCode}`);
-        log(`  Name: ${matchedName}`);
-      } else if (bestMatch) {
-        log(`Best Fuzzy Match:`);
-        log(`  Code: ${bestMatch.code}`);
-        log(`  Name: ${bestMatch.name}`);
-        log(`  Score: ${bestMatchScore.toFixed(2)}`);
-      } else {
-        log('❌ No matches found');
-      }
-      
-      // If no exact match but we have a good fuzzy match, use it
-      if (!matched && bestMatch && bestMatchScore > 0.8) {
-        matched = true;
-        matchedCode = bestMatch.code;
-        matchedName = bestMatch.name;
-        log(`\nUsing fuzzy match (score > 0.8):`);
-        log(`  Code: ${matchedCode}`);
-        log(`  Name: ${matchedName}`);
-      }
-      
-      if (matched) {
-        const originalDepartment = JSON.parse(JSON.stringify(dept));
-        const proposedDepartment = JSON.parse(JSON.stringify(dept));
-        proposedDepartment.budgetCode = matchedCode;
-        
-        log('\n7. Proposed Changes:');
-        log('-----------------');
-        showDiff(originalDepartment, proposedDepartment, log);
-        
-        const shouldUpdate = await askForApproval('\nWould you like to apply these changes? (y/n): ');
-        
-        if (shouldUpdate) {
-          matches.push({
-            department: dept.name,
-            currentCode: dept.budgetCode,
-            newCode: matchedCode,
-            matchedName,
-            matchScore: bestMatchScore
-          });
 
-          // Track the type of change
-          if (!dept.budgetCode) {
-            codeChanges.new.push({
-              name: dept.name,
-              code: matchedCode
-            });
-          } else if (dept.budgetCode !== matchedCode) {
-            codeChanges.changed.push({
-              name: dept.name,
-              oldCode: dept.budgetCode,
-              newCode: matchedCode
-            });
-          } else {
-            codeChanges.unchanged.push({
-              name: dept.name,
-              code: matchedCode
-            });
-          }
-          
-          dept.budgetCode = matchedCode;
-          log('✓ Changes applied successfully.');
-        } else {
-          log('✗ Changes skipped.');
+      // Check for exact matches
+      const hasExactCSVMatch = csvMatches.some(match => 
+        match['Department Code'] === dept.budgetCode && 
+        match['Department Name'].toLowerCase() === dept.name.toLowerCase()
+      );
+
+      const hasExactTextMatch = textMatches.some(match => 
+        match.code === dept.budgetCode && 
+        match.variations.some(v => v.toLowerCase() === dept.name.toLowerCase())
+      );
+
+      // Check for partial matches
+      const hasPartialCSVMatch = csvMatches.length > 0 && !hasExactCSVMatch;
+      const hasPartialTextMatch = textMatches.length > 0 && !hasExactTextMatch;
+
+      // Log match status and handle accordingly
+      if (hasExactCSVMatch || hasExactTextMatch) {
+        log('\nMatch Status: ✓ Exact Match Found');
+        if (hasExactCSVMatch) {
+          log('Source: CSV');
         }
-      } else {
-        noMatches.push({
-          department: dept.name,
-          currentCode: dept.budgetCode,
-          variations: [...nameVariations, ...canonicalVariations, ...aliasVariations],
-          bestMatch: bestMatch ? { name: bestMatch.name, score: bestMatchScore } : null
-        });
-        
-        if (dept.budgetCode) {
+        if (hasExactTextMatch) {
+          log('Source: Text Files');
+        }
+        continue; // Skip to next department
+      }
+
+      if (!dept.budgetCode && !hasPartialCSVMatch && !hasPartialTextMatch) {
+        log('\nMatch Status: ❌ No Matches Found');
+        continue; // Skip to next department
+      }
+
+      // Handle partial matches
+      if (hasPartialCSVMatch || hasPartialTextMatch) {
+        log('\nMatch Status: ⚠️ Partial Matches Found');
+        if (hasPartialCSVMatch) {
+          log('Partial CSV Matches:');
+          csvMatches.forEach(match => {
+            log(`  ${match['Department Code']}: ${match['Department Name']}`);
+          });
+        }
+        if (hasPartialTextMatch) {
+          log('Partial Text Matches:');
+          textMatches.forEach(match => {
+            log(`  ${match.code}: ${match.variations.join(', ')}`);
+          });
+        }
+
+        // Try to find best match
+        let bestMatch = null;
+        let bestMatchScore = 0;
+        const nameVariations = getNameVariations(dept.name);
+        const canonicalVariations = dept.canonicalName ? getNameVariations(dept.canonicalName) : [];
+        const aliasVariations = (dept.aliases || []).flatMap(alias => getNameVariations(alias));
+
+        for (const variation of [...nameVariations, ...canonicalVariations, ...aliasVariations]) {
+          for (const [budgetName, code] of Object.entries(budgetDeptMap)) {
+            const score = calculateMatchScore(variation, budgetName);
+            if (score > bestMatchScore) {
+              bestMatchScore = score;
+              bestMatch = { name: budgetName, code };
+            }
+          }
+        }
+
+        if (bestMatch && bestMatchScore > 0.8) {
+          log('\nBest Potential Match:');
+          log(`  Code: ${bestMatch.code}`);
+          log(`  Name: ${bestMatch.name}`);
+          log(`  Score: ${bestMatchScore.toFixed(2)}`);
+
           const originalDepartment = JSON.parse(JSON.stringify(dept));
           const proposedDepartment = JSON.parse(JSON.stringify(dept));
-          proposedDepartment.budgetCode = null;
-          
-          log('\nNo match found. Current code will be removed:');
+          proposedDepartment.budgetCode = bestMatch.code;
+
+          log('\nProposed Changes:');
           showDiff(originalDepartment, proposedDepartment, log);
+
+          const shouldUpdate = await askForApproval('\nApply changes? (y/n): ');
           
-          const shouldRemove = await askForApproval('\nWould you like to remove the current code? (y/n): ');
-          
-          if (shouldRemove) {
-            codeChanges.removed.push({
-              name: dept.name,
-              oldCode: dept.budgetCode
+          if (shouldUpdate) {
+            matches.push({
+              department: dept.name,
+              currentCode: dept.budgetCode,
+              newCode: bestMatch.code,
+              matchedName: bestMatch.name,
+              matchScore: bestMatchScore
             });
-            dept.budgetCode = null;
-            log('✓ Code removed successfully.');
+
+            if (!dept.budgetCode) {
+              codeChanges.new.push({
+                name: dept.name,
+                code: bestMatch.code
+              });
+            } else if (dept.budgetCode !== bestMatch.code) {
+              codeChanges.changed.push({
+                name: dept.name,
+                oldCode: dept.budgetCode,
+                newCode: bestMatch.code
+              });
+            } else {
+              codeChanges.unchanged.push({
+                name: dept.name,
+                code: bestMatch.code
+              });
+            }
+            
+            dept.budgetCode = bestMatch.code;
+            log('✓ Changes applied successfully.');
+            
+            // Save changes to file after each successful update
+            try {
+              fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(departmentsData, null, 2));
+              log('✓ Changes saved to departments.json');
+            } catch (error) {
+              log(`Error saving changes: ${error.message}`, 'error');
+            }
           } else {
-            log('✗ Code removal skipped.');
+            log('✗ Changes skipped.');
           }
+        } else {
+          log('\nNo good matches found for partial matches.');
         }
       }
-      
-      // Save changes after each department
+    }
+
+    // Final save at the end of processing
+    try {
       fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(departmentsData, null, 2));
+      log('\n✓ All changes saved to departments.json');
+    } catch (error) {
+      log(`Error saving final changes: ${error.message}`, 'error');
     }
 
     // Display summary of changes

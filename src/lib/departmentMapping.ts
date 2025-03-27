@@ -9,6 +9,13 @@ import {
   ValidSlug,
   NonNegativeInteger
 } from '@/types/department';
+import type {
+  DepartmentData,
+  AnnualYear,
+  SalaryRange,
+  TenureRange,
+  AgeRange
+} from '@/types/department';
 
 // Cast the imported data to the proper type
 const typedDepartmentsData = departmentsData as unknown as DepartmentsJSON;
@@ -104,11 +111,11 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '0515_secretary_of_business_consumer_services_and_housing',
-    name: 'Business, Consumer Services and Housing Agency',
-    canonicalName: 'Business, Consumer Services, and Housing Agency, California',
+    name: 'Secretary of Business, Consumer Services and Housing',
+    canonicalName: 'Secretary of Business, Consumer Services and Housing',
     budgetCode: toNonNegativeInteger(515),
-    spendingName: 'Business, Consumer Services and Housing Agency',
-    workforceName: 'Business, Consumer Services and Housing Agency'
+    spendingName: 'Secretary of Business, Consumer Services and Housing',
+    workforceName: 'Secretary of Business, Consumer Services and Housing'
   },
   {
     slug: '0521_secretary_of_transportation',
@@ -328,11 +335,11 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '3540_department_of_forestry_and_fire_protection',
-    name: 'Board of Forestry and Fire Protection',
-    canonicalName: 'Forestry and Fire Protection, Board of',
+    name: 'Department of Forestry and Fire Protection',
+    canonicalName: 'Forestry and Fire Protection, California Department of',
     budgetCode: toNonNegativeInteger(3540),
-    spendingName: 'Board of Forestry and Fire Protection',
-    workforceName: 'Board of Forestry and Fire Protection'
+    spendingName: 'Department of Forestry and Fire Protection',
+    workforceName: 'Department of Forestry and Fire Protection'
   },
   {
     slug: '3560_state_lands_commission',
@@ -1032,4 +1039,48 @@ export function findMarkdownForDepartment(departmentName: string): string | null
 function toNonNegativeInteger(value: string | number | undefined): NonNegativeInteger {
   const num = typeof value === 'string' ? parseInt(value, 10) : (value || 0);
   return num as NonNegativeInteger;
+}
+
+// Update the unification function to handle workforce data
+function _unifyDepartmentData(department: DepartmentData): DepartmentData {
+  const _headCount = department.headCount?.yearly || {};
+  const _wages = department.wages?.yearly || {};
+  const _salaryDistribution = department.salaryDistribution?.yearly || {};
+  const _tenureDistribution = department.tenureDistribution?.yearly || {};
+  const _ageDistribution = department.ageDistribution?.yearly || {};
+  
+  const unifiedDept = { ...department };
+
+  // Initialize workforce data if missing
+  if (!unifiedDept.workforce) {
+    unifiedDept.workforce = {
+      headCount: { yearly: {} as Record<AnnualYear, number | {}> },
+      wages: { yearly: {} as Record<AnnualYear, number | {}> },
+      averageTenureYears: null,
+      averageSalary: null,
+      averageAge: null,
+      salaryDistribution: { yearly: {} as Record<AnnualYear, SalaryRange[]> },
+      tenureDistribution: { yearly: {} as Record<AnnualYear, TenureRange[]> },
+      ageDistribution: { yearly: {} as Record<AnnualYear, AgeRange[]> }
+    };
+  }
+
+  // Copy main department data to workforce if workforce data is empty
+  if (!unifiedDept.workforce?.headCount?.yearly || Object.keys(unifiedDept.workforce.headCount.yearly).length === 0) {
+    unifiedDept.workforce.headCount = unifiedDept.headCount;
+  }
+  if (!unifiedDept.workforce?.wages?.yearly || Object.keys(unifiedDept.workforce.wages.yearly).length === 0) {
+    unifiedDept.workforce.wages = unifiedDept.wages;
+  }
+  if (unifiedDept.workforce.averageSalary === null && unifiedDept.averageSalary !== null) {
+    unifiedDept.workforce.averageSalary = unifiedDept.averageSalary;
+  }
+  if (unifiedDept.workforce.averageTenureYears === null && unifiedDept.averageTenureYears !== null) {
+    unifiedDept.workforce.averageTenureYears = unifiedDept.averageTenureYears;
+  }
+  if (unifiedDept.workforce.averageAge === null && unifiedDept.averageAge !== null) {
+    unifiedDept.workforce.averageAge = unifiedDept.averageAge;
+  }
+
+  return unifiedDept;
 } 

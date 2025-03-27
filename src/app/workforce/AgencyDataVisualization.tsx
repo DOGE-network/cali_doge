@@ -1,65 +1,57 @@
-import { useMemo } from 'react';
-import { DepartmentHierarchy } from '@/types/department';
+import React, { useMemo } from 'react';
 import DepartmentCharts from '@/components/DepartmentCharts';
-
-interface RawDistributionItem {
-  range: [number, number];
-  count: number;
-}
-
-interface _EmployeeData {
-  headcount: { year: string; value: number | null }[];
-  wages: { year: string; value: number | null }[];
-  tenureDistribution: RawDistributionItem[];
-  salaryDistribution: RawDistributionItem[];
-  ageDistribution: RawDistributionItem[];
-  averageSalary: number | null;
-  averageTenure: number | null;
-  averageAge: number | null;
-}
+import { DepartmentHierarchy } from '@/types/department';
 
 interface AgencyDataVisualizationProps {
   department: DepartmentHierarchy;
+  viewMode: 'parent-only' | 'aggregated';
 }
 
-export default function AgencyDataVisualization({ department }: AgencyDataVisualizationProps) {
-  const { workforce } = department;
-  
+const AgencyDataVisualization: React.FC<AgencyDataVisualizationProps> = ({ department, viewMode }) => {
   const employeeData = useMemo(() => {
-    if (!workforce) return null;
-    
-    // Transform yearly data into arrays
-    const headcount = Object.entries(workforce.headCount.yearly)
-      .map(([year, value]) => ({ year, value: typeof value === 'number' ? value : null }))
-      .sort((a, b) => a.year.localeCompare(b.year));
+    const dataSource = viewMode === 'parent-only' 
+      ? { ...department, ...department.originalData }
+      : department;
 
-    const wages = Object.entries(workforce.wages.yearly)
-      .map(([year, value]) => ({ year, value: typeof value === 'number' ? value : null }))
-      .sort((a, b) => a.year.localeCompare(b.year));
+    const headCountValue = typeof dataSource.headCount?.yearly?.["2023"] === 'number' 
+      ? dataSource.headCount.yearly["2023"] as number 
+      : null;
+
+    const wagesValue = typeof dataSource.wages?.yearly?.["2023"] === 'number'
+      ? dataSource.wages.yearly["2023"] as number
+      : null;
 
     return {
-      headcount,
-      wages,
-      tenureDistribution: workforce.tenureDistribution || [],
-      salaryDistribution: workforce.salaryDistribution || [],
-      ageDistribution: workforce.ageDistribution || [],
-      averageSalary: workforce.averageSalary || null,
-      averageTenure: workforce.averageTenureYears || null,
-      averageAge: workforce.averageAge || null
+      headcount: [{ year: "2023", value: headCountValue }],
+      wages: [{ year: "2023", value: wagesValue }],
+      averageSalary: dataSource.averageSalary || null,
+      averageTenure: dataSource.averageTenureYears || null,
+      averageAge: dataSource.averageAge || null,
+      tenureDistribution: viewMode === 'parent-only' 
+        ? dataSource.tenureDistribution?.yearly?.["2023"] || []
+        : dataSource.aggregatedDistributions?.tenureDistribution || [],
+      salaryDistribution: viewMode === 'parent-only'
+        ? dataSource.salaryDistribution?.yearly?.["2023"] || []
+        : dataSource.aggregatedDistributions?.salaryDistribution || [],
+      ageDistribution: viewMode === 'parent-only'
+        ? dataSource.ageDistribution?.yearly?.["2023"] || []
+        : dataSource.aggregatedDistributions?.ageDistribution || []
     };
-  }, [workforce]);
-
-  if (!workforce || !employeeData) return null;
+  }, [department, viewMode]);
 
   return (
-    <div className="space-y-8">
+    <div className="bg-white rounded-lg shadow p-6">
       <DepartmentCharts
         employeeData={employeeData}
-        averageSalary={workforce.averageSalary ?? null}
-        averageTenureYears={workforce.averageTenureYears ?? null}
-        averageAge={workforce.averageAge ?? null}
-        aggregatedDistributions={department.aggregatedDistributions}
+        averageSalary={employeeData.averageSalary}
+        averageTenureYears={employeeData.averageTenure}
+        averageAge={employeeData.averageAge}
+        aggregatedDistributions={viewMode === 'parent-only' 
+          ? undefined
+          : department.aggregatedDistributions}
       />
     </div>
   );
-} 
+};
+
+export default AgencyDataVisualization; 

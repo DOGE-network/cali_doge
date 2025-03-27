@@ -89,6 +89,7 @@ export interface AgeRange {
   count: DistributionCount;
 }
 
+// plan on using range format for yearly string as FYyear-FYyear+1
 export interface WorkforceData {
   headCount: {
     yearly: Record<AnnualYear, number | {}>;
@@ -96,21 +97,44 @@ export interface WorkforceData {
   wages: {
     yearly: Record<AnnualYear, number | {}>;
   };
-  averageTenureYears?: NonNegativeNumber | null;
-  averageSalary?: NonNegativeNumber | null;
-  averageAge?: NonNegativeNumber | null;
-  tenureDistribution?: TenureRange[] | [];
-  salaryDistribution?: SalaryRange[] | [];
-  ageDistribution?: AgeRange[] | [];
-  _note?: string;
+  averageTenureYears: NonNegativeNumber | null;
+  averageSalary: NonNegativeNumber | null;
+  averageAge: NonNegativeNumber | null;
+  tenureDistribution: {
+    yearly: Record<AnnualYear, TenureRange[]>;
+  };
+  salaryDistribution: {
+    yearly: Record<AnnualYear, SalaryRange[]>;
+  };
+  ageDistribution: {
+    yearly: Record<AnnualYear, AgeRange[]>;
+  };
 }
-// plan on using range format for yearly string as FYyear-FYyear+1
+
 export interface DepartmentData {
   name: string;
   slug: ValidSlug;
   canonicalName: string;
   aliases: string[];
-  workforce?: WorkforceData;
+  headCount: {
+    yearly: Record<AnnualYear, number | {}>;
+  };
+  wages: {
+    yearly: Record<AnnualYear, number | {}>;
+  };
+  averageTenureYears: NonNegativeNumber | null;
+  averageSalary: NonNegativeNumber | null;
+  averageAge: NonNegativeNumber | null;
+  tenureDistribution?: {
+    yearly: Record<AnnualYear, TenureRange[]>;
+  };
+  salaryDistribution?: {
+    yearly: Record<AnnualYear, SalaryRange[]>;
+  };
+  ageDistribution?: {
+    yearly: Record<AnnualYear, AgeRange[]>;
+  };
+  _note?: string;
   spending?: {
     yearly: Record<FiscalYearKey, number | {}>;
   };
@@ -120,6 +144,7 @@ export interface DepartmentData {
   keyFunctions: string;
   abbreviation: string;
   parent_agency: string;
+  workforce?: WorkforceData;
 }
 
 export interface RawDistributionItem {
@@ -129,7 +154,6 @@ export interface RawDistributionItem {
 
 /**
  * Extended interface for department hierarchy visualization
- * this is deprecated and not used anymore
  */
 export interface DepartmentHierarchy extends DepartmentData {
   subDepartments?: DepartmentHierarchy[];
@@ -138,6 +162,14 @@ export interface DepartmentHierarchy extends DepartmentData {
     tenureDistribution: RawDistributionItem[];
     salaryDistribution: RawDistributionItem[];
     ageDistribution: RawDistributionItem[];
+  };
+  originalData?: {
+    headCount: { yearly: Record<AnnualYear, number | {}> };
+    wages: { yearly: Record<AnnualYear, number | {}> };
+    averageSalary: number | null;
+    tenureDistribution?: { yearly: Record<AnnualYear, TenureRange[]> };
+    salaryDistribution?: { yearly: Record<AnnualYear, SalaryRange[]> };
+    ageDistribution?: { yearly: Record<AnnualYear, AgeRange[]> };
   };
 }
 
@@ -205,7 +237,13 @@ export interface RequiredDepartmentJSONFields {
   averageTenureYears: NonNegativeNumber | null;  // Required but can be null
   averageSalary: NonNegativeNumber | null;  // Required but can be null
   averageAge: NonNegativeNumber | null;  // Required but can be null
-  tenureDistribution: TenureRange[];      // Empty array allowed but field required
-  salaryDistribution: SalaryRange[];      // Empty array allowed but field required
-  ageDistribution: AgeRange[];            // Empty array allowed but field required
+  tenureDistribution: {
+    yearly: Record<AnnualYear, TenureRange[]>;  // Empty array allowed but field required
+  };
+  salaryDistribution: {
+    yearly: Record<AnnualYear, SalaryRange[]>;  // Empty array allowed but field required
+  };
+  ageDistribution: {
+    yearly: Record<AnnualYear, AgeRange[]>;  // Empty array allowed but field required
+  };
 } 

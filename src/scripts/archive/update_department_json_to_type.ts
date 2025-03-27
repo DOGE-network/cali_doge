@@ -13,7 +13,10 @@ import type {
   NonNegativeNumber,
   NonNegativeInteger,
   OrgLevel,
-  DistributionCount
+  DistributionCount,
+  SalaryRange,
+  TenureRange,
+  AgeRange
 } from '@/types/department';
 
 const prompt = require('prompt-sync')({ sigint: true });
@@ -301,34 +304,40 @@ function _isValidWorkforceData(data: unknown): data is WorkforceData {
   const workforceData = data as WorkforceData;
   
   // Initialize empty arrays for distributions if missing
-  workforceData.salaryDistribution = workforceData.salaryDistribution || [];
-  workforceData.tenureDistribution = workforceData.tenureDistribution || [];
-  workforceData.ageDistribution = workforceData.ageDistribution || [];
+  workforceData.salaryDistribution = workforceData.salaryDistribution || {
+    yearly: {} as Record<AnnualYear, SalaryRange[]>
+  };
+  workforceData.tenureDistribution = workforceData.tenureDistribution || {
+    yearly: {} as Record<AnnualYear, TenureRange[]>
+  };
+  workforceData.ageDistribution = workforceData.ageDistribution || {
+    yearly: {} as Record<AnnualYear, AgeRange[]>
+  };
 
   // Initialize headCount and wages with empty records if missing
   if (!workforceData.headCount?.yearly) {
-    workforceData.headCount = { yearly: Object.create(null) as Record<AnnualYear, number | {}> };
+    workforceData.headCount = { yearly: {} as Record<AnnualYear, number | {}> };
   }
   if (!workforceData.wages?.yearly) {
-    workforceData.wages = { yearly: Object.create(null) as Record<AnnualYear, number | {}> };
+    workforceData.wages = { yearly: {} as Record<AnnualYear, number | {}> };
   }
 
   // Clean up invalid yearly records
   if (workforceData.headCount.yearly) {
-    const cleanYearly = Object.create(null) as Record<AnnualYear, number | {}>;
+    const cleanYearly = {} as Record<AnnualYear, number | {}>;
     for (const [year, value] of Object.entries(workforceData.headCount.yearly)) {
       if (year && /^\d{4}$/.test(year)) {
-        cleanYearly[year as AnnualYear] = value;
+        cleanYearly[year as AnnualYear] = typeof value === 'number' ? value : {};
       }
     }
     workforceData.headCount.yearly = cleanYearly;
   }
 
   if (workforceData.wages.yearly) {
-    const cleanYearly = Object.create(null) as Record<AnnualYear, number | {}>;
+    const cleanYearly = {} as Record<AnnualYear, number | {}>;
     for (const [year, value] of Object.entries(workforceData.wages.yearly)) {
       if (year && /^\d{4}$/.test(year)) {
-        cleanYearly[year as AnnualYear] = value;
+        cleanYearly[year as AnnualYear] = typeof value === 'number' ? value : {};
       }
     }
     workforceData.wages.yearly = cleanYearly;
@@ -358,21 +367,21 @@ function _isValidDepartmentData(data: unknown): data is DepartmentData {
   // Initialize workforce data if missing
   if (!departmentData.workforce) {
     departmentData.workforce = {
-      headCount: { yearly: Object.create(null) as Record<AnnualYear, number | {}> },
-      wages: { yearly: Object.create(null) as Record<AnnualYear, number | {}> },
+      headCount: { yearly: {} as Record<AnnualYear, number | {}> },
+      wages: { yearly: {} as Record<AnnualYear, number | {}> },
       averageTenureYears: null,
       averageSalary: null,
       averageAge: null,
-      salaryDistribution: [],
-      tenureDistribution: [],
-      ageDistribution: []
+      salaryDistribution: { yearly: {} as Record<AnnualYear, SalaryRange[]> },
+      tenureDistribution: { yearly: {} as Record<AnnualYear, TenureRange[]> },
+      ageDistribution: { yearly: {} as Record<AnnualYear, AgeRange[]> }
     };
   }
 
   // Initialize spending data if missing
   if (!departmentData.spending) {
     departmentData.spending = {
-      yearly: Object.create(null) as Record<FiscalYearKey, number | {}>
+      yearly: {} as Record<FiscalYearKey, number | {}>
     };
   }
 
@@ -389,18 +398,6 @@ function _isValidDepartmentData(data: unknown): data is DepartmentData {
     departmentData.keyFunctions = 'No key functions specified';
   }
 
-  // Validate fiscal year format in spending data
-  if (departmentData.spending?.yearly) {
-    const cleanYearly = Object.create(null) as Record<FiscalYearKey, number | {}>;
-    for (const [year, value] of Object.entries(departmentData.spending.yearly)) {
-      const validYear = isValidFiscalYearFormat(year);
-      if (validYear && typeof validYear === 'string') {
-        cleanYearly[validYear as FiscalYearKey] = value.toString();
-      }
-    }
-    departmentData.spending.yearly = cleanYearly;
-  }
-  
   return true;
 }
 
