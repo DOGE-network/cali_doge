@@ -31,10 +31,13 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
 }) => {
   const [showAllYears, setShowAllYears] = useState(false);
   
-  // Format spending value to display with $ and B
+  // Format spending value to display with $ and M
   const formatSpending = (value: number | {} | undefined): string => {
     if (value === undefined || typeof value !== 'number') return 'N/A';
-    return `$${(value / 1000000000).toFixed(2)}B`;
+    if (value >= 1000000) {
+      return `$${(value / 1000000).toFixed(2)}M`;
+    }
+    return `$${(value / 1000000).toFixed(3)}M`;
   };
   
   // Debug on mount
