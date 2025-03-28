@@ -142,60 +142,6 @@ const initTransactionId = generateTransactionId();
 log('INFO', initTransactionId, 'Step 1.1: Creating log file', { file: '/logs/workforce-{YYYY-MM-DD-HH-mm-ss}.log' });
 log('INFO', initTransactionId, 'Step 1.1: Logging system initialized with timestamp format: YYYY-MM-DD HH:mm:ss.SSS');
 
-// Fetch departments from API
-async function fetchDepartments(): Promise<DepartmentData[]> {
-  const transactionId = generateTransactionId();
-  
-  // 1.2 API Request
-  log('INFO', transactionId, 'Step 1.2: Initiating departments fetch request');
-  log('DEBUG', transactionId, 'Step 1.2: Request parameters', { cache: 3600 });
-
-  try {
-    const response = await fetch('/api/departments', {
-      next: {
-        revalidate: 3600 // Cache for 1 hour
-      }
-    });
-
-    log('INFO', transactionId, 'Step 1.2: Response received', { 
-      status: response.status, 
-      size: response.headers.get('content-length') 
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch departments');
-    }
-
-    const data = await response.json();
-    
-    // 1.3 Data Validation
-    log('INFO', transactionId, 'Step 1.3: Starting department data validation');
-    log('DEBUG', transactionId, 'Step 1.3: Total departments received', { count: data.length });
-    log('INFO', transactionId, 'Step 1.3: Type checking against DepartmentData interface');
-    
-    // Validate data structure
-    const validationErrors: string[] = [];
-    data.forEach((dept: any, index: number) => {
-      if (!dept.name) validationErrors.push(`Department ${index} missing name`);
-      if (!dept.orgLevel) validationErrors.push(`Department ${index} missing orgLevel`);
-    });
-    
-    if (validationErrors.length > 0) {
-      log('WARN', transactionId, 'Step 1.3: Type mismatch found', { errors: validationErrors });
-    }
-    
-    log('INFO', transactionId, 'Step 1.3: Validation complete', { 
-      passed: validationErrors.length === 0,
-      errorCount: validationErrors.length 
-    });
-
-    return data;
-  } catch (err) {
-    log('ERROR', transactionId, 'Step 1.2: Failed to fetch departments', { error: err });
-    throw err;
-  }
-}
-
 // Helper function to count total departments in hierarchy
 function countDepartments(hierarchy: DepartmentHierarchy | DepartmentHierarchy[]): number {
   const transactionId = generateTransactionId();
@@ -844,7 +790,11 @@ function WorkforcePageContent() {
     async function loadDepartments() {
       try {
         setError(null);
-        const deps = await fetchDepartments();
+        const response = await fetch('/api/departments?format=departments');
+        if (!response.ok) {
+          throw new Error('Failed to fetch departments');
+        }
+        const deps = await response.json();
         log('INFO', transactionId, 'Departments fetched successfully', {
           count: deps.length
         });
