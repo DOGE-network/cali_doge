@@ -2,7 +2,11 @@ import { NextResponse } from 'next/server';
 import departmentsData from '@/data/departments.json';
 import type { DepartmentData, DepartmentsJSON, NonNegativeInteger, AnnualYear, TenureRange, SalaryRange, AgeRange } from '@/types/department';
 
-export async function GET() {
+export async function GET(request: Request) {
+  // Get the URL and search params
+  const { searchParams } = new URL(request.url);
+  const format = searchParams.get('format');
+
   // Type-safe cast of departments data
   const typedData = departmentsData as unknown as DepartmentsJSON;
   
@@ -78,5 +82,17 @@ export async function GET() {
   }, {} as Record<string, number>);
   console.log('Departments by parent agency:', parentAgencyCounts);
 
-  return NextResponse.json(departments);
+  // Return format based on query parameter
+  if (format === 'departments') {
+    return NextResponse.json(departments);
+  }
+
+  // Return the full DepartmentsJSON structure by default
+  return NextResponse.json({
+    departments,
+    budgetSummary: typedData.budgetSummary,
+    revenueSources: typedData.revenueSources,
+    totalRevenue: typedData.totalRevenue,
+    sources: typedData.sources
+  });
 } 

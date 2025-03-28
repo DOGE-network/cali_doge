@@ -15,6 +15,7 @@ interface SpendingDisplayProps {
   departmentsData: DepartmentsJSON;
   highlightedDepartment?: string | null;
   showTopSpendOnly?: boolean;
+  showRecentYears?: boolean;
 }
 
 interface AgencySpending {
@@ -25,7 +26,8 @@ interface AgencySpending {
 const SpendingDisplay: React.FC<SpendingDisplayProps> = ({ 
   departmentsData, 
   highlightedDepartment,
-  showTopSpendOnly = false
+  showTopSpendOnly = false,
+  showRecentYears = true
 }) => {
   const [showAllYears, setShowAllYears] = useState(false);
   
@@ -62,21 +64,21 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   }, [departmentsData]);
   
   const defaultYears = fiscalYears.filter(year => 
-    year.startsWith('FY2023') || year.startsWith('FY2024') || year.startsWith('FY2025')
+    year.startsWith('FY2022') || year.startsWith('FY2023') || year.startsWith('FY2024') || year.startsWith('FY2025')
   );
   
-  // Years to display based on toggle state
-  const unsortedYears = showAllYears ? fiscalYears : defaultYears;
+  // Years to display based on showRecentYears prop
+  const yearsToDisplay = showRecentYears ? defaultYears : fiscalYears;
   
   // Sort years chronologically from oldest to latest
-  const yearsToDisplay = [...unsortedYears].sort((a, b) => {
+  const sortedYears = [...yearsToDisplay].sort((a, b) => {
     const yearA = parseInt(a.slice(2, 6));
     const yearB = parseInt(b.slice(2, 6));
     return yearA - yearB;
   });
 
   // Get the most recent year for sorting by spending
-  const mostRecentYear = yearsToDisplay.length > 0 ? yearsToDisplay[yearsToDisplay.length - 1] : 'FY2023-FY2024' as FiscalYearKey;
+  const mostRecentYear = sortedYears.length > 0 ? sortedYears[sortedYears.length - 1] : 'FY2023-FY2024' as FiscalYearKey;
 
   // Convert departments to agency-like structure for sorting and display
   const agencies = useMemo(() => {
@@ -107,7 +109,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
         <thead>
           <tr className="bg-gray-100">
             <th className="px-4 py-2 text-left">Department</th>
-            {yearsToDisplay.map((year) => (
+            {sortedYears.map((year) => (
               <th key={year} className="px-4 py-2 text-right">{year}</th>
             ))}
           </tr>
@@ -126,7 +128,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
                 <td className="px-4 py-2">
                   {markdownSlug ? (
                     <Link 
-                      href={`/departments/${markdownSlug}`}
+                      href={`/spend?department=${markdownSlug}`}
                       className="text-blue-600 hover:text-blue-800 hover:underline"
                     >
                       {agency.name}
@@ -135,7 +137,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
                     agency.name
                   )}
                 </td>
-                {yearsToDisplay.map((year) => (
+                {sortedYears.map((year) => (
                   <td key={year} className="px-4 py-2 text-right">
                     {formatSpending(agency.spending[year as FiscalYearKey])}
                   </td>
