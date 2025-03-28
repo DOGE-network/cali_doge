@@ -2,17 +2,19 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
-export type Department = {
-  id: string;
-  budgetCode: number;
+// Define the type based on what we actually get from the API
+type DepartmentSearchResult = {
   name: string;
-  date: string;
-  excerpt: string;
-  image?: string;
-  workforceName?: string;
-  hasWorkforceData?: boolean;
+  slug: string;
+  canonicalName: string;
+  aliases: string[];
+  keyFunctions: string;
+  abbreviation: string;
+  budgetCode: number | null;
+  orgLevel: number;
+  budget_status: string;
+  parent_agency: string;
 };
 
 interface DepartmentSearchProps {
@@ -22,9 +24,9 @@ interface DepartmentSearchProps {
 
 export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [departments, setDepartments] = useState<Department[]>([]);
-  const [filteredDepartments, setFilteredDepartments] = useState<Department[]>([]);
-  const [recentDepartments, setRecentDepartments] = useState<Department[]>([]);
+  const [departments, setDepartments] = useState<DepartmentSearchResult[]>([]);
+  const [filteredDepartments, setFilteredDepartments] = useState<DepartmentSearchResult[]>([]);
+  const [recentDepartments, setRecentDepartments] = useState<DepartmentSearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -55,15 +57,14 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
         
         // Debug code types
         console.log('Department codes:');
-        data.slice(0, 5).forEach((dept: Department) => {
+        data.departments.slice(0, 5).forEach((dept: DepartmentSearchResult) => {
           console.log(`${dept.name}: code=${dept.budgetCode}, type=${typeof dept.budgetCode}`);
         });
         
-        setDepartments(data);
+        setDepartments(data.departments);
         
         // Set recent departments (3 most recent)
-        const sorted = [...data].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        setRecentDepartments(sorted.slice(0, 3));
+        setRecentDepartments(data.departments.slice(0, 3));
         
         setIsLoading(false);
       } catch (error) {
@@ -107,13 +108,23 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
         }
       }
       
-      // Search by excerpt/description
-      if (dept.excerpt && dept.excerpt.toLowerCase().includes(searchLower)) {
+      // Search by key functions
+      if (dept.keyFunctions && dept.keyFunctions.toLowerCase().includes(searchLower)) {
         return true;
       }
 
-      // Search by workforce name
-      if (dept.workforceName && dept.workforceName.toLowerCase().includes(searchLower)) {
+      // Search by aliases
+      if (dept.aliases && dept.aliases.some(alias => alias.toLowerCase().includes(searchLower))) {
+        return true;
+      }
+
+      // Search by abbreviation
+      if (dept.abbreviation && dept.abbreviation.toLowerCase().includes(searchLower)) {
+        return true;
+      }
+
+      // Search by canonical name
+      if (dept.canonicalName && dept.canonicalName.toLowerCase().includes(searchLower)) {
         return true;
       }
       
@@ -209,7 +220,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search by name or code..."
+            placeholder="Search by name, code, or abbreviation..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-odi-blue"
@@ -239,24 +250,12 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
             {filteredDepartments.length > 0 ? (
               <div className="space-y-3">
                 {filteredDepartments.map((dept) => (
-                  <div key={dept.id} className="flex flex-col space-y-2">
+                  <div key={dept.slug} className="flex flex-col space-y-2">
                     <div className="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
-                      {dept.image && (
-                        <div className="flex-shrink-0 mr-3">
-                          <div className="relative w-12 h-12">
-                            <Image
-                              src={dept.image.replace('/assets/img/', '/')}
-                              alt={dept.name}
-                              fill
-                              className="rounded object-cover"
-                            />
-                          </div>
-                        </div>
-                      )}
                       <div className="flex-grow">
                         <div className="flex items-center justify-between">
                           <Link
-                            href={`/workforce?department=${encodeURIComponent(dept.workforceName || dept.name)}`}
+                            href={`/workforce?department=${encodeURIComponent(dept.name)}`}
                             className="font-medium text-gray-900 hover:text-blue-600"
                             onClick={onClose}
                           >
@@ -266,16 +265,14 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                                 {dept.budgetCode}
                               </span>
                             )}
-                          </Link>
-                          <Link
-                            href={`/departments/${dept.id}`}
-                            className="text-sm text-gray-500 hover:text-blue-600 ml-2"
-                            onClick={onClose}
-                          >
-                          
+                            {dept.abbreviation && (
+                              <span className="ml-2 text-xs text-gray-500">
+                                ({dept.abbreviation})
+                              </span>
+                            )}
                           </Link>
                         </div>
-                        <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
+                        <p className="text-sm text-gray-600 line-clamp-1">{dept.keyFunctions}</p>
                       </div>
                     </div>
                   </div>
@@ -290,24 +287,12 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
             <h3 className="font-medium text-gray-900 mb-2">Recent Departments</h3>
             <div className="space-y-3 max-h-80 overflow-y-auto">
               {recentDepartments.map((dept) => (
-                <div key={dept.id} className="flex flex-col space-y-2">
+                <div key={dept.slug} className="flex flex-col space-y-2">
                   <div className="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
-                    {dept.image && (
-                      <div className="flex-shrink-0 mr-3">
-                        <div className="relative w-12 h-12">
-                          <Image
-                            src={dept.image.replace('/assets/img/', '/')}
-                            alt={dept.name}
-                            fill
-                            className="rounded object-cover"
-                          />
-                        </div>
-                      </div>
-                    )}
                     <div className="flex-grow">
                       <div className="flex items-center justify-between">
                         <Link
-                          href={`/workforce?department=${encodeURIComponent(dept.workforceName || dept.name)}`}
+                          href={`/workforce?department=${encodeURIComponent(dept.name)}`}
                           className="font-medium text-gray-900 hover:text-blue-600"
                           onClick={onClose}
                         >
@@ -317,16 +302,14 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                               {dept.budgetCode}
                             </span>
                           )}
-                        </Link>
-                        <Link
-                          href={`/departments/${dept.id}`}
-                          className="text-sm text-gray-500 hover:text-blue-600 ml-2"
-                          onClick={onClose}
-                        >
-                        
+                          {dept.abbreviation && (
+                            <span className="ml-2 text-xs text-gray-500">
+                              ({dept.abbreviation})
+                            </span>
+                          )}
                         </Link>
                       </div>
-                      <p className="text-sm text-gray-600 line-clamp-1">{dept.excerpt}</p>
+                      <p className="text-sm text-gray-600 line-clamp-1">{dept.keyFunctions}</p>
                     </div>
                   </div>
                 </div>

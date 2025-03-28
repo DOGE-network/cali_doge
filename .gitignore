@@ -9,6 +9,10 @@
 # Raw Data files
 src/data/workforce/*.csv
 src/data/vendors/*.csv
+src/data/departments.json.bak*
+
+# test files
+src/data/test_data/
 
 # User-specific files
 *.rsuser
