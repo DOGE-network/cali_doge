@@ -278,7 +278,11 @@
       "parent_agency": "California Health and Human Services Agency",
       "budgetCode": "4180",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 829,
+          "FY2023-FY2024": 1060,
+          "FY2024-FY2025": 1072
+        }
       },
       "headCount": {
         "yearly": {
@@ -487,7 +491,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3754_California_Commission_on_Aging_2023.csv",
+      "_note": "Salary data from 3754_California_Commission_on_Aging_2023.csv, Budget data from 4180_2024_budget.txt",
       "entityCode": "3754"
     },
     {
@@ -504,7 +508,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "7300",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 12250,
+          "FY2023-FY2024": 14802,
+          "FY2024-FY2025": 19340
+        }
       },
       "headCount": {
         "yearly": {
@@ -713,7 +721,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3703_Agricultural_Labor_Relations_Board_2023.csv",
+      "_note": "Salary data from 3703_Agricultural_Labor_Relations_Board_2023.csv, Budget data from 7300_2024_budget.txt",
       "entityCode": "3703"
     },
     {
@@ -1900,7 +1908,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3835",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 3893,
+          "FY2023-FY2024": 3499,
+          "FY2024-FY2025": 1743
+        }
       },
       "headCount": {
         "yearly": {
@@ -2109,7 +2121,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3708_Baldwin_Hills_Conservancy_2023.csv",
+      "_note": "Salary data from 3708_Baldwin_Hills_Conservancy_2023.csv, Budget data from 3835_2024_budget.txt",
       "entityCode": "3708"
     },
     {
@@ -3668,9 +3680,13 @@
       "keyFunctions": "Air quality and climate change regulation",
       "abbreviation": "CARB",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": 3900,
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 1602811,
+          "FY2023-FY2024": 2961826,
+          "FY2024-FY2025": 1316263
+        }
       },
       "headCount": {
         "yearly": {
@@ -3879,7 +3895,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3704_Air_Resources_Board_2023.csv",
+      "_note": "Salary data from 3704_Air_Resources_Board_2023.csv, Budget data from 3900_2024_budget.txt",
       "entityCode": "3704"
     },
     {
@@ -4009,7 +4025,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "8260",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 222956,
+          "FY2023-FY2024": 82711,
+          "FY2024-FY2025": 38863
+        }
       },
       "headCount": {
         "yearly": {
@@ -4218,7 +4238,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3707_Arts_Council_2023.csv",
+      "_note": "Salary data from 3707_Arts_Council_2023.csv, Budget data from 8260_2024_budget.txt",
       "entityCode": "3707"
     },
     {
@@ -4422,7 +4442,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3720",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 43156,
+          "FY2023-FY2024": 71519,
+          "FY2024-FY2025": 39289
+        }
       },
       "headCount": {
         "yearly": {
@@ -4631,7 +4655,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3719_Coastal_Commission__California_2023.csv",
+      "_note": "Salary data from 3719_Coastal_Commission__California_2023.csv, Budget data from 3720_2024_budget.txt",
       "entityCode": "3719"
     },
     {
@@ -4685,7 +4709,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "6870",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 12036675,
+          "FY2023-FY2024": 12806408,
+          "FY2024-FY2025": 13249717
+        }
       },
       "headCount": {
         "yearly": {}
@@ -4705,7 +4733,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 6870_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -4722,7 +4750,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3340",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 221982,
+          "FY2023-FY2024": 178629,
+          "FY2024-FY2025": 154810
+        }
       },
       "headCount": {
         "yearly": {
@@ -4931,7 +4963,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3741_Conservation_Corps__California_2023.csv",
+      "_note": "Salary data from 3741_Conservation_Corps__California_2023.csv, Budget data from 3340_2024_budget.txt",
       "entityCode": "3741"
     },
     {
@@ -6908,7 +6940,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4800",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 860759,
+          "FY2023-FY2024": 541087,
+          "FY2024-FY2025": 611789
+        }
       },
       "headCount": {
         "yearly": {
@@ -7117,7 +7153,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3728_California_Health_Benefit_Exchange_2023.csv",
+      "_note": "Salary data from 3728_California_Health_Benefit_Exchange_2023.csv, Budget data from 4800_2024_budget.txt",
       "entityCode": "3728"
     },
     {
@@ -7360,7 +7396,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0530",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 727201,
+          "FY2023-FY2024": 739055,
+          "FY2024-FY2025": 947631
+        }
       },
       "headCount": {
         "yearly": {}
@@ -7380,7 +7420,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 0530_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -7697,7 +7737,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "1750",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 20241,
+          "FY2023-FY2024": 20448,
+          "FY2024-FY2025": 20449
+        }
       },
       "headCount": {
         "yearly": {
@@ -7906,7 +7950,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3744_Horse_Racing_Board__California_2023.csv",
+      "_note": "Salary data from 3744_Horse_Racing_Board__California_2023.csv, Budget data from 1750_2024_budget.txt",
       "entityCode": "3744"
     },
     {
@@ -8713,7 +8757,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "7120",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 320333,
+          "FY2023-FY2024": 152306,
+          "FY2024-FY2025": 37186
+        }
       },
       "headCount": {
         "yearly": {}
@@ -8733,7 +8781,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 7120_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -9162,7 +9210,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "1700",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 63226,
+          "FY2023-FY2024": 67200,
+          "FY2024-FY2025": 62297
+        }
       },
       "headCount": {
         "yearly": {
@@ -9371,7 +9423,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 9493_Civil_Rights_Department__California_2023.csv",
+      "_note": "Salary data from 9493_Civil_Rights_Department__California_2023.csv, Budget data from 1700_2024_budget.txt",
       "entityCode": "9493"
     },
     {
@@ -9388,7 +9440,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3850",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 3758,
+          "FY2023-FY2024": 698,
+          "FY2024-FY2025": 685
+        }
       },
       "headCount": {
         "yearly": {
@@ -9597,7 +9653,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3749_Coachella_Valley_Mountains_Conservancy_2023.csv",
+      "_note": "Salary data from 3749_Coachella_Valley_Mountains_Conservancy_2023.csv, Budget data from 3850_2024_budget.txt",
       "entityCode": "3749"
     },
     {
@@ -9614,7 +9670,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3460",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 2150,
+          "FY2023-FY2024": 2833,
+          "FY2024-FY2025": 2840
+        }
       },
       "headCount": {
         "yearly": {
@@ -9823,7 +9883,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3750_Colorado_River_Board_of_California_2023.csv",
+      "_note": "Salary data from 3750_Colorado_River_Board_of_California_2023.csv, Budget data from 3460_2024_budget.txt",
       "entityCode": "3750"
     },
     {
@@ -10706,7 +10766,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3840",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 1650,
+          "FY2023-FY2024": 2374,
+          "FY2024-FY2025": 2388
+        }
       },
       "headCount": {
         "yearly": {
@@ -10915,7 +10979,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3763_Delta_Protection_Commission_2023.csv",
+      "_note": "Salary data from 3763_Delta_Protection_Commission_2023.csv, Budget data from 3840_2024_budget.txt",
       "entityCode": "3763"
     },
     {
@@ -11722,7 +11786,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4700",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 1193134,
+          "FY2023-FY2024": 360081,
+          "FY2024-FY2025": 349520
+        }
       },
       "headCount": {
         "yearly": {
@@ -11931,7 +11999,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3757_Community_Services___Development__Department_of_2023.csv",
+      "_note": "Salary data from 3757_Community_Services___Development__Department_of_2023.csv, Budget data from 4700_2024_budget.txt",
       "entityCode": "3757"
     },
     {
@@ -11948,7 +12016,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3480",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 386675,
+          "FY2023-FY2024": 388060,
+          "FY2024-FY2025": 271756
+        }
       },
       "headCount": {
         "yearly": {
@@ -12157,7 +12229,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3758_Conservation__Department_of_2023.csv",
+      "_note": "Salary data from 3758_Conservation__Department_of_2023.csv, Budget data from 3480_2024_budget.txt",
       "entityCode": "3758"
     },
     {
@@ -12174,7 +12246,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "1111",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 625989,
+          "FY2023-FY2024": 749004,
+          "FY2024-FY2025": 755763
+        }
       },
       "headCount": {
         "yearly": {
@@ -12383,7 +12459,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3759_Consumer_Affairs__Department_of_2023.csv",
+      "_note": "Salary data from 3759_Consumer_Affairs__Department_of_2023.csv, Budget data from 1111_2024_budget.txt",
       "entityCode": "3759"
     },
     {
@@ -12401,7 +12477,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "5225",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 14414972,
+          "FY2023-FY2024": 14981549,
+          "FY2024-FY2025": 14488244
+        }
       },
       "headCount": {
         "yearly": {
@@ -12610,7 +12690,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3761_Corrections___Rehabilitation__Department_of_2023.csv",
+      "_note": "Salary data from 3761_Corrections___Rehabilitation__Department_of_2023.csv, Budget data from 5225_2024_budget.txt",
       "entityCode": "3761"
     },
     {
@@ -12627,7 +12707,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4300",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 11861380,
+          "FY2023-FY2024": 13691449,
+          "FY2024-FY2025": 15314151
+        }
       },
       "headCount": {
         "yearly": {
@@ -12836,7 +12920,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3771_Developmental_Services__Department_of_2023.csv",
+      "_note": "Salary data from 3771_Developmental_Services__Department_of_2023.csv, Budget data from 4300_2024_budget.txt",
       "entityCode": "3771"
     },
     {
@@ -12854,7 +12938,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "6100",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 96923321,
+          "FY2023-FY2024": 105713944,
+          "FY2024-FY2025": 105265968
+        }
       },
       "headCount": {
         "yearly": {
@@ -13063,7 +13151,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3772_Education__Department_of_2023.csv",
+      "_note": "Salary data from 3772_Education__Department_of_2023.csv, Budget data from 6100_2024_budget.txt",
       "entityCode": "3772"
     },
     {
@@ -13117,7 +13205,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "8860",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 81766,
+          "FY2023-FY2024": 118367,
+          "FY2024-FY2025": 114063
+        }
       },
       "headCount": {
         "yearly": {
@@ -13326,7 +13418,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3779_Finance__Department_of_2023.csv",
+      "_note": "Salary data from 3779_Finance__Department_of_2023.csv, Budget data from 8860_2024_budget.txt",
       "entityCode": "3779"
     },
     {
@@ -13343,7 +13435,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "1701",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 147188,
+          "FY2023-FY2024": 174953,
+          "FY2024-FY2025": 167489
+        }
       },
       "headCount": {
         "yearly": {
@@ -13552,7 +13648,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 9384_Financial_Protection_and_Innovation__Department_of_2023.csv",
+      "_note": "Salary data from 9384_Financial_Protection_and_Innovation__Department_of_2023.csv, Budget data from 1701_2024_budget.txt",
       "entityCode": "9384"
     },
     {
@@ -13570,7 +13666,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3600",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 974372,
+          "FY2023-FY2024": 1174694,
+          "FY2024-FY2025": 800472
+        }
       },
       "headCount": {
         "yearly": {
@@ -13779,7 +13879,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3781_Fish_and_Wildlife__Department_of_2023.csv",
+      "_note": "Salary data from 3781_Fish_and_Wildlife__Department_of_2023.csv, Budget data from 3600_2024_budget.txt",
       "entityCode": "3781"
     },
     {
@@ -13797,7 +13897,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "8570",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 737368,
+          "FY2023-FY2024": 1123675,
+          "FY2024-FY2025": 582426
+        }
       },
       "headCount": {
         "yearly": {
@@ -14006,7 +14110,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3782_Food___Agriculture__Department_of_2023.csv",
+      "_note": "Salary data from 3782_Food___Agriculture__Department_of_2023.csv, Budget data from 8570_2024_budget.txt",
       "entityCode": "3782"
     },
     {
@@ -14023,7 +14127,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3540",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 4625397,
+          "FY2023-FY2024": 3660052,
+          "FY2024-FY2025": 4047349
+        }
       },
       "headCount": {
         "yearly": {}
@@ -14043,7 +14151,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 3540_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -14286,7 +14394,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4140",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 550496,
+          "FY2023-FY2024": 1239829,
+          "FY2024-FY2025": 523479
+        }
       },
       "headCount": {
         "yearly": {
@@ -14495,7 +14607,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3812_Health_Care_Access_and_Information__Department_of_2023.csv",
+      "_note": "Salary data from 3812_Health_Care_Access_and_Information__Department_of_2023.csv, Budget data from 4140_2024_budget.txt",
       "entityCode": "3812"
     },
     {
@@ -14513,7 +14625,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4260",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 139244056,
+          "FY2023-FY2024": 162730048,
+          "FY2024-FY2025": 161129416
+        }
       },
       "headCount": {
         "yearly": {
@@ -14722,7 +14838,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3789_Health_Care_Services__Department_of_2023.csv, Salary data from 8427_California_Correctional_Health_Care_Services_2023.csv",
+      "_note": "Salary data from 3789_Health_Care_Services__Department_of_2023.csv, Salary data from 8427_California_Correctional_Health_Care_Services_2023.csv, Budget data from 4260_2024_budget.txt",
       "entityCode": "3789"
     },
     {
@@ -15192,7 +15308,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "7350",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 1197341,
+          "FY2023-FY2024": 1397800,
+          "FY2024-FY2025": 1277877
+        }
       },
       "headCount": {
         "yearly": {
@@ -15401,7 +15521,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3792_Industrial_Relations__Department_of_2023.csv",
+      "_note": "Salary data from 3792_Industrial_Relations__Department_of_2023.csv, Budget data from 7350_2024_budget.txt",
       "entityCode": "3792"
     },
     {
@@ -15418,7 +15538,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0845",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 322439,
+          "FY2023-FY2024": 353289,
+          "FY2024-FY2025": 354655
+        }
       },
       "headCount": {
         "yearly": {
@@ -15627,7 +15751,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3793_Insurance__Department_of_2023.csv",
+      "_note": "Salary data from 3793_Insurance__Department_of_2023.csv, Budget data from 0845_2024_budget.txt",
       "entityCode": "3793"
     },
     {
@@ -16323,7 +16447,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3860",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 6698303,
+          "FY2023-FY2024": 7315876,
+          "FY2024-FY2025": 3779243
+        }
       },
       "headCount": {
         "yearly": {
@@ -16532,7 +16660,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3857_Water_Resources__Department_of_2023.csv",
+      "_note": "Salary data from 3857_Water_Resources__Department_of_2023.csv, Budget data from 3860_2024_budget.txt",
       "entityCode": "3857"
     },
     {
@@ -16961,7 +17089,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4120",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 58859,
+          "FY2023-FY2024": 79806,
+          "FY2024-FY2025": 57619
+        }
       },
       "headCount": {
         "yearly": {
@@ -17170,7 +17302,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3774_Emergency_Medical_Services_Authority_2023.csv",
+      "_note": "Salary data from 3774_Emergency_Medical_Services_Authority_2023.csv, Budget data from 4120_2024_budget.txt",
       "entityCode": "3774"
     },
     {
@@ -17187,7 +17319,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "7100",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 19285047,
+          "FY2023-FY2024": 22000286,
+          "FY2024-FY2025": 23696091
+        }
       },
       "headCount": {
         "yearly": {
@@ -17396,7 +17532,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3775_Employment_Development_Department_2023.csv",
+      "_note": "Salary data from 3775_Employment_Development_Department_2023.csv, Budget data from 7100_2024_budget.txt",
       "entityCode": "3775"
     },
     {
@@ -17488,7 +17624,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "8620",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 15865,
+          "FY2023-FY2024": 19425,
+          "FY2024-FY2025": 19630
+        }
       },
       "headCount": {
         "yearly": {
@@ -17697,7 +17837,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3778_Fair_Political_Practices_Commission_2023.csv",
+      "_note": "Salary data from 3778_Fair_Political_Practices_Commission_2023.csv, Budget data from 8620_2024_budget.txt",
       "entityCode": "3778"
     },
     {
@@ -18586,7 +18726,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0511",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 43604,
+          "FY2023-FY2024": 24252,
+          "FY2024-FY2025": 23162
+        }
       },
       "headCount": {
         "yearly": {
@@ -18795,7 +18939,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 8428_California_Government_Operations_Agency_2023.csv",
+      "_note": "Salary data from 8428_California_Government_Operations_Agency_2023.csv, Budget data from 0511_2024_budget.txt",
       "entityCode": "8428"
     },
     {
@@ -18814,7 +18958,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0509",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 2362701,
+          "FY2023-FY2024": 601724,
+          "FY2024-FY2025": 265946
+        }
       },
       "headCount": {
         "yearly": {
@@ -19023,7 +19171,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3883_Governor_s_Office_of_Business___Economic_Development_2023.csv",
+      "_note": "Salary data from 3883_Governor_s_Office_of_Business___Economic_Development_2023.csv, Budget data from 0509_2024_budget.txt",
       "entityCode": "3883"
     },
     {
@@ -19040,7 +19188,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0690",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 4361001,
+          "FY2023-FY2024": 3873172,
+          "FY2024-FY2025": 3042035
+        }
       },
       "headCount": {
         "yearly": {}
@@ -19060,7 +19212,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 0690_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -19077,7 +19229,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0650",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 1649437,
+          "FY2023-FY2024": 1170726,
+          "FY2024-FY2025": 1121619
+        }
       },
       "headCount": {
         "yearly": {}
@@ -19097,7 +19253,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 0650_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -21149,7 +21305,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0820",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 1145163,
+          "FY2023-FY2024": 1330688,
+          "FY2024-FY2025": 1283764
+        }
       },
       "headCount": {
         "yearly": {}
@@ -21169,7 +21329,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 0820_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -21677,7 +21837,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0559",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 10059,
+          "FY2023-FY2024": 11195,
+          "FY2024-FY2025": 10436
+        }
       },
       "headCount": {
         "yearly": {
@@ -21886,7 +22050,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3796_Labor_and_Workforce_Development_Agency_2023.csv",
+      "_note": "Salary data from 3796_Labor_and_Workforce_Development_Agency_2023.csv, Budget data from 0559_2024_budget.txt",
       "entityCode": "3796"
     },
     {
@@ -22130,7 +22294,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3560",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 87253,
+          "FY2023-FY2024": 54478,
+          "FY2024-FY2025": 51033
+        }
       },
       "headCount": {
         "yearly": {
@@ -22339,7 +22507,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3845_Lands_Commission__California_State_2023.csv",
+      "_note": "Salary data from 3845_Lands_Commission__California_State_2023.csv, Budget data from 3560_2024_budget.txt",
       "entityCode": "3845"
     },
     {
@@ -22621,7 +22789,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "8830",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 4081,
+          "FY2023-FY2024": 2535,
+          "FY2024-FY2025": 2542
+        }
       },
       "headCount": {
         "yearly": {
@@ -22830,7 +23002,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3734_Law_Revision_Committee__California_2023.csv",
+      "_note": "Salary data from 3734_Law_Revision_Committee__California_2023.csv, Budget data from 8830_2024_budget.txt",
       "entityCode": "3734"
     },
     {
@@ -23259,7 +23431,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "6120",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 511740,
+          "FY2023-FY2024": 110527,
+          "FY2024-FY2025": 228909
+        }
       },
       "headCount": {
         "yearly": {
@@ -23468,7 +23644,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3746_Library__California_State_2023.csv",
+      "_note": "Salary data from 3746_Library__California_State_2023.csv, Budget data from 6120_2024_budget.txt",
       "entityCode": "3746"
     },
     {
@@ -23486,7 +23662,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0750",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 2080,
+          "FY2023-FY2024": 2906,
+          "FY2024-FY2025": 2917
+        }
       },
       "headCount": {
         "yearly": {
@@ -23695,7 +23875,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 9107_Office_of_Lieutenant_Governor_2023.csv",
+      "_note": "Salary data from 9107_Office_of_Lieutenant_Governor_2023.csv, Budget data from 0750_2024_budget.txt",
       "entityCode": "9107"
     },
     {
@@ -24431,7 +24611,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4150",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 106924,
+          "FY2023-FY2024": 165492,
+          "FY2024-FY2025": 163070
+        }
       },
       "headCount": {
         "yearly": {
@@ -24640,7 +24824,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3765_Managed_Health_Care__Department_of_2023.csv",
+      "_note": "Salary data from 3765_Managed_Health_Care__Department_of_2023.csv, Budget data from 4150_2024_budget.txt",
       "entityCode": "3765"
     },
     {
@@ -25412,7 +25596,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4560",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 137808,
+          "FY2023-FY2024": 126182,
+          "FY2024-FY2025": 48304
+        }
       },
       "headCount": {
         "yearly": {
@@ -25621,7 +25809,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3802_Mental_Health_Services_Oversight_and_Accountability_Commission_2023.csv",
+      "_note": "Salary data from 3802_Mental_Health_Services_Oversight_and_Accountability_Commission_2023.csv, Budget data from 4560_2024_budget.txt",
       "entityCode": "3802"
     },
     {
@@ -25865,7 +26053,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "8940",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 269637,
+          "FY2023-FY2024": 298317,
+          "FY2024-FY2025": 297074
+        }
       },
       "headCount": {
         "yearly": {}
@@ -25885,7 +26077,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 8940_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -27073,7 +27265,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3780",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 3467,
+          "FY2023-FY2024": 3851,
+          "FY2024-FY2025": 3861
+        }
       },
       "headCount": {
         "yearly": {
@@ -27282,7 +27478,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3806_Native_American_Heritage_Commission_2023.csv",
+      "_note": "Salary data from 3806_Native_American_Heritage_Commission_2023.csv, Budget data from 3780_2024_budget.txt",
       "entityCode": "3806"
     },
     {
@@ -27299,7 +27495,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0540",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 332005,
+          "FY2023-FY2024": 1239056,
+          "FY2024-FY2025": 119138
+        }
       },
       "headCount": {
         "yearly": {
@@ -27508,7 +27708,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3826_Natural_Resources_Agency__California_2023.csv",
+      "_note": "Salary data from 3826_Natural_Resources_Agency__California_2023.csv, Budget data from 0540_2024_budget.txt",
       "entityCode": "3826"
     },
     {
@@ -28948,7 +29148,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0500",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 29394,
+          "FY2023-FY2024": 32293,
+          "FY2024-FY2025": 32475
+        }
       },
       "headCount": {
         "yearly": {
@@ -29157,7 +29361,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3786_Governor__Office_of_the_2023.csv",
+      "_note": "Salary data from 3786_Governor__Office_of_the_2023.csv, Budget data from 0500_2024_budget.txt",
       "entityCode": "3786"
     },
     {
@@ -29474,7 +29678,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0890",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 144048,
+          "FY2023-FY2024": 183594,
+          "FY2024-FY2025": 190743
+        }
       },
       "headCount": {
         "yearly": {}
@@ -29494,7 +29702,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 0890_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -30076,7 +30284,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3790",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 2123920,
+          "FY2023-FY2024": 1233575,
+          "FY2024-FY2025": 951102
+        }
       },
       "headCount": {
         "yearly": {}
@@ -30096,7 +30308,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 3790_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -32407,7 +32619,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "7320",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 16541,
+          "FY2023-FY2024": 17948,
+          "FY2024-FY2025": 17998
+        }
       },
       "headCount": {
         "yearly": {
@@ -32616,7 +32832,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3820_Public_Employment_Relations_Board__California_2023.csv",
+      "_note": "Salary data from 3820_Public_Employment_Relations_Board__California_2023.csv, Budget data from 7320_2024_budget.txt",
       "entityCode": "3820"
     },
     {
@@ -32633,7 +32849,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4265",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 5867741,
+          "FY2023-FY2024": 6202512,
+          "FY2024-FY2025": 4971168
+        }
       },
       "headCount": {
         "yearly": {
@@ -32842,7 +33062,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3766_Public_Health__California_Department_of_2023.csv",
+      "_note": "Salary data from 3766_Public_Health__California_Department_of_2023.csv, Budget data from 4265_2024_budget.txt",
       "entityCode": "3766"
     },
     {
@@ -32859,7 +33079,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "8660",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 1971892,
+          "FY2023-FY2024": 2664558,
+          "FY2024-FY2025": 2070144
+        }
       },
       "headCount": {
         "yearly": {
@@ -33068,7 +33292,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3822_Public_Utilities_Commission__California_2023.csv",
+      "_note": "Salary data from 3822_Public_Utilities_Commission__California_2023.csv, Budget data from 8660_2024_budget.txt",
       "entityCode": "3822"
     },
     {
@@ -34291,7 +34515,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3875",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 23829,
+          "FY2023-FY2024": 53823,
+          "FY2024-FY2025": 3773
+        }
       },
       "headCount": {
         "yearly": {
@@ -34500,7 +34728,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3827_Sacramento_San_Joaquin_Delta_Conservancy_2023.csv",
+      "_note": "Salary data from 3827_Sacramento_San_Joaquin_Delta_Conservancy_2023.csv, Budget data from 3875_2024_budget.txt",
       "entityCode": "3827"
     },
     {
@@ -35198,7 +35426,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3845",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 7416,
+          "FY2023-FY2024": 42960,
+          "FY2024-FY2025": 1631
+        }
       },
       "headCount": {
         "yearly": {
@@ -35407,7 +35639,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3828_San_Diego_River_Conservancy_2023.csv",
+      "_note": "Salary data from 3828_San_Diego_River_Conservancy_2023.csv, Budget data from 3845_2024_budget.txt",
       "entityCode": "3828"
     },
     {
@@ -35425,7 +35657,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3820",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 11679,
+          "FY2023-FY2024": 13436,
+          "FY2024-FY2025": 13320
+        }
       },
       "headCount": {
         "yearly": {
@@ -35634,7 +35870,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3829_San_Francisco_Bay_Conservation___Development_Commission_2023.csv",
+      "_note": "Salary data from 3829_San_Francisco_Bay_Conservation___Development_Commission_2023.csv, Budget data from 3820_2024_budget.txt",
       "entityCode": "3829"
     },
     {
@@ -35879,7 +36115,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3825",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 28528,
+          "FY2023-FY2024": 191215,
+          "FY2024-FY2025": 11790
+        }
       },
       "headCount": {
         "yearly": {
@@ -36088,7 +36328,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3830_San_Gabriel___Lower_Los_Angeles_Rivers___Mountains_Conservancy_2023.csv",
+      "_note": "Salary data from 3830_San_Gabriel___Lower_Los_Angeles_Rivers___Mountains_Conservancy_2023.csv, Budget data from 3825_2024_budget.txt",
       "entityCode": "3830"
     },
     {
@@ -36332,7 +36572,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3830",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 2645,
+          "FY2023-FY2024": 2157,
+          "FY2024-FY2025": 1164
+        }
       },
       "headCount": {
         "yearly": {
@@ -36541,7 +36785,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3831_San_Joaquin_River_Conservancy_2023.csv",
+      "_note": "Salary data from 3831_San_Joaquin_River_Conservancy_2023.csv, Budget data from 3830_2024_budget.txt",
       "entityCode": "3831"
     },
     {
@@ -37693,7 +37937,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3810",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 25826,
+          "FY2023-FY2024": 157276,
+          "FY2024-FY2025": 1776
+        }
       },
       "headCount": {
         "yearly": {
@@ -37902,7 +38150,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3832_Santa_Monica_Mountains_Conservancy_2023.csv",
+      "_note": "Salary data from 3832_Santa_Monica_Mountains_Conservancy_2023.csv, Budget data from 3810_2024_budget.txt",
       "entityCode": "3832"
     },
     {
@@ -39427,7 +39675,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3855",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 75323,
+          "FY2023-FY2024": 76436,
+          "FY2024-FY2025": 6749
+        }
       },
       "headCount": {
         "yearly": {
@@ -39636,7 +39888,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3837_Sierra_Nevada_Conservancy_2023.csv",
+      "_note": "Salary data from 3837_Sierra_Nevada_Conservancy_2023.csv, Budget data from 3855_2024_budget.txt",
       "entityCode": "3837"
     },
     {
@@ -40748,7 +41000,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3760",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 647616,
+          "FY2023-FY2024": 252573,
+          "FY2024-FY2025": 29683
+        }
       },
       "headCount": {
         "yearly": {
@@ -40957,7 +41213,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3839_Coastal_Conservancy__State_2023.csv",
+      "_note": "Salary data from 3839_Coastal_Conservancy__State_2023.csv, Budget data from 3760_2024_budget.txt",
       "entityCode": "3839"
     },
     {
@@ -41428,7 +41684,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4100",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 13539,
+          "FY2023-FY2024": 20659,
+          "FY2024-FY2025": 16302
+        }
       },
       "headCount": {
         "yearly": {
@@ -41637,7 +41897,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3842_Developmental_Disabilities__State_Council_on_2023.csv",
+      "_note": "Salary data from 3842_Developmental_Disabilities__State_Council_on_2023.csv, Budget data from 4100_2024_budget.txt",
       "entityCode": "3842"
     },
     {
@@ -41655,7 +41915,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3360",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 1134072,
+          "FY2023-FY2024": 3811439,
+          "FY2024-FY2025": 764599
+        }
       },
       "headCount": {
         "yearly": {}
@@ -41675,7 +41939,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 3360_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -41767,7 +42031,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4440",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 2643330,
+          "FY2023-FY2024": 3729771,
+          "FY2024-FY2025": 3362641
+        }
       },
       "headCount": {
         "yearly": {
@@ -41976,7 +42244,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3884_Hospitals__Department_of_State_2023.csv",
+      "_note": "Salary data from 3884_Hospitals__Department_of_State_2023.csv, Budget data from 4440_2024_budget.txt",
       "entityCode": "3884"
     },
     {
@@ -43276,7 +43544,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "8820",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 9067,
+          "FY2023-FY2024": 6100,
+          "FY2024-FY2025": 2292
+        }
       },
       "headCount": {
         "yearly": {}
@@ -43296,7 +43568,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 8820_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -43350,7 +43622,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "6980",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 3299802,
+          "FY2023-FY2024": 3482148,
+          "FY2024-FY2025": 3374446
+        }
       },
       "headCount": {
         "yearly": {
@@ -43559,7 +43835,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3851_Student_Aid_Commission_2023.csv",
+      "_note": "Salary data from 3851_Student_Aid_Commission_2023.csv, Budget data from 6980_2024_budget.txt",
       "entityCode": "3851"
     },
     {
@@ -44030,7 +44306,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3125",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 28243,
+          "FY2023-FY2024": 56262,
+          "FY2024-FY2025": 12903
+        }
       },
       "headCount": {
         "yearly": {
@@ -44239,7 +44519,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3739_Tahoe_Conservancy__California_2023.csv",
+      "_note": "Salary data from 3739_Tahoe_Conservancy__California_2023.csv, Budget data from 3125_2024_budget.txt",
       "entityCode": "3739"
     },
     {
@@ -46593,7 +46873,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "6440",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 48168216,
+          "FY2023-FY2024": 51379754,
+          "FY2024-FY2025": 54482287
+        }
       },
       "headCount": {
         "yearly": {}
@@ -46613,7 +46897,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "",
+      "_note": "Budget data from 6440_2024_budget.txt",
       "entityCode": null
     },
     {
@@ -46857,7 +47141,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "8955",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 724879,
+          "FY2023-FY2024": 698263,
+          "FY2024-FY2025": 673872
+        }
       },
       "headCount": {
         "yearly": {
@@ -47066,7 +47354,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3855_Veterans_Affairs__Department_of_2023.csv",
+      "_note": "Salary data from 3855_Veterans_Affairs__Department_of_2023.csv, Budget data from 8955_2024_budget.txt",
       "entityCode": "3855"
     },
     {
@@ -47342,7 +47630,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "3640",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 520824,
+          "FY2023-FY2024": 939208,
+          "FY2024-FY2025": 60244
+        }
       },
       "headCount": {
         "yearly": {
@@ -47551,7 +47843,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3859_Wildlife_Conservation_Board_2023.csv",
+      "_note": "Salary data from 3859_Wildlife_Conservation_Board_2023.csv, Budget data from 3640_2024_budget.txt",
       "entityCode": "3859"
     },
     {

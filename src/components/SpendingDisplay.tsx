@@ -31,10 +31,13 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
 }) => {
   const [showAllYears, setShowAllYears] = useState(false);
   
-  // Format spending value to display with $ and B
+  // Format spending value to display with $ and M
   const formatSpending = (value: number | {} | undefined): string => {
     if (value === undefined || typeof value !== 'number') return 'N/A';
-    return `$${(value / 1000000000).toFixed(2)}B`;
+    if (value >= 1000000) {
+      return `$${(value / 1000000).toFixed(2)}M`;
+    }
+    return `$${(value / 1000000).toFixed(3)}M`;
   };
   
   // Debug on mount
@@ -105,6 +108,17 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
 
   return (
     <div className="w-full overflow-x-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
+        {!showTopSpendOnly && (
+          <Button
+            onClick={() => setShowAllYears(!showAllYears)}
+            variant="outline"
+            className="w-full sm:w-auto mb-2 sm:mb-0"
+          >
+            {showAllYears ? 'Show Recent Years' : 'Show All Years'}
+          </Button>
+        )}
+      </div>
       <table className="min-w-full table-auto">
         <thead>
           <tr className="bg-gray-100">
@@ -116,7 +130,10 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
         </thead>
         <tbody>
           {agenciesToDisplay.map((agency) => {
+            // Get department mapping using the spending name
             const departmentMapping = getDepartmentBySpendingName(agency.name);
+            
+            // Find the markdown file slug that corresponds to this department
             const markdownSlug = departmentMapping ? findMarkdownForDepartment(departmentMapping.name) : null;
             const isHighlighted = highlightedDepartment && markdownSlug === highlightedDepartment;
 
@@ -128,7 +145,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
                 <td className="px-4 py-2">
                   {markdownSlug ? (
                     <Link 
-                      href={`/spend?department=${markdownSlug}`}
+                      href={`/departments/${markdownSlug}`}
                       className="text-blue-600 hover:text-blue-800 hover:underline"
                     >
                       {agency.name}
@@ -147,17 +164,6 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
           })}
         </tbody>
       </table>
-      
-      {!showTopSpendOnly && (
-        <div className="mt-4 flex justify-center">
-          <Button
-            onClick={() => setShowAllYears(!showAllYears)}
-            variant="outline"
-          >
-            {showAllYears ? 'Show Recent Years' : 'Show All Years'}
-          </Button>
-        </div>
-      )}
     </div>
   );
 };

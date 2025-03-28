@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Department Code Processing Script
+ * Department budgetCode Processing Script
  * 
  * This script updates department codes in departments.json based on ebudget FY2023 CSV data.
  * It handles:

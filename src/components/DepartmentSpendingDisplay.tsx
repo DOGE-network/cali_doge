@@ -46,7 +46,7 @@ const DepartmentSpendingDisplay: React.FC<DepartmentSpendingDisplayProps> = ({
     if (value >= 1000000) {
       return `$${(value / 1000000).toFixed(2)}M`;
     }
-    return `$${value.toLocaleString()}`;
+    return `$${(value / 1000000).toFixed(3)}M`;
   };
 
   // If no data or empty data, show message
