@@ -1,4 +1,4 @@
-# California State Government Data Explorer (Cali Doge)
+# Unoffical California Department of Government Efficency (Cali-DOGE)
 
 ## Table of Contents
 
