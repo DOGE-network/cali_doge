@@ -759,11 +759,12 @@ const main = async () => {
   let validationLogger = createValidationLogger(log);
   let departmentsData;
   let initialDepartmentsWithSalary;
-  let totalNewDepartments = 0;
-  let totalUpdatedDepartments = 0;
-  let totalSkippedDepartments = 0;
-  let totalProcessedDepartments = 0;
+  let _totalNewDepartments = 0;
+  let _totalUpdatedDepartments = 0;
+  let _totalSkippedDepartments = 0;
+  let _totalProcessedDepartments = 0;
   let totalValidationErrors = 0;
+  let _finalDepartmentsWithSalary = 0;
   
   try {
     // Step 1: Initial Setup
@@ -878,12 +879,12 @@ const main = async () => {
       // Step 2c: Process each department
       log('Step 2c: Processing departments...');
       for (const employerName of employerNames) {
-        totalProcessedDepartments++;
+        _totalProcessedDepartments++;
         log(`\nProcessing employer: ${employerName}`);
         
         const employerRecords = records.filter(record => record.EmployerName === employerName);
         if (employerRecords.length === 0) {
-          totalSkippedDepartments++;
+          _totalSkippedDepartments++;
           continue;
         }
         
@@ -895,6 +896,13 @@ const main = async () => {
         log('Step 2e: Finding department...');
         const matchResult = findDepartmentByName(employerName, departmentsData.departments, log, entityCode);
         if (!matchResult) {
+          // Update the processedDepartments tracking for failed matches
+          const processed = processedDepartments.get(employerName);
+          if (processed) {
+            processed.updated = false;
+            processed.reason = 'No matching department found';
+            processed.details = `Could not find matching department for "${employerName}"`;
+          }
           log(`No matching department found for ${employerName}`, 'error');
           continue;
         }
@@ -935,7 +943,15 @@ const main = async () => {
               log(`  ${displayRange}: ${range.count} employees`);
             });
           } else {
+            // Update the processedDepartments tracking for invalid salary distribution
+            const processed = processedDepartments.get(employerName);
+            if (processed) {
+              processed.updated = false;
+              processed.reason = 'Invalid salary distribution';
+              processed.details = 'No valid salary distribution data available';
+            }
             log('Warning: No salary distribution data available', 'warn');
+            continue;
           }
           
           // Prepare update data
@@ -1013,7 +1029,7 @@ const main = async () => {
               log(`Updated entity code to ${updateData.entityCode}`);
             }
             
-            // Update the processedDepartments tracking
+            // Update the processedDepartments tracking for successful updates
             const processed = processedDepartments.get(employerName);
             if (processed) {
               processed.updated = true;
@@ -1021,7 +1037,7 @@ const main = async () => {
               processed.details = `Updated with data from ${_filename}`;
             }
             
-            totalUpdatedDepartments++;
+            _totalUpdatedDepartments++;
             log(`Successfully updated department data for ${department.name}`);
             
             // Write to file immediately after each successful update
@@ -1032,11 +1048,25 @@ const main = async () => {
               log(`Error writing departments.json: ${error.message}`, 'error');
             }
           } else {
-            log(`Skipping update for department: ${department.name}`);
+            // Update the processedDepartments tracking for skipped updates
+            const processed = processedDepartments.get(employerName);
+            if (processed) {
+              processed.updated = true; // Mark as processed even if skipped
+              processed.reason = 'Skipped - No changes needed';
+              processed.details = `Data from ${_filename} matches existing data`;
+            }
+            log(`Skipping update for department: ${department.name} - No changes needed`);
             continue;
           }
           
         } catch (error) {
+          // Update the processedDepartments tracking for errors
+          const processed = processedDepartments.get(employerName);
+          if (processed) {
+            processed.updated = false;
+            processed.reason = 'Error processing data';
+            processed.details = `Error: ${error.message}`;
+          }
           log(`Error updating department data: ${error.message}`, 'error');
           continue;
         }
@@ -1047,25 +1077,76 @@ const main = async () => {
     log('\n=== STEP 3: FINAL PROCESSING ===');
     
     // Step 3a: Count final departments with salary data
-    const finalDepartmentsWithSalary = departmentsData.departments.filter(d => 
+    _finalDepartmentsWithSalary = departmentsData.departments.filter(d => 
       d.salaryDistribution?.yearly && Object.values(d.salaryDistribution.yearly).some(yearData => yearData.length > 0)
     ).length;
     
     // Step 3b: Log final statistics
-    log('\nFinal Statistics:');
-    log(`- Initial departments with salary distributions: ${initialDepartmentsWithSalary}`);
-    log(`- Final departments with salary distributions: ${finalDepartmentsWithSalary}`);
-    log(`- New departments created: ${totalNewDepartments}`);
-    log(`- Existing departments updated: ${totalUpdatedDepartments}`);
-    log(`- Departments skipped: ${totalSkippedDepartments}`);
-    log(`- Total departments processed: ${totalProcessedDepartments}`);
-    log(`- Total validation errors: ${totalValidationErrors}`);
+    log('\nProcessing Summary:');
+    log('===================');
+    
+    // Calculate total departments in JSON
+    const totalDepartmentsInJson = departmentsData.departments.length;
+    
+    // Calculate departments processed from CSV
+    const departmentsFromCsv = processedDepartments.size;
+    
+    // Calculate successful updates
+    const successfulUpdates = Array.from(processedDepartments.values())
+      .filter(d => d.updated && d.reason === 'Successfully updated').length;
+    
+    // Calculate skipped updates
+    const skippedUpdates = Array.from(processedDepartments.values())
+      .filter(d => d.updated && d.reason === 'Skipped - No changes needed').length;
+    
+    // Calculate failed updates
+    const failedUpdates = Array.from(processedDepartments.values())
+      .filter(d => !d.updated).length;
+    
+    // Calculate departments with salary data
+    const departmentsWithSalary = departmentsData.departments.filter(d => 
+      d.salaryDistribution?.yearly && Object.values(d.salaryDistribution.yearly).some(yearData => yearData.length > 0)
+    ).length;
+    
+    // Log summary statistics
+    log('\nOverall Statistics:');
+    log('------------------');
+    log(`Total departments in departments.json: ${totalDepartmentsInJson}`);
+    log(`Departments with salary data: ${departmentsWithSalary}`);
+    log(`Departments without salary data: ${totalDepartmentsInJson - departmentsWithSalary}`);
+    
+    log('\nCSV Processing Results:');
+    log('----------------------');
+    log(`Departments found in CSV files: ${departmentsFromCsv}`);
+    log(`Successfully updated: ${successfulUpdates}`);
+    log(`Skipped - No changes needed: ${skippedUpdates}`);
+    log(`Failed to update: ${failedUpdates}`);
+    
+    // Group failed updates by reason
+    const failedByReason = Array.from(processedDepartments.values())
+      .filter(d => !d.updated)
+      .reduce((acc, d) => {
+        acc[d.reason] = (acc[d.reason] || 0) + 1;
+        return acc;
+      }, {});
+    
+    log('\nFailed Updates by Reason:');
+    log('------------------------');
+    Object.entries(failedByReason).forEach(([reason, count]) => {
+      log(`${reason}: ${count} departments`);
+      // Log details for each failed department
+      Array.from(processedDepartments.entries())
+        .filter(([_, d]) => !d.updated && d.reason === reason)
+        .forEach(([name, d]) => {
+          log(`  - ${name}: ${d.details}`);
+        });
+    });
     
     // Step 3c: Department Update Summary
     const summary = [];
-    summary.push('\nDepartment Update Summary:');
-    summary.push('------------------------');
-
+    summary.push('\nDetailed Department Status:');
+    summary.push('=========================');
+    
     // Get all departments from JSON
     const allDepartments = departmentsData.departments.map(d => ({
       name: d.name,
@@ -1084,23 +1165,27 @@ const main = async () => {
         dept.details = processed.details;
       }
     }
-
-    // Group departments by status
-    const updatedDepartments = allDepartments.filter(d => d.updated);
-    const notUpdatedDepartments = allDepartments.filter(d => !d.updated);
-
-    // Group not updated departments by reason
-    const groupedNotUpdated = notUpdatedDepartments.reduce((acc, dept) => {
-      const key = dept.reason;
-      if (!acc[key]) {
-        acc[key] = [];
-      }
-      acc[key].push(dept);
-      return acc;
-    }, {});
-
+    
+    // Group departments by status - only include departments that were in CSV files
+    const updatedDepartments = allDepartments.filter(d => 
+      processedDepartments.has(d.name) && 
+      d.updated && 
+      d.reason === 'Successfully updated'
+    );
+    
+    const skippedDepartments = allDepartments.filter(d => 
+      processedDepartments.has(d.name) && 
+      d.updated && 
+      d.reason === 'Skipped - No changes needed'
+    );
+    
+    const notUpdatedDepartments = allDepartments.filter(d => 
+      processedDepartments.has(d.name) && 
+      !d.updated
+    );
+    
     // Build summary
-    summary.push(`\nUpdated Departments (${updatedDepartments.length}):`);
+    summary.push(`\nSuccessfully Updated Departments (${updatedDepartments.length}):`);
     summary.push('----------------------------------------');
     updatedDepartments.forEach(d => {
       summary.push(`${d.budgetCode}_${d.name}`);
@@ -1108,12 +1193,30 @@ const main = async () => {
         summary.push(`  Details: ${d.details}`);
       }
     });
-
-    summary.push(`\nNot Updated Departments (${notUpdatedDepartments.length}):`);
+    
+    summary.push(`\nSkipped - No Changes Needed (${skippedDepartments.length}):`);
     summary.push('----------------------------------------');
-
-    // Add each group with its departments
-    Object.entries(groupedNotUpdated).forEach(([reason, departments]) => {
+    skippedDepartments.forEach(d => {
+      summary.push(`${d.budgetCode}_${d.name}`);
+      if (d.details) {
+        summary.push(`  Details: ${d.details}`);
+      }
+    });
+    
+    summary.push(`\nFailed to Update Departments (${notUpdatedDepartments.length}):`);
+    summary.push('----------------------------------------');
+    
+    // Group by reason for better organization
+    const groupedByReason = notUpdatedDepartments.reduce((acc, d) => {
+      const key = d.reason;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(d);
+      return acc;
+    }, {});
+    
+    Object.entries(groupedByReason).forEach(([reason, departments]) => {
       summary.push(`\n${reason}: ${departments.length} departments`);
       departments.forEach(d => {
         summary.push(`${d.budgetCode}_${d.name}`);
@@ -1122,6 +1225,16 @@ const main = async () => {
         }
       });
     });
+
+    // Add a section for departments not found in CSV files
+    const departmentsNotInCsv = allDepartments.filter(d => !processedDepartments.has(d.name));
+    if (departmentsNotInCsv.length > 0) {
+      summary.push(`\nDepartments Not Found in CSV Files (${departmentsNotInCsv.length}):`);
+      summary.push('----------------------------------------');
+      departmentsNotInCsv.forEach(d => {
+        summary.push(`${d.budgetCode}_${d.name}`);
+      });
+    }
 
     // Write summary to both console and log file
     const summaryText = summary.join('\n');

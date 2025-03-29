@@ -136,6 +136,7 @@ import AgencyDataVisualization from '../../components/AgencyDataVisualization';
 import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug, BudgetStatus, RawDistributionItem, AnnualYear, TenureRange, SalaryRange, AgeRange, NonNegativeNumber } from '@/types/department';
 import { getDepartmentByName, getDepartmentByWorkforceName } from '@/lib/departmentMapping';
 import { log, generateTransactionId } from '@/lib/logging';
+import { Button } from '@/components/ui/button';
 
 // Initialize logging
 const initTransactionId = generateTransactionId();
@@ -1017,48 +1018,45 @@ function WorkforcePageContent() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8 flex justify-between items-center">
-        <div className="flex items-center space-x-4">
+      <div className="flex flex-col space-y-4 mb-8">
+        <div>
           <h1 className="text-2xl font-bold">California State Government Workforce</h1>
-          <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
-            <button
-              type="button"
-              onClick={() => setViewMode('parent-only')}
-              className={`px-4 py-1 text-xs font-medium rounded-full ${
-                viewMode === 'parent-only'
-                  ? 'bg-white shadow-sm'
-                  : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              Parent Only
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('aggregated')}
-              className={`px-4 py-1 text-xs font-medium rounded-full ${
-                viewMode === 'aggregated'
-                  ? 'bg-white shadow-sm'
-                  : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              Include Children
-            </button>
+          <p className="text-sm text-gray-600 mt-1">Salary, Headcount and Wages numbers are from department salaries found at <a href="https://publicpay.ca.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">publicpay.ca.gov</a>. Wages are calculated as regulary wages plus any benefits.</p>
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
+              <Button
+                variant={viewMode === 'parent-only' ? "secondary" : "ghost"}
+                size="sm"
+                className={`rounded-full text-xs ${viewMode === 'parent-only' ? 'bg-white shadow-sm' : ''}`}
+                onClick={() => setViewMode('parent-only')}
+              >
+                Parent Only
+              </Button>
+              <Button
+                variant={viewMode === 'aggregated' ? "secondary" : "ghost"}
+                size="sm"
+                className={`rounded-full text-xs ${viewMode === 'aggregated' ? 'bg-white shadow-sm' : ''}`}
+                onClick={() => setViewMode('aggregated')}
+              >
+                Include Children
+              </Button>
+            </div>
+            <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
+              <label htmlFor="fiscalYear" className="text-xs text-gray-600 px-2">Annual Year:</label>
+              <select
+                id="fiscalYear"
+                value={selectedFiscalYear}
+                onChange={(e) => setSelectedFiscalYear(e.target.value)}
+                className="text-xs font-medium rounded-full bg-gray-100 shadow-sm border-0 focus:ring-0 focus:outline-none px-2 py-1"
+              >
+                {Array.from({ length: 16 }, (_, i) => (2010 + i).toString()).map((year: string) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
-        <div className="flex items-center space-x-2">
-          <label htmlFor="fiscalYear" className="text-sm text-gray-600">Fiscal Year:</label>
-          <select
-            id="fiscalYear"
-            value={selectedFiscalYear}
-            onChange={(e) => setSelectedFiscalYear(e.target.value)}
-            className="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm"
-          >
-            {Array.from({ length: 16 }, (_, i) => (2010 + i).toString()).map((year: string) => (
-              <option key={year} value={year}>
-                FY{year}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
       

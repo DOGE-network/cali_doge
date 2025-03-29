@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import React, { useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   getDepartmentBySpendingName, 
@@ -29,15 +28,26 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   showTopSpendOnly = false,
   showRecentYears = true
 }) => {
-  const [showAllYears, setShowAllYears] = useState(false);
-  
-  // Format spending value to display with $ and M
+  // Format spending value to display with $ and M/B
   const formatSpending = (value: number | {} | undefined): string => {
     if (value === undefined || typeof value !== 'number') return 'N/A';
-    if (value >= 1000000) {
-      return `$${(value / 1000000).toFixed(2)}M`;
+    // Convert from thousands to actual value
+    const actualValue = value * 1000;
+    
+    if (actualValue >= 1000000000) {
+      // Billions: 1 decimal place for 3+ digits, 2 for 2 digits, 3 for 1 digit
+      const billions = actualValue / 1000000000;
+      if (billions >= 100) return `$${billions.toFixed(1)}B`;
+      if (billions >= 10) return `$${billions.toFixed(2)}B`;
+      return `$${billions.toFixed(3)}B`;
     }
-    return `$${(value / 1000000).toFixed(3)}M`;
+    
+    // Millions: 1 decimal place for 3+ digits, 2 for 2 digits, 3 for 1 digit
+    const millions = actualValue / 1000000;
+    if (millions >= 100) return `$${millions.toFixed(1)}M`;
+    if (millions >= 10) return `$${millions.toFixed(2)}M`;
+    if (millions >= 1) return `$${millions.toFixed(3)}M`;
+    return `$${millions.toFixed(3)}M`;
   };
   
   // Debug on mount
@@ -108,17 +118,6 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
-        {!showTopSpendOnly && (
-          <Button
-            onClick={() => setShowAllYears(!showAllYears)}
-            variant="outline"
-            className="w-full sm:w-auto mb-2 sm:mb-0"
-          >
-            {showAllYears ? 'Show Recent Years' : 'Show All Years'}
-          </Button>
-        )}
-      </div>
       <table className="min-w-full table-auto">
         <thead>
           <tr className="bg-gray-100">

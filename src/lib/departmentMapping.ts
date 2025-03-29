@@ -207,11 +207,11 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '0890_secretary_of_state',
-    name: 'Office of the Secretary of State',
-    canonicalName: 'Secretary of State, Office of the',
+    name: 'Secretary of State',
+    canonicalName: 'Secretary of State',
     budgetCode: toNonNegativeInteger(890),
-    spendingName: 'Office of the Secretary of State',
-    workforceName: 'Office of the Secretary of State'
+    spendingName: 'Secretary of State',
+    workforceName: 'Secretary of State'
   },
   {
     slug: '0950_state_treasurer',
