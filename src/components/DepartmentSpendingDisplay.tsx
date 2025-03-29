@@ -39,14 +39,23 @@ const DepartmentSpendingDisplay: React.FC<DepartmentSpendingDisplayProps> = ({
   const formatSpending = (value: number | {}): string => {
     if (typeof value !== 'number') return 'N/A';
     
-    // Now TypeScript knows value is a number
-    if (value >= 1000000000) {
-      return `$${(value / 1000000000).toFixed(2)}B`;
-    } 
-    if (value >= 1000000) {
-      return `$${(value / 1000000).toFixed(2)}M`;
+    // Convert from thousands to actual value
+    const actualValue = value * 1000;
+    
+    if (actualValue >= 1000000000) {
+      // Billions: 1 decimal place for 3+ digits, 2 for 2 digits, 3 for 1 digit
+      const billions = actualValue / 1000000000;
+      if (billions >= 100) return `$${billions.toFixed(1)}B`;
+      if (billions >= 10) return `$${billions.toFixed(2)}B`;
+      return `$${billions.toFixed(3)}B`;
     }
-    return `$${(value / 1000000).toFixed(3)}M`;
+    
+    // Millions: 1 decimal place for 3+ digits, 2 for 2 digits, 3 for 1 digit
+    const millions = actualValue / 1000000;
+    if (millions >= 100) return `$${millions.toFixed(1)}M`;
+    if (millions >= 10) return `$${millions.toFixed(2)}M`;
+    if (millions >= 1) return `$${millions.toFixed(3)}M`;
+    return `$${millions.toFixed(3)}M`;
   };
 
   // If no data or empty data, show message

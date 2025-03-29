@@ -2173,7 +2173,7 @@
       "keyFunctions": "Professional licensing and regulation of engineers, land surveyors, and geologists",
       "abbreviation": "BPELSG",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1500",
       "spending": {
         "yearly": {}
       },
@@ -2211,7 +2211,7 @@
       "keyFunctions": "Licensing and regulation of barbering and cosmetology",
       "abbreviation": "BBC",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1165",
       "spending": {
         "yearly": {}
       },
@@ -2248,7 +2248,7 @@
       "keyFunctions": "Licensing and regulation of mental health professionals",
       "abbreviation": "BBS",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1170",
       "spending": {
         "yearly": {}
       },
@@ -2775,7 +2775,7 @@
       "keyFunctions": "Occupational therapy licensing and regulation",
       "abbreviation": "BOT",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1475",
       "spending": {
         "yearly": {}
       },
@@ -3642,7 +3642,7 @@
       "keyFunctions": "Acupuncture licensing and regulation",
       "abbreviation": "CAB",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1400",
       "spending": {
         "yearly": {}
       },
@@ -4290,7 +4290,7 @@
       "keyFunctions": "Accountancy licensing and regulation",
       "abbreviation": "CBA",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1120",
       "spending": {
         "yearly": {}
       },
@@ -5432,7 +5432,7 @@
       "keyFunctions": "Services for older adults and adults with disabilities",
       "abbreviation": "CDA",
       "parent_agency": "Executive Branch",
-      "budgetCode": "4180",
+      "budgetCode": "4170",
       "spending": {
         "yearly": {}
       },
@@ -6600,7 +6600,7 @@
       "keyFunctions": "State fair and exposition management",
       "abbreviation": "Cal Expo",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "8560",
       "spending": {
         "yearly": {}
       },
@@ -8076,7 +8076,7 @@
       "keyFunctions": "Maritime education and training",
       "abbreviation": "CMA",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "6860",
       "spending": {
         "yearly": {}
       },
@@ -8114,7 +8114,7 @@
       "keyFunctions": "Privacy rights protection and enforcement",
       "abbreviation": "CPPA",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1703",
       "spending": {
         "yearly": {}
       },
@@ -8568,7 +8568,7 @@
       "keyFunctions": "Regulation of combat sports",
       "abbreviation": "CSAC",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1140",
       "spending": {
         "yearly": {}
       },
@@ -8643,7 +8643,7 @@
       "keyFunctions": "Guide dog training regulation",
       "abbreviation": "SBGDB",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1350",
       "spending": {
         "yearly": {}
       },
@@ -10500,7 +10500,7 @@
       "keyFunctions": "Court reporter licensing and regulation",
       "abbreviation": "CRB",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1520",
       "spending": {
         "yearly": {}
       },
@@ -11220,7 +11220,7 @@
       "keyFunctions": "Dental practice licensing and regulation",
       "abbreviation": "DBC",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1260",
       "spending": {
         "yearly": {}
       },
@@ -17854,7 +17854,7 @@
       "keyFunctions": "Appellate review of superior court decisions",
       "abbreviation": "5DCA",
       "parent_agency": "Supreme Court",
-      "budgetCode": null,
+      "budgetCode": "0350",
       "spending": {
         "yearly": {}
       },
@@ -17930,7 +17930,7 @@
       "keyFunctions": "Appellate review of superior court decisions",
       "abbreviation": "1DCA",
       "parent_agency": "Supreme Court",
-      "budgetCode": null,
+      "budgetCode": "0310",
       "spending": {
         "yearly": {}
       },
@@ -18006,7 +18006,7 @@
       "keyFunctions": "Appellate review of superior court decisions",
       "abbreviation": "4DCA",
       "parent_agency": "Supreme Court",
-      "budgetCode": null,
+      "budgetCode": "0340",
       "spending": {
         "yearly": {}
       },
@@ -20701,7 +20701,7 @@
       "keyFunctions": "Industrial development financing oversight",
       "abbreviation": "IDFAC",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "0965",
       "spending": {
         "yearly": {}
       },
@@ -23392,7 +23392,7 @@
       "keyFunctions": "State Department",
       "abbreviation": "legislature",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "0100",
       "spending": {
         "yearly": {}
       },
@@ -25330,7 +25330,7 @@
       "keyFunctions": "Medical licensing and regulation",
       "abbreviation": "MBC",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1380",
       "spending": {
         "yearly": {}
       },
@@ -28209,7 +28209,7 @@
       "keyFunctions": "Administrative law oversight",
       "abbreviation": "OAL",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "7910",
       "spending": {
         "yearly": {}
       },
@@ -28920,7 +28920,7 @@
       "keyFunctions": "Tax appeal hearings and resolution",
       "abbreviation": "OTA",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "0870",
       "spending": {
         "yearly": {}
       },
@@ -29639,7 +29639,7 @@
       "keyFunctions": "Education policy and oversight",
       "abbreviation": "OSE",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "0558",
       "spending": {
         "yearly": {}
       },
@@ -29676,7 +29676,7 @@
       "keyFunctions": "State records and elections",
       "abbreviation": "SOS",
       "parent_agency": "Executive Branch",
-      "budgetCode": "0890",
+      "budgetCode": "0880",
       "spending": {
         "yearly": {
           "FY2022-FY2023": 144048,
@@ -31151,7 +31151,7 @@
       "keyFunctions": "State Department",
       "abbreviation": "physical-therapy-board-of-california",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1420",
       "spending": {
         "yearly": {}
       },
@@ -31188,7 +31188,7 @@
       "keyFunctions": "State Department",
       "abbreviation": "physician-assistant-board",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1430",
       "spending": {
         "yearly": {}
       },
@@ -31753,7 +31753,7 @@
       "keyFunctions": "State Department",
       "abbreviation": "podiatric-medical-board-of-california",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1380",
       "spending": {
         "yearly": {}
       },
@@ -34022,7 +34022,7 @@
       "keyFunctions": "State Department",
       "abbreviation": "respiratory-care-board-of-california",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1455",
       "spending": {
         "yearly": {}
       },
@@ -38619,7 +38619,7 @@
       "keyFunctions": "Appellate review of superior court decisions",
       "abbreviation": "2DCA",
       "parent_agency": "Supreme Court",
-      "budgetCode": null,
+      "budgetCode": "0320",
       "spending": {
         "yearly": {}
       },
@@ -38919,7 +38919,7 @@
       "keyFunctions": "State Department",
       "abbreviation": "seismic-safety-commission",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "8690",
       "spending": {
         "yearly": {}
       },
@@ -40132,7 +40132,7 @@
       "keyFunctions": "Appellate review of superior court decisions",
       "abbreviation": "6DCA",
       "parent_agency": "Supreme Court",
-      "budgetCode": null,
+      "budgetCode": "0360",
       "spending": {
         "yearly": {}
       },
@@ -42596,7 +42596,7 @@
       "keyFunctions": "Civil service administration",
       "abbreviation": "SPB",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1880",
       "spending": {
         "yearly": {}
       },
@@ -43583,7 +43583,7 @@
       "keyFunctions": "Pest control regulation",
       "abbreviation": "SPCB",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "1530",
       "spending": {
         "yearly": {}
       },
@@ -45290,7 +45290,7 @@
       "keyFunctions": "Appellate review of superior court decisions",
       "abbreviation": "3DCA",
       "parent_agency": "Supreme Court",
-      "budgetCode": null,
+      "budgetCode": "0330",
       "spending": {
         "yearly": {}
       },
@@ -45853,7 +45853,7 @@
       "keyFunctions": "State Department",
       "abbreviation": "transportation-commission",
       "parent_agency": "Executive Branch",
-      "budgetCode": "2660",
+      "budgetCode": "2600",
       "spending": {
         "yearly": {}
       },
@@ -53746,7 +53746,7 @@
       "orgLevel": 2,
       "parent_agency": "Judicial Branch",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "0260",
       "spending": {
         "yearly": {}
       },
@@ -53973,7 +53973,7 @@
       "orgLevel": 2,
       "parent_agency": "Judicial Branch",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "0270",
       "spending": {
         "yearly": {}
       },

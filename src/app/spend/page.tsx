@@ -86,8 +86,11 @@ function SpendPageClient() {
     <main className="container mx-auto px-4 py-8 max-w-7xl">
       {/* Agency Spending */}
       <div className="mb-12">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold">California State Government Spend</h1>
+        <div className="flex flex-col space-y-4 mb-8">
+          <div>
+            <h1 className="text-2xl font-bold">California State Government Spend</h1>
+            <p className="text-sm text-gray-600 mt-1">Spend numbers are from the TOTALS, POSITIONS AND EXPENDITURES (All Programs) section of the Governor&apos;s Budget found at <a href="https://ebudget.ca.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">ebudget.ca.gov</a>.</p>
+          </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
               <Link href="/spend?view=top" passHref>

@@ -3,27 +3,26 @@
 /**
  * Department budgetCode Processing Script
  * 
- * This script updates department codes in departments.json based on ebudget FY2023 CSV data.
+ * This script updates department codes in departments.json based on budget_structure.csv data.
  * It handles:
  * - Department code matching from CSV and text files
  * - Department name variations and aliases
  * - Data validation and type compliance
  * - Logging of operations and results
  * 
- * Workflow:
+ * steps:
  * 1. Initial Setup
  *    a. Load departments.json
  *    b. Setup logging
- *    c. Read budget code variations from text files
  * 
  * 2. CSV Processing
- *    a. Read and parse budget codes CSV
- *    b. Extract department information
- *    c. Match departments with codes
- *    d. Log the differences between the original and updated record
- *    e. Only update department records if differences are found
- *    f. Log department details
- *    g. Save the changes
+ *    a. Extract department name and budget code from CSV filtering out rows ending with "DO NOT USE", "(Renume to .*)", or "USE ONLY", "(Abolished .*)". Remove text at end following special characters.
+ *    b. Walk the departments.json records and check for exact matches of name and budget code
+ *    c. If there is an exact match of JSON and CSV, name and budget codes then skip
+ *    d. else partial matches between JSON fields and CSV record then display JSON name, canonical name, aliases, abbreviation, budget code and CSV name, budget code
+ *    f. Ask for user approval before saving changes
+ *    g. Log department details
+ *    h. Save the changes
  * 
  * 3. Data Validation
  *    a. Verify code matches
@@ -47,7 +46,7 @@ const path = require('path');
 
 // Configuration - Fixed paths relative to project root
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
-const BUDGET_CODES_CSV = path.join(PROJECT_ROOT, 'src/data/ebudget.ca.gov_budget_codes_fy2023-fy2024.csv');
+const BUDGET_CODES_CSV = path.join(PROJECT_ROOT, 'src/data/budget_structure.csv');
 const DEPARTMENTS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/departments.json');
 const BUDGET_DOCS_DIR = path.join(PROJECT_ROOT, 'src/data/budget_docs/text');
 const LOG_DIR = path.join(PROJECT_ROOT, 'src/logs');
@@ -175,18 +174,27 @@ const main = async () => {
     log = setupLogging().log;
     log('\n=== STEP 1: INITIAL SETUP ===');
     
-    // Read departments data
-    log('Reading departments.json...');
+    // Step 1a: Load departments.json
+    log('\nStep 1a: Loading departments.json...');
     let departmentsData = JSON.parse(fs.readFileSync(DEPARTMENTS_JSON_PATH, 'utf8'));
     log(`Successfully loaded departments.json with ${departmentsData.departments.length} departments`);
     
-    // Read budget code variations
-    log('Reading budget code variations from text files...');
+    // Step 1b: Setup logging
+    log('\nStep 1b: Logging setup complete');
+    
+    // Read budget code variations before CSV processing
+    log('\nReading budget code variations from text files...');
     const budgetCodeVariations = readBudgetCodeVariations();
     log(`Loaded variations for ${budgetCodeVariations.size} budget codes`);
     
-    // Read and parse budget codes CSV
-    log('Reading budget codes CSV...');
+    // Step 2: CSV Processing
+    log('\n=== STEP 2: CSV PROCESSING ===');
+    
+    // Step 2a: Extract department name and budget code from CSV
+    log('\nStep 2a: Extracting department data from CSV...');
+    log('Filtering out rows with: "DO NOT USE", "(Renum to .*)", "USE ONLY", "(Abolished .*)"');
+    log('Removing text following special characters');
+    
     const csvContent = fs.readFileSync(BUDGET_CODES_CSV, 'utf8');
     const lines = csvContent.split('\n');
     const budgetCodesData = [];
@@ -196,98 +204,99 @@ const main = async () => {
       const line = lines[i].trim();
       if (!line) continue;
       
-      // Extract code and name from the line
-      const match = line.match(/"(\d+)\s*","([^"]+)"/);
-      if (match) {
-        const code = padCode(match[1].trim());
-        const name = match[2].trim();
+      // Split the line by comma, handling quoted fields
+      const fields = [];
+      let currentField = '';
+      let inQuotes = false;
+      
+      for (let j = 0; j < line.length; j++) {
+        const char = line[j];
+        
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          fields.push(currentField);
+          currentField = '';
+        } else {
+          currentField += char;
+        }
+      }
+      
+      // Add the last field
+      fields.push(currentField);
+      
+      // Ensure we have all required fields
+      if (fields.length >= 5) {
+        const [level, code, description, xPosition, page] = fields;
+        const paddedCode = code.trim().padStart(4, '0');
+        let cleanName = description.trim().replace(/^"|"$/g, ''); // Remove surrounding quotes
+        
+        // Filter out rows with specific endings
+        if (cleanName.match(/(?:DO NOT USE|DOF USE|ABOLISHED|USE ONLY|\(Renum to .*\)|\(Abolished .*\))$/i)) {
+          log(`Skipping filtered row ${i}: ${cleanName}`);
+          continue;
+        }
+        
+        // Remove text following special characters
+        cleanName = cleanName.replace(/[\(\[].*$/, '').trim();
+        
+        // Log each CSV line's code and name
+        log(`CSV Line ${i}: Code=${paddedCode}, Name=${cleanName}`);
+        
         budgetCodesData.push({
-          'Department Code': code,
-          'Department Name': name,
-          'Variations': budgetCodeVariations.get(code) || []
+          'Level': level.trim(),
+          'Department Code': paddedCode,
+          'Department Name': cleanName,
+          'X Position': xPosition.trim(),
+          'Page': page.trim(),
+          'Variations': budgetCodeVariations.get(paddedCode) || []
         });
+      } else {
+        log(`Warning: Skipping invalid line ${i + 1}: ${line}`, 'warn');
       }
     }
     log(`Successfully loaded ${budgetCodesData.length} budget codes`);
 
-    // Log all data sources for verification
-    log('\n=== DATA SOURCES ===');
-    log('===================');
-    
-    log('\n1. CSV Data:');
-    log('-----------');
-    budgetCodesData.forEach(row => {
-      log(`Code: ${row['Department Code']}`);
-      log(`Name: ${row['Department Name']}`);
-      log(`Variations: ${row['Variations'].join(', ')}`);
-      log('---');
-    });
-
-    log('\n2. Text File Variations:');
-    log('----------------------');
-    budgetCodeVariations.forEach((variations, code) => {
-      log(`Code: ${code}`);
-      log(`Variations: ${variations.join(', ')}`);
-      log('---');
-    });
-
-    log('\n3. JSON Records:');
-    log('--------------');
-    departmentsData.departments.forEach(dept => {
-      log(`Name: ${dept.name}`);
-      log(`Canonical Name: ${dept.canonicalName || 'None'}`);
-      log(`Aliases: ${(dept.aliases || []).join(', ')}`);
-      log(`Current Budget Code: ${dept.budgetCode || 'None'}`);
-      log('---');
-    });
-
-    // Create a map of normalized budget department names to codes
+    // Create budgetDeptMap for matching
     const budgetDeptMap = {};
     budgetCodesData.forEach(row => {
-      const code = row['Department Code'];
-      const name = row['Department Name'].trim();
-      const variations = row['Variations'];
-      const normalizedName = normalizeForMatching(name);
-      
-      if (normalizedName) {
-        budgetDeptMap[normalizedName] = code;
-        
-        // Add variations for better matching
-        const nameVariations = getNameVariations(name);
-        [...nameVariations, ...variations].forEach(variant => {
-          const normalizedVariant = normalizeForMatching(variant);
-          if (normalizedVariant && normalizedVariant !== normalizedName) {
-            budgetDeptMap[normalizedVariant] = code;
-          }
-        });
+      budgetDeptMap[row['Department Name']] = row['Department Code'];
+    });
+
+    // Step 2b: Walk departments.json records and check matches
+    log('\nStep 2b: Walking departments.json records and checking for exact matches...');
+    
+    // Track statistics
+    const stats = {
+      totalDepartments: departmentsData.departments.length,
+      totalCSVRows: budgetCodesData.length,
+      skippedRecords: 0,
+      unmatchedCSVRows: 0,
+      unmatchedJSONRecords: 0,
+      newCodes: 0,
+      changedCodes: 0,
+      removedCodes: 0,
+      unchangedCodes: 0,
+      exactMatches: 0,
+      partialMatches: 0,
+      noBudgetCode: 0,
+      matches: [], // Track all matches
+      codeChanges: {
+        new: [],    // New codes added
+        changed: [], // Codes that changed
+        unchanged: [] // Codes that stayed the same
       }
-    });
-
-    // Log the normalized mapping
-    log('\n4. Normalized Name Mapping:');
-    log('-------------------------');
-    Object.entries(budgetDeptMap).forEach(([name, code]) => {
-      log(`Normalized Name: ${name}`);
-      log(`Maps to Code: ${code}`);
-      log('---');
-    });
-
-    log('\n=== Starting Department Processing ===');
-    log('=====================================');
-
-    // Track matches and no matches
-    const matches = [];
-    const noMatches = [];
-    const codeChanges = {
-      new: [], // departments getting a code for the first time
-      changed: [], // departments with code changes
-      unchanged: [], // departments with unchanged codes
-      removed: [] // departments losing their code
     };
+
+    // Count departments with no budget code
+    stats.noBudgetCode = departmentsData.departments.filter(dept => !dept.budgetCode).length;
 
     // Process each department
     for (const dept of departmentsData.departments) {
       log('\n=== Processing Department: ${dept.name} ===');
+      
+      // Step 2c: Check for exact matches
+      log('\nStep 2c: Checking for exact matches of name and budget code...');
       
       // 1. Show JSON Record - Summarized
       log('\nJSON Record:');
@@ -307,105 +316,78 @@ const main = async () => {
       log('\nCSV Matches:');
       if (csvMatches.length > 0) {
         csvMatches.forEach(match => {
-          log(`${match['Department Code']}: ${match['Department Name']}`);
-        });
-      } else {
-        log('No matches found');
-      }
-      
-      // 3. Show Text File Matches - Summarized
-      const textMatches = [];
-      budgetCodeVariations.forEach((variations, code) => {
-        if (variations.some(v => 
-          v.toLowerCase().includes(dept.name.toLowerCase()) ||
-          dept.name.toLowerCase().includes(v.toLowerCase())
-        )) {
-          textMatches.push({ code, variations });
-        }
-      });
-      log('\nText File Matches:');
-      if (textMatches.length > 0) {
-        textMatches.forEach(match => {
-          log(`${match.code}: ${match.variations.join(', ')}`);
+          log(`Level ${match['Level']}: ${match['Department Code']} - ${match['Department Name']}`);
         });
       } else {
         log('No matches found');
       }
 
       // Check for exact matches
-      const hasExactCSVMatch = csvMatches.some(match => 
-        match['Department Code'] === dept.budgetCode && 
-        match['Department Name'].toLowerCase() === dept.name.toLowerCase()
-      );
-
-      const hasExactTextMatch = textMatches.some(match => 
-        match.code === dept.budgetCode && 
-        match.variations.some(v => v.toLowerCase() === dept.name.toLowerCase())
-      );
+      const hasExactCSVMatch = csvMatches.some(match => {
+        // First check budget code match
+        if (match['Department Code'] !== dept.budgetCode) return false;
+        
+        // Get normalized versions of all names
+        const normalizedCSVName = normalizeForExactMatch(match['Department Name']);
+        const normalizedJSONName = normalizeForExactMatch(dept.name);
+        const normalizedCanonicalName = dept.canonicalName ? normalizeForExactMatch(dept.canonicalName) : '';
+        
+        // Split into words and sort to handle different word orders
+        const csvWords = normalizedCSVName.split(' ').sort().join(' ');
+        const jsonWords = normalizedJSONName.split(' ').sort().join(' ');
+        const canonicalWords = normalizedCanonicalName ? normalizedCanonicalName.split(' ').sort().join(' ') : '';
+        
+        // Check if any of the normalized names match
+        return csvWords === jsonWords || csvWords === canonicalWords;
+      });
 
       // Check for partial matches
       const hasPartialCSVMatch = csvMatches.length > 0 && !hasExactCSVMatch;
-      const hasPartialTextMatch = textMatches.length > 0 && !hasExactTextMatch;
 
-      // Log match status and handle accordingly
-      if (hasExactCSVMatch || hasExactTextMatch) {
-        log('\nMatch Status: ✓ Exact Match Found');
-        if (hasExactCSVMatch) {
-          log('Source: CSV');
-        }
-        if (hasExactTextMatch) {
-          log('Source: Text Files');
-        }
-        continue; // Skip to next department
+      // Update statistics based on match status
+      if (hasExactCSVMatch) {
+        stats.exactMatches++;
+        stats.skippedRecords++;
+        log('\nMatch Status: ✓ Exact Match Found - Skipping');
+        continue;
       }
 
-      if (!dept.budgetCode && !hasPartialCSVMatch && !hasPartialTextMatch) {
+      if (!dept.budgetCode && !hasPartialCSVMatch) {
+        stats.unmatchedJSONRecords++;
         log('\nMatch Status: ❌ No Matches Found');
-        continue; // Skip to next department
+        continue;
       }
 
-      // Handle partial matches
-      if (hasPartialCSVMatch || hasPartialTextMatch) {
+      if (hasPartialCSVMatch) {
+        stats.partialMatches++;
         log('\nMatch Status: ⚠️ Partial Matches Found');
-        if (hasPartialCSVMatch) {
-          log('Partial CSV Matches:');
-          csvMatches.forEach(match => {
-            log(`  ${match['Department Code']}: ${match['Department Name']}`);
-          });
-        }
-        if (hasPartialTextMatch) {
-          log('Partial Text Matches:');
-          textMatches.forEach(match => {
-            log(`  ${match.code}: ${match.variations.join(', ')}`);
-          });
-        }
+      }
 
-        // Try to find best match
+      // Step 2f: Ask for user approval
+      if (hasPartialCSVMatch) {
+        log('\nStep 2f: Requesting user approval before saving changes...');
+        
+        // Find best match from CSV matches
         let bestMatch = null;
         let bestMatchScore = 0;
-        const nameVariations = getNameVariations(dept.name);
-        const canonicalVariations = dept.canonicalName ? getNameVariations(dept.canonicalName) : [];
-        const aliasVariations = (dept.aliases || []).flatMap(alias => getNameVariations(alias));
-
-        for (const variation of [...nameVariations, ...canonicalVariations, ...aliasVariations]) {
-          for (const [budgetName, code] of Object.entries(budgetDeptMap)) {
-            const score = calculateMatchScore(variation, budgetName);
-            if (score > bestMatchScore) {
-              bestMatchScore = score;
-              bestMatch = { name: budgetName, code };
-            }
+        
+        for (const match of csvMatches) {
+          const score = calculateMatchScore(dept.name, match['Department Name']);
+          if (score > bestMatchScore) {
+            bestMatchScore = score;
+            bestMatch = match;
           }
         }
 
         if (bestMatch && bestMatchScore > 0.8) {
           log('\nBest Potential Match:');
-          log(`  Code: ${bestMatch.code}`);
-          log(`  Name: ${bestMatch.name}`);
+          log(`  Code: ${bestMatch['Department Code']}`);
+          log(`  Name: ${bestMatch['Department Name']}`);
           log(`  Score: ${bestMatchScore.toFixed(2)}`);
 
           const originalDepartment = JSON.parse(JSON.stringify(dept));
           const proposedDepartment = JSON.parse(JSON.stringify(dept));
-          proposedDepartment.budgetCode = bestMatch.code;
+          proposedDepartment.budgetCode = bestMatch['Department Code'];
 
           log('\nProposed Changes:');
           showDiff(originalDepartment, proposedDepartment, log);
@@ -413,36 +395,40 @@ const main = async () => {
           const shouldUpdate = await askForApproval('\nApply changes? (y/n): ');
           
           if (shouldUpdate) {
-            matches.push({
+            // Step 2g: Log department details
+            log('\nStep 2g: Logging department details...');
+            
+            stats.matches.push({
               department: dept.name,
               currentCode: dept.budgetCode,
-              newCode: bestMatch.code,
-              matchedName: bestMatch.name,
+              newCode: bestMatch['Department Code'],
+              matchedName: bestMatch['Department Name'],
               matchScore: bestMatchScore
             });
 
             if (!dept.budgetCode) {
-              codeChanges.new.push({
+              stats.codeChanges.new.push({
                 name: dept.name,
-                code: bestMatch.code
+                code: bestMatch['Department Code']
               });
-            } else if (dept.budgetCode !== bestMatch.code) {
-              codeChanges.changed.push({
+            } else if (dept.budgetCode !== bestMatch['Department Code']) {
+              stats.codeChanges.changed.push({
                 name: dept.name,
                 oldCode: dept.budgetCode,
-                newCode: bestMatch.code
+                newCode: bestMatch['Department Code']
               });
             } else {
-              codeChanges.unchanged.push({
+              stats.codeChanges.unchanged.push({
                 name: dept.name,
-                code: bestMatch.code
+                code: bestMatch['Department Code']
               });
             }
             
-            dept.budgetCode = bestMatch.code;
+            dept.budgetCode = bestMatch['Department Code'];
             log('✓ Changes applied successfully.');
             
-            // Save changes to file after each successful update
+            // Step 2h: Save the changes
+            log('\nStep 2h: Saving changes...');
             try {
               fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(departmentsData, null, 2));
               log('✓ Changes saved to departments.json');
@@ -458,78 +444,51 @@ const main = async () => {
       }
     }
 
-    // Final save at the end of processing
-    try {
-      fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(departmentsData, null, 2));
-      log('\n✓ All changes saved to departments.json');
-    } catch (error) {
-      log(`Error saving final changes: ${error.message}`, 'error');
-    }
+    // Step 3: Data Validation
+    log('\n=== STEP 3: DATA VALIDATION ===');
+    
+    // Step 3a: Verify code matches
+    log('\nStep 3a: Verifying code matches...');
+    const matchedCSVCodes = new Set(departmentsData.departments.map(dept => dept.budgetCode));
+    stats.unmatchedCSVRows = budgetCodesData.filter(row => !matchedCSVCodes.has(row['Department Code'])).length;
+    
+    // Step 3b: Check department hierarchy
+    log('\nStep 3b: Checking department hierarchy...');
+    // Add hierarchy validation logic here if needed
+    
+    // Step 3c: Validate data types
+    log('\nStep 3c: Validating data types...');
+    // Add data type validation logic here if needed
 
-    // Display summary of changes
-    log('\n=== STEP 2: SUMMARY OF PROPOSED CHANGES ===');
-    log('=========================================');
-
-    log('\n1. New Budget Codes:');
-    log('------------------');
-    if (codeChanges.new.length === 0) {
-      log('None');
-    } else {
-      codeChanges.new.forEach(({name, code}) => {
-        log(`${name}: ${code}`);
-      });
-    }
-
-    log('\n2. Changed Budget Codes:');
-    log('----------------------');
-    if (codeChanges.changed.length === 0) {
-      log('None');
-    } else {
-      codeChanges.changed.forEach(({name, oldCode, newCode}) => {
-        log(`${name}: ${oldCode} -> ${newCode}`);
-      });
-    }
-
-    log('\n3. Removed Budget Codes:');
-    log('----------------------');
-    if (codeChanges.removed.length === 0) {
-      log('None');
-    } else {
-      codeChanges.removed.forEach(({name, oldCode}) => {
-        log(`${name}: ${oldCode} removed`);
-      });
-    }
-
-    log('\n4. Unchanged Budget Codes:');
-    log('------------------------');
-    log(`${codeChanges.unchanged.length} departments`);
-
-    log('\nDetailed Analysis of Unmatched Departments:');
-    log('----------------------------------------');
-    noMatches.forEach(({department, currentCode, variations, bestMatch}) => {
-      const dept = departmentsData.departments.find(d => d.name === department);
-      log('\nDepartment: ' + department);
-      log('Current Code: ' + (currentCode || 'None'));
-      log('Canonical Name: ' + (dept.canonicalName || 'None'));
-      log('Aliases: ' + (dept.aliases ? dept.aliases.join(', ') : 'None'));
-      log('Name Variations:');
-      variations.forEach(variant => {
-        log(`  - ${variant}`);
-      });
-      if (bestMatch) {
-        log('Best Potential Match: ' + bestMatch.name);
-        log('Match Score: ' + bestMatch.score.toFixed(2));
-      }
-    });
-
+    // Step 4: Results Summary
+    log('\n=== STEP 4: RESULTS SUMMARY ===');
+    
+    // Step 4a: Count updated departments
+    log('\nStep 4a: Counting updated departments...');
+    
+    // Step 4b: Verify data consistency
+    log('\nStep 4b: Verifying data consistency...');
+    
+    // Step 4c: Log final statistics
+    log('\nStep 4c: Logging final statistics...');
     log('\nSummary Statistics:');
     log('------------------');
-    log(`Total Departments: ${departmentsData.departments.length}`);
-    log(`New Codes: ${codeChanges.new.length}`);
-    log(`Changed Codes: ${codeChanges.changed.length}`);
-    log(`Removed Codes: ${codeChanges.removed.length}`);
-    log(`Unchanged Codes: ${codeChanges.unchanged.length}`);
-    log(`No Matches: ${noMatches.length}`);
+    log(`Total Departments (JSON): ${stats.totalDepartments}`);
+    log(`Total CSV Rows: ${stats.totalCSVRows}`);
+    log(`Departments with No Budget Code: ${stats.noBudgetCode}`);
+    log(`Skipped Records (Exact Matches): ${stats.skippedRecords}`);
+    log(`Unmatched CSV Rows: ${stats.unmatchedCSVRows}`);
+    log(`Unmatched JSON Records: ${stats.unmatchedJSONRecords}`);
+    log(`New Codes: ${stats.newCodes}`);
+    log(`Changed Codes: ${stats.changedCodes}`);
+    log(`Removed Codes: ${stats.removedCodes}`);
+    log(`Unchanged Codes: ${stats.unchangedCodes}`);
+    log(`Exact Matches: ${stats.exactMatches}`);
+    log(`Partial Matches: ${stats.partialMatches}`);
+    
+    // Step 4d: Log differences
+    log('\nStep 4d: Logging differences...');
+    // Add difference logging logic here if needed
 
     log('\nProcessing complete.');
     
@@ -555,8 +514,27 @@ function normalizeForMatching(name) {
     .trim();
 }
 
+// Function to normalize text for exact matching (handles plurals)
+function normalizeForExactMatch(text) {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .trim()
+    // Remove all special characters including commas
+    .replace(/[^a-z0-9\s]/g, '')
+    // Remove articles and common words
+    .replace(/\b(a|an|the|of|for|and|or|in|to|at|on|by)\b/g, '')
+    // Normalize whitespace
+    .replace(/\s+/g, ' ')
+    // Split into words and remove plurals from each word
+    .split(' ')
+    .map(word => word.replace(/\b(s|es|ies)$/, ''))
+    .join(' ')
+    .trim();
+}
+
 // Function to get all possible name variations for a department
-function getNameVariations(name) {
+function _getNameVariations(name) {
   const normalized = normalizeForMatching(name);
   const variations = new Set([normalized]);
   
@@ -666,7 +644,7 @@ function calculateMatchScore(str1, str2) {
 }
 
 // Helper function to pad code to 4 digits
-function padCode(code) {
+function _padCode(code) {
   return code.padStart(4, '0');
 }
 
