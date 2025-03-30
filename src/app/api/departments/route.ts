@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import departmentsData from '@/data/departments.json';
 import type { DepartmentData, DepartmentsJSON, NonNegativeInteger, AnnualYear, TenureRange, SalaryRange, AgeRange } from '@/types/department';
 
+export const runtime = 'edge'; // Enable Edge Runtime
+export const revalidate = 3600; // Revalidate every hour
+
 export async function GET(request: Request) {
   // Get the URL and search params
   const { searchParams } = new URL(request.url);
@@ -84,7 +87,11 @@ export async function GET(request: Request) {
 
   // Return format based on query parameter
   if (format === 'departments') {
-    return NextResponse.json(departments);
+    return NextResponse.json(departments, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+      }
+    });
   }
 
   // Return the full DepartmentsJSON structure by default
@@ -94,5 +101,9 @@ export async function GET(request: Request) {
     revenueSources: typedData.revenueSources,
     totalRevenue: typedData.totalRevenue,
     sources: typedData.sources
+  }, {
+    headers: {
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+    }
   });
 } 
