@@ -9,7 +9,7 @@ import { EnrichedTweet, TwitterApiResponse, RateLimitInfo } from '@/types/twitte
 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
 
 const TWEETS_DIR = path.join(process.cwd(), 'src/data/tweets');
-const MEDIA_DIR = path.join(process.cwd(), 'src/data/media');
+const MEDIA_DIR = path.join(process.cwd(), 'public/twitter_media');
 const RATE_LIMIT_FILE = path.join(TWEETS_DIR, 'rate_limit.json');
 const TWEETS_FILE = path.join(TWEETS_DIR, 'tweets.json');
 
@@ -27,7 +27,9 @@ async function downloadMedia(url: string, filename: string): Promise<void> {
     if (!response.ok) throw new Error(`Failed to download media: ${response.statusText}`);
     
     const arrayBuffer = await response.arrayBuffer();
-    fs.writeFileSync(path.join(MEDIA_DIR, filename), new Uint8Array(arrayBuffer));
+    // Ensure the filename is clean and doesn't contain any path separators
+    const cleanFilename = filename.replace(/[^a-zA-Z0-9._-]/g, '_');
+    fs.writeFileSync(path.join(MEDIA_DIR, cleanFilename), new Uint8Array(arrayBuffer));
   } catch (error) {
     console.error(`Error downloading media ${url}:`, error);
   }
@@ -111,7 +113,7 @@ async function fetchTweets(): Promise<void> {
     // Process tweets and media
     const enrichedTweets: EnrichedTweet[] = [];
     for (const tweet of tweets) {
-      const enriched = enrichTweet(tweet, tweetsResponse.includes?.users);
+      const enriched = enrichTweet(tweet, tweetsResponse.includes?.users, true, tweetsResponse);
       
       // Process URLs if present
       if (tweet.entities?.urls) {
@@ -163,9 +165,12 @@ async function fetchTweets(): Promise<void> {
           const media = enriched.media[i];
           const mediaUrl = media.url || media.preview_image_url;
           if (mediaUrl) {
-            const extension = mediaUrl.split('.').pop() || 'jpg';
+            // Extract file extension from URL or default to jpg
+            const extension = mediaUrl.split('.').pop()?.split('?')[0] || 'jpg';
+            // Create a clean filename using tweet ID and index
             const filename = `${tweet.id}_${i}.${extension}`;
             await downloadMedia(mediaUrl, filename);
+            // Update the media URL to use the clean path
             media.url = `/media/${filename}`;
           }
         }

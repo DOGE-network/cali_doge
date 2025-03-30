@@ -7,7 +7,8 @@ export const TWEETS_PER_MONTH = 100;
 export function enrichTweet(
   tweet: TweetV2,
   users?: UserV2[],
-  includeMedia = true
+  includeMedia = true,
+  tweetsResponse?: any
 ): EnrichedTweet {
   const enriched: EnrichedTweet = {
     ...tweet,
@@ -28,10 +29,17 @@ export function enrichTweet(
 
   // Add media if available and requested
   if (includeMedia && tweet.attachments?.media_keys) {
-    const media: TwitterMedia[] = tweet.attachments.media_keys.map((key) => ({
-      type: 'photo', // Default to photo, will be updated with actual type from API
-      url: `https://api.twitter.com/2/media/${key}`,
-    }));
+    const media: TwitterMedia[] = tweet.attachments.media_keys.map((key) => {
+      // Find the media object from the includes
+      const mediaObj = tweetsResponse?.includes?.media?.find((m: any) => m.media_key === key);
+      return {
+        type: mediaObj?.type || 'photo',
+        url: mediaObj?.url || mediaObj?.preview_image_url || '',
+        preview_image_url: mediaObj?.preview_image_url,
+        width: mediaObj?.width,
+        height: mediaObj?.height
+      };
+    }).filter(m => m.url); // Only include media with valid URLs
     enriched.media = media;
   }
 
