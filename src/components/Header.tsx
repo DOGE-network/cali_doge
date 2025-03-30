@@ -32,7 +32,10 @@ export default function Header() {
                       />
                     </div>
                   </div>
-                  <h1 className="text-2xl font-bold text-odi-black ml-16">California Department of Government Efficiency</h1>
+                  <h1 className="text-2xl font-bold text-odi-black ml-16">
+                    <span className="sm:hidden">California DOGE</span>
+                    <span className="hidden sm:inline">California Department of Government Efficiency</span>
+                  </h1>
                 </div>
                 <p className="text-sm text-odi-gray-600 mt-1 ml-16">
                     Possible future home of <span className="text-blue-600">https://doge.ca.gov/</span>
