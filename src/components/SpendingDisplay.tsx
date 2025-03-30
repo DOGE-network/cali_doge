@@ -77,7 +77,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   }, [departmentsData]);
   
   const defaultYears = fiscalYears.filter(year => 
-    year.startsWith('FY2022') || year.startsWith('FY2023') || year.startsWith('FY2024') || year.startsWith('FY2025')
+    year === 'FY2023-FY2024' || year === 'FY2024-FY2025'
   );
   
   // Years to display based on showRecentYears prop
