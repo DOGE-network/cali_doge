@@ -110,7 +110,7 @@ function SpendPageClient() {
                   className={`rounded-full text-xs ${showAllDepartments ? 'bg-white shadow-sm' : ''}`}
                   onClick={() => setShowAllDepartments(true)}
                 >
-                  All Departments
+                  All Dept
                 </Button>
               </Link>
             </div>
