@@ -13,11 +13,13 @@ export default function Header() {
             <Link href="/" className="flex items-center space-x-6">
               <div className="w-20 h-20 relative flex-shrink-0">
                 <Image
-                  src="/icon.svg"
+                  src="/icon2.svg"
                   alt="DOGE Logo"
-                  fill
+                  width={80}
+                  height={80}
                   className="object-contain"
                   priority
+                  unoptimized
                 />
               </div>
               <div className="relative pl-4">
@@ -27,8 +29,10 @@ export default function Header() {
                       <Image
                         src="/unofficial-stamp.svg"
                         alt="Unofficial Stamp"
-                        fill
+                        width={80}
+                        height={80}
                         className="object-contain"
+                        unoptimized
                       />
                     </div>
                   </div>

@@ -1,6 +1,202 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1906435722753765451"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 98,
+            "end": 121,
+            "url": "https://t.co/eaaE32U7k8",
+            "expanded_url": "https://cali-doge.org",
+            "display_url": "cali-doge.org",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1906435769029562368/FoflKyJA?format=png&name=orig",
+                "width": 2000,
+                "height": 713
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1906435769029562368/FoflKyJA?format=png&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org"
+          },
+          {
+            "start": 249,
+            "end": 272,
+            "url": "https://t.co/BT2dJruovI",
+            "expanded_url": "https://overcast.fm/+AA7TZ0ymE1I",
+            "display_url": "overcast.fm/+AA7TZ0ymE1I",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1906435727178752000/rLBi2jsR?format=png&name=orig",
+                "width": 840,
+                "height": 840
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1906435727178752000/rLBi2jsR?format=png&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Is California Ready to Vote Red? | 3.30.25 — Morning Wire",
+            "description": "After years of leadership failures, California voters may flip the state Republican in 2026. Entrepreneur and author Steve Hilton reveals his road map for saving the state. Get the facts first on Morning Wire. You can find Steve Hilton’s book here: Califailure: Reversing the Ruin of America’s Worst-Run State",
+            "unwound_url": "https://overcast.fm/+AA7TZ0ymE1I"
+          },
+          {
+            "start": 273,
+            "end": 296,
+            "url": "https://t.co/y9nHR217GW",
+            "expanded_url": "https://x.com/cali_doge/status/1906435722753765451/photo/1",
+            "display_url": "pic.x.com/y9nHR217GW",
+            "media_key": "3_1906435717422850049"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 14,
+            "probability": 0.6837,
+            "type": "Place",
+            "normalized_text": "California DOGE"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 235,
+            "end": 248,
+            "username": "SteveHiltonx",
+            "id": "2779389582"
+          }
+        ]
+      },
+      "created_at": "2025-03-30T19:57:50.000Z",
+      "attachments": {
+        "media_keys": [
+          "3_1906435717422850049"
+        ]
+      },
+      "text": "California DOGE is right around the corner. We have started getting ready by using public data at https://t.co/eaaE32U7k8. Next step is to get access to the databases themselves so the real waste, fraud and abuse discovery can begin. \n@SteveHiltonx https://t.co/BT2dJruovI https://t.co/y9nHR217GW",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1906435722753765451",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Mar 30, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1906435722753765451_0.com/2/media/3_1906435717422850049"
+        }
+      ]
+    },
+    {
       "created_at": "2025-03-30T02:25:40.000Z",
       "entities": {
         "mentions": [
@@ -859,458 +1055,6 @@
         "1900230289882046930"
       ],
       "created_at": "2025-03-13T16:59:40.000Z",
-      "created_at_formatted": "Mar 13, 2025",
-      "author": {
-        "username": "cali_doge",
-        "id": "1859283000145608705",
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
-        "name": "California DOGE"
-      }
-    },
-    {
-      "entities": {
-        "annotations": [
-          {
-            "start": 18,
-            "end": 30,
-            "probability": 0.5923,
-            "type": "Organization",
-            "normalized_text": "Green Capital"
-          },
-          {
-            "start": 117,
-            "end": 126,
-            "probability": 0.985,
-            "type": "Place",
-            "normalized_text": "California"
-          },
-          {
-            "start": 156,
-            "end": 175,
-            "probability": 0.5737,
-            "type": "Organization",
-            "normalized_text": "San Diego Foundation"
-          },
-          {
-            "start": 189,
-            "end": 199,
-            "probability": 0.4754,
-            "type": "Place",
-            "normalized_text": "Bakersfield"
-          }
-        ],
-        "urls": [
-          {
-            "start": 232,
-            "end": 255,
-            "url": "https://t.co/Q0UUm4r6sE",
-            "expanded_url": "https://coalitionforgreencapital.com",
-            "display_url": "coalitionforgreencapital.com",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1897902122986860544/65tvyXnj?format=jpg&name=orig",
-                "width": 1671,
-                "height": 800
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1897902122986860544/65tvyXnj?format=jpg&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "Home - Coalition for Green Capital",
-            "description": "Building an affordable clean power platform for everyone For over a decade, the Coalition for Green Capital has led the Green...",
-            "unwound_url": "https://coalitionforgreencapital.com"
-          },
-          {
-            "start": 257,
-            "end": 280,
-            "url": "https://t.co/Ps4IoFuZkW",
-            "expanded_url": "https://www.epa.gov/newsreleases/biden-harris-administration-announces-over-100-million-seven-california-environmental",
-            "display_url": "epa.gov/newsreleases/b…",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197563980238848/eIhbK_X5?format=jpg&name=orig",
-                "width": 1200,
-                "height": 600
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197563980238848/eIhbK_X5?format=jpg&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "Biden-Harris Administration Announces Over $100 Million in Seven California Environmental Justice Community Change Grants | US EPA",
-            "description": "EPA News Release: Biden-Harris Administration Announces Over $100 Million in Seven California Environmental Justice Community Change Grants",
-            "unwound_url": "https://www.epa.gov/newsreleases/biden-harris-administration-announces-over-100-million-seven-california-environmental"
-          }
-        ]
-      },
-      "id": "1900230286400774266",
-      "text": "5/6\nCoalition for Green Capital received $5B to establish a national green bank, targeting low-income communities in California and nationwide. Also funded San Diego Foundation and City of Bakersfield for climate projects.\nSources: https://t.co/Q0UUm4r6sE, https://t.co/Ps4IoFuZkW",
-      "author_id": "1859283000145608705",
-      "context_annotations": [
-        {
-          "domain": {
-            "id": "156",
-            "name": "Cities",
-            "description": "Cities around the world"
-          },
-          "entity": {
-            "id": "1012406055941226496",
-            "name": "San Diego",
-            "description": "San Diego"
-          }
-        },
-        {
-          "domain": {
-            "id": "159",
-            "name": "States",
-            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
-          },
-          "entity": {
-            "id": "856860158428798977",
-            "name": "California",
-            "description": "California"
-          }
-        }
-      ],
-      "edit_history_tweet_ids": [
-        "1900230286400774266"
-      ],
-      "created_at": "2025-03-13T16:59:39.000Z",
-      "created_at_formatted": "Mar 13, 2025",
-      "author": {
-        "username": "cali_doge",
-        "id": "1859283000145608705",
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
-        "name": "California DOGE"
-      }
-    },
-    {
-      "entities": {
-        "annotations": [
-          {
-            "start": 10,
-            "end": 16,
-            "probability": 0.5729,
-            "type": "Other",
-            "normalized_text": "Forward"
-          },
-          {
-            "start": 71,
-            "end": 77,
-            "probability": 0.3414,
-            "type": "Place",
-            "normalized_text": "America"
-          },
-          {
-            "start": 109,
-            "end": 119,
-            "probability": 0.3526,
-            "type": "Other",
-            "normalized_text": "America API"
-          }
-        ],
-        "urls": [
-          {
-            "start": 229,
-            "end": 252,
-            "url": "https://t.co/OFqbbipwHT",
-            "expanded_url": "https://powerforwardcommunities.org",
-            "display_url": "powerforwardcommunities.org",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1898471143696162816/42XxaCDD?format=jpg&name=orig",
-                "width": 1200,
-                "height": 675
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1898471143696162816/42XxaCDD?format=jpg&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "Power Forward Communities",
-            "description": "Our mission is to transform the housing market, save both homeowners and renters money, reinvest in communities, and tackle the climate crisis.",
-            "unwound_url": "https://powerforwardcommunities.org"
-          },
-          {
-            "start": 254,
-            "end": 277,
-            "url": "https://t.co/FQaPLVKRGF",
-            "expanded_url": "https://www.rewiringamerica.org/about-us",
-            "display_url": "rewiringamerica.org/about-us",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1899439857606221824/j30nZCXy?format=jpg&name=orig",
-                "width": 2400,
-                "height": 1350
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1899439857606221824/j30nZCXy?format=jpg&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "About us",
-            "description": "Rewiring America is the leading electrification nonprofit, focused on electrifying our homes, communities, and businesses.",
-            "unwound_url": "https://www.rewiringamerica.org/about-us"
-          }
-        ]
-      },
-      "id": "1900230283515093102",
-      "text": "4/6\nPower Forward Communities received $2B. It partnered with Rewiring America, which developed the Rewiring America API to access electrification incentives. Focus is on residential decarbonization in low-income areas.\nSources: https://t.co/OFqbbipwHT, https://t.co/FQaPLVKRGF.",
-      "author_id": "1859283000145608705",
-      "edit_history_tweet_ids": [
-        "1900230283515093102"
-      ],
-      "created_at": "2025-03-13T16:59:38.000Z",
-      "created_at_formatted": "Mar 13, 2025",
-      "author": {
-        "username": "cali_doge",
-        "id": "1859283000145608705",
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
-        "name": "California DOGE"
-      }
-    },
-    {
-      "entities": {
-        "annotations": [
-          {
-            "start": 4,
-            "end": 17,
-            "probability": 0.571,
-            "type": "Other",
-            "normalized_text": "Climate United"
-          },
-          {
-            "start": 44,
-            "end": 73,
-            "probability": 0.7639,
-            "type": "Other",
-            "normalized_text": "National Clean Investment Fund"
-          },
-          {
-            "start": 113,
-            "end": 114,
-            "probability": 0.9198,
-            "type": "Place",
-            "normalized_text": "LA"
-          },
-          {
-            "start": 116,
-            "end": 125,
-            "probability": 0.6811,
-            "type": "Place",
-            "normalized_text": "Long Beach"
-          },
-          {
-            "start": 138,
-            "end": 151,
-            "probability": 0.557,
-            "type": "Other",
-            "normalized_text": "Forum Mobility"
-          },
-          {
-            "start": 171,
-            "end": 192,
-            "probability": 0.596,
-            "type": "Other",
-            "normalized_text": "Calvert Impact Capital"
-          }
-        ],
-        "urls": [
-          {
-            "start": 231,
-            "end": 254,
-            "url": "https://t.co/bIuMW0UY78",
-            "expanded_url": "https://weareclimateunited.org/about-us",
-            "display_url": "weareclimateunited.org/about-us",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197565574111232/eKce_UY3?format=png&name=orig",
-                "width": 2000,
-                "height": 713
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197565574111232/eKce_UY3?format=png&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "About Climate United",
-            "description": "Climate United is a national coalition that delivers accessible, affordable financing to accelerate our path to a clean energy future, and build a stronger, more resilient economy that works for all Americans.",
-            "unwound_url": "https://weareclimateunited.org/about-us"
-          },
-          {
-            "start": 256,
-            "end": 279,
-            "url": "https://t.co/Uodiov1VH8",
-            "expanded_url": "https://www.latimes.com/b2b/business-visionaries/inspirational-women/story/woman-led-climate-united-launches-zero-emission-truck-la-ports",
-            "display_url": "latimes.com/b2b/business-v…",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197561769828352/f_xFltlg?format=jpg&name=orig",
-                "width": 1200,
-                "height": 675
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1900197561769828352/f_xFltlg?format=jpg&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "Woman-Led Climate United Launches $250 Million Zero-Emission Truck Program at L.A. Ports",
-            "description": "Largest order of all-electric drayage trucks in U.S. history will support small fleet owners moving to zero-emissions Los Angeles-based Climate United in a press release has announced a new program to offer affordable leasing options to small fleets and independent operators to lower operational costs and reduce air pollution in port communities, beginning at the Ports of Long Beach and Los Angeles, with the intention to expand nationally.",
-            "unwound_url": "https://www.latimes.com/b2b/business-visionaries/inspirational-women/story/woman-led-climate-united-launches-zero-emission-truck-la-ports"
-          }
-        ]
-      },
-      "id": "1900230281388568990",
-      "text": "3/6\nClimate United received $6.97B from the National Clean Investment Fund. Funding $250M for electric trucks at LA/Long Beach ports with Forum Mobility. Partners include Calvert Impact Capital and Self-Help Credit Union.\nSources: https://t.co/bIuMW0UY78, https://t.co/Uodiov1VH8",
-      "author_id": "1859283000145608705",
-      "context_annotations": [
-        {
-          "domain": {
-            "id": "45",
-            "name": "Brand Vertical",
-            "description": "Top level entities that describe a Brands industry"
-          },
-          "entity": {
-            "id": "781974597302226944",
-            "name": "Transportation"
-          }
-        },
-        {
-          "domain": {
-            "id": "46",
-            "name": "Business Taxonomy",
-            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
-          },
-          "entity": {
-            "id": "1557696420500541440",
-            "name": "Automotive, Aircraft & Boat Business",
-            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
-          }
-        },
-        {
-          "domain": {
-            "id": "46",
-            "name": "Business Taxonomy",
-            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
-          },
-          "entity": {
-            "id": "1557696848252391426",
-            "name": "Financial Services Business",
-            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
-          }
-        },
-        {
-          "domain": {
-            "id": "46",
-            "name": "Business Taxonomy",
-            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
-          },
-          "entity": {
-            "id": "1557697333571112960",
-            "name": "Technology Business",
-            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
-          }
-        },
-        {
-          "domain": {
-            "id": "46",
-            "name": "Business Taxonomy",
-            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
-          },
-          "entity": {
-            "id": "1557697439489880065",
-            "name": "Travel & Transportation Business",
-            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to travel as airlines, travel agencies, hotels"
-          }
-        },
-        {
-          "domain": {
-            "id": "30",
-            "name": "Entities [Entity Service]",
-            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
-          },
-          "entity": {
-            "id": "848920371311001600",
-            "name": "Technology",
-            "description": "Technology and computing"
-          }
-        },
-        {
-          "domain": {
-            "id": "131",
-            "name": "Unified Twitter Taxonomy",
-            "description": "A taxonomy of user interests. "
-          },
-          "entity": {
-            "id": "781974597302226944",
-            "name": "Transportation"
-          }
-        },
-        {
-          "domain": {
-            "id": "131",
-            "name": "Unified Twitter Taxonomy",
-            "description": "A taxonomy of user interests. "
-          },
-          "entity": {
-            "id": "839159814991167489",
-            "name": "Travel",
-            "description": "Travel"
-          }
-        },
-        {
-          "domain": {
-            "id": "131",
-            "name": "Unified Twitter Taxonomy",
-            "description": "A taxonomy of user interests. "
-          },
-          "entity": {
-            "id": "847528391163092993",
-            "name": "Automotive",
-            "description": "Car culture"
-          }
-        },
-        {
-          "domain": {
-            "id": "131",
-            "name": "Unified Twitter Taxonomy",
-            "description": "A taxonomy of user interests. "
-          },
-          "entity": {
-            "id": "1362135345043673092",
-            "name": "Electric vehicles"
-          }
-        },
-        {
-          "domain": {
-            "id": "165",
-            "name": "Technology",
-            "description": "for individual and types of technology, e.g., food technology, 3D printing"
-          },
-          "entity": {
-            "id": "848920371311001600",
-            "name": "Technology",
-            "description": "Technology and computing"
-          }
-        }
-      ],
-      "edit_history_tweet_ids": [
-        "1900230281388568990"
-      ],
-      "created_at": "2025-03-13T16:59:38.000Z",
       "created_at_formatted": "Mar 13, 2025",
       "author": {
         "username": "cali_doge",
@@ -3459,79 +3203,6 @@
           }
         }
       ],
-      "created_at": "2025-02-28T23:44:25.000Z",
-      "author_id": "1859283000145608705",
-      "id": "1895621106666758559",
-      "text": "“for sale: one chimney. Good condition. Fire-tested”\n\nThe LA fires  estimated total loss could exceed California’s entire state budget from the 2021–22 fiscal year. \n\nhttps://t.co/9NGSwY78Rn",
-      "edit_history_tweet_ids": [
-        "1895621106666758559"
-      ],
-      "entities": {
-        "urls": [
-          {
-            "start": 167,
-            "end": 190,
-            "url": "https://t.co/9NGSwY78Rn",
-            "expanded_url": "https://www.hoover.org/research/apocalypse-city-angels-what-might-have-been-so-different",
-            "display_url": "hoover.org/research/apoca…",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1895621107895713796/vhGlMP29?format=jpg&name=orig",
-                "width": 1200,
-                "height": 630
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1895621107895713796/vhGlMP29?format=jpg&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "Apocalypse In The City Of Angels: What Might Have Been So Different",
-            "description": "If only the city of Los Angeles had invested more to protect its Angelenos, the enormous destruction from the Los Angeles fires perhaps could have been considerably smaller.",
-            "unwound_url": "https://www.hoover.org/research/apocalypse-city-angels-what-might-have-been-so-different"
-          }
-        ],
-        "annotations": [
-          {
-            "start": 58,
-            "end": 59,
-            "probability": 0.932,
-            "type": "Place",
-            "normalized_text": "LA"
-          },
-          {
-            "start": 102,
-            "end": 111,
-            "probability": 0.9692,
-            "type": "Place",
-            "normalized_text": "California"
-          }
-        ]
-      },
-      "created_at_formatted": "Feb 28, 2025",
-      "author": {
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
-        "username": "cali_doge",
-        "name": "California DOGE",
-        "id": "1859283000145608705"
-      }
-    },
-    {
-      "context_annotations": [
-        {
-          "domain": {
-            "id": "159",
-            "name": "States",
-            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
-          },
-          "entity": {
-            "id": "856860158428798977",
-            "name": "California",
-            "description": "California"
-          }
-        }
-      ],
       "created_at": "2025-02-23T17:30:32.000Z",
       "author_id": "1859283000145608705",
       "id": "1893715075808063702",
@@ -3729,69 +3400,6 @@
       },
       "author_id": "1859283000145608705",
       "id": "1892212426684125691",
-      "created_at_formatted": "Feb 19, 2025",
-      "author": {
-        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
-        "id": "1859283000145608705",
-        "name": "California DOGE",
-        "username": "cali_doge"
-      }
-    },
-    {
-      "text": "Federal Agencies Oversight as of 14 Feb 2025 (4/5)\nAn updated table reflects the latest information on grants, money connections to NGOs, and state programs as of February 14, 2025. Source: https://t.co/LRP7dsAxcF, https://t.co/NVwjir2SSk",
-      "created_at": "2025-02-19T13:59:32.000Z",
-      "edit_history_tweet_ids": [
-        "1892212424482398530"
-      ],
-      "entities": {
-        "urls": [
-          {
-            "start": 190,
-            "end": 213,
-            "url": "https://t.co/LRP7dsAxcF",
-            "expanded_url": "https://usaspending.gov",
-            "display_url": "usaspending.gov",
-            "images": [
-              {
-                "url": "https://pbs.twimg.com/news_img/1891996292425056259/HlfM7Kqd?format=png&name=orig",
-                "width": 1200,
-                "height": 630
-              },
-              {
-                "url": "https://pbs.twimg.com/news_img/1891996292425056259/HlfM7Kqd?format=png&name=150x150",
-                "width": 150,
-                "height": 150
-              }
-            ],
-            "status": 200,
-            "title": "Government Spending Open Data | USAspending",
-            "description": "USAspending is the official open data source of federal spending information. We track how federal money is spent in communities across America and beyond. Learn more about government spending through interactive tools that explore elements of the federal budget, such as federal loan, grant, and contract data.",
-            "unwound_url": "https://www.usaspending.gov/"
-          },
-          {
-            "start": 215,
-            "end": 238,
-            "url": "https://t.co/NVwjir2SSk",
-            "expanded_url": "https://opendatainitiative.io/blog",
-            "display_url": "opendatainitiative.io/blog",
-            "status": 200,
-            "title": "Open Data Initiative",
-            "description": "Advancing government financial transparency through open data",
-            "unwound_url": "https://opendatainitiative.io/blog"
-          }
-        ],
-        "annotations": [
-          {
-            "start": 132,
-            "end": 135,
-            "probability": 0.4313,
-            "type": "Other",
-            "normalized_text": "NGOs"
-          }
-        ]
-      },
-      "author_id": "1859283000145608705",
-      "id": "1892212424482398530",
       "created_at_formatted": "Feb 19, 2025",
       "author": {
         "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
@@ -4953,8 +4561,8 @@
     }
   ],
   "meta": {
-    "result_count": 51,
-    "newest_id": "1906170936874967506",
+    "result_count": 47,
+    "newest_id": "1906435722753765451",
     "oldest_id": "1882144700762878208"
   }
 }

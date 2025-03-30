@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import Header from '@/components/Header';
@@ -6,24 +6,35 @@ import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 const inter = Inter({ subsets: ['latin'] });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
-  title: 'Cali DOGE - Unofficial California Department of Government Efficiency',
-  description: 'Simple, apolitical content. Possible future home of https://doge.ca.gov/',
-  manifest: '/manifest.json',
+  title: 'California DOGE',
+  description: 'Simple, apolitical content',
+  manifest: '/manifest.json?v=1',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon2.svg', type: 'image/svg+xml' },
       { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/icon.png', sizes: '192x192', type: 'image/png' }
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }
-    ]
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
   appleWebApp: {
-    title: 'Cali Doge',
+    capable: true,
     statusBarStyle: 'default',
-    capable: true
+    title: 'California DOGE',
+  },
+  other: {
+    'mobile-web-app-capable': 'yes',
   }
 };
 

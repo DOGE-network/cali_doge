@@ -39,7 +39,7 @@ const nextConfig = {
     return [
       {
         source: '/media/:path*',
-        destination: '/src/data/media/:path*',
+        destination: '/api/media/:path*',
       },
     ];
   },

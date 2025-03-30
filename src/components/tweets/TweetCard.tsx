@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { EnrichedTweet } from '@/types/twitter';
 import { format } from 'date-fns';
+import { useState } from 'react';
 
 interface TweetCardProps {
   tweet: EnrichedTweet;
@@ -177,6 +178,10 @@ function formatTweetText(text: string): React.ReactNode {
 }
 
 export function TweetCard({ tweet }: TweetCardProps) {
+  const [youtubeThumbError, setYoutubeThumbError] = useState(false);
+  const [linkPreviewError, setLinkPreviewError] = useState(false);
+  const [mediaErrors, setMediaErrors] = useState<Record<number, boolean>>({});
+
   const tweetUrl = `https://twitter.com/${tweet.author?.username}/status/${tweet.id}`;
   const urls = tweet.entities?.urls;
   const hasUrls = urls && urls.length > 0;
@@ -207,6 +212,38 @@ export function TweetCard({ tweet }: TweetCardProps) {
     
   // Format the tweet text (this will also decode HTML entities)
   const formattedText = formatTweetText(displayText);
+
+  // Function to clean media URLs
+  const cleanMediaUrl = (url: string, media: any) => {
+    if (!url) return '/icon2.svg';
+    // If it's already a full URL, return it
+    if (url.startsWith('http')) return url;
+    // If it's already a clean media URL, return it
+    if (url.startsWith('/media/')) {
+      // Extract just the filename part if it's a Twitter API URL
+      const match = url.match(/\/media\/([^\/]+)$/);
+      if (match) {
+        return `/media/${match[1]}`;
+      }
+      return url;
+    }
+    
+    // Log the original URL for debugging
+    console.log('Original media URL:', url);
+    
+    // Remove any domain names and clean the path
+    const cleanPath = url
+      .replace(/^https?:\/\/[^\/]+\//, '') // Remove domain
+      .replace(/^\/?media\/?/, '') // Remove media prefix
+      .replace(/[^a-zA-Z0-9._-]/g, '_'); // Clean filename
+    
+    // Log the cleaned path
+    console.log('Cleaned media path:', cleanPath);
+    
+    // If we have the original media URL, use it as fallback
+    const fallbackUrl = media?.url || media?.preview_image_url;
+    return `/media/${cleanPath}?fallback=${encodeURIComponent(fallbackUrl || '')}`;
+  };
 
   const handleClick = () => {
     window.open(tweetUrl, '_blank', 'noopener,noreferrer');
@@ -265,12 +302,24 @@ export function TweetCard({ tweet }: TweetCardProps) {
               {/* Use YouTube thumbnail URL for YouTube videos */}
               {isYouTubeLink && youtubeThumbnailUrl ? (
                 <div className="relative w-full h-52">
-                  <Image
-                    src={youtubeThumbnailUrl}
-                    alt={mainUrl.title || 'YouTube video'}
-                    className="object-cover"
-                    fill
-                  />
+                  {!youtubeThumbError ? (
+                    <Image
+                      src={youtubeThumbnailUrl}
+                      alt={mainUrl.title || 'YouTube video'}
+                      className="object-cover"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      onError={() => setYoutubeThumbError(true)}
+                    />
+                  ) : (
+                    <Image
+                      src="/icon2.svg"
+                      alt="Fallback image"
+                      className="object-contain"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    />
+                  )}
                   {/* Play button overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
@@ -284,14 +333,25 @@ export function TweetCard({ tweet }: TweetCardProps) {
                 // For non-YouTube links, use the original image if available
                 mainUrl.images?.[0]?.url && (
                   <div className="relative w-full h-52">
-                    <Image
-                      src={mainUrl.images[0].url}
-                      alt={mainUrl.title || 'Link preview'}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      unoptimized
-                    />
+                    {!linkPreviewError ? (
+                      <Image
+                        src={mainUrl.images[0].url}
+                        alt={mainUrl.title || 'Link preview'}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        unoptimized
+                        onError={() => setLinkPreviewError(true)}
+                      />
+                    ) : (
+                      <Image
+                        src="/icon2.svg"
+                        alt="Fallback image"
+                        className="object-contain"
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      />
+                    )}
                   </div>
                 )
               )}
@@ -331,11 +391,14 @@ export function TweetCard({ tweet }: TweetCardProps) {
                   }`}
                 >
                   <Image
-                    src={media.url || ''}
-                    alt="Tweet media"
+                    src={mediaErrors[index] ? '/icon2.svg' : cleanMediaUrl(media.url || '', media)}
+                    alt={mediaErrors[index] ? 'Fallback image' : 'Tweet media'}
                     fill
-                    className="rounded-lg object-cover"
+                    className={`rounded-lg ${mediaErrors[index] ? 'object-contain' : 'object-cover'}`}
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    onError={() => setMediaErrors(prev => ({ ...prev, [index]: true }))}
+                    unoptimized
+                    priority={index === 0}
                   />
                 </div>
               ))}
