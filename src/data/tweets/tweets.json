@@ -1,6 +1,531 @@
 {
   "tweets": [
     {
+      "created_at": "2025-03-30T02:25:40.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 17,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 27,
+            "end": 39,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          },
+          {
+            "start": 112,
+            "end": 122,
+            "username": "billmaher",
+            "id": "19697415"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "3",
+            "name": "TV Shows",
+            "description": "Television shows from around the world"
+          },
+          "entity": {
+            "id": "10002925988",
+            "name": "Real Time With Bill Maher",
+            "description": "Acerbic comic Bill Maher welcomes a panel of three guests from diverse parts of the political spectrum for a lively discussion of current events. Also usually included as part of the show are a comedic monologue and an interview with a newsmaker or political figure."
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808722001493770240",
+            "name": "Bill Maher",
+            "description": "Bill Maher"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "808722001493770240",
+            "name": "Bill Maher",
+            "description": "Bill Maher"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808722001493770240",
+            "name": "Bill Maher",
+            "description": "Bill Maher"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1906170936874967506"
+      ],
+      "id": "1906170936874967506",
+      "text": "RT @houmanhemmati: 🤣😳 WOW! @GavinNewsom somehow managed to make himself look even worse! \n\nIn a clip HE posted, @billmaher asks him “Can yo…",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Mar 30, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 19,
+            "end": 27,
+            "probability": 0.7606,
+            "type": "Organization",
+            "normalized_text": "Democrats"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 13,
+            "username": "billmaher",
+            "id": "19697415"
+          }
+        ],
+        "urls": [
+          {
+            "start": 106,
+            "end": 129,
+            "url": "https://t.co/OHBQh09XnJ",
+            "expanded_url": "https://x.com/billmaher/status/1905312056792023449/video/1",
+            "display_url": "pic.x.com/OHBQh09XnJ",
+            "media_key": "13_1905303322242023425"
+          }
+        ]
+      },
+      "created_at": "2025-03-30T02:20:55.000Z",
+      "attachments": {
+        "media_keys": [
+          "13_1905303322242023425"
+        ],
+        "media_source_tweet_id": [
+          "1905312056792023449"
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696940178935808",
+            "name": "Gaming Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to offline and online games such as gaming consoles, tabletop games, video game publishers"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808722001493770240",
+            "name": "Bill Maher",
+            "description": "Bill Maher"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "808722001493770240",
+            "name": "Bill Maher",
+            "description": "Bill Maher"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808722001493770240",
+            "name": "Bill Maher",
+            "description": "Bill Maher"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1906169739095007396"
+      ],
+      "id": "1906169739095007396",
+      "text": "RT @billmaher: The Democrats are going to have to embrace deregulation, or they're going to be the Whigs. https://t.co/OHBQh09XnJ",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Mar 30, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1906169739095007396_0.com/2/media/13_1905303322242023425"
+        }
+      ]
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 4,
+            "end": 13,
+            "probability": 0.9719,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 159,
+            "end": 182,
+            "url": "https://t.co/rfEHorfN5b",
+            "expanded_url": "https://siepr.stanford.edu/publications/policy-brief/tale-two-states-contrasting-economic-policy-california-and-texas",
+            "display_url": "siepr.stanford.edu/publications/p…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1906166383370805248/TnGSzxMY?format=jpg&name=orig",
+                "width": 1181,
+                "height": 523
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1906166383370805248/TnGSzxMY?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "A tale of two states: Contrasting economic policy in California and Texas",
+            "description": "Other",
+            "unwound_url": "https://siepr.stanford.edu/publications/policy-brief/tale-two-states-contrasting-economic-policy-california-and-texas"
+          }
+        ]
+      },
+      "created_at": "2025-03-30T02:07:33.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1906166377112903721"
+      ],
+      "id": "1906166377112903721",
+      "text": "4/4 California’s overall production costs are substantially higher than comparison states, ranging from 21% to 57% higher, with an average difference of 44%.\n\nhttps://t.co/rfEHorfN5b",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Mar 30, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 13,
+            "end": 22,
+            "probability": 0.9868,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 102,
+            "end": 115,
+            "username": "vin4congress",
+            "id": "1653894153183584256"
+          },
+          {
+            "start": 116,
+            "end": 127,
+            "username": "FreeBeacon",
+            "id": "455764741"
+          }
+        ],
+        "urls": [
+          {
+            "start": 129,
+            "end": 152,
+            "url": "https://t.co/mFHu8x4hnL",
+            "expanded_url": "https://cali-doge.org/regulations",
+            "display_url": "cali-doge.org/regulations",
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/regulations"
+          }
+        ]
+      },
+      "created_at": "2025-03-30T02:07:33.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1906166374655009063"
+      ],
+      "id": "1906166374655009063",
+      "text": "3/4\nIn 2023, California enacted 890 new laws which enabled 16,660 new regulations to be implemented.\n\n@vin4congress @FreeBeacon \nhttps://t.co/mFHu8x4hnL",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Mar 30, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 4,
+            "end": 13,
+            "probability": 0.9798,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 243,
+            "end": 254,
+            "username": "HooverInst",
+            "id": "86364947"
+          },
+          {
+            "start": 255,
+            "end": 266,
+            "username": "lanheechen",
+            "id": "87048122"
+          },
+          {
+            "start": 267,
+            "end": 280,
+            "username": "billwhalenCA",
+            "id": "794779346"
+          }
+        ]
+      },
+      "created_at": "2025-03-30T02:07:32.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1906166372608160233"
+      ],
+      "id": "1906166372608160233",
+      "text": "2/4\nCalifornia’s regulatory framework spans numerous policy areas including environmental protection, labor standards, and consumer privacy, each generating substantial regulatory requirements.\nThe impact of these regulations is significant.\n\n@HooverInst @lanheechen @billwhalenCA",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Mar 30, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 17,
+            "end": 44,
+            "probability": 0.558,
+            "type": "Organization",
+            "normalized_text": "Office of Administrative Law"
+          },
+          {
+            "start": 63,
+            "end": 72,
+            "probability": 0.992,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 243,
+            "end": 266,
+            "url": "https://t.co/CPmdYfOj5O",
+            "expanded_url": "https://www.usnews.com/news/best-states/articles/2020-11-03/which-state-has-the-most-regulations",
+            "display_url": "usnews.com/news/best-stat…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1906166373564493824/rlb6g7aU?format=jpg&name=orig",
+                "width": 970,
+                "height": 647
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1906166373564493824/rlb6g7aU?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "These States Have the Most Regulations",
+            "description": "California has the most regulations, while New York has the most complex rules, according to a new report.",
+            "unwound_url": "https://www.usnews.com/news/best-states/articles/2020-11-03/which-state-has-the-most-regulations"
+          }
+        ]
+      },
+      "created_at": "2025-03-30T02:07:32.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1906166370011931001"
+      ],
+      "id": "1906166370011931001",
+      "text": "1/4\n\nDespite the Office of Administrative Law (OAL) oversight, California remains the most heavily regulated state in the nation with over 400K regulatory restrictions, more than doubling the national average of 133K restrictions per state. \n\nhttps://t.co/CPmdYfOj5O",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Mar 30, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1903145885049163909"
       ],
@@ -4428,8 +4953,8 @@
     }
   ],
   "meta": {
-    "result_count": 45,
-    "newest_id": "1903145885049163909",
+    "result_count": 51,
+    "newest_id": "1906170936874967506",
     "oldest_id": "1882144700762878208"
   }
 }
