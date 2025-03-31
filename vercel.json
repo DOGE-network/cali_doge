@@ -37,7 +37,7 @@
       ]
     }
   ],
-  "regions": ["sfo1", "lhr1", "fra1", "sin1", "syd1"],
+  "regions": ["sfo1", "cle1", "iad1"],
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
