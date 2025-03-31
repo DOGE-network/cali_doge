@@ -6,6 +6,10 @@ import SpendingDisplay from '@/components/SpendingDisplay';
 import { DepartmentsJSON } from '@/types/department';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 // Client component that uses useSearchParams
 function SpendPageClient() {
@@ -13,9 +17,11 @@ function SpendPageClient() {
   const [highlightedDepartment, setHighlightedDepartment] = useState<string | null>(null);
   const [showAllDepartments, setShowAllDepartments] = useState(true);
   const [showRecentYears, setShowRecentYears] = useState(true);
-  const [departmentsData, setDepartmentsData] = useState<DepartmentsJSON | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data: departmentsData, error, isLoading } = useSWR<DepartmentsJSON>('/api/departments', fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    dedupingInterval: 60000 // Dedupe requests within 1 minute
+  });
   
   useEffect(() => {
     // Get the department from URL query parameter
@@ -32,52 +38,20 @@ function SpendPageClient() {
     }
   }, [searchParams]);
 
-  // Fetch departments data
-  useEffect(() => {
-    async function fetchDepartments() {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const response = await fetch('/api/departments');
-        if (!response.ok) {
-          throw new Error('Failed to fetch departments');
-        }
-        const data = await response.json();
-        setDepartmentsData(data);
-      } catch (err) {
-        console.error('Error fetching departments:', err);
-        setError('Failed to load department data');
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchDepartments();
-  }, []);
-  
   if (error) {
     return (
       <div className="p-4 text-red-600 bg-red-50 rounded-lg">
         <h2 className="text-lg font-semibold mb-2">Error</h2>
-        <p>{error}</p>
+        <p>{error.message}</p>
       </div>
     );
   }
 
   if (isLoading || !departmentsData) {
     return (
-      <div className="p-4">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/3 mb-8"></div>
-          <div className="space-y-4">
-            <div className="h-32 bg-gray-200 rounded"></div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="h-24 bg-gray-200 rounded"></div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <div className="p-4 flex flex-col items-center justify-center min-h-[400px]">
+        <LoadingSpinner size="lg" className="mb-4" />
+        <p className="text-gray-600">Loading department data...</p>
       </div>
     );
   }

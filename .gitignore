@@ -413,3 +413,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.vercel

@@ -137,6 +137,7 @@ import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug
 import { getDepartmentByName, getDepartmentByWorkforceName } from '@/lib/departmentMapping';
 import { log, generateTransactionId } from '@/lib/logging';
 import { Button } from '@/components/ui/button';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
 
 // Initialize logging
 const initTransactionId = generateTransactionId();
@@ -736,7 +737,12 @@ function SubDepartmentSection({
 
 export default function WorkforcePage() {
   return (
-    <Suspense fallback={<div className="p-4">Loading workforce data...</div>}>
+    <Suspense fallback={
+      <div className="p-4 flex flex-col items-center justify-center min-h-[400px]">
+        <LoadingSpinner size="lg" className="mb-4" />
+        <p className="text-gray-600">Loading workforce data...</p>
+      </div>
+    }>
       <WorkforcePageContent />
     </Suspense>
   );
@@ -1000,18 +1006,9 @@ function WorkforcePageContent() {
   if (!hierarchyData) {
     log('INFO', transactionId, 'Displaying loading state');
     return (
-      <div className="p-4">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/3 mb-8"></div>
-          <div className="space-y-4">
-            <div className="h-32 bg-gray-200 rounded"></div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="h-24 bg-gray-200 rounded"></div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <div className="p-4 flex flex-col items-center justify-center min-h-[400px]">
+        <LoadingSpinner size="lg" className="mb-4" />
+        <p className="text-gray-600">Loading department hierarchy...</p>
       </div>
     );
   }
