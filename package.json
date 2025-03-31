@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "node src/scripts/generate-department-mappings.js && next build",
     "start": "next start",
     "lint": "next lint",
@@ -17,8 +17,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
-    "@supabase/ssr": "^0.6.1",
-    "@supabase/supabase-js": "^2.39.3",
+    "@supabase/supabase-js": "^2.49.4",
     "@types/mime-types": "^2.1.4",
     "@types/node-cron": "^3.0.11",
     "@types/nodemailer": "^6.4.17",

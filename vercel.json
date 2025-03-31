@@ -41,5 +41,16 @@
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next",
+      "config": {
+        "buildCommand": "npm run build",
+        "devCommand": "npm run dev",
+        "installCommand": "npm install"
+      }
+    }
+  ]
 } 

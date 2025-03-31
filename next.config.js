@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    turbo: {
+      rules: {
+        // Add any specific rules if needed
+        // Example: "*.mdx": ["mdx-loader"]
+      }
+    }
+  },
   images: {
     remotePatterns: [
       {

@@ -5,6 +5,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 const inter = Inter({ subsets: ['latin'] });
+import MailingListPopup from '@/components/MailingListPopup'
+
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -52,6 +54,7 @@ export default function RootLayout({
         </div>
         <Footer />
         <Analytics />
+        <MailingListPopup />
       </body>
     </html>
   );
