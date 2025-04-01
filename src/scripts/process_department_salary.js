@@ -411,6 +411,38 @@ const _showDiff = (original, updated, log) => {
   log('');
 };
 
+// Function to extract campus name from state university name
+function extractCampusName(name) {
+  if (!name) return null;
+  
+  // List of known CSU campus names
+  const campusNames = [
+    'pomona', 'san jose', 'humboldt', 'chico', 'dominguez hills', 'east bay',
+    'fresno', 'fullerton', 'hayward', 'long beach', 'los angeles', 'monterey bay',
+    'northridge', 'sacramento', 'san bernardino', 'san diego', 'san francisco',
+    'san luis obispo', 'san marcos', 'sonoma', 'stanislaus'
+  ];
+  
+  // Normalize the input name
+  const normalizedName = name.toLowerCase()
+    .replace(/[,()]/g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/[^a-z0-9\s]/g, '')
+    .trim();
+  
+  // Check if it's a state university name
+  if (normalizedName.includes('state university') || normalizedName.includes('california state university')) {
+    // Look for campus names in the normalized name
+    for (const campus of campusNames) {
+      if (normalizedName.includes(campus)) {
+        return campus;
+      }
+    }
+  }
+  
+  return null;
+}
+
 // Function to normalize department names for matching
 function normalizeForMatching(name) {
   if (!name) return '';
@@ -426,7 +458,7 @@ function normalizeForMatching(name) {
     .replace(/\b(california|state)\b/g, '') // Remove state references
     .replace(/\b(csu|california state university|california state|state university)\b/g, 'csu') // Normalize CSU
     .replace(/\b(uc|university of california)\b/g, 'uc') // Normalize UC
-    .replace(/\b(san francisco|los angeles|san diego|sacramento|fresno|long beach|fullerton|hayward|northridge|pomona|san bernardino|san jose|san luis obispo|san marcos|sonoma|stanislaus|chico|dominguez hills|east bay|monterey bay|northridge|pomona|sacramento|san bernardino|san diego|san francisco|san jose|san luis obispo|san marcos|sonoma|stanislaus)\b/g, '') // Remove campus names
+    .replace(/\b(san francisco|los angeles|san diego|sacramento|fresno|long beach|fullerton|hayward|northridge|pomona|san bernardino|san jose|san luis obispo|san marcos|sonoma|stanislaus|chico|dominguez hills|east bay|monterey bay)\b/g, '') // Remove campus names
     .trim();
 }
 
@@ -434,6 +466,15 @@ function normalizeForMatching(name) {
 function getNameVariations(name) {
   const normalized = normalizeForMatching(name);
   const variations = new Set([normalized]);
+  
+  // Extract campus name if it's a state university
+  const campusName = extractCampusName(name);
+  if (campusName) {
+    variations.add(campusName);
+    variations.add(`csu ${campusName}`);
+    variations.add(`california state university ${campusName}`);
+    variations.add(`state university ${campusName}`);
+  }
   
   // Add variations without common prefixes
   ['department of', 'state', 'california', 'office of', 'board of', 'commission on', 'county of'].forEach(prefix => {

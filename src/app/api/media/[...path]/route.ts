@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readFileSync, existsSync } from 'fs';
+import { access, readFile, writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { lookup } from 'mime-types';
-import fs from 'fs';
+import { constants } from 'fs';
 import path from 'path';
 
 export async function GET(
@@ -24,20 +24,24 @@ export async function GET(
 
     const filePath = join(process.cwd(), 'src/data/media', ...cleanPath);
     
-    // Check if file exists before trying to read it
-    if (!existsSync(filePath)) {
-      // Check for fallback URL in query parameters
+    try {
+      // Check if file exists and is readable
+      await access(filePath, constants.R_OK);
+    } catch (error) {
+      // File doesn't exist or isn't readable, try fallback
       const fallbackUrl = request.nextUrl.searchParams.get('fallback');
       if (fallbackUrl) {
         try {
           const response = await fetch(fallbackUrl);
-          if (!response.ok) throw new Error(`Failed to fetch fallback image: ${response.statusText}`);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch fallback image: ${response.statusText}`);
+          }
           
           const arrayBuffer = await response.arrayBuffer();
           // Ensure the directory exists
-          fs.mkdirSync(path.dirname(filePath), { recursive: true });
+          await mkdir(path.dirname(filePath), { recursive: true });
           // Save the file locally for future use
-          fs.writeFileSync(filePath, new Uint8Array(arrayBuffer));
+          await writeFile(filePath, new Uint8Array(arrayBuffer));
           
           return new NextResponse(arrayBuffer, {
             headers: {
@@ -47,7 +51,6 @@ export async function GET(
           });
         } catch (error) {
           console.error('Error fetching fallback image:', error);
-          // Return a 404 instead of throwing an error
           return new NextResponse('File not found', { status: 404 });
         }
       }
@@ -55,7 +58,7 @@ export async function GET(
     }
 
     try {
-      const fileContent = readFileSync(filePath);
+      const fileContent = await readFile(filePath);
       const mimeType = lookup(filePath) || 'application/octet-stream';
 
       return new NextResponse(fileContent, {
@@ -70,6 +73,6 @@ export async function GET(
     }
   } catch (error) {
     console.error('Error serving media file:', error);
-    return new NextResponse('File not found', { status: 404 });
+    return new NextResponse('Internal server error', { status: 500 });
   }
 } 

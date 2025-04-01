@@ -163,10 +163,13 @@ function countDepartments(hierarchy: DepartmentHierarchy | DepartmentHierarchy[]
 }
 
 // Helper function to aggregate distribution arrays
-function aggregateDistributions(departments: DepartmentHierarchy[]): {
+function aggregateDistributions(departments: DepartmentHierarchy[], selectedFiscalYear: AnnualYear): {
   tenureDistribution: RawDistributionItem[];
   salaryDistribution: RawDistributionItem[];
   ageDistribution: RawDistributionItem[];
+  childHeadCount: number;
+  childWages: number;
+  childAverageSalary: number | null;
 } {
   const transactionId = generateTransactionId();
   
@@ -176,13 +179,17 @@ function aggregateDistributions(departments: DepartmentHierarchy[]): {
   const result = {
     tenureDistribution: [] as RawDistributionItem[],
     salaryDistribution: [] as RawDistributionItem[],
-    ageDistribution: [] as RawDistributionItem[]
+    ageDistribution: [] as RawDistributionItem[],
+    childHeadCount: 0,
+    childWages: 0,
+    childAverageSalary: null as number | null
   };
 
   // Helper to aggregate a single distribution type
   const aggregateDistribution = (distributions: RawDistributionItem[][], type: 'tenure' | 'salary' | 'age'): RawDistributionItem[] => {
     log('DEBUG', transactionId, 'Step 3.1: Processing department', { 
-      distributionCount: distributions.length 
+      distributionCount: distributions.length,
+      fiscalYear: selectedFiscalYear
     });
 
     const rangeMap = new Map<string, number>();
@@ -191,7 +198,8 @@ function aggregateDistributions(departments: DepartmentHierarchy[]): {
       if (!dist || !Array.isArray(dist)) {
         log('WARN', transactionId, `Step 3.1: Missing ${type} distribution data`, { 
           department: 'unknown',
-          index
+          index,
+          fiscalYear: selectedFiscalYear
         });
         return;
       }
@@ -199,7 +207,8 @@ function aggregateDistributions(departments: DepartmentHierarchy[]): {
         if (!item || !Array.isArray(item.range)) {
           log('WARN', transactionId, `Step 3.1: Invalid ${type} distribution item`, { 
             item,
-            index
+            index,
+            fiscalYear: selectedFiscalYear
           });
           return;
         }
@@ -215,56 +224,73 @@ function aggregateDistributions(departments: DepartmentHierarchy[]): {
 
     log('INFO', transactionId, `Step 3.1: ${type} distribution processing complete`, {
       uniqueRanges: result.length,
-      totalCount: result.reduce((sum, item) => sum + item.count, 0)
+      totalCount: result.reduce((sum, item) => sum + item.count, 0),
+      fiscalYear: selectedFiscalYear
     });
     return result;
   };
 
   // 3.2 Yearly Data Aggregation
-  log('INFO', transactionId, 'Step 3.2: Aggregating yearly data for 2023');
+  log('INFO', transactionId, 'Step 3.2: Aggregating yearly data', { fiscalYear: selectedFiscalYear });
   
   // Get all distributions from departments and their subdepartments recursively
   const getAllDistributions = (depts: DepartmentHierarchy[], isRoot: boolean = false) => {
     log('DEBUG', transactionId, 'Step 3.2: Department yearly data', { 
       departmentCount: depts.length,
-      isRoot 
+      isRoot,
+      fiscalYear: selectedFiscalYear
     });
 
     const distributions = {
       tenure: [] as RawDistributionItem[][],
       salary: [] as RawDistributionItem[][],
-      age: [] as RawDistributionItem[][]
+      age: [] as RawDistributionItem[][],
+      headCount: 0,
+      wages: 0
     };
 
     depts.forEach(dept => {
       // Always include the current department's distributions if they exist
-      if (dept.tenureDistribution?.yearly?.["2023"]) {
+      if (dept.tenureDistribution?.yearly?.[selectedFiscalYear]) {
         log('DEBUG', transactionId, 'Step 3.2: Found tenure distribution', {
           department: dept.name,
-          distributionCount: dept.tenureDistribution.yearly["2023"].length
+          distributionCount: dept.tenureDistribution.yearly[selectedFiscalYear].length,
+          fiscalYear: selectedFiscalYear
         });
-        distributions.tenure.push(dept.tenureDistribution.yearly["2023"]);
+        distributions.tenure.push(dept.tenureDistribution.yearly[selectedFiscalYear]);
       }
-      if (dept.salaryDistribution?.yearly?.["2023"]) {
+      if (dept.salaryDistribution?.yearly?.[selectedFiscalYear]) {
         log('DEBUG', transactionId, 'Step 3.2: Found salary distribution', {
           department: dept.name,
-          distributionCount: dept.salaryDistribution.yearly["2023"].length
+          distributionCount: dept.salaryDistribution.yearly[selectedFiscalYear].length,
+          fiscalYear: selectedFiscalYear
         });
-        distributions.salary.push(dept.salaryDistribution.yearly["2023"]);
+        distributions.salary.push(dept.salaryDistribution.yearly[selectedFiscalYear]);
       }
-      if (dept.ageDistribution?.yearly?.["2023"]) {
+      if (dept.ageDistribution?.yearly?.[selectedFiscalYear]) {
         log('DEBUG', transactionId, 'Step 3.2: Found age distribution', {
           department: dept.name,
-          distributionCount: dept.ageDistribution.yearly["2023"].length
+          distributionCount: dept.ageDistribution.yearly[selectedFiscalYear].length,
+          fiscalYear: selectedFiscalYear
         });
-        distributions.age.push(dept.ageDistribution.yearly["2023"]);
+        distributions.age.push(dept.ageDistribution.yearly[selectedFiscalYear]);
+      }
+
+      // Get department's own headcount and wages
+      if (typeof dept.headCount?.yearly?.[selectedFiscalYear] === 'number') {
+        distributions.headCount += dept.headCount.yearly[selectedFiscalYear] as number;
+      }
+      
+      if (typeof dept.wages?.yearly?.[selectedFiscalYear] === 'number') {
+        distributions.wages += dept.wages.yearly[selectedFiscalYear] as number;
       }
 
       // Process subdepartments if they exist
       if (dept.subDepartments?.length) {
         log('DEBUG', transactionId, 'Step 3.2: Processing subdepartments', {
           department: dept.name,
-          subDepartmentCount: dept.subDepartments.length
+          subDepartmentCount: dept.subDepartments.length,
+          fiscalYear: selectedFiscalYear
         });
         
         const subDistributions = getAllDistributions(dept.subDepartments);
@@ -273,6 +299,8 @@ function aggregateDistributions(departments: DepartmentHierarchy[]): {
         distributions.tenure.push(...subDistributions.tenure);
         distributions.salary.push(...subDistributions.salary);
         distributions.age.push(...subDistributions.age);
+        distributions.headCount += subDistributions.headCount;
+        distributions.wages += subDistributions.wages;
       }
     });
 
@@ -282,26 +310,38 @@ function aggregateDistributions(departments: DepartmentHierarchy[]): {
   const allDistributions = getAllDistributions(departments, true);
   
   // 3.3 Final Aggregation
-  log('INFO', transactionId, 'Step 3.3: Computing final aggregated distributions');
+  log('INFO', transactionId, 'Step 3.3: Computing final aggregated distributions', { fiscalYear: selectedFiscalYear });
   
   result.tenureDistribution = aggregateDistribution(allDistributions.tenure, 'tenure');
   result.salaryDistribution = aggregateDistribution(allDistributions.salary, 'salary');
   result.ageDistribution = aggregateDistribution(allDistributions.age, 'age');
+  result.childHeadCount = allDistributions.headCount;
+  result.childWages = allDistributions.wages;
+  
+  // Calculate average salary from aggregated data
+  if (result.childHeadCount > 0) {
+    result.childAverageSalary = (result.childWages / result.childHeadCount) as number;
+  }
 
-  log('DEBUG', transactionId, 'Step 3.3: Distribution counts', {
+  log('DEBUG', transactionId, 'Step 3.3: Distribution counts and aggregated data', {
     tenure: result.tenureDistribution.length,
     salary: result.salaryDistribution.length,
-    age: result.ageDistribution.length
+    age: result.ageDistribution.length,
+    headCount: result.childHeadCount,
+    wages: result.childWages,
+    averageSalary: result.childAverageSalary,
+    fiscalYear: selectedFiscalYear
   });
   
   log('INFO', transactionId, 'Step 3.3: Aggregation complete', { 
-    totalProcessed: departments.length 
+    totalProcessed: departments.length,
+    fiscalYear: selectedFiscalYear
   });
 
   return result;
 }
 
-function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
+function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: AnnualYear): DepartmentHierarchy {
   const transactionId = generateTransactionId();
   
   // 2.1 Root Department Setup
@@ -309,7 +349,8 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
   log('DEBUG', transactionId, 'Step 2.1: Root department data', { 
     name: 'California State Government',
     level: 0,
-    parent: null
+    parent: null,
+    fiscalYear: selectedFiscalYear
   });
 
   // Find the California State Government department from the data
@@ -488,12 +529,7 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
     // Initialize subordinate count
     dept.subordinateOffices = 0;
     
-    // Initialize aggregated totals
-    let aggregatedHeadCount = 0;
-    let aggregatedWages = 0;
-    let hasChildData = false;
-    
-    // Store original data before aggregation
+    // Store original data before aggregation - this is the parent's own data
     dept.originalData = {
       headCount: { yearly: { ...dept.headCount?.yearly } },
       wages: { yearly: { ...dept.wages?.yearly } },
@@ -503,85 +539,89 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
       ageDistribution: dept.ageDistribution
     };
     
+    // Get the parent department's own data
+    const parentHeadCount = typeof dept.headCount?.yearly?.[selectedFiscalYear] === 'number' ? 
+      dept.headCount.yearly[selectedFiscalYear] as number : 0;
+    const parentWages = typeof dept.wages?.yearly?.[selectedFiscalYear] === 'number' ? 
+      dept.wages.yearly[selectedFiscalYear] as number : 0;
+    const parentAverageSalary = parentHeadCount > 0 ? 
+      (parentWages / parentHeadCount) as NonNegativeNumber : null;
+    
     // Process subdepartments first
     if (dept.subDepartments && dept.subDepartments.length > 0) {
-      // Create arrays to collect all child distributions
-      const allDistributions = {
-        tenure: [] as RawDistributionItem[][],
-        salary: [] as RawDistributionItem[][],
-        age: [] as RawDistributionItem[][]
-      };
-
+      // Process all subdepartments recursively to get subordinate counts
       dept.subDepartments.forEach(child => {
         dept.subordinateOffices += calculateSubordinatesAndAggregateData(child) + 1;
-        
-        // Aggregate headcount and wages from child departments
-        if (typeof child.headCount?.yearly?.["2023"] === 'number') {
-          aggregatedHeadCount += child.headCount.yearly["2023"] as number;
-          hasChildData = true;
-        }
-        
-        if (typeof child.wages?.yearly?.["2023"] === 'number') {
-          aggregatedWages += child.wages.yearly["2023"] as number;
-          hasChildData = true;
-        }
-
-        // Collect child distributions
-        if (child.tenureDistribution?.yearly?.["2023"]) {
-          allDistributions.tenure.push(child.tenureDistribution.yearly["2023"]);
-        }
-        if (child.salaryDistribution?.yearly?.["2023"]) {
-          allDistributions.salary.push(child.salaryDistribution.yearly["2023"]);
-        }
-        if (child.ageDistribution?.yearly?.["2023"]) {
-          allDistributions.age.push(child.ageDistribution.yearly["2023"]);
-        }
       });
 
-      // Always set aggregatedDistributions for departments with children
-      dept.aggregatedDistributions = aggregateDistributions(dept.subDepartments);
+      // Calculate aggregated distributions, headcount, wages and average salary
+      const aggregated = aggregateDistributions(dept.subDepartments, selectedFiscalYear);
+      
+      // Store child-only aggregated data
+      const childHeadCount = aggregated.childHeadCount;
+      const childWages = aggregated.childWages;
+      const childAverageSalary = aggregated.childAverageSalary;
+      
+      // Calculate combined (parent + children) totals
+      const combinedHeadCount = parentHeadCount + childHeadCount;
+      const combinedWages = parentWages + childWages;
+      const combinedAverageSalary = combinedHeadCount > 0 ? 
+        (combinedWages / combinedHeadCount) as NonNegativeNumber : null;
+      
+      // Store all aggregated information
+      dept.aggregatedDistributions = {
+        // Distribution arrays
+        tenureDistribution: aggregated.tenureDistribution,
+        salaryDistribution: aggregated.salaryDistribution,
+        ageDistribution: aggregated.ageDistribution,
+        
+        // Parent data (department's own data)
+        parentHeadCount,
+        parentWages,
+        parentAverageSalary,
+        
+        // Child data (sum of all subdepartments)
+        childHeadCount,
+        childWages,
+        childAverageSalary,
+        
+        // Combined data (parent + children)
+        combinedHeadCount,
+        combinedWages,
+        combinedAverageSalary
+      };
+      
+      log('INFO', generateTransactionId(), 'Aggregated data calculated', {
+        department: dept.name,
+        fiscalYear: selectedFiscalYear,
+        parent: {
+          headCount: parentHeadCount,
+          wages: parentWages,
+          averageSalary: parentAverageSalary
+        },
+        children: {
+          headCount: childHeadCount,
+          wages: childWages,
+          averageSalary: childAverageSalary
+        },
+        combined: {
+          headCount: combinedHeadCount,
+          wages: combinedWages,
+          averageSalary: combinedAverageSalary
+        }
+      });
     }
-    
-    // Get the department's own headcount and wages (if they exist)
-    const ownHeadCount = typeof dept.headCount?.yearly?.["2023"] === 'number' ? dept.headCount.yearly["2023"] as number : 0;
-    const ownWages = typeof dept.wages?.yearly?.["2023"] === 'number' ? dept.wages.yearly["2023"] as number : 0;
-    
-    // Only update data if we have either own data or child data
-    if (hasChildData || ownHeadCount > 0 || ownWages > 0) {
-      // Ensure yearly objects exist
+    else {
+      // For departments without subdepartments, ensure headCount and wages objects exist
       dept.headCount = dept.headCount || { yearly: {} };
       dept.wages = dept.wages || { yearly: {} };
       
-      // If parent has no data of its own, use aggregated child data
-      // Otherwise, keep parent's own data
-      if (ownHeadCount === 0 && ownWages === 0) {
-        dept.headCount.yearly["2023"] = aggregatedHeadCount;
-        dept.wages.yearly["2023"] = aggregatedWages;
-        
-        // Calculate average salary from aggregated data
-        if (aggregatedHeadCount > 0) {
-          dept.averageSalary = (aggregatedWages / aggregatedHeadCount) as NonNegativeNumber;
-        }
-      } else {
-        // Keep parent's own data
-        dept.headCount.yearly["2023"] = ownHeadCount;
-        dept.wages.yearly["2023"] = ownWages;
-        
-        // Calculate average salary from own data
-        if (ownHeadCount > 0) {
-          dept.averageSalary = (ownWages / ownHeadCount) as NonNegativeNumber;
-        }
-      }
-      
-      log('INFO', generateTransactionId(), 'Data applied', {
+      log('INFO', generateTransactionId(), 'No subdepartments for', {
         department: dept.name,
-        ownHeadCount,
-        childHeadCount: aggregatedHeadCount,
-        finalHeadCount: dept.headCount.yearly["2023"],
-        ownWages,
-        childWages: aggregatedWages,
-        finalWages: dept.wages.yearly["2023"],
-        calculatedAverageSalary: dept.averageSalary
+        fiscalYear: selectedFiscalYear,
+        headCount: parentHeadCount,
+        wages: parentWages,
+        averageSalary: parentAverageSalary
       });
     }
     
@@ -592,7 +632,8 @@ function buildHierarchy(departments: DepartmentData[]): DepartmentHierarchy {
   const totalDepartments = countDepartments(root);
   log('INFO', transactionId, 'Step 2.4: Hierarchy construction complete', {
     totalDepartments,
-    levels: levelMap.size
+    levels: levelMap.size,
+    fiscalYear: selectedFiscalYear
   });
 
   return root;
@@ -604,12 +645,13 @@ interface DepartmentCardProps {
   onClick: () => void;
   showChart: boolean;
   viewMode: 'aggregated' | 'parent-only';
+  fiscalYear: AnnualYear;
 }
 
-function DepartmentCard({ department, isActive, onClick, showChart, viewMode }: DepartmentCardProps) {
+function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fiscalYear }: DepartmentCardProps) {
   // Get FY2023 specific data with proper type checking
-  const _workforceData = typeof department.headCount?.yearly?.["2023"] === 'number' ? department.headCount.yearly["2023"] : undefined;
-  const _wagesData = typeof department.wages?.yearly?.["2023"] === 'number' ? department.wages.yearly["2023"] : undefined;
+  const _workforceData = typeof department.headCount?.yearly?.[fiscalYear] === 'number' ? department.headCount.yearly[fiscalYear] : undefined;
+  const _wagesData = typeof department.wages?.yearly?.[fiscalYear] === 'number' ? department.wages.yearly[fiscalYear] : undefined;
   const _averageSalary = typeof department.averageSalary === 'number' ? department.averageSalary : undefined;
   
   return (
@@ -628,7 +670,7 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode }: 
                   {department.budgetCode}
                 </span>
               )}
-              <span className="ml-2 text-xs text-gray-500">(FY2023)</span>
+              <span className="ml-2 text-xs text-gray-500">(FY{fiscalYear})</span>
             </h3>
             {department.keyFunctions && (
               <p className="mt-2 text-sm text-gray-600">{department.keyFunctions}</p>
@@ -646,6 +688,7 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode }: 
           <AgencyDataVisualization 
             department={department} 
             viewMode={viewMode}
+            fiscalYear={fiscalYear}
           />
         </div>
       )}
@@ -659,6 +702,7 @@ interface SubDepartmentSectionProps {
   activeAgencyPath: string[];
   onDepartmentClick: (_path: string[]) => void;
   viewMode: 'aggregated' | 'parent-only';
+  fiscalYear: AnnualYear;
 }
 
 function SubDepartmentSection({ 
@@ -666,7 +710,8 @@ function SubDepartmentSection({
   parentPath,
   activeAgencyPath,
   onDepartmentClick,
-  viewMode
+  viewMode,
+  fiscalYear
 }: SubDepartmentSectionProps) {
   // Check if this is the root department "California State Government"
   const isRoot = department.name === 'California State Government';
@@ -715,6 +760,7 @@ function SubDepartmentSection({
         onClick={() => onDepartmentClick(fullPath)}
         showChart={showChart}
         viewMode={viewMode}
+        fiscalYear={fiscalYear}
       />
       
       {displaySubDepartments && showSubDepartments && (
@@ -727,6 +773,7 @@ function SubDepartmentSection({
               activeAgencyPath={activeAgencyPath}
               onDepartmentClick={onDepartmentClick}
               viewMode={viewMode}
+              fiscalYear={fiscalYear}
             />
           ))}
         </div>
@@ -754,7 +801,7 @@ function WorkforcePageContent() {
   
   const searchParams = useSearchParams();
   const [selectedDepartmentName, setSelectedDepartmentName] = useState<string | null>(null);
-  const [selectedFiscalYear, setSelectedFiscalYear] = useState<string>("2023");
+  const [selectedFiscalYear, setSelectedFiscalYear] = useState<AnnualYear>("2023");
   const [activePath, setActivePath] = useState<string[]>([]);
   const [departments, setDepartments] = useState<DepartmentData[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -820,14 +867,15 @@ function WorkforcePageContent() {
       return null;
     }
     
-    const hierarchy = buildHierarchy(departments);
+    const hierarchy = buildHierarchy(departments, selectedFiscalYear);
     log('INFO', transactionId, 'Hierarchy built successfully', {
       rootDepartment: hierarchy.name,
-      totalDepartments: countDepartments(hierarchy)
+      totalDepartments: countDepartments(hierarchy),
+      fiscalYear: selectedFiscalYear
     });
     
     return hierarchy;
-  }, [departments, transactionId]);
+  }, [departments, selectedFiscalYear, transactionId]);
 
   // URL parameter effect
   useEffect(() => {
@@ -1043,14 +1091,22 @@ function WorkforcePageContent() {
               <select
                 id="fiscalYear"
                 value={selectedFiscalYear}
-                onChange={(e) => setSelectedFiscalYear(e.target.value)}
+                onChange={(e) => {
+                  const year = e.target.value;
+                  if (year.match(/^\d{4}$/)) {
+                    setSelectedFiscalYear(year as AnnualYear);
+                  }
+                }}
                 className="text-xs font-medium rounded-full bg-gray-100 shadow-sm border-0 focus:ring-0 focus:outline-none px-2 py-1"
               >
-                {Array.from({ length: 16 }, (_, i) => (2010 + i).toString()).map((year: string) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
+                {Array.from({ length: 16 }, (_, i) => {
+                  const year = (2010 + i).toString() as AnnualYear;
+                  return (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
@@ -1088,6 +1144,7 @@ function WorkforcePageContent() {
               onClick={() => {}} 
               showChart={true} 
               viewMode={viewMode}
+              fiscalYear={selectedFiscalYear}
             />
           </div>
         )}
@@ -1104,6 +1161,7 @@ function WorkforcePageContent() {
                   onClick={() => handleSelectDepartment(dept)}
                   showChart={false}
                   viewMode={viewMode}
+                  fiscalYear={selectedFiscalYear}
                 />
               ))}
             </div>

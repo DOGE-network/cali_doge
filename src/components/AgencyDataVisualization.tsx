@@ -1,63 +1,94 @@
 import { useMemo } from 'react';
 import DepartmentCharts from './DepartmentCharts';
-import type { DepartmentHierarchy } from '@/types/department';
+import type { DepartmentHierarchy, AnnualYear } from '@/types/department';
 
 interface AgencyDataVisualizationProps {
   department: DepartmentHierarchy;
   viewMode: 'aggregated' | 'parent-only';
+  fiscalYear: AnnualYear;
 }
 
-export default function AgencyDataVisualization({ department, viewMode }: AgencyDataVisualizationProps) {
-  const employeeData = useMemo(() => {
-    // Choose the data source based on view mode
-    const dataSource = viewMode === 'parent-only' && department.originalData 
-      ? { ...department, ...department.originalData }  // Merge original data with department data
-      : department;
+export default function AgencyDataVisualization({ department, viewMode, fiscalYear }: AgencyDataVisualizationProps) {
+  const data = useMemo(() => {
+    if (!department) return null;
 
-    // Get FY2023 data with defaults
-    const fy2023Headcount = typeof dataSource.headCount?.yearly?.["2023"] === 'number' 
-      ? dataSource.headCount.yearly["2023"] 
-      : null;
+    // Get the appropriate data based on view mode
+    const aggregatedData = department.aggregatedDistributions;
+    const ownData = department.originalData;
 
-    const fy2023Wages = typeof dataSource.wages?.yearly?.["2023"] === 'number'
-      ? dataSource.wages.yearly["2023"]
-      : null;
+    // Log the data we're working with
+    console.log('AgencyDataVisualization data:', {
+      department: department.name,
+      viewMode,
+      fiscalYear,
+      aggregatedData: aggregatedData ? {
+        parentHeadCount: aggregatedData.parentHeadCount,
+        parentWages: aggregatedData.parentWages,
+        parentAverageSalary: aggregatedData.parentAverageSalary,
+        childHeadCount: aggregatedData.childHeadCount,
+        childWages: aggregatedData.childWages,
+        childAverageSalary: aggregatedData.childAverageSalary,
+        combinedHeadCount: aggregatedData.combinedHeadCount,
+        combinedWages: aggregatedData.combinedWages,
+        combinedAverageSalary: aggregatedData.combinedAverageSalary
+      } : null,
+      ownData: ownData ? {
+        headCount: ownData.headCount?.yearly?.[fiscalYear],
+        wages: ownData.wages?.yearly?.[fiscalYear],
+        averageSalary: ownData.averageSalary
+      } : null
+    });
 
-    console.log('AgencyDataVisualization - Department data for:', dataSource.name);
-    console.log('- Has aggregatedDistributions:', !!dataSource.aggregatedDistributions);
-    
-    if (dataSource.aggregatedDistributions) {
-      console.log('- Salary distribution length:', dataSource.aggregatedDistributions.salaryDistribution?.length || 0);
-      console.log('- Tenure distribution length:', dataSource.aggregatedDistributions.tenureDistribution?.length || 0);
-      console.log('- Age distribution length:', dataSource.aggregatedDistributions.ageDistribution?.length || 0);
-    }
-    
-    console.log('- Own salary distribution:', !!dataSource.salaryDistribution?.yearly?.["2023"]);
-    if (dataSource.salaryDistribution?.yearly?.["2023"]) {
-      console.log('- Own salary distribution length:', dataSource.salaryDistribution.yearly["2023"].length);
-    }
+    // Determine which data to use based on view mode
+    const headCount = viewMode === 'aggregated' && aggregatedData ? 
+      aggregatedData.combinedHeadCount : 
+      (aggregatedData?.parentHeadCount ?? ownData?.headCount?.yearly?.[fiscalYear] ?? 0);
+
+    const wages = viewMode === 'aggregated' && aggregatedData ? 
+      aggregatedData.combinedWages : 
+      (aggregatedData?.parentWages ?? ownData?.wages?.yearly?.[fiscalYear] ?? 0);
+
+    const averageSalary = viewMode === 'aggregated' && aggregatedData ? 
+      aggregatedData.combinedAverageSalary : 
+      (aggregatedData?.parentAverageSalary ?? ownData?.averageSalary ?? null);
+
+    // Log the final values being used
+    console.log('AgencyDataVisualization final values:', {
+      department: department.name,
+      viewMode,
+      fiscalYear,
+      headCount,
+      wages,
+      averageSalary
+    });
 
     return {
-      headCount: fy2023Headcount,
-      averageSalary: dataSource.averageSalary ?? null,
-      headcount: [{ year: "2023", value: fy2023Headcount }],
-      wages: [{ year: "2023", value: fy2023Wages }],
-      tenureDistribution: [],  // Empty - we'll let DepartmentCharts handle this
-      salaryDistribution: [],  // Empty - we'll let DepartmentCharts handle this
-      ageDistribution: [],     // Empty - we'll let DepartmentCharts handle this
-      averageTenure: dataSource.averageTenureYears ?? null,
-      averageAge: dataSource.averageAge ?? null
+      headCount: [{ year: fiscalYear, value: headCount as number }],
+      headcount: [{ year: fiscalYear, value: headCount as number }],
+      wages: [{ year: fiscalYear, value: wages as number }],
+      averageSalary,
+      tenureDistribution: department.tenureDistribution?.yearly?.[fiscalYear] || [],
+      salaryDistribution: department.salaryDistribution?.yearly?.[fiscalYear] || [],
+      ageDistribution: department.ageDistribution?.yearly?.[fiscalYear] || [],
+      averageTenure: department.averageTenureYears ?? null,
+      averageAge: department.averageAge ?? null
     };
-  }, [department, viewMode]);
+  }, [department, viewMode, fiscalYear]);
 
   // Choose distributions based on view mode
   const distributionsToUse = useMemo(() => {
+    if (!department) return {
+      tenureDistribution: [],
+      salaryDistribution: [],
+      ageDistribution: []
+    };
+
     // In parent-only mode, use original data if available
     if (viewMode === 'parent-only' && department.originalData) {
       return {
-        tenureDistribution: department.originalData.tenureDistribution?.yearly?.["2023"] || [],
-        salaryDistribution: department.originalData.salaryDistribution?.yearly?.["2023"] || [],
-        ageDistribution: department.originalData.ageDistribution?.yearly?.["2023"] || []
+        tenureDistribution: department.originalData.tenureDistribution?.yearly?.[fiscalYear] || [],
+        salaryDistribution: department.originalData.salaryDistribution?.yearly?.[fiscalYear] || [],
+        ageDistribution: department.originalData.ageDistribution?.yearly?.[fiscalYear] || []
       };
     }
     
@@ -80,27 +111,29 @@ export default function AgencyDataVisualization({ department, viewMode }: Agency
 
       // Fall back to department's own distributions if no aggregated data
       return {
-        tenureDistribution: department.tenureDistribution?.yearly?.["2023"] || [],
-        salaryDistribution: department.salaryDistribution?.yearly?.["2023"] || [],
-        ageDistribution: department.ageDistribution?.yearly?.["2023"] || []
+        tenureDistribution: department.tenureDistribution?.yearly?.[fiscalYear] || [],
+        salaryDistribution: department.salaryDistribution?.yearly?.[fiscalYear] || [],
+        ageDistribution: department.ageDistribution?.yearly?.[fiscalYear] || []
       };
     }
 
     // Default fallback to department's own distributions
     return {
-      tenureDistribution: department.tenureDistribution?.yearly?.["2023"] || [],
-      salaryDistribution: department.salaryDistribution?.yearly?.["2023"] || [],
-      ageDistribution: department.ageDistribution?.yearly?.["2023"] || []
+      tenureDistribution: department.tenureDistribution?.yearly?.[fiscalYear] || [],
+      salaryDistribution: department.salaryDistribution?.yearly?.[fiscalYear] || [],
+      ageDistribution: department.ageDistribution?.yearly?.[fiscalYear] || []
     };
-  }, [department, viewMode]);
+  }, [department, viewMode, fiscalYear]);
+
+  if (!data) return null;
 
   return (
     <div className="space-y-8">
       <DepartmentCharts
-        employeeData={employeeData}
-        averageSalary={employeeData.averageSalary}
-        averageTenureYears={employeeData.averageTenure}
-        averageAge={employeeData.averageAge}
+        employeeData={data}
+        averageSalary={data.averageSalary}
+        averageTenureYears={data.averageTenure}
+        averageAge={data.averageAge}
         aggregatedDistributions={distributionsToUse}
       />
     </div>
