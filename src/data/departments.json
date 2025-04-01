@@ -48284,13 +48284,9 @@
       "orgLevel": 2,
       "parent_agency": "UC Board of Regents",
       "budget_status": "active",
-      "budgetCode": "6440",
+      "budgetCode": "6500",
       "spending": {
-        "yearly": {
-          "FY2022-FY2023": 48168216,
-          "FY2023-FY2024": 51379754,
-          "FY2024-FY2025": 54482287
-        }
+        "yearly": {}
       },
       "headCount": {
         "yearly": {
