@@ -4,11 +4,11 @@ import { log, generateTransactionId } from '@/lib/logging';
 
 export async function POST(request: Request) {
   const transactionId = generateTransactionId();
-  log('INFO', transactionId, 'Received join request');
+  log('INFO', transactionId, 'Received email request');
   
   try {
-    const { email, message } = await request.json();
-    log('INFO', transactionId, 'Parsed request data', { email, message });
+    const { email, message, subject } = await request.json();
+    log('INFO', transactionId, 'Parsed request data', { email, message, subject });
 
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       log('ERROR', transactionId, 'Email configuration error', {
@@ -42,10 +42,10 @@ export async function POST(request: Request) {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Send to the same email address
-      subject: 'New Join Request from California DOGE',
-      text: `New join request:\n\nEmail: ${email}\n\n${message}`,
-      html: `
+      to: subject ? email : process.env.EMAIL_USER, // Send to subscriber for welcome emails, to admin for join requests
+      subject: subject || 'New Join Request from California DOGE',
+      text: message,
+      html: subject ? message : `
         <h2>New Join Request</h2>
         <p><strong>From:</strong> ${email}</p>
         <div style="white-space: pre-wrap;">${message.replace(/\n/g, '<br>')}</div>
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
         response: info.response 
       });
       
-      return NextResponse.json({ message: 'Join request sent successfully' }, { status: 200 });
+      return NextResponse.json({ message: subject ? 'Welcome email sent successfully' : 'Join request sent successfully' }, { status: 200 });
     } catch (emailError) {
       log('ERROR', transactionId, 'Error sending email', {
         error: emailError instanceof Error ? emailError.message : 'Unknown email error',
@@ -74,15 +74,16 @@ export async function POST(request: Request) {
       });
       
       // Store the request data for manual processing later
-      log('INFO', transactionId, 'Storing join request for manual processing', {
+      log('INFO', transactionId, 'Storing email request for manual processing', {
         email,
-        message
+        message,
+        subject
       });
       
       // Return success to the user even though email failed
       // This prevents exposing internal errors to users while ensuring their data is captured
       return NextResponse.json({ 
-        message: 'Your request has been received. We will get back to you soon.' 
+        message: subject ? 'Welcome email sent successfully' : 'Your request has been received. We will get back to you soon.' 
       }, { status: 200 });
     }
   } catch (error) {
@@ -93,7 +94,7 @@ export async function POST(request: Request) {
     });
     
     return NextResponse.json({ 
-      error: 'Failed to send join request', 
+      error: 'Failed to send email', 
       details: error instanceof Error ? error.message : 'Unknown error' 
     }, { status: 500 });
   }
