@@ -2274,43 +2274,6 @@
       "entityCode": null
     },
     {
-      "name": "Board of Chiropractic Examiners",
-      "canonicalName": "Chiropractic Examiners, Board of",
-      "slug": "board-of-chiropractic-examiners",
-      "orgLevel": 2,
-      "budget_status": "active",
-      "aliases": [
-        "BCE"
-      ],
-      "keyFunctions": "Chiropractic practice regulation",
-      "abbreviation": "BCE",
-      "parent_agency": "Executive Branch",
-      "budgetCode": null,
-      "spending": {
-        "yearly": {}
-      },
-      "headCount": {
-        "yearly": {}
-      },
-      "wages": {
-        "yearly": {}
-      },
-      "averageTenureYears": null,
-      "averageSalary": null,
-      "averageAge": null,
-      "tenureDistribution": {
-        "yearly": {}
-      },
-      "salaryDistribution": {
-        "yearly": {}
-      },
-      "ageDistribution": {
-        "yearly": {}
-      },
-      "_note": "",
-      "entityCode": null
-    },
-    {
       "name": "Board of Equalization",
       "canonicalName": "Equalization, Board of",
       "slug": "board-of-equalization",
@@ -2924,9 +2887,13 @@
       "keyFunctions": "Oversight of business regulation and housing",
       "abbreviation": "BCSH",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "0515",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 1063426,
+          "FY2023-FY2024": 1099556,
+          "FY2024-FY2025": 10244
+        }
       },
       "headCount": {
         "yearly": {
@@ -3135,7 +3102,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 8426_Business__Consumer_Services_And_Housing_Agency_2023.csv",
+      "_note": "Salary data from 8426_Business__Consumer_Services_And_Housing_Agency_2023.csv, Budget data from 0515_2024_budget.txt",
       "entityCode": "8426"
     },
     {
@@ -4316,44 +4283,6 @@
       "entityCode": null
     },
     {
-      "name": "California Boating and Waterways Commission",
-      "canonicalName": "Boating and Waterways Commission, California",
-      "slug": "california-boating-and-waterways-commission",
-      "orgLevel": 2,
-      "budget_status": "active",
-      "aliases": [
-        "boating commission",
-        "waterways commission"
-      ],
-      "keyFunctions": "Boating and waterway regulation and development",
-      "abbreviation": "CBWC",
-      "parent_agency": "Executive Branch",
-      "budgetCode": null,
-      "spending": {
-        "yearly": {}
-      },
-      "headCount": {
-        "yearly": {}
-      },
-      "wages": {
-        "yearly": {}
-      },
-      "averageTenureYears": null,
-      "averageSalary": null,
-      "averageAge": null,
-      "tenureDistribution": {
-        "yearly": {}
-      },
-      "salaryDistribution": {
-        "yearly": {}
-      },
-      "ageDistribution": {
-        "yearly": {}
-      },
-      "_note": "",
-      "entityCode": null
-    },
-    {
       "name": "California Building Standards Commission",
       "canonicalName": "Building Standards Commission, California",
       "slug": "california-building-standards-commission",
@@ -5434,7 +5363,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "4170",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 600336,
+          "FY2023-FY2024": 625699,
+          "FY2024-FY2025": 382207
+        }
       },
       "headCount": {
         "yearly": {
@@ -5643,7 +5576,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3742_Aging__Department_of_2023.csv",
+      "_note": "Salary data from 3742_Aging__Department_of_2023.csv, Budget data from 4170_2024_budget.txt",
       "entityCode": "3742"
     },
     {
@@ -6558,12 +6491,13 @@
       "orgLevel": 2,
       "budget_status": "active",
       "aliases": [
-        "CalEPA"
+        "CalEPA",
+        "Environmental Protection Program"
       ],
       "keyFunctions": "Environmental protection and regulation",
       "abbreviation": "CalEPA",
       "parent_agency": "Executive Branch",
-      "budgetCode": null,
+      "budgetCode": "3210",
       "spending": {
         "yearly": {}
       },
@@ -38658,7 +38592,11 @@
       "parent_agency": "Executive Branch",
       "budgetCode": "0890",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 144048,
+          "FY2023-FY2024": 183594,
+          "FY2024-FY2025": 190743
+        }
       },
       "headCount": {
         "yearly": {
@@ -38867,7 +38805,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 3835_Secretary_of_State_2023.csv",
+      "_note": "Salary data from 3835_Secretary_of_State_2023.csv, Budget data from 0890_2024_budget.txt",
       "entityCode": "3835"
     },
     {
@@ -46860,47 +46798,6 @@
       "entityCode": null
     },
     {
-      "name": "University of California",
-      "canonicalName": "University of California",
-      "slug": "university-of-california",
-      "orgLevel": 2,
-      "budget_status": "active",
-      "aliases": [
-        "university-of-california"
-      ],
-      "keyFunctions": "State Department",
-      "abbreviation": "university-of-california",
-      "parent_agency": "Executive Branch",
-      "budgetCode": "6440",
-      "spending": {
-        "yearly": {
-          "FY2022-FY2023": 48168216,
-          "FY2023-FY2024": 51379754,
-          "FY2024-FY2025": 54482287
-        }
-      },
-      "headCount": {
-        "yearly": {}
-      },
-      "wages": {
-        "yearly": {}
-      },
-      "averageTenureYears": null,
-      "averageSalary": null,
-      "averageAge": null,
-      "tenureDistribution": {
-        "yearly": {}
-      },
-      "salaryDistribution": {
-        "yearly": {}
-      },
-      "ageDistribution": {
-        "yearly": {}
-      },
-      "_note": "Budget data from 6440_2024_budget.txt",
-      "entityCode": null
-    },
-    {
       "name": "Ventura County Superior Court",
       "canonicalName": "Superior Court of California, County of Ventura",
       "slug": "ventura-county-superior-court",
@@ -48387,9 +48284,13 @@
       "orgLevel": 2,
       "parent_agency": "UC Board of Regents",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6440",
       "spending": {
-        "yearly": {}
+        "yearly": {
+          "FY2022-FY2023": 48168216,
+          "FY2023-FY2024": 51379754,
+          "FY2024-FY2025": 54482287
+        }
       },
       "headCount": {
         "yearly": {
@@ -48598,7 +48499,7 @@
       "ageDistribution": {
         "yearly": {}
       },
-      "_note": "Salary data from 8239_University_of_California__Berkeley_2023.csv",
+      "_note": "Salary data from 8239_University_of_California__Berkeley_2023.csv, Budget data from 6440_2024_budget.txt",
       "entityCode": "8239"
     },
     {
@@ -50658,7 +50559,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6730",
       "spending": {
         "yearly": {}
       },
@@ -50697,7 +50598,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6770",
       "spending": {
         "yearly": {}
       },
@@ -50737,7 +50638,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6820",
       "spending": {
         "yearly": {}
       },
@@ -50775,7 +50676,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6650",
       "spending": {
         "yearly": {}
       },
@@ -50814,7 +50715,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6850",
       "spending": {
         "yearly": {}
       },
@@ -50853,7 +50754,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6680",
       "spending": {
         "yearly": {}
       },
@@ -51081,7 +50982,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6690",
       "spending": {
         "yearly": {}
       },
@@ -51309,7 +51210,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6720",
       "spending": {
         "yearly": {}
       },
@@ -51348,7 +51249,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6700",
       "spending": {
         "yearly": {}
       },
@@ -51576,7 +51477,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6710",
       "spending": {
         "yearly": {}
       },
@@ -51805,7 +51706,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6740",
       "spending": {
         "yearly": {}
       },
@@ -52034,7 +51935,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6750",
       "spending": {
         "yearly": {}
       },
@@ -52262,7 +52163,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6752",
       "spending": {
         "yearly": {}
       },
@@ -52300,7 +52201,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6756",
       "spending": {
         "yearly": {}
       },
@@ -52339,7 +52240,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6760",
       "spending": {
         "yearly": {}
       },
@@ -52568,7 +52469,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6780",
       "spending": {
         "yearly": {}
       },
@@ -52796,7 +52697,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6660",
       "spending": {
         "yearly": {}
       },
@@ -53024,7 +52925,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6840",
       "spending": {
         "yearly": {}
       },
@@ -53252,7 +53153,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6670",
       "spending": {
         "yearly": {}
       },
@@ -53291,7 +53192,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6790",
       "spending": {
         "yearly": {}
       },
@@ -53518,7 +53419,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6800",
       "spending": {
         "yearly": {}
       },
@@ -53556,7 +53457,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6810",
       "spending": {
         "yearly": {}
       },
@@ -53594,7 +53495,7 @@
       "orgLevel": 2,
       "parent_agency": "CSU Board of Trustees",
       "budget_status": "active",
-      "budgetCode": null,
+      "budgetCode": "6830",
       "spending": {
         "yearly": {}
       },

@@ -111,11 +111,11 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '0515_secretary_of_business_consumer_services_and_housing',
-    name: 'Secretary of Business, Consumer Services and Housing',
-    canonicalName: 'Secretary of Business, Consumer Services and Housing',
+    name: 'Business, Consumer Services and Housing Agency',
+    canonicalName: 'Business, Consumer Services, and Housing Agency, California',
     budgetCode: toNonNegativeInteger(515),
-    spendingName: 'Secretary of Business, Consumer Services and Housing',
-    workforceName: 'Secretary of Business, Consumer Services and Housing'
+    spendingName: 'Business, Consumer Services and Housing Agency',
+    workforceName: 'Business, Consumer Services and Housing Agency'
   },
   {
     slug: '0521_secretary_of_transportation',
