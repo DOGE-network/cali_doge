@@ -1,6 +1,211 @@
 {
   "tweets": [
     {
+      "id": "1906862874221318347",
+      "text": "Discover the power of California DOGE – the ultimate resource for comprehensive government data! Our newly released version of https://t.co/PodQyl2tve takes transparency to the next level. \n\n@SteveHiltonx @DOGE @HarmeetKDhillon @lanheechen @HooverInst @billwhalenCA https://t.co/vdSADfrQnM",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "attachments": {
+        "media_keys": [
+          "3_1906862864964476928"
+        ]
+      },
+      "created_at": "2025-04-01T00:15:11.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 22,
+            "end": 31,
+            "probability": 0.8271,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 191,
+            "end": 204,
+            "username": "SteveHiltonx",
+            "id": "2779389582"
+          },
+          {
+            "start": 205,
+            "end": 210,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 211,
+            "end": 227,
+            "username": "HarmeetKDhillon",
+            "id": "201066140"
+          },
+          {
+            "start": 228,
+            "end": 239,
+            "username": "lanheechen",
+            "id": "87048122"
+          },
+          {
+            "start": 240,
+            "end": 251,
+            "username": "HooverInst",
+            "id": "86364947"
+          },
+          {
+            "start": 252,
+            "end": 265,
+            "username": "billwhalenCA",
+            "id": "794779346"
+          }
+        ],
+        "urls": [
+          {
+            "start": 127,
+            "end": 150,
+            "url": "https://t.co/PodQyl2tve",
+            "expanded_url": "http://cali-doge.org",
+            "display_url": "cali-doge.org",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1906435769029562368/FoflKyJA?format=png&name=orig",
+                "width": 2000,
+                "height": 713
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1906435769029562368/FoflKyJA?format=png&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Cali DOGE - Unofficial California Department of Government Efficiency",
+            "description": "Simple, apolitical content. Possible future home of https://doge.ca.gov/",
+            "unwound_url": "https://cali-doge.org/"
+          },
+          {
+            "start": 266,
+            "end": 289,
+            "url": "https://t.co/vdSADfrQnM",
+            "expanded_url": "https://x.com/cali_doge/status/1906862874221318347/photo/1",
+            "display_url": "pic.x.com/vdSADfrQnM",
+            "media_key": "3_1906862864964476928"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1906862874221318347"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 1, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1906862874221318347_0.jpg",
+          "width": 1217,
+          "height": 1645
+        }
+      ]
+    },
+    {
       "edit_history_tweet_ids": [
         "1906435722753765451"
       ],
@@ -4561,8 +4766,8 @@
     }
   ],
   "meta": {
-    "result_count": 47,
-    "newest_id": "1906435722753765451",
+    "result_count": 48,
+    "newest_id": "1906862874221318347",
     "oldest_id": "1882144700762878208"
   }
 }
