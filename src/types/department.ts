@@ -159,9 +159,25 @@ export interface DepartmentHierarchy extends DepartmentData {
   subDepartments?: DepartmentHierarchy[];
   subordinateOffices: number;
   aggregatedDistributions?: {
+    // Distribution arrays
     tenureDistribution: RawDistributionItem[];
     salaryDistribution: RawDistributionItem[];
     ageDistribution: RawDistributionItem[];
+    
+    // Parent data (department's own data)
+    parentHeadCount: number;
+    parentWages: number;
+    parentAverageSalary: number | null;
+    
+    // Child data (sum of all subdepartments)
+    childHeadCount: number;
+    childWages: number;
+    childAverageSalary: number | null;
+    
+    // Combined data (parent + children)
+    combinedHeadCount: number;
+    combinedWages: number;
+    combinedAverageSalary: number | null;
   };
   originalData?: {
     headCount: { yearly: Record<AnnualYear, number | {}> };
