@@ -16,8 +16,59 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'California DOGE',
-  description: 'Simple, apolitical content',
+  title: {
+    default: 'California DOGE - Government Efficiency & Transparency',
+    template: '%s | California DOGE'
+  },
+  description: 'California DOGE provides transparent insights into California government operations, programs, projects, budget data, and workforce information. Explore detailed department analyses and government efficiency metrics.',
+  keywords: ['California government', 'government efficiency', 'budget transparency', 'workforce data', 'California departments', 'government spending', 'public sector analysis', 'California DOGE', 'DOGE'],
+  authors: [{ name: 'California DOGE' }],
+  creator: 'California DOGE',
+  publisher: 'California DOGE',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://cali-doge.org'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'California DOGE - Government Efficiency & Transparency',
+    description: 'Transparent insights into California government operations, budget data, and workforce information.',
+    url: 'https://cali-doge.org',
+    siteName: 'California DOGE',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'California DOGE - Government Transparency',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'California DOGE - Government Efficiency & Transparency',
+    description: 'Transparent insights into California government operations, budget data, and workforce information.',
+    images: ['/twitter-image.jpg'],
+    creator: '@cali_doge',
+    site: '@cali_doge',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   manifest: '/manifest.json?v=1',
   icons: {
     icon: [
