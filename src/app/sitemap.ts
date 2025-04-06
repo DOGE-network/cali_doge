@@ -1,32 +1,86 @@
 import { MetadataRoute } from 'next';
+import { DEPARTMENT_SLUGS_WITH_PAGES } from '@/lib/departmentMapping';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://cali-doge.org';
   
-  return [
+  // Core pages with their priorities and change frequencies
+  const corePages = [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/departments`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'daily' as const,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
+      url: `${baseUrl}/workforce`,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/join`,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/spend`,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/grid`,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/departments`,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/threads`,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/savings`,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/network`,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/regulations`,
+      lastModified: new Date('2024-04-06'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     },
   ];
+
+  // Department pages from DEPARTMENT_SLUGS_WITH_PAGES
+  const departmentPages = DEPARTMENT_SLUGS_WITH_PAGES.map(slug => ({
+    url: `${baseUrl}/departments/${slug}`,
+    lastModified: new Date('2024-04-06'),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...corePages, ...departmentPages];
 } 
