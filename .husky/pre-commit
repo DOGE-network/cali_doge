@@ -1,44 +1,33 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-# Essential paths for Node/npm
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-
-# Add NVM directory to PATH if it exists
-if [ -d "$HOME/.nvm" ]; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-fi
-
-# Add npm global modules to PATH
-if [ -d "/usr/local/lib/node_modules" ]; then
-  export PATH="/usr/local/lib/node_modules/.bin:$PATH"
-fi
-
-# Print debug info
-echo "Current PATH: $PATH"
-echo "Node version: $(node -v 2>/dev/null || echo 'node not found')"
-echo "NPM version: $(npm -v 2>/dev/null || echo 'npm not found')"
-echo "Current directory: $(pwd)"
+#!/usr/bin/env bash
 
 echo "Running npm ci..."
 if ! npm ci; then
     echo "❌ npm ci failed"
     echo "Debug info:"
     npm config list
-    exit 1
+    EXIT_CODE=1
 fi
 
-echo "Running lint checks..."
-if ! npm run lint; then
-    echo "❌ Linting failed. Please fix the issues above and try committing again."
-    exit 1
+if [ $EXIT_CODE -eq 0 ]; then
+    echo "Running lint checks..."
+    if ! npm run lint; then
+        echo "❌ Linting failed. Please fix the issues above and try committing again."
+        EXIT_CODE=1
+    fi
 fi
 
-echo "Running type checks..."
-if ! npm run typecheck; then
-    echo "❌ Type checking failed. Please fix the type errors above and try committing again."
-    exit 1
+if [ $EXIT_CODE -eq 0 ]; then
+    echo "Running type checks..."
+    if ! npm run typecheck; then
+        echo "❌ Type checking failed. Please fix the type errors above and try committing again."
+        EXIT_CODE=1
+    fi
 fi
 
-echo "✅ All checks passed!" 
+if [ $EXIT_CODE -eq 0 ]; then
+    echo "✅ All checks passed!"
+else
+    echo "❌ Some checks failed. See above for details."
+fi
+
+exit $EXIT_CODE 
