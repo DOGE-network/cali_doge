@@ -47,7 +47,7 @@
 const fs = require('fs');
 const path = require('path');
 const { parse } = require('csv-parse/sync');
-const { normalizeForMatching, getNameVariations, calculateMatchScore, calculateDepartmentMatchScore, findDepartmentByName, findDepartmentMatches } = require('../lib/departmentMatching');
+const { findDepartmentMatches } = require('../lib/departmentMatching');
 
 // Data Structure Normalization
 const normalizeDepartmentData = (dept) => {
@@ -255,11 +255,11 @@ const setupLogging = () => {
 
 // Utility functions
 const formatCurrency = (amount) => {
-  return Math.round(parseFloat(amount || 0));
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
 };
 
-const formatNumber = (num) => {
-  return parseFloat(num || 0).toFixed(1);
+const _formatNumber = (num) => {
+  return new Intl.NumberFormat('en-US').format(num);
 };
 
 const _readDepartmentsJson = async () => {
@@ -412,7 +412,7 @@ const _showDiff = (original, updated, log) => {
 };
 
 // Function to extract campus name from state university name
-function extractCampusName(name) {
+function _extractCampusName(name) {
   if (!name) return null;
   
   // List of known CSU campus names

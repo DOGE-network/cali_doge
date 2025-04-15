@@ -977,11 +977,6 @@ async function processEntityDownload(page, entity, downloadDir, logFile, current
   }
 }
 
-// Helper function to sanitize filenames
-function sanitizeFilename(filename) {
-  return filename.replace(/[^a-zA-Z0-9]/g, '_');
-}
-
 // Main function to run the script
 async function main() {
   let browser;

@@ -119,7 +119,7 @@ export function calculateMatchScore(str1: string, str2: string): number {
 export function calculateDepartmentMatchScore(
   csvName: string,
   department: RequiredDepartmentJSONFields,
-  entityCode?: string
+  _entityCode?: string
 ): { totalScore: number; details: Record<string, number> } {
   const cleanCsvName = csvName.trim().toLowerCase();
   const nameVariations = getNameVariations(cleanCsvName);
