@@ -1,9 +1,9 @@
 // This script downloads the CSV files from the Public Pay website
 // It uses Puppeteer to navigate the website and download the files
-// It also handles the creation of the download directory
-// It also handles the extraction of the entity ID from the link
-// It also handles the download of the CSV file
-// It also handles the closing of the browser
+// It saves all files to src/data/workforce directory
+// It handles the extraction of the entity ID from the link
+// It handles the download of the CSV file
+// It handles the closing of the browser
 
 // NOTE salary reporting uses Entity Codes that are not well publicized. find the entity code as the first four digits of any salary report csv file.
 
@@ -13,8 +13,8 @@
 // https://publicpay.ca.gov/Reports/SuperiorCourts/SuperiorCourts.aspx
 // https://publicpay.ca.gov/Reports/HigherEducations/UniversityOfCalifornia.aspx
 // https://publicpay.ca.gov/Reports/HigherEducations/StateUniversity.aspx
-/*
 
+/*
 PAGE PROCESSING AND NAVIGATION WORKFLOW:
 
 Step 1: Initial Setup and Navigation
@@ -42,24 +42,19 @@ Step 2: Table Data Processing
 2.10. Repeat steps 2.1-2.9 until all BASE_URL array items are processed
 2.11 verify entity array count is greater than 240
 
-Step 3: Court Processing Loop
-3.1. For each random URL in entity array that is not a duplicate of a previous URL downloaded CSV file
-    a. Log current processing
-    b. Navigate to URL
-    c. Wait for .entity_export element
-    d. Find CSV download link
-    e. from expected filename, check if file already exists and skip to next entity if so
-    f. Configure download behavior
-    g. Trigger download
-    h. Wait for download
-    i. Wait before next court
-    j. Verify download success
-    k. Log completion
-    l. rename file as entityId_entityName_YYYY.csv
-3.2 repeat steps 3.1 until all entities are downloaded
+Step 3: Multi-Year Download Processing
+3.1. For each year in range:
+    a. Log current year processing
+    b. For each entity in array:
+       i. Check if file already exists in src/data/workforce
+       ii. If not, download CSV file
+       iii. Save to src/data/workforce with format: entityId_entityName_YYYY.csv
+       iv. Wait between downloads
+       v. Log progress
+3.2. Continue until all years and entities are processed
 
 Step 4: Process Completion
-4.1. When no more URLs:
+4.1. When all downloads complete:
     a. Close browser
     b. Log completion
     c. Exit process
@@ -105,7 +100,7 @@ Rate Limiting:
 // ```
 
 // The script will:
-// 1. Create a `src/data/workforce/raw` directory if it doesn't exist
+// 1. Create a `src/data/workforce/` directory if it doesn't exist
 // 2. Visit each main category page
 // 3. Extract all department/entity links
 // 4. Download CSV files for each entity
@@ -117,24 +112,29 @@ Rate Limiting:
 // - Rate limiting (2 second delay between requests)
 // - Progress logging
 // - Error handling and reporting
-// - Organized file naming
+// - Organized file naming by year
 
 // Notes
 
-// - Downloads are for the year 2023 by default (can be changed in the script)
-// - Files are saved in `src/data/workforce/raw/`
+// - Files are saved in `src/data/workforce/
 // - Each CSV contains employee salary and benefits data
-// - The script uses headless Chrome via Puppeteer 
+// - The script uses headless Chrome via Puppeteer
+// - Minimum year is 2010
+// - Maximum year is current year
 
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 const { mkdirp } = require('mkdirp');
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 // Configuration
 const DOWNLOAD_DIR = path.join(__dirname, '../data/workforce');
 const LOG_DIR = path.join(__dirname, '../logs');
-const YEAR = '2023';
 const DELAY_BETWEEN_REQUESTS = 2000; // 2 seconds delay between requests
 const MAX_RETRIES = 3;
 
@@ -156,6 +156,38 @@ const randomSleep = async (logFile) => {
     log(`Sleeping for ${ms/1000} seconds...`, logFile);
   }
   await sleep(ms);
+};
+
+// Function to prompt for years
+const promptForYears = () => {
+  return new Promise((resolve) => {
+    console.log("\n=== Public Pay Data Download ===");
+    console.log("Please enter the range of years you want to download data for.");
+    
+    rl.question("Enter starting year (e.g., 2018): ", (startYearStr) => {
+      const startYear = parseInt(startYearStr);
+      
+      if (isNaN(startYear) || startYear < 2010 || startYear > new Date().getFullYear()) {
+        console.log(`Invalid starting year. Please enter a year between 2010 and ${new Date().getFullYear()}.`);
+        rl.close();
+        process.exit(1);
+      }
+      
+      rl.question("Enter ending year (e.g., 2023): ", (endYearStr) => {
+        const endYear = parseInt(endYearStr);
+        
+        if (isNaN(endYear) || endYear < startYear || endYear > new Date().getFullYear()) {
+          console.log(`Invalid ending year. Please enter a year between ${startYear} and ${new Date().getFullYear()}.`);
+          rl.close();
+          process.exit(1);
+        }
+        
+        console.log(`Will download data for years ${startYear} through ${endYear}.`);
+        rl.close();
+        resolve({ startYear, endYear });
+      });
+    });
+  });
 };
 
 // Setup directories
@@ -338,7 +370,7 @@ const waitForDownload = async (downloadDir, logFile, entityName, timeout = 30000
 };
 
 // Helper function to find and rename downloaded file
-const findAndRenameDownload = async (downloadDir, entity, logFile) => {
+const findAndRenameDownload = async (downloadDir, entity, year, logFile) => {
   // Wait for any filesystem operations to complete
   await sleep(1000);
   
@@ -353,7 +385,7 @@ const findAndRenameDownload = async (downloadDir, entity, logFile) => {
   }
   
   const sanitizedName = entity.name.replace(/[^a-zA-Z0-9]/g, '_');
-  const newFilename = `${entity.id}_${sanitizedName}_${YEAR}.csv`;
+  const newFilename = `${entity.id}_${sanitizedName}_${year}.csv`;
   const oldPath = path.join(downloadDir, downloadedFile);
   const newPath = path.join(downloadDir, newFilename);
   
@@ -364,19 +396,19 @@ const findAndRenameDownload = async (downloadDir, entity, logFile) => {
 };
 
 // Download CSV for a single entity
-async function _downloadCourtCSV(page, entityName, entityId, entityType, logFile) {
+async function _downloadCourtCSV(page, entityName, entityId, entityType, year, logFile) {
   if (!logFile) {
     throw new Error('LogFile parameter is required for downloadCourtCSV');
   }
   
   try {
     // Step 3.1.a: Log current processing
-    log(`Processing download for ${entityName}`, logFile);
+    log(`Processing download for ${entityName} (Year: ${year})`, logFile);
 
     // Step 3.1.b: Navigate to URL
-    const entityUrl = `https://publicpay.ca.gov/Reports/${entityType}/${entityType}.aspx?entityid=${entityId}&year=2023`;
+    const entityUrl = `https://publicpay.ca.gov/Reports/${entityType}/${entityType}.aspx?entityid=${entityId}&year=${year}`;
     await page.goto(entityUrl, { waitUntil: 'networkidle0', timeout: 30000 });
-    log(`Navigated to ${entityName}'s page`, logFile);
+    log(`Navigated to ${entityName}'s page for year ${year}`, logFile);
 
     // Log the page title and URL to verify we're on the right page
     const pageTitle = await page.title();
@@ -416,7 +448,7 @@ async function _downloadCourtCSV(page, entityName, entityId, entityType, logFile
 
     // Generate expected filename
     const sanitizedName = entityName.replace(/[^a-zA-Z0-9]/g, '_');
-    const expectedFilename = `${YEAR}_${entityType}_${entityId}_${sanitizedName}.csv`;
+    const expectedFilename = `${year}_${entityType}_${entityId}_${sanitizedName}.csv`;
     log(`Expected download filename: ${expectedFilename}`, logFile);
 
     // Step 3.1.e: Configure download behavior to save directly to target directory
@@ -428,7 +460,7 @@ async function _downloadCourtCSV(page, entityName, entityId, entityType, logFile
 
     // Step 3.1.f: Trigger download
     await csvLink.click();
-    log(`Initiated download for ${entityName}`, logFile);
+    log(`Initiated download for ${entityName} (Year: ${year})`, logFile);
 
     // Step 3.1.g: Wait for download to complete
     await sleep(5000);
@@ -445,7 +477,7 @@ async function _downloadCourtCSV(page, entityName, entityId, entityType, logFile
         const filePath = path.join(DOWNLOAD_DIR, expectedFilename);
         if (fs.existsSync(filePath)) {
           downloadSuccess = true;
-          log(`Successfully downloaded CSV for ${entityName}`, logFile);
+          log(`Successfully downloaded CSV for ${entityName} (Year: ${year})`, logFile);
           break;
         }
       } catch (error) {
@@ -466,7 +498,7 @@ async function _downloadCourtCSV(page, entityName, entityId, entityType, logFile
 
     return true;
   } catch (error) {
-    log(`Error processing ${entityName}: ${error.message}`, logFile);
+    log(`Error processing ${entityName} (Year: ${year}): ${error.message}`, logFile);
     
     // Log the full page HTML on error for debugging
     try {
@@ -481,9 +513,9 @@ async function _downloadCourtCSV(page, entityName, entityId, entityType, logFile
 }
 
 // Process entities on current page
-async function processCurrentPage(page, browser, downloadDir, logFile, existingEntities = []) {
+async function processCurrentPage(page, browser, downloadDir, logFile, existingEntities = [], year) {
   const url = await page.url();
-  log('Step 2.0: Starting page processing', logFile);
+  log(`Step 2.0: Starting page processing for year ${year}`, logFile);
   log(`Current URL: ${url}`, logFile);
 
   try {
@@ -635,7 +667,7 @@ async function processCurrentPage(page, browser, downloadDir, logFile, existingE
     for (const row of updatedTableRows) {
       // Step 2.5.a: Find first cell with link
       log('Step 2.5.a: Looking for link in first cell...', logFile);
-      const entityData = await page.evaluate(row => {
+      const entityData = await page.evaluate((row, year) => {
         const firstCell = row.querySelector('td:first-child');
         const link = firstCell?.querySelector('a');
         const name = link?.textContent?.trim();
@@ -644,8 +676,8 @@ async function processCurrentPage(page, browser, downloadDir, logFile, existingE
         const type = href.toLowerCase().includes('reports/state/state') ? 'State' :
                     href.toLowerCase().includes('superiorcourts') ? 'SuperiorCourts' :
                     href.toLowerCase().includes('university') ? 'HigherEducations' : 'unknown';
-        return { name, type, id, href, hasLink: !!link };
-      }, row);
+        return { name, type, id, href: href.replace(/year=\d+/, `year=${year}`), hasLink: !!link };
+      }, row, year);
 
       if (entityData.name && entityData.id) {
         // Log each step of the extraction
@@ -742,7 +774,7 @@ async function processCurrentPage(page, browser, downloadDir, logFile, existingE
         if (paginationSuccess) {
           // Process next page and add entities to our existing array
           log('Step 2.6: Starting processing of next page...', logFile);
-          const nextPageEntities = await processCurrentPage(page, browser, downloadDir, logFile, entities);
+          const nextPageEntities = await processCurrentPage(page, browser, downloadDir, logFile, entities, year);
           log(`Step 2.6: Next page returned ${nextPageEntities ? nextPageEntities.length : 0} entities`, logFile);
           return entities; // Return our accumulated entities array
         }
@@ -768,18 +800,18 @@ async function processCurrentPage(page, browser, downloadDir, logFile, existingE
   }
 }
 
-async function processEntityDownload(page, entity, downloadDir, logFile, currentIndex, totalEntities) {
+async function processEntityDownload(page, entity, downloadDir, logFile, currentIndex, totalEntities, year) {
   if (!logFile) {
     throw new Error('LogFile parameter is required for processEntityDownload');
   }
 
   try {
-    log(`Step 3.1: Processing entity ${currentIndex + 1} of ${totalEntities}: ${entity.name}`, logFile);
-    log(`Step 3.1.a: Starting download for ${entity.name} (${entity.type}, ID: ${entity.id})`, logFile);
+    log(`Step 3.1: Processing entity ${currentIndex + 1} of ${totalEntities}: ${entity.name} (Year: ${year})`, logFile);
+    log(`Step 3.1.a: Starting download for ${entity.name} (${entity.type}, ID: ${entity.id}, Year: ${year})`, logFile);
 
     // Step 3.1.e: Check if file already exists
     const sanitizedName = entity.name.replace(/[^a-zA-Z0-9]/g, '_');
-    const expectedFilename = `${entity.id}_${sanitizedName}_${YEAR}.csv`;
+    const expectedFilename = `${entity.id}_${sanitizedName}_${year}.csv`;
     const filePath = path.join(downloadDir, expectedFilename);
     
     // Check if file exists and has content
@@ -801,7 +833,7 @@ async function processEntityDownload(page, entity, downloadDir, logFile, current
     await randomSleep(logFile);
 
     // Step 3.1.b: Navigate to URL - use the stored href from entity collection
-    const entityUrl = entity.href;
+    const entityUrl = entity.href.replace(/year=\d+/, `year=${year}`);
     if (!entityUrl) {
       throw new Error('No URL found for entity');
     }
@@ -821,7 +853,7 @@ async function processEntityDownload(page, entity, downloadDir, logFile, current
       if (pageTitle.includes('Error') || currentUrl.includes('Error.aspx')) {
         log(`Got error page, retrying with constructed URL...`, logFile);
         await randomSleep(logFile);
-        const fallbackUrl = `https://publicpay.ca.gov/Reports/${entity.type}/${entity.type}Entity.aspx?entityid=${entity.id}&year=2023`;
+        const fallbackUrl = `https://publicpay.ca.gov/Reports/${entity.type}/${entity.type}Entity.aspx?entityid=${entity.id}&year=${year}`;
         log(`Retrying with fallback URL: ${fallbackUrl}`, logFile);
         await page.goto(fallbackUrl, { waitUntil: 'networkidle0', timeout: 30000 });
         
@@ -886,7 +918,7 @@ async function processEntityDownload(page, entity, downloadDir, logFile, current
 
     // Step 3.1.l: Rename downloaded file
     log(`Step 3.1.l: Renaming downloaded file...`, logFile);
-    const newFilePath = await findAndRenameDownload(downloadDir, entity, logFile);
+    const newFilePath = await findAndRenameDownload(downloadDir, entity, year, logFile);
     log(`Step 3.1.l: Successfully renamed file to: ${path.basename(newFilePath)}`, logFile);
 
     // Random sleep before next entity
@@ -928,7 +960,7 @@ async function processEntityDownload(page, entity, downloadDir, logFile, current
           log(`Found and verified GccExport file despite error: ${matchingFile}`, logFile);
           // Rename the file to our expected format
           const sanitizedName = entity.name.replace(/[^a-zA-Z0-9]/g, '_');
-          const newFilename = `${entity.id}_${sanitizedName}_${YEAR}.csv`;
+          const newFilename = `${entity.id}_${sanitizedName}_${year}.csv`;
           const oldPath = path.join(downloadDir, matchingFile);
           const newPath = path.join(downloadDir, newFilename);
           
@@ -945,55 +977,66 @@ async function processEntityDownload(page, entity, downloadDir, logFile, current
   }
 }
 
+// Helper function to sanitize filenames
+function sanitizeFilename(filename) {
+  return filename.replace(/[^a-zA-Z0-9]/g, '_');
+}
+
 // Main function to run the script
 async function main() {
   let browser;
   let logFile;
   let allEntities = [];
-  
+
   try {
-    // Setup directories and create log file
+    // Step 1.1: Get year range from user
+    const { startYear, endYear } = await promptForYears();
+    const yearsToProcess = [];
+    for (let year = startYear; year <= endYear; year++) {
+      yearsToProcess.push(year.toString());
+    }
+    
+    // Step 1.2: Setup directories and create log file
     await setupDirectories();
     logFile = createLogFile();
-    log('Starting download process...', logFile);
+    log(`Starting download process for years ${startYear}-${endYear}...`, logFile);
 
-    // Launch browser
+    // Step 1.3: Launch browser
     browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
 
-    // Create new page
+    // Step 1.4: Create new page
     const page = await browser.newPage();
-    
-    // Process each base URL in sequence
+
+    // Step 2: Process each base URL in sequence
     for (let i = 0; i < BASE_URLS.length; i++) {
       const url = BASE_URLS[i];
-      log(`Processing base URL ${i + 1}/${BASE_URLS.length}: ${url}`, logFile);
+      log(`Step 2.9: Processing base URL ${i + 1}/${BASE_URLS.length}: ${url}`, logFile);
       
       try {
-        // Navigate to the URL
+        // Step 2.1: Navigate to the URL
         await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
         await sleep(5000); // Wait for page to stabilize
-        
-        // Process the current page and accumulate entities
-        log(`Current total entities before processing URL: ${allEntities.length}`, logFile);
-        const pageEntities = await processCurrentPage(page, browser, DOWNLOAD_DIR, logFile, allEntities);
+
+        // Step 2.2-2.8: Process the current page and accumulate entities
+        log(`Step 2.8: Current total entities before processing URL: ${allEntities.length}`, logFile);
+        const pageEntities = await processCurrentPage(page, browser, DOWNLOAD_DIR, logFile, allEntities, startYear);
         if (pageEntities && pageEntities.length > 0) {
-          // No need to push or concat since we passed allEntities directly
-          log(`Successfully processed ${url} - Total entities now: ${allEntities.length}`, logFile);
-      } else {
-          log(`Warning: No entities found for ${url}`, logFile);
+          log(`Step 2.8: Successfully processed ${url} - Total entities now: ${allEntities.length}`, logFile);
+        } else {
+          log(`Step 2.8: Warning: No entities found for ${url}`, logFile);
         }
       } catch (error) {
-        log(`Error processing URL ${url}: ${error.message}`, logFile);
+        log(`Step 2.8: Error processing URL ${url}: ${error.message}`, logFile);
         continue;
       }
       
-      // Wait before processing next URL
+      // Step 2.9: Wait before processing next URL
       if (i < BASE_URLS.length - 1) {
-        log(`Waiting before processing next URL...`, logFile);
-      await sleep(DELAY_BETWEEN_REQUESTS);
+        log(`Step 2.9: Waiting before processing next URL...`, logFile);
+        await sleep(DELAY_BETWEEN_REQUESTS);
       }
     }
 
@@ -1021,37 +1064,56 @@ async function main() {
     }
     log('Step 2.11: Successfully verified minimum entity count requirement', logFile);
 
-    // After verification, download CSVs for all entities
-    log(`Starting CSV downloads for ${allEntities.length} verified entities`, logFile);
-    let successfulDownloads = 0;
-    let failedDownloads = 0;
-    
-    for (let i = 0; i < allEntities.length; i++) {
-      const entity = allEntities[i];
-      try {
-        const success = await processEntityDownload(page, entity, DOWNLOAD_DIR, logFile, i, allEntities.length);
-        if (success) {
-          successfulDownloads++;
-        } else {
+    // Step 3: Process each year in the range
+    for (const year of yearsToProcess) {
+      log(`\n===== Step 3.1: PROCESSING YEAR ${year} =====\n`, logFile);
+      console.log(`\nProcessing data for year ${year}...`);
+      
+      // Step 3.1.a: Using the main DOWNLOAD_DIR for all files
+      log(`Step 3.1.a: Saving all files for year ${year} to main directory: ${DOWNLOAD_DIR}`, logFile);
+      
+      // Step 3.1.b: Download CSVs for all entities
+      log(`Step 3.1.b: Starting CSV downloads for ${allEntities.length} verified entities for year ${year}`, logFile);
+      let successfulDownloads = 0;
+      let failedDownloads = 0;
+      
+      for (let i = 0; i < allEntities.length; i++) {
+        const entity = allEntities[i];
+        try {
+          // Step 3.1.b.i-iii: Process entity download
+          const success = await processEntityDownload(page, entity, DOWNLOAD_DIR, logFile, i, allEntities.length, year);
+          if (success) {
+            successfulDownloads++;
+          } else {
+            failedDownloads++;
+          }
+          // Step 3.1.b.iv-v: Log progress
+          log(`Step 3.1.b.v: Download progress for year ${year}: ${successfulDownloads} successful, ${failedDownloads} failed, ${allEntities.length - (i + 1)} remaining`, logFile);
+        } catch (error) {
           failedDownloads++;
+          log(`Step 3.1.b: Error downloading CSV for ${entity.name} (Year: ${year}): ${error.message}`, logFile);
+          continue;
         }
-        log(`Download progress: ${successfulDownloads} successful, ${failedDownloads} failed, ${allEntities.length - (i + 1)} remaining`, logFile);
-      } catch (error) {
-        failedDownloads++;
-        log(`Error downloading CSV for ${entity.name}: ${error.message}`, logFile);
-        continue;
       }
+
+      log(`Step 3.1: Download process for year ${year} completed. Final results: ${successfulDownloads} successful, ${failedDownloads} failed`, logFile);
     }
 
-    log(`Download process completed. Final results: ${successfulDownloads} successful, ${failedDownloads} failed`, logFile);
+    // Step 4: Process Completion
+    log(`Step 4.1: Download process for all years ${startYear}-${endYear} completed.`, logFile);
+    console.log(`\nAll downloads completed for years ${startYear}-${endYear}!`);
   } catch (error) {
     if (logFile) {
-      log(`Fatal error: ${error.message}`, logFile);
+      log(`Step 4.1: Fatal error: ${error.message}`, logFile);
     }
     console.error('Fatal error:', error);
   } finally {
+    // Step 4.1.a: Close browser
     if (browser) {
       await browser.close();
+    }
+    if (rl && rl.close) {
+      rl.close();
     }
     process.exit(0);
   }

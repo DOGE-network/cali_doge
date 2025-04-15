@@ -27,14 +27,30 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "types": [
+      "node",
+      "jest",
+      "@types/babel__core",
+      "@types/babel__generator",
+      "@types/babel__template",
+      "@types/babel__traverse",
+      "@types/d3-array",
+      "@types/graceful-fs",
+      "@types/hast",
+      "@types/json-schema",
+      "@types/mdast",
+      "@types/phoenix",
+      "@types/unist"
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "src/scripts/archive/verify_hierarchy.js"  ],
+    ".next/types/**/*.ts",
+    "src/scripts/archive/verify_hierarchy.js"
+  ],
   "exclude": [
     "node_modules"
   ]
