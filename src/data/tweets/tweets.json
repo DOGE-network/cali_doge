@@ -1,6 +1,353 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1912285975759450267"
+      ],
+      "attachments": {
+        "media_keys": [
+          "3_1912284154936344576"
+        ]
+      },
+      "entities": {
+        "mentions": [
+          {
+            "start": 123,
+            "end": 137,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 138,
+            "end": 148,
+            "username": "MayorOfLA",
+            "id": "17070113"
+          },
+          {
+            "start": 153,
+            "end": 165,
+            "username": "KarenBassLA",
+            "id": "113494390"
+          }
+        ],
+        "urls": [
+          {
+            "start": 64,
+            "end": 87,
+            "url": "https://t.co/eaaE32U7k8",
+            "expanded_url": "https://cali-doge.org",
+            "display_url": "cali-doge.org",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org"
+          },
+          {
+            "start": 166,
+            "end": 189,
+            "url": "https://t.co/3MhayzEgxJ",
+            "expanded_url": "https://x.com/cali_doge/status/1912285975759450267/photo/1",
+            "display_url": "pic.x.com/3MhayzEgxJ",
+            "media_key": "3_1912284154936344576"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1012377449148047360",
+            "name": "Eric Garcetti",
+            "description": "Mayor of Los Angeles Eric Garcetti"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "1012377449148047360",
+            "name": "Eric Garcetti",
+            "description": "Mayor of Los Angeles Eric Garcetti"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1012377449148047360",
+            "name": "Eric Garcetti",
+            "description": "Mayor of Los Angeles Eric Garcetti"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "id": "1912285975759450267",
+      "created_at": "2025-04-15T23:24:39.000Z",
+      "text": "5/5 Vendor and program data will be publshed next week.   Visit https://t.co/eaaE32U7k8 to see all the data 📊\n\nReplying to @houmanhemmati @MayorOfLA and @KarenBassLA https://t.co/3MhayzEgxJ",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1912285975759450267_0.jpg",
+          "width": 1217,
+          "height": 1645
+        }
+      ]
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1912285972341092398"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 133,
+            "end": 141,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 142,
+            "end": 153,
+            "username": "lanheechen",
+            "id": "87048122"
+          },
+          {
+            "start": 154,
+            "end": 165,
+            "username": "HooverInst",
+            "id": "86364947"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 4,
+            "end": 19,
+            "probability": 0.8625,
+            "type": "Organization",
+            "normalized_text": "California State"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1912285972341092398",
+      "created_at": "2025-04-15T23:24:39.000Z",
+      "text": "4/5 California State government salary 2010 through 2021 is being processed currently and should be published by the end of the week\n@joffemd @lanheechen @HooverInst",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1912285969086312861"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1912285969086312861",
+      "entities": {
+        "annotations": [
+          {
+            "start": 21,
+            "end": 36,
+            "probability": 0.8699,
+            "type": "Organization",
+            "normalized_text": "California State"
+          }
+        ]
+      },
+      "created_at": "2025-04-15T23:24:38.000Z",
+      "text": "3/5 Notable that the California State reported headcount and salary data is different than actual 2023 720K employees and $67B in salaries",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1912285966280323236"
+      ],
+      "id": "1912285966280323236",
+      "created_at": "2025-04-15T23:24:37.000Z",
+      "text": "2/5 The matching algorithm for departments is slightly improved, so more data for 2023 as well",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1912285963637919883"
+      ],
+      "attachments": {
+        "media_keys": [
+          "3_1912283708465311744"
+        ]
+      },
+      "entities": {
+        "mentions": [
+          {
+            "start": 96,
+            "end": 104,
+            "username": "JoinFAI",
+            "id": "1462508754"
+          },
+          {
+            "start": 105,
+            "end": 110,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 111,
+            "end": 119,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "urls": [
+          {
+            "start": 71,
+            "end": 94,
+            "url": "https://t.co/SQecOdrwge",
+            "expanded_url": "https://cali-doge.org/workforce",
+            "display_url": "cali-doge.org/workforce",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/workforce"
+          },
+          {
+            "start": 120,
+            "end": 143,
+            "url": "https://t.co/VCrYgkRIPU",
+            "expanded_url": "https://x.com/cali_doge/status/1912285963637919883/photo/1",
+            "display_url": "pic.x.com/VCrYgkRIPU",
+            "media_key": "3_1912283708465311744"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 4,
+            "end": 13,
+            "probability": 0.9711,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1912285963637919883",
+      "created_at": "2025-04-15T23:24:36.000Z",
+      "text": "1/5 California workforce salary data for 2022-2023 is now available at https://t.co/SQecOdrwge\n\n@JoinFAI @DOGE @joffemd https://t.co/VCrYgkRIPU",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1912285963637919883_0.jpg",
+          "width": 1217,
+          "height": 1645
+        }
+      ]
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -5072,8 +5419,8 @@
     }
   ],
   "meta": {
-    "result_count": 50,
-    "newest_id": "1908572604895801472",
+    "result_count": 55,
+    "newest_id": "1912285975759450267",
     "oldest_id": "1882144700762878208"
   }
 }
