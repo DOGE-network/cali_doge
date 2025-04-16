@@ -1066,7 +1066,7 @@ function WorkforcePageContent() {
       <div className="flex flex-col space-y-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold">California State Government Workforce</h1>
-          <p className="text-sm text-gray-600 mt-1">Salary, Headcount and Wages numbers are from department salaries found at <a href="https://publicpay.ca.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">publicpay.ca.gov</a>. Wages are calculated as regulary wages plus any benefits.</p>
+          <p className="text-sm text-gray-600 mt-1">Salary, Headcount and Wages numbers are from department salaries found at <a href="https://publicpay.ca.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">publicpay.ca.gov</a>. Wages are calculated as regular wages plus any benefits.</p>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
               <Button
