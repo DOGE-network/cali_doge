@@ -1,6 +1,158 @@
 {
   "tweets": [
     {
+      "id": "1912290165105783050",
+      "created_at": "2025-04-15T23:41:18.000Z",
+      "attachments": {
+        "media_keys": [
+          "3_1912290158386315264"
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1912290165105783050"
+      ],
+      "text": "5M data rows processed so far and we are just getting started!\n\nVisit https://t.co/PodQyl31kM see workforce data. Vendor and program data coming soon. \n\n@DOGE @CA__DOGE @vin4congress @DarrellIssa @SteveHiltonx @HarmeetKDhillon https://t.co/jjvHnVRSQ7",
+      "entities": {
+        "urls": [
+          {
+            "start": 70,
+            "end": 93,
+            "url": "https://t.co/PodQyl31kM",
+            "expanded_url": "http://cali-doge.org",
+            "display_url": "cali-doge.org",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/"
+          },
+          {
+            "start": 227,
+            "end": 250,
+            "url": "https://t.co/jjvHnVRSQ7",
+            "expanded_url": "https://x.com/cali_doge/status/1912290165105783050/photo/1",
+            "display_url": "pic.x.com/jjvHnVRSQ7",
+            "media_key": "3_1912290158386315264"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 153,
+            "end": 158,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 159,
+            "end": 168,
+            "username": "CA__DOGE",
+            "id": "1861563798248988672"
+          },
+          {
+            "start": 169,
+            "end": 182,
+            "username": "vin4congress",
+            "id": "1653894153183584256"
+          },
+          {
+            "start": 183,
+            "end": 195,
+            "username": "DarrellIssa",
+            "id": "22509548"
+          },
+          {
+            "start": 196,
+            "end": 209,
+            "username": "SteveHiltonx",
+            "id": "2779389582"
+          },
+          {
+            "start": 210,
+            "end": 226,
+            "username": "HarmeetKDhillon",
+            "id": "201066140"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "964532585455001604",
+            "name": "Darrell Issa",
+            "description": "Darrell Issa"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "964532585455001604",
+            "name": "Darrell Issa",
+            "description": "Darrell Issa"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "964532585455001604",
+            "name": "Darrell Issa",
+            "description": "Darrell Issa"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 15, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1912290165105783050_0.jpg",
+          "width": 1217,
+          "height": 1645
+        }
+      ]
+    },
+    {
       "edit_history_tweet_ids": [
         "1912285975759450267"
       ],
@@ -5419,8 +5571,8 @@
     }
   ],
   "meta": {
-    "result_count": 55,
-    "newest_id": "1912285975759450267",
+    "result_count": 56,
+    "newest_id": "1912290165105783050",
     "oldest_id": "1882144700762878208"
   }
 }
