@@ -151,7 +151,7 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Sleep function with random interval
 const randomSleep = async (logFile) => {
-  const ms = Math.floor(Math.random() * (20000 - 1000 + 1) + 1000); // Random between 1-20 seconds
+  const ms = Math.floor(Math.random() * (10000 - 1000 + 1) + 1000); // Random between 1-10 seconds
   if (logFile) {
     log(`Sleeping for ${ms/1000} seconds...`, logFile);
   }
