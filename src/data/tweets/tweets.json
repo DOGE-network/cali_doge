@@ -1,6 +1,267 @@
 {
   "tweets": [
     {
+      "entities": {
+        "urls": [
+          {
+            "start": 81,
+            "end": 104,
+            "url": "https://t.co/kMyJRleO2T",
+            "expanded_url": "http://cali-doge.org/workforce",
+            "display_url": "cali-doge.org/workforce",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/workforce"
+          },
+          {
+            "start": 281,
+            "end": 304,
+            "url": "https://t.co/GuJKUac10b",
+            "expanded_url": "https://x.com/cali_doge/status/1912560693888577654/photo/1",
+            "display_url": "pic.x.com/GuJKUac10b",
+            "media_key": "3_1912560687991386113"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 221,
+            "end": 230,
+            "username": "elonmusk",
+            "id": "44196397"
+          },
+          {
+            "start": 231,
+            "end": 236,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 238,
+            "end": 252,
+            "username": "RepMcClintock",
+            "id": "50152441"
+          },
+          {
+            "start": 253,
+            "end": 268,
+            "username": "repdarrellissa",
+            "id": "63650107"
+          },
+          {
+            "start": 269,
+            "end": 280,
+            "username": "DavidSacks",
+            "id": "1137701"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 9,
+            "probability": 0.9586,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "attachments": {
+        "media_keys": [
+          "3_1912560687991386113"
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1912560693888577654"
+      ],
+      "text": "California workforce salary data for 2010-2011 and 2022-2023 is now available at https://t.co/kMyJRleO2T\n\nWe are processing years 2012-2021, which should be completed by the end of the week. \n\nVendors and programs next.\n\n@elonmusk @DOGE  @RepMcClintock @repdarrellissa @DavidSacks https://t.co/GuJKUac10b",
+      "created_at": "2025-04-16T17:36:17.000Z",
+      "id": "1912560693888577654",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 16, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1912560693888577654_0.jpg",
+          "width": 1024,
+          "height": 1024
+        }
+      ]
+    },
+    {
       "id": "1912290165105783050",
       "created_at": "2025-04-15T23:41:18.000Z",
       "attachments": {
@@ -5571,8 +5832,8 @@
     }
   ],
   "meta": {
-    "result_count": 56,
-    "newest_id": "1912290165105783050",
+    "result_count": 57,
+    "newest_id": "1912560693888577654",
     "oldest_id": "1882144700762878208"
   }
 }
