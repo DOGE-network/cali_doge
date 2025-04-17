@@ -1,6 +1,55 @@
 {
   "tweets": [
     {
+      "id": "1912589395263385795",
+      "created_at": "2025-04-16T19:30:20.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1912589395263385795"
+      ],
+      "author_id": "1859283000145608705",
+      "text": "@DOGE It would be amazing to get to the same level of transparency and review in the California State Government",
+      "entities": {
+        "annotations": [
+          {
+            "start": 85,
+            "end": 111,
+            "probability": 0.4852,
+            "type": "Organization",
+            "normalized_text": "California State Government"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 5,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ]
+      },
+      "created_at_formatted": "Apr 16, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "entities": {
         "urls": [
           {
@@ -5832,8 +5881,8 @@
     }
   ],
   "meta": {
-    "result_count": 57,
-    "newest_id": "1912560693888577654",
+    "result_count": 58,
+    "newest_id": "1912589395263385795",
     "oldest_id": "1882144700762878208"
   }
 }
