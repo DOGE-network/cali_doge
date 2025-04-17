@@ -1,4 +1,4 @@
-3900   State Air Resources Board 
+3900   State Air Resources Board 
 The Air Resources Board has primary responsibility for protecting air quality in California. This responsibility includes 
 establishing ambient air quality standards for specific pollutants, maintaining a statewide ambient air-monitoring network in 
 conjunction with local air districts, administering air pollution research studies, evaluating standards adopted by the U.S. 
@@ -12,14 +12,14 @@ towards less-polluting transportation options, and advance zero emission technol
 Resources Board is also responsible for developing guidance for agencies administering California Climate Investments 
 programs to ensure statutory requirements of the Greenhouse Gas Reduction Fund are met, including maximizing benefits for 
 disadvantaged communities, reporting, and quantification methods, pursuant to Chapter 36, Statutes of 2014 (SB 862), and 
-serves as the account administrator for the Greenhouse Gas Reduction Fund. The Air Resources Board also implements the 
+serves as the account administrator for the Greenhouse Gas Reduction Fund. The Air Resources Board also implements the 
 Community Air Protection Program to reduce air pollution in the State's most burdened communities, pursuant to Chapter 136, 
 Statutes of 2017 (AB 617). The Air Resources Board works with local air districts, the business community, scientists, 
 community representatives, and other stakeholders to implement its programs. 
 Because the Air Resources Board's programs drive a need for infrastructure investment, the Board has a capital outlay 
 program to support this need. For the specifics on the Board's capital outlay program, see "Infrastructure Overview." 
 3-YEAR EXPENDITURES AND POSITIONS † 
- 
+ 
 Positions 
 Expenditures 
 2021-22 
@@ -213,7 +213,7 @@ Chapter 7, Statutes of 2017 (SB 132).
 3530-Community Air Protection Program: 
 Health and Safety Code Sections 39607.1, 40920.6, 40920.8, 42400, 42402, 42411, 42705.5 and 44391.2. 
 DETAILED BUDGET ADJUSTMENTS 
- 
+ 
 2022-23* 
 2023-24* 
 General 
@@ -611,8 +611,8 @@ PROGRAM DESCRIPTIONS
 3500 - MOBILE SOURCE 
 The Mobile Source Program works to improve air quality by reducing emissions from on- and off-road mobile sources as 
 follows: 
-• Developing, implementing, and enforcing laws, regulations, and programs limiting criteria pollutants, greenhouse gases, and 
-toxic air contaminants from new and in-use vehicles and other mobile sources and assessing the effectiveness of 
+• Developing, implementing, and enforcing laws, regulations, and programs limiting criteria pollutants, greenhouse gases, and 
+toxic air contaminants from new and in-use vehicles and other mobile sources and assessing the effectiveness of 
 established procedures. 
 • Developing testing and evaluation procedures for vehicles, engines, emission control components, fuels and fuel additives, 
 and testing equipment to ensure emission standards are met. 
@@ -642,7 +642,7 @@ The Zero/Near-Zero Emission Warehouse Program works to reduce emissions from fre
 competitive funding to advance implementation of zero/near-zero emission warehouses and technology. The intent of the 
 program is to develop state-of-the-art facilities with the lowest possible emissions. 
 3530 - THE COMMUNITY AIR PROTECTION PROGRAM 
-The Community Air Protection Program works to reduce air pollution in California's most burdened communities by identifying 
+The Community Air Protection Program works to reduce air pollution in California's most burdened communities by identifying 
 priority communities most burdened by cumulative air pollution impacts and by developing and implementing: 
 2023-24 STATE BUDGET — EP 4
 3900   State Air Resources Board - Continued
@@ -653,8 +653,8 @@ ENVIRONMENTAL PROTECTION
 • A statewide uniform system of annual emissions reporting. 
 • Community Air Grants. 
 DETAILED EXPENDITURES BY PROGRAM † 
- 
- 
+ 
+ 
 2021-22* 
 2022-23* 
 2023-24* 
@@ -969,7 +969,7 @@ EXPENDITURES BY CATEGORY †
 1 State Operations 
 Positions 
 Expenditures 
- 
+ 
 2021-22 
 2022-23 
 2023-24 
@@ -1041,7 +1041,7 @@ $588,073
 $496,763 
 2 Local Assistance 
 Expenditures 
- 
+ 
 2021-22* 
 2022-23* 
 2023-24* 
@@ -1069,11 +1069,11 @@ $798,551
 resulting from the final reconciliation of the 2021-22 ending fund balance will be reflected as a prior year adjustment in the 
 2024-25 Governor’s Budget publication. 
 DETAIL OF APPROPRIATIONS AND ADJUSTMENTS † 
-1   STATE OPERATIONS 
+1   STATE OPERATIONS 
 2021-22* 
 2022-23* 
 2023-24* 
-0001   General Fund 
+0001   General Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 - 
@@ -1112,7 +1112,7 @@ TOTALS, EXPENDITURES
 $3,331 
 $8,661 
 $2,388 
-0042   State Highway Account, State Transportation Fund 
+0042   State Highway Account, State Transportation Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $132 
@@ -1126,7 +1126,7 @@ TOTALS, EXPENDITURES
 $132 
 $179 
 $179 
-0044   Motor Vehicle Account, State Transportation Fund 
+0044   Motor Vehicle Account, State Transportation Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $143,882 
@@ -1172,7 +1172,7 @@ TOTALS, EXPENDITURES
 $143,882 
 $159,011 
 $159,764 
-0115   Air Pollution Control Fund 
+0115   Air Pollution Control Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $79,630 
@@ -1222,7 +1222,7 @@ TOTALS, EXPENDITURES
 $81,714 
 $101,796 
 $109,887 
-0421   Vehicle Inspection and Repair Fund 
+0421   Vehicle Inspection and Repair Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $19,220 
@@ -1260,7 +1260,7 @@ TOTALS, EXPENDITURES
 $19,220 
 $22,409 
 $23,130 
-0434   Air Toxics Inventory and Assessment Account 
+0434   Air Toxics Inventory and Assessment Account 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $5 
@@ -1286,7 +1286,7 @@ TOTALS, EXPENDITURES
 $5 
 $721 
 $722 
-0462   Public Utilities Commission Utilities Reimbursement Account 
+0462   Public Utilities Commission Utilities Reimbursement Account 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $72 
@@ -1312,7 +1312,7 @@ TOTALS, EXPENDITURES
 $72 
 $207 
 $207 
-0890   Federal Trust Fund 
+0890   Federal Trust Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $8,697 
@@ -1338,7 +1338,7 @@ TOTALS, EXPENDITURES
 $8,697 
 $18,348 
 $18,312 
-0995   Reimbursements 
+0995   Reimbursements 
 2023-24 STATE BUDGET — EP 8
 3900   State Air Resources Board - Continued
 ENVIRONMENTAL PROTECTION
@@ -1356,7 +1356,7 @@ TOTALS, EXPENDITURES
 $1,171 
 $9,837 
 $9,847 
-3046   Oil, Gas, and Geothermal Administrative Fund 
+3046   Oil, Gas, and Geothermal Administrative Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $2,258 
@@ -1382,7 +1382,7 @@ TOTALS, EXPENDITURES
 $2,258 
 $3,481 
 $3,481 
-3070   Nontoxic Dry Cleaning Incentive Trust Fund 
+3070   Nontoxic Dry Cleaning Incentive Trust Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $13 
@@ -1408,7 +1408,7 @@ TOTALS, EXPENDITURES
 $13 
 $102 
 $3 
-3119   Air Quality Improvement Fund 
+3119   Air Quality Improvement Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $2,401 
@@ -1434,7 +1434,7 @@ TOTALS, EXPENDITURES
 $2,401 
 $3,733 
 $3,737 
-3228   Greenhouse Gas Reduction Fund 
+3228   Greenhouse Gas Reduction Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $31,693 
@@ -1481,7 +1481,7 @@ TOTALS, EXPENDITURES
 $26,743 
 $174,642 
 $35,568 
-3237   Cost of Implementation Account, Air Pollution Control Fund 
+3237   Cost of Implementation Account, Air Pollution Control Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $57,070 
@@ -1515,7 +1515,7 @@ TOTALS, EXPENDITURES
 $64,270 
 $70,110 
 $89,379 
-3290   Road Maintenance and Rehabilitation Account, State Transportation Fund 
+3290   Road Maintenance and Rehabilitation Account, State Transportation Fund 
 ENVIRONMENTAL PROTECTION
 3900   State Air Resources Board - Continued
 2023-24 STATE BUDGET — EP 9
@@ -1537,7 +1537,7 @@ TOTALS, EXPENDITURES
 - 
 $19 
 $19 
-3291   Trade Corridor Enhancement Account, State Transportation Fund 
+3291   Trade Corridor Enhancement Account, State Transportation Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 $132 
@@ -1551,7 +1551,7 @@ TOTALS, EXPENDITURES
 $132 
 $9 
 $9 
-3358   Truck Emission Check Fund 
+3358   Truck Emission Check Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 - 
@@ -1561,7 +1561,7 @@ TOTALS, EXPENDITURES
 - 
 - 
 $14,802 
-3359   Certification Compliance Fund 
+3359   Certification Compliance Fund 
 APPROPRIATIONS 
 001 Budget Act appropriation 
 - 
@@ -1587,7 +1587,7 @@ TOTALS, EXPENDITURES
 - 
 $13,477 
 $24,003 
-6054   CA Ports Infrastructure, Security, and Air Quality Improvement Account, 
+6054   CA Ports Infrastructure, Security, and Air Quality Improvement Account, 
 Highway Safety, Traffic Reduction, Air Quality, and Port Security Fund of 2006 
 APPROPRIATIONS 
 001 Budget Act appropriation 
@@ -1618,11 +1618,11 @@ Total Expenditures, All Funds, (State Operations)
 $354,152 
 $588,073 
 $496,763 
-2   LOCAL ASSISTANCE 
+2   LOCAL ASSISTANCE 
 2021-22* 
 2022-23* 
 2023-24* 
-0001   General Fund, Proposition 98 
+0001   General Fund, Proposition 98 
 APPROPRIATIONS 
 Chapter 52, Statutes of 2022 
 $375,000 
@@ -1632,7 +1632,7 @@ TOTALS, EXPENDITURES
 $375,000 
 - 
 - 
-0001   General Fund 
+0001   General Fund 
 APPROPRIATIONS 
 101 Budget Act appropriation 
 $1,027,647 
@@ -1671,7 +1671,7 @@ TOTALS, EXPENDITURES
 $1,027,647 
 $967,446 
 $207,000 
-0044   Motor Vehicle Account, State Transportation Fund 
+0044   Motor Vehicle Account, State Transportation Fund 
 APPROPRIATIONS 
 101 Budget Act appropriation 
 $10,111 
@@ -1689,7 +1689,7 @@ TOTALS, EXPENDITURES
 $10,111 
 $10,111 
 $10,111 
-0115   Air Pollution Control Fund 
+0115   Air Pollution Control Fund 
 APPROPRIATIONS 
 101 Budget Act appropriation 
 $279,057 
@@ -1703,7 +1703,7 @@ TOTALS, EXPENDITURES
 $279,057 
 $130,000 
 $130,000 
-3119   Air Quality Improvement Fund 
+3119   Air Quality Improvement Fund 
 APPROPRIATIONS 
 101 Budget Act appropriation 
 $28,590 
@@ -1717,7 +1717,7 @@ TOTALS, EXPENDITURES
 $28,590 
 $28,640 
 $28,640 
-3122   Enhanced Fleet Modernization Subaccount, High Polluter Repair or 
+3122   Enhanced Fleet Modernization Subaccount, High Polluter Repair or 
 Removal Account 
 APPROPRIATIONS 
 101 Budget Act appropriation 
@@ -1728,7 +1728,7 @@ TOTALS, EXPENDITURES
 $2,800 
 $2,800 
 $2,800 
-3228   Greenhouse Gas Reduction Fund 
+3228   Greenhouse Gas Reduction Fund 
 APPROPRIATIONS 
 101 Budget Act appropriation 
 $366,446 
@@ -1787,7 +1787,7 @@ FUND CONDITION STATEMENTS †
 2021-22* 
 2022-23* 
 2023-24* 
-0115   Air Pollution Control Fund S 
+0115   Air Pollution Control Fund S 
 BEGINNING BALANCE 
 $521,832 
 $387,869 
@@ -1907,7 +1907,7 @@ Reserve for economic uncertainties
 387,869 
 314,654 
 236,807 
-0434   Air Toxics Inventory and Assessment Account S 
+0434   Air Toxics Inventory and Assessment Account S 
 BEGINNING BALANCE 
 $3,608 
 $4,968 
@@ -1955,7 +1955,7 @@ Reserve for economic uncertainties
 4,968 
 4,959 
 4,904 
-3070   Nontoxic Dry Cleaning Incentive Trust Fund S 
+3070   Nontoxic Dry Cleaning Incentive Trust Fund S 
 BEGINNING BALANCE 
 $533 
 $521 
@@ -2006,7 +2006,7 @@ Reserve for economic uncertainties
 521 
 429 
 421 
-3119   Air Quality Improvement Fund S 
+3119   Air Quality Improvement Fund S 
 BEGINNING BALANCE 
 $25,857 
 $33,306 
@@ -2062,7 +2062,7 @@ Reserve for economic uncertainties
 33,306 
 43,324 
 47,329 
-3228   Greenhouse Gas Reduction Fund S 
+3228   Greenhouse Gas Reduction Fund S 
 BEGINNING BALANCE 
 $3,404,596 
 $3,913,491 
@@ -2344,7 +2344,7 @@ Reserve for economic uncertainties
 3,913,491 
 801,510 
 101,860 
-3237   Cost of Implementation Account, Air Pollution Control Fund S 
+3237   Cost of Implementation Account, Air Pollution Control Fund S 
 BEGINNING BALANCE 
 $28,042 
 $11,763 
@@ -2491,7 +2491,7 @@ Reserve for economic uncertainties
 11,763 
 7,627 
 11,628 
-3358   Truck Emission Check Fund S 
+3358   Truck Emission Check Fund S 
 BEGINNING BALANCE 
 - 
 - 
@@ -2531,7 +2531,7 @@ Reserve for economic uncertainties
 - 
 11,883 
 23,015 
-3359   Certification Compliance Fund S 
+3359   Certification Compliance Fund S 
 BEGINNING BALANCE 
 - 
 - 
@@ -2582,7 +2582,7 @@ Reserve for economic uncertainties
 resulting from the final reconciliation of the 2021-22 ending fund balance will be reflected as a prior year adjustment in the 
 2024-25 Governor’s Budget publication. 
 CHANGES IN AUTHORIZED POSITIONS † 
- 
+ 
 Positions 
 Expenditures 
 2021-22 
