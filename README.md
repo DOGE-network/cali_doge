@@ -244,22 +244,57 @@ The application includes an interactive workforce hierarchy visualization system
 
 ### Department Page Connection System
 
-The application implements a mapping system to connect different data sources through department pages:
+The system uses a sophisticated matching algorithm to connect department data with their corresponding markdown pages and handle department links:
 
-#### Mapping Framework
+#### Markdown Matching System
 
-The mapping system (`src/lib/departmentMapping.ts`) creates connections between:
-- Department pages (markdown content)
-- Spending data entries
-- Workforce visualization nodes
+The `findMarkdownForDepartment` function implements a multi-stage matching process:
+1. **Exact Name Match**: First attempts to find a direct match using the department name
+2. **Code Match**: Checks if the department slug exists in `DEPARTMENT_SLUGS_WITH_PAGES`
+3. **Normalized Name Match**: Tries matching based on normalized department names (removing special characters, etc.)
+4. **Prefix Handling**: Handles "California" prefix variations
+5. **Fuzzy Search**: Uses fuzzy search as a last resort for partial matches
 
-#### Key Components
+#### Department Link Generation
 
-- **Mapping Definition**: Each department has a mapping entry with:
-  - `slug`: URL-friendly identifier used in department pages
-  - `fullName`: Official department name
-  - `spendingName`: Name as it appears in spending data (if different)
-  - `workforceName`: Name as it appears in workforce data (if different)
+In the workforce page, department links are generated through two mechanisms:
+1. **Department Page Links**: Links to detailed department pages using markdown slugs
+   - Format: `/departments/${markdownSlug}`
+   - Only shown if a matching markdown file exists
+2. **Workforce Data Links**: Links to workforce-specific data views
+   - Format: `/workforce?department=${encodeURIComponent(department.name)}`
+   - Available for all departments regardless of markdown existence
+
+#### API Integration
+
+The system integrates with several APIs to provide comprehensive department data:
+
+1. **Department Data API**:
+   - Endpoint: `/api/departments?format=departments`
+   - Returns structured department data including:
+     - Organization hierarchy
+     - Budget codes
+     - Workforce statistics
+     - Distribution data for tenure, salary, and age
+
+2. **Data Validation**:
+   - Type checking against `DepartmentData` interface
+   - Validation of required fields and data formats
+   - Logging of validation results and errors
+
+3. **Hierarchy Construction**:
+   - Builds department hierarchy based on parent-child relationships
+   - Handles department aliases and alternative names
+   - Aggregates statistics across organizational levels
+
+### Data Visualization
+
+The application includes a data visualization system that:
+
+- **Renders Visual Content**: 
+  - Provides visual representations of workforce data
+  - Supports interactive charts and graphs
+  - Displays data in a user-friendly format
 
 ## Contributing
 

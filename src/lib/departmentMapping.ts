@@ -48,6 +48,7 @@ export const DEPARTMENT_SLUGS_WITH_PAGES = [
   '1701_department_of_financial_protection_and_innovation',
   '1750_horse_racing_board',
   '2660_department_of_transportation',
+  '2665_high_speed_rail_authority',
   '2720_california_highway_patrol',
   '2740_department_of_motor_vehicles',
   '3100_exposition_park',
@@ -268,6 +269,14 @@ export const departmentMappings: DepartmentMapping[] = [
     budgetCode: toNonNegativeInteger(2660),
     spendingName: 'Transportation',
     workforceName: 'Transportation'
+  },
+  {
+    slug: '2665_high_speed_rail_authority',
+    name: 'High-Speed Rail Authority',
+    canonicalName: 'High-Speed Rail Authority',
+    budgetCode: toNonNegativeInteger(2665),
+    spendingName: 'High-Speed Rail Authority',
+    workforceName: 'High-Speed Rail Authority'
   },
   {
     slug: '2720_california_highway_patrol',
@@ -733,7 +742,8 @@ export function normalizeForMatching(name: string): string {
   return name.toLowerCase()
     .replace(/^california\s+/, '') // Remove 'California ' prefix
     .replace(/department\s+of\s+/, '') // Remove 'Department of '
-    .replace(/\s+/g, ''); // Remove all spaces
+    .replace(/\s+/g, ' ') // Replace multiple spaces with single space
+    .trim(); // Trim leading/trailing spaces
 }
 
 /**
@@ -956,83 +966,34 @@ export function compareSlugFormats(): void {
 
 /**
  * Finds the markdown file slug that corresponds to a department
- * This is used to correct slug mismatches between departments.json and markdown files
+ * Simplified version that prioritizes predictability over fuzzy matching
  */
 export function findMarkdownForDepartment(departmentName: string): string | null {
   if (!departmentName) return null;
   
-  console.log(`Finding markdown for: "${departmentName}"`);
-  
-  // Step 1: Try to find a department with exact name match
+  // Step 1: Get department by name to access its budget code
   const dept = getDepartmentByName(departmentName);
-  if (dept) {
-    console.log(`Found department mapping: ${dept.slug} for "${departmentName}"`);
-    
-    // Step 2: Check if there's a direct match with the department slug
-    if (DEPARTMENT_SLUGS_WITH_PAGES.includes(dept.slug)) {
-      console.log(`Found direct slug match: ${dept.slug}`);
-      return dept.slug;
+  if (!dept) return null;
+  
+  // Step 2: If we have a budget code, look for exact match with code prefix
+  if (dept.budgetCode) {
+    const expectedSlug = `${dept.budgetCode}_${dept.name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`;
+    if (DEPARTMENT_SLUGS_WITH_PAGES.includes(expectedSlug)) {
+      return expectedSlug;
     }
     
-    // Step 3: Try to match based on department code
-    if (dept.budgetCode) {
-      const codePrefix = `${dept.budgetCode}_`;
-      const markdownWithCode = DEPARTMENT_SLUGS_WITH_PAGES.find(pageSlug => 
-        pageSlug.startsWith(codePrefix)
-      );
-      
-      if (markdownWithCode) {
-        console.log(`Found code match: ${markdownWithCode} for code ${dept.budgetCode}`);
-        return markdownWithCode;
-      }
-    }
+    // Also try finding any slug that starts with the budget code
+    const codeMatch = DEPARTMENT_SLUGS_WITH_PAGES.find(slug => 
+      slug.startsWith(`${dept.budgetCode}_`)
+    );
+    if (codeMatch) return codeMatch;
   }
   
-  // Step 4: Try to match based on normalized name
-  const normalizedName = normalizeForMatching(departmentName).replace(/\s+/g, '_');
-  console.log(`Trying normalized name: "${normalizedName}"`);
-  
-  const similarNameMatch = DEPARTMENT_SLUGS_WITH_PAGES.find(pageSlug => {
-    // Extract the name part of the slug (after the code prefix)
-    const namePart = pageSlug.includes('_') 
-      ? pageSlug.substring(pageSlug.indexOf('_') + 1) 
-      : pageSlug;
-    
-    return namePart.includes(normalizedName) || normalizedName.includes(namePart);
-  });
-  
-  if (similarNameMatch) {
-    console.log(`Found similar name match: ${similarNameMatch}`);
-    return similarNameMatch;
+  // Step 3: Try exact slug match
+  if (DEPARTMENT_SLUGS_WITH_PAGES.includes(dept.slug)) {
+    return dept.slug;
   }
   
-  // Step 5: Try with and without "California" prefix
-  let alternativeName = departmentName;
-  if (departmentName.startsWith("California ")) {
-    alternativeName = departmentName.substring("California ".length);
-  } else {
-    alternativeName = "California " + departmentName;
-  }
-  
-  // Try to find department with alternative name
-  const altDept = getDepartmentByName(alternativeName);
-  if (altDept && DEPARTMENT_SLUGS_WITH_PAGES.includes(altDept.slug)) {
-    console.log(`Found match with alternative name "${alternativeName}": ${altDept.slug}`);
-    return altDept.slug;
-  }
-  
-  // Step 6: Fuzzy search - check all page slugs for partial matches
-  const fuzzyMatch = DEPARTMENT_SLUGS_WITH_PAGES.find(pageSlug => {
-    const deptPart = departmentName.toLowerCase().replace(/california\s+/, '').replace(/\s+/g, '_');
-    return pageSlug.toLowerCase().includes(deptPart);
-  });
-  
-  if (fuzzyMatch) {
-    console.log(`Found fuzzy match: ${fuzzyMatch}`);
-    return fuzzyMatch;
-  }
-  
-  console.log(`No markdown found for: "${departmentName}"`);
   return null;
 }
 

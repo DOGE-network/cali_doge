@@ -134,7 +134,7 @@ import React, { useState, useEffect, Suspense, useMemo, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AgencyDataVisualization from '../../components/AgencyDataVisualization';
 import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug, BudgetStatus, RawDistributionItem, AnnualYear, TenureRange, SalaryRange, AgeRange, NonNegativeNumber } from '@/types/department';
-import { getDepartmentByName, getDepartmentByWorkforceName } from '@/lib/departmentMapping';
+import { getDepartmentByName, getDepartmentByWorkforceName, findMarkdownForDepartment } from '@/lib/departmentMapping';
 import { log, generateTransactionId } from '@/lib/logging';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
@@ -654,6 +654,19 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
   const _wagesData = typeof department.wages?.yearly?.[fiscalYear] === 'number' ? department.wages.yearly[fiscalYear] : undefined;
   const _averageSalary = typeof department.averageSalary === 'number' ? department.averageSalary : undefined;
   
+  // Get department mapping using the workforce name
+  const departmentMapping = getDepartmentByWorkforceName(department.name);
+  
+  // Find the markdown file slug that corresponds to this department
+  const markdownSlug = departmentMapping ? findMarkdownForDepartment(departmentMapping.name) : null;
+  
+  console.log('[DEBUG] DepartmentCard Result:', {
+    name: department.name,
+    markdownSlug,
+    hasLink: !!markdownSlug,
+    budgetCode: department.budgetCode
+  });
+  
   return (
     <div className={`space-y-4 ${isActive ? 'ring-2 ring-blue-500 rounded-lg' : ''}`}>
       <div 
@@ -663,7 +676,17 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
         <div className="flex justify-between items-start">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">
-              {department.name}
+              {markdownSlug ? (
+                <a 
+                  href={`/departments/${markdownSlug}`}
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  {department.name}
+                </a>
+              ) : (
+                department.name
+              )}
               {department.abbreviation && <span className="ml-2 text-sm text-gray-500">({department.abbreviation})</span>}
               {department.budgetCode && (
                 <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
@@ -671,6 +694,15 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
                 </span>
               )}
               <span className="ml-2 text-xs text-gray-500">(FY{fiscalYear})</span>
+              {!isActive && (
+                <a 
+                  href={`/workforce?department=${encodeURIComponent(department.name)}`}
+                  onClick={(e) => e.stopPropagation()}
+                  className="ml-2 text-xs text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  View Workforce Data
+                </a>
+              )}
             </h3>
             {department.keyFunctions && (
               <p className="mt-2 text-sm text-gray-600">{department.keyFunctions}</p>
