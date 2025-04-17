@@ -128,15 +128,17 @@ const formatRangeForTooltip = (range: [number, number], type: 'tenure' | 'salary
 };
 
 const NoDataDisplay = () => (
-  <div className="flex flex-col items-center justify-center h-64 bg-gray-50 rounded-lg border border-gray-200">
-    <Image 
-      src="/no-data-yet.svg" 
-      alt="No public data available" 
-      width={100} 
-      height={100} 
-      priority
-    />
-    <p className="text-gray-500 mt-4">No public data available</p>
+  <div className="flex flex-col items-center justify-center h-16 bg-gray-50 rounded-lg border border-gray-200">
+    <div className="flex items-center gap-2">
+      <Image 
+        src="/no-data-yet.svg" 
+        alt="No public data available" 
+        width={20} 
+        height={20} 
+        priority
+      />
+      <p className="text-gray-500 text-sm">No public data available</p>
+    </div>
   </div>
 );
 
@@ -284,7 +286,9 @@ export default function DepartmentCharts({
               </p>
             </>
           ) : (
-            <NoDataDisplay />
+            <div className="h-16">
+              <NoDataDisplay />
+            </div>
           )}
         </div>
         
@@ -322,7 +326,9 @@ export default function DepartmentCharts({
               </p>
             </>
           ) : (
-            <NoDataDisplay />
+            <div className="h-16">
+              <NoDataDisplay />
+            </div>
           )}
         </div>
         
@@ -360,7 +366,9 @@ export default function DepartmentCharts({
               </p>
             </>
           ) : (
-            <NoDataDisplay />
+            <div className="h-16">
+              <NoDataDisplay />
+            </div>
           )}
         </div>
       </div>
