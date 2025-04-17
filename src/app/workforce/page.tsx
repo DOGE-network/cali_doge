@@ -694,15 +694,6 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
                 </span>
               )}
               <span className="ml-2 text-xs text-gray-500">(FY{fiscalYear})</span>
-              {!isActive && (
-                <a 
-                  href={`/workforce?department=${encodeURIComponent(department.name)}`}
-                  onClick={(e) => e.stopPropagation()}
-                  className="ml-2 text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  View Workforce Data
-                </a>
-              )}
             </h3>
             {department.keyFunctions && (
               <p className="mt-2 text-sm text-gray-600">{department.keyFunctions}</p>
