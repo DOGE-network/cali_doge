@@ -1,6 +1,74 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1912887617747665194"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 78,
+            "end": 87,
+            "probability": 0.8684,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 236,
+            "end": 243,
+            "probability": 0.7233,
+            "type": "Other",
+            "normalized_text": "Medi-Cal"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "cate_long",
+            "id": "15659909"
+          },
+          {
+            "start": 11,
+            "end": 19,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 20,
+            "end": 25,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "text": "@cate_long @joffemd @DOGE We have published available 2010-2013 and 2022-2023 California state government salaries. And are rapidly processing 2014-2021. \n\nAlso processing vendor data so users can search across data sets for terms like Medi-Cal.",
+      "created_at": "2025-04-17T15:15:22.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1912887617747665194",
+      "created_at_formatted": "Apr 17, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
       "id": "1912589395263385795",
       "created_at": "2025-04-16T19:30:20.000Z",
       "context_annotations": [
@@ -5881,8 +5949,8 @@
     }
   ],
   "meta": {
-    "result_count": 58,
-    "newest_id": "1912589395263385795",
+    "result_count": 59,
+    "newest_id": "1912887617747665194",
     "oldest_id": "1882144700762878208"
   }
 }
