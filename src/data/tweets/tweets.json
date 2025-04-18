@@ -1,6 +1,264 @@
 {
   "tweets": [
     {
+      "entities": {
+        "mentions": [
+          {
+            "start": 161,
+            "end": 166,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 167,
+            "end": 176,
+            "username": "CA__DOGE",
+            "id": "1861563798248988672"
+          },
+          {
+            "start": 177,
+            "end": 188,
+            "username": "carldemaio",
+            "id": "18027450"
+          }
+        ],
+        "urls": [
+          {
+            "start": 116,
+            "end": 139,
+            "url": "https://t.co/hmEid4WlIl",
+            "expanded_url": "https://cali-doge.org/departments/2740_department_of_motor_vehicles",
+            "display_url": "cali-doge.org/departments/27…",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/departments/2740_department_of_motor_vehicles"
+          },
+          {
+            "start": 191,
+            "end": 214,
+            "url": "https://t.co/tKDZagwuBc",
+            "expanded_url": "https://cali-doge.org/",
+            "display_url": "cali-doge.org",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 38,
+            "probability": 0.6096,
+            "type": "Organization",
+            "normalized_text": "California Department of Motor Vehicles"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-17T19:34:17.000Z",
+      "id": "1912952774394106028",
+      "author_id": "1859283000145608705",
+      "text": "California Department of Motor Vehicles\n2010 9.4K employees at $462M salary\n2023 10K employees at $875M salary\n\nSee https://t.co/hmEid4WlIl for more infomation\n\n@DOGE @CA__DOGE @carldemaio \n\nhttps://t.co/tKDZagwuBc",
+      "edit_history_tweet_ids": [
+        "1912952774394106028"
+      ],
+      "created_at_formatted": "Apr 17, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "attachments": {
+        "media_keys": [
+          "3_1912949033729183744"
+        ]
+      },
+      "entities": {
+        "mentions": [
+          {
+            "start": 200,
+            "end": 208,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 209,
+            "end": 224,
+            "username": "repdarrellissa",
+            "id": "63650107"
+          },
+          {
+            "start": 225,
+            "end": 239,
+            "username": "RepMcClintock",
+            "id": "50152441"
+          },
+          {
+            "start": 240,
+            "end": 251,
+            "username": "DavidSacks",
+            "id": "1137701"
+          },
+          {
+            "start": 252,
+            "end": 265,
+            "username": "SteveHiltonx",
+            "id": "2779389582"
+          },
+          {
+            "start": 266,
+            "end": 277,
+            "username": "carldemaio",
+            "id": "18027450"
+          }
+        ],
+        "urls": [
+          {
+            "start": 111,
+            "end": 134,
+            "url": "https://t.co/PodQyl31kM",
+            "expanded_url": "http://cali-doge.org",
+            "display_url": "cali-doge.org",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/"
+          },
+          {
+            "start": 278,
+            "end": 301,
+            "url": "https://t.co/vs6YTDip8W",
+            "expanded_url": "https://x.com/cali_doge/status/1912949038267371858/photo/1",
+            "display_url": "pic.x.com/vs6YTDip8W",
+            "media_key": "3_1912949033729183744"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 57,
+            "end": 72,
+            "probability": 0.5217,
+            "type": "Organization",
+            "normalized_text": "California State"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-17T19:19:26.000Z",
+      "id": "1912949038267371858",
+      "author_id": "1859283000145608705",
+      "text": "2014 - 2015 salary updated\n\nNow 2010 - 2015, 2022 - 2024 California State Government salaries are published at https://t.co/PodQyl31kM\n\n2016 - 2021 final stages of processing\n\nVendors, programs next\n\n@joffemd @repdarrellissa @RepMcClintock @DavidSacks @SteveHiltonx @carldemaio https://t.co/vs6YTDip8W",
+      "edit_history_tweet_ids": [
+        "1912949038267371858"
+      ],
+      "created_at_formatted": "Apr 17, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1912949038267371858_0.jpg",
+          "width": 1024,
+          "height": 1024
+        }
+      ]
+    },
+    {
       "edit_history_tweet_ids": [
         "1912887617747665194"
       ],
@@ -5949,8 +6207,8 @@
     }
   ],
   "meta": {
-    "result_count": 59,
-    "newest_id": "1912887617747665194",
+    "result_count": 61,
+    "newest_id": "1912952774394106028",
     "oldest_id": "1882144700762878208"
   }
 }
