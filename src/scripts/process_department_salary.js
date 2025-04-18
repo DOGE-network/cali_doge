@@ -543,7 +543,7 @@ const compareAndConfirmUpdate = async (department, updateData, log, isPartialMat
   
   log(`[${timestamp}] === Step 2e Complete ===\n`);
   
-  // For high confidence matches (score > 80), auto-approve
+  // For high confidence matches, auto-approve
   if (!isPartialMatch) {
     log(`[${timestamp}] High confidence match detected - auto-approving update`);
     return true;
@@ -555,6 +555,8 @@ const compareAndConfirmUpdate = async (department, updateData, log, isPartialMat
     output: process.stdout
   });
   
+  log(`[${timestamp}] === Step 2e: User Confirmation ===`);
+
   return new Promise((resolve) => {
     readline.question('\nDo you want to update this department? (y/n): ', (answer) => {
       readline.close();
