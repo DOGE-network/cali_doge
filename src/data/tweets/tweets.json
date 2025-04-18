@@ -1,6 +1,223 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "1168530588535386112",
+            "name": "Zerohedge"
+          }
+        }
+      ],
+      "id": "1913287835790328077",
+      "edit_history_tweet_ids": [
+        "1913287835790328077"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 9,
+            "end": 19,
+            "username": "zerohedge",
+            "id": "18856867"
+          },
+          {
+            "start": 40,
+            "end": 48,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-18T17:45:41.000Z",
+      "text": "@joffemd @zerohedge Awesome. Great work @joffemd",
+      "created_at_formatted": "Apr 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "attachments": {
+        "media_keys": [
+          "3_1913287487725940736"
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1913287492364886406",
+      "entities": {
+        "annotations": [
+          {
+            "start": 12,
+            "end": 38,
+            "probability": 0.7432,
+            "type": "Organization",
+            "normalized_text": "California State Government"
+          },
+          {
+            "start": 88,
+            "end": 90,
+            "probability": 0.4108,
+            "type": "Organization",
+            "normalized_text": "EOD"
+          }
+        ],
+        "urls": [
+          {
+            "start": 93,
+            "end": 116,
+            "url": "https://t.co/SQecOdrwge",
+            "expanded_url": "https://cali-doge.org/workforce",
+            "display_url": "cali-doge.org/workforce",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/workforce"
+          },
+          {
+            "start": 124,
+            "end": 147,
+            "url": "https://t.co/zJxFn8IMS5",
+            "expanded_url": "https://x.com/cali_doge/status/1913287492364886406/photo/1",
+            "display_url": "pic.x.com/zJxFn8IMS5",
+            "media_key": "3_1913287487725940736"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 118,
+            "end": 123,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1913287492364886406"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-18T17:44:19.000Z",
+      "text": "2016 - 2017 California State Government salary posted. \n\n2018 - 2021 being processed by EOD\n\nhttps://t.co/SQecOdrwge\n\n@DOGE https://t.co/zJxFn8IMS5",
+      "created_at_formatted": "Apr 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1913287492364886406_0.jpg",
+          "width": 1217,
+          "height": 1645
+        }
+      ]
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        }
+      ],
+      "id": "1913248054729462105",
+      "entities": {
+        "annotations": [
+          {
+            "start": 9,
+            "end": 22,
+            "probability": 0.8798,
+            "type": "Place",
+            "normalized_text": "Central Valley"
+          },
+          {
+            "start": 88,
+            "end": 93,
+            "probability": 0.9154,
+            "type": "Place",
+            "normalized_text": "Madera"
+          },
+          {
+            "start": 107,
+            "end": 117,
+            "probability": 0.9562,
+            "type": "Place",
+            "normalized_text": "Bakersfield"
+          }
+        ],
+        "urls": [
+          {
+            "start": 175,
+            "end": 198,
+            "url": "https://t.co/hzHdQiiEgq",
+            "expanded_url": "https://cali-doge.org/departments/2665_high_speed_rail_authority",
+            "display_url": "cali-doge.org/departments/26…",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/departments/2665_high_speed_rail_authority"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1913248054729462105"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-18T15:07:37.000Z",
+      "text": "@joffemd Central Valley Segment: $4.2 billion for 2021-22 for the 119-mile segment from Madera to north of Bakersfield\n \n0 cars trips replaced\n\nMore details can be found here https://t.co/hzHdQiiEgq",
+      "created_at_formatted": "Apr 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -6207,8 +6424,8 @@
     }
   ],
   "meta": {
-    "result_count": 61,
-    "newest_id": "1912952774394106028",
+    "result_count": 64,
+    "newest_id": "1913287835790328077",
     "oldest_id": "1882144700762878208"
   }
 }
