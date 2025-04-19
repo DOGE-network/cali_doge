@@ -1,6 +1,245 @@
 {
   "tweets": [
     {
+      "created_at": "2025-04-18T21:15:46.000Z",
+      "edit_history_tweet_ids": [
+        "1913340702102351969"
+      ],
+      "text": "Over $3B in spend last reported 2023\n\nOver $270M in salary alone https://t.co/XrrVRcaulJ\n\nMuch of it relies on the the federal EPA\n\nSee more at https://t.co/4T7Vif3GJt https://t.co/jzYrj31HMy",
+      "entities": {
+        "annotations": [
+          {
+            "start": 127,
+            "end": 129,
+            "probability": 0.6631,
+            "type": "Organization",
+            "normalized_text": "EPA"
+          }
+        ],
+        "urls": [
+          {
+            "start": 65,
+            "end": 88,
+            "url": "https://t.co/XrrVRcaulJ",
+            "expanded_url": "https://cali-doge.org/workforce?department=California%20Air%20Resources%20Board",
+            "display_url": "cali-doge.org/workforce?depa…",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/workforce?department=California%20Air%20Resources%20Board"
+          },
+          {
+            "start": 144,
+            "end": 167,
+            "url": "https://t.co/4T7Vif3GJt",
+            "expanded_url": "https://cali-doge.org/departments/3900_air_resources_board",
+            "display_url": "cali-doge.org/departments/39…",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/departments/3900_air_resources_board"
+          },
+          {
+            "start": 168,
+            "end": 191,
+            "url": "https://t.co/jzYrj31HMy",
+            "expanded_url": "https://twitter.com/zerohedge/status/1912658586498478246",
+            "display_url": "x.com/zerohedge/stat…"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1068583660914266113",
+            "name": "Government institutions",
+            "description": "Political Body"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1836137739353292800",
+            "name": "2024 US Election",
+            "description": "Brought to you by @Polymarket. Get live, unbiased 2024 election forecasts: https://polymarket.com/elections\n"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1913340702102351969",
+      "created_at_formatted": "Apr 18, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -6424,8 +6663,8 @@
     }
   ],
   "meta": {
-    "result_count": 64,
-    "newest_id": "1913287835790328077",
+    "result_count": 65,
+    "newest_id": "1913340702102351969",
     "oldest_id": "1882144700762878208"
   }
 }
