@@ -135,7 +135,6 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import AgencyDataVisualization from '../../components/AgencyDataVisualization';
 import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug, BudgetStatus, RawDistributionItem, AnnualYear, TenureRange, SalaryRange, AgeRange, NonNegativeNumber } from '@/types/department';
-import { getDepartmentByName, getDepartmentByWorkforceName, findMarkdownForDepartment } from '@/lib/departmentMapping';
 import { log, generateTransactionId } from '@/lib/logging';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
@@ -655,19 +654,6 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
   const _wagesData = typeof department.wages?.yearly?.[fiscalYear] === 'number' ? department.wages.yearly[fiscalYear] : undefined;
   const _averageSalary = typeof department.averageSalary === 'number' ? department.averageSalary : undefined;
   
-  // Get department mapping using the workforce name
-  const departmentMapping = getDepartmentByWorkforceName(department.name);
-  
-  // Find the markdown file slug that corresponds to this department
-  const markdownSlug = departmentMapping ? findMarkdownForDepartment(departmentMapping.name) : null;
-  
-  console.log('[DEBUG] DepartmentCard Result:', {
-    name: department.name,
-    markdownSlug,
-    hasLink: !!markdownSlug,
-    budgetCode: department.budgetCode
-  });
-  
   return (
     <div className={`space-y-4 ${isActive ? 'ring-2 ring-blue-500 rounded-lg' : ''}`}>
       <div 
@@ -677,9 +663,9 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
         <div className="flex justify-between items-start">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">
-              {markdownSlug ? (
+              {department.hasPage && department.pageSlug ? (
                 <Link 
-                  href={`/departments/${markdownSlug}`}
+                  href={`/departments/${department.pageSlug}`}
                   onClick={(e: React.MouseEvent) => e.stopPropagation()}
                   className="text-blue-600 hover:text-blue-800 hover:underline"
                 >
@@ -907,21 +893,29 @@ function WorkforcePageContent() {
     const departmentParam = searchParams.get('department');
     
     if (departmentParam) {
-      const dept = getDepartmentByName(departmentParam);
-      if (dept) {
-        log('INFO', transactionId, 'Department found by name', {
-          department: dept.name
-        });
-        setSelectedDepartmentName(dept.name);
-      } else {
-        const workforceDept = getDepartmentByWorkforceName(departmentParam);
-        if (workforceDept) {
-          log('INFO', transactionId, 'Department found by workforce name', {
-            department: workforceDept.name
+      // Find department directly in the hierarchy
+      const findDepartmentInHierarchy = (depts: DepartmentHierarchy[], targetName: string): DepartmentHierarchy | null => {
+        for (const dept of depts) {
+          if (dept.name === targetName || dept.slug === targetName) {
+            return dept;
+          }
+          if (dept.subDepartments) {
+            const found = findDepartmentInHierarchy(dept.subDepartments, targetName);
+            if (found) return found;
+          }
+        }
+        return null;
+      };
+
+      if (hierarchyData) {
+        const foundDept = findDepartmentInHierarchy([hierarchyData], departmentParam);
+        if (foundDept) {
+          log('INFO', transactionId, 'Department found in hierarchy', {
+            department: foundDept.name
           });
-          setSelectedDepartmentName(workforceDept.name);
+          setSelectedDepartmentName(foundDept.name);
         } else {
-          log('WARN', transactionId, 'Department not found in mappings', {
+          log('WARN', transactionId, 'Department not found in hierarchy', {
             department: departmentParam
           });
           setSelectedDepartmentName(departmentParam);
@@ -933,7 +927,7 @@ function WorkforcePageContent() {
       });
       setSelectedDepartmentName(agencyParam);
     }
-  }, [searchParams, transactionId]);
+  }, [searchParams, hierarchyData, transactionId]);
   
   // Department selection effect
   useEffect(() => {

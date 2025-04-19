@@ -146,6 +146,7 @@ export interface DepartmentData {
   parent_agency: string;
   workforce?: WorkforceData;
   hasPage?: boolean;
+  pageSlug?: string | null;
 }
 
 export interface RawDistributionItem {

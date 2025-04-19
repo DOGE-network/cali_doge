@@ -195,7 +195,7 @@ export async function getDepartmentSlugs(): Promise<string[]> {
       .filter(fileName => fileName.endsWith('.md'))
       .map(fileName => fileName.replace(/\.md$/, ''));
     
-    console.log('Found markdown slugs:', slugs);
+    //console.log('Found markdown slugs:', slugs);
     return slugs;
   } catch (error) {
     console.error('Error reading department posts directory:', error);

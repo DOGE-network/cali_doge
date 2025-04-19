@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import departmentsData from '@/data/departments.json';
-import type { DepartmentData, DepartmentsJSON, NonNegativeInteger, AnnualYear, TenureRange, SalaryRange, AgeRange } from '@/types/department';
+import type { DepartmentData, DepartmentsJSON } from '@/types/department';
 import { getDepartmentSlugs } from '@/lib/blog';
 
 // Remove Edge runtime since we need file system access
@@ -19,7 +19,6 @@ export async function GET(request: Request) {
   
   // Get all valid department slugs from markdown files
   const validSlugs = await getDepartmentSlugs();
-  const validSlugSet = new Set(validSlugs);
   console.log('Valid markdown slugs:', validSlugs.length);
   
   const departments = typedData.departments.map((dept: DepartmentData) => {
