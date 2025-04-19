@@ -145,6 +145,7 @@ export interface DepartmentData {
   abbreviation: string;
   parent_agency: string;
   workforce?: WorkforceData;
+  hasPage?: boolean;
 }
 
 export interface RawDistributionItem {

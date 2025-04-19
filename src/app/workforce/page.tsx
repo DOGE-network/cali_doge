@@ -132,6 +132,7 @@
 
 import React, { useState, useEffect, Suspense, useMemo, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import AgencyDataVisualization from '../../components/AgencyDataVisualization';
 import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug, BudgetStatus, RawDistributionItem, AnnualYear, TenureRange, SalaryRange, AgeRange, NonNegativeNumber } from '@/types/department';
 import { getDepartmentByName, getDepartmentByWorkforceName, findMarkdownForDepartment } from '@/lib/departmentMapping';
@@ -677,13 +678,13 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
           <div>
             <h3 className="text-lg font-semibold text-gray-900">
               {markdownSlug ? (
-                <a 
+                <Link 
                   href={`/departments/${markdownSlug}`}
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e: React.MouseEvent) => e.stopPropagation()}
                   className="text-blue-600 hover:text-blue-800 hover:underline"
                 >
                   {department.name}
-                </a>
+                </Link>
               ) : (
                 department.name
               )}

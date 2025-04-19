@@ -4,7 +4,6 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 import remarkGfm from 'remark-gfm'
-import { getDepartmentBySlug } from '@/lib/departmentMapping'
 import { NonNegativeInteger } from '@/types/department'
 
 const postsDirectory = path.join(process.cwd(), 'src/app/departments/posts')
@@ -151,9 +150,6 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '')
 
-    // Get the standardized department data from our mappings
-    const departmentMapping = getDepartmentBySlug(id)
-
     // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
@@ -174,11 +170,11 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     // Extract a proper excerpt from the cleaned content
     const excerpt = extractExcerpt(cleanedContent)
 
-    // Use the standardized mapping data instead of frontmatter
+    // Use the frontmatter data directly
     return {
       id,
-      code: departmentMapping?.budgetCode || '',
-      name: departmentMapping?.name || matterResult.data.name || '',
+      budgetCode: toNonNegativeInteger(matterResult.data.budgetCode),
+      name: matterResult.data.name || '',
       date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : '',
       excerpt,
       content: processedContent,
@@ -188,15 +184,21 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   }))
 
   // Sort posts by date
-  return allPostsData.map(post => ({
-    id: post.id,
-    code: post.code,
-    budgetCode: toNonNegativeInteger(post.code),
-    name: post.name,
-    date: post.date,
-    excerpt: post.excerpt,
-    content: post.content,
-    image: post.image,
-    sources: post.sources
-  })).sort((a, b) => (a.date < b.date ? 1 : -1));
+  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+export async function getDepartmentSlugs(): Promise<string[]> {
+  try {
+    const fileNames = fs.readdirSync(postsDirectory);
+    // Filter for .md files and extract the slug (filename without extension)
+    const slugs = fileNames
+      .filter(fileName => fileName.endsWith('.md'))
+      .map(fileName => fileName.replace(/\.md$/, ''));
+    
+    console.log('Found markdown slugs:', slugs);
+    return slugs;
+  } catch (error) {
+    console.error('Error reading department posts directory:', error);
+    return [];
+  }
 } 

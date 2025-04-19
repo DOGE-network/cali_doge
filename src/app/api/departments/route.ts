@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import departmentsData from '@/data/departments.json';
 import type { DepartmentData, DepartmentsJSON, NonNegativeInteger, AnnualYear, TenureRange, SalaryRange, AgeRange } from '@/types/department';
+import { getDepartmentSlugs } from '@/lib/blog';
 
-export const runtime = 'edge'; // Enable Edge Runtime
+// Remove Edge runtime since we need file system access
+// export const runtime = 'edge';
 export const revalidate = 3600; // Revalidate every hour
 
 export async function GET(request: Request) {
@@ -13,16 +15,37 @@ export async function GET(request: Request) {
   // Type-safe cast of departments data
   const typedData = departmentsData as unknown as DepartmentsJSON;
   
-  console.log('Raw departments from JSON:', typedData.departments.length);
+  //console.log('Raw departments from JSON:', typedData.departments.length);
+  
+  // Get all valid department slugs from markdown files
+  const validSlugs = await getDepartmentSlugs();
+  const validSlugSet = new Set(validSlugs);
+  console.log('Valid markdown slugs:', validSlugs.length);
   
   const departments = typedData.departments.map((dept: DepartmentData) => {
-    // Normalize the department data
-    let normalized = {
+    // Find the matching markdown filename
+    const markdownSlug = validSlugs.find(slug => {
+      const [budgetCode] = slug.split('_');
+      // Pad the budget code to match the format in markdown filenames
+      const paddedBudgetCode = String(dept.budgetCode).padStart(4, '0');
+      
+      // If budget codes match, we have a match
+      if (paddedBudgetCode === budgetCode) return true;
+      
+      // If budget codes don't match, try name matching
+      const normalizedDeptName = dept.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const normalizedSlugName = slug.split('_')[1].toLowerCase().replace(/[^a-z0-9]/g, '');
+      
+      return normalizedDeptName === normalizedSlugName;
+    });
+    
+    // Return the department data with the full markdown filename as the slug
+    return {
       ...dept,
       id: dept.slug,
-      date: new Date().toISOString(), // Use current date as fallback
+      date: new Date().toISOString(),
       excerpt: dept.keyFunctions || '',
-      workforceName: dept.name, // Just use the name as workforceName since DepartmentData doesn't have workforceName
+      workforceName: dept.name,
       hasWorkforceData: Boolean(dept && (
         (dept.headCount?.yearly && Object.keys(dept.headCount.yearly).length > 0) ||
         (dept.wages?.yearly && Object.keys(dept.wages.yearly).length > 0) ||
@@ -32,41 +55,15 @@ export async function GET(request: Request) {
         (dept.tenureDistribution?.yearly && Object.keys(dept.tenureDistribution.yearly).length > 0) ||
         (dept.salaryDistribution?.yearly && Object.keys(dept.salaryDistribution.yearly).length > 0) ||
         (dept.ageDistribution?.yearly && Object.keys(dept.ageDistribution.yearly).length > 0)
-      ))
+      )),
+      hasPage: Boolean(markdownSlug),
+      pageSlug: markdownSlug || null // Use the full markdown filename
+      // verify function with curl "http://localhost:3000/api/departments" | jq '.departments[] | select(.pageSlug != null) | {name: .name, pageSlug: .pageSlug}'
     };
-
-    // Fix reporting structure based on data
-    if (normalized.parent_agency === 'California State Government') {
-      normalized.orgLevel = (1 as NonNegativeInteger);
-      normalized.budget_status = 'active';
-    }
-
-    if (normalized.orgLevel === 1) {
-      normalized.parent_agency = 'California State Government';
-      normalized.budget_status = 'active';
-    }
-    
-    // Ensure workforce data exists and normalize its structure
-    if (normalized.hasWorkforceData) {
-      // Ensure all required properties exist with defaults
-      normalized = {
-        ...normalized,
-        headCount: normalized.headCount || { yearly: {} as Record<AnnualYear, number | {}> },
-        wages: normalized.wages || { yearly: {} as Record<AnnualYear, number | {}> },
-        averageTenureYears: normalized.averageTenureYears || null,
-        averageSalary: normalized.averageSalary || null,
-        averageAge: normalized.averageAge || null,
-        tenureDistribution: normalized.tenureDistribution || { yearly: {} as Record<AnnualYear, TenureRange[]> },
-        salaryDistribution: normalized.salaryDistribution || { yearly: {} as Record<AnnualYear, SalaryRange[]> },
-        ageDistribution: normalized.ageDistribution || { yearly: {} as Record<AnnualYear, AgeRange[]> }
-      };
-    }
-    
-    return normalized;
   });
 
   console.log('Total departments from API:', departments.length);
-  console.log('Active departments:', departments.filter(d => d.budget_status.toLowerCase() === 'active').length);
+  console.log('Active departments:', departments.filter(d => d.budget_status?.toLowerCase() === 'active').length);
   console.log('Departments with any workforce data:', departments.filter(d => d.hasWorkforceData).length);
 
   // Log departments by level
