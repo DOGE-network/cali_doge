@@ -1492,7 +1492,7 @@ const readline = require('readline');
 // Configuration - Fixed paths relative to project root
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const DEPARTMENTS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/departments.json');
-const BUDGET_DATA_DIR = path.join(PROJECT_ROOT, 'src/data/budget_docs/text');
+const BUDGET_DATA_DIR = path.join(PROJECT_ROOT, 'src/data/budget/text');
 const LOG_DIR = path.join(PROJECT_ROOT, 'src/logs');
 &nbsp;
 // Type validation helpers
@@ -1867,7 +1867,7 @@ const main = async () =&gt; {
       .map(file =&gt; path.join(BUDGET_DATA_DIR, file));
     
     <span class="missing-if-branch" title="if path not taken" >I</span>if (files.length === 0) {
-<span class="cstat-no" title="statement not covered" >      log('No budget text files found in budget_docs/text directory', 'error');</span>
+<span class="cstat-no" title="statement not covered" >      log('No budget text files found in budget/text directory', 'error');</span>
 <span class="cstat-no" title="statement not covered" >      process.exit(1);</span>
     }
     

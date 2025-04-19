@@ -2,7 +2,7 @@
 """
 PDF Text Extractor for Budget Documents
 
-This script extracts text from PDF files in the budget_docs directory
+This script extracts text from PDF files in the budget directory
 and saves it as text files with the same name but .txt extension.
 Uses PyMuPDF (fitz) to extract text while preserving layout.
 """
@@ -16,8 +16,8 @@ from datetime import datetime
 import re
 
 # Define directories
-BUDGET_DOCS_DIR = "./src/data/budget_docs"
-TEXT_OUTPUT_DIR = "./src/data/budget_docs/text"
+BUDGET_DIR = "./src/data/budget"
+TEXT_OUTPUT_DIR = "./src/data/budget/text"
 
 def get_year_range():
     """Get year range from user input."""
@@ -127,11 +127,11 @@ def main():
     # Ensure output directory exists
     ensure_directory_exists(TEXT_OUTPUT_DIR)
     
-    # Get all PDF files in the budget_docs directory
-    pdf_files = glob.glob(os.path.join(BUDGET_DOCS_DIR, "*.pdf"))
+    # Get all PDF files in the budget directory
+    pdf_files = glob.glob(os.path.join(BUDGET_DIR, "*.pdf"))
     
     if not pdf_files:
-        print(f"No PDF files found in {BUDGET_DOCS_DIR}")
+        print(f"No PDF files found in {BUDGET_DIR}")
         sys.exit(0)
     
     # Filter PDFs by year range
