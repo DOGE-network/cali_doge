@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "node src/scripts/generate-department-mappings.js && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "fetch-tweets": "ts-node --project tsconfig.json src/scripts/fetch-tweets.ts",
     "favicon-check": "npx realfavicon check http://localhost:3000",
-    "generate-mappings": "node src/scripts/generate-department-mappings.js",
     "validate-departments_json_types": "ts-node --project tsconfig.json src/scripts/update_department_json_to_type.ts",
     "download-salary": "node src/scripts/download_publicpay_csv.js",
     "process-salary": "npx ts-node src/scripts/process_department_salary.js",
@@ -85,6 +84,7 @@
     "postcss": "^8.4.35",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
+    "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",
     "typescript": "^5"
   },

@@ -18,15 +18,15 @@ export function middleware(request: NextRequest) {
     'Content-Security-Policy',
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel-analytics.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel-analytics.com https://va.vercel-scripts.com https://js.hcaptcha.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "img-src 'self' data: https://*.twimg.com https://*.ytimg.com https://cali-doge.org https://doge.gov",
-      "font-src 'self' https://fonts.gstatic.com",
+      "font-src 'self' data: https://fonts.gstatic.com",
       "connect-src 'self' https://*.vercel-analytics.com",
       "frame-ancestors 'none'",
       "form-action 'self'",
       "base-uri 'self'",
-      "object-src 'none'"
+      "object-src 'self' data:"
     ].join('; ')
   );
 

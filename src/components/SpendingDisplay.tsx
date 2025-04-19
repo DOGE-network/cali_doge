@@ -1,32 +1,21 @@
 'use client';
 
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
-import { 
-  getDepartmentBySpendingName, 
-  debugDepartmentPages, 
-  compareSlugFormats,
-  findMarkdownForDepartment
-} from '@/lib/departmentMapping';
-import { DepartmentsJSON, FiscalYearKey } from '@/types/department';
+import { DepartmentsJSON, FiscalYearKey, DepartmentData } from '@/types/department';
 
 interface SpendingDisplayProps {
   departmentsData: DepartmentsJSON;
   highlightedDepartment?: string | null;
-  showTopSpendOnly?: boolean;
   showRecentYears?: boolean;
-}
-
-interface AgencySpending {
-  name: string;
-  spending: Record<FiscalYearKey, number | {}>;
+  showTopSpendOnly?: boolean;
 }
 
 const SpendingDisplay: React.FC<SpendingDisplayProps> = ({ 
   departmentsData, 
   highlightedDepartment,
-  showTopSpendOnly = false,
-  showRecentYears = true
+  showRecentYears = true,
+  showTopSpendOnly = false
 }) => {
   // Format spending value to display with $ and M/B
   const formatSpending = (value: number | {} | undefined): string => {
@@ -49,18 +38,6 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
     if (millions >= 1) return `$${millions.toFixed(3)}M`;
     return `$${millions.toFixed(3)}M`;
   };
-  
-  // Debug on mount
-  useEffect(() => {
-    // Debug Air Resources Board as an example
-    debugDepartmentPages('air_resources_board');
-    
-    // Try another slug format that includes the code
-    debugDepartmentPages('3900_air_resources_board');
-
-    // Compare slug formats
-    compareSlugFormats();
-  }, []);
   
   // Default years to show (FY2023-2025)
   const fiscalYears = useMemo(() => {
@@ -93,28 +70,35 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
   // Get the most recent year for sorting by spending
   const mostRecentYear = sortedYears.length > 0 ? sortedYears[sortedYears.length - 1] : 'FY2023-FY2024' as FiscalYearKey;
 
-  // Convert departments to agency-like structure for sorting and display
-  const agencies = useMemo(() => {
-    return departmentsData.departments
-      .filter(dept => dept.spending?.yearly)
-      .filter(dept => dept.name !== "California State Government")
-      .map(dept => ({
-        name: dept.name,
-        spending: dept.spending?.yearly || {} as Record<FiscalYearKey, number | {}>
-      })) as AgencySpending[];
-  }, [departmentsData]);
+  // Use the API data directly and calculate total spending
+  const agenciesToDisplay = useMemo(() => {
+    const agencies = departmentsData.departments
+      .filter((dept): dept is DepartmentData & { spending: { yearly: Record<FiscalYearKey, number | {}> } } => 
+        dept.spending?.yearly !== undefined
+      )
+      .map(dept => {
+        // Calculate total spending for the most recent year
+        const recentSpending = dept.spending.yearly[mostRecentYear];
+        const totalSpending = typeof recentSpending === 'number' ? recentSpending : 0;
 
-  // Sort agencies by spending for the most recent year
-  const sortedAgencies = useMemo(() => {
-    return [...agencies].sort((a, b) => {
-      const spendingA = typeof a.spending[mostRecentYear] === 'number' ? a.spending[mostRecentYear] as number : 0;
-      const spendingB = typeof b.spending[mostRecentYear] === 'number' ? b.spending[mostRecentYear] as number : 0;
-      return spendingB - spendingA;
-    });
-  }, [agencies, mostRecentYear]);
+        return {
+          name: dept.name,
+          spending: dept.spending.yearly,
+          slug: dept.slug,
+          pageSlug: dept.pageSlug,
+          hasPage: Boolean(dept.pageSlug),
+          totalSpending
+        };
+      })
+      .sort((a, b) => b.totalSpending - a.totalSpending);
 
-  // Limit to top 10 if showTopSpendOnly is true
-  const agenciesToDisplay = showTopSpendOnly ? sortedAgencies.slice(0, 10) : sortedAgencies;
+    return showTopSpendOnly ? agencies.slice(0, 20) : agencies;
+  }, [departmentsData.departments, mostRecentYear, showTopSpendOnly]);
+
+  const getSpendingValue = (agency: { spending: Record<FiscalYearKey, number | {}> }, year: FiscalYearKey) => {
+    const value = agency.spending[year];
+    return typeof value === 'number' ? value : 0;
+  };
 
   return (
     <div className="w-full overflow-x-auto">
@@ -129,33 +113,27 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
         </thead>
         <tbody>
           {agenciesToDisplay.map((agency) => {
-            // Get department mapping using the spending name
-            const departmentMapping = getDepartmentBySpendingName(agency.name);
-            
-            // Find the markdown file slug that corresponds to this department
-            const markdownSlug = departmentMapping ? findMarkdownForDepartment(departmentMapping.name) : null;
-            const isHighlighted = highlightedDepartment && markdownSlug === highlightedDepartment;
-
+            const isHighlighted = highlightedDepartment === agency.slug;
             return (
               <tr 
                 key={agency.name}
                 className={`border-t ${isHighlighted ? 'bg-yellow-50' : ''} hover:bg-gray-50`}
               >
                 <td className="px-4 py-2">
-                  {markdownSlug ? (
+                  {agency.hasPage && agency.pageSlug ? (
                     <Link 
-                      href={`/departments/${markdownSlug}`}
+                      href={`/departments/${agency.pageSlug}`}
                       className="text-blue-600 hover:text-blue-800 hover:underline"
                     >
                       {agency.name}
                     </Link>
                   ) : (
-                    agency.name
+                    <span>{agency.name}</span>
                   )}
                 </td>
                 {sortedYears.map((year) => (
                   <td key={year} className="px-4 py-2 text-right">
-                    {formatSpending(agency.spending[year as FiscalYearKey])}
+                    {formatSpending(getSpendingValue(agency, year as FiscalYearKey))}
                   </td>
                 ))}
               </tr>
@@ -165,13 +143,6 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
       </table>
     </div>
   );
-};
-
-const _normalizeYearlyData = (data: Record<string, string | number>) => {
-  return Object.entries(data).reduce((acc, [year, value]) => ({
-    ...acc,
-    [year]: typeof value === 'string' ? parseFloat((value as string).replace(/[^\d.-]/g, '')) : value
-  }), {} as Record<string, number>);
 };
 
 export default SpendingDisplay; 

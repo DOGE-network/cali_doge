@@ -1,9 +1,8 @@
-import { getAllPosts } from '@/lib/blog'
+import { getAllPosts, getDepartmentSlugs } from '@/lib/blog'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import BackButton from '@/components/BackButton'
 import Link from 'next/link'
-import { getDepartmentBySlug } from '@/lib/departmentMapping'
 
 type Props = {
   params: {
@@ -22,34 +21,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${post.budgetCode} - ${post.name}`
+    title: `${String(post.budgetCode).padStart(4, '0')} - ${post.name}`
   }
 }
 
 export default async function BlogPost({ params }: Props) {
-  const posts = await getAllPosts()
-  const post = posts.find((p) => p.id === params.slug)
-
-  if (!post) {
-    notFound()
-  }
-
-  // Find the department data
-  const department = getDepartmentBySlug(params.slug);
+  const [posts, departmentSlugs] = await Promise.all([
+    getAllPosts(),
+    getDepartmentSlugs()
+  ])
   
-  if (!department) {
-    console.log(`No department found for slug: ${params.slug}. Make sure it has a matching entry in departments.json`);
-  }
+  // Sort posts by budget code
+  const sortedPosts = [...posts].sort((a, b) => {
+    const codeA = String(a.budgetCode).padStart(4, '0')
+    const codeB = String(b.budgetCode).padStart(4, '0')
+    return codeA.localeCompare(codeB)
+  })
   
-  // Generate URLs for spending and workforce pages
-  const spendingUrl = department ? `/spend?department=${encodeURIComponent(department.name)}` : null;
-  const workforceUrl = department ? `/workforce?department=${encodeURIComponent(department.name)}` : null;
+  const post = sortedPosts.find((p) => p.id === params.slug)
+  if (!post) notFound()
+
+  const departmentExists = departmentSlugs.includes(params.slug)
+  const departmentName = encodeURIComponent(post.name)
+  
+  const dataLinks = [
+    { url: `/spend?department=${departmentName}`, label: 'View Spending Data', color: 'blue' },
+    { url: `/workforce?department=${departmentName}`, label: 'View Workforce Data', color: 'green' }
+  ]
 
   return (
     <div className="container mx-auto px-4 pt-24">
       <BackButton />
       <article className="prose prose-lg max-w-none">
-        <h1 className="text-4xl font-bold mb-4">{post.budgetCode} - {post.name}</h1>
+        <h1 className="text-4xl font-bold mb-4">{String(post.budgetCode).padStart(4, '0')} - {post.name}</h1>
         <time className="text-gray-600 block mb-4">
           {new Date(post.date).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -58,34 +62,27 @@ export default async function BlogPost({ params }: Props) {
           })}
         </time>
 
-        {/* Department Metadata Section */}
-        <div className="bg-gray-50 rounded-lg">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Data Links */}
-            <div className="md:col-span-2 mt-2">
-              <div className="flex flex-wrap gap-2">
-                {spendingUrl && (
-                  <Link href={spendingUrl} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">
-                    View Spending Data
-                  </Link>
-                )}
-                {workforceUrl && (
-                  <Link href={workforceUrl} className="bg-green-100 text-green-800 px-3 py-1 rounded-lg hover:bg-green-200 transition-colors">
-                    View Workforce Data
-                  </Link>
-                )}
-                {!spendingUrl && !workforceUrl && (
-                  <p className="text-gray-500 italic">
-                    No linked data available for this department. 
-                    Missing mapping in departments.json.
-                  </p>
-                )}
-              </div>
-            </div>
+        <div className="bg-gray-50 rounded-lg p-4">
+          <div className="flex flex-wrap gap-2">
+            {departmentExists ? (
+              dataLinks.map(({ url, label, color }) => (
+                <Link 
+                  key={url}
+                  href={url} 
+                  className={`bg-${color}-100 text-${color}-800 px-3 py-1 rounded-lg hover:bg-${color}-200 transition-colors`}
+                >
+                  {label}
+                </Link>
+              ))
+            ) : (
+              <p className="text-gray-500 italic">
+                No linked data available for this department. 
+                Missing mapping in departments.json.
+              </p>
+            )}
           </div>
         </div>
 
-        {/* Department Content */}
         <div 
           className="department-content" 
           dangerouslySetInnerHTML={{ __html: post.content }} 
@@ -97,7 +94,13 @@ export default async function BlogPost({ params }: Props) {
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
-  return posts.map((post) => ({
+  const sortedPosts = [...posts].sort((a, b) => {
+    const codeA = String(a.budgetCode).padStart(4, '0')
+    const codeB = String(b.budgetCode).padStart(4, '0')
+    return codeA.localeCompare(codeB)
+  })
+  
+  return sortedPosts.map((post) => ({
     slug: post.id
   }))
 } 

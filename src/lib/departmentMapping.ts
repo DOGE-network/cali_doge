@@ -1,5 +1,4 @@
-// This file provides mapping between department slugs and their corresponding names
-// in the spending and workforce data
+// deprecated - use blog.ts instead
 import departmentsData from '@/data/departments.json';
 import { 
   DepartmentsJSON, 
@@ -41,7 +40,6 @@ export const DEPARTMENT_SLUGS_WITH_PAGES = [
   '0840_state_controller',
   '0845_department_of_insurance',
   '0890_secretary_of_state',
-  '0950_state_treasurer',
   '0950_state_treasurers_office',
   '1111_department_of_consumer_affairs',
   '1700_civil_rights_department',
@@ -120,11 +118,11 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '0521_secretary_of_transportation',
-    name: 'Secretary of Transportation',
-    canonicalName: 'Secretary of Transportation',
+    name: 'Transportation',
+    canonicalName: 'Transportation, Department of',
     budgetCode: toNonNegativeInteger(521),
-    spendingName: 'Secretary of Transportation',
-    workforceName: 'Secretary of Transportation'
+    spendingName: 'Transportation',
+    workforceName: 'Transportation'
   },
   {
     slug: '0530_secretary_of_health_and_human_services',
@@ -192,11 +190,11 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '0840_state_controller',
-    name: 'State Controller',
-    canonicalName: 'State Controller',
+    name: 'State Controller\'s Office',
+    canonicalName: 'Controller\'s Office, State',
     budgetCode: toNonNegativeInteger(840),
-    spendingName: 'State Controller',
-    workforceName: 'State Controller'
+    spendingName: 'State Controller\'s Office',
+    workforceName: 'State Controller\'s Office'
   },
   {
     slug: '0845_department_of_insurance',
@@ -215,20 +213,12 @@ export const departmentMappings: DepartmentMapping[] = [
     workforceName: 'Secretary of State'
   },
   {
-    slug: '0950_state_treasurer',
-    name: 'State Treasurer\'s Office',
-    canonicalName: 'State Treasurer\'s Office',
-    budgetCode: toNonNegativeInteger(950),
-    spendingName: 'State Treasurer\'s Office',
-    workforceName: 'State Treasurer\'s Office'
-  },
-  {
     slug: '0950_state_treasurers_office',
-    name: 'State Treasurer\'s Office',
-    canonicalName: 'State Treasurer\'s Office',
+    name: 'Treasurer\'s Office',
+    canonicalName: 'Treasurer\'s Office, State',
     budgetCode: toNonNegativeInteger(950),
-    spendingName: 'State Treasurer\'s Office',
-    workforceName: 'State Treasurer\'s Office'
+    spendingName: 'Treasurer\'s Office',
+    workforceName: 'Treasurer\'s Office'
   },
   {
     slug: '1111_department_of_consumer_affairs',
@@ -264,11 +254,11 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '2660_department_of_transportation',
-    name: 'Transportation',
-    canonicalName: 'Transportation, Department of',
+    name: 'Department of Transportation',
+    canonicalName: 'Department of Transportation',
     budgetCode: toNonNegativeInteger(2660),
-    spendingName: 'Transportation',
-    workforceName: 'Transportation'
+    spendingName: 'Department of Transportation',
+    workforceName: 'Department of Transportation'
   },
   {
     slug: '2665_high_speed_rail_authority',
@@ -296,11 +286,11 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '3100_exposition_park',
-    name: 'Exposition Park',
-    canonicalName: 'Exposition Park',
+    name: 'Office of Exposition Park Management',
+    canonicalName: 'California State Government',
     budgetCode: toNonNegativeInteger(3100),
-    spendingName: 'Exposition Park',
-    workforceName: 'Exposition Park'
+    spendingName: 'Office of Exposition Park Management',
+    workforceName: 'Office of Exposition Park Management'
   },
   {
     slug: '3125_california_tahoe_conservancy',
@@ -456,11 +446,11 @@ export const departmentMappings: DepartmentMapping[] = [
   },
   {
     slug: '8380_california_department_of_human_resources',
-    name: 'California Department of Human Resources',
-    canonicalName: 'California Department of Human Resources',
+    name: 'Department of Human Resources',
+    canonicalName: 'Human Resources, Department of',
     budgetCode: toNonNegativeInteger(8380),
-    spendingName: 'California Department of Human Resources',
-    workforceName: 'California Department of Human Resources'
+    spendingName: 'Department of Human Resources',
+    workforceName: 'Department of Human Resources'
   },
   {
     slug: '8955_california_department_of_veterans_affairs',
@@ -584,10 +574,12 @@ export function getDepartmentBySlug(slug: string): DepartmentMapping | undefined
  * Find a department by name or canonical name
  */
 export function getDepartmentByName(name: string): DepartmentMapping | undefined {
+  const normalizedName = normalizeForMatching(name);
+  
   const dept = typedDepartmentsData.departments.find(d => 
-    d.name === name || 
-    d.canonicalName === name || 
-    (d.aliases && d.aliases.includes(name))
+    normalizeForMatching(d.name) === normalizedName ||
+    normalizeForMatching(d.canonicalName) === normalizedName ||
+    (d.aliases && d.aliases.some(alias => normalizeForMatching(alias) === normalizedName))
   );
   
   if (!dept) return undefined;
@@ -975,7 +967,12 @@ export function findMarkdownForDepartment(departmentName: string): string | null
   const dept = getDepartmentByName(departmentName);
   if (!dept) return null;
   
-  // Step 2: If we have a budget code, look for exact match with code prefix
+  // Step 2: Try exact slug match first
+  if (DEPARTMENT_SLUGS_WITH_PAGES.includes(dept.slug)) {
+    return dept.slug;
+  }
+  
+  // Step 3: If we have a budget code, look for exact match with code prefix
   if (dept.budgetCode) {
     const expectedSlug = `${dept.budgetCode}_${dept.name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`;
     if (DEPARTMENT_SLUGS_WITH_PAGES.includes(expectedSlug)) {
@@ -987,11 +984,6 @@ export function findMarkdownForDepartment(departmentName: string): string | null
       slug.startsWith(`${dept.budgetCode}_`)
     );
     if (codeMatch) return codeMatch;
-  }
-  
-  // Step 3: Try exact slug match
-  if (DEPARTMENT_SLUGS_WITH_PAGES.includes(dept.slug)) {
-    return dept.slug;
   }
   
   return null;

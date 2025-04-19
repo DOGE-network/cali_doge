@@ -1,17 +1,23 @@
 module.exports = {
   testEnvironment: 'node',
-  testMatch: ['**/*.test.js'],
+  testMatch: ['**/__tests__/**/*.test.{js,ts}'],
   moduleDirectories: ['node_modules', 'src'],
-  transform: {},
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
   verbose: true,
-  collectCoverage: true,
-  coverageDirectory: 'coverage',
+  collectCoverage: false,
+  coverageDirectory: '__tests__/coverage',
   coverageReporters: ['text', 'lcov'],
   coveragePathIgnorePatterns: [
     '/node_modules/',
-    '/coverage/',
+    '/__tests__/',
     '/.next/',
-    '/public/',
-    '/src/tests/'
-  ]
+    '/public/'
+  ],
+  rootDir: '.',
+  roots: ['<rootDir>/']
 }; 

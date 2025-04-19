@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { DEPARTMENT_SLUGS_WITH_PAGES } from '@/lib/departmentMapping';
+import { getDepartmentSlugs } from '@/lib/blog';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://cali-doge.org';
@@ -49,12 +49,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/threads`,
-      lastModified: new Date('2024-04-06'),
-      changeFrequency: 'daily' as const,
-      priority: 0.9,
-    },
-    {
       url: `${baseUrl}/savings`,
       lastModified: new Date('2024-04-06'),
       changeFrequency: 'weekly' as const,
@@ -74,8 +68,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Department pages from DEPARTMENT_SLUGS_WITH_PAGES
-  const departmentPages = DEPARTMENT_SLUGS_WITH_PAGES.map(slug => ({
+  // Get department slugs from markdown files
+  const departmentSlugs = await getDepartmentSlugs();
+  
+  // Department pages from markdown files
+  const departmentPages = departmentSlugs.map(slug => ({
     url: `${baseUrl}/departments/${slug}`,
     lastModified: new Date('2024-04-06'),
     changeFrequency: 'monthly' as const,
