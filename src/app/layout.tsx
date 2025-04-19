@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'California DOGE - Government Efficiency & Transparency',
-    description: 'Transparent insights into California government operations, budget data, and workforce information.',
+    title: 'Possible future home of https://doge.ca.gov',
+    description: 'We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.',
     url: 'https://cali-doge.org',
     siteName: 'California DOGE',
     images: [
@@ -51,10 +51,10 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'California DOGE - Government Efficiency & Transparency',
-    description: 'Transparent insights into California government operations, budget data, and workforce information.',
-    images: ['/twitter-image.jpg'],
+    card: 'summary',
+    title: 'Possible future home of https://doge.ca.gov',
+    description: 'We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.',
+    images: ['/twitter_media/1906862874221318347_0.jpg'],
     creator: '@cali_doge',
     site: '@cali_doge',
   },
