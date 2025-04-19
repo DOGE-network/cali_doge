@@ -43,7 +43,7 @@ const readline = require('readline');
 // Configuration - Fixed paths relative to project root
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const DEPARTMENTS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/departments.json');
-const BUDGET_DATA_DIR = path.join(PROJECT_ROOT, 'src/data/budget_docs/text');
+const BUDGET_DATA_DIR = path.join(PROJECT_ROOT, 'src/data/budget/text');
 const LOG_DIR = path.join(PROJECT_ROOT, 'src/logs');
 
 // Type validation helpers
@@ -418,7 +418,7 @@ const main = async () => {
       .map(file => path.join(BUDGET_DATA_DIR, file));
     
     if (files.length === 0) {
-      log('No budget text files found in budget_docs/text directory', 'error');
+      log('No budget text files found in budget/text directory', 'error');
       process.exit(1);
     }
     

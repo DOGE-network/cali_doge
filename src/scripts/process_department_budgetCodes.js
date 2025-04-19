@@ -48,7 +48,7 @@ const path = require('path');
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const BUDGET_CODES_CSV = path.join(PROJECT_ROOT, 'src/data/budget_structure.csv');
 const DEPARTMENTS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/departments.json');
-const BUDGET_DOCS_DIR = path.join(PROJECT_ROOT, 'src/data/budget_docs/text');
+const BUDGET_DIR = path.join(PROJECT_ROOT, 'src/data/budget/text');
 const LOG_DIR = path.join(PROJECT_ROOT, 'src/logs');
 const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 const LOG_FILE = path.join(LOG_DIR, `process_department_codes_${timestamp}.log`);
@@ -79,7 +79,7 @@ function readBudgetCodeVariations() {
   const variations = new Map(); // Map of budget code to array of name variations
   
   try {
-    const files = fs.readdirSync(BUDGET_DOCS_DIR);
+    const files = fs.readdirSync(BUDGET_DIR);
     
     for (const file of files) {
       if (!file.endsWith('.txt')) continue;
@@ -89,7 +89,7 @@ function readBudgetCodeVariations() {
       if (!codeMatch) continue;
       
       const code = codeMatch[1];
-      const content = fs.readFileSync(path.join(BUDGET_DOCS_DIR, file), 'utf8');
+      const content = fs.readFileSync(path.join(BUDGET_DIR, file), 'utf8');
       const lines = content.split('\n');
       
       // First line should contain the department name

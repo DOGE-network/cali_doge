@@ -8,7 +8,7 @@
 // budget use DEPARTMENT OF FINANCE UNIFORM CODES or budget codes
 
 # Define target directories
-TARGET_DIR="./src/data/budget_docs"
+TARGET_DIR="./src/data/budget"
 LOG_DIR="./src/logs"
 
 # Create directories if they don't exist
