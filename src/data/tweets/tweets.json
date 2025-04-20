@@ -1,6 +1,1136 @@
 {
   "tweets": [
     {
+      "entities": {
+        "mentions": [
+          {
+            "start": 63,
+            "end": 75,
+            "username": "adamcarolla",
+            "id": "10926202"
+          },
+          {
+            "start": 76,
+            "end": 89,
+            "username": "RickCarusoLA",
+            "id": "1363985661536002049"
+          },
+          {
+            "start": 90,
+            "end": 100,
+            "username": "MayorOfLA",
+            "id": "17070113"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 26,
+            "end": 35,
+            "probability": 0.9892,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 38,
+            "end": 61,
+            "url": "https://t.co/AZ87Zd0fEz",
+            "expanded_url": "https://www.wsj.com/opinion/elon-musk-and-gavin-newsom-agree-on-this-one-thing-california-infrastructure-business-environment-d06513e8?st=1zDYSn&reflink=article_copyURL_share",
+            "display_url": "wsj.com/opinion/elon-m…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1914035217733730304/qcuASVKA?format=jpg&name=orig",
+                "width": 1280,
+                "height": 640
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1914035217733730304/qcuASVKA?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Opinion | California Coastal Commission Unites Musk and Newsom",
+            "description": "It stands in the way of both rebuilding fire-ravaged Los Angeles and SpaceX launches at Vandenberg.",
+            "unwound_url": "https://www.wsj.com/opinion/elon-musk-and-gavin-newsom-agree-on-this-one-thing-california-infrastructure-business-environment-d06513e8?st=1zDYSn&reflink=article_copyURL_share"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1914035214696976719"
+      ],
+      "text": "4/4 Homes can be built in California\n\nhttps://t.co/AZ87Zd0fEz\n\n@adamcarolla @RickCarusoLA @MayorOfLA",
+      "author_id": "1859283000145608705",
+      "id": "1914035214696976719",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1012377449148047360",
+            "name": "Eric Garcetti",
+            "description": "Mayor of Los Angeles Eric Garcetti"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "1012377449148047360",
+            "name": "Eric Garcetti",
+            "description": "Mayor of Los Angeles Eric Garcetti"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1012377449148047360",
+            "name": "Eric Garcetti",
+            "description": "Mayor of Los Angeles Eric Garcetti"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-20T19:15:30.000Z",
+      "created_at_formatted": "Apr 20, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 65,
+            "end": 74,
+            "username": "elonmusk",
+            "id": "44196397"
+          },
+          {
+            "start": 75,
+            "end": 79,
+            "username": "WSJ",
+            "id": "3108351"
+          },
+          {
+            "start": 80,
+            "end": 86,
+            "username": "Tesla",
+            "id": "13298072"
+          },
+          {
+            "start": 87,
+            "end": 90,
+            "username": "GM",
+            "id": "10850192"
+          },
+          {
+            "start": 91,
+            "end": 98,
+            "username": "Toyota",
+            "id": "14219877"
+          },
+          {
+            "start": 99,
+            "end": 104,
+            "username": "Ford",
+            "id": "15676492"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 29,
+            "end": 38,
+            "probability": 0.9857,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 41,
+            "end": 64,
+            "url": "https://t.co/1SOPCRujly",
+            "expanded_url": "https://www.wsj.com/opinion/gavin-newsom-turns-on-elon-musk-12280bd7?st=hDCxBB&reflink=article_copyURL_share",
+            "display_url": "wsj.com/opinion/gavin-…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1914035217549123584/hbSs0xoE?format=jpg&name=orig",
+                "width": 1280,
+                "height": 640
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1914035217549123584/hbSs0xoE?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Opinion | Gavin Newsom Turns on Elon Musk",
+            "description": "The California Governor wants to deny California subsidies to Tesla’s EVs.",
+            "unwound_url": "https://www.wsj.com/opinion/gavin-newsom-turns-on-elon-musk-12280bd7?st=hDCxBB&reflink=article_copyURL_share"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1914035212134277570"
+      ],
+      "text": "3/4 Vehicles can be built in California\n\nhttps://t.co/1SOPCRujly\n@elonmusk @WSJ @Tesla @GM @Toyota @Ford",
+      "author_id": "1859283000145608705",
+      "id": "1914035212134277570",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781972125179518977",
+            "name": "Auto Manufacturer - Auto"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697121477832705",
+            "name": "Publisher & News Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to  marketing and advertiser agencies, publishers of magazines, newspapers, blogs, books"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10026287953",
+            "name": "Ford"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10027232472",
+            "name": "General Motors"
+          }
+        },
+        {
+          "domain": {
+            "id": "69",
+            "name": "News Vertical",
+            "description": "News Categories like Entertainment or Technology"
+          },
+          "entity": {
+            "id": "1046545033657081857",
+            "name": "News",
+            "description": "News"
+          }
+        },
+        {
+          "domain": {
+            "id": "69",
+            "name": "News Vertical",
+            "description": "News Categories like Entertainment or Technology"
+          },
+          "entity": {
+            "id": "1585285924069335040",
+            "name": "Business & finance news"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10026287953",
+            "name": "Ford"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10027232472",
+            "name": "General Motors"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847528391163092993",
+            "name": "Automotive",
+            "description": "Car culture"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1046545033657081857",
+            "name": "News",
+            "description": "News"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1196845866138533888",
+            "name": "Automobile Brands"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1585285924069335040",
+            "name": "Business & finance news"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781972125179518977",
+            "name": "Auto Manufacturer - Auto"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10026295477",
+            "name": "Toyota"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10029237524",
+            "name": "The Wall Street Journal"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10044199219",
+            "name": "Tesla"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "847528391163092993",
+            "name": "Automotive",
+            "description": "Car culture"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "847528576551337984",
+            "name": "Hybrid and electric vehicles",
+            "description": "Hybrid and electric vehicles"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "847528646185070592",
+            "name": "Luxury Cars",
+            "description": "Luxury"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10026295477",
+            "name": "Toyota"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10029237524",
+            "name": "The Wall Street Journal"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10044199219",
+            "name": "Tesla"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847528391163092993",
+            "name": "Automotive",
+            "description": "Car culture"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1046545033657081857",
+            "name": "News",
+            "description": "News"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1196447117297905665",
+            "name": "News outlets"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1196845866138533888",
+            "name": "Automobile Brands"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-20T19:15:30.000Z",
+      "created_at_formatted": "Apr 20, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 71,
+            "end": 75,
+            "username": "WSJ",
+            "id": "3108351"
+          },
+          {
+            "start": 76,
+            "end": 88,
+            "username": "WSJbusiness",
+            "id": "28140646"
+          },
+          {
+            "start": 89,
+            "end": 100,
+            "username": "WSJmarkets",
+            "id": "28164923"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 35,
+            "end": 44,
+            "probability": 0.9922,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 47,
+            "end": 70,
+            "url": "https://t.co/wH3qeYZ5xw",
+            "expanded_url": "https://www.wsj.com/opinion/the-bitter-pill-of-reliance-of-china-reliance-supply-chain-drugs-medications-cc961e00?st=oW7M23&reflink=article_copyURL_share",
+            "display_url": "wsj.com/opinion/the-bi…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1914035215460442112/vMY8QzXo?format=jpg&name=orig",
+                "width": 1280,
+                "height": 640
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1914035215460442112/vMY8QzXo?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Opinion | The Bitter Pill of Reliance on China",
+            "description": "Nearly half of generic active pharmaceutical ingredients consumed in the U.S. originate there.",
+            "unwound_url": "https://www.wsj.com/opinion/the-bitter-pill-of-reliance-of-china-reliance-supply-chain-drugs-medications-cc961e00?st=oW7M23&reflink=article_copyURL_share"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1914035209621971215"
+      ],
+      "text": "2/4 Pharmaceuticals can be made in California\n\nhttps://t.co/wH3qeYZ5xw\n@WSJ @WSJbusiness @WSJmarkets",
+      "author_id": "1859283000145608705",
+      "id": "1914035209621971215",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697121477832705",
+            "name": "Publisher & News Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to  marketing and advertiser agencies, publishers of magazines, newspapers, blogs, books"
+          }
+        },
+        {
+          "domain": {
+            "id": "69",
+            "name": "News Vertical",
+            "description": "News Categories like Entertainment or Technology"
+          },
+          "entity": {
+            "id": "1046545033657081857",
+            "name": "News",
+            "description": "News"
+          }
+        },
+        {
+          "domain": {
+            "id": "69",
+            "name": "News Vertical",
+            "description": "News Categories like Entertainment or Technology"
+          },
+          "entity": {
+            "id": "1585285924069335040",
+            "name": "Business & finance news"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1046545033657081857",
+            "name": "News",
+            "description": "News"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1585285924069335040",
+            "name": "Business & finance news"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10029237524",
+            "name": "The Wall Street Journal"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10029237524",
+            "name": "The Wall Street Journal"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1046545033657081857",
+            "name": "News",
+            "description": "News"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1196447117297905665",
+            "name": "News outlets"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-20T19:15:29.000Z",
+      "created_at_formatted": "Apr 20, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 232,
+            "end": 244,
+            "username": "adamcarolla",
+            "id": "10926202"
+          },
+          {
+            "start": 245,
+            "end": 256,
+            "username": "carldemaio",
+            "id": "18027450"
+          },
+          {
+            "start": 257,
+            "end": 265,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 266,
+            "end": 271,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 19,
+            "end": 28,
+            "probability": 0.9874,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 98,
+            "end": 99,
+            "probability": 0.8189,
+            "type": "Place",
+            "normalized_text": "US"
+          },
+          {
+            "start": 170,
+            "end": 179,
+            "probability": 0.8707,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 207,
+            "end": 230,
+            "url": "https://t.co/mFHu8x4hnL",
+            "expanded_url": "https://cali-doge.org/regulations",
+            "display_url": "cali-doge.org/regulations",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1914035251682353152/0s_6fcWs?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1914035251682353152/0s_6fcWs?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/regulations"
+          },
+          {
+            "start": 272,
+            "end": 295,
+            "url": "https://t.co/8B3R9Gqd5P",
+            "expanded_url": "https://x.com/cali_doge/status/1914035206786597063/photo/1",
+            "display_url": "pic.x.com/8B3R9Gqd5P",
+            "media_key": "3_1914035201027801088"
+          }
+        ]
+      },
+      "attachments": {
+        "media_keys": [
+          "3_1914035201027801088"
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1914035206786597063"
+      ],
+      "text": "1/4 Regulations in California lead to misery and poor performance compared to other countries and US states.  \nIf we need jobs and homes, the status quo must change\n\nSee California DOGE for more information https://t.co/mFHu8x4hnL \n@adamcarolla @carldemaio @joffemd @DOGE https://t.co/8B3R9Gqd5P",
+      "author_id": "1859283000145608705",
+      "id": "1914035206786597063",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "1486470043353239552",
+            "name": "Jobs"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-20T19:15:29.000Z",
+      "created_at_formatted": "Apr 20, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1914035206786597063_0.jpg",
+          "width": 1024,
+          "height": 1024
+        }
+      ]
+    },
+    {
       "created_at": "2025-04-19T23:54:53.000Z",
       "id": "1913743133189541963",
       "text": "2/2 In the near future, we can collaborate with other government transparency sites so researchers can seamlessly move between data sets such as @OpenTheBooks_ @CalPolicyCenter @OpenGovInc",
@@ -6788,8 +7918,8 @@
     }
   ],
   "meta": {
-    "result_count": 67,
-    "newest_id": "1913743133189541963",
+    "result_count": 71,
+    "newest_id": "1914035214696976719",
     "oldest_id": "1882144700762878208"
   }
 }
