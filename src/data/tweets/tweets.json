@@ -1,6 +1,131 @@
 {
   "tweets": [
     {
+      "created_at": "2025-04-19T23:54:53.000Z",
+      "id": "1913743133189541963",
+      "text": "2/2 In the near future, we can collaborate with other government transparency sites so researchers can seamlessly move between data sets such as @OpenTheBooks_ @CalPolicyCenter @OpenGovInc",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 145,
+            "end": 159,
+            "username": "OpenTheBooks_",
+            "id": "2906337579"
+          },
+          {
+            "start": 160,
+            "end": 176,
+            "username": "CalPolicyCenter",
+            "id": "494180327"
+          },
+          {
+            "start": 177,
+            "end": 188,
+            "username": "OpenGovInc",
+            "id": "1455347772"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1913743133189541963"
+      ],
+      "created_at_formatted": "Apr 19, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-19T23:54:52.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 16,
+            "end": 42,
+            "probability": 0.7039,
+            "type": "Organization",
+            "normalized_text": "California State Government"
+          }
+        ],
+        "urls": [
+          {
+            "start": 104,
+            "end": 127,
+            "url": "https://t.co/SQecOdrwge",
+            "expanded_url": "https://cali-doge.org/workforce",
+            "display_url": "cali-doge.org/workforce",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1913743174977409024/vha5GZoC?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1913743174977409024/vha5GZoC?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/workforce"
+          },
+          {
+            "start": 128,
+            "end": 151,
+            "url": "https://t.co/erqfJ8oIzf",
+            "expanded_url": "https://x.com/cali_doge/status/1913743128135418365/photo/1",
+            "display_url": "pic.x.com/erqfJ8oIzf",
+            "media_key": "3_1913743105431588864"
+          }
+        ]
+      },
+      "id": "1913743128135418365",
+      "text": "1/2 2010 - 2023 California State Government salary (249 departments publicly available) is published to https://t.co/SQecOdrwge https://t.co/erqfJ8oIzf",
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_keys": [
+          "3_1913743105431588864"
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1913743128135418365"
+      ],
+      "created_at_formatted": "Apr 19, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1913743128135418365_0.jpg",
+          "width": 1217,
+          "height": 1645
+        }
+      ]
+    },
+    {
       "created_at": "2025-04-18T21:15:46.000Z",
       "edit_history_tweet_ids": [
         "1913340702102351969"
@@ -6663,8 +6788,8 @@
     }
   ],
   "meta": {
-    "result_count": 65,
-    "newest_id": "1913340702102351969",
+    "result_count": 67,
+    "newest_id": "1913743133189541963",
     "oldest_id": "1882144700762878208"
   }
 }
