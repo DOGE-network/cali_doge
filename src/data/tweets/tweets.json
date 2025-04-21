@@ -1,6 +1,145 @@
 {
   "tweets": [
     {
+      "created_at": "2025-04-21T17:51:52.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1914376555742347669",
+      "edit_history_tweet_ids": [
+        "1914376555742347669"
+      ],
+      "text": "Payments page development started. Currently processing California State Fi$cal vendor data. Expect some 990 IRS filing data as well. \n\nSearchable terms will be expanded to vendors, projects, and programs. \n\n@carldemaio @DOGE @joffemd @vin4congress @repdarrellissa @RepMcClintock",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 208,
+            "end": 219,
+            "username": "carldemaio",
+            "id": "18027450"
+          },
+          {
+            "start": 220,
+            "end": 225,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 226,
+            "end": 234,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 235,
+            "end": 248,
+            "username": "vin4congress",
+            "id": "1653894153183584256"
+          },
+          {
+            "start": 249,
+            "end": 264,
+            "username": "repdarrellissa",
+            "id": "63650107"
+          },
+          {
+            "start": 265,
+            "end": 279,
+            "username": "RepMcClintock",
+            "id": "50152441"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 56,
+            "end": 74,
+            "probability": 0.4293,
+            "type": "Organization",
+            "normalized_text": "California State Fi"
+          }
+        ]
+      },
+      "created_at_formatted": "Apr 21, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -7918,8 +8057,8 @@
     }
   ],
   "meta": {
-    "result_count": 71,
-    "newest_id": "1914035214696976719",
+    "result_count": 72,
+    "newest_id": "1914376555742347669",
     "oldest_id": "1882144700762878208"
   }
 }
