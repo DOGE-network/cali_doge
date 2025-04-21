@@ -32,17 +32,6 @@ export default function MailingList({ className = '', onSuccess, uniqueId = 'def
   const captchaRef = useRef<{ widget?: string, token?: string }>({})
   const scriptLoaded = useRef(false)
 
-  // Simple function to handle script load
-  const handleScriptLoad = useCallback(() => {
-    console.log('hCaptcha script loaded')
-    scriptLoaded.current = true
-    
-    // Create captcha only if it should be shown
-    if (showCaptcha) {
-      setTimeout(createCaptcha, 100)
-    }
-  }, [showCaptcha])
-
   // Clean up captcha widget
   const cleanupCaptcha = useCallback(() => {
     if (captchaRef.current.widget && window.hcaptcha) {
@@ -69,7 +58,7 @@ export default function MailingList({ className = '', onSuccess, uniqueId = 'def
   }, [captchaContainerId])
 
   // Handle form submission with captcha token
-  const handleSubmitWithToken = useCallback(async (token: string) => {
+  const handleSubmitWithToken = useCallback(async (_token: string) => {
     setStatus('loading')
     setMessage('')
     
@@ -121,7 +110,7 @@ export default function MailingList({ className = '', onSuccess, uniqueId = 'def
       setStatus('error')
       setMessage('Something went wrong. Please try again.')
     }
-  }, [email, cleanupCaptcha, onSuccess, setEmail, setMessage, setShowCaptcha, setStatus])
+  }, [email, cleanupCaptcha, onSuccess])
 
   // Create captcha widget
   const createCaptcha = useCallback(() => {
@@ -181,6 +170,17 @@ export default function MailingList({ className = '', onSuccess, uniqueId = 'def
       console.error('Error creating hCaptcha widget:', e)
     }
   }, [showCaptcha, captchaContainerId, handleSubmitWithToken])
+
+  // Simple function to handle script load
+  const handleScriptLoad = useCallback(() => {
+    console.log('hCaptcha script loaded')
+    scriptLoaded.current = true
+    
+    // Create captcha only if it should be shown
+    if (showCaptcha) {
+      setTimeout(createCaptcha, 100)
+    }
+  }, [showCaptcha, createCaptcha])
 
   // Create captcha when needed
   useEffect(() => {
@@ -248,14 +248,10 @@ export default function MailingList({ className = '', onSuccess, uniqueId = 'def
           </button>
         </div>
         {showCaptcha && (
-          <div 
-            id={captchaContainerId} 
-            className="h-captcha flex justify-center mt-4" 
-            data-sitekey="00000000-0000-0000-0000-000000000000"
-          />
+          <div id={captchaContainerId} className="h-captcha mt-4"></div>
         )}
         {message && (
-          <p className={`text-sm ${status === 'error' ? 'text-red-500' : 'text-green-500'}`}>
+          <p className={`mt-2 ${status === 'error' ? 'text-red-500' : 'text-green-500'}`}>
             {message}
           </p>
         )}

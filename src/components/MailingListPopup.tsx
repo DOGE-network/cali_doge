@@ -7,13 +7,13 @@ import { usePathname } from 'next/navigation'
 export default function MailingListPopup() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
-
-  // Don't show popup on the Join page
-  if (pathname === '/join') {
-    return null
-  }
-
+  
   useEffect(() => {
+    // Don't show popup on the Join page
+    if (pathname === '/join') {
+      return;
+    }
+    
     // Check if user has already subscribed
     const hasSubscribed = localStorage.getItem('newsletter_subscribed')
     if (!hasSubscribed) {
@@ -21,11 +21,21 @@ export default function MailingListPopup() {
       const timer = setTimeout(() => setIsOpen(true), 3000)
       return () => clearTimeout(timer)
     }
-  }, [])
+  }, [pathname])
 
   const handleSuccess = () => {
+    // Set the localStorage flag immediately
     localStorage.setItem('newsletter_subscribed', 'true')
-    setIsOpen(false)
+    
+    // Add a 5-second delay before closing the popup
+    setTimeout(() => {
+      setIsOpen(false)
+    }, 5000)
+  }
+
+  // Don't render the component at all when on the Join page
+  if (pathname === '/join') {
+    return null
   }
 
   if (!isOpen) return null
