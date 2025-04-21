@@ -14,7 +14,7 @@ export default function JoinPage() {
         </div>
         
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <MailingList className="max-w-md mx-auto" />
+          <MailingList className="max-w-md mx-auto" uniqueId="join-page" />
         </div>
       </div>
     </div>

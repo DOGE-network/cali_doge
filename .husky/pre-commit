@@ -1,16 +1,25 @@
 #!/usr/bin/env bash
 
+# Export PATH to ensure npm can be found
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# Find npm executable path
+NPM_PATH=$(command -v npm || echo "/usr/local/bin/npm")
+
+# Initialize EXIT_CODE to 0 (success)
+EXIT_CODE=0
+
 echo "Running npm ci..."
-if ! npm ci; then
+if ! $NPM_PATH ci; then
     echo "❌ npm ci failed"
     echo "Debug info:"
-    npm config list
+    $NPM_PATH config list
     EXIT_CODE=1
 fi
 
 if [ $EXIT_CODE -eq 0 ]; then
     echo "Running lint checks..."
-    if ! npm run lint; then
+    if ! $NPM_PATH run lint; then
         echo "❌ Linting failed. Please fix the issues above and try committing again."
         EXIT_CODE=1
     fi
@@ -18,7 +27,7 @@ fi
 
 if [ $EXIT_CODE -eq 0 ]; then
     echo "Running type checks..."
-    if ! npm run typecheck; then
+    if ! $NPM_PATH run typecheck; then
         echo "❌ Type checking failed. Please fix the type errors above and try committing again."
         EXIT_CODE=1
     fi

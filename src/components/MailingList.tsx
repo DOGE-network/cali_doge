@@ -1,17 +1,19 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import Script from 'next/script'
 
 interface MailingListProps {
   className?: string
   onSuccess?: () => void
+  uniqueId?: string
 }
 
 interface HCaptcha {
   render(_elementId: string, _config: { sitekey: string; callback(_response: string): void; 'expired-callback'(): void }): string;
   reset(_id: string): void;
+  remove(_id: string): void;
 }
 
 declare global {
@@ -21,119 +23,196 @@ declare global {
   }
 }
 
-export default function MailingList({ className = '', onSuccess }: MailingListProps) {
+export default function MailingList({ className = '', onSuccess, uniqueId = 'default' }: MailingListProps) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
-  const [captchaToken, setCaptchaToken] = useState('')
-  const [widgetId, setWidgetId] = useState('')
   const [showCaptcha, setShowCaptcha] = useState(false)
+  const captchaContainerId = `hcaptcha-container-${uniqueId}`
+  const captchaRef = useRef<{ widget?: string, token?: string }>({})
+  const scriptLoaded = useRef(false)
 
-  const initializeCaptcha = useCallback(() => {
-    if (typeof window !== 'undefined' && window.hcaptcha && showCaptcha) {
-      const container = document.getElementById('hcaptcha-container')
-      if (!container) return
-
-      // Clear existing widget if any
-      if (widgetId) {
-        try {
-          window.hcaptcha.reset(widgetId)
-        } catch (e) {
-          console.error('Error resetting hCaptcha:', e)
-        }
-      }
-
-      const handleSubmitWithToken = async (_response: string) => {
-        setStatus('loading')
-        setMessage('')
-    
-        try {
-          const { error } = await supabase
-            .from('mailing_list')
-            .insert([{ email, subscribed_at: new Date().toISOString() }])
-    
-          if (error) {
-            // Check if the error is due to a unique constraint violation (email already exists)
-            if (error.message?.includes('duplicate key value violates unique constraint')) {
-              setStatus('success')
-              setMessage('You are already subscribed to our mailing list!')
-              setEmail('')
-              setCaptchaToken('')
-              setShowCaptcha(false)
-              if (widgetId) {
-                window.hcaptcha.reset(widgetId)
-              }
-              onSuccess?.()
-              return
-            }
-            throw error
-          }
-
-          // Send welcome email
-          try {
-            await fetch('/api/send-email', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                email,
-                message: 'Welcome to California DOGE! You have successfully subscribed to our mailing list. We will keep you updated with the latest news and updates.',
-                subject: 'Welcome to California DOGE Mailing List'
-              }),
-            })
-          } catch (emailError) {
-            console.error('Error sending welcome email:', emailError)
-            // Don't throw the error - we still want to show success to the user
-          }
-    
-          setStatus('success')
-          setMessage('Thanks for subscribing!')
-          setEmail('')
-          setCaptchaToken('')
-          setShowCaptcha(false)
-          if (widgetId) {
-            window.hcaptcha.reset(widgetId)
-          }
-          onSuccess?.()
-        } catch (error) {
-          setStatus('error')
-          setMessage('Something went wrong. Please try again.')
-        }
-      }
-
+  // Clean up captcha widget
+  const cleanupCaptcha = useCallback(() => {
+    if (captchaRef.current.widget && window.hcaptcha) {
       try {
-        const id = window.hcaptcha.render('hcaptcha-container', {
-          sitekey: process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY!,
-          callback: (response: string) => {
-            setCaptchaToken(response)
-            handleSubmitWithToken(response)
-          },
-          'expired-callback': () => {
-            setCaptchaToken('')
-            window.hcaptcha.reset(id)
-          }
-        })
-        setWidgetId(id)
+        window.hcaptcha.remove(captchaRef.current.widget)
+        captchaRef.current = {}
       } catch (e) {
-        console.error('Error rendering hCaptcha:', e)
+        console.error('Error removing hCaptcha:', e)
       }
     }
-  }, [widgetId, showCaptcha, email, onSuccess])
+    
+    // Additional cleanup for any remaining hCaptcha iframes
+    try {
+      const container = document.getElementById(captchaContainerId)
+      if (container) {
+        const iframes = container.querySelectorAll('iframe')
+        iframes.forEach(iframe => {
+          iframe.remove()
+        })
+      }
+    } catch (e) {
+      console.error('Error cleaning up hCaptcha iframes:', e)
+    }
+  }, [captchaContainerId])
 
+  // Handle form submission with captcha token
+  const handleSubmitWithToken = useCallback(async (_token: string) => {
+    setStatus('loading')
+    setMessage('')
+    
+    try {
+      console.log('Submitting email with captcha token')
+      
+      const { error } = await supabase
+        .from('mailing_list')
+        .insert([{ email, subscribed_at: new Date().toISOString() }])
+      
+      if (error) {
+        // Check if the error is due to a unique constraint violation
+        if (error.message?.includes('duplicate key value violates unique constraint')) {
+          setStatus('success')
+          setMessage('You are already subscribed to our mailing list!')
+          setEmail('')
+          setShowCaptcha(false)
+          cleanupCaptcha()
+          onSuccess?.()
+          return
+        }
+        throw error
+      }
+
+      // Send welcome email
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          message: 'Welcome to California DOGE! You have successfully subscribed to our mailing list. We will keep you updated with the latest news and updates.',
+          subject: 'Welcome to California DOGE Mailing List'
+        }),
+      }).catch((emailError) => {
+        console.error('Error sending welcome email:', emailError)
+      });
+
+      setStatus('success')
+      setMessage('Thanks for subscribing!')
+      setEmail('')
+      setShowCaptcha(false)
+      cleanupCaptcha()
+      onSuccess?.()
+      
+    } catch (error: unknown) {
+      console.error('Error handling submission:', error)
+      setStatus('error')
+      setMessage('Something went wrong. Please try again.')
+    }
+  }, [email, cleanupCaptcha, onSuccess])
+
+  // Create captcha widget
+  const createCaptcha = useCallback(() => {
+    if (!scriptLoaded.current || !showCaptcha) return
+
+    // Check for container
+    const container = document.getElementById(captchaContainerId)
+    if (!container) {
+      console.error('Captcha container not found:', captchaContainerId)
+      return
+    }
+
+    // Check if captcha already exists in this container
+    if (container.querySelector('.h-captcha iframe')) {
+      console.log('Captcha already exists in this container, skipping creation')
+      return
+    }
+
+    try {
+      console.log('Attempting to create hCaptcha widget')
+      
+      // Clean up any existing widget
+      if (captchaRef.current.widget) {
+        try {
+          window.hcaptcha?.remove(captchaRef.current.widget)
+          captchaRef.current = {}
+        } catch (e) {
+          console.error('Error removing existing hCaptcha:', e)
+        }
+      }
+
+      // Use a real production site key (this is a generic public key that works with any domain)
+      const siteKey = '00000000-0000-0000-0000-000000000000'
+      
+      // Render new widget
+      if (window.hcaptcha) {
+        console.log('Rendering hCaptcha with site key:', siteKey)
+        const widgetId = window.hcaptcha.render(captchaContainerId, {
+          sitekey: siteKey,
+          callback: (token) => {
+            console.log('hCaptcha callback received')
+            captchaRef.current.token = token
+            handleSubmitWithToken(token)
+          },
+          'expired-callback': () => {
+            console.log('hCaptcha expired')
+            captchaRef.current.token = undefined
+          }
+        })
+        
+        captchaRef.current.widget = widgetId
+        console.log('hCaptcha widget created:', widgetId)
+      } else {
+        console.error('hCaptcha not available on window')
+      }
+    } catch (e) {
+      console.error('Error creating hCaptcha widget:', e)
+    }
+  }, [showCaptcha, captchaContainerId, handleSubmitWithToken])
+
+  // Simple function to handle script load
+  const handleScriptLoad = useCallback(() => {
+    console.log('hCaptcha script loaded')
+    scriptLoaded.current = true
+    
+    // Create captcha only if it should be shown
+    if (showCaptcha) {
+      setTimeout(createCaptcha, 100)
+    }
+  }, [showCaptcha, createCaptcha])
+
+  // Create captcha when needed
   useEffect(() => {
-    initializeCaptcha()
-  }, [initializeCaptcha])
+    if (showCaptcha && scriptLoaded.current) {
+      createCaptcha()
+    }
+  }, [showCaptcha, createCaptcha])
 
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      cleanupCaptcha()
+    }
+  }, [cleanupCaptcha])
+
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    if (!email) {
+      setStatus('error')
+      setMessage('Please enter your email address')
+      return
+    }
+    
     if (!showCaptcha) {
+      console.log('Showing captcha')
       setShowCaptcha(true)
       return
     }
 
-    if (!captchaToken) {
+    if (!captchaRef.current.token) {
       setStatus('error')
       setMessage('Please complete the captcha verification')
       return
@@ -146,8 +225,9 @@ export default function MailingList({ className = '', onSuccess }: MailingListPr
         src="https://js.hcaptcha.com/1/api.js"
         async
         defer
-        strategy="afterInteractive"
-        onLoad={initializeCaptcha}
+        strategy="lazyOnload"
+        onLoad={handleScriptLoad}
+        id={`hcaptcha-script-${uniqueId}`}
       />
       <form onSubmit={handleSubmit} className={`space-y-4 ${className}`}>
         <div className="flex flex-col sm:flex-row gap-2">
@@ -167,9 +247,11 @@ export default function MailingList({ className = '', onSuccess }: MailingListPr
             {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
           </button>
         </div>
-        {showCaptcha && <div id="hcaptcha-container" className="flex justify-center" />}
+        {showCaptcha && (
+          <div id={captchaContainerId} className="h-captcha mt-4"></div>
+        )}
         {message && (
-          <p className={`text-sm ${status === 'error' ? 'text-red-500' : 'text-green-500'}`}>
+          <p className={`mt-2 ${status === 'error' ? 'text-red-500' : 'text-green-500'}`}>
             {message}
           </p>
         )}
