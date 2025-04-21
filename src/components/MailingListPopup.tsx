@@ -2,9 +2,16 @@
 
 import { useState, useEffect } from 'react'
 import MailingList from './MailingList'
+import { usePathname } from 'next/navigation'
 
 export default function MailingListPopup() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
+
+  // Don't show popup on the Join page
+  if (pathname === '/join') {
+    return null
+  }
 
   useEffect(() => {
     // Check if user has already subscribed
@@ -38,7 +45,7 @@ export default function MailingListPopup() {
         <p className="text-gray-600 mb-4">
           Stay updated with our latest news and updates!
         </p>
-        <MailingList onSuccess={handleSuccess} />
+        <MailingList onSuccess={handleSuccess} uniqueId="popup" />
       </div>
     </div>
   )
