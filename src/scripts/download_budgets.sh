@@ -2,10 +2,10 @@
 
 # California State Government Budget Document Downloader
 
-// known problem that the state controller does not put many documents in this easy to use location
-// we will need to use browser automation to download the documents from the state controller website
-// budgets documents https://ebudget.ca.gov/
-// budget use DEPARTMENT OF FINANCE UNIFORM CODES or budget codes
+# known problem that the state dept of finance does not put documents in this easy to use location
+# we will need to use browser automation to download the documents from the state'ebudget website
+# budgets documents https://ebudget.ca.gov/
+# budget use DEPARTMENT OF FINANCE UNIFORM CODES or budget codes
 
 # Define target directories
 TARGET_DIR="./src/data/budget"
@@ -91,15 +91,16 @@ declare -a fiscal_years=(
   "2022-23"
   "2023-24"
   "2024-25"
+  "2025-26"
 )
 
 # Current fiscal year (for determining document type)
-current_fiscal_year="2024-25"
+current_fiscal_year="2025-26"
 
 # Document types array
 declare -a doc_types=(
   "GovernorsBudget"  # For current year proposed budget
-  "Enacted"          # For previous years enacted budget
+  "Enacted"          # For previous years enacted budget; but enacted budgets are not always posted
 )
 
 # Complete list of agency codes (Level A) from the CSV data - CORRECTED
@@ -279,8 +280,8 @@ validate_pdf() {
 
 # Function to pause for a random duration between 10-30 seconds
 random_pause() {
-  local min_seconds=10
-  local max_seconds=30
+  local min_seconds=3
+  local max_seconds=6
   local pause_duration=$((RANDOM % (max_seconds - min_seconds + 1) + min_seconds))
   
   echo "Pausing for $pause_duration seconds to avoid rate limiting..." | tee -a "$log_file"
@@ -367,11 +368,12 @@ for dept_info in "${department_codes[@]}"; do
     first_year=$(echo "$fiscal_year" | cut -d'-' -f1)
     
     # Determine document type based on fiscal year
-    if [ "$fiscal_year" = "$current_fiscal_year" ]; then
-      doc_type="GovernorsBudget"  # Current year uses proposed budget
-    else
-      doc_type="Enacted"  # Previous years use enacted budget
-    fi
+    # There do not appear to be any Enacted files - Changing to Force Everythibg to be GovernorsBudget
+    #if [ "$fiscal_year" = "$current_fiscal_year" ]; then
+    doc_type="GovernorsBudget"  # Current year uses proposed budget
+    #else
+    # doc_type="Enacted"  # Previous years use enacted budget
+    #fi
     
     # Find the appropriate agency code for this department
     # This is based on the organizational structure where departments are under agencies
@@ -423,7 +425,7 @@ for dept_info in "${department_codes[@]}"; do
     # Download the file to a temporary location first
     temp_file=$(mktemp)
     curl -L -s -o "$temp_file" "$url"
-    
+     
     # Validate if the downloaded file is a valid PDF
     if validate_pdf "$temp_file"; then
       # If valid, move to the final destination
@@ -441,6 +443,127 @@ for dept_info in "${department_codes[@]}"; do
     sleep 2
   done
 done
+
+
+# Download Agency URLs
+for agency_info in "${agency_codes[@]}"; do
+  # Extract the 4-digit code (without comments)
+  agency_code=$(echo "$agency_info" | awk '{print $1}')
+  
+  # If resuming and the last department wasn't found, find the next one
+  if [ "$resume_next_agency" = true ]; then
+    if [ "$agency_code" -gt "$last_agency" ]; then
+      echo "Resuming with next department: $agency_code" | tee -a "$log_file"
+      start_processing=true
+      resume_next_agency=false
+    else
+      echo "Skipping agency: $agency_code (before next agency)" | tee -a "$log_file"
+      skipped_count=$((skipped_count + 1))
+      continue
+    fi
+  # If resuming normally, skip until we reach the last processed department
+  elif [ "$resume_processing" = true ] && [ "$start_processing" = false ]; then
+    if [ "$agency_code" = "$last_agency" ]; then
+      start_processing=true
+    else
+      echo "Skipping agency: $agency_code (before last processed)" | tee -a "$log_file"
+      skipped_count=$((skipped_count + 1))
+      continue
+    fi
+  fi
+  
+  for fiscal_year in "${fiscal_years[@]}"; do
+    # If resuming and we're at the last agency, skip until we reach the last fiscal year
+    if [ "$resume_processing" = true ] && [ "$agency_code" = "$last_agency" ] && [ "$start_processing" = true ]; then
+      # Convert fiscal years to comparable format (first year only)
+      current_first_year=$(echo "$fiscal_year" | cut -d'-' -f1)
+      last_first_year=$(echo "$last_fiscal_year" | cut -d'-' -f1)
+      
+      if [ "$current_first_year" -lt "$last_first_year" ]; then
+        echo "Skipping already processed: $agency_code - FY $fiscal_year" | tee -a "$log_file"
+        skipped_count=$((skipped_count + 1))
+        continue
+      elif [ "$current_first_year" -eq "$last_first_year" ] && [ "$last_position" = "SUCCESS" ]; then
+        echo "Skipping already processed: $agency_code - FY $fiscal_year" | tee -a "$log_file"
+        skipped_count=$((skipped_count + 1))
+        continue
+      fi
+    fi
+    
+    # Extract the first year from the fiscal year string for the output filename
+    first_year=$(echo "$fiscal_year" | cut -d'-' -f1)
+    
+    # Determine document type based on fiscal year
+    # There do not appear to be any Enacted files - Changing to Force Everythibg to be GovernorsBudget
+    #if [ "$fiscal_year" = "$current_fiscal_year" ]; then
+    #  doc_type="GovernorsBudget"  # Current year uses proposed budget
+    #else
+    doc_type="Enacted"  # Previous years use enacted budget
+    #fi
+    
+    # Find the appropriate agency code for this department
+    # This is based on the organizational structure where departments are under agencies
+    agency_code=""
+    for potential_agency in "${agency_codes[@]}"; do
+      potential_agency_code=$(echo "$potential_agency" | awk '{print $1}')
+      # If the department code starts with the same first digit as the agency code
+      # or if the department is in a specific agency based on the organizational structure
+      if [[ "${agency_code:0:1}" == "${potential_agency_code:0:1}" ]]; then
+        agency_code="$potential_agency_code"
+        break
+      fi
+    done
+    
+    # If no agency code was found, use the default 0010 (Legislative, Judicial, Executive)
+    if [ -z "$agency_code" ]; then
+      agency_code="0010"
+    fi
+    
+    # Skip agencies marked with "DO NOT USE"
+    if [[ "$agency_info" == *"DO NOT USE"* ]]; then
+      echo "SKIPPING: ${agency_code} - marked as DO NOT USE" | tee -a "$log_file"
+      continue
+    fi
+
+    # Agency URL follows pattern: ebudget.ca.gov/[FISCAL-YEAR]/pdf/[DOCUMENT-TYPE]/[AGENCY-CODE].pdf
+    agency_url="https://ebudget.ca.gov/${fiscal_year}/pdf/${doc_type}/${agency_code}.pdf"
+    
+    echo "Attempting to download: $agency_url" | tee -a "$log_file"
+    
+    curl -L -s -o "$temp_file" "$agency_url"
+    # Increment the attempt counter
+    attempt_counter=$((attempt_counter + 1))
+    
+    # Check if we need to pause (every 150 attempts)
+    if [ $((attempt_counter % 150)) -eq 0 ]; then
+      random_pause
+    fi
+    
+    # Download the file to a temporary location first
+    temp_file=$(mktemp)
+    curl -L -s -o "$temp_file" "$url"
+     
+    # Validate if the downloaded file is a valid PDF
+    if validate_pdf "$temp_file"; then
+      # If valid, move to the final destination
+      mv "$temp_file" "$output_file"
+      echo "SUCCESS: Downloaded ${agency_code} - FY ${fiscal_year} to $output_file" | tee -a "$log_file"
+      success_count=$((success_count + 1))
+    else
+      # If not valid, log the failure and remove the temporary file
+      echo "FAILURE: Could not download valid PDF for ${agency_code} - FY ${fiscal_year}" | tee -a "$log_file"
+      rm -f "$temp_file"
+      failure_count=$((failure_count + 1))
+    fi
+    
+    # Add a small delay to be nice to the server
+    sleep 2
+
+  done
+done
+    
+
+
 
 echo "Download process completed." | tee -a "$log_file"
 echo "Successful downloads: $success_count" | tee -a "$log_file"
