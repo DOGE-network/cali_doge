@@ -1,6 +1,112 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-23T21:45:57.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 32,
+            "end": 38,
+            "probability": 0.5846,
+            "type": "Other",
+            "normalized_text": "CalPERS"
+          },
+          {
+            "start": 44,
+            "end": 50,
+            "probability": 0.5904,
+            "type": "Other",
+            "normalized_text": "CalSTRS"
+          },
+          {
+            "start": 128,
+            "end": 143,
+            "probability": 0.5677,
+            "type": "Organization",
+            "normalized_text": "California State"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 9,
+            "end": 21,
+            "username": "sfchronicle",
+            "id": "121597316"
+          }
+        ],
+        "urls": [
+          {
+            "start": 224,
+            "end": 247,
+            "url": "https://t.co/7Jqj0MfqOD",
+            "expanded_url": "https://www.perplexity.ai/search/8fdd18d6-65e6-4e86-b3a3-2440868234e0#3",
+            "display_url": "perplexity.ai/search/8fdd18d…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1915160239890194434/E9gFp9X5?format=png&name=orig",
+                "width": 1200,
+                "height": 630
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1915160239890194434/E9gFp9X5?format=png&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Generation Investment management contracts and relationships",
+            "description": "Generation Investment Management (GIM) has established numerous strategic contracts and relationships since its founding in 2004, focusing on sustainable...",
+            "unwound_url": "https://www.perplexity.ai/search/8fdd18d6-65e6-4e86-b3a3-2440868234e0#3"
+          }
+        ]
+      },
+      "id": "1915160236656386160",
+      "text": "@joffemd @sfchronicle Note that CalPERS and CalSTRS investment with Generation Investment Management is reported as over $1B in California State Government pension funds. This puts both pension funds at considerable risk. \n\nhttps://t.co/7Jqj0MfqOD",
+      "edit_history_tweet_ids": [
+        "1915160236656386160"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 23, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -8784,8 +8890,8 @@
     }
   ],
   "meta": {
-    "result_count": 76,
-    "newest_id": "1914935690271580629",
+    "result_count": 77,
+    "newest_id": "1915160236656386160",
     "oldest_id": "1882144700762878208"
   }
 }
