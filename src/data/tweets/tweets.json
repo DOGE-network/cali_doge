@@ -1,6 +1,567 @@
 {
   "tweets": [
     {
+      "entities": {
+        "annotations": [
+          {
+            "start": 14,
+            "end": 28,
+            "probability": 0.5303,
+            "type": "Place",
+            "normalized_text": "California DOGE"
+          }
+        ],
+        "urls": [
+          {
+            "start": 55,
+            "end": 78,
+            "url": "https://t.co/vhRxIVk81p",
+            "expanded_url": "https://cali-doge.org/payments",
+            "display_url": "cali-doge.org/payments",
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/payments"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "KevinKileyCA",
+            "id": "3180247177"
+          }
+        ]
+      },
+      "text": "@KevinKileyCA California DOGE payments page is live at https://t.co/vhRxIVk81p\n\nLet me know what vendor payment fields and or department budget summary details you need in your efforts here.",
+      "id": "1914935690271580629",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-23T06:53:41.000Z",
+      "edit_history_tweet_ids": [
+        "1914935690271580629"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 22, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "text": "@DOGE Any credit card waste, fraud or abuse keyword help we filter public payment records for?\n\nWe just published our payments page https://t.co/vhRxIVk81p\n\nI can add a filter for keywords our state representatives can use.",
+      "id": "1914932847967977738",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "1563854962383171585",
+            "name": "Credit Cards"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "1563854962383171585",
+            "name": "Credit Cards"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "847888632711061504",
+            "name": "Personal finance",
+            "description": "Personal finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "847894059859402753",
+            "name": "Credit, debt and loans",
+            "description": "Credit, debt and loans"
+          }
+        }
+      ],
+      "created_at": "2025-04-23T06:42:23.000Z",
+      "entities": {
+        "urls": [
+          {
+            "start": 132,
+            "end": 155,
+            "url": "https://t.co/vhRxIVk81p",
+            "expanded_url": "https://cali-doge.org/payments",
+            "display_url": "cali-doge.org/payments",
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/payments"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 5,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1914932847967977738"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 22, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 0,
+            "end": 14,
+            "probability": 0.6519,
+            "type": "Place",
+            "normalized_text": "California DOGE"
+          }
+        ],
+        "urls": [
+          {
+            "start": 233,
+            "end": 256,
+            "url": "https://t.co/tKDZagwuBc",
+            "expanded_url": "https://cali-doge.org/",
+            "display_url": "cali-doge.org",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1914396097243701251/F7g0NBp0?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1914396097243701251/F7g0NBp0?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 113,
+            "end": 118,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 119,
+            "end": 135,
+            "username": "CalPolicyCenter",
+            "id": "494180327"
+          },
+          {
+            "start": 136,
+            "end": 148,
+            "username": "ReformCalif",
+            "id": "1141738135090393088"
+          },
+          {
+            "start": 149,
+            "end": 157,
+            "username": "JoinFAI",
+            "id": "1462508754"
+          },
+          {
+            "start": 158,
+            "end": 172,
+            "username": "RepMcClintock",
+            "id": "50152441"
+          },
+          {
+            "start": 173,
+            "end": 188,
+            "username": "repdarrellissa",
+            "id": "63650107"
+          },
+          {
+            "start": 189,
+            "end": 205,
+            "username": "SenatorMoorlach",
+            "id": "3243703117"
+          },
+          {
+            "start": 206,
+            "end": 221,
+            "username": "open_the_books",
+            "id": "1324709198"
+          },
+          {
+            "start": 222,
+            "end": 230,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "text": "California DOGE payments page is live!\n\n30M+ rows of data processed so far. \n\nAnd we are just getting started. \n\n@DOGE @CalPolicyCenter @ReformCalif @JoinFAI @RepMcClintock @repdarrellissa @SenatorMoorlach @open_the_books @joffemd \n\nhttps://t.co/tKDZagwuBc",
+      "id": "1914926583275774321",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070735149568913408",
+            "name": "John Moorlach",
+            "description": "American politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "1070735149568913408",
+            "name": "John Moorlach",
+            "description": "American politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070735149568913408",
+            "name": "John Moorlach",
+            "description": "American politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-23T06:17:29.000Z",
+      "edit_history_tweet_ids": [
+        "1914926583275774321"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 22, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1914396051341238461"
       ],
@@ -8223,8 +8784,8 @@
     }
   ],
   "meta": {
-    "result_count": 73,
-    "newest_id": "1914396051341238461",
+    "result_count": 76,
+    "newest_id": "1914935690271580629",
     "oldest_id": "1882144700762878208"
   }
 }

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "fetch-tweets": "ts-node --project tsconfig.json src/scripts/fetch-tweets.ts",
+    "fetch-tweets": "ts-node -T --compilerOptions '{\"module\":\"commonjs\"}' src/scripts/fetch-tweets.ts",
     "favicon-check": "npx realfavicon check http://localhost:3000",
     "validate-departments_json_types": "ts-node --project tsconfig.json src/scripts/update_department_json_to_type.ts",
     "download-salary": "node src/scripts/download_publicpay_csv.js",
