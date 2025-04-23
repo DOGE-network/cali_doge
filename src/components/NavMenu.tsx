@@ -11,6 +11,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { href: '/savings', label: 'Savings' },
+  { href: '/payments', label: 'Payments' },
   { href: '/spend', label: 'Spend' },
   { href: '/workforce', label: 'Workforce' },
   { href: '/regulations', label: 'Regulations' },

@@ -1,13 +1,36 @@
- /**
- * Type definitions for vendor transaction data from open.fiscal.ca.gov
- */
+// Main vendor transaction record structure
+export interface VendorTransaction {
+  vendor_name: string;
+  fiscalYear: Array<{
+    year: string;
+    department_name: Array<{
+      name: string;
+      account_type: Array<{
+        type: string;
+        account_category: Array<{
+          category: string;
+          account_sub_category: Array<{
+            subCategory: string;
+            account_description: Array<{
+              description: string;
+              program_description: Array<{
+                program: string;
+                sub_program_description: Array<{
+                  subProgram: string;
+                  count: number;
+                  amount: number;
+                }>;
+              }>;
+            }>;
+          }>;
+        }>;
+      }>;
+    }>;
+  }>;
+}
 
-import { FiscalYearKey, ValidSlug, NonNegativeNumber, NonNegativeInteger } from './department';
-
-/**
- * Raw vendor transaction record structure from CSV
- */
-export interface VendorTransactionRecord {
+// CSV record structure
+export interface VendorTransactionsCSV {
   business_unit: string;
   agency_name: string;
   department_name: string;
@@ -36,74 +59,96 @@ export interface VendorTransactionRecord {
   monetary_amount: string;
 }
 
-/**
- * Transaction amount ranges for distribution analysis
- */
-export interface TransactionRange {
-  range: [0, 9999] | [10000, 49999] | [50000, 99999] | [100000, 499999] | [500000, 999999] |
-         [1000000, 4999999] | [5000000, 9999999] | [10000000, 49999999] | [50000000, 99999999] | [100000000, 1000000000];
-  count: NonNegativeInteger;
+export interface DepartmentData {
+  name: string;
+  count: number;
+  amount: number;
 }
 
-/**
- * Account categories from the transaction data
- */
-export type AccountCategory = 
-  'Operating Expense & Equipment' |
-  'Special Items of Expense' |
-  'Personal Services' |
-  'Staff Benefits' |
-  'Other';
+export interface FiscalYearData {
+  year: string;
+  data: DepartmentData[];
+}
 
-/**
- * Processed vendor data structure
- */
+export interface VendorDepartment {
+  vendor_name: string;
+  fiscalYear: FiscalYearData[];
+}
+
 export interface VendorData {
   name: string;
-  slug: ValidSlug;
-  canonicalName: string;
-  aliases: string[];
-  transactions: {
-    yearly: Record<FiscalYearKey, number>;
-    transactionCount: Record<FiscalYearKey, number>;
-    byDepartment: Record<string, {
-      yearly: Record<FiscalYearKey, number>;
-      transactionCount: Record<FiscalYearKey, number>;
-    }>;
-    byCategory: Record<AccountCategory, {
-      yearly: Record<FiscalYearKey, number>;
-      transactionCount: Record<FiscalYearKey, number>;
-    }>;
-    averageTransaction?: NonNegativeNumber;
-    transactionDistribution?: TransactionRange[];
-    _note?: string;
-  };
-  departments: string[];
-  categories: AccountCategory[];
-  status: 'active' | 'inactive';
+  count: number;
+  amount: number;
 }
 
-/**
- * Structure of the vendors.json file
- */
+export interface DepartmentFiscalYear {
+  year: string;
+  vendor_name: VendorData[];
+}
+
+export interface DepartmentVendor {
+  department_name: string;
+  fiscalYear: DepartmentFiscalYear[];
+}
+
+export interface AccountVendor {
+  account_type: string;
+  fiscalYear: DepartmentFiscalYear[];
+}
+
+export interface ProgramVendor {
+  program_description: string;
+  fiscalYear: DepartmentFiscalYear[];
+}
+
+export interface PaginationInfo {
+  currentPage: number;
+  totalPages: number;
+  totalItems: number;
+  itemsPerPage: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
+
+// File structure types
+export interface VendorTransactionFile {
+  transactions: VendorTransaction[];
+}
+
+export interface VendorDepartmentFile {
+  vendors: VendorDepartment[];
+}
+
+export interface DepartmentVendorFile {
+  departments: DepartmentVendor[];
+}
+
+export interface AccountVendorFile {
+  accounts: AccountVendor[];
+}
+
+export interface ProgramVendorFile {
+  programs: ProgramVendor[];
+}
+
+// Transaction type for payment records
+export interface Transaction {
+  id: string;
+  date: string;
+  department: string;
+  category: string;
+  amount: number;
+  fiscalYear: string;
+}
+
+// Vendors data structure
 export interface VendorsJSON {
-  vendors: VendorData[];
-  sources: Array<{
+  vendors: Array<{
+    id: string;
     name: string;
-    url: string;
-    lastUpdated: string;
+    transactions: {
+      allTransactions: Transaction[];
+    };
   }>;
-  _note?: string;
 }
-
-/**
- * Simplified vendor mapping used throughout the application
- */
-export interface VendorMapping {
-  slug: string;           // The slug used in vendor URLs
-  name: string;           // The vendor name
-  canonicalName: string;  // The full official/canonical name
-  aliases?: string[];     // Alternative names for the vendor
-  departments: string[];  // Associated department slugs
-  categories: AccountCategory[];  // Business categories
-} 
+  

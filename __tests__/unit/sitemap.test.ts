@@ -1,5 +1,6 @@
 import { getDepartmentSlugs } from '@/lib/blog';
 import sitemap from '@/app/sitemap';
+import { MetadataRoute } from 'next';
 
 // Mock the getDepartmentSlugs function
 jest.mock('@/lib/blog', () => ({
@@ -47,6 +48,6 @@ describe('sitemap', () => {
 
     // Verify only core pages are included
     expect(result.length).toBe(10); // 10 core pages
-    expect(result.every(page => !page.url.includes('/departments/'))).toBe(true);
+    expect(result.every((page: MetadataRoute.Sitemap[number]) => !page.url.includes('/departments/'))).toBe(true);
   });
 }); 
