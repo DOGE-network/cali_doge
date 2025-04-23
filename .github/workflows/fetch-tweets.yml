@@ -35,7 +35,7 @@ jobs:
         TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
       run: |
-        npx ts-node src/scripts/fetch-tweets.ts
+        node --loader ts-node/esm src/scripts/fetch-tweets.ts
       continue-on-error: false
 
     - name: Commit and push if changed
