@@ -1,6 +1,842 @@
 {
   "tweets": [
     {
+      "id": "1915207180124647610",
+      "edit_history_tweet_ids": [
+        "1915207180124647610"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-24T00:52:29.000Z",
+      "text": "8/8 If the federal government succeeds in recovering the $2B, California may face budget shortfalls, halted projects, and missed climate targets. The outcome of ongoing lawsuits will determine the future of these critical state initiatives.\nhttps://t.co/lj9hN6Uhl9",
+      "entities": {
+        "urls": [
+          {
+            "start": 241,
+            "end": 264,
+            "url": "https://t.co/lj9hN6Uhl9",
+            "expanded_url": "https://tribalbusinessnews.com/sections/energy/15057-court-blocks-epa-attempt-to-cancel-20b-of-climate-grants@tribalbiz.bsky.social",
+            "display_url": "tribalbusinessnews.com/sections/energ…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207183329091588/2Z228_zF?format=jpg&name=orig",
+                "width": 648,
+                "height": 431
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207183329091588/2Z228_zF?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Court blocks EPA attempt to cancel $20B of climate grants, protecting tribal energy funding",
+            "description": "Federal judge blocks EPA's termination of $20 billion in climate grants, safeguarding $1.5 billion for Native American energy sovereignty projects while questioning the agency's lack of evidence for cancellation.",
+            "unwound_url": "https://tribalbusinessnews.com/sections/energy/15057-court-blocks-epa-attempt-to-cancel-20b-of-climate-grants@tribalbiz.bsky.social"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 62,
+            "end": 71,
+            "probability": 0.9914,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 24, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "id": "1915207176769167393",
+      "edit_history_tweet_ids": [
+        "1915207176769167393"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 79,
+            "end": 95,
+            "username": "rewiringamerica",
+            "id": "1233150686704988160"
+          }
+        ],
+        "urls": [
+          {
+            "start": 247,
+            "end": 270,
+            "url": "https://t.co/u9AyR8zM27",
+            "expanded_url": "https://www.washingtonexaminer.com/policy/energy-and-environment/3324539/two-billion-dollars-gold-bars-sent-from-epa-to-abrams-linked-climate-organization/",
+            "display_url": "washingtonexaminer.com/policy/energy-…",
+            "status": 200,
+            "title": "$2 billion in ‘gold bars’ sent to Abrams-linked climate organization: Zeldin",
+            "description": "Power Forward Communities was founded as a coalition of groups, led by Rewiring America, at which Abrams serves as senior counsel.",
+            "unwound_url": "https://www.washingtonexaminer.com/policy/energy-and-environment/3324539/two-billion-dollars-gold-bars-sent-from-epa-to-abrams-linked-climate-organization/"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 23,
+            "end": 25,
+            "probability": 0.9481,
+            "type": "Organization",
+            "normalized_text": "EPA"
+          },
+          {
+            "start": 139,
+            "end": 148,
+            "probability": 0.9763,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-24T00:52:28.000Z",
+      "text": "7/8 In April 2024, the EPA awarded $2B to Power Forward Communities (including @rewiringamerica) for nationwide home electrification, with California as a key focus. Legal battles over the funds put these programs—and state climate goals—at risk.\nhttps://t.co/u9AyR8zM27",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1068583660914266113",
+            "name": "Government institutions",
+            "description": "Political Body"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 24, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "id": "1915207174974029987",
+      "edit_history_tweet_ids": [
+        "1915207174974029987"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-24T00:52:27.000Z",
+      "text": "6/8 \"Rewiring Communities\" promised tailored support and financing to California cities. Now, state and local governments may have to pause or cancel electrification initiatives if grant funds are permanently revoked.\nhttps://t.co/UYS76QVQ1Z",
+      "entities": {
+        "urls": [
+          {
+            "start": 218,
+            "end": 241,
+            "url": "https://t.co/UYS76QVQ1Z",
+            "expanded_url": "https://www.politico.com/news/2025/04/15/gold-bars-fbi-probe-trumps-effort-to-pry-back-money-from-bidens-climate-spending-00287328",
+            "display_url": "politico.com/news/2025/04/1…",
+            "status": 200,
+            "title": "Trump's EPA wages war over $20B in 'gold bars'",
+            "description": "The Biden EPA handed out billions of dollars to bring clean energy technologies to lower-income communities. The Trump administration is trying to take it back.",
+            "unwound_url": "https://www.politico.com/news/2025/04/15/gold-bars-fbi-probe-trumps-effort-to-pry-back-money-from-bidens-climate-spending-00287328"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 5,
+            "end": 24,
+            "probability": 0.6468,
+            "type": "Other",
+            "normalized_text": "Rewiring Communities"
+          },
+          {
+            "start": 70,
+            "end": 79,
+            "probability": 0.9671,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 24, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "id": "1915207172776153408",
+      "edit_history_tweet_ids": [
+        "1915207172776153408"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 38,
+            "end": 52,
+            "username": "PoweredbyEBCE",
+            "id": "1658210295486255104"
+          },
+          {
+            "start": 54,
+            "end": 69,
+            "username": "PenCleanEnergy",
+            "id": "3098196847"
+          },
+          {
+            "start": 71,
+            "end": 85,
+            "username": "SVCleanEnergy",
+            "id": "709786989520785408"
+          },
+          {
+            "start": 87,
+            "end": 96,
+            "username": "3CEnergy",
+            "id": "1210529756"
+          },
+          {
+            "start": 98,
+            "end": 113,
+            "username": "MCECleanEnergy",
+            "id": "220183454"
+          }
+        ],
+        "urls": [
+          {
+            "start": 208,
+            "end": 231,
+            "url": "https://t.co/lhKCR4ooOH",
+            "expanded_url": "https://www.eenews.net/articles/gold-bars-and-an-fbi-probe-inside-trumps-effort-to-pry-back-20b-from-bidens-climate-spending/",
+            "display_url": "eenews.net/articles/gold-…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207176433655813/XavdF9vM?format=jpg&name=orig",
+                "width": 1200,
+                "height": 800
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207176433655813/XavdF9vM?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Trump's EPA wages war over $20B in 'gold bars'",
+            "description": "The Biden EPA handed out billions of dollars to bring clean energy technologies to lower-income communities. The Trump administration is trying to take it",
+            "unwound_url": "https://www.eenews.net/articles/gold-bars-and-an-fbi-probe-inside-trumps-effort-to-pry-back-20b-from-bidens-climate-spending/"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-24T00:52:27.000Z",
+      "text": "5/8 Community Choice Aggregators like @PoweredbyEBCE, @PenCleanEnergy, @SVCleanEnergy, @3CEnergy, @MCECleanEnergy could lose access to federal capital, putting planned clean energy projects and jobs at risk.\nhttps://t.co/lhKCR4ooOH",
+      "created_at_formatted": "Apr 24, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "id": "1915207169815044335",
+      "edit_history_tweet_ids": [
+        "1915207169815044335"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 61,
+            "end": 72,
+            "username": "Bayarearen",
+            "id": "1531076005426630656"
+          }
+        ],
+        "urls": [
+          {
+            "start": 215,
+            "end": 238,
+            "url": "https://t.co/3OTCOoZmou",
+            "expanded_url": "https://www.dailyclimate.org/citibank-faces-growing-legal-battle-over-frozen-climate-funds-2671322603.html",
+            "display_url": "dailyclimate.org/citibank-faces…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207170649710594/rq5yhL9u?format=jpg&name=orig",
+                "width": 1200,
+                "height": 600
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207170649710594/rq5yhL9u?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Citibank faces growing legal battle over frozen climate funds",
+            "description": "A third nonprofit has sued Citibank for blocking access to climate funding backed by the U.S. Environmental Protection Agency, intensifying a legal fight over the Trump administration’s efforts to roll back Biden-era green initiatives.Jean Chemnick reports for E&E; News.In short:Power Forward Commun...",
+            "unwound_url": "https://www.dailyclimate.org/citibank-faces-growing-legal-battle-over-frozen-climate-funds-2671322603.html"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 19,
+            "end": 49,
+            "probability": 0.4991,
+            "type": "Place",
+            "normalized_text": "Bay Area Air Quality Management"
+          },
+          {
+            "start": 82,
+            "end": 93,
+            "probability": 0.8665,
+            "type": "Place",
+            "normalized_text": "Santa Monica"
+          },
+          {
+            "start": 104,
+            "end": 111,
+            "probability": 0.8869,
+            "type": "Place",
+            "normalized_text": "San Jose"
+          },
+          {
+            "start": 133,
+            "end": 135,
+            "probability": 0.7665,
+            "type": "Organization",
+            "normalized_text": "EPA"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-24T00:52:26.000Z",
+      "text": "4/8 Local agencies—Bay Area Air Quality Management District, @BayAreaREN, City of Santa Monica, City of San Jose—face uncertainty as EPA and Citibank freeze green banking funds, potentially halting energy upgrades.\nhttps://t.co/3OTCOoZmou",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "781974596794716162",
+            "name": "Financial services"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1584490602338451456",
+            "name": "Banking"
+          }
+        },
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "1012411497757040641",
+            "name": "San Jose",
+            "description": "San Jose"
+          }
+        },
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974596731871232",
+            "name": "Banking - Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10026450526",
+            "name": "Citi"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 24, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "id": "1915207166413394281",
+      "edit_history_tweet_ids": [
+        "1915207166413394281"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 4,
+            "end": 20,
+            "username": "rewiringamerica",
+            "id": "1233150686704988160"
+          },
+          {
+            "start": 39,
+            "end": 46,
+            "username": "PGE4Me",
+            "id": "31496613"
+          },
+          {
+            "start": 48,
+            "end": 52,
+            "username": "SCE",
+            "id": "16002973"
+          },
+          {
+            "start": 58,
+            "end": 64,
+            "username": "LADWP",
+            "id": "22584849"
+          }
+        ],
+        "urls": [
+          {
+            "start": 194,
+            "end": 217,
+            "url": "https://t.co/UYS76QVQ1Z",
+            "expanded_url": "https://www.politico.com/news/2025/04/15/gold-bars-fbi-probe-trumps-effort-to-pry-back-money-from-bidens-climate-spending-00287328",
+            "display_url": "politico.com/news/2025/04/1…",
+            "status": 200,
+            "title": "Trump's EPA wages war over $20B in 'gold bars'",
+            "description": "The Biden EPA handed out billions of dollars to bring clean energy technologies to lower-income communities. The Trump administration is trying to take it back.",
+            "unwound_url": "https://www.politico.com/news/2025/04/15/gold-bars-fbi-probe-trumps-effort-to-pry-back-money-from-bidens-climate-spending-00287328"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-24T00:52:25.000Z",
+      "text": "3/8 @rewiringamerica and partners like @PGE4Me, @SCE, and @LADWP helped expand electrification statewide. Projects in progress now risk stalling if $2B in federal funds are frozen or reclaimed.\nhttps://t.co/UYS76QVQ1Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974597474263040",
+            "name": "Energy"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974596752842754",
+            "name": "Electric - Energy"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10048891563",
+            "name": "Southern California Edison Company",
+            "description": "Southern California Edison Company"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10048891570",
+            "name": "PG&E",
+            "description": "PG&E"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 24, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "id": "1915207163288617140",
+      "edit_history_tweet_ids": [
+        "1915207163288617140"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-24T00:52:25.000Z",
+      "text": "2/8 The campaign, backed by TECH Clean California and the CPUC, was designed to support contractors and local governments. If federal grants are revoked, state and local budgets could face sudden funding gaps.\nhttps://t.co/bQdKg6Flhd",
+      "entities": {
+        "urls": [
+          {
+            "start": 210,
+            "end": 233,
+            "url": "https://t.co/bQdKg6Flhd",
+            "expanded_url": "https://www.dailyclimate.org/climate-grant-recipients-push-forward-despite-epa-efforts-to-reclaim-funds-2671223403.html",
+            "display_url": "dailyclimate.org/climate-grant-…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207165675266050/_bo8S0y-?format=jpg&name=orig",
+                "width": 1200,
+                "height": 600
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207165675266050/_bo8S0y-?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Climate grant recipients push forward despite EPA efforts to reclaim funds",
+            "description": "A coalition of nonprofits says it will proceed with distributing $539 million in federal climate grants, despite the Trump administration’s attempts to revoke the funding.Zack Colman reports for POLITICO.In short:Power Forward Communities, a coalition of five nonprofits, received a $2 billion grant ...",
+            "unwound_url": "https://www.dailyclimate.org/climate-grant-recipients-push-forward-despite-epa-efforts-to-reclaim-funds-2671223403.html"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 28,
+            "end": 31,
+            "probability": 0.5676,
+            "type": "Other",
+            "normalized_text": "TECH"
+          },
+          {
+            "start": 39,
+            "end": 48,
+            "probability": 0.5973,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 58,
+            "end": 61,
+            "probability": 0.4931,
+            "type": "Organization",
+            "normalized_text": "CPUC"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974596752842752",
+            "name": "Services"
+          }
+        },
+        {
+          "domain": {
+            "id": "48",
+            "name": "Product",
+            "description": "Products created by Brands.  Examples: Ford Explorer, Apple iPhone."
+          },
+          "entity": {
+            "id": "1412579054855671809",
+            "name": "Google Innovation"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 24, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "id": "1915207161195688132",
+      "edit_history_tweet_ids": [
+        "1915207161195688132"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-24T00:52:24.000Z",
+      "text": "1/8\nThe Building Decarbonization Coalition (BDC) launched \"Switch Is On\" in California to help residents electrify homes—a model now at risk as EPA tries to claw back funding from Power Forward Communities.\nhttps://t.co/TfJU2WpewK",
+      "entities": {
+        "urls": [
+          {
+            "start": 207,
+            "end": 230,
+            "url": "https://t.co/TfJU2WpewK",
+            "expanded_url": "https://buildingdecarb.org/building-decarbonization-coalition-and-partners-launch-the-switch-is-on-a-campaign-supporting-widespread-home-electrification-in-california",
+            "display_url": "buildingdecarb.org/building-decar…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207162198188035/fTUay0GY?format=png&name=orig",
+                "width": 380,
+                "height": 250
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1915207162198188035/fTUay0GY?format=png&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Building Decarbonization Coalition and Partners Launch \"The Switch is On\", a Campaign Supporting Widespread Home Electrification In California",
+            "description": "[…]",
+            "unwound_url": "https://buildingdecarb.org/building-decarbonization-coalition-and-partners-launch-the-switch-is-on-a-campaign-supporting-widespread-home-electrification-in-california"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 4,
+            "end": 41,
+            "probability": 0.7447,
+            "type": "Other",
+            "normalized_text": "The Building Decarbonization Coalition"
+          },
+          {
+            "start": 44,
+            "end": 46,
+            "probability": 0.3024,
+            "type": "Organization",
+            "normalized_text": "BDC"
+          },
+          {
+            "start": 59,
+            "end": 70,
+            "probability": 0.7618,
+            "type": "Other",
+            "normalized_text": "Switch Is On"
+          },
+          {
+            "start": 76,
+            "end": 85,
+            "probability": 0.9708,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 144,
+            "end": 146,
+            "probability": 0.9088,
+            "type": "Organization",
+            "normalized_text": "EPA"
+          },
+          {
+            "start": 180,
+            "end": 192,
+            "probability": 0.6147,
+            "type": "Other",
+            "normalized_text": "Power Forward"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 24, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -8890,8 +9726,8 @@
     }
   ],
   "meta": {
-    "result_count": 77,
-    "newest_id": "1915160236656386160",
+    "result_count": 85,
+    "newest_id": "1915207180124647610",
     "oldest_id": "1882144700762878208"
   }
 }
