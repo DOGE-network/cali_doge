@@ -1,6 +1,121 @@
 {
   "tweets": [
     {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 9,
+            "end": 14,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 45,
+            "end": 46,
+            "probability": 0.4313,
+            "type": "Organization",
+            "normalized_text": "AI"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1915818280058818678"
+      ],
+      "text": "@joffemd @DOGE We have a designed a research AI agent that can correlate city, county and state data. Starting to put it together. It should make this type of cost analysis easier, e.g. complexity of transit system, headcount, salaries, budget and programs.",
+      "id": "1915818280058818678",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-04-25T17:20:46.000Z",
+      "created_at_formatted": "Apr 25, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 9,
+            "end": 14,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 42,
+            "end": 47,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 175,
+            "end": 186,
+            "username": "OpenGovInc",
+            "id": "1455347772"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 107,
+            "end": 116,
+            "probability": 0.9852,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 166,
+            "end": 169,
+            "probability": 0.4448,
+            "type": "Other",
+            "normalized_text": "CKAN"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1915816811104268625"
+      ],
+      "text": "@joffemd @DOGE The opportunities to apply @DOGE like investigation and efficiency improvements is large in California. Our ability to utilize existing standards like CKAN and @OpenGovInc can jump start reform starting at the local level.",
+      "id": "1915816811104268625",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-25T17:14:56.000Z",
+      "created_at_formatted": "Apr 25, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
       "id": "1915207180124647610",
       "edit_history_tweet_ids": [
         "1915207180124647610"
@@ -9726,8 +9841,8 @@
     }
   ],
   "meta": {
-    "result_count": 85,
-    "newest_id": "1915207180124647610",
+    "result_count": 87,
+    "newest_id": "1915818280058818678",
     "oldest_id": "1882144700762878208"
   }
 }
