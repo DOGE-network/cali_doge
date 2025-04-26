@@ -8,6 +8,68 @@
             "end": 8,
             "username": "joffemd",
             "id": "18560905"
+          }
+        ],
+        "urls": [
+          {
+            "start": 190,
+            "end": 213,
+            "url": "https://t.co/hzHdQiiEgq",
+            "expanded_url": "https://cali-doge.org/departments/2665_high_speed_rail_authority",
+            "display_url": "cali-doge.org/departments/26…",
+            "status": 200,
+            "title": "California DOGE - Government Efficiency & Transparency",
+            "description": "Transparent insights into California government operations, budget data, and workforce information.",
+            "unwound_url": "https://cali-doge.org/departments/2665_high_speed_rail_authority"
+          },
+          {
+            "start": 215,
+            "end": 238,
+            "url": "https://t.co/s1aIpl6Uv3",
+            "expanded_url": "https://cali-doge.org/workforce?department=High-Speed%20Rail%20Authority",
+            "display_url": "cali-doge.org/workforce?depa…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1916184126039986178/Yl6Lwu3d?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1916184126039986178/Yl6Lwu3d?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce?department=High-Speed%20Rail%20Authority"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1916184124047646776"
+      ],
+      "created_at": "2025-04-26T17:34:30.000Z",
+      "text": "@joffemd To your point, records for the High-Speed Rail Authority go back over 15 years and over $11B. And the real output of the work has been a few sections of elevated track in Merced. \n\nhttps://t.co/hzHdQiiEgq\n\nhttps://t.co/s1aIpl6Uv3",
+      "author_id": "1859283000145608705",
+      "id": "1916184124047646776",
+      "created_at_formatted": "Apr 26, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
           },
           {
             "start": 9,
@@ -9841,8 +9903,8 @@
     }
   ],
   "meta": {
-    "result_count": 87,
-    "newest_id": "1915818280058818678",
+    "result_count": 88,
+    "newest_id": "1916184124047646776",
     "oldest_id": "1882144700762878208"
   }
 }
