@@ -187,7 +187,8 @@ function aggregateDistributions(departments: DepartmentHierarchy[], selectedFisc
 
   // Helper to aggregate a single distribution type
   const aggregateDistribution = (distributions: RawDistributionItem[][], type: 'tenure' | 'salary' | 'age'): RawDistributionItem[] => {
-    log('DEBUG', transactionId, 'Step 3.1: Processing department', { 
+    log('DEBUG', transactionId, 'Step 3.1: Processing distribution', { 
+      type,
       distributionCount: distributions.length,
       fiscalYear: selectedFiscalYear
     });
@@ -197,14 +198,14 @@ function aggregateDistributions(departments: DepartmentHierarchy[], selectedFisc
     distributions.forEach((dist, index) => {
       if (!dist || !Array.isArray(dist)) {
         log('WARN', transactionId, `Step 3.1: Missing ${type} distribution data`, { 
-          department: 'unknown',
           index,
           fiscalYear: selectedFiscalYear
         });
         return;
       }
+
       dist.forEach(item => {
-        if (!item || !Array.isArray(item.range)) {
+        if (!item || !Array.isArray(item.range) || item.range.length !== 2) {
           log('WARN', transactionId, `Step 3.1: Invalid ${type} distribution item`, { 
             item,
             index,
@@ -212,35 +213,40 @@ function aggregateDistributions(departments: DepartmentHierarchy[], selectedFisc
           });
           return;
         }
+
         const key = `${item.range[0]}-${item.range[1]}`;
-        rangeMap.set(key, (rangeMap.get(key) || 0) + item.count);
+        const currentCount = rangeMap.get(key) || 0;
+        rangeMap.set(key, currentCount + (item.count || 0));
       });
     });
 
-    const result = Array.from(rangeMap.entries()).map(([key, count]) => ({
-      range: key.split('-').map(Number) as [number, number],
-      count
-    }));
+    // Sort ranges by the lower bound
+    const result = Array.from(rangeMap.entries())
+      .map(([key, count]) => ({
+        range: key.split('-').map(Number) as [number, number],
+        count
+      }))
+      .sort((a, b) => a.range[0] - b.range[0]);
 
+    const totalCount = result.reduce((sum, item) => sum + item.count, 0);
+    
     log('INFO', transactionId, `Step 3.1: ${type} distribution processing complete`, {
       uniqueRanges: result.length,
-      totalCount: result.reduce((sum, item) => sum + item.count, 0),
+      totalCount,
       fiscalYear: selectedFiscalYear
     });
+
     return result;
   };
 
-  // 3.2 Yearly Data Aggregation
-  log('INFO', transactionId, 'Step 3.2: Aggregating yearly data', { fiscalYear: selectedFiscalYear });
-  
   // Get all distributions from departments and their subdepartments recursively
-  const getAllDistributions = (depts: DepartmentHierarchy[], isRoot: boolean = false) => {
-    log('DEBUG', transactionId, 'Step 3.2: Department yearly data', { 
-      departmentCount: depts.length,
-      isRoot,
-      fiscalYear: selectedFiscalYear
-    });
-
+  const getAllDistributions = (depts: DepartmentHierarchy[]): {
+    tenure: RawDistributionItem[][];
+    salary: RawDistributionItem[][];
+    age: RawDistributionItem[][];
+    headCount: number;
+    wages: number;
+  } => {
     const distributions = {
       tenure: [] as RawDistributionItem[][],
       salary: [] as RawDistributionItem[][],
@@ -249,69 +255,78 @@ function aggregateDistributions(departments: DepartmentHierarchy[], selectedFisc
       wages: 0
     };
 
-    depts.forEach(dept => {
-      // Always include the current department's distributions if they exist
-      if (dept.tenureDistribution?.yearly?.[selectedFiscalYear]) {
-        log('DEBUG', transactionId, 'Step 3.2: Found tenure distribution', {
-          department: dept.name,
-          distributionCount: dept.tenureDistribution.yearly[selectedFiscalYear].length,
-          fiscalYear: selectedFiscalYear
-        });
-        distributions.tenure.push(dept.tenureDistribution.yearly[selectedFiscalYear]);
-      }
-      if (dept.salaryDistribution?.yearly?.[selectedFiscalYear]) {
-        log('DEBUG', transactionId, 'Step 3.2: Found salary distribution', {
-          department: dept.name,
-          distributionCount: dept.salaryDistribution.yearly[selectedFiscalYear].length,
-          fiscalYear: selectedFiscalYear
-        });
-        distributions.salary.push(dept.salaryDistribution.yearly[selectedFiscalYear]);
-      }
-      if (dept.ageDistribution?.yearly?.[selectedFiscalYear]) {
-        log('DEBUG', transactionId, 'Step 3.2: Found age distribution', {
-          department: dept.name,
-          distributionCount: dept.ageDistribution.yearly[selectedFiscalYear].length,
-          fiscalYear: selectedFiscalYear
-        });
-        distributions.age.push(dept.ageDistribution.yearly[selectedFiscalYear]);
+    const processDistributions = (dept: DepartmentHierarchy, isParent: boolean = false): void => {
+      // Always process parent department's data first
+      if (isParent || !dept.originalData) {
+        if (dept.tenureDistribution?.yearly?.[selectedFiscalYear]) {
+          distributions.tenure.push(dept.tenureDistribution.yearly[selectedFiscalYear]);
+        }
+
+        if (dept.salaryDistribution?.yearly?.[selectedFiscalYear]) {
+          const salaryDist = dept.salaryDistribution.yearly[selectedFiscalYear];
+          if (Array.isArray(salaryDist) && salaryDist.length > 0) {
+            distributions.salary.push(salaryDist);
+          }
+        }
+
+        if (dept.ageDistribution?.yearly?.[selectedFiscalYear]) {
+          distributions.age.push(dept.ageDistribution.yearly[selectedFiscalYear]);
+        }
+
+        if (typeof dept.headCount?.yearly?.[selectedFiscalYear] === 'number') {
+          distributions.headCount += dept.headCount.yearly[selectedFiscalYear] as number;
+        }
+
+        if (typeof dept.wages?.yearly?.[selectedFiscalYear] === 'number') {
+          distributions.wages += dept.wages.yearly[selectedFiscalYear] as number;
+        }
       }
 
-      // Get department's own headcount and wages
-      if (typeof dept.headCount?.yearly?.[selectedFiscalYear] === 'number') {
-        distributions.headCount += dept.headCount.yearly[selectedFiscalYear] as number;
-      }
-      
-      if (typeof dept.wages?.yearly?.[selectedFiscalYear] === 'number') {
-        distributions.wages += dept.wages.yearly[selectedFiscalYear] as number;
-      }
-
-      // Process subdepartments if they exist
+      // Process subdepartments recursively
       if (dept.subDepartments?.length) {
-        log('DEBUG', transactionId, 'Step 3.2: Processing subdepartments', {
-          department: dept.name,
-          subDepartmentCount: dept.subDepartments.length,
-          fiscalYear: selectedFiscalYear
+        dept.subDepartments.forEach(subDept => {
+          processDistributions(subDept, false);
         });
-        
-        const subDistributions = getAllDistributions(dept.subDepartments);
-        
-        // Add subdepartment distributions
-        distributions.tenure.push(...subDistributions.tenure);
-        distributions.salary.push(...subDistributions.salary);
-        distributions.age.push(...subDistributions.age);
-        distributions.headCount += subDistributions.headCount;
-        distributions.wages += subDistributions.wages;
+      }
+    };
+
+    // Process all departments in the current level
+    depts.forEach(dept => {
+      processDistributions(dept, true);
+    });
+
+    // Validate the aggregated data
+    const totalSalaryCount = distributions.salary.reduce((sum, dist) => 
+      sum + dist.reduce((s, item) => s + (item.count || 0), 0), 0
+    );
+
+    log('DEBUG', transactionId, 'Distribution validation', {
+      totalHeadCount: distributions.headCount,
+      totalSalaryCount,
+      salaryDistributionsCount: distributions.salary.length,
+      fiscalYear: selectedFiscalYear,
+      distributionArrays: {
+        salary: distributions.salary.length,
+        tenure: distributions.tenure.length,
+        age: distributions.age.length
       }
     });
+
+    if (totalSalaryCount > 0 && Math.abs(totalSalaryCount - distributions.headCount) > distributions.headCount * 0.01) {
+      log('WARN', transactionId, 'Distribution count mismatch', {
+        totalSalaryCount,
+        headCount: distributions.headCount,
+        difference: Math.abs(totalSalaryCount - distributions.headCount),
+        fiscalYear: selectedFiscalYear
+      });
+    }
 
     return distributions;
   };
 
-  const allDistributions = getAllDistributions(departments, true);
+  const allDistributions = getAllDistributions(departments);
   
   // 3.3 Final Aggregation
-  log('INFO', transactionId, 'Step 3.3: Computing final aggregated distributions', { fiscalYear: selectedFiscalYear });
-  
   result.tenureDistribution = aggregateDistribution(allDistributions.tenure, 'tenure');
   result.salaryDistribution = aggregateDistribution(allDistributions.salary, 'salary');
   result.ageDistribution = aggregateDistribution(allDistributions.age, 'age');
@@ -322,21 +337,6 @@ function aggregateDistributions(departments: DepartmentHierarchy[], selectedFisc
   if (result.childHeadCount > 0) {
     result.childAverageSalary = (result.childWages / result.childHeadCount) as number;
   }
-
-  log('DEBUG', transactionId, 'Step 3.3: Distribution counts and aggregated data', {
-    tenure: result.tenureDistribution.length,
-    salary: result.salaryDistribution.length,
-    age: result.ageDistribution.length,
-    headCount: result.childHeadCount,
-    wages: result.childWages,
-    averageSalary: result.childAverageSalary,
-    fiscalYear: selectedFiscalYear
-  });
-  
-  log('INFO', transactionId, 'Step 3.3: Aggregation complete', { 
-    totalProcessed: departments.length,
-    fiscalYear: selectedFiscalYear
-  });
 
   return result;
 }
