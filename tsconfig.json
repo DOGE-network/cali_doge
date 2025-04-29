@@ -32,6 +32,8 @@
     "types": [
       "node",
       "jest",
+      "react",
+      "react-dom",
       "@types/babel__core",
       "@types/babel__generator",
       "@types/babel__template",
