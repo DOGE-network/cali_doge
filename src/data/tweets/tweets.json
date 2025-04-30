@@ -1,6 +1,568 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "text": "We have posted data from 30M data rows from California State Government. \n\nSearch and review CARB, CCC, and other departments. \n\n2023 Salaries at $68B. \nHeadcount at 700K+\n\nhttps://t.co/eaaE32U7k8 https://t.co/FXKuwRuQSb",
+      "edit_history_tweet_ids": [
+        "1917366934414451093"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 44,
+            "end": 70,
+            "probability": 0.5106,
+            "type": "Organization",
+            "normalized_text": "California State Government"
+          },
+          {
+            "start": 93,
+            "end": 96,
+            "probability": 0.4739,
+            "type": "Other",
+            "normalized_text": "CARB"
+          },
+          {
+            "start": 99,
+            "end": 101,
+            "probability": 0.4674,
+            "type": "Organization",
+            "normalized_text": "CCC"
+          }
+        ],
+        "urls": [
+          {
+            "start": 173,
+            "end": 196,
+            "url": "https://t.co/eaaE32U7k8",
+            "expanded_url": "https://cali-doge.org",
+            "display_url": "cali-doge.org",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1917329918826020864/J3uR03tJ?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1917329918826020864/J3uR03tJ?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org"
+          },
+          {
+            "start": 197,
+            "end": 220,
+            "url": "https://t.co/FXKuwRuQSb",
+            "expanded_url": "https://twitter.com/cali_doge/status/1917329874437693602",
+            "display_url": "x.com/cali_doge/stat…"
+          }
+        ]
+      },
+      "id": "1917366934414451093",
+      "created_at": "2025-04-29T23:54:34.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847511168268644352",
+            "name": "Global Economy",
+            "description": "Conversation about global finance and economies."
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 29, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "text": "RT @cali_doge: @CAgovernor There already is a California DOGE!\n\nWe have uncovered much of the spending and salaries. \n\nSoon our agents will…",
+      "edit_history_tweet_ids": [
+        "1917338969895063554"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 46,
+            "end": 55,
+            "probability": 0.8914,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 13,
+            "username": "cali_doge",
+            "id": "1859283000145608705"
+          },
+          {
+            "start": 15,
+            "end": 26,
+            "username": "CAgovernor",
+            "id": "38349184"
+          }
+        ]
+      },
+      "id": "1917338969895063554",
+      "created_at": "2025-04-29T22:03:27.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 29, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "text": "@CAgovernor There already is a California DOGE!\n\nWe have uncovered much of the spending and salaries. \n\nSoon our agents will publish even more details about how the California State Government really is spending our taxes. \n\n@CA__DOGE @carldemaio @joffemd @DOGE \n\nhttps://t.co/eaaE32U7k8",
+      "edit_history_tweet_ids": [
+        "1917329874437693602"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 31,
+            "end": 40,
+            "probability": 0.8839,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 165,
+            "end": 191,
+            "probability": 0.7247,
+            "type": "Organization",
+            "normalized_text": "California State Government"
+          }
+        ],
+        "urls": [
+          {
+            "start": 264,
+            "end": 287,
+            "url": "https://t.co/eaaE32U7k8",
+            "expanded_url": "https://cali-doge.org",
+            "display_url": "cali-doge.org",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1917329918826020864/J3uR03tJ?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1917329918826020864/J3uR03tJ?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "CAgovernor",
+            "id": "38349184"
+          },
+          {
+            "start": 225,
+            "end": 234,
+            "username": "CA__DOGE",
+            "id": "1861563798248988672"
+          },
+          {
+            "start": 235,
+            "end": 246,
+            "username": "carldemaio",
+            "id": "18027450"
+          },
+          {
+            "start": 247,
+            "end": 255,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 256,
+            "end": 261,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          }
+        ]
+      },
+      "id": "1917329874437693602",
+      "created_at": "2025-04-29T21:27:18.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847511168268644352",
+            "name": "Global Economy",
+            "description": "Conversation about global finance and economies."
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Apr 29, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "text": "@joffemd As the federal funding gets clawed back, which seems likely, all of the cities and counties will be looking to the state to make up the gap in their budgets. We have a projected FY26 $30B deficit. \n\nSalaries are ~$68B just for the state employees. \n\nhttps://t.co/SQecOdrwge",
+      "edit_history_tweet_ids": [
+        "1917327173972812079"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 259,
+            "end": 282,
+            "url": "https://t.co/SQecOdrwge",
+            "expanded_url": "https://cali-doge.org/workforce",
+            "display_url": "cali-doge.org/workforce",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1917327218621263872/PSbsDiK9?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1917327218621263872/PSbsDiK9?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "id": "1917327173972812079",
+      "created_at": "2025-04-29T21:16:35.000Z",
+      "created_at_formatted": "Apr 29, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -9903,8 +10465,8 @@
     }
   ],
   "meta": {
-    "result_count": 88,
-    "newest_id": "1916184124047646776",
+    "result_count": 92,
+    "newest_id": "1917366934414451093",
     "oldest_id": "1882144700762878208"
   }
 }
