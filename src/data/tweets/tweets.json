@@ -1,6 +1,358 @@
 {
   "tweets": [
     {
+      "created_at": "2025-04-30T16:34:13.000Z",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 75,
+            "end": 89,
+            "username": "californiapuc",
+            "id": "24973934"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 35,
+            "end": 72,
+            "probability": 0.5757,
+            "type": "Other",
+            "normalized_text": "California Public Utilities Commission"
+          },
+          {
+            "start": 94,
+            "end": 108,
+            "probability": 0.6111,
+            "type": "Place",
+            "normalized_text": "California DOGE"
+          }
+        ],
+        "urls": [
+          {
+            "start": 112,
+            "end": 135,
+            "url": "https://t.co/uhGfEHsY72",
+            "expanded_url": "https://cali-doge.org/workforce?department=Public%20Utilities%20Commission",
+            "display_url": "cali-doge.org/workforce?depa…",
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce?department=Public%20Utilities%20Commission"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1917618503181557911",
+      "text": "2 / 2 find more information on the California Public Utilities Commission \n@californiapuc at\n California DOGE \n\nhttps://t.co/uhGfEHsY72",
+      "edit_history_tweet_ids": [
+        "1917618503181557911"
+      ],
+      "created_at_formatted": "Apr 30, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-04-30T16:34:12.000Z",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 15,
+            "end": 21,
+            "probability": 0.7353,
+            "type": "Place",
+            "normalized_text": "America"
+          },
+          {
+            "start": 66,
+            "end": 75,
+            "probability": 0.8239,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 115,
+            "end": 142,
+            "probability": 0.8447,
+            "type": "Organization",
+            "normalized_text": "California Energy Commission"
+          }
+        ],
+        "urls": [
+          {
+            "start": 145,
+            "end": 168,
+            "url": "https://t.co/CiYA36ujts",
+            "expanded_url": "https://www.realclearinvestigations.com/articles/2025/04/16/the_remarkable_rags-to-riches_story_of_stacey_abrams_1103954.html",
+            "display_url": "realclearinvestigations.com/articles/2025/…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1917618512929210368/_NFuWqR-?format=jpg&name=orig",
+                "width": 1440,
+                "height": 861
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1917618512929210368/_NFuWqR-?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "The Remarkable Rags-to-Riches Story of Stacey Abrams",
+            "description": "By her own admission, Stacey Abrams has made a number of",
+            "unwound_url": "https://www.realclearinvestigations.com/articles/2025/04/16/the_remarkable_rags-to-riches_story_of_stacey_abrams_1103954.html"
+          }
+        ]
+      },
+      "id": "1917618500983742731",
+      "text": "1 / 2 Rewiring America has established extensive connections with California government agencies, particularly the California Energy Commission\n\nhttps://t.co/CiYA36ujts",
+      "edit_history_tweet_ids": [
+        "1917618500983742731"
+      ],
+      "created_at_formatted": "Apr 30, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-04-30T14:24:26.000Z",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "937710668706299904",
+            "name": "Federal Bureau of Investigation",
+            "description": "All conversation about the United States Federal Bureau of Investigation"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "937710668706299904",
+            "name": "Federal Bureau of Investigation",
+            "description": "All conversation about the United States Federal Bureau of Investigation"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1068583660914266113",
+            "name": "Government institutions",
+            "description": "Political Body"
+          }
+        }
+      ],
+      "id": "1917585840588611830",
+      "text": "It is a mystery after 15+ years https://t.co/nPdA9mb7eD \nand billions spent on just salaries that very little has been accomplished. \n\nhttps://t.co/4T7Vif3GJt https://t.co/b1KGMWLcWK",
+      "edit_history_tweet_ids": [
+        "1917585840588611830"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 32,
+            "end": 55,
+            "url": "https://t.co/nPdA9mb7eD",
+            "expanded_url": "https://cali-doge.org/workforce?department=California+Air+Resources+Board",
+            "display_url": "cali-doge.org/workforce?depa…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1917585842425716742/CRY_7tDZ?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1917585842425716742/CRY_7tDZ?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce?department=California+Air+Resources+Board"
+          },
+          {
+            "start": 135,
+            "end": 158,
+            "url": "https://t.co/4T7Vif3GJt",
+            "expanded_url": "https://cali-doge.org/departments/3900_air_resources_board",
+            "display_url": "cali-doge.org/departments/39…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1917585887527071744/Zlqzc31K?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1917585887527071744/Zlqzc31K?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/departments/3900_air_resources_board"
+          },
+          {
+            "start": 159,
+            "end": 182,
+            "url": "https://t.co/b1KGMWLcWK",
+            "expanded_url": "https://twitter.com/kevinkileyca/status/1908653980303188102",
+            "display_url": "x.com/kevinkileyca/s…"
+          }
+        ]
+      },
+      "created_at_formatted": "Apr 30, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "text": "We have posted data from 30M data rows from California State Government. \n\nSearch and review CARB, CCC, and other departments. \n\n2023 Salaries at $68B. \nHeadcount at 700K+\n\nhttps://t.co/eaaE32U7k8 https://t.co/FXKuwRuQSb",
       "edit_history_tweet_ids": [
@@ -10465,8 +10817,8 @@
     }
   ],
   "meta": {
-    "result_count": 92,
-    "newest_id": "1917366934414451093",
+    "result_count": 95,
+    "newest_id": "1917618503181557911",
     "oldest_id": "1882144700762878208"
   }
 }
