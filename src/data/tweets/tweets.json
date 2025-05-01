@@ -1,6 +1,88 @@
 {
   "tweets": [
     {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 47,
+            "end": 73,
+            "probability": 0.5717,
+            "type": "Organization",
+            "normalized_text": "California State Government"
+          }
+        ],
+        "urls": [
+          {
+            "start": 231,
+            "end": 254,
+            "url": "https://t.co/wr6g9hxhHb",
+            "expanded_url": "https://www.costar.com/article/1791257544/california-government-one-of-the-states-biggest-tenants-to-further-shrink-office-space",
+            "display_url": "costar.com/article/179125…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1918001755796975616/t_ZWDyDU?format=jpg&name=orig",
+                "width": 2100,
+                "height": 1400
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1918001755796975616/t_ZWDyDU?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "California Government, One of the State’s Biggest Tenants, To Further Shrink Office Space",
+            "description": "State Says It Wants To Trim 1 Million Square Feet",
+            "unwound_url": "https://www.costar.com/article/1791257544/california-government-one-of-the-states-biggest-tenants-to-further-shrink-office-space"
+          },
+          {
+            "start": 256,
+            "end": 279,
+            "url": "https://t.co/vUxddV3iBF",
+            "expanded_url": "https://www.dgsapps.dis.ca.gov/RESD/SPI-Web/wscripts/spi.asp?Action=viewprop",
+            "display_url": "dgsapps.dis.ca.gov/RESD/SPI-Web/w…",
+            "unwound_url": "https://www.dgsapps.dis.ca.gov/RESD/SPI-Web/wscripts/spi.asp?Action=viewprop"
+          }
+        ]
+      },
+      "created_at": "2025-05-01T17:56:57.000Z",
+      "edit_history_tweet_ids": [
+        "1918001712364925244"
+      ],
+      "text": "@joffemd Another huge problem to tackle is the California State Government building inventory. \n\nOccupancy will drop further which will impact valuation. An analysis of how this unwinding will further impact commercial real estate https://t.co/wr6g9hxhHb\n\nhttps://t.co/vUxddV3iBF",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1918001712364925244",
+      "created_at_formatted": "May 1, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1917659130338369610"
       ],
@@ -10912,8 +10994,8 @@
     }
   ],
   "meta": {
-    "result_count": 96,
-    "newest_id": "1917659130338369610",
+    "result_count": 97,
+    "newest_id": "1918001712364925244",
     "oldest_id": "1882144700762878208"
   }
 }
