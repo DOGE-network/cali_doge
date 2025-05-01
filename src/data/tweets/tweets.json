@@ -1,6 +1,101 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1917659130338369610"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 171,
+            "end": 194,
+            "url": "https://t.co/eCZdefQp2o",
+            "expanded_url": "https://ebudget.ca.gov/2025-26/pdf/GovernorsBudget/7500/7504.pdf",
+            "display_url": "ebudget.ca.gov/2025-26/pdf/Go…",
+            "status": 200,
+            "unwound_url": "https://ebudget.ca.gov/2025-26/pdf/GovernorsBudget/7500/7504.pdf"
+          },
+          {
+            "start": 196,
+            "end": 219,
+            "url": "https://t.co/SJyPZQFIqU",
+            "expanded_url": "https://cali-doge.org/workforce?department=Office%20of%20Data%20and%20Innovation",
+            "display_url": "cali-doge.org/workforce?depa…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1917659133010141184/1IbjeesV?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1917659133010141184/1IbjeesV?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce?department=Office%20of%20Data%20and%20Innovation"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "jenvanlaar",
+            "id": "775137023979958272"
+          },
+          {
+            "start": 54,
+            "end": 59,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 64,
+            "end": 74,
+            "username": "cali_doge",
+            "id": "1859283000145608705"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 16,
+            "end": 42,
+            "probability": 0.7302,
+            "type": "Organization",
+            "normalized_text": "California State Government"
+          }
+        ]
+      },
+      "id": "1917659130338369610",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-04-30T19:15:39.000Z",
+      "text": "@jenvanlaar The California State Government answer to @DOGE and @cali_doge is the Office of Data and Innovation which has grown from 48 to 65 people over the past year. \n\nhttps://t.co/eCZdefQp2o\n\nhttps://t.co/SJyPZQFIqU",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Apr 30, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
       "created_at": "2025-04-30T16:34:13.000Z",
       "author_id": "1859283000145608705",
       "entities": {
@@ -10817,8 +10912,8 @@
     }
   ],
   "meta": {
-    "result_count": 95,
-    "newest_id": "1917618503181557911",
+    "result_count": 96,
+    "newest_id": "1917659130338369610",
     "oldest_id": "1882144700762878208"
   }
 }
