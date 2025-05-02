@@ -2,6 +2,73 @@
   "tweets": [
     {
       "entities": {
+        "annotations": [
+          {
+            "start": 120,
+            "end": 146,
+            "probability": 0.7427,
+            "type": "Organization",
+            "normalized_text": "California State Government"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 217,
+            "end": 222,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 223,
+            "end": 232,
+            "username": "CA__DOGE",
+            "id": "1861563798248988672"
+          },
+          {
+            "start": 233,
+            "end": 244,
+            "username": "CAgovernor",
+            "id": "38349184"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-05-02T02:39:46.000Z",
+      "text": "@joffemd We should expect any federal funds are at risk. \n\nThe time is now to pare back the spending before we find the California State Government deficit right back at the $60B  mark. \n\nTime to lead with actions. \n\n@DOGE @CA__DOGE @CAgovernor",
+      "id": "1918133283113844894",
+      "edit_history_tweet_ids": [
+        "1918133283113844894"
+      ],
+      "created_at_formatted": "May 2, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "entities": {
         "mentions": [
           {
             "start": 0,
@@ -10994,8 +11061,8 @@
     }
   ],
   "meta": {
-    "result_count": 97,
-    "newest_id": "1918001712364925244",
+    "result_count": 98,
+    "newest_id": "1918133283113844894",
     "oldest_id": "1882144700762878208"
   }
 }
