@@ -1,6 +1,47 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1918772164842737785"
+      ],
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 66,
+            "end": 75,
+            "probability": 0.9722,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "id": "1918772164842737785",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "Responding to some of you, we will be adding links to transparent California shortly. This work is similar but different.",
+      "created_at": "2025-05-03T20:58:27.000Z",
+      "created_at_formatted": "May 3, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -11265,8 +11306,8 @@
     }
   ],
   "meta": {
-    "result_count": 99,
-    "newest_id": "1918390928718672171",
+    "result_count": 100,
+    "newest_id": "1918772164842737785",
     "oldest_id": "1882144700762878208"
   }
 }
