@@ -1,6 +1,47 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 124,
+            "end": 127,
+            "probability": 0.5397,
+            "type": "Organization",
+            "normalized_text": "CARB"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 9,
+            "end": 20,
+            "username": "CAgovernor",
+            "id": "38349184"
+          }
+        ]
+      },
+      "text": "@joffemd @CAgovernor should cancel the gas tax as the escalating fuel scarcity raises prices. \n\nWe should be concerned that CARB and other agencies will see this as an opportunity to increase regulation. A strong signal from the Governor would quash this impulse.",
+      "id": "1919463742804463902",
+      "created_at": "2025-05-05T18:46:32.000Z",
+      "edit_history_tweet_ids": [
+        "1919463742804463902"
+      ],
+      "created_at_formatted": "May 5, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1918772164842737785"
       ],
@@ -11306,8 +11347,8 @@
     }
   ],
   "meta": {
-    "result_count": 100,
-    "newest_id": "1918772164842737785",
+    "result_count": 101,
+    "newest_id": "1919463742804463902",
     "oldest_id": "1882144700762878208"
   }
 }
