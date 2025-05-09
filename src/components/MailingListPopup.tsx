@@ -14,9 +14,10 @@ export default function MailingListPopup() {
       return;
     }
     
-    // Check if user has already subscribed
+    // Check if user has already subscribed or declined
     const hasSubscribed = localStorage.getItem('newsletter_subscribed')
-    if (!hasSubscribed) {
+    const hasDeclined = localStorage.getItem('newsletter_declined')
+    if (!hasSubscribed && !hasDeclined) {
       // Show popup after 3 seconds
       const timer = setTimeout(() => setIsOpen(true), 3000)
       return () => clearTimeout(timer)
@@ -31,6 +32,12 @@ export default function MailingListPopup() {
     setTimeout(() => {
       setIsOpen(false)
     }, 5000)
+  }
+
+  const handleDecline = () => {
+    // Store the user's preference
+    localStorage.setItem('newsletter_declined', 'true')
+    setIsOpen(false)
   }
 
   // Don't render the component at all when on the Join page
@@ -56,6 +63,14 @@ export default function MailingListPopup() {
           Stay updated with our latest news and updates!
         </p>
         <MailingList onSuccess={handleSuccess} uniqueId="popup" />
+        <div className="mt-4 text-center">
+          <button
+            onClick={handleDecline}
+            className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-md transition-colors duration-200 border border-gray-300 hover:border-gray-400"
+          >
+            I don&apos;t wish to subscribe at this time
+          </button>
+        </div>
       </div>
     </div>
   )
