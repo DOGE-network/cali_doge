@@ -1,6 +1,81 @@
 {
   "tweets": [
     {
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "urls": [
+          {
+            "start": 111,
+            "end": 134,
+            "url": "https://t.co/gYpHk1ty5S",
+            "expanded_url": "https://x.com/joffemd/status/1921965090158362805/photo/1",
+            "display_url": "pic.x.com/gYpHk1ty5S",
+            "media_key": "3_1921919842057072640"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 67,
+            "end": 76,
+            "probability": 0.9898,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "created_at": "2025-05-12T18:04:21.000Z",
+      "id": "1921989841912254470",
+      "attachments": {
+        "media_source_tweet_id": [
+          "1921965090158362805"
+        ],
+        "media_keys": [
+          "3_1921919842057072640"
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1921989841912254470"
+      ],
+      "text": "RT @joffemd: Is there really a shortage of government employees in California? Not if you look at the numbers. https://t.co/gYpHk1ty5S",
+      "created_at_formatted": "May 12, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1921989841912254470_0.jpg",
+          "width": 1080,
+          "height": 1761
+        }
+      ]
+    },
+    {
       "author_id": "1859283000145608705",
       "entities": {
         "annotations": [
@@ -11347,8 +11422,8 @@
     }
   ],
   "meta": {
-    "result_count": 101,
-    "newest_id": "1919463742804463902",
+    "result_count": 102,
+    "newest_id": "1921989841912254470",
     "oldest_id": "1882144700762878208"
   }
 }
