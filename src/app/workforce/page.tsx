@@ -1087,6 +1087,7 @@ function WorkforcePageContent() {
           <p className="text-sm text-gray-600 mt-1">
             Salary, Headcount and Wages numbers are from department salaries found at <a href="https://publicpay.ca.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">publicpay.ca.gov</a>. 
             <a href="https://transparentcalifornia.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline"> Transparent California</a> provides additional salary and headcount details due to their many years of submitting FOIA requests.
+            <a href="https://openthebooks.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline"> Open The Books</a> also offers valuable salary and spending information.
             Wages are calculated as regular wages plus any benefits.
           </p>
           <div className="flex items-center space-x-4">
