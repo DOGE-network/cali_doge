@@ -2,20 +2,77 @@
 
 # California State Government Budget Document Downloader
 
-# known problem that the state dept of finance does not put documents in this easy to use location
-# we will need to use browser automation to download the documents from the state'ebudget website
-# budgets documents https://ebudget.ca.gov/
-# budget use DEPARTMENT OF FINANCE UNIFORM CODES or budget codes
+# This script downloads budget documents from the California Department of Finance website
+# It handles downloading PDF files for all state agencies
+# It saves all files to src/data/budget directory
+# It handles the extraction of agency codes and fiscal years
+# It handles the download of PDF files
+# It handles the validation of downloaded files
 
-# Define target directories
+# NOTE: The state dept of finance does not put documents in an easy to use location
+# We will need to use browser automation to download the documents from the state's ebudget website
+# Budget documents: https://ebudget.ca.gov/
+# Budget uses DEPARTMENT OF FINANCE UNIFORM CODES or budget codes
+
+# Prerequisites:
+# 1. Bash shell environment
+# 2. curl command line tool
+# 3. write permissions to src/data/budget directory
+
+# Usage:
+# Run the script:
+# ```bash
+# ./download_budgets.sh
+# ```
+
+# Steps:
+# 1. Create src/data/budget/ directory if it doesn't exist
+#    a. Create log directory
+#    b. Verify write permissions
+#    c. Initialize logging
+# 2. Process each agency
+#    a. Load agency codes
+#    b. Process each fiscal year
+#    c. Handle resume functionality
+# 3. Download PDF files for each fiscal year
+#    a. Construct download URL
+#    b. Download file to temp location
+#    c. Validate PDF content
+#    d. Move to final location
+# 4. Save files with format: agencycode_firstyearoffiscalyear_budget.pdf
+#    a. Generate filename
+#    b. Verify file integrity
+#    c. Log success/failure
+
+# Features:
+# - Automatic retry on failures
+# - Rate limiting (2-6 second delay between requests)
+# - Progress logging
+# - Error handling and reporting
+# - Organized file naming by agency and year
+# - Resume capability from previous runs
+
+# Notes:
+# - Files are saved in src/data/budget/
+# - Each PDF contains agency budget data
+# - Minimum fiscal year is 2017-18
+# - Maximum fiscal year is 2025-26
+# - Supports both Governor's Budget and Enacted Budget documents
+
+# Step 1: Setup directories and logging
+echo "Step 1: Setting up directories and logging..."
+
+# Step 1.a: Define target directories
 TARGET_DIR="./src/data/budget"
 LOG_DIR="./src/logs"
 
-# Create directories if they don't exist
+# Step 1.b: Create directories if they don't exist
+echo "Step 1.b: Creating directories..."
 mkdir -p "$TARGET_DIR"
 mkdir -p "$LOG_DIR"
 
-# Check if target directory exists and is writable
+# Step 1.c: Check if target directory exists and is writable
+echo "Step 1.c: Verifying directory permissions..."
 if [ ! -d "$TARGET_DIR" ]; then
   echo "Error: Target directory $TARGET_DIR does not exist or could not be created."
   exit 1
@@ -26,63 +83,66 @@ if [ ! -w "$TARGET_DIR" ]; then
   exit 1
 fi
 
-# Find the most recent log file
+# Step 1.d: Initialize logging
+echo "Step 1.d: Initializing logging..."
+log_file="$LOG_DIR/budget_download_$(date +%Y%m%d_%H%M%S).log"
+echo "Budget document download started at $(date)" > "$log_file"
+echo "Target directory: $TARGET_DIR" >> "$log_file"
+
+# Step 2: Process agencies
+echo "Step 2: Processing agencies..." | tee -a "$log_file"
+
+# Step 2.a: Find the most recent log file for resume functionality
+echo "Step 2.a: Checking for previous run..." | tee -a "$log_file"
 last_log=$(ls -t "$LOG_DIR"/budget_download_*.log 2>/dev/null | head -1)
 
-# Initialize variables to track the last processed department and fiscal year
-last_dept=""
+# Initialize variables to track the last processed agency and fiscal year
+last_agency=""
 last_fiscal_year=""
 resume_processing=false
 last_position=""
-resume_next_dept=false
+resume_next_agency=false
 
 # Counter for download attempts
 attempt_counter=0
 
-# If a previous log exists, find the last processed item (success or failure)
+# Step 2.b: Handle resume functionality
+echo "Step 2.b: Setting up resume functionality..." | tee -a "$log_file"
 if [ -n "$last_log" ]; then
-  echo "Found previous log file: $last_log"
+  echo "Found previous log file: $last_log" | tee -a "$log_file"
   
   # Check if the previous run completed successfully
   if grep -q "Download process completed" "$last_log"; then
-    echo "Previous download process completed successfully. Starting fresh."
+    echo "Previous download process completed successfully. Starting fresh." | tee -a "$log_file"
   else
-    echo "Previous download process did not complete. Attempting to resume."
+    echo "Previous download process did not complete. Attempting to resume." | tee -a "$log_file"
     
     # Get the last processed item (success or failure)
     last_processed=$(grep -E "SUCCESS:|FAILURE:" "$last_log" | tail -1)
     
     if [ -n "$last_processed" ]; then
-      # Extract department code and fiscal year from the log message
+      # Extract agency code and fiscal year from the log message
       if [[ "$last_processed" == *"SUCCESS:"* ]]; then
         last_position="SUCCESS"
-        last_dept=$(echo "$last_processed" | sed -E 's/.*Downloaded ([0-9]{4}) - FY.*/\1/')
+        last_agency=$(echo "$last_processed" | sed -E 's/.*Downloaded ([0-9]{4}) - FY.*/\1/')
         last_fiscal_year=$(echo "$last_processed" | sed -E 's/.*FY ([0-9]{4}-[0-9]{2}).*/\1/')
       else
         last_position="FAILURE"
-        last_dept=$(echo "$last_processed" | sed -E 's/.*valid PDF for ([0-9]{4}) - FY.*/\1/')
+        last_agency=$(echo "$last_processed" | sed -E 's/.*valid PDF for ([0-9]{4}) - FY.*/\1/')
         last_fiscal_year=$(echo "$last_processed" | sed -E 's/.*FY ([0-9]{4}-[0-9]{2}).*/\1/')
       fi
       
-      echo "Resuming from $last_position: department $last_dept, fiscal year $last_fiscal_year"
+      echo "Resuming from $last_position: agency $last_agency, fiscal year $last_fiscal_year" | tee -a "$log_file"
       resume_processing=true
     else
-      echo "No processed items found in previous log. Starting fresh."
+      echo "No processed items found in previous log. Starting fresh." | tee -a "$log_file"
     fi
   fi
 fi
 
-# Create a new log file
-log_file="$LOG_DIR/budget_download_$(date +%Y%m%d_%H%M%S).log"
-echo "Budget document download started at $(date)" > "$log_file"
-echo "Target directory: $TARGET_DIR" >> "$log_file"
-
-if [ "$resume_processing" = true ]; then
-  echo "Resuming from previous run ($last_position: department $last_dept, fiscal year $last_fiscal_year)" >> "$log_file"
-fi
-
-# Comprehensive list of fiscal years in format YYYY-YY
-declare -a fiscal_years=(
+# Step 2.c: Define fiscal years and document types
+echo "Step 2.c: Setting up fiscal years and document types..." | tee -a "$log_file"
+declare -a fiscalYear=(
   "2017-18"
   "2018-19"
   "2019-20"
@@ -94,174 +154,28 @@ declare -a fiscal_years=(
   "2025-26"
 )
 
-# Current fiscal year (for determining document type)
-current_fiscal_year="2025-26"
+# Document type - using Enacted/GovernorsBudget as per the working URL
+doc_type="Enacted/GovernorsBudget"
 
-# Document types array
-declare -a doc_types=(
-  "GovernorsBudget"  # For current year proposed budget
-  "Enacted"          # For previous years enacted budget; but enacted budgets are not always posted
+# Complete list of agency codes (Level A) from the CSV data
+declare -a agencyDepartment=(
+  "1000" "Business_Consumer_Services_and_Housing"
+  "5210" "Department_of_Corrections_and_Rehabilitation"
+  "3890" "Environmental_Protection"
+  "8000" "General_Government"
+  "7500" "Government_Operations"
+  "4000" "Health_and_Human_Services"
+  "6000" "Education"
+  "7000" "Labor_and_Workforce_Development"
+  "0010" "Legislative_Judicial_and_Executive"
+  "3000" "Natural_Resources"
+  "2500" "Transportation"
 )
 
-# Complete list of agency codes (Level A) from the CSV data - CORRECTED
-declare -a agency_codes=(
-  "0010 Legislative, Judicial, and Executive"
-  "0200 Judicial"
-  "0500 Executive"
-  "1000 Business, Consumer Services, and Housing"
-  "2050 Business, Transportation, and Housing Agency Programs"
-  "2500 Transportation"
-  "3000 Natural Resources"
-  "3890 Environmental Protection"
-  "4000 Health and Human Services"
-  "5210 Corrections and Rehabilitation"
-  "6000 Education"
-  "6010 K-12 Education"
-  "6013 Higher Education"
-  "7000 Labor and Workforce Development"
-  "7500 Government Operations"
-  "8000 General Government"
-)
+# Step 3: Download PDF files
+echo "Step 3: Starting PDF downloads..." | tee -a "$log_file"
 
-# Complete list of department codes (Level 1) from the CSV data
-declare -a department_codes=(
-  "0100 Legislature"
-  "0250 Judicial Branch"
-  "0500 Governor's Office"
-  "0509 Governor's Office of Business and Economic Development"
-  "0511 Secretary for Government Operations Agency"
-  "0515 Secretary for Business, Consumer Services, and Housing Agency"
-  "0521 Secretary for Transportation Agency"
-  "0530 Secretary for California Health and Human Services Agency"
-  "0540 Secretary of the Natural Resources Agency"
-  "0555 Secretary for Environmental Protection"
-  "0559 Secretary for Labor and Workforce Development Agency"
-  "0650 Office of Planning and Research"
-  "0690 Office of Emergency Services"
-  "0750 Office of the Lieutenant Governor"
-  "0820 Department of Justice"
-  "0840 State Controller"
-  "0845 Department of Insurance"
-  "0890 Secretary of State"
-  "0950 State Treasurer"
-  "1110 Department of Consumer Affairs"
-  "1111 Department of Consumer Affairs, Boards"
-  "1700 Department of Fair Employment and Housing"
-  "1701 Business, Consumer Services, and Housing Operations"
-  "1750 Horse Racing Board"
-  "1800 Department of Financial Protection and Innovation"
-  "2100 Department of Alcoholic Beverage Control"
-  "2120 Alcoholic Beverage Control Appeals Board"
-  "2240 Department of Housing and Community Development"
-  "2320 Department of Real Estate"
-  "2600 California Transportation Commission"
-  "2660 Department of Transportation"
-  "2665 High-Speed Rail Authority"
-  "2670 Board of Pilot Commissioners"
-  "2700 Office of Traffic Safety"
-  "2720 Department of the California Highway Patrol"
-  "2740 Department of Motor Vehicles"
-  "3100 California Science Center"
-  "3125 California Tahoe Conservancy"
-  "3340 California Conservation Corps"
-  "3360 Energy Resources Conservation and Development Commission"
-  "3460 Colorado River Board of California"
-  "3480 Department of Conservation"
-  "3540 Department of Forestry and Fire Protection"
-  "3560 State Lands Commission"
-  "3600 Department of Fish and Wildlife"
-  "3640 Wildlife Conservation Board"
-  "3720 California Coastal Commission"
-  "3760 State Coastal Conservancy"
-  "3780 Native American Heritage Commission"
-  "3790 Department of Parks and Recreation"
-  "3810 Santa Monica Mountains Conservancy"
-  "3820 San Francisco Bay Conservation and Development Commission"
-  "3825 San Gabriel and Lower Los Angeles Rivers and Mountains Conservancy"
-  "3830 San Joaquin River Conservancy"
-  "3835 Baldwin Hills Conservancy"
-  "3840 Delta Protection Commission"
-  "3845 San Diego River Conservancy"
-  "3850 Coachella Valley Mountains Conservancy"
-  "3855 Sierra Nevada Conservancy"
-  "3860 Department of Water Resources"
-  "3875 Sacramento-San Joaquin Delta Conservancy"
-  "3900 Air Resources Board"
-  "3930 Department of Pesticide Regulation"
-  "3940 State Water Resources Control Board"
-  "3960 Department of Toxic Substances Control"
-  "3970 Department of Resources Recycling and Recovery"
-  "3980 Office of Environmental Health Hazard Assessment"
-  "4100 State Council on Developmental Disabilities"
-  "4120 Emergency Medical Services Authority"
-  "4140 Office of Statewide Health Planning and Development"
-  "4150 Department of Managed Health Care"
-  "4170 Department of Aging"
-  "4180 Commission on Aging"
-  "4185 California Senior Legislature"
-  "4260 Department of Health Care Services"
-  "4265 Department of Public Health"
-  "4300 Department of Developmental Services"
-  "4440 Department of State Hospitals"
-  "4560 Mental Health Services Oversight and Accountability Commission"
-  "4700 Department of Community Services and Development"
-  "4800 California Health Benefit Exchange"
-  "5160 Department of Rehabilitation"
-  "5175 Department of Child Support Services"
-  "5180 Department of Social Services"
-  "5195 State Independent Living Council"
-  "5225 Department of Corrections and Rehabilitation"
-  "5227 Board of State and Community Corrections"
-  "6100 Department of Education"
-  "6120 California State Library"
-  "6125 Education Audit Appeals Panel"
-  "6255 California State Summer School for the Arts"
-  "6360 Commission on Teacher Credentialing"
-  "6440 University of California"
-  "6600 Hastings College of the Law"
-  "6610 California State University"
-  "6870 Board of Governors of the California Community Colleges"
-  "6980 California Student Aid Commission"
-  "7100 Employment Development Department"
-  "7120 California Workforce Development Board"
-  "7300 Agricultural Labor Relations Board"
-  "7320 Public Employment Relations Board"
-  "7350 Department of Industrial Relations"
-  "7501 Department of Human Resources"
-  "7502 Department of Technology"
-  "7503 State Personnel Board"
-  "7600 California Department of Tax and Fee Administration"
-  "7730 Franchise Tax Board"
-  "7760 Department of General Services"
-  "7870 California Victim Compensation Board"
-  "7900 Public Employees' Retirement System"
-  "7910 Office of Administrative Law"
-  "7920 State Teachers' Retirement System"
-  "8010 Non-Agency Departments"
-  "8260 California Arts Council"
-  "8570 Department of Food and Agriculture"
-  "8620 Fair Political Practices Commission"
-  "8640 Political Reform Act of 1974"
-  "8660 Public Utilities Commission"
-  "8780 Milton Marks Little Hoover Commission on California State Government Organization and Economy"
-  "8820 Commission on the Status of Women and Girls"
-  "8830 California Law Revision Commission"
-  "8855 California State Auditor's Office"
-  "8860 Department of Finance"
-  "8940 Military Department"
-  "8955 Department of Veterans Affairs"
-  "9100 Tax Relief"
-  "9210 Local Government Financing"
-  "9600 Debt Service for General Obligation Bonds"
-  "9620 Interest Payments to the Federal Government"
-  "9625 Interest Payments to Loans from Special Fund for Economic Uncertainties"
-  "9650 Health and Dental Benefits for Annuitants"
-  "9670 Equity Claims of California Victim Compensation Board and Settlements and Judgments by Department of Justice"
-  "9800 Augmentation for Employee Compensation"
-  "9900 Statewide General Administrative Expenditures"
-)
-
-# Function to validate if a file is a valid PDF and not an error page
+# Step 3.a: Function to validate if a file is a valid PDF
 validate_pdf() {
   local file="$1"
   
@@ -278,7 +192,7 @@ validate_pdf() {
   return 0
 }
 
-# Function to pause for a random duration between 10-30 seconds
+# Step 3.b: Function to pause for a random duration
 random_pause() {
   local min_seconds=3
   local max_seconds=6
@@ -289,8 +203,10 @@ random_pause() {
   echo "Resuming downloads..." | tee -a "$log_file"
 }
 
-# Download files
-echo "Starting downloads..." | tee -a "$log_file"
+# Step 4: Process downloads
+echo "Step 4: Processing downloads..." | tee -a "$log_file"
+
+# Initialize counters
 success_count=0
 failure_count=0
 skipped_count=0
@@ -301,159 +217,16 @@ if [ "$resume_processing" = false ]; then
   start_processing=true
 fi
 
-# Check if the last department is in our list
-if [ "$resume_processing" = true ]; then
-  dept_found=false
-  for dept_info in "${department_codes[@]}"; do
-    dept_code=$(echo "$dept_info" | awk '{print $1}')
-    if [ "$dept_code" = "$last_dept" ]; then
-      dept_found=true
-      break
-    fi
-  done
+# Process agencies
+for ((i=0; i<${#agencyDepartment[@]}; i+=2)); do
+  # Extract code and name from array
+  agency_code="${agencyDepartment[i]}"
+  agency_name="${agencyDepartment[i+1]}"
   
-  if [ "$dept_found" = false ]; then
-    echo "Last department $last_dept not found in department list. Will resume with next department." | tee -a "$log_file"
-    # Find the next department after the last one
-    resume_next_dept=true
-    start_processing=false
-  fi
-fi
-
-for dept_info in "${department_codes[@]}"; do
-  # Extract the 4-digit code (without comments)
-  dept_code=$(echo "$dept_info" | awk '{print $1}')
-  
-  # If resuming and the last department wasn't found, find the next one
-  if [ "$resume_next_dept" = true ]; then
-    if [ "$dept_code" -gt "$last_dept" ]; then
-      echo "Resuming with next department: $dept_code" | tee -a "$log_file"
-      start_processing=true
-      resume_next_dept=false
-    else
-      echo "Skipping department: $dept_code (before next department)" | tee -a "$log_file"
-      skipped_count=$((skipped_count + 1))
-      continue
-    fi
-  # If resuming normally, skip until we reach the last processed department
-  elif [ "$resume_processing" = true ] && [ "$start_processing" = false ]; then
-    if [ "$dept_code" = "$last_dept" ]; then
-      start_processing=true
-    else
-      echo "Skipping department: $dept_code (before last processed)" | tee -a "$log_file"
-      skipped_count=$((skipped_count + 1))
-      continue
-    fi
-  fi
-  
-  for fiscal_year in "${fiscal_years[@]}"; do
-    # If resuming and we're at the last department, skip until we reach the last fiscal year
-    if [ "$resume_processing" = true ] && [ "$dept_code" = "$last_dept" ] && [ "$start_processing" = true ]; then
-      # Convert fiscal years to comparable format (first year only)
-      current_first_year=$(echo "$fiscal_year" | cut -d'-' -f1)
-      last_first_year=$(echo "$last_fiscal_year" | cut -d'-' -f1)
-      
-      if [ "$current_first_year" -lt "$last_first_year" ]; then
-        echo "Skipping already processed: $dept_code - FY $fiscal_year" | tee -a "$log_file"
-        skipped_count=$((skipped_count + 1))
-        continue
-      elif [ "$current_first_year" -eq "$last_first_year" ] && [ "$last_position" = "SUCCESS" ]; then
-        echo "Skipping already processed: $dept_code - FY $fiscal_year" | tee -a "$log_file"
-        skipped_count=$((skipped_count + 1))
-        continue
-      fi
-    fi
-    
-    # Extract the first year from the fiscal year string for the output filename
-    first_year=$(echo "$fiscal_year" | cut -d'-' -f1)
-    
-    # Determine document type based on fiscal year
-    # There do not appear to be any Enacted files - Changing to Force Everythibg to be GovernorsBudget
-    #if [ "$fiscal_year" = "$current_fiscal_year" ]; then
-    doc_type="GovernorsBudget"  # Current year uses proposed budget
-    #else
-    # doc_type="Enacted"  # Previous years use enacted budget
-    #fi
-    
-    # Find the appropriate agency code for this department
-    # This is based on the organizational structure where departments are under agencies
-    agency_code=""
-    for potential_agency in "${agency_codes[@]}"; do
-      potential_agency_code=$(echo "$potential_agency" | awk '{print $1}')
-      # If the department code starts with the same first digit as the agency code
-      # or if the department is in a specific agency based on the organizational structure
-      if [[ "${dept_code:0:1}" == "${potential_agency_code:0:1}" ]]; then
-        agency_code="$potential_agency_code"
-        break
-      fi
-    done
-    
-    # If no agency code was found, use the default 0010 (Legislative, Judicial, Executive)
-    if [ -z "$agency_code" ]; then
-      agency_code="0010"
-    fi
-    
-    # Skip departments marked with "DO NOT USE"
-    if [[ "$dept_info" == *"DO NOT USE"* ]]; then
-      echo "SKIPPING: ${dept_code} - marked as DO NOT USE" | tee -a "$log_file"
-      continue
-    fi
-    
-    # Construct output filename - format: departmentcode_firstyearoffiscalyear_budget.pdf
-    output_file="${TARGET_DIR}/${dept_code}_${first_year}_budget.pdf"
-    
-    # Check if the file already exists and is valid
-    if [ -f "$output_file" ] && validate_pdf "$output_file"; then
-      echo "SKIPPING: ${dept_code} - FY ${fiscal_year} (already exists)" | tee -a "$log_file"
-      skipped_count=$((skipped_count + 1))
-      continue
-    fi
-    
-    # URL follows pattern: ebudget.ca.gov/[FISCAL-YEAR]/pdf/[DOCUMENT-TYPE]/[AGENCY-CODE]/[DEPARTMENT-CODE].pdf
-    url="https://ebudget.ca.gov/${fiscal_year}/pdf/${doc_type}/${agency_code}/${dept_code}.pdf"
-    
-    echo "Attempting to download: $url" | tee -a "$log_file"
-    
-    # Increment the attempt counter
-    attempt_counter=$((attempt_counter + 1))
-    
-    # Check if we need to pause (every 150 attempts)
-    if [ $((attempt_counter % 150)) -eq 0 ]; then
-      random_pause
-    fi
-    
-    # Download the file to a temporary location first
-    temp_file=$(mktemp)
-    curl -L -s -o "$temp_file" "$url"
-     
-    # Validate if the downloaded file is a valid PDF
-    if validate_pdf "$temp_file"; then
-      # If valid, move to the final destination
-      mv "$temp_file" "$output_file"
-      echo "SUCCESS: Downloaded ${dept_code} - FY ${fiscal_year} to $output_file" | tee -a "$log_file"
-      success_count=$((success_count + 1))
-    else
-      # If not valid, log the failure and remove the temporary file
-      echo "FAILURE: Could not download valid PDF for ${dept_code} - FY ${fiscal_year}" | tee -a "$log_file"
-      rm -f "$temp_file"
-      failure_count=$((failure_count + 1))
-    fi
-    
-    # Add a small delay to be nice to the server
-    sleep 2
-  done
-done
-
-
-# Download Agency URLs
-for agency_info in "${agency_codes[@]}"; do
-  # Extract the 4-digit code (without comments)
-  agency_code=$(echo "$agency_info" | awk '{print $1}')
-  
-  # If resuming and the last department wasn't found, find the next one
+  # Handle resume functionality for agencies
   if [ "$resume_next_agency" = true ]; then
     if [ "$agency_code" -gt "$last_agency" ]; then
-      echo "Resuming with next department: $agency_code" | tee -a "$log_file"
+      echo "Resuming with next agency: $agency_code" | tee -a "$log_file"
       start_processing=true
       resume_next_agency=false
     else
@@ -461,7 +234,6 @@ for agency_info in "${agency_codes[@]}"; do
       skipped_count=$((skipped_count + 1))
       continue
     fi
-  # If resuming normally, skip until we reach the last processed department
   elif [ "$resume_processing" = true ] && [ "$start_processing" = false ]; then
     if [ "$agency_code" = "$last_agency" ]; then
       start_processing=true
@@ -472,10 +244,10 @@ for agency_info in "${agency_codes[@]}"; do
     fi
   fi
   
-  for fiscal_year in "${fiscal_years[@]}"; do
-    # If resuming and we're at the last agency, skip until we reach the last fiscal year
+  # Process each fiscal year for agencies
+  for fiscal_year in "${fiscalYear[@]}"; do
+    # Handle resume functionality for fiscal years
     if [ "$resume_processing" = true ] && [ "$agency_code" = "$last_agency" ] && [ "$start_processing" = true ]; then
-      # Convert fiscal years to comparable format (first year only)
       current_first_year=$(echo "$fiscal_year" | cut -d'-' -f1)
       last_first_year=$(echo "$last_fiscal_year" | cut -d'-' -f1)
       
@@ -490,83 +262,63 @@ for agency_info in "${agency_codes[@]}"; do
       fi
     fi
     
-    # Extract the first year from the fiscal year string for the output filename
+    # Extract the first year from the fiscal year string
     first_year=$(echo "$fiscal_year" | cut -d'-' -f1)
     
-    # Determine document type based on fiscal year
-    # There do not appear to be any Enacted files - Changing to Force Everythibg to be GovernorsBudget
-    #if [ "$fiscal_year" = "$current_fiscal_year" ]; then
-    #  doc_type="GovernorsBudget"  # Current year uses proposed budget
-    #else
-    doc_type="Enacted"  # Previous years use enacted budget
-    #fi
-    
-    # Find the appropriate agency code for this department
-    # This is based on the organizational structure where departments are under agencies
-    agency_code=""
-    for potential_agency in "${agency_codes[@]}"; do
-      potential_agency_code=$(echo "$potential_agency" | awk '{print $1}')
-      # If the department code starts with the same first digit as the agency code
-      # or if the department is in a specific agency based on the organizational structure
-      if [[ "${agency_code:0:1}" == "${potential_agency_code:0:1}" ]]; then
-        agency_code="$potential_agency_code"
-        break
-      fi
-    done
-    
-    # If no agency code was found, use the default 0010 (Legislative, Judicial, Executive)
-    if [ -z "$agency_code" ]; then
-      agency_code="0010"
-    fi
-    
     # Skip agencies marked with "DO NOT USE"
-    if [[ "$agency_info" == *"DO NOT USE"* ]]; then
+    if [[ "$agency_name" == *"DO NOT USE"* ]]; then
       echo "SKIPPING: ${agency_code} - marked as DO NOT USE" | tee -a "$log_file"
       continue
     fi
 
-    # Agency URL follows pattern: ebudget.ca.gov/[FISCAL-YEAR]/pdf/[DOCUMENT-TYPE]/[AGENCY-CODE].pdf
+    # Construct output filename
+    output_file="${TARGET_DIR}/${agency_code}_${agency_name}_${first_year}_budget.pdf"
+    
+    # Check if file already exists and is valid
+    if [ -f "$output_file" ] && [ -s "$output_file" ]; then
+      echo "SKIPPING: File already exists for ${agency_code} - FY ${fiscal_year}" | tee -a "$log_file"
+      skipped_count=$((skipped_count + 1))
+      continue
+    fi
+
+    # Construct agency URL - using the verified format
     agency_url="https://ebudget.ca.gov/${fiscal_year}/pdf/${doc_type}/${agency_code}.pdf"
     
     echo "Attempting to download: $agency_url" | tee -a "$log_file"
     
+    # Download file to temporary location
+    temp_file=$(mktemp)
     curl -L -s -o "$temp_file" "$agency_url"
-    # Increment the attempt counter
+    
+    # Increment attempt counter
     attempt_counter=$((attempt_counter + 1))
     
-    # Check if we need to pause (every 150 attempts)
+    # Check if we need to pause
     if [ $((attempt_counter % 150)) -eq 0 ]; then
       random_pause
     fi
     
-    # Download the file to a temporary location first
-    temp_file=$(mktemp)
-    curl -L -s -o "$temp_file" "$url"
-     
-    # Validate if the downloaded file is a valid PDF
+    # Validate downloaded file
     if validate_pdf "$temp_file"; then
-      # If valid, move to the final destination
+      # Move to final destination with agency name included
       mv "$temp_file" "$output_file"
       echo "SUCCESS: Downloaded ${agency_code} - FY ${fiscal_year} to $output_file" | tee -a "$log_file"
       success_count=$((success_count + 1))
     else
-      # If not valid, log the failure and remove the temporary file
+      # Log failure and remove temporary file
       echo "FAILURE: Could not download valid PDF for ${agency_code} - FY ${fiscal_year}" | tee -a "$log_file"
       rm -f "$temp_file"
       failure_count=$((failure_count + 1))
     fi
     
-    # Add a small delay to be nice to the server
+    # Add delay between downloads
     sleep 2
-
   done
 done
-    
 
-
-
+# Final summary
 echo "Download process completed." | tee -a "$log_file"
 echo "Successful downloads: $success_count" | tee -a "$log_file"
 echo "Failed downloads: $failure_count" | tee -a "$log_file"
 echo "Skipped downloads: $skipped_count" | tee -a "$log_file"
-echo "See $log_file for details." 
+echo "See $log_file for details." | tee -a "$log_file" 

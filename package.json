@@ -13,7 +13,7 @@
     "validate-departments_json_types": "ts-node --project tsconfig.json src/scripts/update_department_json_to_type.ts",
     "download-salary": "node src/scripts/download_publicpay_csv.js",
     "process-salary": "npx ts-node src/scripts/process_department_salary.js",
-    "download-spending": "download_budgets.sh",
+    "download-spending": "src/scripts/download_budgets.sh",
     "extract-spending": "python src/scripts/extract_pdf_text.py",
     "process-spending": "npx ts-node src/scripts/process_department_spending.js",
     "download-vendors": "node src/scripts/download_vendor_transactions.js",
