@@ -1,6 +1,157 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "id": "1922717759974383727",
+      "edit_history_tweet_ids": [
+        "1922717759974383727"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "text": "@joffemd Now is the time for radical fixes to plug the widening gaps in the state and local government budgets. As the state government runs out of money, many countries and cities will be without their funding backstop the deficits will cascade. \n\nWe are seeing a lot of this risk as we",
+      "created_at": "2025-05-14T18:16:51.000Z",
+      "created_at_formatted": "May 14, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1922704023460679933"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 102,
+            "end": 113,
+            "username": "CAgovernor",
+            "id": "38349184"
+          },
+          {
+            "start": 140,
+            "end": 156,
+            "username": "CalPolicyCenter",
+            "id": "494180327"
+          },
+          {
+            "start": 157,
+            "end": 166,
+            "username": "CA__DOGE",
+            "id": "1861563798248988672"
+          },
+          {
+            "start": 167,
+            "end": 180,
+            "username": "SteveHiltonx",
+            "id": "2779389582"
+          },
+          {
+            "start": 181,
+            "end": 194,
+            "username": "KevinKileyCA",
+            "id": "3180247177"
+          },
+          {
+            "start": 195,
+            "end": 203,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 22,
+            "end": 37,
+            "probability": 0.6599,
+            "type": "Organization",
+            "normalized_text": "California State"
+          }
+        ],
+        "urls": [
+          {
+            "start": 116,
+            "end": 139,
+            "url": "https://t.co/SQecOdqYqG",
+            "expanded_url": "https://cali-doge.org/workforce",
+            "display_url": "cali-doge.org/workforce",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1922704066850807809/amp_Uk3F?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1922704066850807809/amp_Uk3F?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce"
+          },
+          {
+            "start": 204,
+            "end": 227,
+            "url": "https://t.co/ReW2DRSLLn",
+            "expanded_url": "https://x.com/cali_doge/status/1922704023460679933/photo/1",
+            "display_url": "pic.x.com/ReW2DRSLLn",
+            "media_key": "3_1922704017995497472"
+          }
+        ]
+      },
+      "created_at": "2025-05-14T17:22:15.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "In 2023, almost 3,000 California State Government Employees made over 500K per year. \n\nPlease explain @CAgovernor \n\nhttps://t.co/SQecOdqYqG\n@CalPolicyCenter @CA__DOGE @SteveHiltonx @KevinKileyCA @joffemd https://t.co/ReW2DRSLLn",
+      "id": "1922704023460679933",
+      "attachments": {
+        "media_keys": [
+          "3_1922704017995497472"
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "May 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1922704023460679933_0.jpg",
+          "width": 1228,
+          "height": 2048
+        }
+      ]
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -11422,8 +11573,8 @@
     }
   ],
   "meta": {
-    "result_count": 102,
-    "newest_id": "1921989841912254470",
+    "result_count": 104,
+    "newest_id": "1922717759974383727",
     "oldest_id": "1882144700762878208"
   }
 }
