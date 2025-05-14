@@ -1,6 +1,6 @@
 ---
 name: "State Lands Commission"
-budgetCode: 3560
+organizationalCode: 3560
 date: '2024-03-16'
 author: "Sean Roberts"
 image: 
@@ -128,10 +128,10 @@ The Commission operates under a three-member governing body:
 
 Sources:
 [1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/3500/3560.pdf
-[2] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=PRC&division=3.&title=&part=&chapter=
-[3] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=GOV&division=1.&title=2.&part=&chapter=7.4.&article=
+[2] https://leginfo.legislature.ca.gov/faces/organizationalCodes_displayText.xhtml?lawCode=PRC&division=3.&title=&part=&chapter=
+[3] https://leginfo.legislature.ca.gov/faces/organizationalCodes_displayText.xhtml?lawCode=GOV&division=1.&title=2.&part=&chapter=7.4.&article=
 [4] https://www.slc.ca.gov/wp-content/uploads/2023/12/MOTEMS_2023.pdf
-[5] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=FAC&division=3.&title=&part=&chapter=1.&article=4.5.
+[5] https://leginfo.legislature.ca.gov/faces/organizationalCodes_displayText.xhtml?lawCode=FAC&division=3.&title=&part=&chapter=1.&article=4.5.
 [6] https://www.slc.ca.gov/public-trust/
 [7] https://www.slc.ca.gov/school-lands/
 [8] https://www.slc.ca.gov/annual-reports/

@@ -1,6 +1,6 @@
 ---
 name: "High-Speed Rail Authority"
-budgetCode: 2665
+organizationalCode: 2665
 date: '2025-04-16'
 author: "Sean Roberts"
 image: 
@@ -33,7 +33,7 @@ description: "The California High-Speed Rail Authority's mission is to plan, des
 
 ### Major Funding Codes and Sources
 
-The High-Speed Rail Authority receives funding from various sources, each designated by specific budgetCodes in the state budget:
+The High-Speed Rail Authority receives funding from various sources, each designated by specific organizationalCodes in the state budget:
 
 #### Program Codes
 - **1960010 - Administration**: Core administrative functions and oversight

@@ -5,7 +5,7 @@
  * ---------------------------
  * 
  * This script merges the executive branch hierarchy data into departments.json.
- * It uses budget codes as primary keys, falling back to name matching if no code exists.
+ * It uses organizational codes as primary keys, falling back to name matching if no code exists.
  */
 
 const fs = require('fs');
@@ -49,7 +49,7 @@ function processAgency(agency, parentName = null) {
     budget_status: agency.budget_status || 'active',
     keyFunctions: agency.keyFunctions || agency.description || '',
     abbreviation: agency.abbreviation || '',
-    code: agency.budget_code || agency.budgetCode || '',
+    code: agency.budget_code || agency.organizationalCode || '',
     parent_agency: parentName,
     subAgencies: agency.subAgencies || []
   };
@@ -112,9 +112,9 @@ if (departments.hierarchy) {
 agencyMap.forEach((agencyData, agencyName) => {
   let matched = false;
 
-  // Try to match by budget code first
-  if (agencyData.budgetCode) {
-    const deptMatch = departments.departments.find(dept => dept.budgetCode === agencyData.budgetCode);
+  // Try to match by organizational code first
+  if (agencyData.organizationalCode) {
+    const deptMatch = departments.departments.find(dept => dept.organizationalCode === agencyData.organizationalCode);
     if (deptMatch) {
       Object.assign(deptMatch, {
         orgLevel: agencyData.orgLevel,
@@ -159,7 +159,7 @@ agencyMap.forEach((agencyData, agencyName) => {
       slug: agencyName.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
       canonicalName: agencyName,
       aliases: [],
-      code: agencyData.budgetCode,
+      code: agencyData.organizationalCode,
       orgLevel: agencyData.orgLevel,
       budget_status: agencyData.budget_status,
       keyFunctions: agencyData.keyFunctions,
@@ -183,8 +183,8 @@ agencyMap.forEach((agencyData, agencyName) => {
   }
 
   // Check for unexpected data
-  if (agencyData.budgetCode && !matched) {
-    warnings.push(`Agency with code ${agencyData.budgetCode} (${agencyName}) not matched`);
+  if (agencyData.organizationalCode && !matched) {
+    warnings.push(`Agency with code ${agencyData.organizationalCode} (${agencyName}) not matched`);
   }
 });
 

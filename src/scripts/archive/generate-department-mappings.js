@@ -113,7 +113,7 @@ const mappings = fileNames
     
     // Extract department name and code
     const name = data.name || '';
-    const code = data.budgetCode || '';
+    const code = data.organizationalCode || '';
     
     if (!name || !code) {
       console.warn(`Missing name or code in department file: ${fileName}`);
@@ -132,7 +132,7 @@ const mappings = fileNames
       dept.canonicalName === name || 
       (dept.aliases && dept.aliases.includes(name)) ||
       // Also match by code in case name is slightly different
-      (dept.budgetCode && dept.budgetCode.toString() === standardizedCode.toString())
+      (dept.organizationalCode && dept.organizationalCode.toString() === standardizedCode.toString())
     );
     
     // If we found a match, use department data from departments.json
@@ -184,7 +184,7 @@ const mappingsCode = mappings.map(mapping => {
     slug: '${escapeString(mapping.slug)}',
     name: '${escapeString(mapping.name)}',
     canonicalName: '${escapeString(mapping.fullName)}',
-    budgetCode: toNonNegativeInteger(${decimalCode}),
+    organizationalCode: toNonNegativeInteger(${decimalCode}),
     spendingName: '${escapeString(mapping.spendingName)}',
     workforceName: '${escapeString(mapping.workforceName)}'
   }`;

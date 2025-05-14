@@ -2,7 +2,7 @@
 name: Native American Heritage Commission
 description: Overview of the Native American Heritage Commission budget and operations
 author: Sean Roberts
-budgetCode: 3780
+organizationalCode: 3780
 date: 2024-01-03
 ---
 

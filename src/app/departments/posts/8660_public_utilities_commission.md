@@ -1,7 +1,7 @@
 ---
 
 name: "Public Utilities Commission"
-budgetCode: 8660
+organizationalCode: 8660
 date: '2025-04-30'
 author: "Sean Roberts"
 image: 
@@ -34,7 +34,7 @@ description: "The California Public Utilities Commission regulates $50+ billion 
 
 ### Major Funding Codes and Sources
 
-The Public Utilities Commission receives funding from various sources, each designated by specific budget codes in the state budget:
+The Public Utilities Commission receives funding from various sources, each designated by specific organizational codes in the state budget:
 
 #### Program Codes
 - **6680 - Regulation of Utilities**: Programs focused on oversight of electric, natural gas, water, and telecommunications utilities

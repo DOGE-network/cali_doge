@@ -65,14 +65,14 @@ Business Unit (organization code) – Reference Code – Fund Code
 | XXXX     | XXX      | XXXX       |
 
 - Example: 2720-001-0044
-Where 2720 is the business unit/organization/budget code for the California Highway Patrol
+Where 2720 is the business unit/organization/organizational code for the California Highway Patrol
 - Example: 2017 organizational codes for all departments https://ebudget.ca.gov/budget/publication/#/e/2017-18/DepartmentIndex
 - Organization Codes https://dof.ca.gov/accounting/accounting-policies-and-procedures/accounting-policies-and-procedures-uniform-codes-manual-organization-codes/
 
 **All the codes explained**
 
 **1. Organization/Business Unit Code (4 digits)**  
-- **Definition:** Identifies a state department, agency, or entity. The terms “budget code,” “organization code,” and “business unit code” all refer to the same four-digit identifier used to represent a department or entity in the California state budget and fiscal systems. Used for budgeting, accounting, and fiscal reporting across all state agencies. 
+- **Definition:** Identifies a state department, agency, or entity. The terms “organizational code,” “organization code,” and “business unit code” all refer to the same four-digit identifier used to represent a department or entity in the California state budget and fiscal systems. Used for budgeting, accounting, and fiscal reporting across all state agencies. 
 - **Example:** `0280` = Commission on Judicial Performance.  
 - **Source:**  
   - Defined in the **Uniform Codes Manual** https://www.dgs.ca.gov/Resources/SAM/TOC/7100/7131  ,  https://dof.ca.gov/wp-content/uploads/sites/352/Accounting/Policies_and_Procedures/Uniform_Codes_Manual/18fndsrc.pdf  
@@ -337,7 +337,7 @@ The application maintains a hierarchical representation of California's executiv
 The hierarchy is structured as a nested JSON object with the following key properties:
 
 - **name**: The name of the organizational unit
-- **budget_budgetCode**: The California Department of Finance budget budgetCode (when applicable)
+- **budget_organizationalCode**: The California Department of Finance budget organizationalCode (when applicable)
 - **is_active**: Boolean indicating if the unit is currently active
 - **key_functions**: List of primary responsibilities
 - **children**: Array of child organizations that report to this unit
@@ -365,7 +365,7 @@ The application includes an interactive workforce hierarchy visualization system
 - **Data Structure**:
   - Uses a tree-based structure defined in `src/data/executive-branch-hierarchy.json`
   - Maps departments to their parent agencies
-  - Includes metadata like budget budgetCodes and key functions
+  - Includes metadata like budget organizationalCodes and key functions
 
 ### Department Page Connection System
 
@@ -398,7 +398,7 @@ The system integrates with several APIs to provide comprehensive department data
    - Endpoint: `/api/departments?format=departments`
    - Returns structured department data including:
      - Organization hierarchy
-     - Budget codes
+     - organizational codes
      - Workforce statistics
      - Distribution data for tenure, salary, and age
 

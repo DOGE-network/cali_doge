@@ -80,7 +80,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0250_judicial_branch',
     name: 'Judicial Branch',
     canonicalName: 'California Judicial Branch',
-    budgetCode: toNonNegativeInteger(250),
+    organizationalCode: toNonNegativeInteger(250),
     spendingName: 'Judicial Branch',
     workforceName: 'Judicial Branch'
   },
@@ -88,7 +88,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0500_governors_office',
     name: 'Office of the Governor',
     canonicalName: 'Governor, Office of the',
-    budgetCode: toNonNegativeInteger(500),
+    organizationalCode: toNonNegativeInteger(500),
     spendingName: 'Office of the Governor',
     workforceName: 'Office of the Governor'
   },
@@ -96,7 +96,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0509_governors_office_of_business_and_economic_development',
     name: 'Governor\'s Office of Business and Economic Development',
     canonicalName: 'Business and Economic Development, Governor\'s Office of',
-    budgetCode: toNonNegativeInteger(509),
+    organizationalCode: toNonNegativeInteger(509),
     spendingName: 'Governor\'s Office of Business and Economic Development',
     workforceName: 'Governor\'s Office of Business and Economic Development'
   },
@@ -104,7 +104,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0511_secretary_for_government_operations',
     name: 'Government Operations Agency',
     canonicalName: 'Government Operations Agency',
-    budgetCode: toNonNegativeInteger(511),
+    organizationalCode: toNonNegativeInteger(511),
     spendingName: 'Government Operations Agency',
     workforceName: 'Government Operations Agency'
   },
@@ -112,7 +112,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0515_secretary_of_business_consumer_services_and_housing',
     name: 'Business, Consumer Services and Housing Agency',
     canonicalName: 'Business, Consumer Services, and Housing Agency, California',
-    budgetCode: toNonNegativeInteger(515),
+    organizationalCode: toNonNegativeInteger(515),
     spendingName: 'Business, Consumer Services and Housing Agency',
     workforceName: 'Business, Consumer Services and Housing Agency'
   },
@@ -120,7 +120,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0521_secretary_of_transportation',
     name: 'Transportation',
     canonicalName: 'Transportation, Department of',
-    budgetCode: toNonNegativeInteger(521),
+    organizationalCode: toNonNegativeInteger(521),
     spendingName: 'Transportation',
     workforceName: 'Transportation'
   },
@@ -128,7 +128,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0530_secretary_of_health_and_human_services',
     name: 'California Health and Human Services Agency',
     canonicalName: 'Health and Human Services Agency, California',
-    budgetCode: toNonNegativeInteger(530),
+    organizationalCode: toNonNegativeInteger(530),
     spendingName: 'California Health and Human Services Agency',
     workforceName: 'California Health and Human Services Agency'
   },
@@ -136,7 +136,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0540_california_natural_resources_agency',
     name: 'Natural Resources Agency',
     canonicalName: 'Natural Resources Agency, California',
-    budgetCode: toNonNegativeInteger(540),
+    organizationalCode: toNonNegativeInteger(540),
     spendingName: 'Natural Resources Agency',
     workforceName: 'Natural Resources Agency'
   },
@@ -144,7 +144,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0555_california_environmental_protection_agency',
     name: 'California Environmental Protection Agency',
     canonicalName: 'Environmental Protection Agency',
-    budgetCode: toNonNegativeInteger(555),
+    organizationalCode: toNonNegativeInteger(555),
     spendingName: 'California Environmental Protection Agency',
     workforceName: 'California Environmental Protection Agency'
   },
@@ -152,7 +152,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0559_secretary_for_labor_and_workforce_development',
     name: 'Labor and Workforce Development Agency',
     canonicalName: 'Labor and Workforce Development Agency',
-    budgetCode: toNonNegativeInteger(559),
+    organizationalCode: toNonNegativeInteger(559),
     spendingName: 'Labor and Workforce Development Agency',
     workforceName: 'Labor and Workforce Development Agency'
   },
@@ -160,7 +160,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0650_office_of_planning_and_research',
     name: 'Governor\'s Office of Planning and Research',
     canonicalName: 'Governor\'s Office of Planning and Research',
-    budgetCode: toNonNegativeInteger(650),
+    organizationalCode: toNonNegativeInteger(650),
     spendingName: 'Governor\'s Office of Planning and Research',
     workforceName: 'Governor\'s Office of Planning and Research'
   },
@@ -168,7 +168,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0690_office_of_emergency_services',
     name: 'Governor\'s Office of Emergency Services',
     canonicalName: 'Emergency Services, Governor\'s Office of',
-    budgetCode: toNonNegativeInteger(690),
+    organizationalCode: toNonNegativeInteger(690),
     spendingName: 'Governor\'s Office of Emergency Services',
     workforceName: 'Governor\'s Office of Emergency Services'
   },
@@ -176,7 +176,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0750_office_of_the_lieutenant_governor',
     name: 'Lieutenant Governor',
     canonicalName: 'Lieutenant Governor, Office of',
-    budgetCode: toNonNegativeInteger(750),
+    organizationalCode: toNonNegativeInteger(750),
     spendingName: 'Lieutenant Governor',
     workforceName: 'Lieutenant Governor'
   },
@@ -184,7 +184,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0820_department_of_justice',
     name: 'Justice',
     canonicalName: 'Justice, Department of',
-    budgetCode: toNonNegativeInteger(820),
+    organizationalCode: toNonNegativeInteger(820),
     spendingName: 'Justice',
     workforceName: 'Justice'
   },
@@ -192,7 +192,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0840_state_controller',
     name: 'State Controller\'s Office',
     canonicalName: 'Controller\'s Office, State',
-    budgetCode: toNonNegativeInteger(840),
+    organizationalCode: toNonNegativeInteger(840),
     spendingName: 'State Controller\'s Office',
     workforceName: 'State Controller\'s Office'
   },
@@ -200,7 +200,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0845_department_of_insurance',
     name: 'Department of Insurance',
     canonicalName: 'Insurance, Department of',
-    budgetCode: toNonNegativeInteger(845),
+    organizationalCode: toNonNegativeInteger(845),
     spendingName: 'Department of Insurance',
     workforceName: 'Department of Insurance'
   },
@@ -208,7 +208,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0890_secretary_of_state',
     name: 'Secretary of State',
     canonicalName: 'Secretary of State',
-    budgetCode: toNonNegativeInteger(890),
+    organizationalCode: toNonNegativeInteger(890),
     spendingName: 'Secretary of State',
     workforceName: 'Secretary of State'
   },
@@ -216,7 +216,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '0950_state_treasurers_office',
     name: 'Treasurer\'s Office',
     canonicalName: 'Treasurer\'s Office, State',
-    budgetCode: toNonNegativeInteger(950),
+    organizationalCode: toNonNegativeInteger(950),
     spendingName: 'Treasurer\'s Office',
     workforceName: 'Treasurer\'s Office'
   },
@@ -224,7 +224,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '1111_department_of_consumer_affairs',
     name: 'Department of Consumer Affairs',
     canonicalName: 'Consumer Affairs, Department of',
-    budgetCode: toNonNegativeInteger(1111),
+    organizationalCode: toNonNegativeInteger(1111),
     spendingName: 'Department of Consumer Affairs',
     workforceName: 'Department of Consumer Affairs'
   },
@@ -232,7 +232,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '1700_civil_rights_department',
     name: 'Civil Rights Department',
     canonicalName: 'Civil Rights Department',
-    budgetCode: toNonNegativeInteger(1700),
+    organizationalCode: toNonNegativeInteger(1700),
     spendingName: 'Civil Rights Department',
     workforceName: 'Civil Rights Department'
   },
@@ -240,7 +240,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '1701_department_of_financial_protection_and_innovation',
     name: 'Department of Financial Protection and Innovation',
     canonicalName: 'Financial Protection and Innovation, Department of',
-    budgetCode: toNonNegativeInteger(1701),
+    organizationalCode: toNonNegativeInteger(1701),
     spendingName: 'Department of Financial Protection and Innovation',
     workforceName: 'Department of Financial Protection and Innovation'
   },
@@ -248,7 +248,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '1750_horse_racing_board',
     name: 'California Horse Racing Board',
     canonicalName: 'Horse Racing Board, California',
-    budgetCode: toNonNegativeInteger(1750),
+    organizationalCode: toNonNegativeInteger(1750),
     spendingName: 'California Horse Racing Board',
     workforceName: 'California Horse Racing Board'
   },
@@ -256,7 +256,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '2660_department_of_transportation',
     name: 'Department of Transportation',
     canonicalName: 'Department of Transportation',
-    budgetCode: toNonNegativeInteger(2660),
+    organizationalCode: toNonNegativeInteger(2660),
     spendingName: 'Department of Transportation',
     workforceName: 'Department of Transportation'
   },
@@ -264,7 +264,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '2665_high_speed_rail_authority',
     name: 'High-Speed Rail Authority',
     canonicalName: 'High-Speed Rail Authority',
-    budgetCode: toNonNegativeInteger(2665),
+    organizationalCode: toNonNegativeInteger(2665),
     spendingName: 'High-Speed Rail Authority',
     workforceName: 'High-Speed Rail Authority'
   },
@@ -272,7 +272,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '2720_california_highway_patrol',
     name: 'California Highway Patrol',
     canonicalName: 'Highway Patrol, California',
-    budgetCode: toNonNegativeInteger(2720),
+    organizationalCode: toNonNegativeInteger(2720),
     spendingName: 'California Highway Patrol',
     workforceName: 'California Highway Patrol'
   },
@@ -280,7 +280,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '2740_department_of_motor_vehicles',
     name: 'Motor Vehicles',
     canonicalName: 'Motor Vehicles, Department of',
-    budgetCode: toNonNegativeInteger(2740),
+    organizationalCode: toNonNegativeInteger(2740),
     spendingName: 'Motor Vehicles',
     workforceName: 'Motor Vehicles'
   },
@@ -288,7 +288,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3100_exposition_park',
     name: 'Office of Exposition Park Management',
     canonicalName: 'California State Government',
-    budgetCode: toNonNegativeInteger(3100),
+    organizationalCode: toNonNegativeInteger(3100),
     spendingName: 'Office of Exposition Park Management',
     workforceName: 'Office of Exposition Park Management'
   },
@@ -296,7 +296,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3125_california_tahoe_conservancy',
     name: 'Tahoe Conservancy',
     canonicalName: 'Tahoe Conservancy',
-    budgetCode: toNonNegativeInteger(3125),
+    organizationalCode: toNonNegativeInteger(3125),
     spendingName: 'Tahoe Conservancy',
     workforceName: 'Tahoe Conservancy'
   },
@@ -304,7 +304,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3340_california_conservation_corps',
     name: 'California Conservation Corps',
     canonicalName: 'Conservation Corps, California',
-    budgetCode: toNonNegativeInteger(3340),
+    organizationalCode: toNonNegativeInteger(3340),
     spendingName: 'California Conservation Corps',
     workforceName: 'California Conservation Corps'
   },
@@ -312,7 +312,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3360_energy_commission',
     name: 'State Energy Resources Conservation and Development Commission',
     canonicalName: 'State Energy Resources Conservation and Development Commission',
-    budgetCode: toNonNegativeInteger(3360),
+    organizationalCode: toNonNegativeInteger(3360),
     spendingName: 'State Energy Resources Conservation and Development Commission',
     workforceName: 'State Energy Resources Conservation and Development Commission'
   },
@@ -320,7 +320,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3460_colorado_river_board',
     name: 'Colorado River Board of California',
     canonicalName: 'Colorado River Board of California',
-    budgetCode: toNonNegativeInteger(3460),
+    organizationalCode: toNonNegativeInteger(3460),
     spendingName: 'Colorado River Board of California',
     workforceName: 'Colorado River Board of California'
   },
@@ -328,7 +328,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3480_department_of_conservation',
     name: 'Department of Conservation',
     canonicalName: 'Conservation, Department of',
-    budgetCode: toNonNegativeInteger(3480),
+    organizationalCode: toNonNegativeInteger(3480),
     spendingName: 'Department of Conservation',
     workforceName: 'Department of Conservation'
   },
@@ -336,7 +336,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3540_department_of_forestry_and_fire_protection',
     name: 'Department of Forestry and Fire Protection',
     canonicalName: 'Forestry and Fire Protection, California Department of',
-    budgetCode: toNonNegativeInteger(3540),
+    organizationalCode: toNonNegativeInteger(3540),
     spendingName: 'Department of Forestry and Fire Protection',
     workforceName: 'Department of Forestry and Fire Protection'
   },
@@ -344,7 +344,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3560_state_lands_commission',
     name: 'Lands Commission',
     canonicalName: 'Lands Commission, California State',
-    budgetCode: toNonNegativeInteger(3560),
+    organizationalCode: toNonNegativeInteger(3560),
     spendingName: 'Lands Commission',
     workforceName: 'Lands Commission'
   },
@@ -352,7 +352,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3600_department_of_fish_and_wildlife',
     name: 'Department of Fish and Wildlife',
     canonicalName: 'Fish and Wildlife, Department of',
-    budgetCode: toNonNegativeInteger(3600),
+    organizationalCode: toNonNegativeInteger(3600),
     spendingName: 'Department of Fish and Wildlife',
     workforceName: 'Department of Fish and Wildlife'
   },
@@ -360,7 +360,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3640_wildlife_conservation_board',
     name: 'Wildlife Conservation Board',
     canonicalName: 'Wildlife Conservation Board',
-    budgetCode: toNonNegativeInteger(3640),
+    organizationalCode: toNonNegativeInteger(3640),
     spendingName: 'Wildlife Conservation Board',
     workforceName: 'Wildlife Conservation Board'
   },
@@ -368,7 +368,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3720_california_coastal_commission',
     name: 'California Coastal Commission',
     canonicalName: 'Coastal Commission, California',
-    budgetCode: toNonNegativeInteger(3720),
+    organizationalCode: toNonNegativeInteger(3720),
     spendingName: 'California Coastal Commission',
     workforceName: 'California Coastal Commission'
   },
@@ -376,7 +376,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3760_california_coastal_conservancy',
     name: 'State Coastal Conservancy',
     canonicalName: 'Coastal Conservancy, State',
-    budgetCode: toNonNegativeInteger(3760),
+    organizationalCode: toNonNegativeInteger(3760),
     spendingName: 'State Coastal Conservancy',
     workforceName: 'State Coastal Conservancy'
   },
@@ -384,7 +384,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3780_native_american_heritage_commission',
     name: 'Native American Heritage Commission',
     canonicalName: 'Native American Heritage Commission',
-    budgetCode: toNonNegativeInteger(3780),
+    organizationalCode: toNonNegativeInteger(3780),
     spendingName: 'Native American Heritage Commission',
     workforceName: 'Native American Heritage Commission'
   },
@@ -392,7 +392,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '3900_air_resources_board',
     name: 'California Air Resources Board',
     canonicalName: 'Air Resources Board',
-    budgetCode: toNonNegativeInteger(3900),
+    organizationalCode: toNonNegativeInteger(3900),
     spendingName: 'California Air Resources Board',
     workforceName: 'California Air Resources Board'
   },
@@ -400,7 +400,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '4260_california_department_of_health_care_services',
     name: 'Department of Health Care Services',
     canonicalName: 'Health Care Services, Department of',
-    budgetCode: toNonNegativeInteger(4260),
+    organizationalCode: toNonNegativeInteger(4260),
     spendingName: 'Department of Health Care Services',
     workforceName: 'Department of Health Care Services'
   },
@@ -408,7 +408,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '4300_california_department_of_developmental_services',
     name: 'Department of Developmental Services',
     canonicalName: 'Developmental Services, Department of',
-    budgetCode: toNonNegativeInteger(4300),
+    organizationalCode: toNonNegativeInteger(4300),
     spendingName: 'Department of Developmental Services',
     workforceName: 'Department of Developmental Services'
   },
@@ -416,7 +416,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '4440_california_department_of_state_hospitals',
     name: 'State Hospitals',
     canonicalName: 'State Hospitals, Department of',
-    budgetCode: toNonNegativeInteger(4440),
+    organizationalCode: toNonNegativeInteger(4440),
     spendingName: 'State Hospitals',
     workforceName: 'State Hospitals'
   },
@@ -424,7 +424,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '5180_california_department_of_social_services',
     name: 'Department of Social Services',
     canonicalName: 'Social Services, Department of',
-    budgetCode: toNonNegativeInteger(5180),
+    organizationalCode: toNonNegativeInteger(5180),
     spendingName: 'Department of Social Services',
     workforceName: 'Department of Social Services'
   },
@@ -432,7 +432,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '5225_california_department_of_corrections_and_rehabilitation',
     name: 'Department of Corrections and Rehabilitation',
     canonicalName: 'Corrections and Rehabilitation, California Department of',
-    budgetCode: toNonNegativeInteger(5225),
+    organizationalCode: toNonNegativeInteger(5225),
     spendingName: 'Department of Corrections and Rehabilitation',
     workforceName: 'Department of Corrections and Rehabilitation'
   },
@@ -440,7 +440,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '7760_department_of_general_services',
     name: 'Department of General Services',
     canonicalName: 'General Services, Department of',
-    budgetCode: toNonNegativeInteger(7760),
+    organizationalCode: toNonNegativeInteger(7760),
     spendingName: 'Department of General Services',
     workforceName: 'Department of General Services'
   },
@@ -448,7 +448,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '8380_california_department_of_human_resources',
     name: 'Department of Human Resources',
     canonicalName: 'Human Resources, Department of',
-    budgetCode: toNonNegativeInteger(8380),
+    organizationalCode: toNonNegativeInteger(8380),
     spendingName: 'Department of Human Resources',
     workforceName: 'Department of Human Resources'
   },
@@ -456,7 +456,7 @@ export const departmentMappings: DepartmentMapping[] = [
     slug: '8955_california_department_of_veterans_affairs',
     name: 'Veterans Affairs',
     canonicalName: 'Veterans Affairs, Department of',
-    budgetCode: toNonNegativeInteger(8955),
+    organizationalCode: toNonNegativeInteger(8955),
     spendingName: 'Veterans Affairs',
     workforceName: 'Veterans Affairs'
   }
@@ -515,7 +515,7 @@ export function getDepartmentMappings(): DepartmentMapping[] {
     slug: dept.slug as ValidSlug,
     name: dept.name,
     canonicalName: dept.canonicalName,
-    budgetCode: toNonNegativeInteger(dept.budgetCode),
+    organizationalCode: toNonNegativeInteger(dept.organizationalCode),
     aliases: dept.aliases || []
   }));
 }
@@ -543,7 +543,7 @@ export function getDepartmentBySlug(slug: string): DepartmentMapping | undefined
       if (!dept && slug.includes('_')) {
         const codeFromSlug = slug.substring(0, slug.indexOf('_'));
         dept = typedDepartmentsData.departments.find(d => 
-          (typeof d.budgetCode === 'string' ? parseInt(d.budgetCode, 10) : d.budgetCode) === 
+          (typeof d.organizationalCode === 'string' ? parseInt(d.organizationalCode, 10) : d.organizationalCode) === 
           (typeof codeFromSlug === 'string' ? parseInt(codeFromSlug, 10) : codeFromSlug)
         );
         
@@ -565,7 +565,7 @@ export function getDepartmentBySlug(slug: string): DepartmentMapping | undefined
     slug: dept.slug as ValidSlug,
     name: dept.name,
     canonicalName: dept.canonicalName,
-    budgetCode: toNonNegativeInteger(dept.budgetCode),
+    organizationalCode: toNonNegativeInteger(dept.organizationalCode),
     aliases: dept.aliases || []
   };
 }
@@ -588,7 +588,7 @@ export function getDepartmentByName(name: string): DepartmentMapping | undefined
     slug: dept.slug as ValidSlug,
     name: dept.name,
     canonicalName: dept.canonicalName,
-    budgetCode: toNonNegativeInteger(dept.budgetCode),
+    organizationalCode: toNonNegativeInteger(dept.organizationalCode),
     aliases: dept.aliases || []
   };
 }
@@ -627,7 +627,7 @@ export function getDepartmentByWorkforceName(name: string, checkForMarkdown: boo
     slug: matchedDept.slug as ValidSlug,
     name: matchedDept.name,
     canonicalName: matchedDept.canonicalName,
-    budgetCode: toNonNegativeInteger(matchedDept.budgetCode),
+    organizationalCode: toNonNegativeInteger(matchedDept.organizationalCode),
     aliases: matchedDept.aliases || []
   };
   
@@ -674,7 +674,7 @@ export function getDepartmentBySpendingName(name: string, checkForMarkdown: bool
     slug: matchedDept.slug as ValidSlug,
     name: matchedDept.name,
     canonicalName: matchedDept.canonicalName,
-    budgetCode: toNonNegativeInteger(matchedDept.budgetCode),
+    organizationalCode: toNonNegativeInteger(matchedDept.organizationalCode),
     aliases: matchedDept.aliases || []
   };
   
@@ -856,7 +856,7 @@ export function verifyDepartmentPosts(postSlugs: string[]): {
     const validSlug = slug as ValidSlug;
     const dept = getDepartmentBySlug(validSlug);
     if (dept) {
-      result.matched.push(`${slug} -> ${dept.name} (${dept.budgetCode})`);
+      result.matched.push(`${slug} -> ${dept.name} (${dept.organizationalCode})`);
     } else {
       result.unmatched.push(slug);
     }
@@ -963,7 +963,7 @@ export function compareSlugFormats(): void {
 export function findMarkdownForDepartment(departmentName: string): string | null {
   if (!departmentName) return null;
   
-  // Step 1: Get department by name to access its budget code
+  // Step 1: Get department by name to access its organizational code
   const dept = getDepartmentByName(departmentName);
   if (!dept) return null;
   
@@ -972,16 +972,16 @@ export function findMarkdownForDepartment(departmentName: string): string | null
     return dept.slug;
   }
   
-  // Step 3: If we have a budget code, look for exact match with code prefix
-  if (dept.budgetCode) {
-    const expectedSlug = `${dept.budgetCode}_${dept.name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`;
+  // Step 3: If we have a organizational code, look for exact match with code prefix
+  if (dept.organizationalCode) {
+    const expectedSlug = `${dept.organizationalCode}_${dept.name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`;
     if (DEPARTMENT_SLUGS_WITH_PAGES.includes(expectedSlug)) {
       return expectedSlug;
     }
     
-    // Also try finding any slug that starts with the budget code
+    // Also try finding any slug that starts with the organizational code
     const codeMatch = DEPARTMENT_SLUGS_WITH_PAGES.find(slug => 
-      slug.startsWith(`${dept.budgetCode}_`)
+      slug.startsWith(`${dept.organizationalCode}_`)
     );
     if (codeMatch) return codeMatch;
   }

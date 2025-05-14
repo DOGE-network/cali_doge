@@ -675,9 +675,9 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
                 department.name
               )}
               {department.abbreviation && <span className="ml-2 text-sm text-gray-500">({department.abbreviation})</span>}
-              {department.budgetCode && (
+              {department.organizationalCode && (
                 <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                  {department.budgetCode}
+                  {department.organizationalCode}
                 </span>
               )}
               <span className="ml-2 text-xs text-gray-500">(FY{fiscalYear})</span>

@@ -1,7 +1,7 @@
 ---
 
 name: "Air Resources Board"
-budgetCode: 3900
+organizationalCode: 3900
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 
@@ -35,7 +35,7 @@ description: "CARB has administered significant clean transportation funding, wi
 
 ### Major Funding Codes and Sources
 
-The Air Resources Board receives funding from various sources, each designated by specific budgetCodes in the state budget:
+The Air Resources Board receives funding from various sources, each designated by specific organizationalCodes in the state budget:
 
 #### Program Codes
 - **3500 - Mobile Source**: Programs focused on reducing emissions from vehicles and other mobile sources

@@ -1,6 +1,6 @@
 ---
 name: "California Department of Human Resources"
-budgetCode: 8380
+organizationalCode: 8380
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

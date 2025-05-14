@@ -24,14 +24,14 @@ export async function GET(request: Request) {
   const departments = typedData.departments.map((dept: DepartmentData) => {
     // Find the matching markdown filename
     const markdownSlug = validSlugs.find(slug => {
-      const [budgetCode] = slug.split('_');
-      // Pad the budget code to match the format in markdown filenames
-      const paddedBudgetCode = String(dept.budgetCode).padStart(4, '0');
+      const [organizationalCode] = slug.split('_');
+      // Pad the organizational code to match the format in markdown filenames
+      const paddedorganizationalCode = String(dept.organizationalCode).padStart(4, '0');
       
-      // If budget codes match, we have a match
-      if (paddedBudgetCode === budgetCode) return true;
+      // If organizational codes match, we have a match
+      if (paddedorganizationalCode === organizationalCode) return true;
       
-      // If budget codes don't match, try name matching
+      // If organizational codes don't match, try name matching
       const normalizedDeptName = dept.name.toLowerCase().replace(/[^a-z0-9]/g, '');
       const normalizedSlugName = slug.split('_')[1].toLowerCase().replace(/[^a-z0-9]/g, '');
       

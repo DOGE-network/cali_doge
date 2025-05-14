@@ -4,10 +4,11 @@
  * This script processes budget text files and updates departments.json with budget data.
  * It handles:
  * - Budget data extraction from text files
- * - Department matching using name, aliases, and budgetCode
+ * - Department matching using name, aliases, and organizationalCode
  * - Data validation and type compliance
  * - Logging of operations and results
  * - using department type interface RequiredDepartmentJSONFields
+ * 
  * 
  * Steps:
  * 1. Initial Setup
@@ -17,10 +18,10 @@
  * 
  * 2. Text File Processing
  *    a. Read and parse text files
- *    b. match textfile budget code to json department budgetCode. if match then check if orgLevel>1 else skip
+ *    b. match textfile organizational code to json department organizationalCode. if match then check if orgLevel>1 else skip
  *    c. match for next 3 rows are headcount  array years 2022, 2023, 2024, then next 3 rows are spending array years 2022, 2023, 2024
  *    d. create headcount and spending data arrays and log. use department type interface RequiredDepartmentJSONFields. 
- *    e. using record matched from step2b, show textfile budget code and json (budgetCode, name, aliases) so user can compare for matching, diff of headcount and spending arrays to fields of the record, log the differences.  Show headcount as info only, spending as will update. 
+ *    e. using record matched from step2b, show textfile organizational code and json (organizationalCode, name, aliases) so user can compare for matching, diff of headcount and spending arrays to fields of the record, log the differences.  Show headcount as info only, spending as will update. 
  *    f. if differences in spending or _note, ask user if they want to update the record, else skip. 
  *    g. Save the _note and or spending changes to departments.json. Match _note with the text file name or append to the existing note
  *    h. Continue until all files are processed
@@ -153,21 +154,21 @@ const normalizeDepartmentData = (dept) => {
 const parseBudgetFile = async (filePath, log, departmentsData) => {
   const timestamp = new Date().toISOString();
 
-  log(`[${timestamp}] === Step 2b: Match textfile budget code to json department budgetCode ===`);
+  log(`[${timestamp}] === Step 2b: Match textfile organizational code to json department organizationalCode ===`);
   log(`[${timestamp}] Processing file: ${path.basename(filePath)}`);
 
-  // Extract budget code from filename
-  const budgetCode = parseInt(path.basename(filePath).split('_')[0]);
-  log(`[${timestamp}] Extracted budget code: ${budgetCode}`);
+  // Extract organizational code from filename
+  const organizationalCode = parseInt(path.basename(filePath).split('_')[0]);
+  log(`[${timestamp}] Extracted organizational code: ${organizationalCode}`);
 
-  // First verify if we have a matching department by budget code
+  // First verify if we have a matching department by organizational code
   const matchingDepartment = departmentsData.departments.find(d => {
-    const deptBudgetCode = typeof d.budgetCode === 'string' ? parseInt(d.budgetCode) : d.budgetCode;
-    return deptBudgetCode === budgetCode;
+    const deptorganizationalCode = typeof d.organizationalCode === 'string' ? parseInt(d.organizationalCode) : d.organizationalCode;
+    return deptorganizationalCode === organizationalCode;
   });
 
   if (!matchingDepartment) {
-    log(`[${timestamp}] Error: No matching department found for budget code ${budgetCode}`, 'error');
+    log(`[${timestamp}] Error: No matching department found for organizational code ${organizationalCode}`, 'error');
     return null;
   }
 
@@ -177,12 +178,12 @@ const parseBudgetFile = async (filePath, log, departmentsData) => {
     return null;
   }
 
-  log(`[${timestamp}] Found matching department: ${matchingDepartment.name} (Budget Code: ${matchingDepartment.budgetCode}, orgLevel: ${matchingDepartment.orgLevel})`);
+  log(`[${timestamp}] Found matching department: ${matchingDepartment.name} (organizational code: ${matchingDepartment.organizationalCode}, orgLevel: ${matchingDepartment.orgLevel})`);
 
   log(`[${timestamp}] === Step 2b Complete ===\n`);
 
   return {
-    budgetCode: budgetCode,
+    organizationalCode: organizationalCode,
     department: matchingDepartment
   };
 };
@@ -329,11 +330,11 @@ const compareAndConfirmUpdate = (department, updateData, log) => {
   
   // Show matching details
   log(`[${timestamp}] Text File Department:`);
-  log(`[${timestamp}]   Budget Code: ${updateData.budgetCode}`);
+  log(`[${timestamp}]   organizational code: ${updateData.organizationalCode}`);
   log(`[${timestamp}]   Name: ${updateData.name}`);
   
   log(`[${timestamp}] JSON Department:`);
-  log(`[${timestamp}]   Budget Code: ${department.budgetCode}`);
+  log(`[${timestamp}]   organizational code: ${department.organizationalCode}`);
   log(`[${timestamp}]   Name: ${department.name}`);
   log(`[${timestamp}]   Aliases: ${department.aliases?.join(', ') || 'None'}`);
   
@@ -427,12 +428,12 @@ const main = async () => {
     // Process each file
     for (const file of files) {
       const filename = path.basename(file);
-      const budgetCode = filename.split('_')[0];
+      const organizationalCode = filename.split('_')[0];
       const timestamp = new Date().toISOString();
       
       log(`\n[${timestamp}] === Step 2a: Reading and Parsing Text File ===`);
       log(`[${timestamp}] Processing file: ${filename}`);
-      log(`[${timestamp}] Budget Code: ${budgetCode}`);
+      log(`[${timestamp}] organizational code: ${organizationalCode}`);
       log(`[${timestamp}] Full path: ${file}`);
       
       // File validation
@@ -472,7 +473,7 @@ const main = async () => {
 
           // Extract department name
           if (!departmentName && line.trim()) {
-            // Extract department name from after the budget code (4 digits at start)
+            // Extract department name from after the organizational code (4 digits at start)
             const match = line.trim().match(/^\d{4}\s+(.+)$/);
             if (match) {
               departmentName = match[1].trim();
@@ -524,7 +525,7 @@ const main = async () => {
       }
       log(`[${timestamp}] === Step 2a Complete ===\n`);
       
-      // Step 2b: Extract department information and match budget code
+      // Step 2b: Extract department information and match organizational code
       const budgetData = await parseBudgetFile(file, log, departmentsData);
       if (!budgetData) {
         log(`[${timestamp}] Skipping file ${filename} - no matching department found in departments.json`, 'error');
@@ -647,7 +648,7 @@ const main = async () => {
     departmentsData.departments
       .filter(d => !d.headCount?.yearly || Object.values(d.headCount.yearly).every(yearData => !yearData.length))
       .forEach(d => {
-        log(`- ${d.name} (Budget Code: ${d.budgetCode || 'None'})`);
+        log(`- ${d.name} (organizational code: ${d.organizationalCode || 'None'})`);
         unmatchedDepartments.add(d.name);
       });
     

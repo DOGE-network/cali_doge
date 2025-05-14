@@ -1,6 +1,6 @@
 ---
 name: "California Department of Developmental Services"
-budgetCode: 4300
+organizationalCode: 4300
 date: '2025-03-19'
 author: "Sean Roberts"
 image: 
