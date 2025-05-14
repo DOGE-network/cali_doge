@@ -42,7 +42,7 @@ export default function Header() {
                   </h1>
                 </div>
                 <p className="text-sm text-odi-gray-600 mt-1 ml-16">
-                    Possible future home of <span className="text-blue-600">https://doge.ca.gov/</span>
+                    We have gathered knowledge for you, do you have the wisdom to apply it
                   </p>
               </div>
             </Link>
