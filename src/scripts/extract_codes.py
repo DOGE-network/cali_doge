@@ -1,6 +1,7 @@
 import fitz  # PyMuPDF
 import re
 import statistics
+import argparse
 from collections import defaultdict
 
 def extract_org_structure(pdf_path):
@@ -149,23 +150,31 @@ def print_hierarchy(data):
 
 # Example usage
 if __name__ == "__main__":
-    pdf_path = "3orgstruc.pdf"
+    # Set up command line argument parsing
+    parser = argparse.ArgumentParser(description='Extract organizational codes from a PDF file')
+    parser.add_argument('pdf_file', help='Path to the PDF file to process')
+    parser.add_argument('-o', '--output', default='org_structure.csv', 
+                        help='Output CSV file name (default: org_structure.csv)')
+    args = parser.parse_args()
     
     # Extract structured data
-    org_data = extract_org_structure(pdf_path)
-    
-    # Print the hierarchy
-    print_hierarchy(org_data)
-    
-    # Save to CSV
-    import csv
-    with open('org_structure.csv', 'w', newline='') as csvfile:
-        fieldnames = ['level', 'code', 'description', 'x_position', 'page']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    try:
+        org_data = extract_org_structure(args.pdf_file)
         
-        writer.writeheader()
-        for item in org_data:
-            writer.writerow(item)
-    
-    print(f"\nExtracted {len(org_data)} items from the PDF.")
-    print("Data has been saved to 'org_structure.csv'")
+        # Print the hierarchy
+        print_hierarchy(org_data)
+        
+        # Save to CSV
+        import csv
+        with open(args.output, 'w', newline='') as csvfile:
+            fieldnames = ['level', 'code', 'description', 'x_position', 'page']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            
+            writer.writeheader()
+            for item in org_data:
+                writer.writerow(item)
+        
+        print(f"\nExtracted {len(org_data)} items from the PDF.")
+        print(f"Data has been saved to '{args.output}'")
+    except Exception as e:
+        print(f"Error processing file: {str(e)}")

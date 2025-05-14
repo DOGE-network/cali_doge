@@ -1,0 +1,989 @@
+level,code,description,x_position,page
+A,0971,"Alternative Energy and Advanced Transportation Financing Authority, California",72.02400207519531,1
+A,1105,"African-American Museum, California (Renum to 3105, 09/2012) (Abolished 01/01/2013)",72.02400207519531,1
+A,1108,"Aerospace Commission, California",72.02400207519531,1
+A,1120,"Accountancy, California Board of",72.02400207519531,1
+A,1400,Acupuncture Board,72.02400207519531,1
+A,1670,"Administration, Division of (Consumer Affairs) (moved to 1111, 94/95)",72.02400207519531,1
+A,1690,Alfred E. Alquist Seismic Safety Commission – DO NOT USE,72.02400207519531,1
+A,1830,"Allocation Board, State - SCO/DGS USE ONLY",72.02400207519531,1
+A,2100,"Alcoholic Beverage Control, Department of",72.02400207519531,1
+A,2120,Alcoholic Beverage Control Appeals Board,72.02400207519531,1
+A,3105,"African-American Museum, California (Renum from 1105, 09/2012)",72.02400207519531,1
+A,3310,"Alternative Energy Finance Authority, California (Renum to 0971) - DO NOT USE",72.02400207519531,1
+A,3400,Air Resources Board - DO NOT USE,72.02400207519531,1
+A,3430,"Advisory Committee, California - DO NOT USE",72.02400207519531,1
+A,3900,"Air Resources Board, State",72.02400207519531,1
+A,3990,"Air Quality, Department of - DO NOT USE",72.02400207519531,1
+A,4160,"Aging, Total Department of - DO NOT USE",72.02400207519531,1
+A,4170,"Aging, California Department of",72.02400207519531,1
+A,4180,"Aging, Commission on",72.02400207519531,1
+A,4200,"Alcohol and Drug Programs, Department of",72.02400207519531,1
+A,4330,"Agnews State Hospital (DS) (Abolished, 15/16)",72.02400207519531,1
+A,6170,"Agency for Surplus Property, State",72.02400207519531,1
+A,7300,Agricultural Labor Relations Board (Renum from 8300),72.02400207519531,1
+A,7910,"Administrative Law, Office of (Renum from 8910, 09/2012)",72.02400207519531,1
+A,8250,American Revolution Bicentennial Commission of California,72.02400207519531,1
+A,8910,"Administrative Law, Office of (Renum to 7910, 09/2012) (Abolished 01/01/2013)",72.02400207519531,1
+A,9055,Adjustment to Reconcile to State Controller - DO NOT USE,72.02400207519531,1
+A,9200,Alternative Energy Tax Credit Refund,72.02400207519531,1
+A,9220,Aid to Counties,72.02400207519531,1
+A,9230,Aid to Education - K-12,72.02400207519531,1
+A,9240,Aid to Community Colleges,72.02400207519531,1
+A,9250,Aid to Cities,72.02400207519531,1
+A,9260,Aid to Special Districts,72.02400207519531,1
+A,9903,Alternative Procurements for Information Technology,72.02400207519531,1
+A,9939,Antiterrorism Federal Reimbursements - DOF USE ONLY,72.02400207519531,1
+A,9955,Alternate Retirement Program,72.02400207519531,1
+A,9956,Alternate Retirement Program - DOF USE ONLY,72.02400207519531,1
+A,9991,Administrative Control Accounts – STO/SCO USE ONLY,72.02400207519531,1
+A,9996,Adjustment to Reconcile to State Controller - DOF/SCO USE ONLY,72.02400207519531,1
+A,0120,Assembly,72.02400207519531,2
+A,0155,"Auditor General, Office of the (See 8855) - DO NOT USE",72.02400207519531,2
+A,1130,"Architectural Examiners, California Board of",72.02400207519531,2
+A,1140,"Athletic Commission, State",72.02400207519531,2
+A,1150,"Automotive Repair, Bureau of (Moved to 1111, 94/95) (Abolished 07/2023)",72.02400207519531,2
+A,1790,"Architect, Office of State",72.02400207519531,2
+A,2222,"Assistance Fund for Enterprise, Business and Industrial Development Corporation, State",72.02400207519531,2
+A,3300,"Assistance Fund for Enterprise, Business and Industry Development Corporation, State",72.02400207519531,2
+A,3835,Baldwin Hills and Urban Watersheds Conservancy (Retitled 8/2023),72.02400207519531,2
+A,4110,Area Boards on Developmental Disabilities,72.02400207519531,2
+A,5352,Avenal State Prison,72.02400207519531,2
+A,6650,"Bakersfield, CSC",72.02400207519531,2
+A,6910,"Awards for Innovation in Higher Education (Abolished, 6/19) – DO NOT USE",72.02400207519531,2
+A,8160,Assistance to Counties for Defense of Indigents,72.02400207519531,2
+A,8260,"Arts Council, California",72.02400207519531,2
+A,8540,"Auctioneer Commission, California",72.02400207519531,2
+A,9045,Augmentation for Employee Compensation - DO NOT USE,72.02400207519531,2
+A,9360,Apportionment of Liquor License Fees,72.02400207519531,2
+A,9370,Apportionment of Highway Properties Rental Receipts,72.02400207519531,2
+A,9380,Apportionment of Off-Highway License Fees,72.02400207519531,2
+A,9390,Apportionment of Federal Receipts from Flood Control Lands,72.02400207519531,2
+A,9400,Apportionment of Federal Receipts from Forest Reserves,72.02400207519531,2
+A,9410,Apportionment of Federal Receipts from Grazing Land,72.02400207519531,2
+A,9420,Apportionment of Federal Potash Lease Rentals,72.02400207519531,2
+A,9425,Apportionment of Mobilehome and Commercial Coach License Fees,72.02400207519531,2
+A,9430,Apportionment of Motor Vehicle License Fees,72.02400207519531,2
+A,9440,Apportionment of Cigarette Tax,72.02400207519531,2
+A,9450,Apportionment of Highway Carriers' Uniform Business Tax Fee,72.02400207519531,2
+A,9460,Apportionments of Tideland Revenues,72.02400207519531,2
+A,9480,Apportionment of Motor Vehicle Fuel Tax for Country Roads,72.02400207519531,2
+A,9490,Apportionment of Motor Vehicle Fuel Tax for City Streets,72.02400207519531,2
+A,9500,Apportionment of Motor Vehicle Fuel Tax for County Roads and City Streets,72.02400207519531,2
+A,9505,Apportionment of Motor Vehicle Fuel Tax to Counties and Cities for Streets and Highway,72.02400207519531,2
+A,9515,Apportionment of Local Agency Reimbursements,72.02400207519531,2
+A,9520,Apportionment of Geothermal Resources Development,72.02400207519531,2
+A,9530,Apportionments for Public Safety,72.02400207519531,2
+A,9533,Apportionment of Traffic Congestion Relief Fund,72.02400207519531,2
+A,9535,Apportionment of Local Transportation Funding,72.02400207519531,2
+A,9790,Augmentation for Mediterranean Fruit Fly,72.02400207519531,2
+A,9800,Augmentation for Employee Compensation,72.02400207519531,2
+A,9820,Augmentation for Price Increases,72.02400207519531,2
+A,9840,Augmentation for Contingencies or Emergency,72.02400207519531,2
+A,9865,"Architecture Revolving Fund, Recovery of Uncharged Costs",72.02400207519531,2
+A,9880,Augmentation for Office of Administrative Law Services,72.02400207519531,2
+A,9913,"Attorney Fees, Department of Justice - DOF/SCO USE ONLY",72.02400207519531,2
+A,9915,Augmentation Authority per Control Section 31.70 - DOF USE ONLY,72.02400207519531,2
+A,0440,"Block Grant for Superior Court Judgeships, State",72.02400207519531,3
+A,0580,"California/Mexico Affairs, Office of",72.02400207519531,3
+A,0968,California Tax Credit Allocation Committee (Renum from 2270),72.02400207519531,3
+A,0976,Capitol Area Development Authority,72.02400207519531,3
+A,0981,California ABLE Act Board,72.02400207519531,3
+A,0984,CalSavers Retirement Savings Board,72.02400207519531,3
+A,1000,"Business, Consumer Services, and Housing (Formerly State and Consumer Svcs, 13/14)",72.02400207519531,3
+A,1045,Cannabis Control Appeals Panel (New 17/18),72.02400207519531,3
+A,1100,"California Science Center (Renum to 3100, 09/2012) (Abolished 01/01/2013)",72.02400207519531,3
+A,1115,"Cannabis Control, Department of",72.02400207519531,3
+A,1160,"Barber Examiners, Board of (Moved to 1111, 92/93) (Abolished 07/2023)",72.02400207519531,3
+A,1165,"Board of Barbering and Cosmetology, State - (Moved to 1111, 7/1/97) (Abolished 07/2023)",72.02400207519531,3
+A,1170,"Behavioral Sciences, Board of",72.02400207519531,3
+A,1500,"Board for Professional Engineers, Land Surveyors, and Geologists",72.02400207519531,3
+A,1680,"Building Maintenance and Operation (Cons. Affairs) (moved to 1111, 94/95)",72.02400207519531,3
+A,1703,California Privacy Protection Agency,72.02400207519531,3
+A,2000,"Business, Transportation and Housing – DO NOT USE",72.02400207519531,3
+A,2010,Business and Housing – DO NOT USE,72.02400207519531,3
+A,2050,"Business, Transportation, and Housing Agency Programs**",72.02400207519531,3
+A,2140,"Banking Department, State (Merged into 2150) (Abolished 7/1/1997)",72.02400207519531,3
+A,2245,"California Housing Finance Agency (New, 13/14)",72.02400207519531,3
+A,2720,"California Highway Patrol, Department of the",72.02400207519531,3
+A,3125,California Tahoe Conservancy,72.02400207519531,3
+A,3150,California -Tahoe Regional Planning Agency,72.02400207519531,3
+A,3440,California - Nevada Interstate Compact Commission,72.02400207519531,3
+A,3680,"Boating and Waterways, Department of (Merged into 3790, 13/14) (Abolished 01/01/2013)",72.02400207519531,3
+A,3870,California Bay-Delta Authority (Abolished 11/12/2009),72.02400207519531,3
+A,4340,Camarillo State Hospital (DS) (Renum to 4480) - DO NOT USE,72.02400207519531,3
+A,4480,Camarillo State Hospital (MH) - DO NOT USE,72.02400207519531,3
+A,4560,Behavioral Health Services Oversight and Accountability Commission,72.02400207519531,3
+A,5362,Calipatria State Prison,72.02400207519531,3
+A,5365,California State Prison – Kern County at Delano II,72.02400207519531,3
+A,5610,Ben Lomond Youth Conservation Camp - DO NOT USE,72.02400207519531,3
+A,6330,"Career Resource Network, California",72.02400207519531,3
+A,6480,Campuses,72.02400207519531,3
+A,6500,Berkeley Campus,72.02400207519531,3
+A,6640,"Campuses, CSU",72.02400207519531,3
+A,6870,Board of Governors of the California Community Colleges,72.02400207519531,3
+A,8255,"Bicentennial Commission on the United States, California",72.02400207519531,3
+A,8680,"Bar of California, State (Inactive) – DO NOT USE",72.02400207519531,3
+A,8710,Board of Control – Operations - DO NOT USE,72.02400207519531,3
+A,8760,"Californias, Commission of the",72.02400207519531,3
+A,8855,California State Auditor’s Office,72.02400207519531,3
+A,8856,"California Analyst, Office of the",72.02400207519531,3
+A,9658,Budget Stabilization Account,72.02400207519531,3
+A,9860,Capital Outlay Planning and Studies Funding,72.02400207519531,3
+A,9891,"Brown, Craig, v. US Dept. of Health and Human Services. - DOF/SCO USE ONLY",72.02400207519531,3
+A,0560,"Citizen Initiative and Voluntary Action, Office for",72.02400207519531,4
+A,0565,"Commission on Industrial Innovation, California",72.02400207519531,4
+A,0911,Citizens Redistricting Commission,72.02400207519531,4
+A,1080,"Commerce, Department of (Renum to 2200) - DO NOT USE",72.02400207519531,4
+A,1110,"Consumer Affairs - Regulatory Boards, Department of (Abolished 07/01/2016)",72.02400207519531,4
+A,1111,"Consumer Affairs, Department of (Retitled, 17/18)",72.02400207519531,4
+A,1180,"Cemetery Board (Moved to 1111, 7/1/96) (Abolished 07/2023)",72.02400207519531,4
+A,1230,Contractors' State License Board,72.02400207519531,4
+A,1630,Consumer Affairs - Administrative Services (Renum to 1655) - DO NOT USE,72.02400207519531,4
+A,1640,"Consumer Services, Division of - DO NOT USE",72.02400207519531,4
+A,1650,Consumer Advisory Council - DO NOT USE,72.02400207519531,4
+A,1655,"Consumer Affairs - Admin Services, Department of (Moved to 1111, 94/95) (Abolished 07/2023)",72.02400207519531,4
+A,1700,"Civil Rights Department (Retitled, 21/22)",72.02400207519531,4
+A,2200,"Commerce, Department of (Merged into 2920) (Abolished 01/01/1993)",72.02400207519531,4
+A,3340,"Conservation Corps, California",72.02400207519531,4
+A,3460,Colorado River Board of California,72.02400207519531,4
+A,3480,"Conservation, Department of",72.02400207519531,4
+A,3720,"Coastal Commission, California",72.02400207519531,4
+A,3760,"Coastal Conservancy, State",72.02400207519531,4
+A,3850,Coachella Valley Mountains Conservancy,72.02400207519531,4
+A,3862,Central Valley Flood Protection Board - DO NOT USE,72.02400207519531,4
+A,4220,Child Development Policy Advisory Committee,72.02400207519531,4
+A,4230,Children and Youth Program and Services (Info. Display Only),72.02400207519531,4
+A,4250,"Children and Families Commission, California",72.02400207519531,4
+A,4700,"Community Services and Development, Department of",72.02400207519531,4
+A,5175,"Child Support Services, Department of",72.02400207519531,4
+A,5342,Centinela State Prison,72.02400207519531,4
+A,5354,"Chuckawalla Valley State Prison, Riverside County",72.02400207519531,4
+A,5361,Central California Women's Facility,72.02400207519531,4
+A,5480,Commission on Correctional Peace Officers’ Standards and Training,72.02400207519531,4
+A,6600,"College of the Law, San Francisco (Retitled, 1/2023)",72.02400207519531,4
+A,6680,"Chico, CSU",72.02400207519531,4
+A,6850,"Channel Islands, CSU",72.02400207519531,4
+A,8385,"Citizens Compensation Commission, California",72.02400207519531,4
+A,8420,"Compensation Insurance Fund, State",72.02400207519531,4
+A,8430,"Compensation Insurance Fund, State",72.02400207519531,4
+A,8500,"Chiropractic Examiners, Board of (Merged into 1110, 13/14) (Abolished 01/01/2013)",72.02400207519531,4
+A,8665,"Consumer Power and Conservation Financing Authority, California",72.02400207519531,4
+A,8750,Commission of Local Government for the 21,72.02400207519531,4
+A,8790,"Commission on Disability Access, California – DO NOT USE—ABOLISHED",72.02400207519531,4
+A,8825,Commission on Asian and Pacific Islander American Affairs,72.02400207519531,4
+A,8882,Constitutional Revision Commission,72.02400207519531,4
+A,9620,Cash Management and Budgetary Loans,72.02400207519531,4
+A,9675,Construction and Repair of Local Streets and Roads,72.02400207519531,4
+A,9730,"Clean Water Grants Revolving Fund, State",72.02400207519531,4
+A,9804,Contracts Impacted by Minimum Wage,72.02400207519531,4
+A,9902,Citizenship & Alien Verification - DO NOT USE,72.02400207519531,4
+A,9918,Child Development,72.02400207519531,4
+A,0150,Contributions to Legislators' Retirement System,72.02400207519531,5
+A,0157,Control Section 33.50 - Auditor General and Legislative Analyst,72.02400207519531,5
+A,0390,Contributions to Judges' Retirement System,72.02400207519531,5
+A,0840,"Controller, State",72.02400207519531,5
+A,0841,"Controller’s Statewide Information Technology Projects, State",72.02400207519531,5
+A,1240,"Cosmetology, Board of (moved to 1111, 92/93) (Abolished 07/2023)",72.02400207519531,5
+A,1520,Court Reporters Board of California,72.02400207519531,5
+A,2180,"Corporations, Department of (Merged into 1701, 13/14) (Abolished 01/01/2013)",72.02400207519531,5
+A,4100,"Council on Developmental Disabilities, State",72.02400207519531,5
+A,5210,Corrections and Rehabilitation,72.02400207519531,5
+A,5225,"Corrections and Rehabilitation, Department of",72.02400207519531,5
+A,5226,Corrections and Rehabilitation Headquarters,72.02400207519531,5
+A,5231,Corrections and Rehabilitation – Corcoran Region,72.02400207519531,5
+A,5232,Corrections and Rehabilitation – El Centro Region,72.02400207519531,5
+A,5233,Corrections and Rehabilitation – Bakersfield Region,72.02400207519531,5
+A,5234,Corrections and Rehabilitation – Sacramento Region,72.02400207519531,5
+A,5236,Corrections and Rehabilitation – North Coast Region,72.02400207519531,5
+A,5237,Corrections and Rehabilitation – Central Coast Region,72.02400207519531,5
+A,5238,Corrections and Rehabilitation – Southern California Region,72.02400207519531,5
+A,5239,Corrections and Rehabilitation – Central Valley Region,72.02400207519531,5
+A,5240,"Corrections, Department of",72.02400207519531,5
+A,5241,Corrections and Rehabilitation – Northern Youth Region,72.02400207519531,5
+A,5242,Corrections and Rehabilitation – Southern Youth Region,72.02400207519531,5
+A,5250,"Corrections – Central Office, Department of",72.02400207519531,5
+A,5280,"Corrections - Headquarters, Department of",72.02400207519531,5
+A,5281,Corrections - Corcoran Region,72.02400207519531,5
+A,5282,"Corrections, El Centro Region",72.02400207519531,5
+A,5283,Corrections - Bakersfield Region,72.02400207519531,5
+A,5284,Corrections - Sacramento Region,72.02400207519531,5
+A,5285,Corrections - North Coast Region,72.02400207519531,5
+A,5286,Corrections - Central Coast Region,72.02400207519531,5
+A,5287,Corrections - Southern California Region,72.02400207519531,5
+A,5288,Corrections - Central Valley Region,72.02400207519531,5
+A,5290,"Correctional Center, California",72.02400207519531,5
+A,5300,"Correctional Institution, California",72.02400207519531,5
+A,5360,Correctional Training Facility,72.02400207519531,5
+A,5430,"Corrections, Board of",72.02400207519531,5
+A,6320,"Council on Vocational Education, California State",72.02400207519531,5
+A,6645,CSU Health Benefits for Retired Annuitants,72.02400207519531,5
+A,6880,Council for Private Postsecondary and Vocational Education,72.02400207519531,5
+A,7504,"Data and Innovation, Office of",72.02400207519531,5
+A,8100,"Criminal Justice Planning, Office of (Abolished 1/1/04; Payments for Prior Years by OES)",72.02400207519531,5
+A,8110,"Crime Technological Research Foundation, California - DO NOT USE",72.02400207519531,5
+A,9740,Cooperative Personnel Services Revolving Fund,72.02400207519531,5
+A,9750,County Formation Revolving Fund,72.02400207519531,5
+A,9830,Control and Replacement of Polychorinated Biphenyls (PCBs) in State Facilities,72.02400207519531,5
+A,9943,Control Section 14.95 - DOF USE ONLY,72.02400207519531,5
+A,9998,Control Sections for Budget Enactment Process,72.02400207519531,5
+A,0300,District Courts of Appeal,72.02400207519531,6
+A,0660,"Economic Opportunity, Office of (Renum to 8915) - DO NOT USE",72.02400207519531,6
+A,0690,Office of Emergency Services (Formerly California Emergency Management Agency; the,72.02400207519531,6
+A,0956,"Debt and Investment Advisory Commission, California",72.02400207519531,6
+A,0959,"Debt Limit Allocation Committee, California",72.02400207519531,6
+A,0970,"Debt Advisory Commission, California (Renum to 0956) - DO NOT USE",72.02400207519531,6
+A,0989,"Educational Facilities Authority, California (Info. Display Only)",72.02400207519531,6
+A,1250,"Dentistry, Board of",72.02400207519531,6
+A,1260,Dental Board of California,72.02400207519531,6
+A,1270,"Dental Auxiliaries, Committee on",72.02400207519531,6
+A,1280,"Electronic & Appliance Repair, Bureau of (Moved to 1111, 94/95) (Abolished 07/2023)",72.02400207519531,6
+A,1320,"Dry Cleaning & Fabric Care, Board of (Abolished 01/87) - DO NOT USE",72.02400207519531,6
+A,2745,DMV Test Only - DO NOT USE,72.02400207519531,6
+A,3840,Delta Protection Commission,72.02400207519531,6
+A,3885,Delta Stewardship Council,72.02400207519531,6
+A,4080,"Educational Liaison, Office of - DO NOT USE",72.02400207519531,6
+A,4120,Emergency Medical Services Authority,72.02400207519531,6
+A,4300,"Developmental Services, Department of (Total)",72.02400207519531,6
+A,4310,"Developmental Services - Headquarters, Department of",72.02400207519531,6
+A,4600,"Developmental and Rehabilitative Services, Department of",72.02400207519531,6
+A,5370,Deuel Vocational Institution,72.02400207519531,6
+A,5520,El Paso de Robles Youth Correctional Facility,72.02400207519531,6
+A,5550,DeWitt Nelson Correctional Facility - DO NOT USE,72.02400207519531,6
+A,5596,District Attorney and Public Defender Services,72.02400207519531,6
+A,5670,El Centro Training Center - DO NOT USE,72.02400207519531,6
+A,6000,Education,72.02400207519531,6
+A,6100,"Education, Department of (Total)",72.02400207519531,6
+A,6110,"Education, Department of (Headquarters)",72.02400207519531,6
+A,6125,Education Audit Appeals Panel,72.02400207519531,6
+A,6210,Diagnostic School for Neurologically - Handicapped Children-Northern California,72.02400207519531,6
+A,6220,Diagnostic School for Neurologically - Handicapped Children-Central California,72.02400207519531,6
+A,6230,Diagnostic School for Neurologically - Handicapped Children-Southern California,72.02400207519531,6
+A,6260,Diagnostic Centers,72.02400207519531,6
+A,6380,Debt Service on Public School Building Bonds,72.02400207519531,6
+A,6430,"Educational Facilities Authority, California (Renum to 0989) - DO NOT USE",72.02400207519531,6
+A,6510,Davis Campus,72.02400207519531,6
+A,6690,"Dominguez Hills, CSU",72.02400207519531,6
+A,6720,"East Bay, CSU (Formerly Hayward)",72.02400207519531,6
+A,7961,"Educational Development Asst. Network, California - DO NOT USE",72.02400207519531,6
+A,8200,"Economic Development, Commission on - DO NOT USE",72.02400207519531,6
+A,8460,Disaster Service Workers,72.02400207519531,6
+A,8770,Electricity Oversight Board,72.02400207519531,6
+A,8915,"Economic Opportunity, Department of (Renum to 4700) - DO NOT USE",72.02400207519531,6
+A,9030,Debt Service – DO NOT USE,72.02400207519531,6
+A,9618,Economic Recovery Financing Committee (Abolished 10/19) – DO NOT USE,72.02400207519531,6
+A,9907,E-Government Projects – DOF/SCO USE ONLY,72.02400207519531,6
+A,9985,Early Retirement Program – DOF USE ONLY,72.02400207519531,6
+A,0310,First District Court of Appeal,72.02400207519531,7
+A,0350,Fifth District Court of Appeal,72.02400207519531,7
+A,0490,"Executive (Retitle 17/18, formerly Executive/Governor)",72.02400207519531,7
+A,0495,Executive Office of the Governor,72.02400207519531,7
+A,0620,"Employee Relations, Office of (Merged into 8380) - DO NOT USE",72.02400207519531,7
+A,0740,Executive/Constitutional Offices - DO NOT USE,72.02400207519531,7
+A,0860,"Equalization, State Board of",72.02400207519531,7
+A,1701,"Financial Protection and Innovation, Department of (New, 13/14; Retitled, 20/21)",72.02400207519531,7
+A,1705,"Fair Employment and Housing Commission (Merged into 1700, 13/14) (Abolished 01/01/2013)",72.02400207519531,7
+A,1710,"Fire Marshal, Office of the State (Merged into 3540) - DO NOT USE",72.02400207519531,7
+A,2150,"Financial Institutions, Department of (Merged into 1701, 13/14) (Abolished 01/01/2013)",72.02400207519531,7
+A,3100,"Exposition Park (Renum from 1100, 09/2012; Retitled 6/2018)",72.02400207519531,7
+A,3210,Environmental Protection Program,72.02400207519531,7
+A,3350,"Energy and Conservation, Department of - DO NOT USE",72.02400207519531,7
+A,3355,"Energy Infrastructure Safety, Office of",72.02400207519531,7
+A,3360,Energy Resources Conservation and Development Commission,72.02400207519531,7
+A,3800,"Exposition and State Fair, California - DO NOT USE",72.02400207519531,7
+A,3890,Environmental Protection,72.02400207519531,7
+A,3980,"Environmental Health Hazard Assessment, Office of",72.02400207519531,7
+A,4350,Fairview State Hospital,72.02400207519531,7
+A,5110,Employment Development Department - DO NOT USE,72.02400207519531,7
+A,5660,Fenner Canyon Youth Conservation Camp - DO NOT USE,72.02400207519531,7
+A,5796,"Enhancing Law Enforcement Activities Growth (New, 13/14)",72.02400207519531,7
+A,5990,Federal Immigration Funding - Incarceration,72.02400207519531,7
+A,6115,"Establishment of Academic Content and Performance Standards, Commission of",72.02400207519531,7
+A,7100,Employment Development Department (Renum from 5100),72.02400207519531,7
+A,8225,"Entertainment Commission, California",72.02400207519531,7
+A,8560,"Exposition and State Fair, California",72.02400207519531,7
+A,8590,Financial Assistance to Local Fairs - DO NOT USE,72.02400207519531,7
+A,8600,Financial Assistance to County Fairs - DO NOT USE,72.02400207519531,7
+A,8610,Financial Assistance to Local Fairs - DO NOT USE,72.02400207519531,7
+A,8610,Financial Assistance to Local Fairs - DO NOT USE,72.02400207519531,7
+A,8620,Fair Political Practices Commission,72.02400207519531,7
+A,8730,"Finance, Commission on State",72.02400207519531,7
+A,8857,Fiscal & Management Audit of State Controller - DO NOT USE,72.02400207519531,7
+A,8860,"Finance, Department of",72.02400207519531,7
+A,8880,Financial Information System for California,72.02400207519531,7
+A,8951,Federal Per Diem for Veterans Housing,72.02400207519531,7
+A,9510,Financial Aid to Local Agencies,72.02400207519531,7
+A,9540,Federal Revenue Sharing,72.02400207519531,7
+A,9670,Equity Claims and Settlements and Judgements (Retitled 6/19),72.02400207519531,7
+A,9671,Equity Claims by Victim Compensation Board and Dept. General Services (Retitles 6/19),72.02400207519531,7
+A,9815,Federal Court Awarded Attorney Fees - DO NOT USE,72.02400207519531,7
+A,9818,Federal Levy of State Funds,72.02400207519531,7
+A,9937,Federal Recoveries - DOF USE ONLY,72.02400207519531,7
+A,9940,Estimated Unidentifiable Savings (Year-end Reversions),72.02400207519531,7
+A,9970,"Fiscal Information System Use Only, California",72.02400207519531,7
+A,0340,Fourth District Court of Appeal,72.02400207519531,8
+A,0500,Governor's Office,72.02400207519531,8
+A,0509,Governor’s Office of Business and Economic Development (GO-Biz),72.02400207519531,8
+A,0570,Governor's Council on Wellness and Physical Fitness,72.02400207519531,8
+A,0650,Governor’s Office of Land Use and Climate Innovation (Retitled 7/1/2024),72.02400207519531,8
+A,0855,"Gambling Control Commission, California",72.02400207519531,8
+A,0991,"Fiscal Recovery Financing Authority, California",72.02400207519531,8
+A,0996,General Obligation Bonds - LJE - DOF USE ONLY,72.02400207519531,8
+A,1330,"Funeral Directors and Embalmers, Board of (Moved to 1111, 7/1/96) (Abolished 07/2023)",72.02400207519531,8
+A,1335,"Funeral & Cemetery Services, State Board of (Moved to 1111, 1995) (Abolished 07/2023)",72.02400207519531,8
+A,1340,"Geologists and Geophysicists, Board for",72.02400207519531,8
+A,1730,"Franchise Tax Board (Renum to 7730, 09/2012) (Abolished 01/01/2013)",72.02400207519531,8
+A,1760,"General Services, Department of (Renum to 7760, 09/2012) (Abolished 01/01/2013)",72.02400207519531,8
+A,1770,"General Services, Department of – DO NOT USE",72.02400207519531,8
+A,1996,General Obligation Bonds - BCH - DOF USE ONLY,72.02400207519531,8
+A,2830,General Obligation Bonds - Transportation - DOF USE ONLY,72.02400207519531,8
+A,2935,General Obligation Bonds - T&C - DOF USE ONLY,72.02400207519531,8
+A,2996,General Obligation Bonds - BT&H (Renum to 2830) - DOF USE ONLY,72.02400207519531,8
+A,3180,Geothermal Resources Development Program,72.02400207519531,8
+A,3540,"Forestry and Fire Protection, Department of",72.02400207519531,8
+A,3600,"Fish and Wildlife, Department of",72.02400207519531,8
+A,3882,General Obligation Bonds - Resources - DOF USE ONLY,72.02400207519531,8
+A,3946,General Obligation Bonds (Cal-EPA) - DO NOT USE,72.02400207519531,8
+A,3996,General Obligation Bonds - Environmental Protection,72.02400207519531,8
+A,4370,Frank D. Lanterman State Hospital (Formerly Pacific State Hospital),72.02400207519531,8
+A,5206,General Obligation Bonds - H&HS - DOF USE ONLY,72.02400207519531,8
+A,5380,Folsom State Prison,72.02400207519531,8
+A,5530,Fred C. Nelles Youth Correctional Facility,72.02400207519531,8
+A,5996,General Obligation Bonds - Corrections and Rehabilitation - DOF USE ONLY,72.02400207519531,8
+A,6396,General Obligation Bonds - K-12 - DOF USE ONLY,72.02400207519531,8
+A,6490,General Campuses,72.02400207519531,8
+A,6700,"Fresno, CSU",72.02400207519531,8
+A,6710,"Fullerton, CSU",72.02400207519531,8
+A,6874,General Obligation Bonds - Hi Ed - CC - DOF USE ONLY,72.02400207519531,8
+A,7399,General Obligation Bonds - Labor and Workforce Development – DOF USE ONLY,72.02400207519531,8
+A,7500,"Government Operations (New agency, 13/14)",72.02400207519531,8
+A,7730,"Franchise Tax Board (Renum from 1730, 09/2012)",72.02400207519531,8
+A,7760,"General Services, Department of (Renum from 1760, 09/2012)",72.02400207519531,8
+A,7996,General Obligation Bonds - Hi Ed - DOF USE ONLY,72.02400207519531,8
+A,8000,General Government,72.02400207519531,8
+A,8010,"Non-Agency Departments (Retitled 17/18, formerly General Administration)",72.02400207519531,8
+A,8570,"Food and Agriculture, Department of",72.02400207519531,8
+A,8580,"Food and Agriculture, Department of - DO NOT USE",72.02400207519531,8
+A,8998,General Obligation Bonds - General Government - DOF USE ONLY,72.02400207519531,8
+A,9600,General Obligation Bonds and Commercial Paper,72.02400207519531,8
+A,9634,General Obligation Bonds (Statewide Distributed Costs) - DO NOT USE,72.02400207519531,8
+A,9875,General Fund Deficit Recovery Payments,72.02400207519531,8
+A,9910,General Fund Credits from Federal Funds - (Statewide Indirect Costs),72.02400207519531,8
+A,0290,Habeas Resource Center,72.02400207519531,9
+A,0680,Governor’s Office of Service and Community Engagement (New 7/1/2024),72.02400207519531,9
+A,0720,Governor's Portrait,72.02400207519531,9
+A,0900,Heritage Preservation Commission,72.02400207519531,9
+A,0957,"Hope, Opportunity, Perseverance and Empowerment (HOPE) for Children Trust Account",72.02400207519531,9
+A,0977,"Health Facilities Financing Authority, California",72.02400207519531,9
+A,0980,"Housing Finance Agency, California (Temp) - DO NOT USE",72.02400207519531,9
+A,0992,Hazardous Substance Cleanup Financing Authority,72.02400207519531,9
+A,1350,"Guide Dogs for the Blind, State Board of",72.02400207519531,9
+A,1360,"Home Furnishing & Thermal Insulation, Bureau (Moved to 1111, 94/95) (Abolished 07/2023)",72.02400207519531,9
+A,1410,Hearing Aid Dispensers' Examining Committee,72.02400207519531,9
+A,1750,"Horse Racing Board, California (Renum from 8550, 09/2012)",72.02400207519531,9
+A,2235,"Home Loan Mortgage Association, California",72.02400207519531,9
+A,2240,"Housing and Community Development, Department of",72.02400207519531,9
+A,2260,"Housing Finance Agency, California (Placed within 2240, 13/14)",72.02400207519531,9
+A,2265,"Housing Insurance, California (Merged into 2260) - DO NOT USE",72.02400207519531,9
+A,2665,High-Speed Rail Authority,72.02400207519531,9
+A,2667,High-Speed Rail Authority Office of the Inspector General,72.02400207519531,9
+A,2680,"Highway User's Tax Study Commission, State - DO NOT USE",72.02400207519531,9
+A,2790,"Housing Finance Agency, California - DO NOT USE",72.02400207519531,9
+A,4000,Health and Human Services,72.02400207519531,9
+A,4130,"Health and Human Services Agency Data Center, California",72.02400207519531,9
+A,4140,"Health Care Access and Information, Department of",72.02400207519531,9
+A,4210,Governor's Policy Council on Drug and Alcohol Abuse,72.02400207519531,9
+A,4240,"Health, Department of - DO NOT USE",72.02400207519531,9
+A,4260,"Health Care Services, State Department of (Retitled 12/19/17)",72.02400207519531,9
+A,4261,"Health Services, Department of - Headquarters - DO NOT USE",72.02400207519531,9
+A,4320,"Hospitals, State (DDS) -Total",72.02400207519531,9
+A,4460,"Hospitals, State (DMH) -Total",72.02400207519531,9
+A,4800,"Health Benefit Exchange, Califonia",72.02400207519531,9
+A,5190,"Health Facilities Commission, California",72.02400207519531,9
+A,5200,"Health Facilities Authority, California (Renum to 0977) - DO NOT USE",72.02400207519531,9
+A,5295,High Desert State Prison,72.02400207519531,9
+A,5600,Herman G. Stark Youth Correctional Facility,72.02400207519531,9
+A,6013,"Higher Education (New, 17/18)",72.02400207519531,9
+A,6015,"Higher Education Community Colleges (Renum and retitled, see 6013)",72.02400207519531,9
+A,6020,Higher Education - DO NOT USE,72.02400207519531,9
+A,6025,Higher Education Unallocated Salary Increase - DOF/SCO USE ONLY,72.02400207519531,9
+A,7501,"Human Resources, Department of (Renum from 8380, 09/2012)",72.02400207519531,9
+A,7991,Higher Education Unallocated Salary Increase - DOF/SCO USE ONLY,72.02400207519531,9
+A,8270,Historic State Capitol Commission,72.02400207519531,9
+A,8550,"Horse Racing Board, California (Renum to 1750, 09/2012) (Abolished 01/01/2013)",72.02400207519531,9
+A,9150,Homeowners' Property Tax Relief,72.02400207519531,9
+A,9650,Health and Dental Benefits for Annuitants,72.02400207519531,9
+A,9858,"Guarantee of Loan, State",72.02400207519531,9
+A,9909,Health Insurance Portability & Accountability - DOF/SCO USE ONLY,72.02400207519531,9
+A,9950,Hiring Freeze Savings - DOF USE ONLY,72.02400207519531,9
+A,0130,Joint Expenses,72.02400207519531,10
+A,0200,Judicial,72.02400207519531,10
+A,0240,"Judicial Center Library, California",72.02400207519531,10
+A,0270,Judicial Council,72.02400207519531,10
+A,0280,"Judicial Performance, Commission on",72.02400207519531,10
+A,0505,"Information Technology, Department of - DO NOT USE",72.02400207519531,10
+A,0552,"Inspector General, Office of the",72.02400207519531,10
+A,0553,"Inspector General for Veterans Affairs, Office of (Abolished 08/11/2004)",72.02400207519531,10
+A,0595,Inspector General,72.02400207519531,10
+A,0610,"Information Services, Office of - DO NOT USE",72.02400207519531,10
+A,0845,"Insurance, Department of (Renum from 2290)",72.02400207519531,10
+A,0965,"Industrial Development Financing Advisory Commission, California – DO NOT USE",72.02400207519531,10
+A,1660,"Investigation, Division of (Consumer Affairs) (Moved to 1111, 94/95) (Abolished 07/2023)",72.02400207519531,10
+A,1860,Intergovernmental Personnel Act Advisory Council,72.02400207519531,10
+A,2160,"Job Creation Program, California (Merged into 2920) (Abolished 01/01/1993)",72.02400207519531,10
+A,2230,"Industrial Finance Advisory Commission, California (Renum to 0965) - DO NOT USE",72.02400207519531,10
+A,2290,"Insurance, Department of (Renum to 0845) - DO NOT USE",72.02400207519531,10
+A,2295,Insurance Advisory Office,72.02400207519531,10
+A,3380,"Integrated Waste Management Board, California - DO NOT USE",72.02400207519531,10
+A,3410,Humboldt Bay Fund,72.02400207519531,10
+A,3910,"Integrated Waste Management Board, California (Abolished 1/1/10; moved to 3500)",72.02400207519531,10
+A,5170,"Independent Living Council, State",72.02400207519531,10
+A,5185,Immigration Reform and Control Act. (Info. Display Only),72.02400207519531,10
+A,5235,"Inspector General, Office of the - DOF USE ONLY",72.02400207519531,10
+A,5254,Inmate Services,72.02400207519531,10
+A,5310,"Institution for Men, California",72.02400207519531,10
+A,5320,"Institution for Women, California",72.02400207519531,10
+A,5355,Ironwood State Prison,72.02400207519531,10
+A,5760,Institutional Review Board,72.02400207519531,10
+A,6445,"Institute for Regenerative Medicine, California",72.02400207519531,10
+A,6460,Institute of Appropriate Technology,72.02400207519531,10
+A,6470,Institute of Transportation Studies,72.02400207519531,10
+A,6520,Irvine Campus,72.02400207519531,10
+A,6730,Humboldt CSU,72.02400207519531,10
+A,7350,"Industrial Relations, Department of (Renum from 8350)",72.02400207519531,10
+A,7360,Industrial Relations Unpaid Wage Fund (Renum from 8360),72.02400207519531,10
+A,8340,"Industrial Relations, Department of (Abolished 2/15/95) - DO NOT USE",72.02400207519531,10
+A,8380,"Human Resources, Department of (Renum to 7501, 09/2012) (Abolished 01/01/2013)",72.02400207519531,10
+A,8655,Independent Citizens Redistricting Commission - DOF USE ONLY,72.02400207519531,10
+A,8720,Indemnification of Private Citizens - DO NOT USE,72.02400207519531,10
+A,8740,"Information Systems Implementation Committee, California",72.02400207519531,10
+A,8890,"Information Technology, Office of - DO NOT USE",72.02400207519531,10
+A,8900,Intergovernmental Board on Electronic Data Processing,72.02400207519531,10
+A,9625,Interest Payments to the Federal Government,72.02400207519531,10
+A,9845,Information Technology Equipment Management Program,72.02400207519531,10
+A,9899,Information Technology Century Change and Alternative Procurements,72.02400207519531,10
+A,9904,Information Technology Century Change,72.02400207519531,10
+A,9908,Janitorial/Contract Services - DOF/SCO USE ONLY,72.02400207519531,10
+A,0001,Major Revenues - DOF USE ONLY,72.02400207519531,11
+A,0002,Major Policy Revenues - DOF USE ONLY,72.02400207519531,11
+A,0010,"Legislative, Judicial, and Executive",72.02400207519531,11
+A,0020,Legislative,72.02400207519531,11
+A,0100,Legislature,72.02400207519531,11
+A,0160,Legislative Counsel Bureau,72.02400207519531,11
+A,0170,"Law Revision Commission, California (Renum to 8830) - DO NOT USE",72.02400207519531,11
+A,0250,Judicial Branch,72.02400207519531,11
+A,0670,"Long Term Care, Office of",72.02400207519531,11
+A,0750,"Lieutenant Governor, Office of the (Total)",72.02400207519531,11
+A,0760,"Lieutenant Governor, Office of the",72.02400207519531,11
+A,0820,"Justice, Department of",72.02400207519531,11
+A,0850,"Lottery Commission, California State",72.02400207519531,11
+A,0953,Local Agency Indebtedness Fund Loan Program,72.02400207519531,11
+A,0960,Local Agency Indebtedness Program (Renum to 0953) - DO NOT USE,72.02400207519531,11
+A,0975,Los Angeles State Building Authority – DO NOT USE,72.02400207519531,11
+A,1370,"Landscape Architects, Board of (moved to 1111, 97/98) (Abolished 07/2023)",72.02400207519531,11
+A,2190,Major Risk Medical Insurance Board - DO NOT USE,72.02400207519531,11
+A,3560,"Lands Commission, State",72.02400207519531,11
+A,3660,Klamath River Compact Commission (Info. Display Only),72.02400207519531,11
+A,4150,"Managed Health Care, Department of (Renum from 2400)",72.02400207519531,11
+A,4280,Managed Risk Medical Insurance Board (Abolished 7/1/14),72.02400207519531,11
+A,5296,Enhancing Law Enforcement Activities (Retitled 12/2013),72.02400207519531,11
+A,5365,"Kern County at Delano II, California State Prison",72.02400207519531,11
+A,5496,Local Community Corrections,72.02400207519531,11
+A,5560,Karl Holton Youth Correctional Drug and Alcohol Treatment Facility - DO NOT USE,72.02400207519531,11
+A,5696,Juvenile Justice Programs,72.02400207519531,11
+A,6010,K - 12 Education,72.02400207519531,11
+A,6120,"Library, California State",72.02400207519531,11
+A,6530,Los Angeles Campus,72.02400207519531,11
+A,6740,"Long Beach, CSU",72.02400207519531,11
+A,6750,"Los Angeles, CSU",72.02400207519531,11
+A,6876,"Mandated Local Costs, Hi Ed - CC - DOF USE ONLY",72.02400207519531,11
+A,7000,Labor and Workforce Development,72.02400207519531,11
+A,8830,"Law Revision Commission, California",72.02400207519531,11
+A,9020,Local Government Aid - DO NOT USE,72.02400207519531,11
+A,9210,Local Government Financing,72.02400207519531,11
+A,9270,Local Agency Emergency Loan Program,72.02400207519531,11
+A,9280,Local Agency Indebtedness Loan Program,72.02400207519531,11
+A,9610,Lease-Revenue Notes and Bonds,72.02400207519531,11
+A,9660,Los Angeles County Medical Assistance Grant Program,72.02400207519531,11
+A,9802,June to July Payroll Deferral,72.02400207519531,11
+A,9850,Loans for Contingencies or Emergencies,72.02400207519531,11
+A,9855,Legislative Initiatives,72.02400207519531,11
+A,9917,"Justice Legal Services, Department of",72.02400207519531,11
+A,9949,Local District Projects Savings - DOF USE ONLY,72.02400207519531,11
+A,9966,Lease Revenue Debt Service - DOF USE ONLY,72.02400207519531,11
+A,9999,Major Revenues - DOF/SCO USE ONLY,72.02400207519531,11
+A,0998,"Mandated Local Costs, State - LJE - DOF USE ONLY",72.02400207519531,12
+A,0999,Miscellaneous Adjustments - LJE - DOF USE ONLY,72.02400207519531,12
+A,1380,Medical Board of California,72.02400207519531,12
+A,1390,Medical Board of California,72.02400207519531,12
+A,1998,"Mandated Local Costs, State - SCS - DOF USE ONLY",72.02400207519531,12
+A,1999,Miscellaneous Adjustments - SCS - DOF USE ONLY,72.02400207519531,12
+A,2810,Miscellaneous Adjustments - BT&H - DOF USE ONLY,72.02400207519531,12
+A,2840,"Mandated Local Costs, State - BT&H (Renum from 2998) - DOF USE ONLY",72.02400207519531,12
+A,2925,Miscellaneous Adjustments - T&C - DOF USE ONLY,72.02400207519531,12
+A,2940,"Mandated Local Costs, State - T&C - DOF USE ONLY",72.02400207519531,12
+A,2994,Miscellaneous Adjustments - BT&H (Renum to 2810) - DOF USE ONLY,72.02400207519531,12
+A,2994,Miscellaneous Adjustments - BT&H (Renum to 2810) - DO NOT USE,72.02400207519531,12
+A,2998,"Mandated Local Costs, State - BT&H (Renum to 2840) - DOF USE ONLY",72.02400207519531,12
+A,3884,"Mandated Local Costs, Resources, State - DOF USE ONLY",72.02400207519531,12
+A,3886,Miscellaneous Adjustments - Resources - DOF USE ONLY,72.02400207519531,12
+A,3948,"Mandated Local Costs, State - DO NOT USE",72.02400207519531,12
+A,3949,Miscellaneous Adjustments - DO NOT USE,72.02400207519531,12
+A,3998,"Mandated Local Costs, State - Environmental Protection",72.02400207519531,12
+A,3999,Miscellaneous Adjustments - Environmental Protection,72.02400207519531,12
+A,4270,"Medical Assistance Commission, California",72.02400207519531,12
+A,5208,"Mandated Local Costs, State - H&HS - DOF USE ONLY",72.02400207519531,12
+A,5209,Miscellaneous Adjustments - H&HS - DOF USE ONLY,72.02400207519531,12
+A,5292,"Monterey County, Soledad II, California State Prison,",72.02400207519531,12
+A,5330,"Medical Facility, California",72.02400207519531,12
+A,5340,"Men's Colony, California",72.02400207519531,12
+A,5998,"Mandated Local Costs, State - YAC - DOF USE ONLY",72.02400207519531,12
+A,5999,Miscellaneous Adjustments - YAC - DOF USE ONLY,72.02400207519531,12
+A,6398,"Mandated Local Costs, State - K-12 - DOF USE ONLY",72.02400207519531,12
+A,6399,Miscellaneous Adjustments - K-12 - DOF USE ONLY,72.02400207519531,12
+A,6590,Merced Campus,72.02400207519531,12
+A,6752,"Maritime Academy, CSU",72.02400207519531,12
+A,6756,"Monterey Bay, CSU",72.02400207519531,12
+A,6860,"Maritime Academy, California",72.02400207519531,12
+A,6879,Miscellaneous Adjustments - Hi Ed - CC - DOF USE ONLY,72.02400207519531,12
+A,7998,"Mandated Local Costs, State - Hi Ed - DOF USE ONLY",72.02400207519531,12
+A,7999,Miscellaneous Adjustments - Hi Ed - DOF USE ONLY,72.02400207519531,12
+A,8780,"Milton Marks ""Little Hoover"" Commission on California State Government Organization and",72.02400207519531,12
+A,8800,Membership in Interstate Organizations,72.02400207519531,12
+A,8885,"Mandates, Commission on States",72.02400207519531,12
+A,8940,Military Department,72.02400207519531,12
+A,8994,"Mandated Local Costs, State - DOF USE ONLY",72.02400207519531,12
+A,8999,Miscellaneous Adjustments - General Government - DOF USE ONLY,72.02400207519531,12
+A,9632,"Mandated Local Costs, State - DO NOT USE",72.02400207519531,12
+A,9636,Miscellaneous Adjustments - DO NOT USE,72.02400207519531,12
+A,9680,"Mandated Local Programs, State - DO NOT USE",72.02400207519531,12
+A,9920,Mandated Reductions (Budget Act Sections 27.1 and 27.2),72.02400207519531,12
+A,9990,Miscellaneous Control Accounts - DOF/SCO USE ONLY,72.02400207519531,12
+A,0460,National Center for State Courts (See 8800),72.02400207519531,13
+A,0695,Natural Disaster Assistance,72.02400207519531,13
+A,0697,Northridge Earthquake,72.02400207519531,13
+A,0825,O.J. Hawkins Data Center,72.02400207519531,13
+A,0979,Oakland Joint Powers Authority (Abolished 07/01/2023),72.02400207519531,13
+A,1020,No Subagency - DO NOT USE,72.02400207519531,13
+A,1310,Nurses Registry (Moved to 1510),72.02400207519531,13
+A,1470,"Nursing Home Administrators, State Board of (Moved to 1111, 1/98) (Abolished 07/2023)",72.02400207519531,13
+A,1475,"Occupational Therapy, California Board of",72.02400207519531,13
+A,1480,"Optometry, State Board of",72.02400207519531,13
+A,1485,Osteopathic Medical Board of California (Moved from 8510),72.02400207519531,13
+A,2270,Mortgage Bond Allocation Commission (Renum to 0968) - DO NOT USE,72.02400207519531,13
+A,2740,"Motor Vehicles, Department of",72.02400207519531,13
+A,2905,No Subagency - DO NOT USE,72.02400207519531,13
+A,3000,Natural Resources,72.02400207519531,13
+A,3010,No Subagency - DO NOT USE,72.02400207519531,13
+A,3780,Native American Heritage Commission (Renum from 8280),72.02400207519531,13
+A,3790,"Parks and Recreation, Department of",72.02400207519531,13
+A,3892,No Subagency - DO NOT USE,72.02400207519531,13
+A,4010,No Subagency - DO NOT USE,72.02400207519531,13
+A,4360,Napa State Hospital (DS) (Renum to 4500) - DO NOT USE,72.02400207519531,13
+A,4380,Patton State Hospital (DS) (Renum to 4510) - DO NOT USE,72.02400207519531,13
+A,4420,Northern California Facility - Yuba City (DDS) (Abolished – facility closed in 2010),72.02400207519531,13
+A,5220,No Subagency - DO NOT USE,72.02400207519531,13
+A,5260,Parole and Community Services Division,72.02400207519531,13
+A,5351,"Mule Creek State Prison (Formerly California State Prison, Amador County)",72.02400207519531,13
+A,5364,North Kern State Prison,72.02400207519531,13
+A,5384,Northern California Women's Facility,72.02400207519531,13
+A,5471,Northern California Youth Correctional Center,72.02400207519531,13
+A,5472,Northern Youth Conservation Camps,72.02400207519531,13
+A,5500,Northern Youth Correctional Reception Center and Clinic,72.02400207519531,13
+A,5540,Northern California Youth Correctional Center (Abolished 05/02) – DO NOT USE,72.02400207519531,13
+A,5555,N.A. Chaderjian Youth Correctional Facility - DO NOT USE,72.02400207519531,13
+A,5570,O. H. Close Youth Correctional Facility - DO NOT USE,72.02400207519531,13
+A,5620,Mt. Bullion Youth Conservation Camp - DO NOT USE,72.02400207519531,13
+A,5630,Oak Glen Camp - DO NOT USE,72.02400207519531,13
+A,6760,"Northridge, CSU",72.02400207519531,13
+A,6990,Other Education - DO NOT USE,72.02400207519531,13
+A,7010,No Subagency - DO NOT USE,72.02400207519531,13
+A,7510,No Subagency - DO NOT USE,72.02400207519531,13
+A,8220,Motion Picture Council,72.02400207519531,13
+A,8280,Native American Heritage Commission (Renum to 3780) - DO NOT USE,72.02400207519531,13
+A,8510,Osteopathic Medical Board of California (Moved to 1485) - DO NOT USE,72.02400207519531,13
+A,9805,"Pay Equity, Commission of",72.02400207519531,13
+A,9886,Past Year Adjustments - Reserve for Encumbrances - DOF USE ONLY,72.02400207519531,13
+A,9896,"Outer Continental Shelf Land Act, Section 8 (g)",72.02400207519531,13
+A,9947,Past Years’ Disencumbrances - DOF USE ONLY,72.02400207519531,13
+A,9948,Operating Expenses and Equipment Savings - DOF USE ONLY,72.02400207519531,13
+A,0974,"Pollution Control Financing Authority, California",72.02400207519531,14
+A,0995,Payment of Interest on PMIA Loans - LJE- DOF USE ONLY,72.02400207519531,14
+A,1300,Personnel Services. Bureau of (Abolished) - DO NOT USE,72.02400207519531,14
+A,1420,Physical Therapy Board of California,72.02400207519531,14
+A,1430,Physician Assistant Board,72.02400207519531,14
+A,1440,"Podiatry Medicine, Board of",72.02400207519531,14
+A,1490,"Pharmacy, California State Board of",72.02400207519531,14
+A,1495,Polygraph Examiners Board (Abolished 01/88) - DO NOT USE,72.02400207519531,14
+A,1995,Payment of Interest on PMIA Loans - SCS - DOF USE ONLY,72.02400207519531,14
+A,2670,"Pilot Commissioners for the Bays of San Francisco, San Pablo, and Suisun, Board of",72.02400207519531,14
+A,2922,"Permit Assistance, Department of - DO NOT USE",72.02400207519531,14
+A,2930,Payment of Interest on PMIA Loans - T&C - DOF USE ONLY,72.02400207519531,14
+A,2995,Payment of Interest on PMIA Loans - BT&H (Renum to 2820) - DOF USE ONLY,72.02400207519531,14
+A,3320,"Pollution Control Financing Authority, California (Renum to 0974) - DO NOT USE",72.02400207519531,14
+A,3880,Payment of Interest on PMIA Loans - Resources - DOF USE ONLY,72.02400207519531,14
+A,3930,"Pesticide Regulation, Department of (Board portion merged into 1110, 13/14)",72.02400207519531,14
+A,3945,Payment of Interest on PMIA Loans - DO NOT USE,72.02400207519531,14
+A,3995,Payment of Interest on PMIA Loans - Environmental Protection,72.02400207519531,14
+A,4390,Porterville State Hospital,72.02400207519531,14
+A,5205,Payment of Interest on PMIA Loans - H&HS - DOF USE ONLY,72.02400207519531,14
+A,5341,Pleasant Valley State Prison,72.02400207519531,14
+A,5359,"Pelican Bay State Prison (Formerly California State Prison, Del Norte County)",72.02400207519531,14
+A,5640,Pine Grove Youth Conservation Camp - DO NOT USE,72.02400207519531,14
+A,5995,Payment of Interest on PMIA Loans - YAC- DOF USE ONLY,72.02400207519531,14
+A,6395,Payment of Interest on PMIA Loans - K-12 - DOF USE ONLY,72.02400207519531,14
+A,6770,"Pomona, CPSU",72.02400207519531,14
+A,6872,Payment of Interest on PMIA Loans - Hi Ed - CC - DOF USE ONLY,72.02400207519531,14
+A,7503,"Personnel Board, State (Renum from 8390, 09/2012)",72.02400207519531,14
+A,7995,Payment of Interest on PMIA Loans - Hi Ed - DOF USE ONLY,72.02400207519531,14
+A,8120,"Peace Officer Standards and Training, Commission on",72.02400207519531,14
+A,8180,Payment to Counties for Costs of Homicide Trials,72.02400207519531,14
+A,8530,"Pilot Commissioners, Board of (Moved to 2670) (Abolished 09/29/2008)",72.02400207519531,14
+A,8640,Political Reform Act of 1974,72.02400207519531,14
+A,8990,Pending New Organization - DOF USE ONLY,72.02400207519531,14
+A,8996,Payment of Interest on PMIA Loans - General Government - DOF USE ONLY,72.02400207519531,14
+A,9140,Personal Property Tax Relief,72.02400207519531,14
+A,9170,Payments to Local Government for Sales and Property Tax Revenue Loss,72.02400207519531,14
+A,9300,Payment to Counties for Costs of Homicide Trials,72.02400207519531,14
+A,9590,Payment of Interest on Pooled Money Investment Account Loans,72.02400207519531,14
+A,9615,Payment of Pension Obligation,72.02400207519531,14
+A,9633,Payment of Interest on PMIA Loans - DO NOT USE,72.02400207519531,14
+A,9810,Payment of Specified Attorney Fees,72.02400207519531,14
+A,9895,Petroleum Violation Escrow Account Program,72.02400207519531,14
+A,9898,PERS General Fund Payment,72.02400207519531,14
+A,9934,PERS Payment Recovery,72.02400207519531,14
+A,9935,PERS Deferral,72.02400207519531,14
+A,9936,PERS Surplus Asset Savings - DOF USE ONLY,72.02400207519531,14
+A,9997,Pending New Organization - DOF USE ONLY,72.02400207519531,14
+A,0003,Proposition 98 Expenditure Adjustment Related to Tax Reductions - DOF USE ONLY,72.02400207519531,15
+A,0730,Governor Elect and Outgoing Governor,72.02400207519531,15
+A,0962,"Rail Passenger Financing Commission, California",72.02400207519531,15
+A,1210,Private Investigators and Adjustors (Moved to 1111) (Abolished 07/2023),72.02400207519531,15
+A,1220,"Registered Construction Inspectors, Board of (Abolished) - DO NOT USE",72.02400207519531,15
+A,1340,"Registration for Geologists and Geophysicists, State Board of",72.02400207519531,15
+A,1395,Registered Dispensing Optician Committee - DO NOT USE,72.02400207519531,15
+A,1450,"Psychology, Board of",72.02400207519531,15
+A,1510,"Registered Nursing, Board of",72.02400207519531,15
+A,1570,Registered Veterinary Technician Committee,72.02400207519531,15
+A,1600,Psychiatric Technician Program,72.02400207519531,15
+A,1780,Public Works Board (Renum to 8850) - DO NOT USE,72.02400207519531,15
+A,1800,"Printing, Office of State",72.02400207519531,15
+A,1820,"Public School Construction, Office of",72.02400207519531,15
+A,1900,"Public Employees' Retirement System (Renum to 7900, 09/2012) (Abolished 01/01/2013)",72.02400207519531,15
+A,2310,"Real Estate Appraisers, Office of (Merged into 1111, 13/14) (Abolished 01/01/2013)",72.02400207519531,15
+A,2320,"Real Estate, Department of (Merged into 1111, 13/14) (Moved from 1111, 18/19)",72.02400207519531,15
+A,3370,Renewable Resource Investment Program,72.02400207519531,15
+A,3865,Reclamation Board - (For inventory use only),72.02400207519531,15
+A,4265,"Public Health, Department of",72.02400207519531,15
+A,5160,"Rehabilitation, Department of",72.02400207519531,15
+A,5350,"Rehabilitation Center, California",72.02400207519531,15
+A,5357,R.J. Donovan Correctional Facility at Rock Mountain,72.02400207519531,15
+A,5388,R. J. McGee Correctional Training Facility,72.02400207519531,15
+A,5420,Prison Industry Authority,72.02400207519531,15
+A,5440,"Prison Terms, Board of (Formerly Community Release Board)",72.02400207519531,15
+A,5580,Preston Youth Correctional Facility – DO NOT USE,72.02400207519531,15
+A,6130,"Quality Education Commission, California",72.02400207519531,15
+A,6420,"Postsecondary Education Commission, California",72.02400207519531,15
+A,7320,"Public Employment Relations Board (Renum from 8320, 09/2012",72.02400207519531,15
+A,7900,"Public Employees' Retirement System (Renum from 1900, 09/2012)",72.02400207519531,15
+A,8140,"Public Defender, State",72.02400207519531,15
+A,8290,"Public Broadcasting Commission, California",72.02400207519531,15
+A,8320,"Public Employment Relations Board (Renum to 7320, 09/2012) (Abolished 01/01/2013)",72.02400207519531,15
+A,8660,Public Utilities Commission,72.02400207519531,15
+A,8850,Public Works Board,72.02400207519531,15
+A,9180,Renters' Tax Relief,72.02400207519531,15
+A,9651,Prefunding Health and Dental Benefits for Annuitants,72.02400207519531,15
+A,9690,"Refunds of Taxes, Licenses, and Other Fees",72.02400207519531,15
+A,9700,Repayment of Loans Under Completed Programs,72.02400207519531,15
+A,9801,Reduction for Employee Compensation - DOF USE ONLY,72.02400207519531,15
+A,9885,Reserve for Liquidation of Encumbrances,72.02400207519531,15
+A,9889,Public School System Stabilization Account – DOF/SCO USE ONLY,72.02400207519531,15
+A,9890,Reserve for Economic Uncertainties,72.02400207519531,15
+A,9914,Postage Rate Increase - DOF/SCO USE ONLY,72.02400207519531,15
+A,9942,Reorganizing and Downsizing State Government - DOF USE ONLY,72.02400207519531,15
+A,9980,Premium Offset for Employer-Paid Life Insurance - DOF USE ONLY,72.02400207519531,15
+A,0420,Salaries of Superior Court Judges,72.02400207519531,16
+A,0780,Rural Youth Employment Commission,72.02400207519531,16
+A,0954,Scholarshare Investment Board,72.02400207519531,16
+A,0955,"Revenue Bonds Financing Authority, California",72.02400207519531,16
+A,0972,Sacramento City Financing Authority (Abolished 07/01/2023),72.02400207519531,16
+A,0973,Riverside County Public Financing Authority (Abolished 07/01/2023),72.02400207519531,16
+A,0978,San Francisco State Building Authority (Abolished) - DO NOT USE,72.02400207519531,16
+A,1455,Respiratory Care Board of California,72.02400207519531,16
+A,2300,Riot and Civil Disorders Insurance (Prior year only),72.02400207519531,16
+A,2340,"Savings and Loan, Office of (Merged into 2150) (Abolished 07/01/1997)",72.02400207519531,16
+A,3500,"Resources Recycling and Recovery, Department of (Renum to 3970, 9/2012)",72.02400207519531,16
+A,3810,Santa Monica Mountains Conservancy,72.02400207519531,16
+A,3815,Salton Sea Conservancy,72.02400207519531,16
+A,3820,San Francisco Bay Conservation and Development Commission,72.02400207519531,16
+A,3825,San Gabriel and Lower Los Angeles Rivers and Mountains Conservancy,72.02400207519531,16
+A,3830,San Joaquin River Conservancy,72.02400207519531,16
+A,3845,San Diego River Conservancy,72.02400207519531,16
+A,3875,Sacramento-San Joaquin Delta Conservancy,72.02400207519531,16
+A,3970,"Resources Recycling and Recovery, Department of (Renum from 3500, 09/2012)",72.02400207519531,16
+A,5228,Safe Neighborhoods and Schools Act,72.02400207519531,16
+A,5770,Robert B. Presley Institute of Corrections Research and Training,72.02400207519531,16
+A,6054,Scholarshare Investment Board – DOF USE ONLY,72.02400207519531,16
+A,6305,Retirement Costs for Community Colleges - DOF USE ONLY,72.02400207519531,16
+A,6340,"School Building Safety Program, State",72.02400207519531,16
+A,6350,School Facilities Aid Program,72.02400207519531,16
+A,6370,"School Finance Authority, California (Renum to 0985)",72.02400207519531,16
+A,6425,"Review of the Master Plan for Higher Education, Commission for the",72.02400207519531,16
+A,6540,Riverside Campus,72.02400207519531,16
+A,6550,San Diego Campus,72.02400207519531,16
+A,6560,San Francisco Campus,72.02400207519531,16
+A,6570,Santa Barbara Campus,72.02400207519531,16
+A,6580,Santa Cruz Campus,72.02400207519531,16
+A,6660,"San Bernardino, CSU",72.02400207519531,16
+A,6780,"Sacramento, CSU",72.02400207519531,16
+A,6790,San Diego CSU,72.02400207519531,16
+A,6800,San Francisco CSU,72.02400207519531,16
+A,6810,San Jose CSU,72.02400207519531,16
+A,6820,"San Luis Obispo, CPSU",72.02400207519531,16
+A,6840,"San Marcos, CSU",72.02400207519531,16
+A,6878,Retirement Costs for Community Colleges - Hi Ed-CC - DOF USE ONLY,72.02400207519531,16
+A,8105,"Revision of the Juvenile Court Law, Commission for the",72.02400207519531,16
+A,8810,Retail Credit Advisory Committee,72.02400207519531,16
+A,8920,Santa Monica Mountains Comprehensive Planning Commission,72.02400207519531,16
+A,9290,Rural Renaissance,72.02400207519531,16
+A,9673,San Francisco-Oakland Bay Bridge & I-880 Cypress Structure Disaster Fund,72.02400207519531,16
+A,9941,Revenue Bond Debt Refinancing - DOF USE ONLY,72.02400207519531,16
+A,9946,Salary Reductions - DOF USE ONLY,72.02400207519531,16
+A,0110,Senate,72.02400207519531,17
+A,0320,Second District Court of Appeal,72.02400207519531,17
+A,0510,Secretary for State and Consumer Services,72.02400207519531,17
+A,0511,"Secretary for Government Operations Agency (New, 13/14)",72.02400207519531,17
+A,0515,"Secretary for Business, Consumer Services, and Housing Agency (New, 13/14)",72.02400207519531,17
+A,0520,"Secretary for Business, Transportation, and Housing – DO NOT USE",72.02400207519531,17
+A,0521,"Secretary for Transportation Agency (New, 13/14)",72.02400207519531,17
+A,0525,"Secretary of Technology, Trade, and Commerce",72.02400207519531,17
+A,0530,Secretary for California Health and Human Services Agency,72.02400207519531,17
+A,0540,Secretary of the Natural Resources Agency,72.02400207519531,17
+A,0550,Secretary for Youth and Adult Correctional Agency,72.02400207519531,17
+A,0555,Secretary for Environmental Protection,72.02400207519531,17
+A,0558,"Secretary for Education, Office of the",72.02400207519531,17
+A,0559,Secretary for Labor and Workforce Development Agency,72.02400207519531,17
+A,0596,"Service and Volunteering, California Agency on",72.02400207519531,17
+A,0880,Secretary of State,72.02400207519531,17
+A,0890,Secretary of State,72.02400207519531,17
+A,0985,"School Finance Authority, California",72.02400207519531,17
+A,1015,"Secretary for Business, Consumer Services, and Housing Agency - DOF USE ONLY",72.02400207519531,17
+A,1030,Secretary of State and Consumer Services - DOF USE ONLY,72.02400207519531,17
+A,1190,"Security & Investigative Services, Bureau of (Moved to 1111, 94/95) (Abolished 07/2023)",72.02400207519531,17
+A,1200,"Security & Investigative Services, Bureau of (Moved to 1111, 94/95) (Abolished 07/2023)",72.02400207519531,17
+A,2030,"Secretary for Business, Transportation, and Housing - DOF USE ONLY",72.02400207519531,17
+A,2521,Secretary for Transportation Agency - DOF USE ONLY,72.02400207519531,17
+A,2910,Secretary for Trade and Commerce - DO NOT USE,72.02400207519531,17
+A,3030,Secretary of the Natural Resources Agency - DOF USE ONLY,72.02400207519531,17
+A,3580,Seismic Safety Commission (Renum to 8690) - DO NOT USE,72.02400207519531,17
+A,3895,Secretary for Environmental Protection - DOF USE ONLY,72.02400207519531,17
+A,4020,Secretary for California Health and Human Services Agency - DOF USE ONLY,72.02400207519531,17
+A,4185,"Senior Legislature, California",72.02400207519531,17
+A,4268,Set-Aside for Medi-Cal Long-Term Care Rates - DOF USE ONLY,72.02400207519531,17
+A,5230,Secretary for Youth and Adult Correctional Agency - DOF USE ONLY,72.02400207519531,17
+A,6050,"Secretary for Education (K-12), Office of the - DOF USE ONLY",72.02400207519531,17
+A,6200,"School for the Blind, California",72.02400207519531,17
+A,6240,"School for the Deaf - Fremont, California",72.02400207519531,17
+A,6250,"School for the Deaf - Riverside, California",72.02400207519531,17
+A,6405,"Secretary for Child Development and Education, Higher Education",72.02400207519531,17
+A,7020,Secretary for Labor and Workforce Development - DOF USE ONLY,72.02400207519531,17
+A,7511,Secretary for Government Operations Agency - DOF USE ONLY,72.02400207519531,17
+A,8690,Seismic Safety Commission (Renum from 3580),72.02400207519531,17
+A,9110,Senior Citizens' Property Tax Assistance,72.02400207519531,17
+A,9120,Senior Citizens' Property Tax Deferral Program,72.02400207519531,17
+A,9130,Senior Citizens Renters' Tax Assistance,72.02400207519531,17
+A,9672,Settlements and Judgments by Department of Justice,72.02400207519531,17
+A,9897,Section 3.60 Rate Adjustments - DOF USE ONLY,72.02400207519531,17
+A,9930,Section 3.60 (a) Rate Reductions,72.02400207519531,17
+A,9931,Section 3.60 (b) Surplus Assets,72.02400207519531,17
+A,9992,SCO State Government Reporting,72.02400207519531,17
+A,0360,Sixth District Court of Appeal,72.02400207519531,18
+A,0590,Southwest Border Regulatory Commission (Merged into 0580) - DO NOT USE,72.02400207519531,18
+A,0595,State Inspector General,72.02400207519531,18
+A,0630,"Special Health Care Negotiations, Office of",72.02400207519531,18
+A,0920,Special Statewide Elections - DO NOT USE,72.02400207519531,18
+A,0993,Simon Wiesenthal Center - Museum of Tolerance,72.02400207519531,18
+A,1000,"State and Consumer Services (Retitled to Business, Consumer Svcs, and Housing, 13/14)",72.02400207519531,18
+A,1460,Speech - Language Pathology and Audiology and Hearing Aid Dispensers Board,72.02400207519531,18
+A,1840,"State Police, Office of the California - DO NOT USE",72.02400207519531,18
+A,2060,Solar Cal Office,72.02400207519531,18
+A,2070,Solar Business Office,72.02400207519531,18
+A,2080,Solar and Energy Conservation Mortgage Corporation,72.02400207519531,18
+A,2998,State Mandates - BT&H (Renum to 2840) - DO NOT USE,72.02400207519531,18
+A,3110,Special Resources Programs,72.02400207519531,18
+A,3855,Sierra Nevada Conservancy,72.02400207519531,18
+A,3985,Special Environmental Programs - DO NOT USE,72.02400207519531,18
+A,4400,Sonoma State Hospital,72.02400207519531,18
+A,4430,Southern California Facility – Cathedral City - (DDS),72.02400207519531,18
+A,4440,"State Hospitals, Department of",72.02400207519531,18
+A,4450,"State Hospitals – Sacramento, Department of",72.02400207519531,18
+A,4470,"State Hospitals – Atascadero, Department of",72.02400207519531,18
+A,4490,"State Hospitals – Metropolitan, Department of",72.02400207519531,18
+A,4500,"State Hospitals – Napa, Department of",72.02400207519531,18
+A,4510,"State Hospitals – Patton, Department of",72.02400207519531,18
+A,4520,"State Hospitals – Stockton, Department of",72.02400207519531,18
+A,4530,"State Hospitals – Vacaville, Department of",72.02400207519531,18
+A,4540,"State Hospitals – Coalinga, Department of",72.02400207519531,18
+A,4550,"State Hospitals – Salinas, Department of",72.02400207519531,18
+A,5180,"Social Services, Department of",72.02400207519531,18
+A,5181,Social Services - Cost Recoveries - DO NOT USE,72.02400207519531,18
+A,5195,"State - Local Realignment, 1991",72.02400207519531,18
+A,5196,"State - Local Realignment, 2011",72.02400207519531,18
+A,5227,"State and Community Corrections, Board of",72.02400207519531,18
+A,5335,"State Prison - Solano County, California",72.02400207519531,18
+A,5344,"State Prison - Sacramento County, California",72.02400207519531,18
+A,5358,"State Prison, Corcoran, California",72.02400207519531,18
+A,5400,Sierra Conservation Center,72.02400207519531,18
+A,5475,Southern Schools - DO NOT USE,72.02400207519531,18
+A,5510,Southern Youth Correctional Reception Center and Clinic,72.02400207519531,18
+A,5680,Silver Lake Pre Parole Center - DO NOT USE,72.02400207519531,18
+A,6190,Special Schools,72.02400207519531,18
+A,6300,State Contributions to the State Teachers' Retirement System,72.02400207519531,18
+A,6670,"Stanislaus, CSU",72.02400207519531,18
+A,6830,"Sonoma, CSU",72.02400207519531,18
+A,8390,"State Personnel Board (Renum to 7503, 09/2012) (Abolished 01/01/2013)",72.02400207519531,18
+A,9060,State Appropriations Limit - (Control Section 12) - DO NOT USE,72.02400207519531,18
+A,9350,Shared Revenues,72.02400207519531,18
+A,9912,State Appropriations Limit - (Control Section 12) - DOF USE ONLY,72.02400207519531,18
+A,0260,Supreme Court,72.02400207519531,19
+A,0450,State Trial Court Funding,72.02400207519531,19
+A,0502,"Technology Agency, California (Renum to 7502, 09/2012) (Abolished 01/01/2013)",72.02400207519531,19
+A,0531,"Technology and Solutions Integration, Office of (Retitled 07/2023) - DOF/SCO USE ONLY",72.02400207519531,19
+A,0870,"Tax Appeals, Office of (New 17/18)",72.02400207519531,19
+A,0986,"Student Loan Authority, California",72.02400207519531,19
+A,0990,Statewide Distributed Costs - DO NOT USE,72.02400207519531,19
+A,0994,"Task Force to Promote Self-Esteem, and Personal and Social Responsibility California",72.02400207519531,19
+A,1530,Structural Pest Control Board,72.02400207519531,19
+A,1540,"Tax Preparers Program (Moved to 1111, 94/95) (Abolished 07/2023)",72.02400207519531,19
+A,1920,"Teachers' Retirement System, State (Renum to 7920, 09/2012) (Abolished 01/01/2013)",72.02400207519531,19
+A,2780,Stephen P. Teale Data Center,72.02400207519531,19
+A,2800,Statewide Distributed Costs - DOF USE ONLY,72.02400207519531,19
+A,2993,Statewide Distributed Costs - BT&H (Renum to 2800) - DOF USE ONLY,72.02400207519531,19
+A,2993,Statewide Distributed Costs - BT&H (Renum to 2800) - DO NOT USE,72.02400207519531,19
+A,4410,Stockton State Hospital - (DS) (Renum to 4520) - DO NOT USE,72.02400207519531,19
+A,5349,"Substance Abuse Treatment Facility and State Prison at Corcoran, California",72.02400207519531,19
+A,5353,"State Prison, Los Angeles County Riverside County, California - (FormerlyCalifornia State",72.02400207519531,19
+A,5390,"State Prison, San Quentin, California",72.02400207519531,19
+A,6255,"Summer School for the Arts, California State (Renum from 6150)",72.02400207519531,19
+A,6360,"Teacher Credentialing, Commission on",72.02400207519531,19
+A,6611,"State University Auxiliary Facilities, California - DO NOT USE",72.02400207519531,19
+A,6620,"Statewide Programs, CSU",72.02400207519531,19
+A,6630,"Systemwide Offices, CSU",72.02400207519531,19
+A,6980,"Student Aid Commission, California (Renum from 7980, 09/2012)",72.02400207519531,19
+A,7600,"Tax and Fee Administration, California Department of (New 17/18)",72.02400207519531,19
+A,7920,"Teachers' Retirement System, State (Renum from 1920, 09/2012)",72.02400207519531,19
+A,7970,"Student Loan Authority, California (Renum to 0986) - DO NOT USE",72.02400207519531,19
+A,7980,"Student Aid Commission (Renum/Retitled to 6980, 09/2012) (Abolished 01/01/2013)",72.02400207519531,19
+A,8170,Subvention for Guardianship/Conservatorship Proceedings,72.02400207519531,19
+A,8450,Subsequent Injuries,72.02400207519531,19
+A,8735,"Tax Reform Study Commission, California - DO NOT USE",72.02400207519531,19
+A,8820,"Status of Women and Girls, Commission on the",72.02400207519531,19
+A,9010,Tax Relief/Local Government (Retitled from Tax Relief 17-18),72.02400207519531,19
+A,9035,Statewide Distributed Costs - DO NOT USE,72.02400207519531,19
+A,9040,Statewide Expenditures - DOF USE ONLY,72.02400207519531,19
+A,9050,Statewide Savings – DO NOT USE,72.02400207519531,19
+A,9100,Tax Relief,72.02400207519531,19
+A,9160,Subventions for Open Space,72.02400207519531,19
+A,9190,Substandard Housing,72.02400207519531,19
+A,9655,Statewide Accounts Receivable Management Enhancements (Abolished 10/12/16),72.02400207519531,19
+A,9847,Statewide Telecommunications System,72.02400207519531,19
+A,9892,Supplemental Pension Payments,72.02400207519531,19
+A,9894,Statewide Proposition 98 Reconciliation - DOF USE ONLY,72.02400207519531,19
+A,9900,Statewide General Administrative Expenditures (Pro Rata),72.02400207519531,19
+A,9906,Statewide Americans with Disability Act – DOF/SCO USE ONLY,72.02400207519531,19
+A,0180,"Uniform State Laws, Commission on (Renum to 8840) - DO NOT USE",72.02400207519531,20
+A,0330,Third District Court of Appeal,72.02400207519531,20
+A,0950,"Treasurer, State",72.02400207519531,20
+A,0964,"Transportation Financing Authority, California",72.02400207519531,20
+A,0983,"Urban Waterfront Area Restoration Financing Authority, California",72.02400207519531,20
+A,1955,"Technology Services, Department of",72.02400207519531,20
+A,2020,Transportation - DO NOT USE,72.02400207519531,20
+A,2225,Unitary Fund Programs,72.02400207519531,20
+A,2500,"Transportation (New agency, 13/14)",72.02400207519531,20
+A,2600,"Transportation Commission, California",72.02400207519531,20
+A,2620,"Transportation Board, State",72.02400207519531,20
+A,2640,"Transit Assistance, State",72.02400207519531,20
+A,2650,Transportation Services for Social Service Recipients (Info. Display Only),72.02400207519531,20
+A,2660,"Transportation, Department of",72.02400207519531,20
+A,2700,"Traffic Safety, Office of (Merged into 0521, 13/14) (Abolished 01/01/2013)",72.02400207519531,20
+A,2760,Traffic Adjudication Board (Abolished 7/85) - DO NOT USE,72.02400207519531,20
+A,2900,Trade and Commerce Agency – DO NOT USE,72.02400207519531,20
+A,2920,"Technology, Trade, and Commerce Agency - DO NOT USE",72.02400207519531,20
+A,3960,"Toxic Substances Control, Department of",72.02400207519531,20
+A,5396,Trial Court Security 2011 Realignment,72.02400207519531,20
+A,6440,University of California,72.02400207519531,20
+A,6441,University of California Auxiliary Facilities. - DO NOT USE,72.02400207519531,20
+A,6450,University of California,72.02400207519531,20
+A,6491,"UC Office of the President (New, 15/16)",72.02400207519531,20
+A,6492,"UC Agriculture and Natural Resources (New, 15/16)",72.02400207519531,20
+A,6493,"UC Lawrence Livermore National Labs (New, 15/16)",72.02400207519531,20
+A,6501,"UC Lawrence Berkeley National Labs (New, 15/16)",72.02400207519531,20
+A,6511,"UC Davis Medical Center (New, 15/16)",72.02400207519531,20
+A,6521,"UC Irvine Medical Center (New, 15/16)",72.02400207519531,20
+A,6531,"UC Los Angeles Medical Center (New, 15/16)",72.02400207519531,20
+A,6551,"UC San Diego Medical Center (New, 15/16)",72.02400207519531,20
+A,6561,"UC San Francisco Medical Center (New, 15/16)",72.02400207519531,20
+A,6610,"University - Total, California State",72.02400207519531,20
+A,7370,Uninsured Employer’s Fund (Renum from 8370),72.02400207519531,20
+A,7502,"Technology, Department of (Renum from 0502, 09/2012)",72.02400207519531,20
+A,7991,Unallocated Salary Increase (Higher Education) - DOF USE ONLY,72.02400207519531,20
+A,8190,Tort Liability Claims (Merged with 9670) - DO NOT USE,72.02400207519531,20
+A,8440,Uninsured Employers,72.02400207519531,20
+A,8840,"Uniform State Laws, Commission on (Merged into 0160, 13/14) (Abolished 01/01/2013)",72.02400207519531,20
+A,9285,"Trial Court Security – Court Construction (New, 14/15)",72.02400207519531,20
+A,9286,Trial Court Security – Judgeships (New 17/18),72.02400207519531,20
+A,9612,Tobacco Settlement Revenue Shortfall,72.02400207519531,20
+A,9613,Unenhanced Tobacco Bond Proceeds,72.02400207519531,20
+A,9695,Universal Telephone Service Program,72.02400207519531,20
+A,9870,Unallocated Cost-of-Living,72.02400207519531,20
+A,9893,UC Retirement Adjustments - DOF USE ONLY,72.02400207519531,20
+A,9911,Utilities Costs – DOF/SCO USE ONLY,72.02400207519531,20
+A,9945,Unallocated Statewide Reductions - DOF USE ONLY,72.02400207519531,20
+A,0585,World Trade Commission (Merged into 2920),72.02400207519531,21
+A,0910,"Voting Machines and Vote Tabulating Devices, Commission on",72.02400207519531,21
+A,1550,Veterinary Medicine - Total,72.02400207519531,21
+A,1560,"Veterinary Medicine, Board of Examiners for",72.02400207519531,21
+A,1580,"Vocational Nursing and Psychiatric Technicians of the State of California, Board of",72.02400207519531,21
+A,1590,Vocational Nursing Program,72.02400207519531,21
+A,1870,"Victim Compensation and Government Claims Board, California (Formerly Board of Control)",72.02400207519531,21
+A,1950,"Veterans Affairs - Total, Department of - DO NOT USE",72.02400207519531,21
+A,1960,"Veterans Affairs, Department of - DO NOT USE",72.02400207519531,21
+A,1970,Veteran's Home of California - DO NOT USE,72.02400207519531,21
+A,1975,Veteran's Home of California - Barstow - DO NOT USE,72.02400207519531,21
+A,1980,Vietnam Veterans' Memorial Commission - DO NOT USE,72.02400207519531,21
+A,1985,Veterans Memorial Commission - DO NOT USE,72.02400207519531,21
+A,2915,"World Trade Commission, California State - DO NOT USE",72.02400207519531,21
+A,3640,Wildlife Conservation Board,72.02400207519531,21
+A,3860,"Water Resources, Department of",72.02400207519531,21
+A,3940,"Water Resources Control Board, State",72.02400207519531,21
+A,3950,"Waste Management, Department of - DO NOT USE",72.02400207519531,21
+A,5165,"Youth and Community Restoration, Department of – DO NOT USE",72.02400207519531,21
+A,5291,Valley State Prison for Women,72.02400207519531,21
+A,5363,Wasco State Prison Reception Center,72.02400207519531,21
+A,5460,"Youth Authority, Department of the - DO NOT USE",72.02400207519531,21
+A,5465,Youth Authority – Headquarters Region,72.02400207519531,21
+A,5470,"Youth Authority Headquarters, Department of the",72.02400207519531,21
+A,5473,Youth Authority – Northern Region,72.02400207519531,21
+A,5474,Youth Authority – Southern Region,72.02400207519531,21
+A,5590,Ventura Youth Correctional Facility,72.02400207519531,21
+A,5650,Washington Ridge Youth Conservation Camp - DO NOT USE,72.02400207519531,21
+A,5690,Ventura Public Service and Fire Center - DO NOT USE,72.02400207519531,21
+A,5991,Violent Offender Incarceration and Truth in Sentencing - (Fed Crime Bill Program),72.02400207519531,21
+A,7120,"Workforce Development Board, California (Renum from 5120) (Retitled 15-16)",72.02400207519531,21
+A,7870,"Victim Compensation Board, California (Formerly Victim Compensation & Government",72.02400207519531,21
+A,8103,"Victims' Assistance, Board of",72.02400207519531,21
+A,8650,"Waste Management, Department of (Abolished) - DO NOT USE",72.02400207519531,21
+A,8700,"Victim Compensation & Government Claims Board, CA. (Renum to 1870) - DO NOT USE",72.02400207519531,21
+A,8950,"Veterans Affairs, Department of",72.02400207519531,21
+A,8955,"Veterans Affairs, Department of",72.02400207519531,21
+A,8960,Veteran's Home of California - Yountville,72.02400207519531,21
+A,8965,Veteran's Home of California - Barstow,72.02400207519531,21
+A,8966,Veteran's Home of California - Chula Vista,72.02400207519531,21
+A,8967,Veteran's Home of California - Greater Los Angeles Ventura County - DO NOT USE,72.02400207519531,21
+A,8970,Vietnam Veterans' Memorial Commission - DO NOT USE (Abolished 9/6/13),72.02400207519531,21
+A,8975,Veterans Memorial Commission,72.02400207519531,21
+A,9720,Working Capital Advances,72.02400207519531,21
+A,9901,Various Departments,72.02400207519531,21
+A,9960,Vacant Position Savings per Section 31.60 - DOF USE ONLY,72.02400207519531,21
+A,5450,Youthful Offender Parole Board,72.02400207519531,22
+A,8815,Youth Empowerment Commission (Abolished 07/10/2023),72.02400207519531,22
