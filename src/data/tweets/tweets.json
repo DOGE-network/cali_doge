@@ -1,6 +1,32 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "id": "1922717759974383727",
+      "edit_history_tweet_ids": [
+        "1922717759974383727"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "text": "@joffemd Now is the time for radical fixes to plug the widening gaps in the state and local government budgets. As the state government runs out of money, many countries and cities will be without their funding backstop the deficits will cascade. \n\nWe are seeing a lot of this risk as we",
+      "created_at": "2025-05-14T18:16:51.000Z",
+      "created_at_formatted": "May 14, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1922704023460679933"
       ],
@@ -11547,8 +11573,8 @@
     }
   ],
   "meta": {
-    "result_count": 103,
-    "newest_id": "1922704023460679933",
+    "result_count": 104,
+    "newest_id": "1922717759974383727",
     "oldest_id": "1882144700762878208"
   }
 }
