@@ -134,7 +134,7 @@ export interface DepartmentData {
   ageDistribution?: {
     yearly: Record<AnnualYear, AgeRange[]>;
   };
-  _note?: string;
+  note?: string;
   spending?: {
     yearly: Record<FiscalYearKey, number | {}>;
   };
@@ -265,5 +265,5 @@ export interface RequiredDepartmentJSONFields {
   ageDistribution: {
     yearly: Record<AnnualYear, AgeRange[]>;  // Empty array allowed but field required
   };
-  _note?: string;
+  note?: string;
 } 

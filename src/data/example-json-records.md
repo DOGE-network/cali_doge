@@ -31,7 +31,7 @@
       "abbreviation": "",
       "organizationalCode": "5227",
       "parent_agency": "Department of Corrections and Rehabilitation",
-      "_note": "",
+      "note": "",
       "entityCode": null
     },
 

@@ -41,13 +41,13 @@ Our goal is to provide clear, actionable insights that can lead to more efficien
 
 The structure outlined in publicpay, fiscal, and ebudget sites conflict slightly. Using some basic logic and understanding of how organizations work in practice, the workforce hierarchy represents that structure
 
-### Organizational, Budget, Entity, Program, Project, Grant ID, Portal ID, oh my codes
+### Explaining Organizational, Budget, Entity, Program, SubProgram, Project, Grant ID, Portal ID codes
 
 There is a complex naming and numbering structure. Here it it explained with sources. 
 
 #### Department of Finance
 
-**Program and Project code structure**: Department programs are coded with a ten-digit (numeric) code. The first 7 digits of the Program code is also used as the Project code. 
+**Program and Project code structure**: Department programs are coded with a ten-digit (numeric) code. The first 7 digits of the Program code is also used as the Project and SubProgram code. 
 
 | Program | Element | Component | Task |
 | ------- | ------- | --------- | ---- |
@@ -98,7 +98,7 @@ Where 2720 is the business unit/organization/organizational code for the Califor
 ---
 
 **4. Subprogram Codes (7 digits)**  
-- **Definition:** For capital outlay projects, subprograms use a 7-digit code derived from the first seven digits of the 10-digit program code (`Program-Element-Component`). Additional breakdown of a specific activity. 
+- **Definition:** For capital outlay projects, subprograms use a 7-digit code derived from the first seven digits of the 10-digit program code (`Program-Element-Component`). Also called Project code. Additional breakdown of a specific activity. 
 - **Example:** `9801000` = Capital outlay project under Program `98`, Element `01`, Component `000`.  
 - **Source:**  
   - **DOF Capital Outlay Coding Structure** https://dof.ca.gov/accounting/accounting-policies-and-procedures/department-program-codes/  
@@ -313,15 +313,16 @@ For simplicity and consistency across our application:
 The data processing pipeline consists of several stages:
 
 1. **Data Collection**:
-   - Workforce data from California State Controller's Office
-   - Budget data from eBudget.ca.gov
-   - Department information from official sources
+   - src/scripts/download_publicpay_csv.js Workforce CSV from publicpay.ca.gov
+   - src/scripts/download_budgets.sh Budget PDF from ebudget.ca.gov
+   - src/scripts/download_vendor_transactions.js vendor CSV from fiscal.ca.gov
 
 2. **Data Processing**:
-   - CSV processing for workforce data
-   - PDF processing for budget documents
-   - Department mapping generation
-   - Type validation
+   - src/scripts/extract_pdf_text.py extract text from budget PDF files
+   - src/scripts/process_vendors.ts process vendor CSV for vendor json record 
+   - src/scripts/process_department_spending.js process budget text for fund, program, and department json records
+   - src/scripts/process_department_salary.js process salary CSV for department json record salary and headcount fields
+   - markdown files are created by AI prompt using the budget text files using 2015 - 2025 fiscal years
 
 3. **Data Storage**:
    - JSON files for structured data

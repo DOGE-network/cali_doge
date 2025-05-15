@@ -820,10 +820,10 @@ const main = async () => {
             
             // Handle note matching
             const newNote = `Salary data from ${_filename}`;
-            if (!department._note) {
-              department._note = newNote;
-            } else if (!department._note.includes(newNote)) {
-              department._note = `${department._note}, ${newNote}`;
+            if (!department.note) {
+              department.note = newNote;
+            } else if (!department.note.includes(newNote)) {
+              department.note = `${department.note}, ${newNote}`;
             }
             
             // Update entity code if not present or different

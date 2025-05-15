@@ -22,7 +22,7 @@
 *  Organization Level: 
 *  Parent Agency: (only field to match to a parent)
 *  Budget Status: 
-*  _note: 
+*  note: 
 *  similar score: 
  * 
  * Steps:
@@ -666,7 +666,7 @@ const buildHierarchy = (departments, logger) => {
         code: rootDept?.jsonData?.organizationalCode,
         entity: rootDept?.jsonData?.entity,
         parent_agency: '',
-        _note: rootDept?.jsonData?._note
+        note: rootDept?.jsonData?.note
     });
 
     if (!rootNode) {
@@ -696,7 +696,7 @@ const buildHierarchy = (departments, logger) => {
                 abbreviation: dept.jsonData?.abbreviation,
                 code: dept.jsonData?.organizationalCode,
                 entity: dept.jsonData?.entity,
-                _note: dept.jsonData?._note,
+                note: dept.jsonData?.note,
                 similarityScore: dept.similarityScore,
                 matchedName: dept.csvData?.Department,
                 matchedAliases: dept.csvData?.aliases,

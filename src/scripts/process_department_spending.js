@@ -22,8 +22,8 @@
  *    c. match for next 3 rows are headcount  array years 2022, 2023, 2024, then next 3 rows are spending array years 2022, 2023, 2024
  *    d. create headcount and spending data arrays and log. use department type interface RequiredDepartmentJSONFields. 
  *    e. using record matched from step2b, show textfile organizational code and json (organizationalCode, name, aliases) so user can compare for matching, diff of headcount and spending arrays to fields of the record, log the differences.  Show headcount as info only, spending as will update. 
- *    f. if differences in spending or _note, ask user if they want to update the record, else skip. 
- *    g. Save the _note and or spending changes to departments.json. Match _note with the text file name or append to the existing note
+ *    f. if differences in spending or note, ask user if they want to update the record, else skip. 
+ *    g. Save the note and or spending changes to departments.json. Match note with the text file name or append to the existing note
  *    h. Continue until all files are processed
  * 
  * 3. Results Summary
@@ -555,7 +555,7 @@ const main = async () => {
         spending: budgetArrays.spending
       }, log);
 
-      // Step 2f: Check for spending/_note differences and ask user
+      // Step 2f: Check for spending/note differences and ask user
       const hasSpendingOrNoteChanges = () => {
         // Check for spending differences
         const hasSpendingDiff = Object.entries(budgetArrays.spending.yearly).some(([year, value]) => {
@@ -567,10 +567,10 @@ const main = async () => {
           return existingValue !== null && newValue !== existingValue;
         });
 
-        // Check for _note differences
+        // Check for note differences
         const newNote = `Budget data from ${filename}`;
-        const hasNoteDiff = budgetData.department._note && 
-          budgetData.department._note.includes(newNote);
+        const hasNoteDiff = budgetData.department.note && 
+          budgetData.department.note.includes(newNote);
 
         return hasSpendingDiff || !hasNoteDiff;
       };
@@ -604,10 +604,10 @@ const main = async () => {
       
       // Update note
       const newNote = `Budget data from ${filename}`;
-      if (!budgetData.department._note) {
-        budgetData.department._note = newNote;
-      } else if (!budgetData.department._note.includes(newNote)) {
-        budgetData.department._note = `${budgetData.department._note}, ${newNote}`;
+      if (!budgetData.department.note) {
+        budgetData.department.note = newNote;
+      } else if (!budgetData.department.note.includes(newNote)) {
+        budgetData.department.note = `${budgetData.department.note}, ${newNote}`;
       }
       
       totalUpdatedDepartments++;
