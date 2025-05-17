@@ -1,0 +1,161 @@
+{
+  "_comment": "Funding Types: 0 = State Operations (regular state agency operations), 1 = Local Assistance (funding distributed to local governments and entities)",
+  "budget": [
+    {
+      "code": 280,
+      "fiscalYear": [
+        {
+          "year": 2023,
+          "projectCode": [
+            {
+              "code": "0280980",
+              "organizationCode": [
+                {
+                  "code": 9870,
+                  "fundingType": [
+                    {
+                      "type": 0,
+                      "fundCode": [
+                        {
+                          "code": "0001",
+                          "count": 42,
+                          "amount": 5625000.00
+                        },
+                        {
+                          "code": "0022",
+                          "count": 12,
+                          "amount": 1250000.00
+                        }
+                      ]
+                    },
+                    {
+                      "type": 1,
+                      "fundCode": [
+                        {
+                          "code": "0001",
+                          "count": 8,
+                          "amount": 3200000.00
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "projectCode": [
+            {
+              "code": "0280980",
+              "organizationCode": [
+                {
+                  "code": 9870,
+                  "fundingType": [
+                    {
+                      "type": 0,
+                      "fundCode": [
+                        {
+                          "code": "0001",
+                          "count": 45,
+                          "amount": 5950000.00
+                        },
+                        {
+                          "code": "0022",
+                          "count": 15,
+                          "amount": 1350000.00
+                        }
+                      ]
+                    },
+                    {
+                      "type": 1,
+                      "fundCode": [
+                        {
+                          "code": "0001",
+                          "count": 10,
+                          "amount": 3500000.00
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": 6100,
+      "fiscalYear": [
+        {
+          "year": 2023,
+          "projectCode": [
+            {
+              "code": "6100101",
+              "organizationCode": [
+                {
+                  "code": 1010,
+                  "fundingType": [
+                    {
+                      "type": 0,
+                      "fundCode": [
+                        {
+                          "code": "0001",
+                          "count": 185,
+                          "amount": 25300000.00
+                        },
+                        {
+                          "code": "0494",
+                          "count": 64,
+                          "amount": 8750000.00
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": 3600,
+      "fiscalYear": [
+        {
+          "year": 2023,
+          "projectCode": [
+            {
+              "code": "3600220",
+              "organizationCode": [
+                {
+                  "code": 2200,
+                  "fundingType": [
+                    {
+                      "type": 0,
+                      "fundCode": [
+                        {
+                          "code": "0001",
+                          "count": 75,
+                          "amount": 12450000.00
+                        },
+                        {
+                          "code": "0067",
+                          "count": 22,
+                          "amount": 3560000.00
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2023-06-15T00:00:00Z"
+} 

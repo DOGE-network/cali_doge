@@ -141,14 +141,78 @@ export interface Transaction {
   fiscalYear: string;
 }
 
-// Vendors data structure
+/**
+ * New Vendor Structure with EIN support
+ */
+
+// Fund code allocation for vendor transactions
+export interface FundCodeAllocation {
+  code: number;
+  count: number;
+  amount: number;
+}
+
+// Organization code data for vendor transactions
+export interface VendorOrgCodeData {
+  code: number;
+  fundCode: FundCodeAllocation[];
+}
+
+// Project code data for vendor transactions
+export interface VendorProjectCodeData {
+  code: string;
+  organizationCode: VendorOrgCodeData[];
+}
+
+// Fiscal year data for vendor transactions
+export interface VendorFiscalYearData {
+  year: number;
+  projectCode: VendorProjectCodeData[];
+}
+
+// Vendor name data with fiscal years
+export interface VendorNameData {
+  name: string;
+  fiscalYear: VendorFiscalYearData[];
+}
+
+// Vendor with EIN and name data
+export interface EnhancedVendor {
+  ein: string | null;  // Employer Identification Number
+  vendorName: VendorNameData[];
+  einSource?: string;  // Source of the EIN data
+  einConfidence?: number;  // Confidence level of EIN match (0-1)
+  einAcquiredDate?: string;  // ISO date when EIN was acquired
+}
+
+// Enhanced vendors.json structure
+export interface EnhancedVendorsJSON {
+  vendors: EnhancedVendor[];
+  sources?: Array<{
+    name: string;
+    url: string;
+  }>;
+  lastUpdated?: string;
+}
+
+// Legacy vendors structure for backward compatibility
 export interface VendorsJSON {
   vendors: Array<{
     id: string;
     name: string;
+    ein?: string | null;  // Added EIN field for compatibility
     transactions: {
       allTransactions: Transaction[];
     };
   }>;
+}
+
+// EIN resolution metadata
+export interface EINMetadata {
+  source: string;
+  acquiredDate: string;
+  confidence: number;
+  verifiedBy?: string;
+  verificationDate?: string;
 }
   

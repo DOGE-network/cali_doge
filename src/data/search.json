@@ -1,0 +1,48 @@
+{
+  "departments": [
+    { "term": "Commission on Judicial Performance", "type": "department", "id": "0280" },
+    { "term": "Department of Education", "type": "department", "id": "6100" },
+    { "term": "Department of Fish and Wildlife", "type": "department", "id": "3600" }
+  ],
+  "vendors": [
+    { "term": "Acme IT Services", "type": "vendor", "id": "94-1234567" },
+    { "term": "California Technology Solutions", "type": "vendor", "id": "unknown" }
+  ],
+  "programs": [
+    { "term": "Judicial Oversight", "type": "program", "id": "0280980" },
+    { "term": "Educational Administration", "type": "program", "id": "6100101" },
+    { "term": "Wildlife Conservation", "type": "program", "id": "3600220" }
+  ],
+  "funds": [
+    { "term": "General Fund", "type": "fund", "id": "0001" },
+    { "term": "State Highway Account", "type": "fund", "id": "0067" },
+    { "term": "Teacher Credentials Fund", "type": "fund", "id": "0494" }
+  ],
+  "keywords": [
+    { 
+      "term": "oversight", 
+      "type": "keyword", 
+      "sources": [
+        { "type": "program", "id": "0280980", "context": "judicial oversight and performance" },
+        { "type": "department", "id": "0280", "context": "oversight of judicial conduct" }
+      ]
+    },
+    { 
+      "term": "education", 
+      "type": "keyword", 
+      "sources": [
+        { "type": "program", "id": "6100101", "context": "public education system leadership" },
+        { "type": "department", "id": "6100", "context": "educational policy development" }
+      ]
+    },
+    { 
+      "term": "conservation", 
+      "type": "keyword", 
+      "sources": [
+        { "type": "program", "id": "3600220", "context": "wildlife conservation and management" },
+        { "type": "department", "id": "3600", "context": "conservation of natural resources" }
+      ]
+    }
+  ],
+  "lastUpdated": "2023-06-15T00:00:00Z"
+} 

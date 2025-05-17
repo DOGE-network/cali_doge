@@ -1,0 +1,143 @@
+{
+  "vendors": [
+    {
+      "ein": "94-1234567",
+      "vendorName": [
+        {
+          "name": "Acme IT Services",
+          "fiscalYear": [
+            {
+              "year": 2022,
+              "projectCode": [
+                {
+                  "code": "0280980",
+                  "organizationCode": [
+                    {
+                      "code": 8970,
+                      "fundCode": [
+                        {
+                          "code": "5678",
+                          "count": 39,
+                          "amount": 234394.49
+                        },
+                        {
+                          "code": "9876",
+                          "count": 12,
+                          "amount": 85670.25
+                        }
+                      ]
+                    },
+                    {
+                      "code": 6541,
+                      "fundCode": [
+                        {
+                          "code": "3421",
+                          "count": 5,
+                          "amount": 45120.30
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": "1234567",
+                  "organizationCode": [
+                    {
+                      "code": 5430,
+                      "fundCode": [
+                        {
+                          "code": "8765",
+                          "count": 21,
+                          "amount": 126700.00
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "year": 2023,
+              "projectCode": [
+                {
+                  "code": "0280980",
+                  "organizationCode": [
+                    {
+                      "code": 8970,
+                      "fundCode": [
+                        {
+                          "code": "5678",
+                          "count": 42,
+                          "amount": 256830.75
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Acme Information Technology",
+          "fiscalYear": [
+            {
+              "year": 2022,
+              "projectCode": [
+                {
+                  "code": "7654321",
+                  "organizationCode": [
+                    {
+                      "code": 9999,
+                      "fundCode": [
+                        {
+                          "code": "1234",
+                          "count": 8,
+                          "amount": 67500.00
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "einSource": "ProPublica Nonprofit Explorer",
+      "einConfidence": 0.92,
+      "einAcquiredDate": "2023-05-15T14:30:00Z"
+    },
+    {
+      "ein": null,
+      "vendorName": [
+        {
+          "name": "California Technology Solutions",
+          "fiscalYear": [
+            {
+              "year": 2022,
+              "projectCode": [
+                {
+                  "code": "3456789",
+                  "organizationCode": [
+                    {
+                      "code": 2345,
+                      "fundCode": [
+                        {
+                          "code": "6789",
+                          "count": 15,
+                          "amount": 123450.75
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2023-06-15T00:00:00Z"
+} 

@@ -1,0 +1,47 @@
+{
+  "programs": [
+    {
+      "projectCode": "0280980",
+      "name": "Judicial Oversight",
+      "programDescriptions": [
+        {
+          "description": "Provides administration and oversight of the Commission on Judicial Performance, which is responsible for investigating complaints of judicial misconduct and disciplining judges.",
+          "source": "budget_2022_2023.txt"
+        },
+        {
+          "description": "Enforces standards of judicial conduct and provides for the investigation of complaints of judicial misconduct to ensure public confidence in the integrity of the judicial system.",
+          "source": "budget_2023_2024.txt"
+        }
+      ]
+    },
+    {
+      "projectCode": "6100101",
+      "name": "Educational Administration",
+      "programDescriptions": [
+        {
+          "description": "Provides leadership and oversight of California's public education system, including policy development, fiscal management, and program implementation.",
+          "source": "budget_2022_2023.txt"
+        }
+      ]
+    },
+    {
+      "projectCode": "3600220",
+      "name": "Wildlife Conservation",
+      "programDescriptions": [
+        {
+          "description": "Manages and protects California's diverse wildlife species and their habitats through conservation planning, habitat restoration, and species recovery efforts.",
+          "source": "budget_2022_2023.txt"
+        },
+        {
+          "description": "Implements wildlife conservation projects and monitors endangered species to ensure biodiversity and ecosystem health throughout California.",
+          "source": "budget_2023_2024.txt"
+        },
+        {
+          "description": "Conducts scientific research and manages wildlife populations to balance conservation goals with public use and enjoyment of natural resources.",
+          "source": "budget_2024_2025.txt"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2023-06-15T00:00:00Z"
+} 

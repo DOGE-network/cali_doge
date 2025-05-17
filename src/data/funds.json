@@ -1,0 +1,35 @@
+{
+  "funds": [
+    {
+      "fundCode": "0001",
+      "fundName": "General Fund",
+      "fundGroup": "Governmental Cost Funds",
+      "fundDescription": "Primary operating fund for the state; accounts for all financial resources except those required to be accounted for in another fund."
+    },
+    {
+      "fundCode": "0022",
+      "fundName": "State Emergency Telephone Number Account",
+      "fundGroup": "Special Revenue Funds",
+      "fundDescription": "Finances the implementation of the 911 emergency telephone system throughout the state."
+    },
+    {
+      "fundCode": "0067",
+      "fundName": "State Highway Account, State Transportation Fund",
+      "fundGroup": "Transportation Funds",
+      "fundDescription": "Funds state highway construction, improvements, maintenance, and operations."
+    },
+    {
+      "fundCode": "0044",
+      "fundName": "Motor Vehicle Account, State Transportation Fund",
+      "fundGroup": "Transportation Funds",
+      "fundDescription": "Finances activities of the Department of Motor Vehicles and the California Highway Patrol."
+    },
+    {
+      "fundCode": "0494",
+      "fundName": "Teacher Credentials Fund",
+      "fundGroup": "Special Revenue Funds",
+      "fundDescription": "Finances the activities of the Commission on Teacher Credentialing in issuing and renewing teaching credentials."
+    }
+  ],
+  "lastUpdated": "2023-06-15T00:00:00Z"
+} 
