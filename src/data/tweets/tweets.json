@@ -1,6 +1,808 @@
 {
   "tweets": [
     {
+      "text": "7/7 EPA granted California waiver is now at risk, which implements CARB’s Advanced Clean Cars II rules, which bans new gas-powered cars by 2035. \n\nSee the regulatory text and EPA waiver here:\nhttps://t.co/8MbJMWP8oP",
+      "id": "1923914305554219409",
+      "entities": {
+        "annotations": [
+          {
+            "start": 4,
+            "end": 6,
+            "probability": 0.8727,
+            "type": "Organization",
+            "normalized_text": "EPA"
+          },
+          {
+            "start": 16,
+            "end": 25,
+            "probability": 0.973,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 67,
+            "end": 70,
+            "probability": 0.4454,
+            "type": "Organization",
+            "normalized_text": "CARB"
+          },
+          {
+            "start": 74,
+            "end": 95,
+            "probability": 0.7747,
+            "type": "Other",
+            "normalized_text": "Advanced Clean Cars II"
+          },
+          {
+            "start": 175,
+            "end": 177,
+            "probability": 0.8791,
+            "type": "Organization",
+            "normalized_text": "EPA"
+          }
+        ],
+        "urls": [
+          {
+            "start": 192,
+            "end": 215,
+            "url": "https://t.co/8MbJMWP8oP",
+            "expanded_url": "https://www.epa.gov/system/files/documents/2023-12/ca-waiver-carb-req-acc-ii-2023-05-22.pdf",
+            "display_url": "epa.gov/system/files/d…",
+            "status": 200,
+            "unwound_url": "https://www.epa.gov/system/files/documents/2023-12/ca-waiver-carb-req-acc-ii-2023-05-22.pdf"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "870708323540017153",
+            "name": "US Environmental Protection Agency",
+            "description": "US Environmental Protection Agency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-05-18T01:31:29.000Z",
+      "edit_history_tweet_ids": [
+        "1923914305554219409"
+      ],
+      "created_at_formatted": "May 18, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "6/7 California’s Advanced Clean Cars II (ACC II) rules:\n•2026: 35% ZEVs\n•2030: 68% ZEVs\n•2035: 100% ZEVs\nRead the full rulemaking docket: https://t.co/1gZxvjGPRd",
+      "id": "1923914302928584819",
+      "entities": {
+        "annotations": [
+          {
+            "start": 4,
+            "end": 13,
+            "probability": 0.9194,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 17,
+            "end": 38,
+            "probability": 0.8607,
+            "type": "Other",
+            "normalized_text": "Advanced Clean Cars II"
+          },
+          {
+            "start": 41,
+            "end": 46,
+            "probability": 0.4777,
+            "type": "Other",
+            "normalized_text": "ACC II"
+          },
+          {
+            "start": 67,
+            "end": 70,
+            "probability": 0.6823,
+            "type": "Other",
+            "normalized_text": "ZEVs"
+          },
+          {
+            "start": 83,
+            "end": 86,
+            "probability": 0.6669,
+            "type": "Other",
+            "normalized_text": "ZEVs"
+          },
+          {
+            "start": 100,
+            "end": 103,
+            "probability": 0.6963,
+            "type": "Other",
+            "normalized_text": "ZEVs"
+          }
+        ],
+        "urls": [
+          {
+            "start": 138,
+            "end": 161,
+            "url": "https://t.co/1gZxvjGPRd",
+            "expanded_url": "https://ww2.arb.ca.gov/rulemaking/2022/advanced-clean-cars-ii",
+            "display_url": "ww2.arb.ca.gov/rulemaking/202…",
+            "status": 200,
+            "title": "Advanced Clean Cars II | California Air Resources Board",
+            "description": "Consistent with California Government Code section 7296.2, documents posted to this webpage may be made available in an alternate format or another language.  Disability-related reasonable accommodations may also be requested.  If you are experiencing difficulty accessing these documents or would like an accommodation, an alternate format, or a different language, please contact Bradley Bechtold at (279) 208-7266 or Chris Hopkins at (279)208-7347.",
+            "unwound_url": "https://ww2.arb.ca.gov/rulemaking/2022/advanced-clean-cars-ii"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-05-18T01:31:29.000Z",
+      "edit_history_tweet_ids": [
+        "1923914302928584819"
+      ],
+      "created_at_formatted": "May 18, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "5/7 CARB’s 2022 regulations (Title 13 CCR §§ 1962.4–1962.7) set strict emission standards and a timeline to end new gas car sales by 2035. Plug-in hybrids are included in the targets.\nFull regulation: https://t.co/VksLEiemES",
+      "id": "1923914300806377614",
+      "entities": {
+        "annotations": [
+          {
+            "start": 4,
+            "end": 7,
+            "probability": 0.4563,
+            "type": "Other",
+            "normalized_text": "CARB"
+          }
+        ],
+        "urls": [
+          {
+            "start": 201,
+            "end": 224,
+            "url": "https://t.co/VksLEiemES",
+            "expanded_url": "https://ww2.arb.ca.gov/sites/default/files/2022-08/ACC%20II%20FS.pdf",
+            "display_url": "ww2.arb.ca.gov/sites/default/…",
+            "status": 404,
+            "unwound_url": "https://ww2.arb.ca.gov/sites/default/files/2022-08/ACC%20II%20FS.pdf"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "847528391163092993",
+            "name": "Automotive",
+            "description": "Car culture"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "847528576551337984",
+            "name": "Hybrid and electric vehicles",
+            "description": "Hybrid and electric vehicles"
+          }
+        }
+      ],
+      "created_at": "2025-05-18T01:31:28.000Z",
+      "edit_history_tweet_ids": [
+        "1923914300806377614"
+      ],
+      "created_at_formatted": "May 18, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "4/7 Starting in 2026, California will require 35% of new cars sold to be zero-emission, ramping up to 100% by 2035 under CARB’s ACC II rules. Used gas cars can still be sold, but new ones are out.\n\nOfficial text: https://t.co/Zii8DvrqBc",
+      "id": "1923914298646200602",
+      "entities": {
+        "annotations": [
+          {
+            "start": 22,
+            "end": 31,
+            "probability": 0.9869,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 121,
+            "end": 124,
+            "probability": 0.4378,
+            "type": "Organization",
+            "normalized_text": "CARB"
+          },
+          {
+            "start": 128,
+            "end": 133,
+            "probability": 0.3974,
+            "type": "Other",
+            "normalized_text": "ACC II"
+          }
+        ],
+        "urls": [
+          {
+            "start": 213,
+            "end": 236,
+            "url": "https://t.co/Zii8DvrqBc",
+            "expanded_url": "https://www.federalregister.gov/documents/2023/12/26/2023-28301/california-state-motor-vehicle-pollution-control-standards-advanced-clean-cars-ii-regulations",
+            "display_url": "federalregister.gov/documents/2023…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1923914302077140996/3xWeeryP?format=png&name=orig",
+                "width": 832,
+                "height": 200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1923914302077140996/3xWeeryP?format=png&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "California State Motor Vehicle Pollution Control Standards; Advanced Clean Cars II Regulations; Request for Waiver of Preemption; Opportunity for Public Hearing and Public Comment",
+            "description": "The California Air Resources Board (CARB) has notified the Environmental Protection Agency (EPA) that it has adopted regulations applicable to new 2026 and subsequent model year (MY) California on- road light- and medium-duty vehicles, hereinafter the Advanced Clean Cars II (ACC II) regulations....",
+            "unwound_url": "https://www.federalregister.gov/documents/2023/12/26/2023-28301/california-state-motor-vehicle-pollution-control-standards-advanced-clean-cars-ii-regulations"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-05-18T01:31:28.000Z",
+      "edit_history_tweet_ids": [
+        "1923914298646200602"
+      ],
+      "created_at_formatted": "May 18, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "3/7 California’s CARB 2022 rules (Advanced Clean Cars II) will ban new gasoline car sales by 2035. Only zero-emission vehicles (EVs, hydrogen, plug-in hybrids) will be allowed for new sales. Regulation numbers: Title 13 CCR §§ 1961.4, 1962.4, 1962.5, 1962.6, 1962.7.",
+      "id": "1923914295647273164",
+      "entities": {
+        "annotations": [
+          {
+            "start": 4,
+            "end": 13,
+            "probability": 0.9359,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 17,
+            "end": 25,
+            "probability": 0.6946,
+            "type": "Other",
+            "normalized_text": "CARB 2022"
+          },
+          {
+            "start": 34,
+            "end": 55,
+            "probability": 0.8409,
+            "type": "Other",
+            "normalized_text": "Advanced Clean Cars II"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        },
+        {
+          "domain": {
+            "id": "89",
+            "name": "Music Album",
+            "description": "A music album like The Dark Side of the Moon"
+          },
+          "entity": {
+            "id": "1565371174619455489",
+            "name": "Gasoline"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "923639504426090496",
+            "name": "Key",
+            "description": "Key (키) - member of SHINee"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "847528391163092993",
+            "name": "Automotive",
+            "description": "Car culture"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "847528576551337984",
+            "name": "Hybrid and electric vehicles",
+            "description": "Hybrid and electric vehicles"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-05-18T01:31:27.000Z",
+      "edit_history_tweet_ids": [
+        "1923914295647273164"
+      ],
+      "created_at_formatted": "May 18, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "2/7 GM has changed their tune after EV sales have sharply dropped\n\nThe US Senate could vote as early as next week to revoke a waiver that allows California to set its own stricter tailpipe-emissions standards.  \n\nhttps://t.co/5O1QvR39Lk",
+      "id": "1923914292396687819",
+      "entities": {
+        "annotations": [
+          {
+            "start": 71,
+            "end": 79,
+            "probability": 0.7103,
+            "type": "Organization",
+            "normalized_text": "US Senate"
+          },
+          {
+            "start": 145,
+            "end": 154,
+            "probability": 0.9552,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 213,
+            "end": 236,
+            "url": "https://t.co/5O1QvR39Lk",
+            "expanded_url": "https://www.wsj.com/business/autos/california-ev-mandate-auto-industry-64708033?st=q3GQt3&reflink=article_copyURL_share",
+            "display_url": "wsj.com/business/autos…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1923914335061147650/-TOVLmJd?format=jpg&name=orig",
+                "width": 1280,
+                "height": 640
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1923914335061147650/-TOVLmJd?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Exclusive | GM Is Pushing Hard to Tank California’s EV Mandate",
+            "description": "The senate is to vote as early as next week on a measure to revoke the state’s emissions waiver.",
+            "unwound_url": "https://www.wsj.com/business/autos/california-ev-mandate-auto-industry-64708033?st=q3GQt3&reflink=article_copyURL_share"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "961705302700654593",
+            "name": "United States Congress",
+            "description": "United States Congress"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "961705302700654593",
+            "name": "United States Congress",
+            "description": "United States Congress"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1068583660914266113",
+            "name": "Government institutions",
+            "description": "Political Body"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "877326946253684737",
+            "name": "United States Senate",
+            "description": "United States Senate"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "961705302700654593",
+            "name": "United States Congress",
+            "description": "United States Congress"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "877326946253684737",
+            "name": "United States Senate",
+            "description": "United States Senate"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1068583660914266113",
+            "name": "Government institutions",
+            "description": "Political Body"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-05-18T01:31:26.000Z",
+      "edit_history_tweet_ids": [
+        "1923914292396687819"
+      ],
+      "created_at_formatted": "May 18, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "1/7 Bad regulations kill business growth and jobs with them. \n\nFor one of the worst, look no further than the CARB 2022 regulations that outlawed gas engines. \n\nhttps://t.co/4T7Vif3GJt\n\nhttps://t.co/sddCOK3lA2",
+      "id": "1923914289976574268",
+      "entities": {
+        "annotations": [
+          {
+            "start": 110,
+            "end": 113,
+            "probability": 0.7916,
+            "type": "Other",
+            "normalized_text": "CARB"
+          }
+        ],
+        "urls": [
+          {
+            "start": 161,
+            "end": 184,
+            "url": "https://t.co/4T7Vif3GJt",
+            "expanded_url": "https://cali-doge.org/departments/3900_air_resources_board",
+            "display_url": "cali-doge.org/departments/39…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1917585887527071744/Zlqzc31K?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1917585887527071744/Zlqzc31K?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/departments/3900_air_resources_board"
+          },
+          {
+            "start": 186,
+            "end": 209,
+            "url": "https://t.co/sddCOK3lA2",
+            "expanded_url": "https://www.wsj.com/business/autos/california-set-to-approve-rules-to-ban-gasoline-powered-cars-by-2035-11661457578?st=aNsCSf&reflink=article_copyURL_share",
+            "display_url": "wsj.com/business/autos…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1923914291956285444/2Q860Jh4?format=jpg&name=orig",
+                "width": 1280,
+                "height": 640
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1923914291956285444/2Q860Jh4?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "California Approves Rules to Ban Gasoline-Powered Cars by 2035",
+            "description": "The aggressive regulations have encountered less pushback than before from the auto industry, which has escalated its electric-vehicle sales ambitions since the rules were first proposed by Gov. Gavin Newsom in 2020.",
+            "unwound_url": "https://www.wsj.com/business/autos/california-set-to-approve-rules-to-ban-gasoline-powered-cars-by-2035-11661457578?st=aNsCSf&reflink=article_copyURL_share"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1272636957504356352",
+            "name": "Business professions"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1584664688473780224",
+            "name": "Business development and growth"
+          }
+        }
+      ],
+      "created_at": "2025-05-18T01:31:25.000Z",
+      "edit_history_tweet_ids": [
+        "1923914289976574268"
+      ],
+      "created_at_formatted": "May 18, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "entities": {
         "urls": [
           {
@@ -11667,8 +12469,8 @@
     }
   ],
   "meta": {
-    "result_count": 105,
-    "newest_id": "1922798965902209249",
+    "result_count": 112,
+    "newest_id": "1923914305554219409",
     "oldest_id": "1882144700762878208"
   }
 }
