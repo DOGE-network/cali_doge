@@ -139,6 +139,7 @@ export interface DepartmentData {
     yearly: Record<FiscalYearKey, number | {}>;
   };
   organizationalCode?: organizationalCode;
+  entityCode: number | null;  // Required but can be null, first four digits of any salary report csv file
   orgLevel: OrgLevel;
   budget_status: BudgetStatus;
   keyFunctions: string;

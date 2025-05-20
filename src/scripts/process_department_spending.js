@@ -1,92 +1,71 @@
 /**
  * Budget Data Text File Processing Script
  * 
- * This script processes budget text files and updates departments.json with budget data.
- * It handles:
- * - Budget data extraction from text files
- * - Department matching using name, aliases, and organizationalCode
- * - Data validation and type compliance
- * - Logging of operations and results
- * - using department type interface RequiredDepartmentJSONFields
+ * This script processes budget text files to:
+ * 1. Extract department data including organizational codes
+ * 2. Update programs.json with program descriptions and relationships
+ * 3. Update budgets.json with detailed budget allocations
+ * 4. Match department organizational codes across different data sources
  * 
- * 
- * Steps:
+ * Processing steps:
  * 1. Initial Setup
- *    a. Load departments.json
+ *    a. Load departments.json, programs.json, and budgets.json
  *    b. Setup logging
- *    c. Count initial departments with budget data
  * 
  * 2. Text File Processing
  *    a. Read and parse text files
- *    b. match textfile organizational code to json department organizationalCode. if match then check if orgLevel>1 else skip
- *    c. match for next 3 rows are headcount  array years 2022, 2023, 2024, then next 3 rows are spending array years 2022, 2023, 2024
- *    d. create headcount and spending data arrays and log. use department type interface RequiredDepartmentJSONFields. 
- *    e. using record matched from step2b, show textfile organizational code and json (organizationalCode, name, aliases) so user can compare for matching, diff of headcount and spending arrays to fields of the record, log the differences.  Show headcount as info only, spending as will update. 
- *    f. if differences in spending or note, ask user if they want to update the record, else skip. 
- *    g. Save the note and or spending changes to departments.json. Match note with the text file name or append to the existing note
- *    h. Continue until all files are processed
+ *    b. Extract fiscal year from filename
+ *    c. Find all department sections in text file
+ *    d. For each department section:
+ *       - Extract org code and name
+ *       - Match to departments.json record
+ *       - Extract program descriptions for programs.json
+ *       - Extract detailed budget allocations for budgets.json
  * 
  * 3. Results Summary
- *    a. Count updated json departments, skipped text files, unmatched departments
+ *    a. Count updated departments, programs and budgets
  *    b. Log final statistics
- *    c. Log differences between original and updated departments.json
+ * 
+ * Output Files:
+ * - programs.json: Updated with program descriptions and relationships
+ * - budgets.json: Updated with detailed budget allocations by:
+ *   - Organization code
+ *   - Project code
+ *   - Fund code
+ *   - Fiscal year
+ *   - Funding type (State Operations/Local Assistance)
  * 
  * Usage:
  * ```bash
- * node process_budget_data.js
+ * npm run process-spending
  * ```
+ * 
+ * Dependencies:
+ * - src/lib/departmentMatching.js for department name matching
+ * - src/data/departments.json as the department data source
+ * - src/data/programs.json as the program data source
+ * - src/data/budgets.json as the budget data source
+ * - src/data/budget/text/*.txt budget text files to process
  */
 
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 
 // Configuration - Fixed paths relative to project root
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const DEPARTMENTS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/departments.json');
+const PROGRAMS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/programs.json');
+const BUDGETS_JSON_PATH = path.join(PROJECT_ROOT, 'src/data/budgets.json');
 const BUDGET_DATA_DIR = path.join(PROJECT_ROOT, 'src/data/budget/text');
 const LOG_DIR = path.join(PROJECT_ROOT, 'src/logs');
 
 // Type validation helpers
-const isValidYear = (year) => {
-  const numYear = parseInt(year);
-  return Number.isInteger(numYear) && numYear >= 1900 && numYear <= 2030;
-};
+//const isValidYear = (year) => {
+//  const numYear = parseInt(year);
+//  return Number.isInteger(numYear) && numYear >= 1900 && numYear <= 2030;
+//};
 
-const isValidFiscalYear = (year) => {
-  // Format should be FYyyyy-FYyyyy
-  if (!/^FY\d{4}-FY\d{4}$/.test(year)) return false;
-  
-  const [startYear, endYear] = year.split('-').map(y => parseInt(y.slice(2)));
-  return isValidYear(startYear) && isValidYear(endYear) && endYear === startYear + 1;
-};
-
-const isValidAnnualYear = (year) => {
-  return isValidYear(year);
-};
-
-// Convert YYYY-YY format to FYyyyy-FYyyyy format
-const convertToFiscalYear = (yearStr) => {
-  // Match YYYY-YY format
-  const match = yearStr.match(/^(\d{4})-(\d{2})$/);
-  if (!match) return null;
-  
-  const startYear = parseInt(match[1]);
-  const endYear = parseInt(match[2]);
-  
-  // Validate the years
-  if (!isValidYear(startYear)) return null;
-  
-  // Convert 2-digit end year to full year
-  const fullEndYear = endYear < 50 ? 2000 + endYear : 1900 + endYear;
-  
-  // Validate the end year matches start year + 1
-  if (fullEndYear !== startYear + 1) return null;
-  
-  return `FY${startYear}-FY${fullEndYear}`;
-};
-
-// Setup logging
+// Setup logging with enhanced formatting and step tracking
 const setupLogging = () => {
   // Get script name without extension
   const scriptName = path.basename(__filename, '.js');
@@ -98,10 +77,25 @@ const setupLogging = () => {
     fs.mkdirSync(LOG_DIR, { recursive: true });
   }
   
-  const log = (message, type = 'info') => {
+  let currentStep = 0;
+  let currentSubStep = 0;
+  
+  const log = (message, type = 'info', isStep = false, isSubStep = false) => {
     const timestamp = new Date().toISOString();
     const logType = typeof type === 'string' ? type.toUpperCase() : 'INFO';
-    const logMessage = `[${timestamp}] [${logType}] ${message}`;
+    
+    if (isStep) {
+      currentStep++;
+      currentSubStep = 0;
+    }
+    if (isSubStep) {
+      currentSubStep++;
+    }
+    
+    const stepInfo = isStep ? `[STEP ${currentStep}]` : 
+                     isSubStep ? `[STEP ${currentStep}.${currentSubStep}]` : '';
+    
+    const logMessage = `[${timestamp}] [${logType}] ${stepInfo} ${message}`;
     fs.appendFileSync(logFile, logMessage + '\n');
     if (type === 'error') {
       console.error(message);
@@ -127,568 +121,426 @@ const setupLogging = () => {
   return { logFile, log };
 };
 
-// Function to normalize department data
-const normalizeDepartmentData = (dept) => {
-  if (!dept) return null;
-  
-  // Create a new object with the original structure
-  const normalized = { ...dept };
-  
-  // Only normalize the data fields, not the identity fields
-  if (normalized.headCount) {
-    normalized.headCount = {
-      yearly: normalized.headCount.yearly || {}
-    };
-  }
-  
-  if (normalized.spending) {
-    normalized.spending = {
-      yearly: normalized.spending.yearly || {}
-    };
-  }
-  
-  return normalized;
+// Function to extract year from filename
+const extractYearFromFilename = (filename) => {
+  const yearMatch = filename.match(/_(\d{4})_/);
+  return yearMatch ? parseInt(yearMatch[1]) : null;
 };
 
-// Function to parse budget text file
-const parseBudgetFile = async (filePath, log, departmentsData) => {
-  const timestamp = new Date().toISOString();
-
-  log(`[${timestamp}] === Step 2b: Match textfile organizational code to json department organizationalCode ===`);
-  log(`[${timestamp}] Processing file: ${path.basename(filePath)}`);
-
-  // Extract organizational code from filename
-  const organizationalCode = parseInt(path.basename(filePath).split('_')[0]);
-  log(`[${timestamp}] Extracted organizational code: ${organizationalCode}`);
-
-  // First verify if we have a matching department by organizational code
-  const matchingDepartment = departmentsData.departments.find(d => {
-    const deptorganizationalCode = typeof d.organizationalCode === 'string' ? parseInt(d.organizationalCode) : d.organizationalCode;
-    return deptorganizationalCode === organizationalCode;
-  });
-
-  if (!matchingDepartment) {
-    log(`[${timestamp}] Error: No matching department found for organizational code ${organizationalCode}`, 'error');
-    return null;
-  }
-
-  // Check if orgLevel is greater than 1
-  if (!matchingDepartment.orgLevel || matchingDepartment.orgLevel <= 1) {
-    log(`[${timestamp}] Skipping department ${matchingDepartment.name} - orgLevel must be greater than 1 (current: ${matchingDepartment.orgLevel || 'not set'})`, 'error');
-    return null;
-  }
-
-  log(`[${timestamp}] Found matching department: ${matchingDepartment.name} (organizational code: ${matchingDepartment.organizationalCode}, orgLevel: ${matchingDepartment.orgLevel})`);
-
-  log(`[${timestamp}] === Step 2b Complete ===\n`);
-
-  return {
-    organizationalCode: organizationalCode,
-    department: matchingDepartment
-  };
-};
-
-// Function to extract budget data from the specified rows after the totals section
-const extractBudgetData = async (totalsSectionLines, log) => {
-  let headCount = {};
-  let spending = {};
-  const timestamp = new Date().toISOString();
-
-  log(`[${timestamp}] === Step 2c: Extracting Budget Data ===`);
-
-  if (!totalsSectionLines || totalsSectionLines.length < 6) {
-    log(`[${timestamp}] Error: Invalid totals section data. Expected at least 6 lines, got ${totalsSectionLines?.length || 0}`, 'error');
-    return null;
-  }
-
-  // Process the first 3 lines for headcount data
-  for (let i = 0; i < 3; i++) {
-    const line = totalsSectionLines[i];
-    if (!line) {
-      log(`[${timestamp}] Error: Missing line ${i + 1} in totals section`, 'error');
-      return null;
-    }
-    const match = line.match(/([\d,]+\.?\d*)/);
+// Function to find all department sections in text file
+const findDepartmentSections = (fileContent) => {
+  const sections = [];
+  const lines = fileContent.split('\n');
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    // Look for lines that start with 4 digits followed by department name
+    const match = line.match(/^(\d{4})\s+(.+)$/);
     if (match) {
-      const value = Math.round(parseFloat(match[1].replace(/,/g, '')));
-      const year = i === 0 ? '2022' : i === 1 ? '2023' : '2024';
-      if (!isValidAnnualYear(year)) {
-        log(`[${timestamp}] Error: Invalid annual year ${year}`, 'error');
-        return null;
-      }
-      headCount[year] = value;
-      log(`[${timestamp}] Extracted headcount data for ${year}: ${value}`);
-    } else {
-      log(`[${timestamp}] Warning: No match for headcount data in line: ${line}`);
-      return null;
-    }
-  }
-  
-  // Process the next 3 lines for spending data
-  for (let i = 3; i < 6; i++) {
-    const line = totalsSectionLines[i];
-    if (!line) {
-      log(`[${timestamp}] Error: Missing line ${i + 1} in totals section`, 'error');
-      return null;
-    }
-    const match = line.match(/([\d,]+\.?\d*)/);
-    if (match) {
-      const value = Math.round(parseFloat(match[1].replace(/,/g, '')));
-      const yearStr = i === 3 ? '2022-23' : i === 4 ? '2023-24' : '2024-25';
-      const fiscalYear = convertToFiscalYear(yearStr);
-      if (!fiscalYear) {
-        log(`[${timestamp}] Error: Invalid fiscal year format ${yearStr}`, 'error');
-        return null;
-      }
-      spending[fiscalYear] = value;
-      log(`[${timestamp}] Extracted spending data for ${fiscalYear}: ${value}`);
-    } else {
-      log(`[${timestamp}] Warning: No match for spending data in line: ${line}`);
-      return null;
-    }
-  }
-
-  // Verify we have all required data
-  const requiredYears = ['2022', '2023', '2024'];
-  const missingHeadCount = requiredYears.filter(year => !headCount[year]);
-  const missingSpending = requiredYears.filter(year => !spending[`FY${year}-FY${parseInt(year) + 1}`]);
-
-  if (missingHeadCount.length > 0 || missingSpending.length > 0) {
-    log(`[${timestamp}] Error: Missing required data:`, 'error');
-    if (missingHeadCount.length > 0) {
-      log(`[${timestamp}] Missing headcount data for years: ${missingHeadCount.join(', ')}`);
-    }
-    if (missingSpending.length > 0) {
-      log(`[${timestamp}] Missing spending data for years: ${missingSpending.join(', ')}`);
-    }
-    return null;
-  }
-
-  log(`[${timestamp}] === Step 2c Complete ===\n`);
-  return {
-    headCount,
-    spending
-  };
-};
-
-// Function to create budget arrays and validate types
-const createBudgetArrays = (budgetDetails, log) => {
-  const timestamp = new Date().toISOString();
-  
-  log(`\n[${timestamp}] === Step 2d: Creating Budget Arrays ===`);
-  
-  // Validate and create headcount array
-  const headCountArray = {
-    yearly: {}
-  };
-  
-  Object.entries(budgetDetails.headCount).forEach(([year, value]) => {
-    if (!isValidAnnualYear(year)) {
-      log(`[${timestamp}] Error: Invalid annual year ${year} in headcount data`, 'error');
-      return null;
-    }
-    headCountArray.yearly[year] = value;
-  });
-  
-  // Validate and create spending array
-  const spendingArray = {
-    yearly: {}
-  };
-  
-  Object.entries(budgetDetails.spending).forEach(([year, value]) => {
-    if (!isValidFiscalYear(year)) {
-      log(`[${timestamp}] Error: Invalid fiscal year ${year} in spending data`, 'error');
-      return null;
-    }
-    spendingArray.yearly[year] = value;
-  });
-  
-  // Log the arrays for verification
-  log(`[${timestamp}] HeadCount Array:`);
-  Object.entries(headCountArray.yearly).forEach(([year, value]) => {
-    log(`[${timestamp}]   ${year}: ${value}`);
-  });
-  
-  log(`[${timestamp}] Spending Array:`);
-  Object.entries(spendingArray.yearly).forEach(([year, value]) => {
-    log(`[${timestamp}]   ${year}: ${value}`);
-  });
-  
-  log(`[${timestamp}] === Step 2d Complete ===\n`);
-  
-  return {
-    headCount: headCountArray,
-    spending: spendingArray
-  };
-};
-
-// Function to compare department data and ask for user confirmation
-const compareAndConfirmUpdate = (department, updateData, log) => {
-  const timestamp = new Date().toISOString();
-  
-  log(`\n[${timestamp}] === Step 2e: Department Matching and Data Comparison ===`);
-  
-  // Show matching details
-  log(`[${timestamp}] Text File Department:`);
-  log(`[${timestamp}]   organizational code: ${updateData.organizationalCode}`);
-  log(`[${timestamp}]   Name: ${updateData.name}`);
-  
-  log(`[${timestamp}] JSON Department:`);
-  log(`[${timestamp}]   organizational code: ${department.organizationalCode}`);
-  log(`[${timestamp}]   Name: ${department.name}`);
-  log(`[${timestamp}]   Aliases: ${department.aliases?.join(', ') || 'None'}`);
-  
-  // Compare and show differences in data
-  log(`\n[${timestamp}] Data Differences:`);
-  
-  // Compare headcount data (info only)
-  log(`[${timestamp}] HeadCount Information (Not Updating):`);
-  ['2022', '2023', '2024'].forEach(year => {
-    const currentValue = department.headCount?.yearly?.[year];
-    const newValue = updateData.headCount?.yearly?.[year];
-    if (currentValue !== newValue) {
-      log(`[${timestamp}]   ${year}: JSON: ${currentValue || 'Not set'} | Budget Textfile: ${newValue || 'Not set'}`);
-    }
-  });
-  
-  // Compare spending data (will update)
-  log(`\n[${timestamp}] Spending Data (Will Update):`);
-  ['2022', '2023', '2024'].forEach(year => {
-    const fiscalYear = `FY${year}-FY${parseInt(year) + 1}`;
-    const currentValue = department.spending?.yearly?.[fiscalYear];
-    const newValue = updateData.spending?.yearly?.[fiscalYear];
-    if (currentValue !== newValue) {
-      log(`[${timestamp}]   ${fiscalYear}: ${currentValue || 'Not set'} -> ${newValue || 'Not set'}`);
-    }
-  });
-  
-  log(`[${timestamp}] === Step 2e Complete ===\n`);
-  
-  // Ask for user confirmation
-};
-
-// Main execution
-const main = async () => {
-  let log;
-  let logFile;
-  let departmentsData;
-  let initialDepartmentsWithBudget;
-  let totalUpdatedDepartments = 0;
-  let totalSkippedDepartments = 0;
-  let totalProcessedDepartments = 0;
-  let unmatchedDepartments = new Set();
-  let unmatchedFiles = new Set();
-  const startTime = new Date().toISOString();
-  
-  try {
-    // ============================================
-    // STEP 1: Initial Setup
-    // ============================================
-    
-    // Step 1a: Setup logging
-    const loggingSetup = setupLogging();
-    log = loggingSetup.log;
-    logFile = loggingSetup.logFile;
-    
-    // Step 1b: Load departments.json
-    log('Step 1b: Loading departments.json...');
-    try {
-      const data = fs.readFileSync(DEPARTMENTS_JSON_PATH, 'utf8');
-      departmentsData = JSON.parse(data);
-      departmentsData.departments = departmentsData.departments.map(dept => normalizeDepartmentData(dept));
-      log(`Successfully loaded departments.json with ${departmentsData?.departments?.length || 0} departments`);
-    } catch (error) {
-      log(`Error reading departments.json: ${error.message}`, 'error');
-      process.exit(1);
-    }
-    
-    // Step 1c: Count initial departments with budget data
-    log('Step 1c: Counting initial departments with budget data...');
-    initialDepartmentsWithBudget = departmentsData.departments.filter(d => 
-      d.headCount?.yearly && Object.values(d.headCount.yearly).some(yearData => yearData.length > 0)
-    ).length;
-    log(`Found ${initialDepartmentsWithBudget} departments with budget data initially`);
-    
-    // ============================================
-    // STEP 2: Text File Processing
-    // ============================================
-    
-    // Step 2a: Read and parse text files
-    const files = fs.readdirSync(BUDGET_DATA_DIR)
-      .filter(file => file.endsWith('_2024_budget.txt'))
-      .map(file => path.join(BUDGET_DATA_DIR, file));
-    
-    if (files.length === 0) {
-      log('No budget text files found in budget/text directory', 'error');
-      process.exit(1);
-    }
-    
-    log(`Found ${files.length} budget text files: ${files.map(f => path.basename(f)).join(', ')}`);
-    
-    // Process each file
-    for (const file of files) {
-      const filename = path.basename(file);
-      const organizationalCode = filename.split('_')[0];
-      const timestamp = new Date().toISOString();
+      const orgCode = parseInt(match[1]);
+      const deptName = match[2].trim();
       
-      log(`\n[${timestamp}] === Step 2a: Reading and Parsing Text File ===`);
-      log(`[${timestamp}] Processing file: ${filename}`);
-      log(`[${timestamp}] organizational code: ${organizationalCode}`);
-      log(`[${timestamp}] Full path: ${file}`);
-      
-      // File validation
-      try {
-        const stats = fs.statSync(file);
-        log(`[${timestamp}] File size: ${(stats.size / 1024).toFixed(2)} KB`);
-        log(`[${timestamp}] Last modified: ${stats.mtime.toISOString()}`);
-        fs.accessSync(file, fs.constants.R_OK);
-        log(`[${timestamp}] File is readable`);
-      } catch (error) {
-        log(`[${timestamp}] Error accessing file: ${error.message}`, 'error');
-        continue;
-      }
-
-      // Read file contents and collect data
-      let firstFiveLines = [];
-      let foundTotals = false;
-      let totalsSectionLines = [];
-      let departmentName = '';
-      let previousLine = '';
-      let lineCount = 0;
-
-      try {
-        const fileStream = fs.createReadStream(file);
-        const rl = readline.createInterface({
-          input: fileStream,
-          crlfDelay: Infinity
-        });
-
-        for await (const line of rl) {
-          if (!line.trim()) continue;
-
-          // Collect first 5 lines
-          if (firstFiveLines.length < 5) {
-            firstFiveLines.push(line.trim());
-          }
-
-          // Extract department name
-          if (!departmentName && line.trim()) {
-            // Extract department name from after the organizational code (4 digits at start)
-            const match = line.trim().match(/^\d{4}\s+(.+)$/);
-            if (match) {
-              departmentName = match[1].trim();
-              log(`[${timestamp}] Found department name: ${departmentName}`);
-            }
-          }
-
-          // Find totals section
-          const currentLine = line.trim();
-          const combinedText = `${previousLine} ${currentLine}`.trim();
-          
-          if (currentLine.includes('TOTALS, POSITIONS AND EXPENDITURES (All Programs)') ||
-              combinedText.includes('TOTALS, POSITIONS AND EXPENDITURES (All Programs)')) {
-            foundTotals = true;
-            log(`[${timestamp}] Found totals section - Starting data extraction`);
-            log(`[${timestamp}] Found in: ${combinedText}`);
-            previousLine = '';
-            continue;
-          }
-
-          previousLine = currentLine;
-
-          // Collect lines after totals section
-          if (foundTotals) {
-            lineCount++;
-            if (lineCount <= 10) {
-              totalsSectionLines.push(currentLine);
-            }
-          }
+      // Find the end of this section (next department or end of file)
+      let endIndex = i + 1;
+      while (endIndex < lines.length) {
+        const nextLine = lines[endIndex].trim();
+        if (nextLine.match(/^\d{4}\s+/)) {
+          break;
         }
-
-        // Log file contents summary
-        log(`\n[${timestamp}] === File Contents Summary ===`);
-        log(`[${timestamp}] First 5 lines of file:`);
-        firstFiveLines.forEach((line, index) => {
-          log(`[${timestamp}] ${index + 1}. ${line}`);
-        });
-        
-        log(`\n[${timestamp}] First 10 lines after totals section:`);
-        totalsSectionLines.forEach((line, index) => {
-          log(`[${timestamp}] ${index + 1}. ${line}`);
-        });
-
-
+        endIndex++;
       }
-      catch (error) {
-        log(`[${timestamp}] Error reading file contents: ${error.message}`, 'error');
-        continue;
-      }
-      log(`[${timestamp}] === Step 2a Complete ===\n`);
       
-      // Step 2b: Extract department information and match organizational code
-      const budgetData = await parseBudgetFile(file, log, departmentsData);
-      if (!budgetData) {
-        log(`[${timestamp}] Skipping file ${filename} - no matching department found in departments.json`, 'error');
-        unmatchedFiles.add(filename);
+      // Extract the section content
+      const sectionContent = lines.slice(i, endIndex).join('\n');
+      sections.push({
+        orgCode,
+        deptName,
+        content: sectionContent,
+        startLine: i,
+        endLine: endIndex
+      });
+      
+      i = endIndex - 1; // Skip to end of section
+    }
+  }
+  
+  return sections;
+};
+
+// Main function to process the budget file
+const parseBudgetFile = async (filePath, log, departmentsData) => {
+  try {
+    // Read the file content
+    const content = fs.readFileSync(filePath, 'utf8');
+    const filename = path.basename(filePath);
+    
+    // Extract fiscal year from filename
+    const fiscalYear = extractYearFromFilename(filePath);
+    if (!fiscalYear) {
+      log('Could not extract fiscal year from filename', 'error', false, true);
+      return false;
+    }
+    
+    // Find all department sections
+    const departmentSections = findDepartmentSections(content);
+    if (!departmentSections.length) {
+      log('No department sections found in file', 'error', false, true);
+      return false;
+    }
+    
+    log(`Found ${departmentSections.length} department sections`, 'info', false, true);
+    
+    // Process each department section
+    for (const section of departmentSections) {
+      const { orgCode, deptName, content: sectionContent } = section;
+      
+      // Match department to departments.json
+      const department = departmentsData.departments.find(d => {
+        const deptCode = typeof d.organizationalCode === 'string' 
+          ? parseInt(d.organizationalCode) 
+          : d.organizationalCode;
+        return deptCode === orgCode;
+      });
+
+      if (!department) {
+        log(`No matching department found for org code ${orgCode}`, 'warn', false, true);
         continue;
       }
-
-      // Add department name to budgetData
-      budgetData.name = departmentName;
-
-      // Step 2c: Extract budget data from totals section
-      const budgetDetails = await extractBudgetData(totalsSectionLines, log);
-      if (!budgetDetails) {
-        log(`[${timestamp}] Skipping file ${filename} - no budget data found`, 'error');
-        unmatchedFiles.add(filename);
-        continue;
+      
+      log(`Processing department: ${deptName} (${orgCode})`, 'info', false, true);
+      
+      // Extract program descriptions
+      const programDescriptions = extractProgramDescriptions(sectionContent, log);
+  if (programDescriptions.length > 0) {
+        log(`Found ${programDescriptions.length} program descriptions`, 'info', false, true);
+        updateProgramsJson(programDescriptions, orgCode, log, filename);
       }
+      
+      // Extract budget allocations
+      const allocations = extractBudgetAllocations(sectionContent, log, fiscalYear, orgCode);
+      if (allocations.length > 0) {
+        log(`Found ${allocations.length} budget allocations`, 'info', false, true);
+        updateBudgetsJson(allocations, log);
+      }
+    }
+    
+    return true;
+  } catch (error) {
+    log(`Error processing budget file: ${error.message}`, 'error', false, true);
+    return false;
+  }
+};
 
-      // Step 2d: Create headcount and spending data arrays
-      const budgetArrays = createBudgetArrays(budgetDetails, log);
-
-      // Step 2e: Show comparison and differences
-      await compareAndConfirmUpdate(budgetData.department, {
-        ...budgetData,
-        name: budgetData.name,
-        headCount: budgetArrays.headCount,
-        spending: budgetArrays.spending
-      }, log);
-
-      // Step 2f: Check for spending/note differences and ask user
-      const hasSpendingOrNoteChanges = () => {
-        // Check for spending differences
-        const hasSpendingDiff = Object.entries(budgetArrays.spending.yearly).some(([year, value]) => {
-          const currentValue = budgetData.department.spending?.yearly?.[year];
-          // Convert both to numbers for comparison
-          const newValue = Number(value);
-          const existingValue = currentValue ? Number(currentValue) : null;
-          // Only consider it different if both values exist and are different
-          return existingValue !== null && newValue !== existingValue;
+// Function to extract program descriptions from section content
+const extractProgramDescriptions = (sectionContent, log) => {
+  const descriptions = [];
+  
+  // Look for the program descriptions section
+  const programSectionMatch = sectionContent.match(/PROGRAM\s+DESCRIPTIONS/i);
+  if (!programSectionMatch) {
+    log(`No "PROGRAM DESCRIPTIONS" section found`, 'warn', false, true);
+    return descriptions;
+  }
+  
+  // Extract the program descriptions section
+  const startIndex = programSectionMatch.index;
+  const nextSectionMatch = sectionContent.substring(startIndex + 20).match(/\n\s*[A-Z][A-Z\s]{5,}\n/);
+  const endIndex = nextSectionMatch ? startIndex + 20 + nextSectionMatch.index : sectionContent.length;
+  
+  const programSection = sectionContent.substring(startIndex, endIndex);
+  const lines = programSection.split('\n');
+  
+  let currentProgram = null;
+  let currentDescription = '';
+  
+  // Process lines to extract program names and descriptions
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+    
+    // Skip empty lines
+    if (!trimmedLine) continue;
+    
+    // Look for program headers (usually all caps or starting with numbers)
+    if (/^[0-9]+\.?\s+[A-Z]/.test(trimmedLine) || /^[A-Z][A-Z\s]{5,}$/.test(trimmedLine)) {
+      // If we were collecting a program description, save it
+      if (currentProgram) {
+        descriptions.push({
+          program: currentProgram,
+          description: currentDescription.trim()
         });
+      }
+      
+      // Start a new program
+      currentProgram = trimmedLine;
+      currentDescription = '';
+    } else if (currentProgram) {
+      // Add to current description
+      currentDescription += ' ' + trimmedLine;
+    }
+  }
+  
+  // Add the last program if there is one
+  if (currentProgram) {
+    descriptions.push({
+      program: currentProgram,
+      description: currentDescription.trim()
+    });
+  }
+  
+  return descriptions;
+};
 
-        // Check for note differences
-        const newNote = `Budget data from ${filename}`;
-        const hasNoteDiff = budgetData.department.note && 
-          budgetData.department.note.includes(newNote);
+// Function to extract detailed budget allocations
+const extractBudgetAllocations = (sectionContent, log, fiscalYear, orgCode) => {
+  const allocations = [];
+  
+  // Look for the detailed expenditures section
+  const expenditureMatch = sectionContent.match(/DETAILED\s+EXPENDITURES\s+BY\s+PROGRAM/i);
+  if (!expenditureMatch) {
+    log(`No "DETAILED EXPENDITURES BY PROGRAM" section found`, 'warn', false, true);
+    return allocations;
+  }
 
-        return hasSpendingDiff || !hasNoteDiff;
-      };
+  const startIndex = expenditureMatch.index;
+  const sectionText = sectionContent.substring(startIndex);
+  const lines = sectionText.split('\n');
+  
+  let currentProjectCode = null;
+  let currentFundingType = null;
+  
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+    
+    // Skip empty lines
+    if (!trimmedLine) continue;
+    
+    // Look for project code headers
+    const projectMatch = trimmedLine.match(/^(\d{7})\s+(.+)$/);
+    if (projectMatch) {
+      currentProjectCode = projectMatch[1];
+      continue;
+    }
+    
+    // Look for funding type headers
+    if (trimmedLine.includes('State Operations:')) {
+      currentFundingType = 0;
+      continue;
+    } else if (trimmedLine.includes('Local Assistance:')) {
+      currentFundingType = 1;
+      continue;
+    }
+    
+    // Look for fund allocations
+    const fundMatch = trimmedLine.match(/^(\d{4})\s+(\d+)\s+\$?([\d,]+(\.\d{2})?)/);
+    if (fundMatch && currentProjectCode !== null && currentFundingType !== null) {
+      const [_, fundCode, count, amount] = fundMatch;
+      allocations.push({
+        organizationCode: orgCode,
+        projectCode: currentProjectCode,
+        fundCode: parseInt(fundCode),
+        fiscalYear,
+        fundingType: currentFundingType,
+        count: parseInt(count),
+        amount: parseFloat(amount.replace(/,/g, '')) * 1000 // Convert to dollars
+      });
+    }
+  }
+  
+  return allocations;
+};
 
-      // Ask user if they want to update if there are differences
-      if (hasSpendingOrNoteChanges()) {
-        const readline = require('readline').createInterface({
-          input: process.stdin,
-          output: process.stdout
-        });
+// Function to update programs.json
+const updateProgramsJson = (programDescriptions, orgCode, log, filename) => {
+  try {
+    // Load existing programs.json
+    const programsData = JSON.parse(fs.readFileSync(PROGRAMS_JSON_PATH, 'utf8'));
+    
+    // Update or add program descriptions
+    for (const desc of programDescriptions) {
+      const existingProgram = programsData.programs.find(p => p.projectCode === desc.program);
+      
+      if (existingProgram) {
+        // Add new description if not already present
+        const descriptionExists = existingProgram.programDescriptions.some(
+          d => d.description === desc.description
+        );
         
-        const shouldUpdate = await new Promise((resolve) => {
-          readline.question('\nDo you want to update this department? (y/n): ', (answer) => {
-            readline.close();
-            resolve(answer.toLowerCase() === 'y');
+        if (!descriptionExists) {
+          existingProgram.programDescriptions.push({
+            description: desc.description,
+            source: filename
           });
-        });
-
-        if (!shouldUpdate) {
-          log(`[${timestamp}] Skipping update for department: ${budgetData.department.name} - user declined`);
-          continue;
         }
       } else {
-        log(`[${timestamp}] Skipping update for department: ${budgetData.department.name} - no salary or note changes`);
-        totalSkippedDepartments++;
-        continue;
-      }
-
-      // Step 2g: Save changes to departments.json
-      budgetData.department.spending = budgetArrays.spending;
-      
-      // Update note
-      const newNote = `Budget data from ${filename}`;
-      if (!budgetData.department.note) {
-        budgetData.department.note = newNote;
-      } else if (!budgetData.department.note.includes(newNote)) {
-        budgetData.department.note = `${budgetData.department.note}, ${newNote}`;
-      }
-      
-      totalUpdatedDepartments++;
-      log(`Successfully updated department data for ${budgetData.department.name}`);
-      
-      // Save changes to departments.json
-      try {
-        fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(departmentsData, null, 2));
-        log(`Successfully wrote updated departments.json`);
-      } catch (error) {
-        log(`Error writing departments.json: ${error.message}`, 'error');
+        // Add new program
+        programsData.programs.push({
+          projectCode: desc.program,
+          name: desc.program,
+          programDescriptions: [{
+            description: desc.description,
+            source: filename
+          }]
+        });
       }
     }
     
-    // ============================================
-    // STEP 3: Final Processing
-    // ============================================
+    // Save updated programs.json
+    fs.writeFileSync(PROGRAMS_JSON_PATH, JSON.stringify(programsData, null, 2));
+    log(`Updated programs.json with ${programDescriptions.length} program descriptions`, 'info', false, true);
     
-    const endTime = new Date().toISOString();
-    const duration = new Date(endTime) - new Date(startTime);
-    
-    // Step 3a: Count final departments with budget data
-    const finalDepartmentsWithBudget = departmentsData.departments.filter(d => 
-      d.headCount?.yearly && Object.values(d.headCount.yearly).some(yearData => yearData.length > 0)
-    ).length;
-    
-    // Step 3b: Log final statistics
-    log('\nFinal Statistics:');
-    log(`- Initial departments with budget data: ${initialDepartmentsWithBudget}`);
-    log(`- Final departments with budget data: ${finalDepartmentsWithBudget}`);
-    log(`- Departments updated: ${totalUpdatedDepartments}`);
-    log(`- Departments skipped: ${totalSkippedDepartments}`);
-    log(`- Total departments processed: ${totalProcessedDepartments}`);
-    
-    // Step 3c: Log unmatched records
-    log('\n=== UNMATCHED RECORDS ===');
-    log('\nDepartments without budget data:');
-    departmentsData.departments
-      .filter(d => !d.headCount?.yearly || Object.values(d.headCount.yearly).every(yearData => !yearData.length))
-      .forEach(d => {
-        log(`- ${d.name} (organizational code: ${d.organizationalCode || 'None'})`);
-        unmatchedDepartments.add(d.name);
-      });
-    
-    log('\nBudget files without matching departments:');
-    unmatchedFiles.forEach(file => log(`- ${file}`));
-    
-    // Step 3d: Write final departments.json
-    log('\nWriting updated departments.json...');
-    try {
-      fs.writeFileSync(DEPARTMENTS_JSON_PATH, JSON.stringify(departmentsData, null, 2));
-      log('Successfully wrote updated departments.json');
-    } catch (error) {
-      log(`Error writing departments.json: ${error.message}`, 'error');
-      process.exit(1);
-    }
-
-    // Add summary footer
-    const footer = [
-      '',
-      '='.repeat(80),
-      `Budget Data Processing Summary`,
-      `Started: ${startTime}`,
-      `Completed: ${endTime}`,
-      `Duration: ${duration}ms`,
-      `Total Files Processed: ${files.length}`,
-      `Total Departments Updated: ${totalUpdatedDepartments}`,
-      `Total Departments Skipped: ${totalSkippedDepartments}`,
-      `Total Departments Processed: ${totalProcessedDepartments}`,
-      `Unmatched Departments: ${unmatchedDepartments.size}`,
-      `Unmatched Files: ${unmatchedFiles.size}`,
-      '='.repeat(80)
-    ].join('\n');
-    
-    fs.appendFileSync(logFile, footer);
-    log('\nProcessing complete');
-
+    return true;
   } catch (error) {
-    log(`Error in main execution: ${error.message}`, 'error');
-    process.exit(1);
+    log(`Error updating programs.json: ${error.message}`, 'error', false, true);
+    return false;
   }
 };
 
+// Function to update budgets.json
+const updateBudgetsJson = (allocations, log) => {
+  try {
+    // Load existing budgets.json
+    const budgetsData = JSON.parse(fs.readFileSync(BUDGETS_JSON_PATH, 'utf8'));
+    
+    // Process each allocation
+    for (const alloc of allocations) {
+      // Find or create organization budget
+      let orgBudget = budgetsData.budget.find(b => b.code === alloc.organizationCode);
+      if (!orgBudget) {
+        orgBudget = {
+          code: alloc.organizationCode,
+          fiscalYear: []
+        };
+        budgetsData.budget.push(orgBudget);
+      }
+      
+      // Find or create fiscal year data
+      let fiscalYearData = orgBudget.fiscalYear.find(fy => fy.year === alloc.fiscalYear);
+      if (!fiscalYearData) {
+        fiscalYearData = {
+          year: alloc.fiscalYear,
+          projectCode: []
+        };
+        orgBudget.fiscalYear.push(fiscalYearData);
+      }
+      
+      // Find or create project code data
+      let projectData = fiscalYearData.projectCode.find(p => p.code === alloc.projectCode);
+      if (!projectData) {
+        projectData = {
+          code: alloc.projectCode,
+          organizationCode: []
+        };
+        fiscalYearData.projectCode.push(projectData);
+      }
+      
+      // Find or create organization code data
+      let orgCodeData = projectData.organizationCode.find(o => o.code === alloc.organizationCode);
+      if (!orgCodeData) {
+        orgCodeData = {
+          code: alloc.organizationCode,
+          fundingType: []
+        };
+        projectData.organizationCode.push(orgCodeData);
+      }
+      
+      // Find or create funding type data
+      let fundingTypeData = orgCodeData.fundingType.find(ft => ft.type === alloc.fundingType);
+      if (!fundingTypeData) {
+        fundingTypeData = {
+          type: alloc.fundingType,
+          fundCode: []
+        };
+        orgCodeData.fundingType.push(fundingTypeData);
+      }
+      
+      // Add fund allocation
+      fundingTypeData.fundCode.push({
+        code: alloc.fundCode,
+        count: alloc.count,
+        amount: alloc.amount
+      });
+    }
+    
+    // Save updated budgets.json
+    fs.writeFileSync(BUDGETS_JSON_PATH, JSON.stringify(budgetsData, null, 2));
+    log(`Updated budgets.json with ${allocations.length} budget allocations`, 'info', false, true);
+    
+    return true;
+  } catch (error) {
+    log(`Error updating budgets.json: ${error.message}`, 'error', false, true);
+    return false;
+  }
+};
+
+// Main function
+const main = async () => {
+  const { log, logFile } = setupLogging();
+  log(`Budget data processing started`, 'info', true);
+  
+  try {
+    // Step 1: Load departments.json
+    log(`Loading departments.json`, 'info', true);
+    
+    if (!fs.existsSync(DEPARTMENTS_JSON_PATH)) {
+      log(`ERROR: departments.json not found at ${DEPARTMENTS_JSON_PATH}`, 'error', false, true);
+      return;
+    }
+    
+    const departmentsData = JSON.parse(fs.readFileSync(DEPARTMENTS_JSON_PATH, 'utf8'));
+    log(`Loaded ${departmentsData.departments.length} departments`, 'info', false, true);
+    
+    // Step 2: Get list of budget text files
+    log(`Scanning budget data directory`, 'info', true);
+    const budgetFiles = fs.readdirSync(BUDGET_DATA_DIR)
+      .filter(file => file.endsWith('.txt'))
+      .map(file => path.join(BUDGET_DATA_DIR, file));
+    
+    log(`Found ${budgetFiles.length} budget text files`, 'info', false, true);
+    
+    if (budgetFiles.length === 0) {
+      log(`No budget text files found in ${BUDGET_DATA_DIR}`, 'warn', false, true);
+      return;
+    }
+    
+    // Step 3: Process each budget file
+    log(`Processing budget files`, 'info', true);
+    
+    let processedCount = 0;
+    let skipCount = 0;
+    let errorCount = 0;
+    
+    for (const filePath of budgetFiles) {
+      try {
+        log(`\nProcessing ${path.basename(filePath)}`, 'info', false, true);
+        
+        // Parse the budget file
+        const success = await parseBudgetFile(filePath, log, departmentsData);
+        
+        if (success) {
+          processedCount++;
+        } else {
+          log(`Could not process ${path.basename(filePath)}`, 'warn', false, true);
+          skipCount++;
+        }
+      } catch (error) {
+        log(`Error processing ${path.basename(filePath)}: ${error.message}`, 'error', false, true);
+        errorCount++;
+      }
+    }
+    
+    // Step 4: Summary
+    log(`\nBudget data processing summary`, 'info', true);
+    log(`Total budget files processed: ${budgetFiles.length}`, 'info', false, true);
+    log(`Files successfully processed: ${processedCount}`, 'info', false, true);
+    log(`Files skipped: ${skipCount}`, 'info', false, true);
+    log(`Errors encountered: ${errorCount}`, 'info', false, true);
+    log(`Log file: ${logFile}`, 'info', false, true);
+
+  } catch (error) {
+    log(`Critical error: ${error.message}`, 'error', true);
+    log(`Stack trace: ${error.stack}`, 'error', false, true);
+  }
+};
+
+// Run the script
 main();

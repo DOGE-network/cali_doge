@@ -380,7 +380,8 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
       averageAge: null,
       tenureDistribution: { yearly: emptyTenureRecord },
       salaryDistribution: { yearly: emptySalaryRecord },
-      ageDistribution: { yearly: emptyAgeRecord }
+      ageDistribution: { yearly: emptyAgeRecord },
+      entityCode: null
     }),
     subDepartments: [],
     subordinateOffices: 0,

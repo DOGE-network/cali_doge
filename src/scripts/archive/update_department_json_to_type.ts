@@ -873,7 +873,8 @@ const main = async () => {
         }
         
         // Display grouped issues
-        for (const [reason, issues] of issueGroups.entries()) {
+        const issueGroupsArray = Array.from(issueGroups.entries());
+        for (const [reason, issues] of issueGroupsArray) {
           console.log(`\nIssue: ${reason}`);
           console.log(`Affected departments (${issues.length}):`);
           

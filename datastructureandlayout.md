@@ -164,7 +164,7 @@ vendorName: array
 - vendors.json follows the updated structure
 - EIN will be added through resolution process
 
-### EIN Resolution and Management
+### EIN Resolution and Management (not implemented)
 
 #### Integration with Vendor Processing
 ```typescript
