@@ -21,9 +21,9 @@ export default function SavingsPage() {
           
           <div className="border p-6 rounded-lg">
             <h3 className="text-2xl font-bold mb-2">Per Taxpayer Impact</h3>
-            <p className="text-5xl font-bold mb-4">$789.45</p>
+            <p className="text-5xl font-bold mb-4">$1,420.45</p>
             <p>
-              Calculated using an estimate of 31.6 million individual California taxpayers.
+              Calculated using an estimate of 17.6 million individual California taxpayers for 2024
             </p>
           </div>
         </div>
@@ -144,11 +144,10 @@ export default function SavingsPage() {
       <section>
         <h2 className="text-2xl font-bold mb-6">Sources</h2>
         <p className="mb-4">
-          The information presented on this page is compiled from publicly available <a href="https://information.auditor.ca.gov/reports" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">California State Auditor reports</a> and other government documents. The potential savings figures represent estimates based on
-          these official sources.
+          The information presented on this page is compiled from publicly available <a href="https://information.auditor.ca.gov/reports" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">California State Auditor reports</a> and other government documents. The potential savings figures represent estimates based on these official sources.
         </p>
         <p>
-          Last updated: March 5, 2023
+          Last updated: May 21, 2025
         </p>
       </section>
     </main>
