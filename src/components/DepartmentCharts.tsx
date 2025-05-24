@@ -162,7 +162,7 @@ const getAverageTypeLabel = (averageType: string): string => {
     case 'p84': return 'employee at 84th percentile';
     case 'p95': return 'employee at 95th percentile';
     case 'median': return 'median employee';
-    case 'trimmed': return 'trimmed average (20K-500K) employee';
+    case 'trimmed': return 'trimmed average (20K-500K)';
     default: return 'average';
   }
 };
