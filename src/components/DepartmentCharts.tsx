@@ -1,7 +1,10 @@
-import { useMemo } from 'react';
+"use client"
+
+import React, { useMemo, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
 import Image from 'next/image';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface CustomTooltipProps extends Omit<TooltipProps<ValueType, NameType>, 'type'> {
   type: 'tenure' | 'salary' | 'age';
@@ -78,6 +81,92 @@ const calculateAverageFromDistribution = (distribution: RawDistributionItem[]): 
   return totalCount > 0 ? weightedSum / totalCount : null;
 };
 
+// Statistical calculation functions for different average types
+const calculateStatisticalMeasures = (distribution: RawDistributionItem[]) => {
+  if (!distribution?.length) return null;
+
+  // Calculate basic statistics
+  const values: number[] = [];
+  distribution.forEach(({ range, count }) => {
+    const [min, max] = range;
+    const midpoint = (min + max) / 2;
+    for (let i = 0; i < count; i++) {
+      values.push(midpoint);
+    }
+  });
+
+  if (values.length === 0) return null;
+
+  values.sort((a, b) => a - b);
+
+  // Mean (same as existing calculation)
+  const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
+
+  // Median
+  const median = values.length % 2 === 0
+    ? (values[values.length / 2 - 1] + values[values.length / 2]) / 2
+    : values[Math.floor(values.length / 2)];
+
+  // Percentile calculation function
+  const getPercentile = (values: number[], percentile: number): number => {
+    const index = (percentile / 100) * (values.length - 1);
+    if (Number.isInteger(index)) {
+      return values[index];
+    } else {
+      const lower = Math.floor(index);
+      const upper = Math.ceil(index);
+      const weight = index - lower;
+      return values[lower] * (1 - weight) + values[upper] * weight;
+    }
+  };
+
+  // Calculate percentiles
+  const percentile68 = getPercentile(values, 68);
+  const percentile84 = getPercentile(values, 84);
+  const percentile95 = getPercentile(values, 95);
+
+  // Trimmed mean (removing <20K and >500K)
+  const trimmedValues = values.filter(val => val >= 20000 && val <= 500000);
+  const trimmedMean = trimmedValues.length > 0
+    ? trimmedValues.reduce((sum, val) => sum + val, 0) / trimmedValues.length
+    : null;
+
+  return {
+    mean,
+    median,
+    trimmedMean,
+    percentile68,
+    percentile84,
+    percentile95
+  };
+};
+
+const getSelectedStatistic = (stats: any, averageType: string): number | null => {
+  if (!stats) return null;
+  
+  switch (averageType) {
+    case 'mean': return stats.mean;
+    case 'p68': return stats.percentile68;
+    case 'p84': return stats.percentile84;
+    case 'p95': return stats.percentile95;
+    case 'median': return stats.median;
+    case 'trimmed': return stats.trimmedMean;
+    default: return stats.mean;
+  }
+};
+
+const getAverageTypeLabel = (averageType: string): string => {
+  switch (averageType) {
+    case 'mean': return 'average';
+    case 'p68': return 'employee at 68th percentile';
+    case 'p84': return 'employee at 84th percentile';
+    case 'p95': return 'employee at 95th percentile';
+    case 'median': return 'median employee';
+    case 'trimmed': return 'trimmed average (20K-500K) employee';
+    default: return 'average';
+  }
+};
+
 const transformDistributionData = (distribution: RawDistributionItem[], total: number, type: 'tenure' | 'salary' | 'age') => {
   if (!distribution?.length || total === 0) return [];
 
@@ -149,6 +238,9 @@ export default function DepartmentCharts({
   averageAge,
   aggregatedDistributions 
 }: DepartmentChartsProps) {
+  // State for average type selection
+  const [averageType, setAverageType] = useState<string>('mean');
+
   const _headcount = employeeData.headcount;
   const _wages = employeeData.wages;
   const _averageSalary = employeeData.averageSalary;
@@ -202,9 +294,18 @@ export default function DepartmentCharts({
     ? calculateAverageFromDistribution(aggregatedDistributions?.tenureDistribution || employeeData.tenureDistribution) 
     : averageTenureYears;
 
-  const effectiveAverageSalary = employeeData.salaryDistribution?.length > 0
-    ? calculateAverageFromDistribution(aggregatedDistributions?.salaryDistribution || employeeData.salaryDistribution)
-    : averageSalary;
+  // Calculate statistical measures for salary
+  const salaryStats = useMemo(() => {
+    const distribution = aggregatedDistributions?.salaryDistribution || employeeData.salaryDistribution;
+    return calculateStatisticalMeasures(distribution);
+  }, [aggregatedDistributions?.salaryDistribution, employeeData.salaryDistribution]);
+
+  const effectiveAverageSalary = useMemo(() => {
+    if (employeeData.salaryDistribution?.length > 0 || (aggregatedDistributions?.salaryDistribution && aggregatedDistributions.salaryDistribution.length > 0)) {
+      return getSelectedStatistic(salaryStats, averageType);
+    }
+    return averageSalary;
+  }, [salaryStats, averageType, employeeData.salaryDistribution, aggregatedDistributions?.salaryDistribution, averageSalary]);
 
   const effectiveAverageAge = employeeData.ageDistribution?.length > 0
     ? calculateAverageFromDistribution(aggregatedDistributions?.ageDistribution || employeeData.ageDistribution)
@@ -293,7 +394,24 @@ export default function DepartmentCharts({
         </div>
         
         <div className="min-w-[200px] max-w-[500px]" style={{ position: 'relative' }}>
-          <h3 className="text-lg font-semibold mb-2">Salary</h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-lg font-semibold">Salary</h3>
+            {(chartData.salary.length > 0) && (
+              <Select value={averageType} onValueChange={setAverageType}>
+                <SelectTrigger className="w-48 h-8 text-xs bg-white">
+                  <SelectValue placeholder="Select average type" />
+                </SelectTrigger>
+                <SelectContent className="bg-white">
+                  <SelectItem value="mean">Mean: Average (midpoint calculation)</SelectItem>
+                  <SelectItem value="p68">68th percentile: What 68% of employees earn less than</SelectItem>
+                  <SelectItem value="p84">84th percentile: What 84% of employees earn less than</SelectItem>
+                  <SelectItem value="p95">95th percentile: What 95% of employees earn less than</SelectItem>
+                  <SelectItem value="median">Median: The true middle value</SelectItem>
+                  <SelectItem value="trimmed">Trimmed Mean: Average excluding extreme outliers</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          </div>
           {chartData.salary.length > 0 ? (
             <>
               <div className="h-64">
@@ -322,7 +440,7 @@ export default function DepartmentCharts({
                 </ResponsiveContainer>
               </div>
               <p className="text-sm text-gray-600 mt-0 text-center">
-                The average employee makes {effectiveAverageSalary ? formatCurrency(effectiveAverageSalary) : 'N/A'}/yr
+                The {getAverageTypeLabel(averageType)} employee makes {effectiveAverageSalary ? formatCurrency(effectiveAverageSalary) : 'N/A'}/yr
               </p>
             </>
           ) : (
