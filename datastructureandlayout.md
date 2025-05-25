@@ -150,13 +150,23 @@ vendorName: array
 
 ### Update Process Department Spending Script
 - Update process_department_spending.js code, logging, and header comments:
-  - Each budget txt file has multiple department sections followed by program descriptions and subsections
+  - Each budget txt file has multiple department sections and subsections
   - Log all output, input, writes, reads, errors and actions
   - Section: for each with 4 digit org code and department name on a line followed by department description as paragraphs, and then followed by "3-YR EXPENDITURES AND POSITIONS"
-  - Match 4 digit org code and department name to a single record in departments.json using src/lib/departmentMatching.js
-  - If match then update the department json record organizational code, and or add the department name to aliases
+  - text line that has "- Continued" is not a section, just a source file footer comment
+  - Match 4 digit org code and or department name to a single record in departments.json using src/lib/departmentMatching.js
+  - If match then prompt user to update the department json record organizational code, description, and or add the department name to aliases
   - Subsection one: match "PROGRAM DESCRIPTIONS" programs and subprograms
+    - this is an optional subsection
+    - if found, match the 7 digit code as projectCode, program name and program description with programs.json. Use the same program json update logic as process vendors script. 
   - Subsection two: match "DETAILED EXPENDITURES BY PROGRAM" for budget data
+    - required subsection
+    - 3 year dates
+    - "PROGRAM REQUIREMENTS"
+    - then many programs with program code, program name, fund type, fund code, amounts organized by the 3 year dates
+    - can use the totals by fund type to validate all the amounts were read correctly
+    - for fund types can be either "State Operations:" and or "Local Assistance:"
+    - write data to budgets.json using above type interfaces
 
 ### Vendor Processing Scripts Update
 - Create two json files: vendor_transactions.json and vendors.json

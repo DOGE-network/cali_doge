@@ -1,5 +1,5 @@
 // Pull in department types
-import { DepartmentData } from '@/types/department';
+import { DepartmentData } from '../types/department';
 
 // Define interfaces for our matching types
 interface DepartmentMatch {

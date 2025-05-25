@@ -3,13 +3,6 @@
  */
 
 /**
- * FundingType type alias
- * - 0 = "State Operations": Funding for regular state agency operations
- * - 1 = "Local Assistance": Funding distributed to local governments and entities
- */
-export type FundingType = 0 | 1;
-
-/**
  * Represents a fund allocation within a budget
  */
 export interface FundAllocation {
@@ -17,6 +10,13 @@ export interface FundAllocation {
   count: number;
   amount: number;
 }
+
+/**
+ * FundingType type alias
+ * - 0 = "State Operations": Funding for regular state agency operations
+ * - 1 = "Local Assistance": Funding distributed to local governments and entities
+ */
+export type FundingType = 0 | 1;
 
 /**
  * Represents funding type data with fund allocations
@@ -27,19 +27,11 @@ export interface FundingTypeData {
 }
 
 /**
- * Represents organization code data with funding types
- */
-export interface OrganizationCodeData {
-  code: number;
-  fundingType: FundingTypeData[];
-}
-
-/**
- * Represents project code data with organization codes
+ * Represents project code data with funding types
  */
 export interface ProjectCodeData {
-  code: string;
-  organizationCode: OrganizationCodeData[];
+  code: string;  // 7-digit project code as string to preserve leading zeros
+  fundingType: FundingTypeData[];
 }
 
 /**
@@ -51,10 +43,10 @@ export interface FiscalYearData {
 }
 
 /**
- * Represents an organizational budget with fiscal years
+ * Represents an organizational budget with organization code and fiscal years
  */
 export interface OrganizationalBudget {
-  code: number;
+  code: string;  // 4-digit fund code as string to preserve leading zeros
   fiscalYear: FiscalYearData[];
 }
 
@@ -63,6 +55,9 @@ export interface OrganizationalBudget {
  */
 export interface BudgetsJSON {
   budget: OrganizationalBudget[];
+  processedFiles?: string[];
+  lastProcessedFile?: string | null;
+  lastProcessedTimestamp?: string | null;
   sources?: Array<{
     name: string;
     url: string;

@@ -365,7 +365,7 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
   const root: DepartmentHierarchy = {
     ...(rootDept || {
       name: 'California State Government',
-      slug: ('california_state_government' as ValidSlug),
+      _slug: ('california_state_government' as ValidSlug),
       canonicalName: 'California State Government',
       aliases: [],
       orgLevel: (0 as NonNegativeInteger),
@@ -375,9 +375,9 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
       parent_agency: '',
       headCount: { yearly: emptyYearlyRecord },
       wages: { yearly: emptyYearlyRecord },
-      averageTenureYears: null,
-      averageSalary: null,
-      averageAge: null,
+      _averageTenureYears: null,
+      _averageSalary: null,
+      _averageAge: null,
       tenureDistribution: { yearly: emptyTenureRecord },
       salaryDistribution: { yearly: emptySalaryRecord },
       ageDistribution: { yearly: emptyAgeRecord },
@@ -534,7 +534,7 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
     dept.originalData = {
       headCount: { yearly: { ...dept.headCount?.yearly } },
       wages: { yearly: { ...dept.wages?.yearly } },
-      averageSalary: dept.averageSalary,
+      _averageSalary: dept._averageSalary,
       tenureDistribution: dept.tenureDistribution,
       salaryDistribution: dept.salaryDistribution,
       ageDistribution: dept.ageDistribution
@@ -653,7 +653,7 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
   // Get FY2023 specific data with proper type checking
   const _workforceData = typeof department.headCount?.yearly?.[fiscalYear] === 'number' ? department.headCount.yearly[fiscalYear] : undefined;
   const _wagesData = typeof department.wages?.yearly?.[fiscalYear] === 'number' ? department.wages.yearly[fiscalYear] : undefined;
-  const _averageSalary = typeof department.averageSalary === 'number' ? department.averageSalary : undefined;
+  const _averageSalary = typeof department._averageSalary === 'number' ? department._averageSalary : undefined;
   
   return (
     <div className={`space-y-4 ${isActive ? 'ring-2 ring-blue-500 rounded-lg' : ''}`}>
@@ -897,7 +897,7 @@ function WorkforcePageContent() {
       // Find department directly in the hierarchy
       const findDepartmentInHierarchy = (depts: DepartmentHierarchy[], targetName: string): DepartmentHierarchy | null => {
         for (const dept of depts) {
-          if (dept.name === targetName || dept.slug === targetName) {
+          if (dept.name === targetName || dept._slug === targetName) {
             return dept;
           }
           if (dept.subDepartments) {

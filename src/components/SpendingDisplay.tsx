@@ -84,7 +84,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
         return {
           name: dept.name,
           spending: dept.spending.yearly,
-          slug: dept.slug,
+          _slug: dept._slug,
           pageSlug: dept.pageSlug,
           hasPage: Boolean(dept.pageSlug),
           totalSpending
@@ -113,7 +113,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
         </thead>
         <tbody>
           {agenciesToDisplay.map((agency) => {
-            const isHighlighted = highlightedDepartment === agency.slug;
+            const isHighlighted = highlightedDepartment === agency._slug;
             return (
               <tr 
                 key={agency.name}

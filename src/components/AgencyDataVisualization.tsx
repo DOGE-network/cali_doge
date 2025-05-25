@@ -35,7 +35,7 @@ export default function AgencyDataVisualization({ department, viewMode, fiscalYe
       ownData: ownData ? {
         headCount: ownData.headCount?.yearly?.[fiscalYear],
         wages: ownData.wages?.yearly?.[fiscalYear],
-        averageSalary: ownData.averageSalary
+        _averageSalary: ownData._averageSalary
       } : null
     });
 
@@ -50,7 +50,7 @@ export default function AgencyDataVisualization({ department, viewMode, fiscalYe
 
     const averageSalary = viewMode === 'aggregated' && aggregatedData ? 
       aggregatedData.combinedAverageSalary : 
-      (aggregatedData?.parentAverageSalary ?? ownData?.averageSalary ?? null);
+      (aggregatedData?.parentAverageSalary ?? ownData?._averageSalary ?? null);
 
     // Log the final values being used
     console.log('AgencyDataVisualization final values:', {
@@ -70,8 +70,8 @@ export default function AgencyDataVisualization({ department, viewMode, fiscalYe
       tenureDistribution: department.tenureDistribution?.yearly?.[fiscalYear] || [],
       salaryDistribution: department.salaryDistribution?.yearly?.[fiscalYear] || [],
       ageDistribution: department.ageDistribution?.yearly?.[fiscalYear] || [],
-      averageTenure: department.averageTenureYears ?? null,
-      averageAge: department.averageAge ?? null
+      averageTenure: department._averageTenureYears ?? null,
+      averageAge: department._averageAge ?? null
     };
   }, [department, viewMode, fiscalYear]);
 

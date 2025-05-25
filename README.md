@@ -39,7 +39,7 @@ Our goal is to provide clear, actionable insights that can lead to more efficien
 
 ### Workforce Organization as we see it
 
-The structure outlined in publicpay, fiscal, and ebudget sites conflict slightly. Using some basic logic and understanding of how organizations work in practice, the workforce hierarchy represents that structure
+The structure outlined in publicpay, fiscal, and ebudget sites conflict slightly. Using some basic logic and understanding of how organizations work in practice, the workforce hierarchy represents that structure. 
 
 ### Explaining Organizational, Budget, Entity, Program, SubProgram, Project, Grant ID, Portal ID codes
 
@@ -72,7 +72,7 @@ Where 2720 is the business unit/organization/organizational code for the Califor
 **All the codes explained**
 
 **1. Organization/Business Unit Code (4 digits)**  
-- **Definition:** Identifies a state department, agency, or entity. The terms “organizational code,” “organization code,” and “business unit code” all refer to the same four-digit identifier used to represent a department or entity in the California state budget and fiscal systems. Used for budgeting, accounting, and fiscal reporting across all state agencies. 
+- **Definition:** Identifies a state department, agency, or entity. The terms “organizational code,” “organization code,” and “business unit code” all refer to the same four-digit identifier used to represent a department or entity in the California state budget and fiscal systems. Used for budgeting, accounting, and fiscal reporting across all state agencies. **General rule for if budget organization code and name is a department. It must have headcount to be a department otherwise it is simply a finance placeholder.**
 - **Example:** `0280` = Commission on Judicial Performance.  
 - **Source:**  
   - Defined in the **Uniform Codes Manual** https://www.dgs.ca.gov/Resources/SAM/TOC/7100/7131  ,  https://dof.ca.gov/wp-content/uploads/sites/352/Accounting/Policies_and_Procedures/Uniform_Codes_Manual/18fndsrc.pdf  

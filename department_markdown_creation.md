@@ -1,0 +1,273 @@
+# Department Markdown Creation Log
+
+## after done with 2023-2025 spend
+- start on https://dof.ca.gov/budget/historical-budget-information/historical-budget-publications/ to find the rest of the spending data for 2010 to 2025 for all departments. attempt to get source files saved in /data.
+- then start on workforce data starting with https://publicpay.ca.gov/Reports/RawExport.aspx attempt to get source files saved in /data.
+
+## steps (do not modify)
+- using the ./src/data/budget_docs/text/ as the authoriative source
+- follow instructions completely for every new file
+- use the log department_markdown_creation.md to track which departments have been completed while not modifying steps in the header. 
+1. Create a markdown file for each department using air resources board as example with budget highlights, major projects, administrative structure, and funding allocation process. Always use today's date. Must include all sections.Never modify the example department file 3900. 
+2. Update ./src/data/departments.json spend and workforce data using air resources board as example. For spend, only use the TOTALS, POSITIONS AND EXPENDITURES data. source EXPENDITURES data in thousands. For wages, only use the TOTALS, SALARIES AND WAGES. source WAGES data in thousands .
+3. Update ./src/data/executive_branch_hierachy.json department record using air resources board as example
+4. Using the logged departments, double check step 1, 2 and 3 were completed corrected. 
+
+## Step 1: Create markdown files for all departments
+### Example File (Do Not Modify):
+- [x] 3900 - Air Resources Board
+
+### Files to Create:
+- [x] 0250 - Judicial Branch
+- [x] 0500 - Governor's Office
+- [x] 0509 - Governor's Office of Business and Economic Development
+- [x] 0511 - Secretary for Government Operations
+- [x] 0515 - Secretary of Business, Consumer Services and Housing
+- [x] 0521 - Secretary of Transportation
+- [x] 0530 - Secretary of Health and Human Services
+- [x] 0540 - California Natural Resources Agency
+- [x] 0555 - California Environmental Protection Agency
+- [x] 0559 - Secretary for Labor and Workforce Development
+- [x] 0650 - Office of Planning and Research
+- [x] 0690 - Office of Emergency Services
+- [x] 0750 - Office of the Lieutenant Governor
+- [x] 0820 - Department of Justice
+- [x] 0840 - State Controller
+- [x] 0845 - Department of Insurance
+- [x] 0890 - Secretary of State
+- [x] 0950 - State Treasurer's Office
+- [x] 1111 - Department of Consumer Affairs
+- [x] 1700 - Civil Rights Department
+- [x] 1701 - Department of Financial Protection and Innovation
+- [x] 1750 - Horse Racing Board
+- [x] 1760 - Department of General Services
+- [x] 2660 - Department of Transportation
+- [x] 2720 - California Highway Patrol
+- [x] 2740 - Department of Motor Vehicles
+- [x] 3100 - Exposition Park
+- [x] 3125 - California Tahoe Conservancy
+- [x] 3340 - California Conservation Corps
+- [x] 3360 - Energy Commission
+- [x] 3460 - Colorado River Board
+- [x] 3480 - Department of Conservation
+- [x] 3540 - Department of Forestry and Fire Protection
+- [x] 3560 - State Lands Commission
+- [x] 3600 - Department of Fish and Wildlife
+- [x] 3640 - Wildlife Conservation Board
+- [x] 3720 - California Coastal Commission
+- [x] 3760 - California Coastal Conservancy
+- [x] 3780 - Native American Heritage Commission
+- [ ] 3790 - Department of Parks and Recreation
+- [ ] 3810 - Santa Monica Mountains Conservancy
+- [ ] 3820 - San Francisco Bay Conservation and Development Commission
+- [ ] 3825 - San Gabriel and Lower Los Angeles Rivers and Mountains Conservancy
+- [ ] 3830 - San Joaquin River Conservancy
+- [ ] 3835 - Baldwin Hills Conservancy
+- [ ] 3840 - Delta Protection Commission
+- [ ] 3845 - San Diego River Conservancy
+- [ ] 3850 - Coachella Valley Mountains Conservancy
+- [ ] 3855 - Sierra Nevada Conservancy
+- [ ] 3860 - Department of Water Resources
+- [ ] 3875 - Sacramento-San Joaquin Delta Conservancy
+- [ ] 3940 - Water Resources Control Board
+- [ ] 4100 - State Council on Developmental Disabilities
+- [ ] 4120 - Emergency Medical Services Authority
+- [ ] 4140 - Department of Health Care Access and Information
+- [ ] 4150 - Department of Managed Health Care
+- [ ] 4170 - Department of Aging
+- [ ] 4180 - Commission on Aging
+- [ ] 4185 - California Senior Legislature
+- [ ] 4260 - Department of Health Care Services
+- [ ] 4260 - Department of Toxic Substances Control
+- [ ] 4265 - Department of Public Health
+- [x] 4260_california_department_of_health_care_services
+- [x] 4300 - Department of Developmental Services
+- [x] 4440 - Department of State Hospitals
+- [ ] 4560 - Mental Health Services Oversight and Accountability Commission
+- [ ] 4700 - Department of Community Services and Development
+- [ ] 4800 - California Health Benefit Exchange
+- [x] 5180 - Department of Social Services
+- [x] 5225 - Department of Corrections and Rehabilitation
+- [ ] 5227 - Board of State and Community Corrections
+- [ ] 6100 - Department of Education
+- [ ] 6120 - California State Library
+- [ ] 6125 - California Law Revision Commission
+- [ ] 6255 - California Gambling Control Commission
+- [ ] 6360 - Commission on Teacher Credentialing
+- [ ] 6440 - University of California
+- [ ] 6600 - Hastings College of the Law
+- [ ] 6610 - California State University
+- [ ] 6870 - California Community Colleges
+- [ ] 6980 - Student Aid Commission
+- [ ] 7100 - Employment Development Department
+- [ ] 7120 - California Workforce Development Board
+- [ ] 7300 - Agricultural Labor Relations Board
+- [ ] 7320 - Public Employment Relations Board
+- [ ] 7350 - Department of Industrial Relations
+- [ ] 7501 - Department of Human Resources
+- [ ] 7502 - Department of Technology
+- [x] 7760_department_of_general_services
+- [ ] 8260 - California Arts Council
+- [x] 8380_california_department_of_human_resources
+- [ ] 8570 - Department of Food and Agriculture
+- [ ] 8620 - Fair Political Practices Commission
+- [ ] 8640 - Political Reform Act of 1974
+- [ ] 8660 - Public Utilities Commission
+- [ ] 8780 - Milton Marks "Little Hoover" Commission
+- [ ] 8820 - Commission on the Status of Women and Girls
+- [ ] 8830 - California Law Revision Commission
+- [ ] 8855 - State Auditor's Office
+- [ ] 8860 - Department of Finance
+- [ ] 8940 - Military Department
+- [x] 8955 - Department of Veterans Affairs
+
+## Step 2: Update department json data for all departments
+### Example Department (Do Not Modify):
+- [x] 3900 - Air Resources Board
+
+### Departments to Update:
+- [x] 0250 - Judicial Branch
+- [x] 0500 - Governor's Office
+- [x] 0509 - Governor's Office of Business and Economic Development
+- [x] 0511 - Secretary for Government Operations
+- [x] 0515 - Secretary of Business, Consumer Services and Housing
+- [x] 0521 - Secretary of Transportation
+- [x] 0530 - Secretary of Health and Human Services
+- [x] 0540 - California Natural Resources Agency
+- [x] 0555 - California Environmental Protection Agency
+- [x] 0559 - Secretary for Labor and Workforce Development
+- [x] 0650 - Office of Planning and Research
+- [x] 0690 - Office of Emergency Services
+- [x] 0750 - Office of the Lieutenant Governor
+- [x] 0820 - Department of Justice
+- [x] 0840 - State Controller
+- [x] 0845 - Department of Insurance
+- [x] 0890 - Secretary of State
+- [x] 0950 - State Treasurer's Office
+- [x] 1111 - Department of Consumer Affairs
+- [x] 1700 - Civil Rights Department
+- [x] 1701 - Department of Financial Protection and Innovation
+- [x] 1750 - Horse Racing Board
+- [x] 1760 - Department of General Services
+- [x] 2660 - Department of Transportation
+- [x] 2720 - California Highway Patrol
+- [x] 2740 - Department of Motor Vehicles
+- [x] 3100 - Exposition Park
+- [x] 3125 - California Tahoe Conservancy
+- [x] 3340 - California Conservation Corps
+- [x] 3360 - Energy Commission
+- [x] 3460 - Colorado River Board
+- [x] 3480 - Department of Conservation
+- [x] 3540 - Department of Forestry and Fire Protection
+- [x] 3560 - State Lands Commission
+- [x] 3600 - Department of Fish and Wildlife
+- [x] 3640 - Wildlife Conservation Board
+- [x] 3720 - California Coastal Commission
+- [x] 3760 - California Coastal Conservancy
+- [x] 3780 - Native American Heritage Commission
+- [ ] 3790 - Department of Parks and Recreation
+- [ ] 3810 - Santa Monica Mountains Conservancy
+- [ ] 3820 - San Francisco Bay Conservation and Development Commission
+- [ ] 3825 - San Gabriel and Lower Los Angeles Rivers and Mountains Conservancy
+- [ ] 3830 - San Joaquin River Conservancy
+- [ ] 3835 - Baldwin Hills Conservancy
+- [ ] 3840 - Delta Protection Commission
+- [ ] 3845 - San Diego River Conservancy
+- [ ] 3850 - Coachella Valley Mountains Conservancy
+- [ ] 3855 - Sierra Nevada Conservancy
+- [ ] 3860 - Department of Water Resources
+- [ ] 3875 - Sacramento-San Joaquin Delta Conservancy
+- [ ] 3940 - Water Resources Control Board
+- [ ] 4100 - State Council on Developmental Disabilities
+- [ ] 4120 - Emergency Medical Services Authority
+- [ ] 4140 - Department of Health Care Access and Information
+- [ ] 4150 - Department of Managed Health Care
+- [ ] 4170 - Department of Aging
+- [ ] 4180 - Commission on Aging
+- [ ] 4185 - California Senior Legislature
+- [ ] 4260 - Department of Health Care Services
+- [ ] 4260 - Department of Toxic Substances Control
+- [ ] 4265 - Department of Public Health
+- [ ] 4300 - Department of Developmental Services
+- [ ] 4440 - Department of State Hospitals
+- [ ] 4560 - Mental Health Services Oversight and Accountability Commission
+- [ ] 4700 - Department of Community Services and Development
+- [ ] 4800 - California Health Benefit Exchange
+- [ ] 5180 - Department of Social Services
+- [ ] 5225 - Department of Corrections and Rehabilitation
+- [ ] 5227 - Board of State and Community Corrections
+- [ ] 6100 - Department of Education
+- [ ] 6120 - California State Library
+- [ ] 6125 - California Law Revision Commission
+- [ ] 6255 - California Gambling Control Commission
+- [ ] 6360 - Commission on Teacher Credentialing
+- [ ] 6440 - University of California
+- [ ] 6600 - Hastings College of the Law
+- [ ] 6610 - California State University
+- [ ] 6870 - California Community Colleges
+- [ ] 6980 - Student Aid Commission
+- [ ] 7100 - Employment Development Department
+- [ ] 7120 - California Workforce Development Board
+- [ ] 7300 - Agricultural Labor Relations Board
+- [ ] 7320 - Public Employment Relations Board
+- [ ] 7350 - Department of Industrial Relations
+- [ ] 7501 - Department of Human Resources
+- [ ] 7502 - Department of Technology
+- [ ] 8260 - California Arts Council
+- [ ] 8570 - Department of Food and Agriculture
+- [ ] 8620 - Fair Political Practices Commission
+- [ ] 8640 - Political Reform Act of 1974
+- [ ] 8660 - Public Utilities Commission
+- [ ] 8780 - Milton Marks "Little Hoover" Commission
+- [ ] 8820 - Commission on the Status of Women and Girls
+- [ ] 8830 - California Law Revision Commission
+- [ ] 8855 - State Auditor's Office
+- [ ] 8860 - Department of Finance
+- [ ] 8940 - Military Department
+- [ ] 8955 - Department of Veterans Affairs
+
+## Step 3: Add to Executive Branch Hierarchy
+
+1. Constitutional Officers:
+- [x] 0500 - Governor's Office
+- [x] 0750 - Office of the Lieutenant Governor
+- [x] 0820 - Department of Justice
+- [x] 0840 - State Controller
+- [x] 0845 - Department of Insurance
+- [x] 0890 - Secretary of State
+- [x] 0950 - State Treasurer's Office
+
+2. Agency Secretaries:
+- [x] 0511 - Secretary for Government Operations
+- [x] 0530 - Secretary of Health and Human Services
+- [x] 0540 - California Natural Resources Agency
+- [x] 0555 - California Environmental Protection Agency
+- [x] 0559 - Secretary for Labor and Workforce Development
+
+3. Departments and Other Entities:
+- [x] 0509 - Governor's Office of Business and Economic Development
+- [x] 0515 - Secretary of Business, Consumer Services and Housing
+- [x] 0521 - Secretary of Transportation
+- [x] 0650 - Office of Planning and Research
+- [x] 0690 - Office of Emergency Services
+- [x] 1111 - Department of Consumer Affairs
+- [x] 1700 - Civil Rights Department
+- [x] 1701 - Department of Financial Protection and Innovation
+- [x] 1750 - Horse Racing Board
+- [x] 1760 - Department of General Services
+- [x] 2660 - Department of Transportation
+- [x] 2720 - California Highway Patrol
+- [x] 2740 - Department of Motor Vehicles
+- [x] 3100 - Exposition Park
+- [x] 3125 - California Tahoe Conservancy
+- [x] 3340 - California Conservation Corps
+- [x] 3360 - Energy Commission
+- [x] 3460 - Colorado River Board
+- [x] 3480 - Department of Conservation
+- [x] 3540 - Department of Forestry and Fire Protection
+- [x] 3560 - State Lands Commission
+- [x] 3600 - Department of Fish and Wildlife
+- [x] 3640 - Wildlife Conservation Board
+- [x] 3720 - California Coastal Commission
+- [x] 3760 - California Coastal Conservancy
+- [x] 3780 - Native American Heritage Commission

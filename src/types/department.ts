@@ -51,8 +51,11 @@ export type NonNegativeInteger = number & {
 // Organization level type - must be non-negative integer
 export type OrgLevel = NonNegativeInteger;
 
-// organizational code - must be non-negative integer
-export type organizationalCode = NonNegativeInteger;
+// organizational code - must be a 4-digit string
+export type organizationalCode = string & { 
+  _brand: 'organizationalCode';
+  _constraint: '4-digit string';
+};
 
 // Distribution count type - must be non-negative integer
 export type DistributionCount = NonNegativeInteger;
@@ -113,18 +116,19 @@ export interface WorkforceData {
 
 export interface DepartmentData {
   name: string;
-  slug: ValidSlug;
+  _slug: ValidSlug;
   canonicalName: string;
   aliases: string[];
+  description?: string;  // Optional description 
   headCount: {
     yearly: Record<AnnualYear, number | {}>;
   };
   wages: {
     yearly: Record<AnnualYear, number | {}>;
   };
-  averageTenureYears: NonNegativeNumber | null;
-  averageSalary: NonNegativeNumber | null;
-  averageAge: NonNegativeNumber | null;
+  _averageTenureYears: NonNegativeNumber | null;
+  _averageSalary: NonNegativeNumber | null;
+  _averageAge: NonNegativeNumber | null;
   tenureDistribution?: {
     yearly: Record<AnnualYear, TenureRange[]>;
   };
@@ -142,7 +146,7 @@ export interface DepartmentData {
   entityCode: number | null;  // Required but can be null, first four digits of any salary report csv file
   orgLevel: OrgLevel;
   budget_status: BudgetStatus;
-  keyFunctions: string;
+  keyFunctions: string | null;
   abbreviation: string;
   parent_agency: string;
   workforce?: WorkforceData;
@@ -185,7 +189,7 @@ export interface DepartmentHierarchy extends DepartmentData {
   originalData?: {
     headCount: { yearly: Record<AnnualYear, number | {}> };
     wages: { yearly: Record<AnnualYear, number | {}> };
-    averageSalary: number | null;
+    _averageSalary: number | null;
     tenureDistribution?: { yearly: Record<AnnualYear, TenureRange[]> };
     salaryDistribution?: { yearly: Record<AnnualYear, SalaryRange[]> };
     ageDistribution?: { yearly: Record<AnnualYear, AgeRange[]> };
@@ -216,7 +220,7 @@ export interface DepartmentsJSON {
  * Simplified department mapping used throughout the application
  */
 export interface DepartmentMapping {
-  slug: string;           
+  _slug: string;           
   name: string;           
   canonicalName: string; 
   organizationalCode: organizationalCode; 
@@ -236,8 +240,9 @@ export interface VerificationResult {
 export interface RequiredDepartmentJSONFields {
   name: string;
   canonicalName: string;
-  slug: ValidSlug;
+  _slug: ValidSlug;
   aliases: string[]; 
+  description?: string;  // Optional description 
   keyFunctions: string;
   abbreviation: string;
   orgLevel: OrgLevel;
@@ -254,9 +259,9 @@ export interface RequiredDepartmentJSONFields {
   wages: {
     yearly: Record<AnnualYear, number| {}>;  // Empty object allowed
   };
-  averageTenureYears: NonNegativeNumber | null;  // Required but can be null
-  averageSalary: NonNegativeNumber | null;  // Required but can be null
-  averageAge: NonNegativeNumber | null;  // Required but can be null
+  _averageTenureYears: NonNegativeNumber | null;  // Required but can be null
+  _averageSalary: NonNegativeNumber | null;  // Required but can be null
+  _averageAge: NonNegativeNumber | null;  // Required but can be null
   tenureDistribution: {
     yearly: Record<AnnualYear, TenureRange[]>;  // Empty array allowed but field required
   };

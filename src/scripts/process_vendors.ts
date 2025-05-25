@@ -24,6 +24,7 @@
  *    2.3 Process each record into year-specific data structures
  *    2.4 Extract vendor information and transaction details
  *    2.5 Update vendor transaction and enhanced vendor structures simultaneously
+ *    2.6 update vendors.json.processedFiles with the processed file name so we do not double count by processing the same file twice
  * 
  * 3. EIN Resolution
  *    3.1 Attempt to look up EINs for all vendors
