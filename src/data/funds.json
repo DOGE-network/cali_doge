@@ -1,4 +1,13 @@
 {
+  "structure_for_AI_to_understand": [
+    "FundsJSON: Root object with funds array and optional metadata (sources, lastUpdated)",
+    "Fund: Contains fundCode (4-5 digit string), fundName (string), fundGroup (string), and fundDescription (string)",
+    "Fund Groups: Governmental Cost Funds, Special Revenue Funds, Transportation Funds, Bond Funds, Federal Funds, Other Funds",
+    "Fund Codes: Unique identifiers as strings to preserve leading zeros (e.g., '0001' for General Fund)",
+    "Data Source: Extracted from budget text files and vendor transaction data",
+    "Usage: Referenced in budget allocations and vendor transactions by fundCode",
+    "Processing: New funds added when found in budget/vendor data, existing fund names updated if different"
+  ],
   "funds": [
     {
       "fundCode": "0338",
@@ -2831,7 +2840,61 @@
       "fundName": "Architectural Paint Stewardshi",
       "fundGroup": "Other Funds",
       "fundDescription": "Architectural Paint Stewardshi"
+    },
+    {
+      "fundCode": "3138",
+      "fundName": "Immediate and Critical Needs Account, State Court",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Immediate and Critical Needs Account, State Court"
+    },
+    {
+      "fundCode": "0995",
+      "fundName": "Reimbursements",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Reimbursements"
+    },
+    {
+      "fundCode": "0815",
+      "fundName": "Judges Retirement Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Judges Retirement Fund"
+    },
+    {
+      "fundCode": "0884",
+      "fundName": "Judges Retirement System II Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Judges Retirement System II Fund"
+    },
+    {
+      "fundCode": "3083",
+      "fundName": "Welcome Center Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Welcome Center Fund"
+    },
+    {
+      "fundCode": "3209",
+      "fundName": "Office of Patient Advocate Trust Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Office of Patient Advocate Trust Fund"
+    },
+    {
+      "fundCode": "8059",
+      "fundName": "State Community Corrections Performance Incentive",
+      "fundGroup": "Other Funds",
+      "fundDescription": "State Community Corrections Performance Incentive"
+    },
+    {
+      "fundCode": "3259",
+      "fundName": "Recidivism Reduction Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Recidivism Reduction Fund"
+    },
+    {
+      "fundCode": "0165",
+      "fundName": "CAPITAL OUTLAY",
+      "fundGroup": "Other Funds",
+      "fundDescription": "CAPITAL OUTLAY"
     }
   ],
-  "lastUpdated": "2025-05-19T14:24:45.828Z"
+  "lastUpdated": "2025-05-26T20:07:13.420Z"
 }

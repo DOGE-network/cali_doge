@@ -106,10 +106,11 @@
  *       - Show description changes with similarity analysis
  *       - Options: update/add description, keep existing, or skip
  *       - Save departments.json immediately when approved
- *    b. Stage 2 - Program & Budget Changes Approval (programs.json, budgets.json):
+ *    b. Stage 2 - Program, Budget & Fund Changes Approval (programs.json, budgets.json, funds.json):
  *       - Present program descriptions found
  *       - Show budget allocations breakdown (NEW vs OVERWRITE)
- *       - Save programs.json and budgets.json when approved
+ *       - Show fund changes breakdown (NEW vs UPDATED)
+ *       - Save programs.json, budgets.json, and funds.json when approved
  *    c. Handle special cases for unmatched departments:
  *       - Option to create new department with budget_status = active (has headcount)
  *       - Option to create new department with budget_status = inactive (no headcount)
@@ -129,6 +130,7 @@
  * - departments.json: Department data
  * - programs.json: Program data
  * - budgets.json: Budget data (with processedFiles tracking)
+ * - funds.json: Fund data
  * - budget/text/*.txt: Budget text files to process
  * - src/lib/departmentMatching.js: Department name matching logic
  * - src/types/budget.ts: Budget data types
@@ -137,6 +139,7 @@
  * - programs.json: Updated with project codes, program names, and descriptions (source = budget filename)
  * - budgets.json: Updated with detailed budget allocations (with overwrite logic for existing data)
  * - departments.json: Updated with department data and descriptions
+ * - funds.json: Updated with fund codes and names extracted from budget allocations
  * - src/logs/process_budgets-<transactionId>.log using the same format as the vendor script
  * 
  * Key Features:
@@ -158,9 +161,9 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { findDepartmentMatches } from '../lib/departmentMatching';
 import { DepartmentData, DepartmentsJSON, organizationalCode, ValidSlug, OrgLevel, BudgetStatus, AnnualYear, RequiredDepartmentJSONFields, FiscalYearKey, TenureRange, SalaryRange, AgeRange } from '../types/department';
 import { ProgramsJSON } from '../types/program';
+import { FundsJSON, Fund } from '../types/fund';
 import { 
   BudgetsJSON, 
   FundingType
@@ -174,6 +177,7 @@ const BUDGET_TEXT_DIR = path.join(DATA_DIRECTORY, 'budget/text');
 const DEPARTMENTS_FILE = path.join(DATA_DIRECTORY, 'departments.json');
 const PROGRAMS_FILE = path.join(DATA_DIRECTORY, 'programs.json');
 const BUDGETS_FILE = path.join(DATA_DIRECTORY, 'budgets.json');
+const FUNDS_FILE = path.join(DATA_DIRECTORY, 'funds.json');
 
 // Generate a transaction ID for this processing session
 const TRANSACTION_ID = generateTransactionId();
@@ -262,6 +266,9 @@ interface ProcessingStats {
   programsUpdated: number;
   budgetAllocationsAdded: number;
   budgetAllocationsOverwritten: number;
+  fundsFound: number;
+  fundsUpdated: number;
+  newFundsAdded: number;
 }
 
 const stats: ProcessingStats = {
@@ -274,11 +281,43 @@ const stats: ProcessingStats = {
   programsFound: 0,
   programsUpdated: 0,
   budgetAllocationsAdded: 0,
-  budgetAllocationsOverwritten: 0
+  budgetAllocationsOverwritten: 0,
+  fundsFound: 0,
+  fundsUpdated: 0,
+  newFundsAdded: 0
 };
 
 // Import prompt-sync
 const promptUser = promptSync({ sigint: true });
+
+/**
+ * Parse crop input like "1-10" or "1-5,8-12" into an array of line numbers
+ */
+function parseCropInput(input: string, maxLines: number): number[] {
+  const lineNumbers: number[] = [];
+  const ranges = input.split(',').map(s => s.trim());
+  
+  for (const range of ranges) {
+    if (range.includes('-')) {
+      const [start, end] = range.split('-').map(s => parseInt(s.trim(), 10));
+      if (isNaN(start) || isNaN(end) || start < 1 || end > maxLines || start > end) {
+        throw new Error(`Invalid range: ${range}. Must be between 1 and ${maxLines}.`);
+      }
+      for (let i = start; i <= end; i++) {
+        lineNumbers.push(i);
+      }
+    } else {
+      const lineNum = parseInt(range, 10);
+      if (isNaN(lineNum) || lineNum < 1 || lineNum > maxLines) {
+        throw new Error(`Invalid line number: ${range}. Must be between 1 and ${maxLines}.`);
+      }
+      lineNumbers.push(lineNum);
+    }
+  }
+  
+  // Remove duplicates and sort
+  return Array.from(new Set(lineNumbers)).sort((a, b) => a - b);
+}
 
 /**
  * Main function to orchestrate the budget text processing
@@ -299,6 +338,7 @@ async function main() {
     const departmentsData = await loadJsonFile<DepartmentsJSON>(DEPARTMENTS_FILE);
     const programsData = await loadJsonFile<ProgramsJSON>(PROGRAMS_FILE);
     const budgetsData = await loadJsonFile<BudgetsJSON>(BUDGETS_FILE);
+    const fundsData = await loadJsonFile<FundsJSON>(FUNDS_FILE);
     
     // Initialize processedFiles tracking if not present
     if (!budgetsData.processedFiles) {
@@ -322,6 +362,7 @@ async function main() {
     log(`Loaded departments.json with ${departmentsData.departments.length} departments`, true);
     log(`Loaded programs.json with ${programsData.programs.length} programs`, true);
     log(`Loaded budgets.json with ${budgetsData.budget.length} organizational budgets`, true);
+    log(`Loaded funds.json with ${fundsData.funds.length} funds`, true);
     log(`Previously processed files: ${budgetsData.processedFiles.length}`, true);
     
     // Step 1b: Setup logging and statistics tracking
@@ -350,7 +391,7 @@ async function main() {
     // Step 2b: Process each budget file
     log('2b. Processing budget text files', true);
     for (const file of filesToProcess) {
-      await processBudgetFile(file, departmentsData, programsData, budgetsData);
+      await processBudgetFile(file, departmentsData, programsData, budgetsData, fundsData);
     }
     
     // Step 6: Results Summary and Final Data Persistence
@@ -361,6 +402,7 @@ async function main() {
     await saveJsonFile(DEPARTMENTS_FILE, departmentsData);
     await saveJsonFile(PROGRAMS_FILE, programsData);
     await saveJsonFile(BUDGETS_FILE, budgetsData);
+    await saveJsonFile(FUNDS_FILE, fundsData);
     
     // Step 6b: Processing statistics
     log('6b. Processing Statistics:', true);
@@ -374,6 +416,9 @@ async function main() {
     log(`   - Programs updated: ${stats.programsUpdated}`, true);
     log(`   - Budget allocations added: ${stats.budgetAllocationsAdded}`, true);
     log(`   - Budget allocations overwritten: ${stats.budgetAllocationsOverwritten}`, true);
+    log(`   - Funds found: ${stats.fundsFound}`, true);
+    log(`   - Funds updated: ${stats.fundsUpdated}`, true);
+    log(`   - New funds added: ${stats.newFundsAdded}`, true);
     
     // Step 6c: Log file location
     log(`6c. Log file: ${TRANSACTION_ID}.log`, true);
@@ -437,7 +482,8 @@ async function processBudgetFile(
   filePath: string, 
   departmentsData: DepartmentsJSON,
   programsData: ProgramsJSON,
-  budgetsData: BudgetsJSON
+  budgetsData: BudgetsJSON,
+  fundsData: FundsJSON
 ): Promise<void> {
   const fileName = path.basename(filePath);
   stats.totalFiles++;
@@ -481,7 +527,8 @@ async function processBudgetFile(
         programsData, 
         budgetsData,
         sectionNumber,
-        fileName
+        fileName,
+        fundsData
       );
       sectionNumber++;
     }
@@ -556,11 +603,48 @@ function findDepartmentSections(fileContent: string): string[] {
         const line = lines[j].trim();
         const headerMatch = line.match(/^(\d{4})\s+(.*?)$/);
         if (headerMatch && !line.includes('- Continued')) {
-          startIndex = j;
-            break;
+          // Additional validation to ensure this is a department header, not a fund code line
+          const orgCode = headerMatch[1];
+          const departmentName = headerMatch[2].trim();
+          
+          // Skip if this looks like a fund code line (common fund codes: 0001, 0995, 9740, etc.)
+          // Department names should be substantial (more than just "Reimbursements", "General Fund", etc.)
+          // and should not be all caps single words
+          // Also validate organizational code patterns - department org codes typically don't start with 000
+          if (departmentName.length < 5 || 
+              departmentName === 'Reimbursements' ||
+              departmentName === 'General Fund' ||
+              departmentName.match(/^[A-Z\s]+FUND$/i) ||
+              departmentName.match(/^\d+$/) ||
+              (departmentName === departmentName.toUpperCase() && departmentName.split(' ').length === 1) ||
+              orgCode.startsWith('000') || // Fund codes often start with 000 (like 0001)
+              (orgCode === '9740' || orgCode === '0995')) { // Common non-department fund codes
+            continue; // Skip this match, keep looking
           }
+          
+          // Also check if the previous few lines contain budget data patterns (amounts, fund names)
+          // which would indicate this is within a budget section, not a department header
+          let looksLikeBudgetData = false;
+          for (let k = Math.max(0, j - 5); k < j; k++) {
+            const prevLine = lines[k].trim();
+            if (prevLine.match(/^\$[\d,]+$/) || 
+                prevLine.match(/^\d{1,3}(,\d{3})*$/) ||
+                prevLine === 'State Operations:' ||
+                prevLine === 'Local Assistance:') {
+              looksLikeBudgetData = true;
+              break;
+            }
+          }
+          
+          if (looksLikeBudgetData) {
+            continue; // Skip this match, keep looking
+          }
+          
+          startIndex = j;
+          break;
         }
-        
+      }
+      
       // Determine end index
       const endIndex = i < expendituresMarkerIndices.length - 1 ?
         expendituresMarkerIndices[i + 1] : lines.length;
@@ -588,7 +672,8 @@ async function processDepartmentSection(
   programsData: ProgramsJSON,
   budgetsData: BudgetsJSON,
   sectionNumber: number = 0,
-  fileName: string = ""
+  fileName: string = "",
+  fundsData: FundsJSON
 ): Promise<void> {
   try {
     // Normalize line endings
@@ -619,20 +704,57 @@ async function processDepartmentSection(
     // Step 3.a.i: Extract department information
     log('3.a.i: Extracting department information', true);
     
-    // Extract department description (text between header and expenditure marker)
-    const expenditureMarkerIndex = normalizedContent.search(/3[\s\-](?:YR|YEAR)[\s\-]*EXPENDITURES[\s\-]*(?:AND[\s\-]*)?POSITIONS/);
+    // Extract department description (actual descriptive text, not budget data)
     let departmentDescription = '';
     
-    if (expenditureMarkerIndex !== -1) {
-      const headerEndIndex = normalizedContent.indexOf('\n');
-      if (headerEndIndex !== -1 && headerEndIndex < expenditureMarkerIndex) {
-        departmentDescription = normalizedContent
-          .substring(headerEndIndex + 1, expenditureMarkerIndex)
-          .trim()
-          .replace(/\n{3,}/g, '\n\n')
-          .replace(/[ \t]+/g, ' ');
+    const lines = normalizedContent.split('\n');
+    let descriptionLines: string[] = [];
+    let foundDescription = false;
+    
+    // Start from line 1 (after the header)
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      // Stop if we hit the expenditure marker
+      if (line.match(/3[\s\-](?:YR|YEAR)[\s\-]*EXPENDITURES[\s\-]*(?:AND[\s\-]*)?POSITIONS/)) {
+        break;
       }
+      
+      // Stop if we hit budget data patterns (amounts, fund codes, etc.)
+      if (line.match(/^\$[\d,]+$/) ||           // Dollar amounts like $160,139
+          line.match(/^\d{1,3}(,\d{3})*$/) ||  // Numbers like 160,139
+          line.match(/^\d{4}$/) ||              // 4-digit codes
+          line === 'State Operations:' ||
+          line === 'Local Assistance:' ||
+          line.includes('PROGRAM REQUIREMENTS') ||
+          line.includes('DETAILED EXPENDITURES') ||
+          line.includes('Expenditure Adjustments:') ||
+          line.includes('FUND BALANCE') ||
+          line.includes('BEGINNING BALANCE') ||
+          line.includes('Positions') && line.includes('Expenditures')) {
+        break;
+      }
+      
+      // Skip empty lines at the beginning
+      if (!foundDescription && line === '') {
+        continue;
+      }
+      
+      // If we have content, we've found the description
+      if (line !== '') {
+        foundDescription = true;
+      }
+      
+      // Add the line to description
+      descriptionLines.push(line);
     }
+    
+    // Clean up the description
+    departmentDescription = descriptionLines
+      .join('\n')
+      .trim()
+      .replace(/\n{3,}/g, '\n\n')
+      .replace(/[ \t]+/g, ' ');
     
     log(`Processing department: ${departmentName} (Org Code: ${orgCode})`, true);
     if (departmentDescription) {
@@ -643,6 +765,7 @@ async function processDepartmentSection(
     // Step 3.a.ii: Match department with departments.json
     log('3.a.ii: Matching department with departments.json', true);
     
+    // First, try direct match by organizational code
     let matchedDepartment = departmentsData.departments.find(
       d => d.organizationalCode === orgCode
     );
@@ -652,15 +775,48 @@ async function processDepartmentSection(
     let descriptionUpdated = false;
     
     if (!matchedDepartment) {
-      log(`No direct match by org code for ${orgCode}, trying name matching`, true);
-      const matchResult = findDepartmentMatches(departmentName, departmentsData.departments, orgCode);
+      log(`No direct match by org code for ${orgCode}, trying name and alias matching`, true);
       
-      if (matchResult.bestMatch && matchResult.bestMatch.score >= 90) {
-        matchedDepartment = matchResult.bestMatch.department;
-        matchConfidence = matchResult.bestMatch.score;
-        log(`Matched department: ${matchedDepartment.name} (${matchConfidence}% confidence)`, true);
+      // Try exact name match (case insensitive)
+      matchedDepartment = departmentsData.departments.find(d => 
+        d.name.toLowerCase() === departmentName.toLowerCase() ||
+        d.canonicalName.toLowerCase() === departmentName.toLowerCase()
+      );
+      
+      if (matchedDepartment) {
+        matchConfidence = 95;
+        log(`Matched department by name: ${matchedDepartment.name} (${matchConfidence}% confidence)`, true);
+        
+        // Warn if organizational codes don't match
+        if (matchedDepartment.organizationalCode && matchedDepartment.organizationalCode !== orgCode) {
+          log(`WARNING: Matched department has different organizational code: ${matchedDepartment.organizationalCode} vs ${orgCode}`, true, true);
+          consoleOutput(`⚠️  WARNING: Matched department "${matchedDepartment.name}" has organizational code ${matchedDepartment.organizationalCode}, but budget section has ${orgCode}`);
+          matchConfidence = 70; // Lower confidence due to org code mismatch
+        }
+        
         stats.departmentsMatched++;
       } else {
+        // Try alias match (case insensitive)
+        matchedDepartment = departmentsData.departments.find(d => 
+          d.aliases && d.aliases.some(alias => alias.toLowerCase() === departmentName.toLowerCase())
+        );
+        
+        if (matchedDepartment) {
+          matchConfidence = 85;
+          log(`Matched department by alias: ${matchedDepartment.name} (${matchConfidence}% confidence)`, true);
+          
+          // Warn if organizational codes don't match
+          if (matchedDepartment.organizationalCode && matchedDepartment.organizationalCode !== orgCode) {
+            log(`WARNING: Matched department has different organizational code: ${matchedDepartment.organizationalCode} vs ${orgCode}`, true, true);
+            consoleOutput(`⚠️  WARNING: Matched department "${matchedDepartment.name}" has organizational code ${matchedDepartment.organizationalCode}, but budget section has ${orgCode}`);
+            matchConfidence = 60; // Lower confidence due to org code mismatch
+          }
+          
+          stats.departmentsMatched++;
+        }
+      }
+      
+      if (!matchedDepartment) {
         // Handle new department creation
         log(`No reliable match found for department "${departmentName}" (Org Code: ${orgCode})`, true);
         
@@ -783,6 +939,12 @@ async function processDepartmentSection(
     const programDescriptions = extractProgramDescriptions(normalizedContent);
     log(`Found ${programDescriptions.length} program descriptions`, true);
     
+    // Analyze program descriptions for new vs updated
+    let programAnalysis = { newPrograms: 0, updatedPrograms: 0 };
+    if (programDescriptions.length > 0) {
+      programAnalysis = analyzeProgramDescriptions(programDescriptions, programsData, fileName);
+    }
+    
     log('4.b: Extracting budget allocations', true);
     const budgetData = extractBudgetAllocations(normalizedContent, orgCode);
     log(`Found ${budgetData ? budgetData.length : 0} budget allocations`, true);
@@ -793,14 +955,56 @@ async function processDepartmentSection(
       budgetAnalysis = analyzeBudgetAllocations(budgetData, budgetsData);
     }
     
+    // Analyze fund data for new vs updated
+    log('4.c: Analyzing fund data', true);
+    let fundAnalysis = { newFunds: 0, updatedFunds: 0, fundDetails: [] as Array<{fundCode: string, fundName: string, status: 'new' | 'updated' | 'existing'}> };
+    if (budgetData && budgetData.length > 0) {
+      fundAnalysis = analyzeFundData(budgetData, fundsData);
+      log(`Fund analysis: ${fundAnalysis.newFunds} new, ${fundAnalysis.updatedFunds} updated, ${fundAnalysis.fundDetails.length} total unique funds`, true);
+    }
+    
     // Check if there are any changes needed
     const hasDepartmentChanges = newDepartmentCreated || descriptionUpdated;
     const hasProgramBudgetChanges = programDescriptions.length > 0 || budgetData.length > 0;
-    const hasAnyChanges = hasDepartmentChanges || hasProgramBudgetChanges;
+    const hasFundChanges = fundAnalysis.newFunds > 0 || fundAnalysis.updatedFunds > 0;
+    const hasAnyChanges = hasDepartmentChanges || hasProgramBudgetChanges || hasFundChanges;
     
     // Display results summary
     consoleOutput(`  Matched to: ${matchedDepartment.name} (${matchConfidence}% confidence)`);
-    consoleOutput(`  Programs: ${programDescriptions.length} found`);
+    
+    // Show description status
+    if (departmentDescription) {
+      const existingDesc = matchedDepartment.description || '';
+      const hasExistingDescription = existingDesc.trim().length > 0;
+      
+      if (!hasExistingDescription) {
+        consoleOutput(`  Description: missing/empty → will add new description`);
+      } else if (descriptionUpdated) {
+        const normalizedExisting = existingDesc.replace(/\s+/g, ' ').trim();
+        const normalizedExtracted = departmentDescription.replace(/\s+/g, ' ').trim();
+        const similarity = calculateStringSimilarity(normalizedExisting, normalizedExtracted);
+        consoleOutput(`  Description: ${similarity}% similarity → will update`);
+      } else {
+        consoleOutput(`  Description: matches existing (no update needed)`);
+      }
+    } else {
+      consoleOutput(`  Description: none found in budget file`);
+    }
+    
+    // Show program analysis
+    if (programDescriptions.length > 0) {
+      if (programAnalysis.newPrograms > 0 && programAnalysis.updatedPrograms > 0) {
+        consoleOutput(`  Programs: ${programDescriptions.length} found (${programAnalysis.newPrograms} new, ${programAnalysis.updatedPrograms} updated)`);
+      } else if (programAnalysis.newPrograms > 0) {
+        consoleOutput(`  Programs: ${programDescriptions.length} found (${programAnalysis.newPrograms} new)`);
+      } else if (programAnalysis.updatedPrograms > 0) {
+        consoleOutput(`  Programs: ${programDescriptions.length} found (${programAnalysis.updatedPrograms} updated)`);
+      } else {
+        consoleOutput(`  Programs: ${programDescriptions.length} found (all already exist with same descriptions)`);
+      }
+    } else {
+      consoleOutput(`  Programs: none found`);
+    }
     
     // Show detailed budget allocation counts
     if (budgetData && budgetData.length > 0) {
@@ -813,6 +1017,21 @@ async function processDepartmentSection(
       consoleOutput(`  Budget allocations: none found`);
     }
     
+    // Show fund analysis
+    if (fundAnalysis.fundDetails.length > 0) {
+      if (fundAnalysis.newFunds > 0 && fundAnalysis.updatedFunds > 0) {
+        consoleOutput(`  Funds: ${fundAnalysis.fundDetails.length} found (${fundAnalysis.newFunds} new, ${fundAnalysis.updatedFunds} updated)`);
+      } else if (fundAnalysis.newFunds > 0) {
+        consoleOutput(`  Funds: ${fundAnalysis.fundDetails.length} found (${fundAnalysis.newFunds} new)`);
+      } else if (fundAnalysis.updatedFunds > 0) {
+        consoleOutput(`  Funds: ${fundAnalysis.fundDetails.length} found (${fundAnalysis.updatedFunds} updated)`);
+      } else {
+        consoleOutput(`  Funds: ${fundAnalysis.fundDetails.length} found (all already exist with same names)`);
+      }
+    } else {
+      consoleOutput(`  Funds: none found`);
+    }
+    
     if (!hasAnyChanges) {
       consoleOutput('\n  ✓ Department already exists and is up-to-date');
       consoleOutput('  → No changes needed - skipping approval and moving to next section');
@@ -821,13 +1040,11 @@ async function processDepartmentSection(
     }
     
     // FIRST APPROVAL: Department changes (departments.json)
-    if (hasDepartmentChanges) {
+    // Skip approval if new department was already created and saved during interactive process
+    if (hasDepartmentChanges && !newDepartmentCreated) {
       consoleOutput('\n' + '='.repeat(80));
       consoleOutput('DEPARTMENT CHANGES APPROVAL - Will update: departments.json');
       consoleOutput('='.repeat(80));
-      if (newDepartmentCreated) {
-        consoleOutput(`  ✓ Created new department: ${departmentName}`);
-      }
       if (descriptionUpdated) {
         const existingDesc = matchedDepartment.description || '';
         const hasExistingDescription = existingDesc.trim().length > 0;
@@ -843,17 +1060,22 @@ async function processDepartmentSection(
         
         consoleOutput('\nEXISTING DESCRIPTION:');
         consoleOutput(`"${existingDesc || '(empty or missing)'}"`);
-        consoleOutput('\nEXTRACTED DESCRIPTION:');
-        consoleOutput(`"${departmentDescription}"`);
+        consoleOutput('\nEXTRACTED DESCRIPTION WITH LINE NUMBERS:');
+        
+        // Show extracted description with line numbers
+        const descriptionLines = departmentDescription.split('\n');
+        descriptionLines.forEach((line, index) => {
+          consoleOutput(`${(index + 1).toString().padStart(2, ' ')}: ${line}`);
+        });
       }
       consoleOutput('\n' + '-'.repeat(80));
       
       let deptApproval = '';
-      if (descriptionUpdated && !newDepartmentCreated) {
-        // Only description update - provide more options
-        deptApproval = promptUser('Approve department changes? (u=update description, k=keep existing, s=skip file): ').toLowerCase();
+      if (descriptionUpdated) {
+        // Only description update - provide more options including cropping
+        deptApproval = promptUser('Approve department changes? (u=update description, c=crop and update, k=keep existing, s=skip file): ').toLowerCase();
       } else {
-        // New department or multiple changes - simpler approval
+        // Other changes - simpler approval
         deptApproval = promptUser('Approve department changes? (y/n/s) - y=yes, n=no, s=skip file: ').toLowerCase();
       }
       logUser(`User department approval response: ${deptApproval}`);
@@ -880,26 +1102,75 @@ async function processDepartmentSection(
         await saveJsonFile(DEPARTMENTS_FILE, departmentsData);
         consoleOutput('✓ Department changes saved');
         log('Department changes applied and saved', true);
+      } else if (deptApproval === 'c') {
+        // Crop and update description
+        if (descriptionUpdated) {
+          const descriptionLines = departmentDescription.split('\n');
+          consoleOutput(`\nDescription has ${descriptionLines.length} lines. Specify which lines to keep:`);
+          consoleOutput('Examples: "1-10" (keep lines 1 through 10), "1-5,8-12" (keep lines 1-5 and 8-12)');
+          
+          const cropInput = promptUser('Lines to keep (or "all" to keep everything): ').trim();
+          logUser(`User crop input: ${cropInput}`);
+          
+          if (cropInput.toLowerCase() === 'all') {
+            matchedDepartment.description = departmentDescription;
+            consoleOutput('Keeping all lines...');
+          } else {
+            try {
+              const linesToKeep = parseCropInput(cropInput, descriptionLines.length);
+              const croppedLines: string[] = [];
+              
+              for (const lineNum of linesToKeep) {
+                if (lineNum >= 1 && lineNum <= descriptionLines.length) {
+                  croppedLines.push(descriptionLines[lineNum - 1]);
+                }
+              }
+              
+              const croppedDescription = croppedLines.join('\n').trim();
+              matchedDepartment.description = croppedDescription;
+              
+              consoleOutput(`\nCropped description (${croppedLines.length} lines):`);
+              consoleOutput(`"${croppedDescription}"`);
+              
+              log(`Description cropped to ${croppedLines.length} lines`, true);
+            } catch (error: any) {
+              consoleOutput(`Error parsing crop input: ${error.message}`);
+              consoleOutput('Using full description instead...');
+              matchedDepartment.description = departmentDescription;
+            }
+          }
+        }
+        consoleOutput('Saving department changes to departments.json...');
+        await saveJsonFile(DEPARTMENTS_FILE, departmentsData);
+        consoleOutput('✓ Department changes saved');
+        log('Department changes applied and saved', true);
       } else {
         consoleOutput('Invalid choice, skipping department changes...');
         logUser('User provided invalid choice for department changes');
       }
+    } else if (newDepartmentCreated) {
+      // New department was already created and saved during interactive process
+      log('New department already created and saved during interactive process - skipping approval', true);
     }
     
-    // SECOND APPROVAL: Program and budget changes (programs.json and budgets.json)
-    if (hasProgramBudgetChanges) {
+    // SECOND APPROVAL: Program, budget, and fund changes (programs.json, budgets.json, funds.json)
+    if (hasProgramBudgetChanges || hasFundChanges) {
       consoleOutput('\n' + '='.repeat(80));
-      consoleOutput('PROGRAM & BUDGET CHANGES APPROVAL - Will update: programs.json, budgets.json');
+      consoleOutput('PROGRAM, BUDGET & FUND CHANGES APPROVAL - Will update: programs.json, budgets.json, funds.json');
       consoleOutput('='.repeat(80));
-      if (programDescriptions.length > 0) {
-        consoleOutput(`  - Add ${programDescriptions.length} program descriptions to programs.json`);
+      if (programAnalysis.newPrograms > 0 && programAnalysis.updatedPrograms > 0) {
+        consoleOutput(`  - Add ${programAnalysis.newPrograms} new programs and update ${programAnalysis.updatedPrograms} existing programs in programs.json`);
+      } else if (programAnalysis.newPrograms > 0) {
+        consoleOutput(`  - Add ${programAnalysis.newPrograms} new programs in programs.json`);
+      } else if (programAnalysis.updatedPrograms > 0) {
+        consoleOutput(`  - Update ${programAnalysis.updatedPrograms} existing programs in programs.json`);
       }
       if (budgetData && budgetData.length > 0) {
         if (budgetAnalysis.newAllocations > 0) {
-          consoleOutput(`  - Add ${budgetAnalysis.newAllocations} new budget allocations to budgets.json`);
+          consoleOutput(`  - Process ${budgetAnalysis.newAllocations} new budget allocations`);
         }
         if (budgetAnalysis.overwriteAllocations > 0) {
-          consoleOutput(`  - Overwrite ${budgetAnalysis.overwriteAllocations} existing budget allocations in budgets.json`);
+          consoleOutput(`  - Process ${budgetAnalysis.overwriteAllocations} budget allocation overwrites`);
           if (budgetAnalysis.overwriteDetails.length > 0) {
             consoleOutput('\n  OVERWRITE DETAILS:');
             budgetAnalysis.overwriteDetails.slice(0, 5).forEach(detail => {
@@ -911,20 +1182,38 @@ async function processDepartmentSection(
           }
         }
       }
+      if (fundAnalysis.newFunds > 0 || fundAnalysis.updatedFunds > 0) {
+        if (fundAnalysis.newFunds > 0) {
+          consoleOutput(`  - Add ${fundAnalysis.newFunds} new funds to funds.json`);
+        }
+        if (fundAnalysis.updatedFunds > 0) {
+          consoleOutput(`  - Update ${fundAnalysis.updatedFunds} existing fund names in funds.json`);
+        }
+        if (fundAnalysis.fundDetails.length > 0) {
+          consoleOutput('\n  FUND DETAILS:');
+          fundAnalysis.fundDetails.slice(0, 10).forEach(fund => {
+            const statusIcon = fund.status === 'new' ? '+ NEW' : fund.status === 'updated' ? '~ UPD' : '= SAME';
+            consoleOutput(`    ${statusIcon}: ${fund.fundCode} - ${fund.fundName}`);
+          });
+          if (fundAnalysis.fundDetails.length > 10) {
+            consoleOutput(`    ... and ${fundAnalysis.fundDetails.length - 10} more`);
+          }
+        }
+      }
       consoleOutput('\n' + '-'.repeat(80));
       
-      const progBudgetApproval = promptUser('Approve program & budget changes? (y/n/s) - y=yes, n=no, s=skip file: ').toLowerCase();
-      logUser(`User program/budget approval response: ${progBudgetApproval}`);
+      const progBudgetApproval = promptUser('Approve program, budget & fund changes? (y/n/s) - y=yes, n=no, s=skip file: ').toLowerCase();
+      logUser(`User program/budget/fund approval response: ${progBudgetApproval}`);
       
       if (progBudgetApproval === 's') {
         logUser('User requested to skip file processing');
         throw new Error('User requested to skip file processing');
       } else if (progBudgetApproval !== 'y') {
-        consoleOutput('Skipping program & budget changes...');
-        logUser('User chose not to approve program/budget changes');
+        consoleOutput('Skipping program, budget & fund changes...');
+        logUser('User chose not to approve program/budget/fund changes');
       } else {
-        // Apply program and budget changes
-        consoleOutput('Processing program & budget changes...');
+        // Apply program, budget, and fund changes
+        consoleOutput('Processing program, budget & fund changes...');
         
         // Process programs
         if (programDescriptions.length > 0) {
@@ -941,12 +1230,19 @@ async function processDepartmentSection(
           consoleOutput('✓ Budget allocations processed');
         }
         
-        // Save program and budget data
-        consoleOutput('Saving changes to programs.json and budgets.json...');
+        // Process fund data
+        if (budgetData && budgetData.length > 0 && (fundAnalysis.newFunds > 0 || fundAnalysis.updatedFunds > 0)) {
+          updateFundData(budgetData, fundsData);
+          consoleOutput('✓ Fund data processed');
+        }
+        
+        // Save program, budget, and fund data
+        consoleOutput('Saving changes to programs.json, budgets.json, and funds.json...');
         await saveJsonFile(PROGRAMS_FILE, programsData);
         await saveJsonFile(BUDGETS_FILE, budgetsData);
-        consoleOutput('✓ Program & budget changes saved');
-        log('Program and budget changes applied and saved', true);
+        await saveJsonFile(FUNDS_FILE, fundsData);
+        consoleOutput('✓ Program, budget & fund changes saved');
+        log('Program, budget, and fund changes applied and saved', true);
       }
     }
     
@@ -1032,6 +1328,48 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
 }
 
 /**
+ * Analyze program descriptions to determine which will be new vs updated
+ */
+function analyzeProgramDescriptions(
+  programDescriptions: Array<{ projectCode: string, name: string, description: string }>,
+  programsData: ProgramsJSON,
+  fileName: string
+): { newPrograms: number; updatedPrograms: number } {
+  let newPrograms = 0;
+  let updatedPrograms = 0;
+  
+  for (const progDesc of programDescriptions) {
+    const existingProgram = programsData.programs.find(p => p.projectCode === progDesc.projectCode);
+    
+    if (!existingProgram) {
+      newPrograms++;
+    } else {
+      // Check if this description already exists from the same source file
+      const existingDescIndex = existingProgram.programDescriptions.findIndex(
+        desc => desc.description === progDesc.description && desc.source === fileName
+      );
+      
+      if (existingDescIndex === -1) {
+        // Check if any description exists from this source file (for updates)
+        const existingSourceIndex = existingProgram.programDescriptions.findIndex(
+          desc => desc.source === fileName
+        );
+        
+        if (existingSourceIndex === -1) {
+          // No description from this source file exists - this is an update
+          updatedPrograms++;
+        }
+        // If description from this source exists but is different, it's still an update
+        // If description from this source exists and is the same, don't count it
+      }
+      // If exact description and source match, don't count it as new or updated
+    }
+  }
+  
+  return { newPrograms, updatedPrograms };
+}
+
+/**
  * Extract budget allocations from section content
  */
 function extractBudgetAllocations(
@@ -1106,6 +1444,16 @@ function extractBudgetAllocations(
     let currentFundName = '';
     let amounts: number[] = [];
     
+    // Check if the first line is a program code (for the initial program after PROGRAM REQUIREMENTS)
+    if (lines.length > 0) {
+      const firstLine = lines[0].trim();
+      const initialProgramMatch = firstLine.match(/^(\d{4})$/);
+      if (initialProgramMatch) {
+        currentProjectCode = initialProgramMatch[1] + '000';
+        log(`Found initial program section: ${initialProgramMatch[1]} -> project code: ${currentProjectCode}`, true);
+      }
+    }
+    
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) continue;
@@ -1123,12 +1471,63 @@ function extractBudgetAllocations(
         continue;
       }
       
-      // Check for fund code FIRST when funding type is set (prioritize over program code)
-      if (currentFundingType !== null) {
+      // Check for new program section (PROGRAM REQUIREMENTS followed by 4-digit code)
+      if (line === 'PROGRAM REQUIREMENTS' && i + 1 < lines.length) {
+        const nextLine = lines[i + 1].trim();
+        const programMatch = nextLine.match(/^(\d{4})$/);
+        if (programMatch) {
+          const newProjectCode = programMatch[1] + '000';
+          currentProjectCode = newProjectCode;
+          currentFundingType = null; // Reset funding type for new program
+          currentFundCode = '';
+          currentFundName = '';
+          amounts = [];
+          log(`Found new program section: ${programMatch[1]} -> project code: ${currentProjectCode}`, true);
+          i++; // Skip the program code line
+          continue;
+        }
+      }
+      
+      // Check for subprogram codes (7-digit codes that appear after program names)
+      const subprogramMatch = line.match(/^(\d{7})$/);
+      if (subprogramMatch && i + 1 < lines.length) {
+        const nextLine = lines[i + 1].trim();
+        // Subprogram names should contain letters and not be amounts or fund codes
+        if (nextLine && 
+            !nextLine.match(/^\d+$/) && 
+            !nextLine.match(/^\$/) &&
+            !nextLine.match(/^[\d,]+$/) &&
+            !nextLine.match(/^-$/) &&
+            !nextLine.startsWith('State Operations:') &&
+            !nextLine.startsWith('Local Assistance:') &&
+            nextLine.match(/[A-Za-z]/) &&
+            nextLine.length > 3) {
+          
+          currentProjectCode = subprogramMatch[1];
+          currentFundingType = null; // Reset funding type for new subprogram
+          currentFundCode = '';
+          currentFundName = '';
+          amounts = [];
+          log(`Found subprogram code: ${subprogramMatch[1]}`, true);
+          i++; // Skip the subprogram name line
+          continue;
+        }
+      }
+      
+      // Check for fund code ONLY when funding type is set and we have a current project
+      if (currentFundingType !== null && currentProjectCode) {
         const fundCodeMatch = line.match(/^(\d{4,5})$/);
-        if (fundCodeMatch && currentProjectCode && i + 1 < lines.length) {
+        if (fundCodeMatch && i + 1 < lines.length) {
           const nextLine = lines[i + 1].trim();
-          if (nextLine && !nextLine.match(/^\d+$/) && !nextLine.match(/^\$/) && nextLine.match(/[A-Za-z]/)) {
+          // Fund names should contain letters and not be amounts or totals
+          if (nextLine && 
+              !nextLine.match(/^\d+$/) && 
+              !nextLine.match(/^\$/) && 
+              !nextLine.match(/^[\d,]+$/) &&
+              !nextLine.match(/^-$/) &&
+              !nextLine.startsWith('Totals,') &&
+              nextLine.match(/[A-Za-z]/) &&
+              nextLine.length > 2) {
             currentFundCode = fundCodeMatch[1];
             currentFundName = nextLine;
             log(`Found fund code: ${currentFundCode}, fund name: ${currentFundName}`, true);
@@ -1139,37 +1538,23 @@ function extractBudgetAllocations(
         }
       }
       
-      // Check for program code (only when no funding type set, or when we couldn't match as fund code)
-      if (!currentFundingType) {
-        const programMatch = line.match(/^(\d{4})$/);
-        if (programMatch && i + 1 < lines.length) {
-          const programNameLine = lines[i + 1].trim();
-          if (programNameLine && !programNameLine.match(/^\d+$/)) {
-            currentProjectCode = programMatch[1] + '000';
-            log(`Found program code: ${programMatch[1]} -> project code: ${currentProjectCode}`, true);
-            i++; // Skip the name line
-            continue;
-          }
-        }
-        
-        const subprogramMatch = line.match(/^(\d{7})$/);
-        if (subprogramMatch && i + 1 < lines.length) {
-          const subprogramNameLine = lines[i + 1].trim();
-          if (subprogramNameLine && !subprogramNameLine.match(/^\d+$/)) {
-            currentProjectCode = subprogramMatch[1];
-            log(`Found subprogram code: ${subprogramMatch[1]}`, true);
-            i++; // Skip the name line
-            continue;
-          }
-        }
-      }
+      // Check for amounts (with or without $ prefix)
+      const amountWithDollarMatch = line.match(/^\$(\d{1,3}(?:,\d{3})*(?:\.\d+)?)$/);
+      const amountWithoutDollarMatch = line.match(/^(\d{1,3}(?:,\d{3})*(?:\.\d+)?)$/);
+      const dashMatch = line.match(/^-$/);
       
-      // Check for amounts
-      const amountMatch = line.match(/^\$(\d{1,3}(?:,\d{3})*(?:\.\d+)?)$/);
-      if (amountMatch && currentProjectCode && currentFundingType !== null && currentFundCode) {
-        const amount = parseFloat(amountMatch[1].replace(/,/g, ''));
+      if (currentProjectCode && currentFundingType !== null && currentFundCode) {
+        let amount = 0;
         
-        if (!isNaN(amount)) {
+        if (amountWithDollarMatch) {
+          amount = parseFloat(amountWithDollarMatch[1].replace(/,/g, ''));
+        } else if (amountWithoutDollarMatch) {
+          amount = parseFloat(amountWithoutDollarMatch[1].replace(/,/g, ''));
+        } else if (dashMatch) {
+          amount = 0; // Dash represents zero
+        }
+        
+        if ((amountWithDollarMatch || amountWithoutDollarMatch || dashMatch) && !isNaN(amount)) {
           amounts.push(amount);
           log(`Found amount: $${amount} (total amounts so far: ${amounts.length})`, true);
           
@@ -1317,7 +1702,9 @@ function updateBudgetData(
       };
       fundingTypeData.fundCode.push(fundAllocation);
       stats.budgetAllocationsAdded++;
-      log(`Added new fund allocation for ${allocation.organizationCode}-${allocation.projectCode}-${allocation.fundCode}: $${allocation.amount}`, true);
+      const newAllocationMessage = `Added new fund allocation for ${allocation.organizationCode}-${allocation.projectCode}-${allocation.fundCode} (${allocation.fiscalYear}): $${allocation.amount}`;
+      log(newAllocationMessage, true);
+      consoleOutput(`  ✓ ${newAllocationMessage}`);
     } else {
       // Existing fund allocation - overwrite with new data
       const oldAmount = fundAllocation.amount;
@@ -1328,7 +1715,7 @@ function updateBudgetData(
       
       stats.budgetAllocationsOverwritten++;
       
-      const overwriteMessage = `Overwritten fund allocation for ${allocation.organizationCode}-${allocation.projectCode}-${allocation.fundCode}: $${oldAmount} (count: ${oldCount}) → $${allocation.amount} (count: 1)`;
+      const overwriteMessage = `Overwritten fund allocation for ${allocation.organizationCode}-${allocation.projectCode}-${allocation.fundCode} (${allocation.fiscalYear}): $${oldAmount} (count: ${oldCount}) → $${allocation.amount} (count: 1)`;
       log(overwriteMessage, true);
       consoleOutput(`  ⚠️  ${overwriteMessage}`);
     }
@@ -1393,6 +1780,118 @@ function analyzeBudgetAllocations(
   }
   
   return { newAllocations, overwriteAllocations, overwriteDetails };
+}
+
+/**
+ * Analyze fund data to determine which will be new vs updated
+ */
+function analyzeFundData(
+  budgetAllocations: Array<{
+    projectCode: string,
+    organizationCode: string,
+    fundingType: FundingType,
+    fundCode: string,
+    fundName: string,
+    amount: number,
+    fiscalYear: string
+  }>,
+  fundsData: FundsJSON
+): { newFunds: number; updatedFunds: number; fundDetails: Array<{fundCode: string, fundName: string, status: 'new' | 'updated' | 'existing'}> } {
+  const fundMap = new Map<string, {fundCode: string, fundName: string, status: 'new' | 'updated' | 'existing'}>();
+  
+  for (const allocation of budgetAllocations) {
+    if (fundMap.has(allocation.fundCode)) {
+      continue; // Already processed this fund code
+    }
+    
+    const existingFund = fundsData.funds.find(f => f.fundCode === allocation.fundCode);
+    
+    if (!existingFund) {
+      fundMap.set(allocation.fundCode, {
+        fundCode: allocation.fundCode,
+        fundName: allocation.fundName,
+        status: 'new'
+      });
+    } else {
+      // Check if fund name is different (needs update)
+      if (existingFund.fundName !== allocation.fundName) {
+        fundMap.set(allocation.fundCode, {
+          fundCode: allocation.fundCode,
+          fundName: allocation.fundName,
+          status: 'updated'
+        });
+      } else {
+        fundMap.set(allocation.fundCode, {
+          fundCode: allocation.fundCode,
+          fundName: allocation.fundName,
+          status: 'existing'
+        });
+      }
+    }
+  }
+  
+  const fundDetails = Array.from(fundMap.values());
+  const newFunds = fundDetails.filter(f => f.status === 'new').length;
+  const updatedFunds = fundDetails.filter(f => f.status === 'updated').length;
+  
+  return { newFunds, updatedFunds, fundDetails };
+}
+
+/**
+ * Update fund data in funds.json
+ */
+function updateFundData(
+  budgetAllocations: Array<{
+    projectCode: string,
+    organizationCode: string,
+    fundingType: FundingType,
+    fundCode: string,
+    fundName: string,
+    amount: number,
+    fiscalYear: string
+  }>,
+  fundsData: FundsJSON
+): void {
+  const processedFunds = new Set<string>();
+  
+  for (const allocation of budgetAllocations) {
+    if (processedFunds.has(allocation.fundCode)) {
+      continue; // Already processed this fund code
+    }
+    
+    processedFunds.add(allocation.fundCode);
+    stats.fundsFound++;
+    
+    let existingFund = fundsData.funds.find(f => f.fundCode === allocation.fundCode);
+    
+    if (!existingFund) {
+      // Create new fund
+      const newFund: Fund = {
+        fundCode: allocation.fundCode,
+        fundName: allocation.fundName,
+        fundGroup: "Other Funds", // Default group for budget-extracted funds
+        fundDescription: allocation.fundName
+      };
+      
+      fundsData.funds.push(newFund);
+      stats.newFundsAdded++;
+      log(`Added new fund: ${allocation.fundCode} - ${allocation.fundName}`, true);
+    } else {
+      // Check if fund name needs updating
+      if (existingFund.fundName !== allocation.fundName) {
+        const oldName = existingFund.fundName;
+        existingFund.fundName = allocation.fundName;
+        
+        // Also update description if it matches the old name
+        if (existingFund.fundDescription === oldName) {
+          existingFund.fundDescription = allocation.fundName;
+        }
+        
+        stats.fundsUpdated++;
+        log(`Updated fund name: ${allocation.fundCode} from "${oldName}" to "${allocation.fundName}"`, true);
+      }
+    }
+  }
 }
 
 // Start the script execution

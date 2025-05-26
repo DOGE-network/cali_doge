@@ -83,32 +83,32 @@ interface _ProcessingResult {
 // Interface for year-based transaction data
 interface YearlyTransactionData {
   [year: string]: {
-    transactions: Array<{
-      vendor_name: string;
-      department_name: Array<{
-        name: string;
-        organizationCode: number;
-        account_type: Array<{
-          type: string;
-          account_category: Array<{
-            category: string;
-            account_sub_category: Array<{
-              subCategory: string;
-              account_description: Array<{
-                description: string;
-                program_code: string;
-                fund_code: string;
-                amount: number;
-                count: number;
+    t: Array<{
+      n: string;  // vendor_name
+      d: Array<{
+        n: string;  // name
+        oc: number;  // organizationCode
+        at: Array<{
+          t: string;  // type
+          ac: Array<{
+            c: string;  // category
+            asc: Array<{
+              sc: string;  // subCategory
+              ad: Array<{
+                d: string;  // description
+                pc: string;  // program_code
+                fc: string;  // fund_code
+                a: number;  // amount
+                ct: number;  // count
               }>;
             }>;
           }>;
         }>;
       }>;
     }>;
-    processedFiles: string[];
-    lastProcessedFile: string | null;
-    lastProcessedTimestamp: string | null;
+    pf: string[];  // processedFiles
+    lpf: string | null;  // lastProcessedFile
+    lpt: string | null;  // lastProcessedTimestamp
   }
 }
 
@@ -554,6 +554,7 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
       // Step 2.3: Extract vendor information and transaction details
       const vendorName = record.VENDOR_NAME || 'Unknown Vendor';
       const fiscalYear = record.fiscal_year_begin;
+      const organizationCode = parseInt(record.business_unit.trim(), 10) || 0;
       
       // Skip records with invalid fiscal year
       if (!fiscalYear) {
@@ -564,16 +565,16 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
       // Initialize year data structure if it doesn't exist
       if (!yearlyTransactionData[fiscalYear]) {
         yearlyTransactionData[fiscalYear] = {
-          transactions: [],
-          processedFiles: [],
-          lastProcessedFile: null,
-          lastProcessedTimestamp: null
+          t: [],
+          pf: [],
+          lpf: null,
+          lpt: null
         };
       }
       
       // Check if this file has already been processed for this year
-      if (yearlyTransactionData[fiscalYear].processedFiles && 
-          yearlyTransactionData[fiscalYear].processedFiles.includes(file)) {
+      if (yearlyTransactionData[fiscalYear].pf && 
+          yearlyTransactionData[fiscalYear].pf.includes(file)) {
         continue; // Skip this record as the file has been processed for this year
       }
       
@@ -585,7 +586,6 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
       const accountSubCategory = record.account_sub_category;
       const accountDescription = record.account_description;
       const amount = parseAmount(record.monetary_amount);
-      const organizationCode = parseInt(record.business_unit.trim(), 10) || 0;
       let rawFundCode = record.fund_code.trim();
       
       // Validate fund code and ensure it exists in funds.json
@@ -622,21 +622,21 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
         const vendorTransactionData = yearlyTransactionData[fiscalYear];
         
         // Update transaction structure
-        if (!vendorTransactionData.transactions) {
-          vendorTransactionData.transactions = [];
+        if (!vendorTransactionData.t) {
+          vendorTransactionData.t = [];
         }
         
         const findOrCreateVendorTransaction = () => {
-          let vendor = vendorTransactionData.transactions.find(
-            (v: any) => v.vendor_name === vendorName
+          let vendor = vendorTransactionData.t.find(
+            (v: any) => v.n === vendorName
           );
           
           if (!vendor) {
             vendor = { 
-              vendor_name: vendorName, 
-              department_name: [] 
+              n: vendorName, 
+              d: [] 
             };
-            vendorTransactionData.transactions.push(vendor);
+            vendorTransactionData.t.push(vendor);
           }
           
           return vendor;
@@ -646,14 +646,14 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
         
         // Process transaction structure (hierarchy of nested objects)
         const findOrCreateDepartment = (data: any) => {
-          let dept = data.department_name.find((d: any) => d.name === department);
+          let dept = data.d.find((d: any) => d.n === department);
           if (!dept) {
             dept = { 
-              name: department, 
-              organizationCode: organizationCode,
-              account_type: []
+              n: department, 
+              oc: organizationCode,
+              at: []
             };
-            data.department_name.push(dept);
+            data.d.push(dept);
           }
           return dept;
         };
@@ -662,13 +662,13 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
         
         // Continue building transaction hierarchy
         const findOrCreateAccountType = (data: any) => {
-          let acct = data.account_type.find((a: any) => a.type === accountType);
+          let acct = data.at.find((a: any) => a.t === accountType);
           if (!acct) {
             acct = { 
-              type: accountType, 
-              account_category: [] 
+              t: accountType, 
+              ac: [] 
             };
-            data.account_type.push(acct);
+            data.at.push(acct);
           }
           return acct;
         };
@@ -677,10 +677,10 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
         
         // Continue with account category
         const findOrCreateAccountCategory = (data: any) => {
-          let cat = data.account_category.find((c: any) => c.category === accountCategory);
+          let cat = data.ac.find((c: any) => c.c === accountCategory);
           if (!cat) {
-            cat = { category: accountCategory, account_sub_category: [] };
-            data.account_category.push(cat);
+            cat = { c: accountCategory, asc: [] };
+            data.ac.push(cat);
           }
           return cat;
         };
@@ -689,10 +689,10 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
         
         // Continue with sub category
         const findOrCreateSubCategory = (data: any) => {
-          let subCat = data.account_sub_category.find((s: any) => s.subCategory === accountSubCategory);
+          let subCat = data.asc.find((s: any) => s.sc === accountSubCategory);
           if (!subCat) {
-            subCat = { subCategory: accountSubCategory, account_description: [] };
-            data.account_sub_category.push(subCat);
+            subCat = { sc: accountSubCategory, ad: [] };
+            data.asc.push(subCat);
           }
           return subCat;
         };
@@ -701,21 +701,21 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
         
         // Find or create account description with program and fund codes
         const findOrCreateAccountDescription = (data: any) => {
-          let desc = data.account_description.find((d: any) => 
-            d.description === accountDescription && 
-            d.program_code === programCode && 
-            d.fund_code === fundCode
+          let desc = data.ad.find((d: any) => 
+            d.d === accountDescription && 
+            d.pc === programCode && 
+            d.fc === fundCode
           );
           
           if (!desc) {
             desc = {
-              description: accountDescription,
-              program_code: programCode,
-              fund_code: fundCode,
-              amount: 0,
-              count: 0
+              d: accountDescription,
+              pc: programCode,
+              fc: fundCode,
+              a: 0,
+              ct: 0
             };
-            data.account_description.push(desc);
+            data.ad.push(desc);
           }
           
           return desc;
@@ -724,82 +724,82 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
         const desc = findOrCreateAccountDescription(subCat);
         
         // Update amount and count
-        desc.amount += amount;
-        desc.count += 1;
+        desc.a += amount;
+        desc.ct += 1;
         
         // Update enhanced vendor structure
         // Check if this vendor exists already
-        let enhancedVendor = enhancedVendorData.vendors.find((v: any) => 
-          v.vendorName.some((n: any) => n.name === vendorName)
+        let enhancedVendor = enhancedVendorData.v.find((v: any) => 
+          v.n.some((n: any) => n.n === vendorName)
         );
         
         // If no existing vendor, create a new one with null EIN (will be resolved later)
         if (!enhancedVendor) {
           enhancedVendor = {
-            ein: null,
-            vendorName: [{
-              name: vendorName,
-              fiscalYear: []
+            e: null,
+            n: [{
+              n: vendorName,
+              fy: []
             }]
           };
-          enhancedVendorData.vendors.push(enhancedVendor);
+          enhancedVendorData.v.push(enhancedVendor);
           stats.newVendors++;
         }
         
         // Find or create vendor name entry
-        let nameEntry = enhancedVendor.vendorName.find((n: any) => n.name === vendorName);
+        let nameEntry = enhancedVendor.n.find((n: any) => n.n === vendorName);
         if (!nameEntry) {
           nameEntry = {
-            name: vendorName,
-            fiscalYear: []
+            n: vendorName,
+            fy: []
           };
-          enhancedVendor.vendorName.push(nameEntry);
+          enhancedVendor.n.push(nameEntry);
         }
         
         // Find or create fiscal year
-        let yearEntry = nameEntry.fiscalYear.find((y: any) => y.year === fiscalYear);
+        let yearEntry = nameEntry.fy.find((y: any) => y.y === fiscalYear);
         if (!yearEntry) {
           yearEntry = {
-            year: fiscalYear,
-            projectCode: []
+            y: fiscalYear,
+            pc: []
           };
-          nameEntry.fiscalYear.push(yearEntry);
+          nameEntry.fy.push(yearEntry);
         }
         
         // Find or create project code
-        let projectEntry = yearEntry.projectCode.find((p: any) => p.code === programCode);
+        let projectEntry = yearEntry.pc.find((p: any) => p.c === programCode);
         if (!projectEntry) {
           projectEntry = {
-            code: programCode,
-            organizationCode: []
+            c: programCode,
+            oc: []
           };
-          yearEntry.projectCode.push(projectEntry);
+          yearEntry.pc.push(projectEntry);
         }
         
         // Find or create organization code
-        let orgEntry = projectEntry.organizationCode.find((o: any) => o.code === organizationCode);
+        let orgEntry = projectEntry.oc.find((o: any) => o.c === organizationCode);
         if (!orgEntry) {
           orgEntry = {
-            code: organizationCode,
-            fundCode: []
+            c: organizationCode,
+            fc: []
           };
-          projectEntry.organizationCode.push(orgEntry);
+          projectEntry.oc.push(orgEntry);
         }
         
         // Find or create fund code allocation - using string fund code to preserve 4 digits
-        let fundEntry = orgEntry.fundCode.find((f: any) => f.code === fundCode);
+        let fundEntry = orgEntry.fc.find((f: any) => f.c === fundCode);
         if (!fundEntry) {
           fundEntry = {
-            code: fundCode,
-            count: 0,
-            amount: 0
+            c: fundCode,
+            ct: 0,
+            a: 0
           };
-          orgEntry.fundCode.push(fundEntry);
+          orgEntry.fc.push(fundEntry);
         }
         
         // Update count and amount for enhanced structure
-        fundEntry.count += 1;
-        fundEntry.amount += amount;
+        fundEntry.ct += 1;
+        fundEntry.a += amount;
       } catch (error) {
         log({ message: `Fund code validation error: ${error instanceof Error ? error.message : String(error)}`, type: 'warn' });
       }
@@ -810,16 +810,16 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
     
     // Mark file as processed for each year
     for (const year of Array.from(processedYears)) {
-      if (!yearlyTransactionData[year].processedFiles) {
-        yearlyTransactionData[year].processedFiles = [];
+      if (!yearlyTransactionData[year].pf) {
+        yearlyTransactionData[year].pf = [];
       }
-      if (!yearlyTransactionData[year].processedFiles.includes(file)) {
-        yearlyTransactionData[year].processedFiles.push(file);
+      if (!yearlyTransactionData[year].pf.includes(file)) {
+        yearlyTransactionData[year].pf.push(file);
       }
       
       // Update the last processed file and timestamp for each year
-      yearlyTransactionData[year].lastProcessedFile = file;
-      yearlyTransactionData[year].lastProcessedTimestamp = new Date().toISOString();
+      yearlyTransactionData[year].lpf = file;
+      yearlyTransactionData[year].lpt = new Date().toISOString();
       
       // Write year-specific transaction data
       const yearFilePath = getVendorTransactionPath(year);
@@ -828,20 +828,20 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
     }
     
     // Add the file to the enhanced vendor processed files list
-    if (!enhancedVendorData.processedFiles) {
-      enhancedVendorData.processedFiles = [];
+    if (!enhancedVendorData.pf) {
+      enhancedVendorData.pf = [];
     }
-    if (!enhancedVendorData.processedFiles.includes(file)) {
-      enhancedVendorData.processedFiles.push(file);
+    if (!enhancedVendorData.pf.includes(file)) {
+      enhancedVendorData.pf.push(file);
     }
     
     // Update enhanced vendor data
-    enhancedVendorData.lastProcessedFile = file;
-    enhancedVendorData.lastProcessedTimestamp = new Date().toISOString();
+    enhancedVendorData.lpf = file;
+    enhancedVendorData.lpt = new Date().toISOString();
     
     // Ensure we have the required structure before writing
-    if (!enhancedVendorData.vendors) {
-      enhancedVendorData.vendors = [];
+    if (!enhancedVendorData.v) {
+      enhancedVendorData.v = [];
     }
     if (!enhancedVendorData.sources) {
       enhancedVendorData.sources = [
@@ -896,20 +896,20 @@ function validateFundCodesInVendorData(vendorData: any): { isValid: boolean; inv
   
   try {
     // Check enhanced vendor data
-    if (vendorData.vendors && Array.isArray(vendorData.vendors)) {
+    if (vendorData.v && Array.isArray(vendorData.v)) {
       // Iterate through the nested structure to find all fund codes
-      vendorData.vendors.forEach((vendor: any) => {
-        if (vendor.vendorName && Array.isArray(vendor.vendorName)) {
-          vendor.vendorName.forEach((nameEntry: any) => {
-            if (nameEntry.fiscalYear && Array.isArray(nameEntry.fiscalYear)) {
-              nameEntry.fiscalYear.forEach((yearEntry: any) => {
-                if (yearEntry.projectCode && Array.isArray(yearEntry.projectCode)) {
-                  yearEntry.projectCode.forEach((projectEntry: any) => {
-                    if (projectEntry.organizationCode && Array.isArray(projectEntry.organizationCode)) {
-                      projectEntry.organizationCode.forEach((orgEntry: any) => {
-                        if (orgEntry.fundCode && Array.isArray(orgEntry.fundCode)) {
-                          orgEntry.fundCode.forEach((fundEntry: any) => {
-                            const fundCode = fundEntry.code;
+      vendorData.v.forEach((vendor: any) => {
+        if (vendor.n && Array.isArray(vendor.n)) {
+          vendor.n.forEach((nameEntry: any) => {
+            if (nameEntry.fy && Array.isArray(nameEntry.fy)) {
+              nameEntry.fy.forEach((yearEntry: any) => {
+                if (yearEntry.pc && Array.isArray(yearEntry.pc)) {
+                  yearEntry.pc.forEach((projectEntry: any) => {
+                    if (projectEntry.oc && Array.isArray(projectEntry.oc)) {
+                      projectEntry.oc.forEach((orgEntry: any) => {
+                        if (orgEntry.fc && Array.isArray(orgEntry.fc)) {
+                          orgEntry.fc.forEach((fundEntry: any) => {
+                            const fundCode = fundEntry.c;
                             if (typeof fundCode !== 'string' || !/^\d{4}$/.test(fundCode)) {
                               invalidCodes.push(String(fundCode));
                               isValid = false;
@@ -943,15 +943,15 @@ function validateProgramCodesInVendorData(vendorData: any): { isValid: boolean; 
   
   try {
     // Iterate through the nested structure to check all program codes
-    if (vendorData.vendors && Array.isArray(vendorData.vendors)) {
-      vendorData.vendors.forEach((vendor: any) => {
-        if (vendor.vendorName && Array.isArray(vendor.vendorName)) {
-          vendor.vendorName.forEach((nameEntry: any) => {
-            if (nameEntry.fiscalYear && Array.isArray(nameEntry.fiscalYear)) {
-              nameEntry.fiscalYear.forEach((yearEntry: any) => {
-                if (yearEntry.projectCode && Array.isArray(yearEntry.projectCode)) {
-                  yearEntry.projectCode.forEach((projectEntry: any) => {
-                    const programCode = projectEntry.code;
+    if (vendorData.v && Array.isArray(vendorData.v)) {
+      vendorData.v.forEach((vendor: any) => {
+        if (vendor.n && Array.isArray(vendor.n)) {
+          vendor.n.forEach((nameEntry: any) => {
+            if (nameEntry.fy && Array.isArray(nameEntry.fy)) {
+              nameEntry.fy.forEach((yearEntry: any) => {
+                if (yearEntry.pc && Array.isArray(yearEntry.pc)) {
+                  yearEntry.pc.forEach((projectEntry: any) => {
+                    const programCode = projectEntry.c;
                     if (!validateProgramCode(programCode)) {
                       invalidCodes.push(String(programCode));
                       isValid = false;
@@ -1040,10 +1040,10 @@ async function main(): Promise<void> {
         const filePath = path.join(DATA_DIR, dataFile);
         
         const defaultYearData = {
-          transactions: [],
-          processedFiles: [],
-          lastProcessedFile: null,
-          lastProcessedTimestamp: null
+          t: [],
+          pf: [],
+          lpf: null,
+          lpt: null
         };
         
         yearlyTransactionData[year] = readExistingVendorData(filePath, defaultYearData);
@@ -1077,7 +1077,7 @@ async function main(): Promise<void> {
     if (forceReprocess) {
       // Clear all yearly transaction data
       Object.keys(yearlyTransactionData).forEach(year => {
-        yearlyTransactionData[year].processedFiles = [];
+        yearlyTransactionData[year].pf = [];
       });
       
       enhancedVendorData.processedFiles = [];
@@ -1164,7 +1164,7 @@ async function main(): Promise<void> {
     // Step 5.1: Log processing statistics
     log({ message: '5.1 Processing statistics' });
     
-    const vendorCount = enhancedVendorData.vendors.length;
+    const vendorCount = enhancedVendorData.v.length;
     const processedFileCount = enhancedVendorData.processedFiles ? enhancedVendorData.processedFiles.length : 0;
     const yearsProcessed = Object.keys(yearlyTransactionData).length;
     
@@ -1181,7 +1181,7 @@ async function main(): Promise<void> {
     
     // Step 5.2: Log EIN resolution statistics
     log({ message: '5.2 EIN resolution statistics' });
-    const einCount = enhancedVendorData.vendors.filter((v: any) => v.ein).length;
+    const einCount = enhancedVendorData.v.filter((v: any) => v.e).length;
     log({ message: `Vendors with EINs: ${einCount} (${Math.round(einCount/vendorCount*100)}%)` });
     
     // Step 5.3: Log validation results

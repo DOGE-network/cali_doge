@@ -1,4 +1,14 @@
 {
+  "structure_for_AI_to_understand": [
+    "SearchJSON: Root object with searchable items arrays and optional metadata (lastUpdated)",
+    "SearchItem: Contains term (string), type (string), and id (string) for departments, vendors, programs, and funds",
+    "KeywordItem: Contains term (string), type ('keyword'), and sources array with context information",
+    "KeywordSource: Contains type ('department' or 'program'), id (string), and context (string phrase)",
+    "Search Types: department, vendor, program, fund, keyword",
+    "ID References: Organizational codes for departments, EINs for vendors, project codes for programs, fund codes for funds",
+    "Usage: Provides fast search index for frontend autocomplete and search functionality",
+    "Processing: Generated from departments.json, vendors.json, programs.json, and funds.json data"
+  ],
   "departments": [
     { "term": "Commission on Judicial Performance", "type": "department", "id": "0280" },
     { "term": "Department of Education", "type": "department", "id": "6100" },

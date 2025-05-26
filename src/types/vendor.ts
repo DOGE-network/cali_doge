@@ -1,24 +1,25 @@
-// Main vendor transaction record structure
+// Main vendor transaction record structure with optimized field names
 export interface VendorTransaction {
-  vendor_name: string;
-  fiscalYear: Array<{
-    year: string;
-    department_name: Array<{
-      name: string;
-      account_type: Array<{
-        type: string;
-        account_category: Array<{
-          category: string;
-          account_sub_category: Array<{
-            subCategory: string;
-            account_description: Array<{
-              description: string;
-              program_description: Array<{
-                program: string;
-                sub_program_description: Array<{
-                  subProgram: string;
-                  count: number;
-                  amount: number;
+  n: string;  // vendor_name
+  fy: Array<{
+    y: string;  // year
+    d: Array<{
+      n: string;  // name
+      oc: number;  // organizationCode
+      at: Array<{
+        t: string;  // type
+        ac: Array<{
+          c: string;  // category
+          asc: Array<{
+            sc: string;  // subCategory
+            ad: Array<{
+              d: string;  // description
+              pd: Array<{
+                p: string;  // program
+                spd: Array<{
+                  sp: string;  // subProgram
+                  ct: number;  // count
+                  a: number;  // amount
                 }>;
               }>;
             }>;
@@ -29,7 +30,7 @@ export interface VendorTransaction {
   }>;
 }
 
-// CSV record structure
+// CSV record structure (used for importing data)
 export interface VendorTransactionsCSV {
   business_unit: string;
   agency_name: string;
@@ -59,48 +60,57 @@ export interface VendorTransactionsCSV {
   monetary_amount: string;
 }
 
+// Department data structure
 export interface DepartmentData {
   name: string;
   count: number;
   amount: number;
 }
 
+// Fiscal year data structure
 export interface FiscalYearData {
   year: string;
   data: DepartmentData[];
 }
 
+// Vendor department structure (used in API responses)
 export interface VendorDepartment {
-  vendor_name: string;
-  fiscalYear: FiscalYearData[];
+  n: string;  // vendor_name
+  fy: FiscalYearData[];
 }
 
+// Vendor data structure
 export interface VendorData {
-  name: string;
-  count: number;
-  amount: number;
+  n: string;  // name
+  ct: number;  // count
+  a: number;  // amount
 }
 
+// Department fiscal year structure
 export interface DepartmentFiscalYear {
-  year: string;
-  vendor_name: VendorData[];
+  y: string;  // year
+  vn: VendorData[];  // vendor_name
 }
 
+// Department vendor structure (used in API responses)
 export interface DepartmentVendor {
-  department_name: string;
-  fiscalYear: DepartmentFiscalYear[];
+  n: string;  // department_name
+  fy: DepartmentFiscalYear[];
 }
 
+// Account vendor structure (used in API responses)
 export interface AccountVendor {
-  account_type: string;
-  fiscalYear: DepartmentFiscalYear[];
+  t: string;  // account_type
+  fy: DepartmentFiscalYear[];
 }
 
+// Program vendor structure (used in API responses)
 export interface ProgramVendor {
-  program_description: string;
-  fiscalYear: DepartmentFiscalYear[];
+  pd: string;  // program_description
+  fy: DepartmentFiscalYear[];
 }
 
+// Pagination info structure
 export interface PaginationInfo {
   currentPage: number;
   totalPages: number;
@@ -110,7 +120,7 @@ export interface PaginationInfo {
   hasPrevPage: boolean;
 }
 
-// File structure types
+// File structure types (used for API file reading)
 export interface VendorTransactionFile {
   transactions: VendorTransaction[];
 }
@@ -131,7 +141,7 @@ export interface ProgramVendorFile {
   programs: ProgramVendor[];
 }
 
-// Transaction type for payment records
+// Transaction type for payment records (used in legacy structures)
 export interface Transaction {
   id: string;
   date: string;
@@ -141,73 +151,39 @@ export interface Transaction {
   fiscalYear: string;
 }
 
-/**
- * New Vendor Structure with EIN support
- */
-
-// Fund code allocation for vendor transactions
-export interface FundCodeAllocation {
-  code: number;
-  count: number;
-  amount: number;
+// Optimized vendor structure with shortened field names (current format)
+export interface OptimizedFundCode {
+  c: number;    // code
+  ct: number;   // count
+  a: number;    // amount
 }
 
-// Organization code data for vendor transactions
-export interface VendorOrgCodeData {
-  code: number;
-  fundCode: FundCodeAllocation[];
+export interface OptimizedOrgCode {
+  c: number;    // code
+  fc: OptimizedFundCode[];
 }
 
-// Project code data for vendor transactions
-export interface VendorProjectCodeData {
-  code: string;
-  organizationCode: VendorOrgCodeData[];
+export interface OptimizedProjectCode {
+  c: string;    // code
+  oc: OptimizedOrgCode[];
 }
 
-// Fiscal year data for vendor transactions
-export interface VendorFiscalYearData {
-  year: number;
-  projectCode: VendorProjectCodeData[];
+export interface OptimizedFiscalYear {
+  y: number;    // year
+  pc: OptimizedProjectCode[];
 }
 
-// Vendor name data with fiscal years
-export interface VendorNameData {
-  name: string;
-  fiscalYear: VendorFiscalYearData[];
+export interface OptimizedVendor {
+  n: string;    // name
+  e?: string;   // ein (optional)
+  fy: OptimizedFiscalYear[];
 }
 
-// Vendor with EIN and name data
-export interface EnhancedVendor {
-  ein: string | null;  // Employer Identification Number
-  vendorName: VendorNameData[];
-  einSource?: string;  // Source of the EIN data
-  einConfidence?: number;  // Confidence level of EIN match (0-1)
-  einAcquiredDate?: string;  // ISO date when EIN was acquired
+export interface OptimizedVendorsJSON {
+  vendors: OptimizedVendor[];
 }
 
-// Enhanced vendors.json structure
-export interface EnhancedVendorsJSON {
-  vendors: EnhancedVendor[];
-  sources?: Array<{
-    name: string;
-    url: string;
-  }>;
-  lastUpdated?: string;
-}
-
-// Legacy vendors structure for backward compatibility
-export interface VendorsJSON {
-  vendors: Array<{
-    id: string;
-    name: string;
-    ein?: string | null;  // Added EIN field for compatibility
-    transactions: {
-      allTransactions: Transaction[];
-    };
-  }>;
-}
-
-// EIN resolution metadata
+// EIN resolution metadata (used in processing scripts)
 export interface EINMetadata {
   source: string;
   acquiredDate: string;

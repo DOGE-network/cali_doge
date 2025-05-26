@@ -1,4 +1,15 @@
 {
+  "structure_for_AI_to_understand": [
+    "TwitterApiResponse: Root object with tweets array and optional users, errors, meta arrays",
+    "EnrichedTweet: Enhanced tweet with author info, formatted dates, media attachments, and enriched entities",
+    "TwitterMedia: Media attachments with type (photo/video/animated_gif), url, dimensions, and preview images",
+    "EnrichedTweetEntities: Tweet entities with enhanced URL metadata including titles, descriptions, and images",
+    "UrlMetadata: URL expansion with title, description, images array, and status codes",
+    "UserV2: Twitter user objects with profile information embedded in tweets",
+    "Data Flow: Tweets fetched from Twitter API → enriched with media/URL metadata → stored with formatted dates",
+    "Processing: Real-time Twitter data with rate limiting, media download, and URL expansion",
+    "Usage: Powers social media feed and engagement tracking for California DOGE content"
+  ],
   "tweets": [
     {
       "author_id": "1859283000145608705",

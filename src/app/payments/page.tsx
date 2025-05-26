@@ -62,7 +62,7 @@ export default function VendorsPage() {
         // Extract unique years from vendor data
         const years = new Set<string>();
         newVendorData.departments.forEach((vendor: VendorDepartment) => {
-          vendor.fiscalYear?.forEach(fy => {
+          vendor.fy?.forEach(fy => {
             if (fy.year) years.add(fy.year);
           });
         });
@@ -74,7 +74,7 @@ export default function VendorsPage() {
         // Extract unique departments
         const uniqueDepartments = new Set<string>();
         newVendorData.departmentVendors.forEach((dept: DepartmentVendor) => {
-          uniqueDepartments.add(dept.department_name);
+          uniqueDepartments.add(dept.n);
         });
         const sortedDepartments = Array.from(uniqueDepartments).sort();
         setDepartments(sortedDepartments);

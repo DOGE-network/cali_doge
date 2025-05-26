@@ -20,7 +20,7 @@ export async function GET(request: Request) {
     // Filter vendors by department if specified
     let filteredVendors = department
       ? data.vendors.filter(vendor =>
-          vendor.fiscalYear?.some(fy =>
+          vendor.fy?.some(fy =>
             fy.data?.some(d => d.name === department)
           )
         )
@@ -29,11 +29,11 @@ export async function GET(request: Request) {
     // Sort vendors by amount for the specified year
     const sortedVendors = filteredVendors.sort((a, b) => {
       const aFiscalYear = year 
-        ? a.fiscalYear?.find(fy => fy.year === year)
-        : a.fiscalYear?.[a.fiscalYear.length - 1];
+        ? a.fy?.find(fy => fy.year === year)
+        : a.fy?.[a.fy.length - 1];
       const bFiscalYear = year 
-        ? b.fiscalYear?.find(fy => fy.year === year)
-        : b.fiscalYear?.[b.fiscalYear.length - 1];
+        ? b.fy?.find(fy => fy.year === year)
+        : b.fy?.[b.fy.length - 1];
 
       const aAmount = aFiscalYear?.data?.reduce((sum, d) => {
         if (department && d.name !== department) return sum;

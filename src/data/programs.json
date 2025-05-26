@@ -1,4 +1,14 @@
 {
+  "structure_for_AI_to_understand": [
+    "ProgramsJSON: Root object with programs array and optional metadata (sources, lastUpdated)",
+    "Program: Contains projectCode (7-digit string), name (string), and programDescriptions array",
+    "ProgramDescription: Contains description (string) and source (string or array of strings)",
+    "Project Codes: 7-digit identifiers as strings - either direct 7-digit codes or 4-digit program codes with '000' appended",
+    "Data Sources: Extracted from budget text files and vendor transaction CSV files",
+    "Multiple Descriptions: Programs can have multiple descriptions from different sources with source tracking",
+    "Processing: New programs added when found, existing programs get additional descriptions from new sources",
+    "Source Tracking: Each description tracks which budget file or vendor CSV it came from"
+  ],
   "programs": [
     {
       "projectCode": "2420028",
@@ -7019,35 +7029,6 @@
       ]
     },
     {
-      "projectCode": "4430030",
-      "name": "Other Contracted Services",
-      "programDescriptions": [
-        {
-          "description": "Contracted Patient Services",
-          "source": [
-            "Vendor_FY23P04.csv",
-            "Vendor_FY23P01.csv",
-            "Vendor_FY23P12.csv",
-            "Vendor_FY23P02.csv",
-            "Vendor_FY24P01.csv",
-            "Vendor_FY24P02.csv",
-            "Vendor_FY24P03.csv",
-            "Vendor_FY23P03.csv",
-            "Vendor_FY23P05.csv",
-            "Vendor_FY23P06.csv",
-            "Vendor_FY23P07.csv",
-            "Vendor_FY23P10.csv",
-            "Vendor_FY24P05.csv",
-            "Vendor_FY23P09.csv",
-            "Vendor_FY23P08.csv",
-            "Vendor_FY24P06.csv",
-            "Vendor_FY24P04.csv",
-            "Vendor_FY24P07.csv"
-          ]
-        }
-      ]
-    },
-    {
       "projectCode": "4430040",
       "name": "Other Contracted Services",
       "programDescriptions": [
@@ -9391,16 +9372,6 @@
       "programDescriptions": []
     },
     {
-      "projectCode": "2565000",
-      "name": null,
-      "programDescriptions": []
-    },
-    {
-      "projectCode": "4185000",
-      "name": null,
-      "programDescriptions": []
-    },
-    {
       "projectCode": "2940000",
       "name": null,
       "programDescriptions": []
@@ -10975,19 +10946,6 @@
       ]
     },
     {
-      "projectCode": "0520028",
-      "name": "Licensing",
-      "programDescriptions": [
-        {
-          "description": "Regulation Insur Comp and Prod",
-          "source": [
-            "Vendor_FY23P12.csv",
-            "Vendor_FY23P11.csv"
-          ]
-        }
-      ]
-    },
-    {
       "projectCode": "2855010",
       "name": "Off Highway Vehicle Grants",
       "programDescriptions": [
@@ -11768,22 +11726,6 @@
             "Vendor_FY24P06.csv",
             "Vendor_FY24P04.csv",
             "Vendor_FY24P07.csv"
-          ]
-        }
-      ]
-    },
-    {
-      "projectCode": "3960015",
-      "name": "County and Other Local Assista",
-      "programDescriptions": [
-        {
-          "description": "Health Care Services",
-          "source": [
-            "Vendor_FY24P01.csv",
-            "Vendor_FY24P02.csv",
-            "Vendor_FY24P03.csv",
-            "Vendor_FY24P06.csv",
-            "Vendor_FY24P04.csv"
           ]
         }
       ]
@@ -12575,7 +12517,75 @@
       "projectCode": "3626000",
       "name": null,
       "programDescriptions": []
+    },
+    {
+      "projectCode": "4430030",
+      "name": "Other Contracted Services",
+      "programDescriptions": [
+        {
+          "description": "Contracted Patient Services",
+          "source": [
+            "Vendor_FY23P04.csv",
+            "Vendor_FY23P01.csv",
+            "Vendor_FY23P12.csv",
+            "Vendor_FY23P02.csv",
+            "Vendor_FY24P01.csv",
+            "Vendor_FY24P02.csv",
+            "Vendor_FY24P03.csv",
+            "Vendor_FY23P03.csv",
+            "Vendor_FY23P05.csv",
+            "Vendor_FY23P06.csv",
+            "Vendor_FY23P07.csv",
+            "Vendor_FY23P10.csv",
+            "Vendor_FY24P05.csv",
+            "Vendor_FY23P09.csv",
+            "Vendor_FY23P08.csv",
+            "Vendor_FY24P06.csv",
+            "Vendor_FY24P04.csv",
+            "Vendor_FY24P07.csv"
+          ]
+        }
+      ]
+    },
+    {
+      "projectCode": "2565000",
+      "name": null,
+      "programDescriptions": []
+    },
+    {
+      "projectCode": "4185000",
+      "name": null,
+      "programDescriptions": []
+    },
+    {
+      "projectCode": "0520028",
+      "name": "Licensing",
+      "programDescriptions": [
+        {
+          "description": "Regulation Insur Comp and Prod",
+          "source": [
+            "Vendor_FY23P12.csv",
+            "Vendor_FY23P11.csv"
+          ]
+        }
+      ]
+    },
+    {
+      "projectCode": "3960015",
+      "name": "County and Other Local Assista",
+      "programDescriptions": [
+        {
+          "description": "Health Care Services",
+          "source": [
+            "Vendor_FY24P01.csv",
+            "Vendor_FY24P02.csv",
+            "Vendor_FY24P03.csv",
+            "Vendor_FY24P06.csv",
+            "Vendor_FY24P04.csv"
+          ]
+        }
+      ]
     }
   ],
-  "lastUpdated": "2025-05-19T14:24:26.319Z"
+  "lastUpdated": "2025-05-26T20:04:31.795Z"
 }
