@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
-const { getProgramsData } = require('@/lib/api/dataAccess');
+import programsData from '@/data/programs.json';
 import type { ProgramsJSON, Program } from '@/types/program';
 
+export const runtime = 'edge';
 export const revalidate = 3600; // Revalidate every hour
 
 interface ProgramResponse {
@@ -18,7 +19,8 @@ interface ProgramResponse {
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
+    const url = new URL(request.url || '', 'http://localhost');
+    const searchParams = url.searchParams;
     
     // Parse query parameters
     const page = parseInt(searchParams.get('page') || '1', 10);
@@ -28,10 +30,10 @@ export async function GET(request: Request) {
 
     console.log('Program API request:', { page, limit, search, projectCode });
 
-    // Load programs data
-    const programsData = await getProgramsData() as ProgramsJSON;
+    // Type-cast statically imported programs data
+    const typedPrograms = programsData as unknown as ProgramsJSON;
 
-    if (!programsData || !programsData.programs) {
+    if (!typedPrograms || !typedPrograms.programs) {
       return NextResponse.json(
         { error: 'Programs data not available' },
         { status: 500 }
@@ -40,7 +42,7 @@ export async function GET(request: Request) {
 
     // If requesting specific program by project code
     if (projectCode) {
-      const program = programsData.programs.find(p => p.projectCode === projectCode);
+      const program = typedPrograms.programs.find(p => p.projectCode === projectCode);
       
       if (!program) {
         return NextResponse.json(
@@ -59,14 +61,14 @@ export async function GET(request: Request) {
     }
 
     // Filter programs if search query provided
-    let filteredPrograms = programsData.programs;
+    let filteredPrograms = typedPrograms.programs as any[];
 
     if (search) {
       const searchLower = search.toLowerCase();
-      filteredPrograms = programsData.programs.filter(program => 
+      filteredPrograms = typedPrograms.programs.filter((program: any) => 
         program.projectCode.toLowerCase().includes(searchLower) ||
         (program.name && program.name.toLowerCase().includes(searchLower)) ||
-        program.programDescriptions.some(desc => 
+        program.programDescriptions.some((desc: any) => 
           desc.description.toLowerCase().includes(searchLower)
         )
       );

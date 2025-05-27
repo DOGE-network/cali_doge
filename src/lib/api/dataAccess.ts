@@ -198,28 +198,6 @@ function readLargeFileOptimized(fullPath: string, filename: string) {
     const fileContent = fs_mod.readFileSync(fullPath, 'utf8');
     const data = JSON.parse(fileContent);
     
-    // If it's a large array, consider truncating for production
-    if (Array.isArray(data)) {
-      console.log(`Large array detected with ${data.length} items`);
-      // Limit to first 1000 items in production to prevent memory issues
-      if (isProduction && data.length > 1000) {
-        console.log(`Truncating large array to 1000 items for production`);
-        return data.slice(0, 1000);
-      }
-    }
-    
-    // If it's an object with arrays, truncate those
-    if (typeof data === 'object' && data !== null) {
-      const truncatedData = { ...data };
-      for (const [key, value] of Object.entries(data)) {
-        if (Array.isArray(value) && value.length > 1000 && isProduction) {
-          console.log(`Truncating ${key} array from ${value.length} to 1000 items`);
-          truncatedData[key] = value.slice(0, 1000);
-        }
-      }
-      return truncatedData;
-    }
-    
     return data;
   } catch (error) {
     console.error(`Failed to read large file optimized: ${filename}`, error);
@@ -264,12 +242,13 @@ function getVendorsData() {
 }
 
 /**
- * Get vendor transactions data
+ * Get vendor transactions data (deprecated - files removed)
  * 
- * @returns Vendor transactions data from vendor_transaction.json
+ * @returns Empty data structure
  */
 function getVendorTransactionsData() {
-  return readJsonFile('vendor_transaction.json');
+  console.warn('getVendorTransactionsData: Vendor transaction files have been removed');
+  return { transactions: [] };
 }
 
 /**

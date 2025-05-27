@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
-const { getProgramsData } = require('@/lib/api/dataAccess');
+import programsData from '@/data/programs.json';
 import type { ProgramsJSON } from '@/types/program';
 
+export const runtime = 'edge';
 export const revalidate = 3600; // Revalidate every hour
 
 export async function GET(
@@ -13,10 +14,10 @@ export async function GET(
 
     console.log('Program API - individual program request:', { projectCode });
 
-    // Load programs data
-    const programsData = await getProgramsData() as ProgramsJSON;
+    // Type-cast statically imported programs data
+    const typedPrograms = programsData as unknown as ProgramsJSON;
 
-    if (!programsData || !programsData.programs) {
+    if (!typedPrograms || !typedPrograms.programs) {
       return NextResponse.json(
         { error: 'Programs data not available' },
         { status: 500 }
@@ -24,7 +25,7 @@ export async function GET(
     }
 
     // Find the specific program
-    const program = programsData.programs.find(p => p.projectCode === projectCode);
+    const program = typedPrograms.programs.find(p => p.projectCode === projectCode);
 
     if (!program) {
       return NextResponse.json(
