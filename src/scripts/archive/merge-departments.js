@@ -22,7 +22,7 @@ function mergeDepartmentData(hierarchyDept, existingDept) {
     aliases: existingDept.aliases || hierarchyDept.aliases || [],
     spending: existingDept.spending || hierarchyDept.spending || {},
     workforce: existingDept.workforce || hierarchyDept.workforce || {},
-    code: existingDept.budgetCode || hierarchyDept.budgetCode,
+    code: existingDept.organizationalCode || hierarchyDept.organizationalCode,
     budget_status: existingDept.budget_status || hierarchyDept.budget_status,
     keyFunctions: existingDept.keyFunctions || hierarchyDept.keyFunctions,
     abbreviation: existingDept.abbreviation || hierarchyDept.abbreviation,

@@ -22,7 +22,7 @@
 *  Organization Level: 
 *  Parent Agency: (only field to match to a parent)
 *  Budget Status: 
-*  _note: 
+*  note: 
 *  similar score: 
  * 
  * Steps:
@@ -496,7 +496,7 @@ class DepartmentNode {
 
         // Add optional fields only if they have values
         if (this.department.abbreviation) dept.abbreviation = this.department.abbreviation;
-        if (this.department.budgetCode) dept.budgetCode = this.department.budgetCode;
+        if (this.department.organizationalCode) dept.organizationalCode = this.department.organizationalCode;
         if (this.department.entity) dept.entity = this.department.entity;
         if (this.department.slug) dept.slug = this.department.slug;
         if (this.department.canonicalName) dept.canonicalName = this.department.canonicalName;
@@ -663,10 +663,10 @@ const buildHierarchy = (departments, logger) => {
         budget_status: 'active',
         keyFunctions: 'State Government',
         abbreviation: rootDept?.jsonData?.abbreviation,
-        code: rootDept?.jsonData?.budgetCode,
+        code: rootDept?.jsonData?.organizationalCode,
         entity: rootDept?.jsonData?.entity,
         parent_agency: '',
-        _note: rootDept?.jsonData?._note
+        note: rootDept?.jsonData?.note
     });
 
     if (!rootNode) {
@@ -694,9 +694,9 @@ const buildHierarchy = (departments, logger) => {
                              dept.csvData?.parent_agency?.[0] || 
                              'California State Government',
                 abbreviation: dept.jsonData?.abbreviation,
-                code: dept.jsonData?.budgetCode,
+                code: dept.jsonData?.organizationalCode,
                 entity: dept.jsonData?.entity,
-                _note: dept.jsonData?._note,
+                note: dept.jsonData?.note,
                 similarityScore: dept.similarityScore,
                 matchedName: dept.csvData?.Department,
                 matchedAliases: dept.csvData?.aliases,

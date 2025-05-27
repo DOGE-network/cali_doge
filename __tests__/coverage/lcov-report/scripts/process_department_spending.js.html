@@ -1453,7 +1453,7 @@
  * This script processes budget text files and updates departments.json with budget data.
  * It handles:
  * - Budget data extraction from text files
- * - Department matching using name, aliases, and budgetCode
+ * - Department matching using name, aliases, and organizationalCode
  * - Data validation and type compliance
  * - Logging of operations and results
  * - using department type interface RequiredDepartmentJSONFields
@@ -1466,10 +1466,10 @@
  * 
  * 2. Text File Processing
  *    a. Read and parse text files
- *    b. match textfile budget code to json department budgetCode. if match then check if orgLevel&gt;1 else skip
+ *    b. match textfile organizational code to json department organizationalCode. if match then check if orgLevel&gt;1 else skip
  *    c. match for next 3 rows are headcount  array years 2022, 2023, 2024, then next 3 rows are spending array years 2022, 2023, 2024
  *    d. create headcount and spending data arrays and log. use department type interface RequiredDepartmentJSONFields. 
- *    e. using record matched from step2b, show textfile budget code and json (budgetCode, name, aliases) so user can compare for matching, diff of headcount and spending arrays to fields of the record, log the differences.  Show headcount as info only, spending as will update. 
+ *    e. using record matched from step2b, show textfile organizational code and json (organizationalCode, name, aliases) so user can compare for matching, diff of headcount and spending arrays to fields of the record, log the differences.  Show headcount as info only, spending as will update. 
  *    f. if differences in spending or _note, ask user if they want to update the record, else skip. 
  *    g. Save the _note and or spending changes to departments.json. Match _note with the text file name or append to the existing note
  *    h. Continue until all files are processed
@@ -1602,21 +1602,21 @@ const normalizeDepartmentData = (dept) =&gt; {
 const parseBudgetFile = <span class="fstat-no" title="function not covered" >as</span>ync (filePath, log, departmentsData) =&gt; {
   const timestamp = <span class="cstat-no" title="statement not covered" >new Date().toISOString();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] === Step 2b: Match textfile budget code to json department budgetCode ===`);</span>
+<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] === Step 2b: Match textfile organizational code to json department organizationalCode ===`);</span>
 <span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] Processing file: ${path.basename(filePath)}`);</span>
 &nbsp;
-  // Extract budget code from filename
-  const budgetCode = <span class="cstat-no" title="statement not covered" >parseInt(path.basename(filePath).split('_')[0]);</span>
-<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] Extracted budget code: ${budgetCode}`);</span>
+  // Extract organizational code from filename
+  const organizationalCode = <span class="cstat-no" title="statement not covered" >parseInt(path.basename(filePath).split('_')[0]);</span>
+<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] Extracted organizational code: ${organizationalCode}`);</span>
 &nbsp;
-  // First verify if we have a matching department by budget code
+  // First verify if we have a matching department by organizational code
   const matchingDepartment = <span class="cstat-no" title="statement not covered" >departmentsData.departments.find(<span class="fstat-no" title="function not covered" >d </span>=&gt; {</span>
-    const deptBudgetCode = <span class="cstat-no" title="statement not covered" >typeof d.budgetCode === 'string' ? parseInt(d.budgetCode) : d.budgetCode;</span>
-<span class="cstat-no" title="statement not covered" >    return deptBudgetCode === budgetCode;</span>
+    const deptorganizationalCode = <span class="cstat-no" title="statement not covered" >typeof d.organizationalCode === 'string' ? parseInt(d.organizationalCode) : d.organizationalCode;</span>
+<span class="cstat-no" title="statement not covered" >    return deptorganizationalCode === organizationalCode;</span>
   });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!matchingDepartment) {</span>
-<span class="cstat-no" title="statement not covered" >    log(`[${timestamp}] Error: No matching department found for budget code ${budgetCode}`, 'error');</span>
+<span class="cstat-no" title="statement not covered" >    log(`[${timestamp}] Error: No matching department found for organizational code ${organizationalCode}`, 'error');</span>
 <span class="cstat-no" title="statement not covered" >    return null;</span>
   }
 &nbsp;
@@ -1626,12 +1626,12 @@ const parseBudgetFile = <span class="fstat-no" title="function not covered" >as<
 <span class="cstat-no" title="statement not covered" >    return null;</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] Found matching department: ${matchingDepartment.name} (Budget Code: ${matchingDepartment.budgetCode}, orgLevel: ${matchingDepartment.orgLevel})`);</span>
+<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] Found matching department: ${matchingDepartment.name} (organizational code: ${matchingDepartment.organizationalCode}, orgLevel: ${matchingDepartment.orgLevel})`);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] === Step 2b Complete ===\n`);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return {</span>
-    budgetCode: budgetCode,
+    organizationalCode: organizationalCode,
     department: matchingDepartment
   };
 };
@@ -1778,11 +1778,11 @@ const compareAndConfirmUpdate = <span class="fstat-no" title="function not cover
   
   // Show matching details
 <span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] Text File Department:`);</span>
-<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}]   Budget Code: ${updateData.budgetCode}`);</span>
+<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}]   organizational code: ${updateData.organizationalCode}`);</span>
 <span class="cstat-no" title="statement not covered" >  log(`[${timestamp}]   Name: ${updateData.name}`);</span>
   
 <span class="cstat-no" title="statement not covered" >  log(`[${timestamp}] JSON Department:`);</span>
-<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}]   Budget Code: ${department.budgetCode}`);</span>
+<span class="cstat-no" title="statement not covered" >  log(`[${timestamp}]   organizational code: ${department.organizationalCode}`);</span>
 <span class="cstat-no" title="statement not covered" >  log(`[${timestamp}]   Name: ${department.name}`);</span>
 <span class="cstat-no" title="statement not covered" >  log(`[${timestamp}]   Aliases: ${department.aliases?.join(', ') || 'None'}`);</span>
   
@@ -1876,12 +1876,12 @@ const main = async () =&gt; {
     // Process each file
     for (const file of files) {
       const filename = path.basename(file);
-      const budgetCode = filename.split('_')[0];
+      const organizationalCode = filename.split('_')[0];
       const timestamp = new Date().toISOString();
       
       log(`\n[${timestamp}] === Step 2a: Reading and Parsing Text File ===`);
       log(`[${timestamp}] Processing file: ${filename}`);
-      log(`[${timestamp}] Budget Code: ${budgetCode}`);
+      log(`[${timestamp}] organizational code: ${organizationalCode}`);
       log(`[${timestamp}] Full path: ${file}`);
       
       // File validation
@@ -1921,7 +1921,7 @@ const main = async () =&gt; {
 &nbsp;
           // Extract department name
 <span class="cstat-no" title="statement not covered" >          if (!departmentName &amp;&amp; line.trim()) {</span>
-            // Extract department name from after the budget code (4 digits at start)
+            // Extract department name from after the organizational code (4 digits at start)
             const match = <span class="cstat-no" title="statement not covered" >line.trim().match(/^\d{4}\s+(.+)$/);</span>
 <span class="cstat-no" title="statement not covered" >            if (match) {</span>
 <span class="cstat-no" title="statement not covered" >              departmentName = match[1].trim();</span>
@@ -1973,7 +1973,7 @@ const main = async () =&gt; {
       }
 <span class="cstat-no" title="statement not covered" >      log(`[${timestamp}] === Step 2a Complete ===\n`);</span>
       
-      // Step 2b: Extract department information and match budget code
+      // Step 2b: Extract department information and match organizational code
       const budgetData = <span class="cstat-no" title="statement not covered" >await parseBudgetFile(file, log, departmentsData);</span>
 <span class="cstat-no" title="statement not covered" >      if (!budgetData) {</span>
 <span class="cstat-no" title="statement not covered" >        log(`[${timestamp}] Skipping file ${filename} - no matching department found in departments.json`, 'error');</span>
@@ -2096,7 +2096,7 @@ const main = async () =&gt; {
 <span class="cstat-no" title="statement not covered" >    departmentsData.departments</span>
       .filter(<span class="fstat-no" title="function not covered" >d </span>=&gt; <span class="cstat-no" title="statement not covered" >!d.headCount?.yearly || Object.values(d.headCount.yearly).every(<span class="fstat-no" title="function not covered" >ye</span>arData =&gt; <span class="cstat-no" title="statement not covered" >!yearData.length)</span>)</span>
       .forEach(<span class="fstat-no" title="function not covered" >d </span>=&gt; {
-<span class="cstat-no" title="statement not covered" >        log(`- ${d.name} (Budget Code: ${d.budgetCode || 'None'})`);</span>
+<span class="cstat-no" title="statement not covered" >        log(`- ${d.name} (organizational code: ${d.organizationalCode || 'None'})`);</span>
 <span class="cstat-no" title="statement not covered" >        unmatchedDepartments.add(d.name);</span>
       });
     

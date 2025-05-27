@@ -1,7 +1,7 @@
 ---
 
 name: "Office of Data and Innovation"
-budgetCode: 7504
+organizationalCode: 7504
 date: '2025-04-30'
 author: "Sean Roberts"
 image: 

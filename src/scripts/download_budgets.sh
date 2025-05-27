@@ -12,7 +12,7 @@
 # NOTE: The state dept of finance does not put documents in an easy to use location
 # We will need to use browser automation to download the documents from the state's ebudget website
 # Budget documents: https://ebudget.ca.gov/
-# Budget uses DEPARTMENT OF FINANCE UNIFORM CODES or budget codes
+# Budget uses DEPARTMENT OF FINANCE UNIFORM CODES or organizational codes
 
 # Prerequisites:
 # 1. Bash shell environment

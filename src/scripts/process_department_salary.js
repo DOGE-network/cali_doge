@@ -820,10 +820,10 @@ const main = async () => {
             
             // Handle note matching
             const newNote = `Salary data from ${_filename}`;
-            if (!department._note) {
-              department._note = newNote;
-            } else if (!department._note.includes(newNote)) {
-              department._note = `${department._note}, ${newNote}`;
+            if (!department.note) {
+              department.note = newNote;
+            } else if (!department.note.includes(newNote)) {
+              department.note = `${department.note}, ${newNote}`;
             }
             
             // Update entity code if not present or different
@@ -953,7 +953,7 @@ const main = async () => {
     // Get all departments from JSON
     const allDepartments = departmentsData.departments.map(d => ({
       name: d.name,
-      budgetCode: d.budgetCode || 'NO_BUDGET_CODE',
+      organizationalCode: d.organizationalCode || 'NO_BUDGET_CODE',
       updated: false,
       reason: 'Not processed',
       details: ''
@@ -991,7 +991,7 @@ const main = async () => {
     summary.push(`\nSuccessfully Updated Departments (${updatedDepartments.length}):`);
     summary.push('----------------------------------------');
     updatedDepartments.forEach(d => {
-      summary.push(`${d.budgetCode}_${d.name}`);
+      summary.push(`${d.organizationalCode}_${d.name}`);
       if (d.details) {
         summary.push(`  Details: ${d.details}`);
       }
@@ -1000,7 +1000,7 @@ const main = async () => {
     summary.push(`\nSkipped - No Changes Needed (${skippedDepartments.length}):`);
     summary.push('----------------------------------------');
     skippedDepartments.forEach(d => {
-      summary.push(`${d.budgetCode}_${d.name}`);
+      summary.push(`${d.organizationalCode}_${d.name}`);
       if (d.details) {
         summary.push(`  Details: ${d.details}`);
       }
@@ -1022,7 +1022,7 @@ const main = async () => {
     Object.entries(groupedByReason).forEach(([reason, departments]) => {
       summary.push(`\n${reason}: ${departments.length} departments`);
       departments.forEach(d => {
-        summary.push(`${d.budgetCode}_${d.name}`);
+        summary.push(`${d.organizationalCode}_${d.name}`);
         if (d.details) {
           summary.push(`  Details: ${d.details}`);
         }
@@ -1035,7 +1035,7 @@ const main = async () => {
       summary.push(`\nDepartments Not Found in CSV Files (${departmentsNotInCsv.length}):`);
       summary.push('----------------------------------------');
       departmentsNotInCsv.forEach(d => {
-        summary.push(`${d.budgetCode}_${d.name}`);
+        summary.push(`${d.organizationalCode}_${d.name}`);
       });
     }
 

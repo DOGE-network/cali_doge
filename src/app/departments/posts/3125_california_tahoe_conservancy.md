@@ -1,6 +1,6 @@
 ---
 name: 'California Tahoe Conservancy'
-budgetCode: '3125'
+organizationalCode: '3125'
 date: '2024-03-16'
 author: 'State of California'
 image: '/images/departments/3125.png'

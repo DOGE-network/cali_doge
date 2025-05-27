@@ -1,6 +1,6 @@
 ---
 name: "California Department of Veterans Affairs"
-budgetCode: 8955
+organizationalCode: 8955
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

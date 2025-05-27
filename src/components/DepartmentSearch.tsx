@@ -11,7 +11,7 @@ type DepartmentSearchResult = {
   aliases: string[];
   keyFunctions: string;
   abbreviation: string;
-  budgetCode: number | null;
+  organizationalCode: number | null;
   orgLevel: number;
   budget_status: string;
   parent_agency: string;
@@ -58,7 +58,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
         // Debug code types
         console.log('Department codes:');
         data.departments.slice(0, 5).forEach((dept: DepartmentSearchResult) => {
-          console.log(`${dept.name}: code=${dept.budgetCode}, type=${typeof dept.budgetCode}`);
+          console.log(`${dept.name}: code=${dept.organizationalCode}, type=${typeof dept.organizationalCode}`);
         });
         
         setDepartments(data.departments);
@@ -100,8 +100,8 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
       }
       
       // Search by code - convert to string to handle numeric codes
-      if (dept.budgetCode) {
-        const codeStr = String(dept.budgetCode).toLowerCase();
+      if (dept.organizationalCode) {
+        const codeStr = String(dept.organizationalCode).toLowerCase();
         // Either the code includes the search term or the search term includes the code
         if (codeStr.includes(searchLower) || searchLower.includes(codeStr)) {
           return true;
@@ -260,9 +260,9 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                             onClick={onClose}
                           >
                             {dept.name}
-                            {dept.budgetCode && (
+                            {dept.organizationalCode && (
                               <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                                {dept.budgetCode}
+                                {dept.organizationalCode}
                               </span>
                             )}
                             {dept.abbreviation && (
@@ -297,9 +297,9 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                           onClick={onClose}
                         >
                           {dept.name}
-                          {dept.budgetCode && (
+                          {dept.organizationalCode && (
                             <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                              {dept.budgetCode}
+                              {dept.organizationalCode}
                             </span>
                           )}
                           {dept.abbreviation && (

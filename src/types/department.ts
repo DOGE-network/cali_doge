@@ -1,10 +1,10 @@
 /**
  * Type definitions for department data
  */
-// slug: string;           // The slug used in department URLs, budgetCode_lower_case_name_with_underscores, remove spaces and special characters
+// slug: string;           // The slug used in department URLs, organizationalCode_lower_case_name_with_underscores, remove spaces and special characters
 // name: string;           // The department name as the canonicalName reordered with the text follow the comma move to the front of the name, and remove the comma
 // canonicalName: string;  // The full official/canonical name as it appears in the CA.gov department https://www.ca.gov/departments/list/ 
-// BudgetCode: // The department budget code (e.g., "3900") as it appears in the https://ebudget.ca.gov/budget/publication/#/e/2024-25/DepartmentIndex
+// organizationalCode: // The department organizational code (e.g., "3900") as it appears in the https://ebudget.ca.gov/budget/publication/#/e/2024-25/DepartmentIndex
 // spendingName?: string;  // The name used in spending data
 // workforceName?: string; // The name used in workforce data
 // aliases?: string[];     // Alternative names for the department
@@ -51,8 +51,11 @@ export type NonNegativeInteger = number & {
 // Organization level type - must be non-negative integer
 export type OrgLevel = NonNegativeInteger;
 
-// budget code - must be non-negative integer
-export type BudgetCode = NonNegativeInteger;
+// organizational code - must be a 4-digit string
+export type organizationalCode = string & { 
+  _brand: 'organizationalCode';
+  _constraint: '4-digit string';
+};
 
 // Distribution count type - must be non-negative integer
 export type DistributionCount = NonNegativeInteger;
@@ -113,18 +116,19 @@ export interface WorkforceData {
 
 export interface DepartmentData {
   name: string;
-  slug: ValidSlug;
+  _slug: ValidSlug;
   canonicalName: string;
   aliases: string[];
+  description?: string;  // Optional description 
   headCount: {
     yearly: Record<AnnualYear, number | {}>;
   };
   wages: {
     yearly: Record<AnnualYear, number | {}>;
   };
-  averageTenureYears: NonNegativeNumber | null;
-  averageSalary: NonNegativeNumber | null;
-  averageAge: NonNegativeNumber | null;
+  _averageTenureYears: NonNegativeNumber | null;
+  _averageSalary: NonNegativeNumber | null;
+  _averageAge: NonNegativeNumber | null;
   tenureDistribution?: {
     yearly: Record<AnnualYear, TenureRange[]>;
   };
@@ -134,14 +138,15 @@ export interface DepartmentData {
   ageDistribution?: {
     yearly: Record<AnnualYear, AgeRange[]>;
   };
-  _note?: string;
+  note?: string;
   spending?: {
     yearly: Record<FiscalYearKey, number | {}>;
   };
-  budgetCode?: BudgetCode;
+  organizationalCode?: organizationalCode;
+  entityCode: number | null;  // Required but can be null, first four digits of any salary report csv file
   orgLevel: OrgLevel;
   budget_status: BudgetStatus;
-  keyFunctions: string;
+  keyFunctions: string | null;
   abbreviation: string;
   parent_agency: string;
   workforce?: WorkforceData;
@@ -184,7 +189,7 @@ export interface DepartmentHierarchy extends DepartmentData {
   originalData?: {
     headCount: { yearly: Record<AnnualYear, number | {}> };
     wages: { yearly: Record<AnnualYear, number | {}> };
-    averageSalary: number | null;
+    _averageSalary: number | null;
     tenureDistribution?: { yearly: Record<AnnualYear, TenureRange[]> };
     salaryDistribution?: { yearly: Record<AnnualYear, SalaryRange[]> };
     ageDistribution?: { yearly: Record<AnnualYear, AgeRange[]> };
@@ -215,10 +220,10 @@ export interface DepartmentsJSON {
  * Simplified department mapping used throughout the application
  */
 export interface DepartmentMapping {
-  slug: string;           
+  _slug: string;           
   name: string;           
   canonicalName: string; 
-  budgetCode: BudgetCode; 
+  organizationalCode: organizationalCode; 
   spendingName?: string;  
   workforceName?: string; 
   aliases?: string[];     
@@ -235,14 +240,15 @@ export interface VerificationResult {
 export interface RequiredDepartmentJSONFields {
   name: string;
   canonicalName: string;
-  slug: ValidSlug;
+  _slug: ValidSlug;
   aliases: string[]; 
+  description?: string;  // Optional description 
   keyFunctions: string;
   abbreviation: string;
   orgLevel: OrgLevel;
   parent_agency?: string;  // Optional only for root node, required name of parent agency
   budget_status: BudgetStatus;
-  budgetCode: BudgetCode | null;  // Required but can be null, published as DEPARTMENT OF FINANCE UNIFORM CODES
+  organizationalCode: organizationalCode | null;  // Required but can be null, published as DEPARTMENT OF FINANCE UNIFORM CODES
   entityCode: number | null;  // Required but can be null, first four digits of any salary report csv file
   spending: {
     yearly: Record<FiscalYearKey, number| {}>;  // Empty object allowed
@@ -253,9 +259,9 @@ export interface RequiredDepartmentJSONFields {
   wages: {
     yearly: Record<AnnualYear, number| {}>;  // Empty object allowed
   };
-  averageTenureYears: NonNegativeNumber | null;  // Required but can be null
-  averageSalary: NonNegativeNumber | null;  // Required but can be null
-  averageAge: NonNegativeNumber | null;  // Required but can be null
+  _averageTenureYears: NonNegativeNumber | null;  // Required but can be null
+  _averageSalary: NonNegativeNumber | null;  // Required but can be null
+  _averageAge: NonNegativeNumber | null;  // Required but can be null
   tenureDistribution: {
     yearly: Record<AnnualYear, TenureRange[]>;  // Empty array allowed but field required
   };
@@ -265,5 +271,5 @@ export interface RequiredDepartmentJSONFields {
   ageDistribution: {
     yearly: Record<AnnualYear, AgeRange[]>;  // Empty array allowed but field required
   };
-  _note?: string;
+  note?: string;
 } 

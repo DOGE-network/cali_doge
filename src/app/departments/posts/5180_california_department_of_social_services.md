@@ -1,6 +1,6 @@
 ---
 name: "California Department of Social Services"
-budgetCode: 5180
+organizationalCode: 5180
 date: '2025-03-19'
 author: "Sean Roberts"
 image: 

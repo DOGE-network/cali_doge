@@ -1,7 +1,7 @@
 ---
 
 name: "Department of Consumer Affairs"
-budgetCode: 1111
+organizationalCode: 1111
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

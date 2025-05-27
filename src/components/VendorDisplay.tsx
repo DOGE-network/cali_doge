@@ -76,13 +76,13 @@ const VendorDisplay: React.FC<VendorDisplayProps> = ({
       return vendors
         .filter(dept => {
           if (!selectedDepartment) return true;
-          return dept.fiscalYear?.some(fy => 
+          return dept.fy?.some(fy => 
             fy.data?.some(d => d.name === selectedDepartment)
           ) ?? false;
         })
         .map(dept => ({
-          name: dept.vendor_name,
-          data: (dept.fiscalYear || [])
+          name: dept.n,
+          data: (dept.fy || [])
             .filter(fy => selectedYears.includes(fy.year))
             .map(fy => ({
               year: fy.year,

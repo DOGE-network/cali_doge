@@ -2,7 +2,7 @@
 name: California Coastal Commission
 description: Overview of the California Coastal Commission budget and operations
 author: Sean Roberts
-budgetCode: 3720
+organizationalCode: 3720
 date: 2024-01-03
 ---
 

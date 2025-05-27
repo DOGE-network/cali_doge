@@ -1,7 +1,7 @@
 ---
 
 name: "Secretary of Transportation"
-budgetCode: 0521
+organizationalCode: 0521
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 
@@ -32,7 +32,7 @@ description: "The California State Transportation Agency develops and coordinate
 
 ### Major Funding Codes and Sources
 
-The Secretary of Transportation receives funding from various sources, each designated by specific budgetCodes in the state budget:
+The Secretary of Transportation receives funding from various sources, each designated by specific organizationalCodes in the state budget:
 
 #### Program Codes
 - **0270 - Administration of Transportation Agency**: Core operations of the Transportation Agency

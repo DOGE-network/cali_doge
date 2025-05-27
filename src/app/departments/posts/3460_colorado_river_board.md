@@ -1,6 +1,6 @@
 ---
 name: "Colorado River Board"
-budgetCode: 3460
+organizationalCode: 3460
 date: '2024-03-16'
 author: "Sean Roberts"
 image: 

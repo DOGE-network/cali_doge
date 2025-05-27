@@ -1,9 +1,28 @@
-import type { RequiredDepartmentJSONFields } from '@/types/department';
+// Pull in department types
+import { DepartmentData } from '../types/department';
+
+// Define interfaces for our matching types
+interface DepartmentMatch {
+  department: DepartmentData;
+  score: number;
+  matchType: 'exact_entity_code' | 'exact_name' | 'canonical_name' | 'alias' | 'partial_match';
+}
+
+interface BestMatch {
+  department: DepartmentData;
+  isPartialMatch: boolean;
+  score: number;
+}
+
+interface MatchResult {
+  bestMatch: BestMatch | null;
+  potentialMatches: DepartmentMatch[];
+}
 
 /**
  * Normalize a string for matching by removing common prefixes, suffixes, and special characters
  */
-export function normalizeForMatching(name: string): string {
+function normalizeForMatching(name) {
   if (!name) return '';
   
   return name
@@ -22,7 +41,7 @@ export function normalizeForMatching(name: string): string {
 /**
  * Get all possible name variations for a department name
  */
-export function getNameVariations(name: string): string[] {
+function getNameVariations(name) {
   const normalized = normalizeForMatching(name);
   const variations = new Set([normalized]);
   
@@ -64,7 +83,7 @@ export function getNameVariations(name: string): string[] {
  * Calculate a match score between two strings
  * Returns a score between 0 and 1
  */
-export function calculateMatchScore(str1: string, str2: string): number {
+function calculateMatchScore(str1, str2) {
   const words1 = str1.split(' ');
   const words2 = str2.split(' ');
   
@@ -116,11 +135,11 @@ export function calculateMatchScore(str1: string, str2: string): number {
  * Calculate a match score between a CSV name and a department
  * Returns an object with total score and detailed scoring breakdown
  */
-export function calculateDepartmentMatchScore(
-  csvName: string,
-  department: RequiredDepartmentJSONFields,
-  _entityCode?: string
-): { totalScore: number; details: Record<string, number> } {
+function calculateDepartmentMatchScore(
+  csvName,
+  department,
+  _entityCode
+) {
   const cleanCsvName = csvName.trim().toLowerCase();
   const nameVariations = getNameVariations(cleanCsvName);
   const deptVariations = getNameVariations(department.name.toLowerCase());
@@ -171,15 +190,13 @@ export function calculateDepartmentMatchScore(
  * Enhanced department matching that finds all potential matches and allows user selection
  * Returns an object with the best match and all potential matches
  */
-export function findDepartmentMatches(
+function findDepartmentMatches(
   name: string,
-  departments: RequiredDepartmentJSONFields[],
+  departments: DepartmentData[],
   entityCode?: string
-): { 
-  bestMatch: { department: RequiredDepartmentJSONFields | null; isPartialMatch: boolean; score: number } | null;
-  potentialMatches: Array<{ department: RequiredDepartmentJSONFields; score: number; matchType: string }>;
-} {
-  const potentialMatches: Array<{ department: RequiredDepartmentJSONFields; score: number; matchType: string }> = [];
+): MatchResult {
+  // Define interface for potential match to help TypeScript
+  const potentialMatches: DepartmentMatch[] = [];
   
   // First try exact match with entity code
   if (entityCode) {
@@ -249,4 +266,13 @@ export function findDepartmentMatches(
     bestMatch: null,
     potentialMatches
   };
-} 
+}
+
+// Export all functions
+export {
+  normalizeForMatching,
+  getNameVariations,
+  calculateMatchScore,
+  calculateDepartmentMatchScore,
+  findDepartmentMatches
+}; 

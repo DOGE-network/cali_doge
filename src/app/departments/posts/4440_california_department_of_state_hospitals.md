@@ -1,6 +1,6 @@
 ---
 name: "California Department of State Hospitals"
-budgetCode: 4440
+organizationalCode: 4440
 date: '2025-03-19'
 author: "Sean Roberts"
 image: 

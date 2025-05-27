@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${String(post.budgetCode).padStart(4, '0')} - ${post.name}`
+    title: `${String(post.organizationalCode).padStart(4, '0')} - ${post.name}`
   }
 }
 
@@ -31,10 +31,10 @@ export default async function BlogPost({ params }: Props) {
     getDepartmentSlugs()
   ])
   
-  // Sort posts by budget code
+  // Sort posts by organizational code
   const sortedPosts = [...posts].sort((a, b) => {
-    const codeA = String(a.budgetCode).padStart(4, '0')
-    const codeB = String(b.budgetCode).padStart(4, '0')
+    const codeA = String(a.organizationalCode).padStart(4, '0')
+    const codeB = String(b.organizationalCode).padStart(4, '0')
     return codeA.localeCompare(codeB)
   })
   
@@ -53,7 +53,7 @@ export default async function BlogPost({ params }: Props) {
     <div className="container mx-auto px-4 pt-24">
       <BackButton />
       <article className="prose prose-lg max-w-none">
-        <h1 className="text-4xl font-bold mb-4">{String(post.budgetCode).padStart(4, '0')} - {post.name}</h1>
+        <h1 className="text-4xl font-bold mb-4">{String(post.organizationalCode).padStart(4, '0')} - {post.name}</h1>
         <time className="text-gray-600 block mb-4">
           {new Date(post.date).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -95,8 +95,8 @@ export default async function BlogPost({ params }: Props) {
 export async function generateStaticParams() {
   const posts = await getAllPosts()
   const sortedPosts = [...posts].sort((a, b) => {
-    const codeA = String(a.budgetCode).padStart(4, '0')
-    const codeB = String(b.budgetCode).padStart(4, '0')
+    const codeA = String(a.organizationalCode).padStart(4, '0')
+    const codeB = String(b.organizationalCode).padStart(4, '0')
     return codeA.localeCompare(codeB)
   })
   

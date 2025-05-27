@@ -1,7 +1,7 @@
 ---
 
 name: "Department of General Services"
-budgetCode: 7760
+organizationalCode: 7760
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

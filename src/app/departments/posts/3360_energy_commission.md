@@ -1,6 +1,6 @@
 ---
 name: "Energy Commission"
-budgetCode: 3360
+organizationalCode: 3360
 date: '2024-03-16'
 author: "Sean Roberts"
 image: 
@@ -50,7 +50,7 @@ description: "The Energy Commission ensures reliable energy supply while protect
 ### Building Standards and Efficiency
 
 1. **Building Energy Efficiency Standards**:
-   - Development and updates of state building budgetCodes
+   - Development and updates of state building organizationalCodes
    - Technical assistance support for compliance
    - Integration of zero-emission technologies
 
@@ -128,7 +128,7 @@ The Energy Commission operates with five commissioners appointed by the Governor
 
 Sources:
 [1] https://ebudget.ca.gov/2024-25/pdf/GovernorsBudget/3300/3360.pdf
-[2] https://leginfo.legislature.ca.gov/faces/budgetCodes_displayText.xhtml?lawCode=PRC&division=15.&title=&part=&chapter=
+[2] https://leginfo.legislature.ca.gov/faces/organizationalCodes_displayText.xhtml?lawCode=PRC&division=15.&title=&part=&chapter=
 [3] https://www.energy.ca.gov/about/commission
 [4] https://www.energy.ca.gov/regulations
 [5] https://www.energy.ca.gov/programs-and-topics/programs/building-energy-efficiency-standards

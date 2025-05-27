@@ -6,10 +6,10 @@ import Link from 'next/link';
 export default async function BlogPage() {
   const posts = await getAllPosts()
   
-  // Sort posts by budget code
+  // Sort posts by organizational code
   const sortedPosts = [...posts].sort((a, b) => {
-    const codeA = String(a.budgetCode).padStart(4, '0')
-    const codeB = String(b.budgetCode).padStart(4, '0')
+    const codeA = String(a.organizationalCode).padStart(4, '0')
+    const codeB = String(b.organizationalCode).padStart(4, '0')
     return codeA.localeCompare(codeB)
   })
 
@@ -29,7 +29,7 @@ export default async function BlogPage() {
                 <div className="relative w-full pt-[56.25%]">
                   <Image
                     src={post.image.replace('/assets/img/', '/')}
-                    alt={`${String(post.budgetCode).padStart(4, '0')} - ${post.name}`}
+                    alt={`${String(post.organizationalCode).padStart(4, '0')} - ${post.name}`}
                     fill
                     className="rounded-t-lg object-cover"
                   />
@@ -44,7 +44,7 @@ export default async function BlogPage() {
                   })}
                 </time>
                 <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">
-                  {String(post.budgetCode).padStart(4, '0')} - {post.name}
+                  {String(post.organizationalCode).padStart(4, '0')} - {post.name}
                 </h3>
                 <p className="text-gray-700 line-clamp-3 mb-4">
                   {post.excerpt}

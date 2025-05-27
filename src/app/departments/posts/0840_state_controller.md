@@ -1,7 +1,7 @@
 ---
 
 name: "State Controller"
-budgetCode: 0840
+organizationalCode: 0840
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

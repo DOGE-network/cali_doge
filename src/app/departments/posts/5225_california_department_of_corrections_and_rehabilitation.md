@@ -1,6 +1,6 @@
 ---
 name: "California Department of Corrections and Rehabilitation"
-budgetCode: 5225
+organizationalCode: 5225
 date: '2025-04-29'
 author: "Sean Roberts"
 image: 

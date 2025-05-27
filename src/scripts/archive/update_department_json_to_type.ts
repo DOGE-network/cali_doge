@@ -359,8 +359,8 @@ function _isValidDepartmentData(data: unknown): data is DepartmentData {
     return false;
   }
 
-  if (!departmentData.slug || typeof departmentData.slug !== 'string') {
-    console.warn(`Invalid department slug: ${departmentData.slug}`);
+  if (!departmentData._slug || typeof departmentData._slug !== 'string') {
+    console.warn(`Invalid department slug: ${departmentData._slug}`);
     return false;
   }
 
@@ -435,7 +435,7 @@ function isValidYearlyRecord(value: unknown, type: 'workforce' | 'spending'): va
 const FIELD_GROUPS = {
   'Required Fields': [
     'name',
-    'slug',
+    '_slug',
     'canonicalName',
     'aliases',
     'code',
@@ -652,7 +652,7 @@ function validateAllDepartments(departments: any[]): Map<string, ValidationResul
               reason: 'Spending yearly must be an object'
             });
           }
-        } else if (field === 'slug') {
+        } else if (field === '_slug') {
           if (!isValidSlug(value)) {
             stats.details.fields[field].invalid++;
             const proposedSlug = dept.name.toLowerCase()
@@ -873,7 +873,8 @@ const main = async () => {
         }
         
         // Display grouped issues
-        for (const [reason, issues] of issueGroups.entries()) {
+        const issueGroupsArray = Array.from(issueGroups.entries());
+        for (const [reason, issues] of issueGroupsArray) {
           console.log(`\nIssue: ${reason}`);
           console.log(`Affected departments (${issues.length}):`);
           

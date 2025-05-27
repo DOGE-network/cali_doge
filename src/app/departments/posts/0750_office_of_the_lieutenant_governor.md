@@ -1,7 +1,7 @@
 ---
 
 name: "Office of the Lieutenant Governor"
-budgetCode: 0750
+organizationalCode: 0750
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

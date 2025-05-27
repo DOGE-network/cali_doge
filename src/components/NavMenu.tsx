@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
-import { DepartmentSearch } from './DepartmentSearch';
+import { EnhancedSearch } from './EnhancedSearch';
 
 interface NavItem {
   href: string;
@@ -146,10 +146,10 @@ export function NavMenu() {
       </div>
 
       {/* Department Search */}
-      <DepartmentSearch 
-        isOpen={isSearchOpen || isSearchHovering} 
-        onClose={() => setIsSearchOpen(false)} 
-      />
+              <EnhancedSearch 
+          isOpen={isSearchOpen || isSearchHovering} 
+          onClose={() => setIsSearchOpen(false)} 
+        />
 
       {/* Navigation Menu */}
       <div

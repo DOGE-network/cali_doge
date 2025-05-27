@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Department budgetCode Processing Script
+ * Department organizationalCode Processing Script
  * 
  * This script updates department codes in departments.json based on budget_structure.csv data.
  * It handles:
@@ -16,10 +16,10 @@
  *    b. Setup logging
  * 
  * 2. CSV Processing
- *    a. Extract department name and budget code from CSV filtering out rows ending with "DO NOT USE", "(Renume to .*)", or "USE ONLY", "(Abolished .*)". Remove text at end following special characters.
- *    b. Walk the departments.json records and check for exact matches of name and budget code
- *    c. If there is an exact match of JSON and CSV, name and budget codes then skip
- *    d. else partial matches between JSON fields and CSV record then display JSON name, canonical name, aliases, abbreviation, budget code and CSV name, budget code
+ *    a. Extract department name and organizational code from CSV filtering out rows ending with "DO NOT USE", "(Renume to .*)", or "USE ONLY", "(Abolished .*)". Remove text at end following special characters.
+ *    b. Walk the departments.json records and check for exact matches of name and organizational code
+ *    c. If there is an exact match of JSON and CSV, name and organizational codes then skip
+ *    d. else partial matches between JSON fields and CSV record then display JSON name, canonical name, aliases, abbreviation, organizational code and CSV name, organizational code
  *    f. Ask for user approval before saving changes
  *    g. Log department details
  *    h. Save the changes
@@ -74,9 +74,9 @@ const setupLogging = () => {
   return { logFile: LOG_FILE, log };
 };
 
-// Function to read budget code variations from text files
-function readBudgetCodeVariations() {
-  const variations = new Map(); // Map of budget code to array of name variations
+// Function to read organizational code variations from text files
+function readorganizationalCodeVariations() {
+  const variations = new Map(); // Map of organizational code to array of name variations
   
   try {
     const files = fs.readdirSync(BUDGET_DIR);
@@ -84,7 +84,7 @@ function readBudgetCodeVariations() {
     for (const file of files) {
       if (!file.endsWith('.txt')) continue;
       
-      // Extract budget code from filename (4 digits at start)
+      // Extract organizational code from filename (4 digits at start)
       const codeMatch = file.match(/^(\d{4})_/);
       if (!codeMatch) continue;
       
@@ -102,7 +102,7 @@ function readBudgetCodeVariations() {
     
     return variations;
   } catch (error) {
-    console.error('Error reading budget code variations:', error);
+    console.error('Error reading organizational code variations:', error);
     return new Map();
   }
 }
@@ -182,22 +182,22 @@ const main = async () => {
     // Step 1b: Setup logging
     log('\nStep 1b: Logging setup complete');
     
-    // Read budget code variations before CSV processing
-    log('\nReading budget code variations from text files...');
-    const budgetCodeVariations = readBudgetCodeVariations();
-    log(`Loaded variations for ${budgetCodeVariations.size} budget codes`);
+    // Read organizational code variations before CSV processing
+    log('\nReading organizational code variations from text files...');
+    const organizationalCodeVariations = readorganizationalCodeVariations();
+    log(`Loaded variations for ${organizationalCodeVariations.size} organizational codes`);
     
     // Step 2: CSV Processing
     log('\n=== STEP 2: CSV PROCESSING ===');
     
-    // Step 2a: Extract department name and budget code from CSV
+    // Step 2a: Extract department name and organizational code from CSV
     log('\nStep 2a: Extracting department data from CSV...');
     log('Filtering out rows with: "DO NOT USE", "(Renum to .*)", "USE ONLY", "(Abolished .*)"');
     log('Removing text following special characters');
     
     const csvContent = fs.readFileSync(BUDGET_CODES_CSV, 'utf8');
     const lines = csvContent.split('\n');
-    const budgetCodesData = [];
+    const organizationalCodesData = [];
     
     // Skip header line
     for (let i = 1; i < lines.length; i++) {
@@ -243,23 +243,23 @@ const main = async () => {
         // Log each CSV line's code and name
         log(`CSV Line ${i}: Code=${paddedCode}, Name=${cleanName}`);
         
-        budgetCodesData.push({
+        organizationalCodesData.push({
           'Level': level.trim(),
           'Department Code': paddedCode,
           'Department Name': cleanName,
           'X Position': xPosition.trim(),
           'Page': page.trim(),
-          'Variations': budgetCodeVariations.get(paddedCode) || []
+          'Variations': organizationalCodeVariations.get(paddedCode) || []
         });
       } else {
         log(`Warning: Skipping invalid line ${i + 1}: ${line}`, 'warn');
       }
     }
-    log(`Successfully loaded ${budgetCodesData.length} budget codes`);
+    log(`Successfully loaded ${organizationalCodesData.length} organizational codes`);
 
     // Create budgetDeptMap for matching
     const budgetDeptMap = {};
-    budgetCodesData.forEach(row => {
+    organizationalCodesData.forEach(row => {
       budgetDeptMap[row['Department Name']] = row['Department Code'];
     });
 
@@ -269,7 +269,7 @@ const main = async () => {
     // Track statistics
     const stats = {
       totalDepartments: departmentsData.departments.length,
-      totalCSVRows: budgetCodesData.length,
+      totalCSVRows: organizationalCodesData.length,
       skippedRecords: 0,
       unmatchedCSVRows: 0,
       unmatchedJSONRecords: 0,
@@ -279,7 +279,7 @@ const main = async () => {
       unchangedCodes: 0,
       exactMatches: 0,
       partialMatches: 0,
-      noBudgetCode: 0,
+      noorganizationalCode: 0,
       matches: [], // Track all matches
       codeChanges: {
         new: [],    // New codes added
@@ -288,27 +288,27 @@ const main = async () => {
       }
     };
 
-    // Count departments with no budget code
-    stats.noBudgetCode = departmentsData.departments.filter(dept => !dept.budgetCode).length;
+    // Count departments with no organizational code
+    stats.noorganizationalCode = departmentsData.departments.filter(dept => !dept.organizationalCode).length;
 
     // Process each department
     for (const dept of departmentsData.departments) {
       log('\n=== Processing Department: ${dept.name} ===');
       
       // Step 2c: Check for exact matches
-      log('\nStep 2c: Checking for exact matches of name and budget code...');
+      log('\nStep 2c: Checking for exact matches of name and organizational code...');
       
       // 1. Show JSON Record - Summarized
       log('\nJSON Record:');
       log(`Name: ${dept.name}`);
       log(`Canonical Name: ${dept.canonicalName || 'None'}`);
-      log(`Current Budget Code: ${dept.budgetCode || 'None'}`);
+      log(`Current organizational code: ${dept.organizationalCode || 'None'}`);
       if (dept.aliases && dept.aliases.length > 0) {
         log(`Aliases: ${dept.aliases.join(', ')}`);
       }
       
       // 2. Show CSV Matches - Summarized
-      const csvMatches = budgetCodesData.filter(row => {
+      const csvMatches = organizationalCodesData.filter(row => {
         const csvName = row['Department Name'].trim();
         return csvName.toLowerCase().includes(dept.name.toLowerCase()) ||
                dept.name.toLowerCase().includes(csvName.toLowerCase());
@@ -324,8 +324,8 @@ const main = async () => {
 
       // Check for exact matches
       const hasExactCSVMatch = csvMatches.some(match => {
-        // First check budget code match
-        if (match['Department Code'] !== dept.budgetCode) return false;
+        // First check organizational code match
+        if (match['Department Code'] !== dept.organizationalCode) return false;
         
         // Get normalized versions of all names
         const normalizedCSVName = normalizeForExactMatch(match['Department Name']);
@@ -352,7 +352,7 @@ const main = async () => {
         continue;
       }
 
-      if (!dept.budgetCode && !hasPartialCSVMatch) {
+      if (!dept.organizationalCode && !hasPartialCSVMatch) {
         stats.unmatchedJSONRecords++;
         log('\nMatch Status: ❌ No Matches Found');
         continue;
@@ -387,7 +387,7 @@ const main = async () => {
 
           const originalDepartment = JSON.parse(JSON.stringify(dept));
           const proposedDepartment = JSON.parse(JSON.stringify(dept));
-          proposedDepartment.budgetCode = bestMatch['Department Code'];
+          proposedDepartment.organizationalCode = bestMatch['Department Code'];
 
           log('\nProposed Changes:');
           showDiff(originalDepartment, proposedDepartment, log);
@@ -400,21 +400,21 @@ const main = async () => {
             
             stats.matches.push({
               department: dept.name,
-              currentCode: dept.budgetCode,
+              currentCode: dept.organizationalCode,
               newCode: bestMatch['Department Code'],
               matchedName: bestMatch['Department Name'],
               matchScore: bestMatchScore
             });
 
-            if (!dept.budgetCode) {
+            if (!dept.organizationalCode) {
               stats.codeChanges.new.push({
                 name: dept.name,
                 code: bestMatch['Department Code']
               });
-            } else if (dept.budgetCode !== bestMatch['Department Code']) {
+            } else if (dept.organizationalCode !== bestMatch['Department Code']) {
               stats.codeChanges.changed.push({
                 name: dept.name,
-                oldCode: dept.budgetCode,
+                oldCode: dept.organizationalCode,
                 newCode: bestMatch['Department Code']
               });
             } else {
@@ -424,7 +424,7 @@ const main = async () => {
               });
             }
             
-            dept.budgetCode = bestMatch['Department Code'];
+            dept.organizationalCode = bestMatch['Department Code'];
             log('✓ Changes applied successfully.');
             
             // Step 2h: Save the changes
@@ -449,8 +449,8 @@ const main = async () => {
     
     // Step 3a: Verify code matches
     log('\nStep 3a: Verifying code matches...');
-    const matchedCSVCodes = new Set(departmentsData.departments.map(dept => dept.budgetCode));
-    stats.unmatchedCSVRows = budgetCodesData.filter(row => !matchedCSVCodes.has(row['Department Code'])).length;
+    const matchedCSVCodes = new Set(departmentsData.departments.map(dept => dept.organizationalCode));
+    stats.unmatchedCSVRows = organizationalCodesData.filter(row => !matchedCSVCodes.has(row['Department Code'])).length;
     
     // Step 3b: Check department hierarchy
     log('\nStep 3b: Checking department hierarchy...');
@@ -475,7 +475,7 @@ const main = async () => {
     log('------------------');
     log(`Total Departments (JSON): ${stats.totalDepartments}`);
     log(`Total CSV Rows: ${stats.totalCSVRows}`);
-    log(`Departments with No Budget Code: ${stats.noBudgetCode}`);
+    log(`Departments with No organizational code: ${stats.noorganizationalCode}`);
     log(`Skipped Records (Exact Matches): ${stats.skippedRecords}`);
     log(`Unmatched CSV Rows: ${stats.unmatchedCSVRows}`);
     log(`Unmatched JSON Records: ${stats.unmatchedJSONRecords}`);

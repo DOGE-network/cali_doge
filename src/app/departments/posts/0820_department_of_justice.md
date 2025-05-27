@@ -1,7 +1,7 @@
 ---
 
 name: "Department of Justice"
-budgetCode: 0820
+organizationalCode: 0820
 date: '2025-03-15'
 author: "Sean Roberts"
 image: 

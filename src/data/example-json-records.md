@@ -29,9 +29,9 @@
       },
       "keyFunctions": "Corrections and Rehabilitation",
       "abbreviation": "",
-      "budgetCode": "5227",
+      "organizationalCode": "5227",
       "parent_agency": "Department of Corrections and Rehabilitation",
-      "_note": "",
+      "note": "",
       "entityCode": null
     },
 

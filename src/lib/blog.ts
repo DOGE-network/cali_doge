@@ -10,7 +10,7 @@ const postsDirectory = path.join(process.cwd(), 'src/app/departments/posts')
 
 export type BlogPost = {
   id: string
-  budgetCode: number
+  organizationalCode: number
   name: string
   date: string
   excerpt: string
@@ -173,7 +173,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     // Use the frontmatter data directly
     return {
       id,
-      budgetCode: toNonNegativeInteger(matterResult.data.budgetCode),
+      organizationalCode: toNonNegativeInteger(matterResult.data.organizationalCode),
       name: matterResult.data.name || '',
       date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : '',
       excerpt,
