@@ -150,6 +150,11 @@ function generateSearchIndex(): SearchJSON {
   const programsData = readJsonFile<ProgramsJSON>(PROGRAMS_PATH);
   if (programsData?.programs) {
     for (const program of programsData.programs) {
+      // Skip programs without valid names
+      if (!program.name || typeof program.name !== 'string' || program.name.trim() === '') {
+        continue;
+      }
+
       // Add program to search items
       searchIndex.programs.push({
         term: program.name,
@@ -188,6 +193,11 @@ function generateSearchIndex(): SearchJSON {
   const fundsData = readJsonFile<FundsJSON>(FUNDS_PATH);
   if (fundsData?.funds) {
     for (const fund of fundsData.funds) {
+      // Skip funds without valid names
+      if (!fund.fundName || typeof fund.fundName !== 'string' || fund.fundName.trim() === '') {
+        continue;
+      }
+
       // Add fund to search items
       searchIndex.funds!.push({
         term: fund.fundName,

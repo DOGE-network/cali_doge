@@ -1,7 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 const { getSearchData } = require('@/lib/api/dataAccess');
 import type { SearchJSON, SearchItem, KeywordItem } from '@/types/search';
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
 
 interface SearchResponse {
@@ -70,48 +71,100 @@ function searchInText(text: string, query: string): boolean {
   );
 }
 
+function searchInItem(item: SearchItem, query: string): boolean {
+  if (!item || !query) {
+    return false;
+  }
+  
+  // Search in the term (name)
+  if (item.term && searchInText(item.term, query)) {
+    return true;
+  }
+  
+  // Search in the id (code) - exact match or starts with for codes
+  if (item.id && typeof item.id === 'string') {
+    const normalizedId = item.id.toLowerCase();
+    const normalizedQuery = query.toLowerCase().trim();
+    
+    // Exact match for codes
+    if (normalizedId === normalizedQuery) {
+      return true;
+    }
+    
+    // Starts with for partial code matches
+    if (normalizedId.startsWith(normalizedQuery)) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
 function calculateRelevanceScore(item: SearchItem | KeywordItem, query: string): number {
-  if (!item || !item.term || !query) {
+  if (!item || !query) {
     return 0;
   }
   
   const normalizedQuery = normalizeSearchTerm(query);
-  const normalizedTerm = normalizeSearchTerm(item.term);
   
-  if (!normalizedQuery || !normalizedTerm) {
+  if (!normalizedQuery) {
     return 0;
   }
   
   let score = 0;
   
-  // Exact match gets highest score
-  if (normalizedTerm === normalizedQuery) {
-    score += 100;
-  }
-  
-  // Starts with query gets high score
-  if (normalizedTerm.startsWith(normalizedQuery)) {
-    score += 50;
-  }
-  
-  // Contains query gets medium score
-  if (normalizedTerm.includes(normalizedQuery)) {
-    score += 25;
-  }
-  
-  // Word boundary matches get bonus
-  const queryWords = normalizedQuery.split(/\s+/);
-  const termWords = normalizedTerm.split(/\s+/);
-  
-  queryWords.forEach(queryWord => {
-    termWords.forEach(termWord => {
-      if (termWord === queryWord) {
-        score += 10;
-      } else if (termWord.startsWith(queryWord)) {
-        score += 5;
+  // Score based on term (name) matches
+  if (item.term) {
+    const normalizedTerm = normalizeSearchTerm(item.term);
+    
+    if (normalizedTerm) {
+      // Exact match gets highest score
+      if (normalizedTerm === normalizedQuery) {
+        score += 100;
       }
-    });
-  });
+      
+      // Starts with query gets high score
+      if (normalizedTerm.startsWith(normalizedQuery)) {
+        score += 50;
+      }
+      
+      // Contains query gets medium score
+      if (normalizedTerm.includes(normalizedQuery)) {
+        score += 25;
+      }
+      
+      // Word boundary matches get bonus
+      const queryWords = normalizedQuery.split(/\s+/);
+      const termWords = normalizedTerm.split(/\s+/);
+      
+      queryWords.forEach(queryWord => {
+        termWords.forEach(termWord => {
+          if (termWord === queryWord) {
+            score += 10;
+          } else if (termWord.startsWith(queryWord)) {
+            score += 5;
+          }
+        });
+      });
+    }
+  }
+  
+  // Score based on ID (code) matches - for SearchItem only
+  if (item.type !== 'keyword' && (item as SearchItem).id) {
+    const searchItem = item as SearchItem;
+    const normalizedId = searchItem.id.toLowerCase();
+    const normalizedQueryRaw = query.toLowerCase().trim();
+    
+    // Exact ID match gets very high score (higher than name matches for precision)
+    if (normalizedId === normalizedQueryRaw) {
+      score += 150;
+    }
+    
+    // Starts with ID gets high score
+    if (normalizedId.startsWith(normalizedQueryRaw)) {
+      score += 75;
+    }
+  }
   
   // For keywords, add context relevance
   if (item.type === 'keyword') {
@@ -128,9 +181,10 @@ function calculateRelevanceScore(item: SearchItem | KeywordItem, query: string):
   return score;
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    // Use NextRequest.nextUrl.searchParams instead of new URL(request.url)
+    const searchParams = request.nextUrl.searchParams;
     
     // Parse query parameters
     const query = searchParams.get('q') || '';
@@ -188,7 +242,7 @@ export async function GET(request: Request) {
     }
     
     // Load search data
-    const searchData = await getSearchData() as SearchJSON;
+    const typedSearchData = await getSearchData() as SearchJSON;
     
     let results: {
       departments: SearchItem[];
@@ -205,44 +259,44 @@ export async function GET(request: Request) {
     };
     
     // Search in each category if requested
-    if (types.includes('department') && searchData.departments) {
-      results.departments = searchData.departments
-        .filter(item => item && item.term && typeof item.term === 'string')
-        .filter(item => searchInText(item.term, query))
+    if (types.includes('department') && typedSearchData.departments) {
+      results.departments = typedSearchData.departments
+        .filter(item => item && (item.term || item.id))
+        .filter(item => searchInItem(item, query))
         .map(item => ({ ...item, score: calculateRelevanceScore(item, query) }))
         .sort((a, b) => (b as any).score - (a as any).score)
         .slice(0, limit);
     }
     
-    if (types.includes('vendor') && searchData.vendors) {
-      results.vendors = searchData.vendors
-        .filter(item => item && item.term && typeof item.term === 'string')
-        .filter(item => searchInText(item.term, query))
+    if (types.includes('vendor') && typedSearchData.vendors) {
+      results.vendors = typedSearchData.vendors
+        .filter(item => item && (item.term || item.id))
+        .filter(item => searchInItem(item, query))
         .map(item => ({ ...item, score: calculateRelevanceScore(item, query) }))
         .sort((a, b) => (b as any).score - (a as any).score)
         .slice(0, limit);
     }
     
-    if (types.includes('program') && searchData.programs) {
-      results.programs = searchData.programs
-        .filter(item => item && item.term && typeof item.term === 'string')
-        .filter(item => searchInText(item.term, query))
+    if (types.includes('program') && typedSearchData.programs) {
+      results.programs = typedSearchData.programs
+        .filter(item => item && (item.term || item.id))
+        .filter(item => searchInItem(item, query))
         .map(item => ({ ...item, score: calculateRelevanceScore(item, query) }))
         .sort((a, b) => (b as any).score - (a as any).score)
         .slice(0, limit);
     }
     
-    if (types.includes('fund') && searchData.funds) {
-      results.funds = searchData.funds
-        .filter(item => item && item.term && typeof item.term === 'string')
-        .filter(item => searchInText(item.term, query))
+    if (types.includes('fund') && typedSearchData.funds) {
+      results.funds = typedSearchData.funds
+        .filter(item => item && (item.term || item.id))
+        .filter(item => searchInItem(item, query))
         .map(item => ({ ...item, score: calculateRelevanceScore(item, query) }))
         .sort((a, b) => (b as any).score - (a as any).score)
         .slice(0, limit);
     }
     
-    if (types.includes('keyword') && searchData.keywords) {
-      results.keywords = searchData.keywords
+    if (types.includes('keyword') && typedSearchData.keywords) {
+      results.keywords = typedSearchData.keywords
         .filter(item => item && item.term && typeof item.term === 'string')
         .filter(item => {
           // Search in keyword term

@@ -42,15 +42,40 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "builds": [
+  "functions": {
+    "src/app/api/departments/route.ts": {
+      "memory": 512,
+      "maxDuration": 30
+    },
+    "src/app/api/spend/route.ts": {
+      "memory": 3008,
+      "maxDuration": 60
+    },
+    "src/app/api/vendors/top/route.ts": {
+      "memory": 3008,
+      "maxDuration": 60
+    },
+    "src/app/api/programs/route.ts": {
+      "memory": 512,
+      "maxDuration": 30
+    },
+    "src/app/api/programs/[projectCode]/route.ts": {
+      "memory": 512,
+      "maxDuration": 30
+    },
+    "src/app/api/search/route.ts": {
+      "memory": 512,
+      "maxDuration": 30
+    },
+    "src/app/api/send-email/route.ts": {
+      "memory": 512,
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/next",
-      "config": {
-        "buildCommand": "npm run build",
-        "devCommand": "npm run dev",
-        "installCommand": "npm install"
-      }
+      "source": "/media/:path*",
+      "destination": "/api/media/:path*"
     }
   ]
 } 

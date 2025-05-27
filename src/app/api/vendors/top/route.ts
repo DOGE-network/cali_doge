@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server';
-const { getVendorsData, getProgramsData, getFundsData } = require('@/lib/api/dataAccess');
+import programsData from '@/data/programs.json';
+import fundsData from '@/data/funds.json';
+const { getVendorsData, readJsonFile } = require('@/lib/api/dataAccess');
 import type { OptimizedVendorsJSON } from '@/types/vendor';
 import type { ProgramsJSON } from '@/types/program';
 import type { FundsJSON } from '@/types/fund';
 import { getDepartmentSlugs } from '@/lib/blog';
-import departmentsData from '@/data/departments.json';
 import type { DepartmentsJSON } from '@/types/department';
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
 
 interface TopVendorRecord {
@@ -41,7 +43,8 @@ interface TopVendorsResponse {
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
+    const url = new URL(request.url || '', 'http://localhost');
+    const searchParams = url.searchParams;
     
     // Parse query parameters
     const year = searchParams.get('year') || '2024';
@@ -53,14 +56,16 @@ export async function GET(request: Request) {
     console.log('Top Vendors API request:', { year, sort, order, page, limit });
 
     // Load data from multiple sources
-    const [vendorsData, programsData, fundsData, departmentSlugs] = await Promise.all([
+    const [departmentSlugs, vendorsData, departmentsData] = await Promise.all([
+      getDepartmentSlugs(),
       getVendorsData() as Promise<OptimizedVendorsJSON>,
-      getProgramsData() as Promise<ProgramsJSON>,
-      getFundsData() as Promise<FundsJSON>,
-      getDepartmentSlugs()
+      readJsonFile('departments.json') as Promise<DepartmentsJSON>
     ]);
-
-    const typedDepartments = departmentsData as unknown as DepartmentsJSON;
+    
+    const typedVendors = vendorsData as OptimizedVendorsJSON;
+    const typedPrograms = programsData as unknown as ProgramsJSON;
+    const typedFunds = fundsData as unknown as FundsJSON;
+    const typedDepartments = departmentsData as DepartmentsJSON;
 
     // Create department lookup maps
     const departmentByOrgCode = new Map();
@@ -82,13 +87,13 @@ export async function GET(request: Request) {
 
     // Create program lookup map
     const programMap = new Map();
-    programsData.programs.forEach(prog => {
+    typedPrograms.programs.forEach(prog => {
       programMap.set(prog.projectCode, prog.name || 'Unknown Program');
     });
 
     // Create fund lookup map
     const fundMap = new Map();
-    fundsData.funds.forEach(fundItem => {
+    typedFunds.funds.forEach(fundItem => {
       fundMap.set(fundItem.fundCode, fundItem.fundName);
     });
 
@@ -103,7 +108,7 @@ export async function GET(request: Request) {
     }>();
 
     // Process vendor data - handle actual structure with v array
-    const vendors = (vendorsData as any).v || [];
+    const vendors = (typedVendors as any).v || [];
     vendors.forEach((vendorGroup: any) => {
       const vendorNames = vendorGroup.n || [];
       vendorNames.forEach((vendor: any) => {
