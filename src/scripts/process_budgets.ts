@@ -12,7 +12,22 @@
  * 
  * NOTE: any text line that has "- Continued" is not a section, just a source file footer comment, e.g. "0110    Senate - Continued"
  * 
- * Section Identification Command (for validation):
+ * Section Identification Logic:
+ * The script uses a two-step process to correctly identify department sections:
+ * 
+ * 1. Find all expenditure markers: "3-YEAR EXPENDITURES AND POSITIONS" or "3-YR EXPENDITURES AND POSITIONS"
+ *    - Each marker represents exactly one department section
+ * 
+ * 2. For each expenditure marker, find the correct department header:
+ *    - First, identify ALL valid department headers in the file (excluding "- Continued" headers)
+ *    - Valid headers are either:
+ *      a) Single-line format: "NNNN   Department Name" (without "- Continued")
+ *      b) Two-line format: "NNNN" followed by "Department Name" (without "- Continued")
+ *    - For each expenditure marker, find the closest valid header BEFORE it (within 200 lines)
+ *    - This approach correctly handles PDF extraction errors where "- Continued" headers
+ *      appear out of place and would otherwise cause incorrect department matching
+ * 
+ * Validation Command (for verification):
  * ```bash
  * # Count expenditure markers
  * grep -c "3-YEAR EXPENDITURES AND POSITIONS\|3-YR EXPENDITURES AND POSITIONS" file.txt
@@ -173,7 +188,6 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { execSync } from 'child_process';
 import { DepartmentData, DepartmentsJSON, organizationalCode, ValidSlug, OrgLevel, BudgetStatus, AnnualYear, RequiredDepartmentJSONFields, FiscalYearKey, TenureRange, SalaryRange, AgeRange } from '../types/department';
 import { ProgramsJSON } from '../types/program';
 import { FundsJSON, Fund } from '../types/fund';
@@ -537,7 +551,7 @@ async function processBudgetFile(
     
     // Step 2b.iii: Find all department sections
     log('2b.iii: Finding department sections by identifying expenditure markers', true);
-    const departmentSections = await findDepartmentSections(fileContent, departmentsData, programsData, fileName);
+    const departmentSections = await findDepartmentSections(filePath, departmentsData, programsData, fileName);
     log(`Found ${departmentSections.length} department sections`, true);
     
     // Step 3: Process each department section (with two-stage user approval for each section)
@@ -545,14 +559,16 @@ async function processBudgetFile(
     let sectionNumber = 1;
     for (const section of departmentSections) {
       await processDepartmentSection(
-        section, 
+        section.content, 
         documentYear, 
         departmentsData, 
         programsData, 
         budgetsData,
         sectionNumber,
         fileName,
-        fundsData
+        fundsData,
+        section.orgCode,
+        section.departmentName
       );
       sectionNumber++;
     }
@@ -580,170 +596,184 @@ async function processBudgetFile(
 }
 
 /**
- * Find all department sections in a budget text file using improved section identification
- * Based on the validated command pattern that handles both header formats
+ * Find all department sections using expenditure markers as the definitive rule
+ * Rule: Each "3-YEAR EXPENDITURES AND POSITIONS" marker = 1 department section
  */
 async function findDepartmentSections(
-  fileContent: string, 
+  filePath: string, 
   departmentsData: DepartmentsJSON, 
   programsData: ProgramsJSON, 
   fileName: string
-): Promise<string[]> {
-  const sections: string[] = [];
+): Promise<Array<{orgCode: string, departmentName: string, content: string}>> {
+  const sections: Array<{orgCode: string, departmentName: string, content: string}> = [];
   
   try {
-    // Normalize line endings to \n to handle different file formats
-    const normalizedContent = fileContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    consoleOutput('\n' + '='.repeat(100));
+    consoleOutput(`SECTION IDENTIFICATION FOR: ${fileName}`);
+    consoleOutput('='.repeat(100));
     
-    // Split the file content by lines
+    // Read the file content
+    const fileContent = await fs.promises.readFile(filePath, 'utf8');
+    const normalizedContent = fileContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     const lines = normalizedContent.split('\n');
     
-    log(`Scanning ${lines.length} lines in file`, true);
-    
-    // STEP 1: Find all expenditure markers
+    // Find all expenditure markers - these define the sections
     const expenditureMarkers: number[] = [];
-    
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
-      
-      // Match 3-YR EXPENDITURES AND POSITIONS or 3-YEAR EXPENDITURES AND POSITIONS
       if (line.match(/^3[\s\-](?:YR|YEAR)[\s\-]*EXPENDITURES[\s\-]*(?:AND[\s\-]*)?POSITIONS/)) {
         expenditureMarkers.push(i);
       }
     }
     
-        // STEP 2: Use the proven awk command to find department headers
-    // Execute the validated command that works correctly
-    
-    // Write file content to a temporary file for awk processing
-    const tempFilePath = `/tmp/budget_temp_${Date.now()}.txt`;
-    await fs.promises.writeFile(tempFilePath, normalizedContent, 'utf8');
-    
-    let finalHeaders: Array<{baseText: string, lineIndex: number}> = [];
-    
-    try {
-      // Execute the exact command that works
-      const awkCommand = `awk '/^[0-9][0-9][0-9][0-9]   / {dept=$0; gsub(/ - Continued$/, "", dept)} /^[0-9][0-9][0-9][0-9]$/ {code=$0; getline; if(NF > 0 && !/^[0-9]/ && !/^2[0-9][0-9][0-9]-[0-9][0-9]/ && !/^Positions/ && !/^Expenditures/) {dept=code "   " $0; gsub(/ - Continued$/, "", dept)}} /3-YEAR EXPENDITURES AND POSITIONS|3-YR EXPENDITURES AND POSITIONS/ {if(dept) print dept}' "${tempFilePath}" | sort | uniq`;
+    // First, find all valid department headers in the file (not continuation headers)
+    const allValidHeaders: Array<{line: number, header: string, orgCode: string}> = [];
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
       
-      const departmentList = execSync(awkCommand, { encoding: 'utf8' }).trim();
-      const departmentNames = departmentList ? departmentList.split('\n') : [];
+      // Check for single-line format: "NNNN   Department Name" (WITHOUT "- Continued")
+      const singleLineMatch = line.match(/^(\d{4})\s{3,}(.+?)$/);
+      if (singleLineMatch && !line.includes('- Continued')) {
+        const orgCode = singleLineMatch[1];
+        const deptName = singleLineMatch[2].trim();
+        allValidHeaders.push({
+          line: i,
+          header: `${orgCode}   ${deptName}`,
+          orgCode: orgCode
+        });
+      }
       
-      // For each department name, find where it appears in the file and get the line index
-      finalHeaders = [];
-      
-      for (const deptName of departmentNames) {
-        // Find this exact department name in the file
-        for (let i = 0; i < lines.length; i++) {
-          const line = lines[i].trim();
+      // Check for two-line format: "NNNN" followed by "Department Name" (WITHOUT "- Continued")
+      if (line.match(/^(\d{4})$/) && i + 1 < lines.length) {
+        const nextLine = lines[i + 1].trim();
+        if (nextLine && 
+            !nextLine.match(/^\d+$/) && 
+            !nextLine.match(/^\$/) &&
+            !nextLine.match(/^[\d,]+$/) &&
+            !nextLine.match(/^-$/) &&
+            !nextLine.startsWith('State Operations:') &&
+            !nextLine.startsWith('Local Assistance:') &&
+            !nextLine.startsWith('Positions') &&
+            !nextLine.startsWith('Expenditures') &&
+            !nextLine.match(/^2[0-9][0-9][0-9]-[0-9][0-9]/) &&
+            nextLine.match(/[A-Za-z]/) &&
+            nextLine.length > 2 &&
+            !nextLine.includes('- Continued')) {
           
-          // Check if this line matches the department name exactly
-          if (line === deptName || line === deptName + ' - Continued') {
-            finalHeaders.push({baseText: deptName, lineIndex: i});
-            break;
-          }
-          
-          // Also check for the two-line format
-          if (line.match(/^[0-9][0-9][0-9][0-9]$/) && i + 1 < lines.length) {
-            const nextLine = lines[i + 1].trim();
-            const combinedLine = `${line}   ${nextLine}`;
-            if (combinedLine === deptName || combinedLine === deptName + ' - Continued') {
-              finalHeaders.push({baseText: deptName, lineIndex: i});
-              break;
-            }
+          allValidHeaders.push({
+            line: i,
+            header: `${line}   ${nextLine}`,
+            orgCode: line
+          });
+        }
+      }
+    }
+    
+    // For each expenditure marker, find the closest valid department header BEFORE it
+    const validDepartmentHeaders: string[] = [];
+    
+    for (let i = 0; i < expenditureMarkers.length; i++) {
+      const expenditureLineIndex = expenditureMarkers[i];
+      
+      // Find the closest valid header before this expenditure marker
+      let closestHeader: {line: number, header: string, orgCode: string} | null = null;
+      let closestDistance = Infinity;
+      
+      for (const headerInfo of allValidHeaders) {
+        if (headerInfo.line < expenditureLineIndex) {
+          const distance = expenditureLineIndex - headerInfo.line;
+          if (distance < closestDistance && distance <= 200) { // Within 200 lines
+            closestDistance = distance;
+            closestHeader = headerInfo;
           }
         }
       }
       
-      // Sort by line index
-      finalHeaders.sort((a, b) => a.lineIndex - b.lineIndex);
-      
-    } finally {
-      // Clean up temporary file
-      try {
-        await fs.promises.unlink(tempFilePath);
-      } catch (error) {
-        // Ignore cleanup errors
+      if (closestHeader) {
+        validDepartmentHeaders.push(closestHeader.header);
+      } else {
+        consoleOutput(`❌ Could not find valid department header for expenditure marker ${i + 1} at line ${expenditureLineIndex + 1}`);
       }
     }
+      
+    consoleOutput(`Found ${expenditureMarkers.length} expenditure markers (= ${expenditureMarkers.length} department sections)`);
+    consoleOutput(`Found ${validDepartmentHeaders.length} valid department headers (ignoring out-of-place continuation headers)`);
     
-    consoleOutput('\n' + '='.repeat(100));
-    consoleOutput(`SECTION IDENTIFICATION FOR: ${fileName}`);
-    consoleOutput('='.repeat(100));
-    consoleOutput(`Found ${expenditureMarkers.length} expenditure markers`);
-    consoleOutput(`Found ${finalHeaders.length} unique departments`);
-    
-    // STEP 3: Validate counts match (with tolerance for rare exceptions)
-    const countsMatch = expenditureMarkers.length === finalHeaders.length;
-    const isCloseMatch = Math.abs(expenditureMarkers.length - finalHeaders.length) <= 1;
-    
-    consoleOutput(`\n${'='.repeat(80)}`);
-    consoleOutput(`VALIDATION RESULTS:`);
-    consoleOutput(`Expenditure markers: ${expenditureMarkers.length}`);
-    consoleOutput(`Unique departments: ${finalHeaders.length}`);
-    consoleOutput(`Counts match: ${countsMatch ? '✅ YES' : (isCloseMatch ? '⚠️  CLOSE (±1)' : '❌ NO')}`);
-    consoleOutput(`${'='.repeat(80)}`);
-    
-    if (!countsMatch && !isCloseMatch) {
-      consoleOutput(`\n❌ ERROR: Expenditure marker count (${expenditureMarkers.length}) differs significantly from department count (${finalHeaders.length})`);
-      consoleOutput(`Cannot proceed with section processing until counts are close (±1 tolerance).`);
-      consoleOutput(`\nSkipping this file and stopping processing.`);
-      throw new Error(`Section identification failed for ${fileName}: count mismatch beyond tolerance`);
-    }
-    
-    if (!countsMatch && isCloseMatch) {
-      consoleOutput(`\n⚠️  WARNING: Close match detected (±1 difference). This may indicate one department has multiple expenditure sections.`);
-      consoleOutput(`This is acceptable based on validation of 80 budget files (2.5% exception rate).`);
-    }
+    if (validDepartmentHeaders.length !== expenditureMarkers.length) {
+      consoleOutput(`❌ ERROR: Mismatch between expenditure markers (${expenditureMarkers.length}) and valid department headers (${validDepartmentHeaders.length})`);
+      throw new Error(`Department header count mismatch for ${fileName}`);
+    } 
     
     // STEP 4: Require user approval
-    consoleOutput(`\nSection identification complete. Ready to process ${finalHeaders.length} sections.`);
+    consoleOutput(`\nSection identification complete. Ready to process ${expenditureMarkers.length} sections.`);
     const approval = promptUser('Approve section identification and proceed with processing? (y/n): ').toLowerCase();
     logUser(`User section identification approval: ${approval}`);
-    
+         
     if (approval !== 'y') {
       consoleOutput('Section identification not approved. Stopping all file processing.');
       logUser('User did not approve section identification - stopping processing');
       throw new Error(`User did not approve section identification for ${fileName}`);
     }
     
-    // STEP 5: Build sections using department headers
-    consoleOutput('\nBuilding sections from identified headers...');
+    // STEP 5: Build sections using the valid department headers
+    consoleOutput('\nExtracting department information and building sections...');
     
-    // Find the actual department header lines (not expenditure marker lines)
-    const departmentHeaderLines: Array<{baseText: string, lineIndex: number}> = [];
-    
-    for (const header of finalHeaders) {
-      // Find the actual department header line by searching backwards from expenditure marker
-      for (let i = header.lineIndex - 1; i >= 0; i--) {
-        const line = lines[i].trim();
+    // Build sections using the valid department headers
+    for (let i = 0; i < validDepartmentHeaders.length; i++) {
+      const deptHeader = validDepartmentHeaders[i].trim();
+      
+      // Extract org code and department name from header
+      const match = deptHeader.match(/^(\d{4})\s{3,}(.+)$/);
+      if (match) {
+        const orgCode = match[1];
+        const departmentName = match[2].trim();
         
-        // Check if this line matches our department header pattern
-        if (line === header.baseText || 
-            line === header.baseText + ' - Continued' ||
-            (line.match(/^(\d{4})$/) && i + 1 < lines.length && 
-             lines[i + 1].trim() && 
-             `${line}   ${lines[i + 1].trim()}`.replace(/\s*-\s*Continued\s*$/, '') === header.baseText)) {
-          
-          departmentHeaderLines.push({baseText: header.baseText, lineIndex: i});
-          break;
+        // Find the section boundaries
+        const expenditureLineIndex = expenditureMarkers[i];
+        
+        // Find department header line in file
+        let sectionStartIndex = -1;
+        for (let j = expenditureLineIndex - 1; j >= 0; j--) {
+          const line = lines[j].trim();
+          if (line === deptHeader || line === deptHeader + ' - Continued') {
+            sectionStartIndex = j;
+            break;
+          }
+          // Check two-line format
+          if (line.match(/^(\d{4})$/) && j + 1 < lines.length) {
+            const nextLine = lines[j + 1].trim();
+            const combinedLine = `${line}   ${nextLine}`;
+            if (combinedLine === deptHeader || combinedLine === deptHeader + ' - Continued') {
+              sectionStartIndex = j;
+              break;
+            }
+          }
         }
+        
+        if (sectionStartIndex !== -1) {
+          // Find end of section (next department or end of file)
+          let sectionEndIndex = lines.length;
+          if (i < validDepartmentHeaders.length - 1) {
+            const nextExpenditure = expenditureMarkers[i + 1];
+            sectionEndIndex = nextExpenditure;
+          }
+          
+          const sectionLines = lines.slice(sectionStartIndex, sectionEndIndex);
+          const sectionContent = sectionLines.join('\n');
+          
+          sections.push({
+            orgCode,
+            departmentName,
+            content: sectionContent
+          });
+          
+          consoleOutput(`  ✅ Section ${sections.length}: ${departmentName} (${orgCode})`);
+        } else {
+          consoleOutput(`  ❌ Could not find section content for ${departmentName} (${orgCode})`);
+        }
+      } else {
+        consoleOutput(`  ❌ Could not parse department header: ${deptHeader}`);
       }
-    }
-    
-    // Sort by line index and build sections
-    departmentHeaderLines.sort((a, b) => a.lineIndex - b.lineIndex);
-    
-    for (let i = 0; i < departmentHeaderLines.length; i++) {
-      const header = departmentHeaderLines[i];
-      
-      // Determine section boundaries
-      const startIndex = header.lineIndex;
-      const endIndex = i < departmentHeaderLines.length - 1 ? 
-        departmentHeaderLines[i + 1].lineIndex : lines.length;
-      
-      const sectionLines = lines.slice(startIndex, endIndex);
-      sections.push(sectionLines.join('\n'));
-      consoleOutput(`  ✅ Section ${i + 1}: ${header.baseText}`);
     }
     
     log(`Extracted ${sections.length} department sections total`, true);
@@ -766,45 +796,17 @@ async function processDepartmentSection(
   budgetsData: BudgetsJSON,
   sectionNumber: number = 0,
   fileName: string = "",
-  fundsData: FundsJSON
+  fundsData: FundsJSON,
+  orgCode?: string,
+  departmentName?: string
 ): Promise<void> {
   try {
     // Normalize line endings
     const normalizedContent = sectionContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     
-    // Extract basic department information first (for header display)
-    // Try format: "0110    Senate" (org code and name on same line)
-    let orgCodeMatch = normalizedContent.match(/^\s*(\d{4})\s+(.*?)(?:\n)/);
-    let orgCode = '';
-    let departmentName = '';
-    
-    if (orgCodeMatch) {
-      orgCode = orgCodeMatch[1];
-      departmentName = orgCodeMatch[2].trim();
-    } else {
-      // Try format where org code and name are on separate lines
-      const lines = normalizedContent.split('\n');
-      const firstLineMatch = lines[0] && lines[0].trim().match(/^(\d{4})$/);
-      if (firstLineMatch && lines.length > 1) {
-        const secondLine = lines[1].trim();
-        // Department name should contain letters and not be amounts or fund codes
-        if (secondLine && 
-            !secondLine.match(/^\d+$/) && 
-            !secondLine.match(/^\$/) &&
-            !secondLine.match(/^[\d,]+$/) &&
-            !secondLine.match(/^-$/) &&
-            !secondLine.startsWith('State Operations:') &&
-            !secondLine.startsWith('Local Assistance:') &&
-            secondLine.match(/[A-Za-z]/) &&
-            secondLine.length > 2) {
-          orgCode = firstLineMatch[1];
-          departmentName = secondLine;
-        }
-      }
-    }
-    
+    // Use provided orgCode and departmentName from bash command extraction
     if (!orgCode || !departmentName) {
-      log('Could not extract organization code and department name from section', true, true);
+      log('Organization code and department name not provided', true, true);
       return;
     }
     
