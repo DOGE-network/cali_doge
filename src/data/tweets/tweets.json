@@ -1,16 +1,300 @@
 {
-  "structure_for_AI_to_understand": [
-    "TwitterApiResponse: Root object with tweets array and optional users, errors, meta arrays",
-    "EnrichedTweet: Enhanced tweet with author info, formatted dates, media attachments, and enriched entities",
-    "TwitterMedia: Media attachments with type (photo/video/animated_gif), url, dimensions, and preview images",
-    "EnrichedTweetEntities: Tweet entities with enhanced URL metadata including titles, descriptions, and images",
-    "UrlMetadata: URL expansion with title, description, images array, and status codes",
-    "UserV2: Twitter user objects with profile information embedded in tweets",
-    "Data Flow: Tweets fetched from Twitter API → enriched with media/URL metadata → stored with formatted dates",
-    "Processing: Real-time Twitter data with rate limiting, media download, and URL expansion",
-    "Usage: Powers social media feed and engagement tracking for California DOGE content"
-  ],
   "tweets": [
+    {
+      "created_at": "2025-05-26T00:26:51.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1926797141546062154"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Eric_Schmitt",
+            "id": "101852818"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 58,
+            "end": 63,
+            "probability": 0.6446,
+            "type": "Place",
+            "normalized_text": "SF bay"
+          },
+          {
+            "start": 73,
+            "end": 77,
+            "probability": 0.884,
+            "type": "Place",
+            "normalized_text": "Chico"
+          },
+          {
+            "start": 127,
+            "end": 142,
+            "probability": 0.9444,
+            "type": "Place",
+            "normalized_text": "North California"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1926797141546062154",
+      "text": "@Eric_Schmitt You need more colors. \n\nIt’s around $5 from SF bay area to Chico and beyond. We can pay it and complain here. In North California it’s seriously making people poor.",
+      "created_at_formatted": "May 26, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "attachments": {
+        "media_keys": [
+          "3_1926443941857054720"
+        ]
+      },
+      "created_at": "2025-05-25T01:05:28.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1926443945443066288",
+        "1926444474076414282"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 205,
+            "end": 213,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 214,
+            "end": 230,
+            "username": "CalPolicyCenter",
+            "id": "494180327"
+          },
+          {
+            "start": 231,
+            "end": 236,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 237,
+            "end": 246,
+            "username": "elonmusk",
+            "id": "44196397"
+          },
+          {
+            "start": 247,
+            "end": 262,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 263,
+            "end": 272,
+            "username": "CA__DOGE",
+            "id": "1861563798248988672"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 103,
+            "end": 129,
+            "probability": 0.4946,
+            "type": "Organization",
+            "normalized_text": "California State Government"
+          }
+        ],
+        "urls": [
+          {
+            "start": 180,
+            "end": 203,
+            "url": "https://t.co/SQecOdqYqG",
+            "expanded_url": "https://cali-doge.org/workforce",
+            "display_url": "cali-doge.org/workforce",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1926443992691945473/Bo_rHQjG?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1926443992691945473/Bo_rHQjG?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce"
+          },
+          {
+            "start": 273,
+            "end": 296,
+            "url": "https://t.co/r3Hw533sTL",
+            "expanded_url": "https://x.com/cali_doge/status/1926444474076414282/photo/1",
+            "display_url": "pic.x.com/r3Hw533sTL",
+            "media_key": "3_1926443941857054720"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1926444474076414282",
+      "text": "You can review the mean, median, trimmed mean, and multiple percentile calculations on any part of the California State Government hierarchy salaries from 2010 - 2023. \n\nLook here https://t.co/SQecOdqYqG\n\n@joffemd @CalPolicyCenter @doge @elonmusk @DataRepublican @CA__DOGE https://t.co/r3Hw533sTL",
+      "created_at_formatted": "May 25, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1926444474076414282_0.jpg",
+          "width": 1200,
+          "height": 1066
+        }
+      ]
+    },
     {
       "text": "7/7 EPA granted California waiver is now at risk, which implements CARB’s Advanced Clean Cars II rules, which bans new gas-powered cars by 2035. \n\nSee the regulatory text and EPA waiver here:\nhttps://t.co/8MbJMWP8oP",
       "id": "1923914305554219409",
@@ -12480,8 +12764,8 @@
     }
   ],
   "meta": {
-    "result_count": 112,
-    "newest_id": "1923914305554219409",
+    "result_count": 114,
+    "newest_id": "1926797141546062154",
     "oldest_id": "1882144700762878208"
   }
 }
