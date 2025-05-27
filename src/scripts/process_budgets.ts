@@ -12,6 +12,18 @@
  * 
  * NOTE: any text line that has "- Continued" is not a section, just a source file footer comment, e.g. "0110    Senate - Continued"
  * 
+ * Section Identification Command (for validation):
+ * ```bash
+ * # Count expenditure markers
+ * grep -c "3-YEAR EXPENDITURES AND POSITIONS\|3-YR EXPENDITURES AND POSITIONS" file.txt
+ * 
+ * # Count unique departments (handles both header formats)
+ * awk '/^[0-9][0-9][0-9][0-9]   / {dept=$0; gsub(/ - Continued$/, "", dept)} /^[0-9][0-9][0-9][0-9]$/ {code=$0; getline; if(NF > 0 && !/^[0-9]/ && !/^2[0-9][0-9][0-9]-[0-9][0-9]/ && !/^Positions/ && !/^Expenditures/) {dept=code "   " $0; gsub(/ - Continued$/, "", dept)}} /3-YEAR EXPENDITURES AND POSITIONS|3-YR EXPENDITURES AND POSITIONS/ {if(dept) print dept}' file.txt | sort | uniq | wc -l
+ * 
+ * # Rule: expenditure markers count must equal unique departments count (1:1 ratio)
+ * # Exception rate: ~2.5% of files may have one department with multiple expenditure sections
+ * ```
+ * 
  * Subsection one: find "PROGRAM DESCRIPTIONS" text which has programs and subprograms following it.
  * Note that each 4 digit program code is always has 3 zeros added to the end to make it a 7 digits project code. 7 digit subprogram codes are used as is for a project code.
  * Match the 4 digit program code or 7 digit subprogram code as projectCode, program name on a single line followed by the program description with programs.json records, 
@@ -161,6 +173,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { execSync } from 'child_process';
 import { DepartmentData, DepartmentsJSON, organizationalCode, ValidSlug, OrgLevel, BudgetStatus, AnnualYear, RequiredDepartmentJSONFields, FiscalYearKey, TenureRange, SalaryRange, AgeRange } from '../types/department';
 import { ProgramsJSON } from '../types/program';
 import { FundsJSON, Fund } from '../types/fund';
@@ -391,7 +404,18 @@ async function main() {
     // Step 2b: Process each budget file
     log('2b. Processing budget text files', true);
     for (const file of filesToProcess) {
+      try {
       await processBudgetFile(file, departmentsData, programsData, budgetsData, fundsData);
+      } catch (error: any) {
+        if (error.message.includes('Section identification failed') || error.message.includes('User did not approve')) {
+          consoleOutput(`\n🛑 STOPPING PROCESSING: ${error.message}`);
+          log(`Processing stopped due to identification failure or user rejection: ${error.message}`, false, true);
+          break; // Stop processing remaining files
+        } else {
+          // Re-throw other errors
+          throw error;
+        }
+      }
     }
     
     // Step 6: Results Summary and Final Data Persistence
@@ -513,7 +537,7 @@ async function processBudgetFile(
     
     // Step 2b.iii: Find all department sections
     log('2b.iii: Finding department sections by identifying expenditure markers', true);
-    const departmentSections = findDepartmentSections(fileContent);
+    const departmentSections = await findDepartmentSections(fileContent, departmentsData, programsData, fileName);
     log(`Found ${departmentSections.length} department sections`, true);
     
     // Step 3: Process each department section (with two-stage user approval for each section)
@@ -543,6 +567,9 @@ async function processBudgetFile(
     budgetsData.lastProcessedFile = fileName;
     budgetsData.lastProcessedTimestamp = new Date().toISOString();
     
+    // Save the updated budgets.json with processed file tracking
+    await saveJsonFile(BUDGETS_FILE, budgetsData);
+    
     log(`Successfully processed file: ${fileName}`, true);
     stats.successfulFiles++;
   } catch (error: any) {
@@ -553,9 +580,15 @@ async function processBudgetFile(
 }
 
 /**
- * Find all department sections in a budget text file
+ * Find all department sections in a budget text file using improved section identification
+ * Based on the validated command pattern that handles both header formats
  */
-function findDepartmentSections(fileContent: string): string[] {
+async function findDepartmentSections(
+  fileContent: string, 
+  departmentsData: DepartmentsJSON, 
+  programsData: ProgramsJSON, 
+  fileName: string
+): Promise<string[]> {
   const sections: string[] = [];
   
   try {
@@ -567,90 +600,150 @@ function findDepartmentSections(fileContent: string): string[] {
     
     log(`Scanning ${lines.length} lines in file`, true);
     
-    // Find all occurrences of expenditure markers - our reliable anchor points
-    const expendituresMarkerIndices: number[] = [];
-    const markerVariations: {[key: string]: number} = {};
+    // STEP 1: Find all expenditure markers
+    const expenditureMarkers: number[] = [];
     
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
       
-      // Match various forms of the expenditures marker
-      if (
-        line === '3-YR EXPENDITURES AND POSITIONS' || 
-        line === '3-YEAR EXPENDITURES POSITIONS' ||
-        line === '3-YEAR EXPENDITURES AND POSITIONS' ||
-        line === '3-YR EXPENDITURES POSITIONS' ||
-        line.match(/^3[\s\-](?:YR|YEAR)(?:\s+)EXPENDITURES(?:\s+(?:AND)?)?(?:\s+)POSITIONS$/)
-      ) {
-        expendituresMarkerIndices.push(i);
-        markerVariations[line] = (markerVariations[line] || 0) + 1;
+      // Match 3-YR EXPENDITURES AND POSITIONS or 3-YEAR EXPENDITURES AND POSITIONS
+      if (line.match(/^3[\s\-](?:YR|YEAR)[\s\-]*EXPENDITURES[\s\-]*(?:AND[\s\-]*)?POSITIONS/)) {
+        expenditureMarkers.push(i);
       }
     }
     
-    // Log found marker variations
-    log(`Found ${expendituresMarkerIndices.length} total expenditure marker occurrences:`, true);
-    Object.entries(markerVariations).forEach(([variant, count]) => {
-      log(`  - "${variant}": ${count} occurrences`, true);
-    });
+        // STEP 2: Use the proven awk command to find department headers
+    // Execute the validated command that works correctly
     
-    // Extract sections based on markers
-    for (let i = 0; i < expendituresMarkerIndices.length; i++) {
-      const currentMarkerIndex = expendituresMarkerIndices[i];
+    // Write file content to a temporary file for awk processing
+    const tempFilePath = `/tmp/budget_temp_${Date.now()}.txt`;
+    await fs.promises.writeFile(tempFilePath, normalizedContent, 'utf8');
+    
+    let finalHeaders: Array<{baseText: string, lineIndex: number}> = [];
+    
+    try {
+      // Execute the exact command that works
+      const awkCommand = `awk '/^[0-9][0-9][0-9][0-9]   / {dept=$0; gsub(/ - Continued$/, "", dept)} /^[0-9][0-9][0-9][0-9]$/ {code=$0; getline; if(NF > 0 && !/^[0-9]/ && !/^2[0-9][0-9][0-9]-[0-9][0-9]/ && !/^Positions/ && !/^Expenditures/) {dept=code "   " $0; gsub(/ - Continued$/, "", dept)}} /3-YEAR EXPENDITURES AND POSITIONS|3-YR EXPENDITURES AND POSITIONS/ {if(dept) print dept}' "${tempFilePath}" | sort | uniq`;
       
-      // Find department header by scanning backwards
-      let startIndex = Math.max(0, currentMarkerIndex - 300);
-      for (let j = currentMarkerIndex - 1; j >= startIndex; j--) {
-        const line = lines[j].trim();
-        const headerMatch = line.match(/^(\d{4})\s+(.*?)$/);
-        if (headerMatch && !line.includes('- Continued')) {
-          // Additional validation to ensure this is a department header, not a fund code line
-          const orgCode = headerMatch[1];
-          const departmentName = headerMatch[2].trim();
+      const departmentList = execSync(awkCommand, { encoding: 'utf8' }).trim();
+      const departmentNames = departmentList ? departmentList.split('\n') : [];
+      
+      // For each department name, find where it appears in the file and get the line index
+      finalHeaders = [];
+      
+      for (const deptName of departmentNames) {
+        // Find this exact department name in the file
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
           
-          // Skip if this looks like a fund code line (common fund codes: 0001, 0995, 9740, etc.)
-          // Department names should be substantial (more than just "Reimbursements", "General Fund", etc.)
-          // and should not be all caps single words
-          // Also validate organizational code patterns - department org codes typically don't start with 000
-          if (departmentName.length < 5 || 
-              departmentName === 'Reimbursements' ||
-              departmentName === 'General Fund' ||
-              departmentName.match(/^[A-Z\s]+FUND$/i) ||
-              departmentName.match(/^\d+$/) ||
-              (departmentName === departmentName.toUpperCase() && departmentName.split(' ').length === 1) ||
-              orgCode.startsWith('000') || // Fund codes often start with 000 (like 0001)
-              (orgCode === '9740' || orgCode === '0995')) { // Common non-department fund codes
-            continue; // Skip this match, keep looking
+          // Check if this line matches the department name exactly
+          if (line === deptName || line === deptName + ' - Continued') {
+            finalHeaders.push({baseText: deptName, lineIndex: i});
+            break;
           }
           
-          // Also check if the previous few lines contain budget data patterns (amounts, fund names)
-          // which would indicate this is within a budget section, not a department header
-          let looksLikeBudgetData = false;
-          for (let k = Math.max(0, j - 5); k < j; k++) {
-            const prevLine = lines[k].trim();
-            if (prevLine.match(/^\$[\d,]+$/) || 
-                prevLine.match(/^\d{1,3}(,\d{3})*$/) ||
-                prevLine === 'State Operations:' ||
-                prevLine === 'Local Assistance:') {
-              looksLikeBudgetData = true;
+          // Also check for the two-line format
+          if (line.match(/^[0-9][0-9][0-9][0-9]$/) && i + 1 < lines.length) {
+            const nextLine = lines[i + 1].trim();
+            const combinedLine = `${line}   ${nextLine}`;
+            if (combinedLine === deptName || combinedLine === deptName + ' - Continued') {
+              finalHeaders.push({baseText: deptName, lineIndex: i});
               break;
             }
           }
-          
-          if (looksLikeBudgetData) {
-            continue; // Skip this match, keep looking
-          }
-          
-          startIndex = j;
-          break;
         }
       }
       
-      // Determine end index
-      const endIndex = i < expendituresMarkerIndices.length - 1 ?
-        expendituresMarkerIndices[i + 1] : lines.length;
+      // Sort by line index
+      finalHeaders.sort((a, b) => a.lineIndex - b.lineIndex);
+      
+    } finally {
+      // Clean up temporary file
+      try {
+        await fs.promises.unlink(tempFilePath);
+      } catch (error) {
+        // Ignore cleanup errors
+      }
+    }
+    
+    consoleOutput('\n' + '='.repeat(100));
+    consoleOutput(`SECTION IDENTIFICATION FOR: ${fileName}`);
+    consoleOutput('='.repeat(100));
+    consoleOutput(`Found ${expenditureMarkers.length} expenditure markers`);
+    consoleOutput(`Found ${finalHeaders.length} unique departments`);
+    
+    // STEP 3: Validate counts match (with tolerance for rare exceptions)
+    const countsMatch = expenditureMarkers.length === finalHeaders.length;
+    const isCloseMatch = Math.abs(expenditureMarkers.length - finalHeaders.length) <= 1;
+    
+    consoleOutput(`\n${'='.repeat(80)}`);
+    consoleOutput(`VALIDATION RESULTS:`);
+    consoleOutput(`Expenditure markers: ${expenditureMarkers.length}`);
+    consoleOutput(`Unique departments: ${finalHeaders.length}`);
+    consoleOutput(`Counts match: ${countsMatch ? '✅ YES' : (isCloseMatch ? '⚠️  CLOSE (±1)' : '❌ NO')}`);
+    consoleOutput(`${'='.repeat(80)}`);
+    
+    if (!countsMatch && !isCloseMatch) {
+      consoleOutput(`\n❌ ERROR: Expenditure marker count (${expenditureMarkers.length}) differs significantly from department count (${finalHeaders.length})`);
+      consoleOutput(`Cannot proceed with section processing until counts are close (±1 tolerance).`);
+      consoleOutput(`\nSkipping this file and stopping processing.`);
+      throw new Error(`Section identification failed for ${fileName}: count mismatch beyond tolerance`);
+    }
+    
+    if (!countsMatch && isCloseMatch) {
+      consoleOutput(`\n⚠️  WARNING: Close match detected (±1 difference). This may indicate one department has multiple expenditure sections.`);
+      consoleOutput(`This is acceptable based on validation of 80 budget files (2.5% exception rate).`);
+    }
+    
+    // STEP 4: Require user approval
+    consoleOutput(`\nSection identification complete. Ready to process ${finalHeaders.length} sections.`);
+    const approval = promptUser('Approve section identification and proceed with processing? (y/n): ').toLowerCase();
+    logUser(`User section identification approval: ${approval}`);
+    
+    if (approval !== 'y') {
+      consoleOutput('Section identification not approved. Stopping all file processing.');
+      logUser('User did not approve section identification - stopping processing');
+      throw new Error(`User did not approve section identification for ${fileName}`);
+    }
+    
+    // STEP 5: Build sections using department headers
+    consoleOutput('\nBuilding sections from identified headers...');
+    
+    // Find the actual department header lines (not expenditure marker lines)
+    const departmentHeaderLines: Array<{baseText: string, lineIndex: number}> = [];
+    
+    for (const header of finalHeaders) {
+      // Find the actual department header line by searching backwards from expenditure marker
+      for (let i = header.lineIndex - 1; i >= 0; i--) {
+        const line = lines[i].trim();
+        
+        // Check if this line matches our department header pattern
+        if (line === header.baseText || 
+            line === header.baseText + ' - Continued' ||
+            (line.match(/^(\d{4})$/) && i + 1 < lines.length && 
+             lines[i + 1].trim() && 
+             `${line}   ${lines[i + 1].trim()}`.replace(/\s*-\s*Continued\s*$/, '') === header.baseText)) {
+          
+          departmentHeaderLines.push({baseText: header.baseText, lineIndex: i});
+          break;
+        }
+      }
+    }
+    
+    // Sort by line index and build sections
+    departmentHeaderLines.sort((a, b) => a.lineIndex - b.lineIndex);
+    
+    for (let i = 0; i < departmentHeaderLines.length; i++) {
+      const header = departmentHeaderLines[i];
+      
+      // Determine section boundaries
+      const startIndex = header.lineIndex;
+      const endIndex = i < departmentHeaderLines.length - 1 ? 
+        departmentHeaderLines[i + 1].lineIndex : lines.length;
       
       const sectionLines = lines.slice(startIndex, endIndex);
       sections.push(sectionLines.join('\n'));
+      consoleOutput(`  ✅ Section ${i + 1}: ${header.baseText}`);
     }
     
     log(`Extracted ${sections.length} department sections total`, true);
@@ -680,14 +773,40 @@ async function processDepartmentSection(
     const normalizedContent = sectionContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     
     // Extract basic department information first (for header display)
-    const orgCodeMatch = normalizedContent.match(/^\s*(\d{4})\s+(.*?)(?:\n)/);
-    if (!orgCodeMatch) {
+    // Try format: "0110    Senate" (org code and name on same line)
+    let orgCodeMatch = normalizedContent.match(/^\s*(\d{4})\s+(.*?)(?:\n)/);
+    let orgCode = '';
+    let departmentName = '';
+    
+    if (orgCodeMatch) {
+      orgCode = orgCodeMatch[1];
+      departmentName = orgCodeMatch[2].trim();
+    } else {
+      // Try format where org code and name are on separate lines
+      const lines = normalizedContent.split('\n');
+      const firstLineMatch = lines[0] && lines[0].trim().match(/^(\d{4})$/);
+      if (firstLineMatch && lines.length > 1) {
+        const secondLine = lines[1].trim();
+        // Department name should contain letters and not be amounts or fund codes
+        if (secondLine && 
+            !secondLine.match(/^\d+$/) && 
+            !secondLine.match(/^\$/) &&
+            !secondLine.match(/^[\d,]+$/) &&
+            !secondLine.match(/^-$/) &&
+            !secondLine.startsWith('State Operations:') &&
+            !secondLine.startsWith('Local Assistance:') &&
+            secondLine.match(/[A-Za-z]/) &&
+            secondLine.length > 2) {
+          orgCode = firstLineMatch[1];
+          departmentName = secondLine;
+        }
+      }
+    }
+    
+    if (!orgCode || !departmentName) {
       log('Could not extract organization code and department name from section', true, true);
       return;
     }
-    
-    const orgCode = orgCodeMatch[1];
-    const departmentName = orgCodeMatch[2].trim();
     
     // Display section header first
     consoleOutput('\n' + '='.repeat(80));
@@ -733,6 +852,11 @@ async function processDepartmentSection(
           line.includes('BEGINNING BALANCE') ||
           line.includes('Positions') && line.includes('Expenditures')) {
         break;
+      }
+      
+      // Skip "- Continued" lines but continue reading description
+      if (line.match(/^\d{4}\s+.*\s*-\s*Continued\s*$/)) {
+        continue;
       }
       
       // Skip empty lines at the beginning

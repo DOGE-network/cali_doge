@@ -23,15 +23,15 @@
     },
     {
       "fundCode": "3212",
-      "fundName": "Timber Regulation And Forest R",
+      "fundName": "Timber Regulation and Forest Restoration Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Timber Regulation And Forest R"
+      "fundDescription": "Timber Regulation and Forest Restoration Fund"
     },
     {
       "fundCode": "0042",
-      "fundName": "State Highway Account, Stf",
+      "fundName": "State Highway Account, State Transportation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "State Highway Account, Stf"
+      "fundDescription": "State Highway Account, State Transportation Fund"
     },
     {
       "fundCode": "0336",
@@ -41,9 +41,9 @@
     },
     {
       "fundCode": "0044",
-      "fundName": "Motor Vehicle Account, Stf",
+      "fundName": "Motor Vehicle Account, State Transportation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Motor Vehicle Account, Stf"
+      "fundDescription": "Motor Vehicle Account, State Transportation Fund"
     },
     {
       "fundCode": "0371",
@@ -59,9 +59,9 @@
     },
     {
       "fundCode": "3046",
-      "fundName": "Oil, Gas, And Geothermal Admin",
+      "fundName": "Oil, Gas, and Geothermal Administrative Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Oil, Gas, And Geothermal Admin"
+      "fundDescription": "Oil, Gas, and Geothermal Administrative Fund"
     },
     {
       "fundCode": "8086",
@@ -83,9 +83,9 @@
     },
     {
       "fundCode": "6051",
-      "fundName": "SfDrWtrqu/SFldctrl,Rvrcstl",
+      "fundName": "Safe Drinking Water, Water Quality and Supply, Flood Control, River and Coastal",
       "fundGroup": "Other Funds",
-      "fundDescription": "SfDrWtrqu/SFldctrl,Rvrcstl"
+      "fundDescription": "Safe Drinking Water, Water Quality and Supply, Flood Control, River and Coastal"
     },
     {
       "fundCode": "0122",
@@ -107,9 +107,9 @@
     },
     {
       "fundCode": "0106",
-      "fundName": "Department Of Pesticide Regula",
+      "fundName": "Department of Pesticide Regulation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Department Of Pesticide Regula"
+      "fundDescription": "Department of Pesticide Regulation Fund"
     },
     {
       "fundCode": "3098",
@@ -155,9 +155,9 @@
     },
     {
       "fundCode": "6088",
-      "fundName": "Drought Wtr Prk Clmt Cstl Otdr",
+      "fundName": "California Drought, Water, Parks, Climate, Coastal Protection, and Outdoor Access",
       "fundGroup": "Other Funds",
-      "fundDescription": "Drought Wtr Prk Clmt Cstl Otdr"
+      "fundDescription": "California Drought, Water, Parks, Climate, Coastal Protection, and Outdoor Access"
     },
     {
       "fundCode": "0942",
@@ -167,9 +167,9 @@
     },
     {
       "fundCode": "3036",
-      "fundName": "Alcohol Beverages Control Fund",
+      "fundName": "Alcohol Beverage Control Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Alcohol Beverages Control Fund"
+      "fundDescription": "Alcohol Beverage Control Fund"
     },
     {
       "fundCode": "0203",
@@ -209,9 +209,9 @@
     },
     {
       "fundCode": "0516",
-      "fundName": "Harbors & Watercraft Rev Fd",
+      "fundName": "Harbors and Watercraft Revolving Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Harbors & Watercraft Rev Fd"
+      "fundDescription": "Harbors and Watercraft Revolving Fund"
     },
     {
       "fundCode": "0593",
@@ -221,9 +221,9 @@
     },
     {
       "fundCode": "6083",
-      "fundName": "WtrQltySuplyandInfrstrctrImprv",
+      "fundName": "Water Quality, Supply, and Infrastructure Improvement Fund of 2014",
       "fundGroup": "Other Funds",
-      "fundDescription": "WtrQltySuplyandInfrstrctrImprv"
+      "fundDescription": "Water Quality, Supply, and Infrastructure Improvement Fund of 2014"
     },
     {
       "fundCode": "3109",
@@ -233,21 +233,21 @@
     },
     {
       "fundCode": "0465",
-      "fundName": "Energy Resources Programs Acco",
+      "fundName": "Energy Resources Programs Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Energy Resources Programs Acco"
+      "fundDescription": "Energy Resources Programs Account"
     },
     {
       "fundCode": "0005",
-      "fundName": "SfeNghPks,ClnWtr/Air-CstlPrtBd",
+      "fundName": "Safe Neighborhood Parks, Clean Water, Clean Air,",
       "fundGroup": "Other Funds",
-      "fundDescription": "SfeNghPks,ClnWtr/Air-CstlPrtBd"
+      "fundDescription": "Safe Neighborhood Parks, Clean Water, Clean Air,"
     },
     {
       "fundCode": "0140",
-      "fundName": "California Environmental Licen",
+      "fundName": "California Environmental License Plate Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "California Environmental Licen"
+      "fundDescription": "California Environmental License Plate Fund"
     },
     {
       "fundCode": "0565",
@@ -275,15 +275,15 @@
     },
     {
       "fundCode": "3237",
-      "fundName": "Cost Of Implementation Acct, A",
+      "fundName": "Cost of Implementation Account, Air Pollution Control Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Cost Of Implementation Acct, A"
+      "fundDescription": "Cost of Implementation Account, Air Pollution Control Fund"
     },
     {
       "fundCode": "3117",
-      "fundName": "Alternative & Renewable Fuel &",
+      "fundName": "Alternative and Renewable Fuel and Vehicle Technology Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Alternative & Renewable Fuel &"
+      "fundDescription": "Alternative and Renewable Fuel and Vehicle Technology Fund"
     },
     {
       "fundCode": "0018",
@@ -311,9 +311,9 @@
     },
     {
       "fundCode": "0557",
-      "fundName": "Toxic Substances Control Accou",
+      "fundName": "Toxic Substances Control Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Toxic Substances Control Accou"
+      "fundDescription": "Toxic Substances Control Account"
     },
     {
       "fundCode": "0177",
@@ -359,15 +359,15 @@
     },
     {
       "fundCode": "0320",
-      "fundName": "Oil Spill Prevention & Adminis",
+      "fundName": "Oil Spill Prevention and Administration Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Oil Spill Prevention & Adminis"
+      "fundDescription": "Oil Spill Prevention and Administration Fund"
     },
     {
       "fundCode": "0022",
-      "fundName": "Emergency Telephone Number Acc",
+      "fundName": "State Emergency Telephone Number Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Emergency Telephone Number Acc"
+      "fundDescription": "State Emergency Telephone Number Account"
     },
     {
       "fundCode": "0098",
@@ -485,45 +485,45 @@
     },
     {
       "fundCode": "0918",
-      "fundName": "Ca Small Business Expansion Fu",
+      "fundName": "California Small Business Expansion Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Ca Small Business Expansion Fu"
+      "fundDescription": "California Small Business Expansion Fund"
     },
     {
       "fundCode": "0840",
-      "fundName": "Motorcyclist Safety Fund, Cal",
+      "fundName": "State Controller - Continued",
       "fundGroup": "Other Funds",
-      "fundDescription": "Motorcyclist Safety Fund, Cal"
+      "fundDescription": "State Controller - Continued"
     },
     {
       "fundCode": "3037",
-      "fundName": "Court Facilities Construction",
+      "fundName": "State Court Facilities Construction Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Court Facilities Construction"
+      "fundDescription": "State Court Facilities Construction Fund"
     },
     {
       "fundCode": "0159",
-      "fundName": "State Trial Court Improvement",
+      "fundName": "State Trial Court Improvement and Modernization Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "State Trial Court Improvement"
+      "fundDescription": "State Trial Court Improvement and Modernization Fund"
     },
     {
       "fundCode": "0327",
-      "fundName": "Court Interpreters' Fund",
+      "fundName": "Court Interpreters Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Court Interpreters' Fund"
+      "fundDescription": "Court Interpreters Fund"
     },
     {
       "fundCode": "3085",
-      "fundName": "Behavioral Health Services Fd",
+      "fundName": "Mental Health Services Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Behavioral Health Services Fd"
+      "fundDescription": "Mental Health Services Fund"
     },
     {
       "fundCode": "0649",
-      "fundName": "Ca Infrastructure & Economic D",
+      "fundName": "California Infrastructure and Economic Development Bank Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Ca Infrastructure & Economic D"
+      "fundDescription": "California Infrastructure and Economic Development Bank Fund"
     },
     {
       "fundCode": "3392",
@@ -533,21 +533,21 @@
     },
     {
       "fundCode": "0080",
-      "fundName": "Childhood Lead Poisoning Preve",
+      "fundName": "Childhood Lead Poisoning Prevention Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Childhood Lead Poisoning Preve"
+      "fundDescription": "Childhood Lead Poisoning Prevention Fund"
     },
     {
       "fundCode": "0029",
-      "fundName": "Nuclear Planning Assessment Sp",
+      "fundName": "Nuclear Planning Assessment Special Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Nuclear Planning Assessment Sp"
+      "fundDescription": "Nuclear Planning Assessment Special Account"
     },
     {
       "fundCode": "0367",
-      "fundName": "Indian Gaming Special Distribu",
+      "fundName": "Indian Gaming Special Distribution Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Indian Gaming Special Distribu"
+      "fundDescription": "Indian Gaming Special Distribution Fund"
     },
     {
       "fundCode": "9334",
@@ -569,9 +569,9 @@
     },
     {
       "fundCode": "6031",
-      "fundName": "Wtr Sec Cln Dr Wtr Cstl Bch Pr",
+      "fundName": "Water Security, Clean Drinking Water, Coastal and Beach Protection Fund of 2002",
       "fundGroup": "Other Funds",
-      "fundDescription": "Wtr Sec Cln Dr Wtr Cstl Bch Pr"
+      "fundDescription": "Water Security, Clean Drinking Water, Coastal and Beach Protection Fund of 2002"
     },
     {
       "fundCode": "0779",
@@ -635,9 +635,9 @@
     },
     {
       "fundCode": "6029",
-      "fundName": "Ca Cln Wtr,Cln Air,CstlProt Fd",
+      "fundName": "California Clean Water, Clean Air, Safe Neighborhood Parks, and Coastal Protection",
       "fundGroup": "Other Funds",
-      "fundDescription": "Ca Cln Wtr,Cln Air,CstlProt Fd"
+      "fundDescription": "California Clean Water, Clean Air, Safe Neighborhood Parks, and Coastal Protection"
     },
     {
       "fundCode": "0752",
@@ -863,9 +863,9 @@
     },
     {
       "fundCode": "6086",
-      "fundName": "2016 State School Facilities",
+      "fundName": "2016 State School Facilities Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "2016 State School Facilities"
+      "fundDescription": "2016 State School Facilities Fund"
     },
     {
       "fundCode": "3363",
@@ -905,9 +905,9 @@
     },
     {
       "fundCode": "9728",
-      "fundName": "Judicial Branch Workers' Compe",
+      "fundName": "Judicial Branch Workers Compensation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Judicial Branch Workers' Compe"
+      "fundDescription": "Judicial Branch Workers Compensation Fund"
     },
     {
       "fundCode": "0111",
@@ -929,9 +929,9 @@
     },
     {
       "fundCode": "0930",
-      "fundName": "Pollution Control Financing Au",
+      "fundName": "Pollution Control Financing Authority Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Pollution Control Financing Au"
+      "fundDescription": "Pollution Control Financing Authority Fund"
     },
     {
       "fundCode": "0634",
@@ -1007,9 +1007,9 @@
     },
     {
       "fundCode": "0457",
-      "fundName": "Tax Credit Allocation Fee Acco",
+      "fundName": "Tax Credit Allocation Fee Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Tax Credit Allocation Fee Acco"
+      "fundDescription": "Tax Credit Allocation Fee Account"
     },
     {
       "fundCode": "0638",
@@ -1079,9 +1079,9 @@
     },
     {
       "fundCode": "0985",
-      "fundName": "Emergency Housing Assistance F",
+      "fundName": "California School Finance Authority - Continued",
       "fundGroup": "Other Funds",
-      "fundDescription": "Emergency Housing Assistance F"
+      "fundDescription": "California School Finance Authority - Continued"
     },
     {
       "fundCode": "0587",
@@ -1097,9 +1097,9 @@
     },
     {
       "fundCode": "0870",
-      "fundName": "Unemployment Administration Fu",
+      "fundName": "Office of Tax Appeals - Continued",
       "fundGroup": "Other Funds",
-      "fundDescription": "Unemployment Administration Fu"
+      "fundDescription": "Office of Tax Appeals - Continued"
     },
     {
       "fundCode": "3238",
@@ -1109,9 +1109,9 @@
     },
     {
       "fundCode": "0904",
-      "fundName": "Hlth Facilities Financing Auth",
+      "fundName": "California Health Facilities Financing Authority Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Hlth Facilities Financing Auth"
+      "fundDescription": "California Health Facilities Financing Authority Fund"
     },
     {
       "fundCode": "0943",
@@ -1127,9 +1127,9 @@
     },
     {
       "fundCode": "6076",
-      "fundName": "Ocean Protection Trust Fund, C",
+      "fundName": "California Ocean Protection Trust Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Ocean Protection Trust Fund, C"
+      "fundDescription": "California Ocean Protection Trust Fund"
     },
     {
       "fundCode": "0630",
@@ -1139,9 +1139,9 @@
     },
     {
       "fundCode": "0183",
-      "fundName": "Environmental Enhancement And",
+      "fundName": "Environmental Enhancement and Mitigation Program Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Environmental Enhancement And"
+      "fundDescription": "Environmental Enhancement and Mitigation Program Fund"
     },
     {
       "fundCode": "9729",
@@ -1175,9 +1175,9 @@
     },
     {
       "fundCode": "9740",
-      "fundName": "Central Service Cost Recovery",
+      "fundName": "Central Service Cost Recovery Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Central Service Cost Recovery"
+      "fundDescription": "Central Service Cost Recovery Fund"
     },
     {
       "fundCode": "0938",
@@ -1193,9 +1193,9 @@
     },
     {
       "fundCode": "0911",
-      "fundName": "Educational Facilities Authori",
+      "fundName": "Educational Facilities Authority Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Educational Facilities Authori"
+      "fundDescription": "Educational Facilities Authority Fund"
     },
     {
       "fundCode": "7505",
@@ -1205,15 +1205,15 @@
     },
     {
       "fundCode": "0526",
-      "fundName": "School Finance Authority Fund,",
+      "fundName": "California School Finance Authority Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "School Finance Authority Fund,"
+      "fundDescription": "California School Finance Authority Fund"
     },
     {
       "fundCode": "1018",
-      "fundName": "Lake Tahoe Sci & Lake Imp Acct",
+      "fundName": "Lake Tahoe Science and Lake Improvement Account, General Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Lake Tahoe Sci & Lake Imp Acct"
+      "fundDescription": "Lake Tahoe Science and Lake Improvement Account, General Fund"
     },
     {
       "fundCode": "0319",
@@ -1241,9 +1241,9 @@
     },
     {
       "fundCode": "0280",
-      "fundName": "Physician Assistant Fund",
+      "fundName": "Commission on Judicial Performance - Continued",
       "fundGroup": "Other Funds",
-      "fundDescription": "Physician Assistant Fund"
+      "fundDescription": "Commission on Judicial Performance - Continued"
     },
     {
       "fundCode": "0299",
@@ -1265,9 +1265,9 @@
     },
     {
       "fundCode": "0046",
-      "fundName": "Public Transportation Account",
+      "fundName": "Public Transportation Account, State Transportation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Public Transportation Account"
+      "fundDescription": "Public Transportation Account, State Transportation Fund"
     },
     {
       "fundCode": "0886",
@@ -1277,9 +1277,9 @@
     },
     {
       "fundCode": "0169",
-      "fundName": "California Debt Limit Allocati",
+      "fundName": "California Debt Limit Allocation Committee Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "California Debt Limit Allocati"
+      "fundDescription": "California Debt Limit Allocation Committee Fund"
     },
     {
       "fundCode": "9331",
@@ -1289,9 +1289,9 @@
     },
     {
       "fundCode": "8058",
-      "fundName": "Cultural And Historical Endowm",
+      "fundName": "California Cultural and Historical Endowment Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Cultural And Historical Endowm"
+      "fundDescription": "California Cultural and Historical Endowment Fund"
     },
     {
       "fundCode": "8120",
@@ -1307,9 +1307,9 @@
     },
     {
       "fundCode": "9734",
-      "fundName": "Charter School Facilities Acco",
+      "fundName": "2004 Charter School Facilities Account, 2004 State School Facilities Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Charter School Facilities Acco"
+      "fundDescription": "2004 Charter School Facilities Account, 2004 State School Facilities Fund"
     },
     {
       "fundCode": "3140",
@@ -1337,9 +1337,9 @@
     },
     {
       "fundCode": "0439",
-      "fundName": "Underground Storage Tank Clean",
+      "fundName": "Underground Storage Tank Cleanup Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Underground Storage Tank Clean"
+      "fundDescription": "Underground Storage Tank Cleanup Fund"
     },
     {
       "fundCode": "0903",
@@ -1355,15 +1355,15 @@
     },
     {
       "fundCode": "0014",
-      "fundName": "Hazardous Waste Control Accoun",
+      "fundName": "Hazardous Waste Control Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Hazardous Waste Control Accoun"
+      "fundDescription": "Hazardous Waste Control Account"
     },
     {
       "fundCode": "0940",
-      "fundName": "Bosco Keene Renewable Resource",
+      "fundName": "Bosco-Keene Renewable Resources Investment Fund S",
       "fundGroup": "Other Funds",
-      "fundDescription": "Bosco Keene Renewable Resource"
+      "fundDescription": "Bosco-Keene Renewable Resources Investment Fund S"
     },
     {
       "fundCode": "0223",
@@ -1391,9 +1391,9 @@
     },
     {
       "fundCode": "0171",
-      "fundName": "California Debt & Investment A",
+      "fundName": "California Debt and Investment Advisory Commission Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "California Debt & Investment A"
+      "fundDescription": "California Debt and Investment Advisory Commission Fund"
     },
     {
       "fundCode": "0181",
@@ -1403,9 +1403,9 @@
     },
     {
       "fundCode": "0200",
-      "fundName": "Fish And Game Preservation Fu",
+      "fundName": "Fish and Game Preservation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Fish And Game Preservation Fu"
+      "fundDescription": "Fish and Game Preservation Fund"
     },
     {
       "fundCode": "3017",
@@ -1421,9 +1421,9 @@
     },
     {
       "fundCode": "3348",
-      "fundName": "Cannabis Tax Bus Eco Dvl Alloc",
+      "fundName": "Cannabis Tax Fund - Governors Office Business and Economic Development -",
       "fundGroup": "Other Funds",
-      "fundDescription": "Cannabis Tax Bus Eco Dvl Alloc"
+      "fundDescription": "Cannabis Tax Fund - Governors Office Business and Economic Development -"
     },
     {
       "fundCode": "0592",
@@ -1463,15 +1463,15 @@
     },
     {
       "fundCode": "0133",
-      "fundName": "California Beverage Container",
+      "fundName": "California Beverage Container Recycling Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "California Beverage Container"
+      "fundDescription": "California Beverage Container Recycling Fund"
     },
     {
       "fundCode": "0228",
-      "fundName": "Secretary Of State'S Business",
+      "fundName": "Secretary of States Business Fees Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Secretary Of State'S Business"
+      "fundDescription": "Secretary of States Business Fees Fund"
     },
     {
       "fundCode": "0217",
@@ -1529,9 +1529,9 @@
     },
     {
       "fundCode": "0392",
-      "fundName": "State Parks And Recreation Fun",
+      "fundName": "State Parks and Recreation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "State Parks And Recreation Fun"
+      "fundDescription": "State Parks and Recreation Fund"
     },
     {
       "fundCode": "3108",
@@ -1553,9 +1553,9 @@
     },
     {
       "fundCode": "3112",
-      "fundName": "Equality In Prevention & Servi",
+      "fundName": "Equality in Prevention and Services for Domestic Abuse Fund S",
       "fundGroup": "Other Funds",
-      "fundDescription": "Equality In Prevention & Servi"
+      "fundDescription": "Equality in Prevention and Services for Domestic Abuse Fund S"
     },
     {
       "fundCode": "0166",
@@ -1583,9 +1583,9 @@
     },
     {
       "fundCode": "3263",
-      "fundName": "CollegeAccessTaxCreditFund",
+      "fundName": "College Access Tax Credit Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "CollegeAccessTaxCreditFund"
+      "fundDescription": "College Access Tax Credit Fund"
     },
     {
       "fundCode": "0407",
@@ -1607,9 +1607,9 @@
     },
     {
       "fundCode": "3042",
-      "fundName": "Victims Of Corporate Fraud Com",
+      "fundName": "Victims of Corporate Fraud Compensation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Victims Of Corporate Fraud Com"
+      "fundDescription": "Victims of Corporate Fraud Compensation Fund"
     },
     {
       "fundCode": "3324",
@@ -1625,9 +1625,9 @@
     },
     {
       "fundCode": "0387",
-      "fundName": "Integrated Waste Management Ac",
+      "fundName": "Integrated Waste Management Account, Integrated Waste Management Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Integrated Waste Management Ac"
+      "fundDescription": "Integrated Waste Management Account, Integrated Waste Management Fund"
     },
     {
       "fundCode": "0100",
@@ -1643,9 +1643,9 @@
     },
     {
       "fundCode": "3065",
-      "fundName": "Electronic Waste Recovery & Re",
+      "fundName": "Electronic Waste Recovery and Recycling Account, Integrated Waste Management",
       "fundGroup": "Other Funds",
-      "fundDescription": "Electronic Waste Recovery & Re"
+      "fundDescription": "Electronic Waste Recovery and Recycling Account, Integrated Waste Management"
     },
     {
       "fundCode": "0263",
@@ -1655,9 +1655,9 @@
     },
     {
       "fundCode": "3254",
-      "fundName": "Bus Pgms Modernization Fd",
+      "fundName": "Business Programs Modernization Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Bus Pgms Modernization Fd"
+      "fundDescription": "Business Programs Modernization Fund"
     },
     {
       "fundCode": "0267",
@@ -1679,9 +1679,9 @@
     },
     {
       "fundCode": "0226",
-      "fundName": "California Tire Recycling Mana",
+      "fundName": "California Tire Recycling Management Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "California Tire Recycling Mana"
+      "fundDescription": "California Tire Recycling Management Fund"
     },
     {
       "fundCode": "3347",
@@ -1697,9 +1697,9 @@
     },
     {
       "fundCode": "0564",
-      "fundName": "Scholarshare Administrative Fu",
+      "fundName": "Scholarshare Administrative Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Scholarshare Administrative Fu"
+      "fundDescription": "Scholarshare Administrative Fund"
     },
     {
       "fundCode": "3352",
@@ -1751,9 +1751,9 @@
     },
     {
       "fundCode": "3312",
-      "fundName": "Natural Resources Park Preserv",
+      "fundName": "Natural Resources and Parks Preservation Fund S",
       "fundGroup": "Other Funds",
-      "fundDescription": "Natural Resources Park Preserv"
+      "fundDescription": "Natural Resources and Parks Preservation Fund S"
     },
     {
       "fundCode": "0281",
@@ -1781,9 +1781,9 @@
     },
     {
       "fundCode": "0679",
-      "fundName": "State Water Quality Control Fu",
+      "fundName": "State Water Quality Control Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "State Water Quality Control Fu"
+      "fundDescription": "State Water Quality Control Fund"
     },
     {
       "fundCode": "6049",
@@ -1793,9 +1793,9 @@
     },
     {
       "fundCode": "0974",
-      "fundName": "Peace Officer Memorial Foundat",
+      "fundName": "California Pollution Control Financing Authority - Continued",
       "fundGroup": "Other Funds",
-      "fundDescription": "Peace Officer Memorial Foundat"
+      "fundDescription": "California Pollution Control Financing Authority - Continued"
     },
     {
       "fundCode": "6019",
@@ -1811,9 +1811,9 @@
     },
     {
       "fundCode": "8111",
-      "fundName": "CalSavers Retire Saving Admin",
+      "fundName": "Secure Choice Retirement Savings Administration Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "CalSavers Retire Saving Admin"
+      "fundDescription": "Secure Choice Retirement Savings Administration Fund"
     },
     {
       "fundCode": "0759",
@@ -1865,15 +1865,15 @@
     },
     {
       "fundCode": "3286",
-      "fundName": "Safe Neighborhoods and Schools",
+      "fundName": "Safe Neighborhoods and Schools Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Safe Neighborhoods and Schools"
+      "fundDescription": "Safe Neighborhoods and Schools Fund"
     },
     {
       "fundCode": "0235",
-      "fundName": "Public Research Acct, Cig & T",
+      "fundName": "Public Resources Account, Cigarette and Tobacco Products Surtax Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Public Research Acct, Cig & T"
+      "fundDescription": "Public Resources Account, Cigarette and Tobacco Products Surtax Fund"
     },
     {
       "fundCode": "3056",
@@ -2009,9 +2009,9 @@
     },
     {
       "fundCode": "9332",
-      "fundName": "Alternative Energy Authority F",
+      "fundName": "California Alternative Energy Authority Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Alternative Energy Authority F"
+      "fundDescription": "California Alternative Energy Authority Fund"
     },
     {
       "fundCode": "3013",
@@ -2039,21 +2039,21 @@
     },
     {
       "fundCode": "0448",
-      "fundName": "Occupancy Compliance Monitorin",
+      "fundName": "Occupancy Compliance Monitoring Account,Tax Credit Allocation Fee Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Occupancy Compliance Monitorin"
+      "fundDescription": "Occupancy Compliance Monitoring Account,Tax Credit Allocation Fee Account"
     },
     {
       "fundCode": "6046",
-      "fundName": "Children'S Hospital Fund",
+      "fundName": "Childrens Hospital Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Children'S Hospital Fund"
+      "fundDescription": "Childrens Hospital Fund"
     },
     {
       "fundCode": "9745",
-      "fundName": "California Health And Human Se",
+      "fundName": "California Health and Human Services Automation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "California Health And Human Se"
+      "fundDescription": "California Health and Human Services Automation Fund"
     },
     {
       "fundCode": "0278",
@@ -2099,9 +2099,9 @@
     },
     {
       "fundCode": "6079",
-      "fundName": "Children'S Hospital Bond Act F",
+      "fundName": "Childrens Hospital Bond Act Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Children'S Hospital Bond Act F"
+      "fundDescription": "Childrens Hospital Bond Act Fund"
     },
     {
       "fundCode": "1027",
@@ -2129,9 +2129,9 @@
     },
     {
       "fundCode": "0530",
-      "fundName": "Mobilehome Park Purchase Fund",
+      "fundName": "Secretary for California Health and Human Services Agency - Continued",
       "fundGroup": "Other Funds",
-      "fundDescription": "Mobilehome Park Purchase Fund"
+      "fundDescription": "Secretary for California Health and Human Services Agency - Continued"
     },
     {
       "fundCode": "6069",
@@ -2147,9 +2147,9 @@
     },
     {
       "fundCode": "3290",
-      "fundName": "Road Maint and Rehab Acct, STF",
+      "fundName": "Road Maintenance and Rehabilitation Account, State Transportation Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Road Maint and Rehab Acct, STF"
+      "fundDescription": "Road Maintenance and Rehabilitation Account, State Transportation Fund"
     },
     {
       "fundCode": "6068",
@@ -2159,15 +2159,15 @@
     },
     {
       "fundCode": "9730",
-      "fundName": "Technology Services Revolving",
+      "fundName": "Technology Services Revolving Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Technology Services Revolving"
+      "fundDescription": "Technology Services Revolving Fund"
     },
     {
       "fundCode": "8013",
-      "fundName": "Envrntal Enfrcmnt & Train Act",
+      "fundName": "Environmental Enforcement and Training Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Envrntal Enfrcmnt & Train Act"
+      "fundDescription": "Environmental Enforcement and Training Account"
     },
     {
       "fundCode": "3119",
@@ -2213,9 +2213,9 @@
     },
     {
       "fundCode": "3078",
-      "fundName": "Labor And Workforce Developmen",
+      "fundName": "Labor and Workforce Development Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Labor And Workforce Developmen"
+      "fundDescription": "Labor and Workforce Development Fund"
     },
     {
       "fundCode": "0003",
@@ -2225,9 +2225,9 @@
     },
     {
       "fundCode": "0070",
-      "fundName": "Occupational Lead Poisoning Pr",
+      "fundName": "Occupational Lead Poisoning Prevention Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Occupational Lead Poisoning Pr"
+      "fundDescription": "Occupational Lead Poisoning Prevention Account"
     },
     {
       "fundCode": "3273",
@@ -2303,9 +2303,9 @@
     },
     {
       "fundCode": "9735",
-      "fundName": "Charter School Facilities Acco",
+      "fundName": "2006 Charter School Facilities Account, 2006 State School Facilities Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Charter School Facilities Acco"
+      "fundDescription": "2006 Charter School Facilities Account, 2006 State School Facilities Fund"
     },
     {
       "fundCode": "8089",
@@ -2327,9 +2327,9 @@
     },
     {
       "fundCode": "9751",
-      "fundName": "Public Safety Comm Revolve Fd",
+      "fundName": "Public Safety Communications Revolving Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Public Safety Comm Revolve Fd"
+      "fundDescription": "Public Safety Communications Revolving Fund"
     },
     {
       "fundCode": "0449",
@@ -2339,9 +2339,9 @@
     },
     {
       "fundCode": "3244",
-      "fundName": "Political Dsclose, Acctablty,",
+      "fundName": "Political Disclosure, Accountability, Transparency, and Access Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Political Dsclose, Acctablty,"
+      "fundDescription": "Political Disclosure, Accountability, Transparency, and Access Fund"
     },
     {
       "fundCode": "6041",
@@ -2459,9 +2459,9 @@
     },
     {
       "fundCode": "0366",
-      "fundName": "Indian Gaming Revenue Sharing",
+      "fundName": "Indian Gaming Revenue Sharing Trust Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Indian Gaming Revenue Sharing"
+      "fundDescription": "Indian Gaming Revenue Sharing Trust Fund"
     },
     {
       "fundCode": "3408",
@@ -2507,9 +2507,9 @@
     },
     {
       "fundCode": "3095",
-      "fundName": "Film Promotion And Marketing F",
+      "fundName": "Film Promotion and Marketing Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Film Promotion And Marketing F"
+      "fundDescription": "Film Promotion and Marketing Fund"
     },
     {
       "fundCode": "0007",
@@ -2573,21 +2573,21 @@
     },
     {
       "fundCode": "6057",
-      "fundName": "School Fac Fd 2006 State",
+      "fundName": "2006 State School Facilities Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "School Fac Fd 2006 State"
+      "fundDescription": "2006 State School Facilities Fund"
     },
     {
       "fundCode": "6044",
-      "fundName": "School Facilities Fd 2004 St",
+      "fundName": "2004 State School Facilities Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "School Facilities Fd 2004 St"
+      "fundDescription": "2004 State School Facilities Fund"
     },
     {
       "fundCode": "6036",
-      "fundName": "2002 State School Fac Fd",
+      "fundName": "2002 State School Facilities Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "2002 State School Fac Fd"
+      "fundDescription": "2002 State School Facilities Fund"
     },
     {
       "fundCode": "8085",
@@ -2675,9 +2675,9 @@
     },
     {
       "fundCode": "1006",
-      "fundName": "Rural Cupa Reimbursement Accou",
+      "fundName": "Rural CUPA Reimbursement Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Rural Cupa Reimbursement Accou"
+      "fundDescription": "Rural CUPA Reimbursement Account"
     },
     {
       "fundCode": "0585",
@@ -2699,9 +2699,9 @@
     },
     {
       "fundCode": "0240",
-      "fundName": "Local Agency Deposit Security",
+      "fundName": "Local Agency Deposit Security Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Local Agency Deposit Security"
+      "fundDescription": "Local Agency Deposit Security Fund"
     },
     {
       "fundCode": "0786",
@@ -2807,9 +2807,9 @@
     },
     {
       "fundCode": "0606",
-      "fundName": "Charter School Revolving Fund",
+      "fundName": "Charter School Revolving Loan Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Charter School Revolving Fund"
+      "fundDescription": "Charter School Revolving Loan Fund"
     },
     {
       "fundCode": "3091",
@@ -2843,9 +2843,9 @@
     },
     {
       "fundCode": "3138",
-      "fundName": "Immediate and Critical Needs Account, State Court",
+      "fundName": "Immediate and Critical Needs Account, State Court Facilities Construction",
       "fundGroup": "Other Funds",
-      "fundDescription": "Immediate and Critical Needs Account, State Court"
+      "fundDescription": "Immediate and Critical Needs Account, State Court Facilities Construction"
     },
     {
       "fundCode": "0995",
@@ -2879,9 +2879,9 @@
     },
     {
       "fundCode": "8059",
-      "fundName": "State Community Corrections Performance Incentive",
+      "fundName": "State Community Corrections Performance Incentive Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "State Community Corrections Performance Incentive"
+      "fundDescription": "State Community Corrections Performance Incentive Fund"
     },
     {
       "fundCode": "3259",
@@ -2894,6 +2894,696 @@
       "fundName": "CAPITAL OUTLAY",
       "fundGroup": "Other Funds",
       "fundDescription": "CAPITAL OUTLAY"
+    },
+    {
+      "fundCode": "0067",
+      "fundName": "State Corporations Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "State Corporations Fund"
+    },
+    {
+      "fundCode": "0298",
+      "fundName": "Financial Institutions Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Financial Institutions Fund"
+    },
+    {
+      "fundCode": "0437",
+      "fundName": "State Assistance For Fire Equipment Account",
+      "fundGroup": "Other Funds",
+      "fundDescription": "State Assistance For Fire Equipment Account"
+    },
+    {
+      "fundCode": "3034",
+      "fundName": "Antiterrorism Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Antiterrorism Fund"
+    },
+    {
+      "fundCode": "3260",
+      "fundName": "Regional Railroad Accident Preparedness and Immediate Response Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Regional Railroad Accident Preparedness and Immediate Response Fund"
+    },
+    {
+      "fundCode": "8039",
+      "fundName": "Disaster Resistant Communities Account",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Disaster Resistant Communities Account"
+    },
+    {
+      "fundCode": "0241",
+      "fundName": "Local Public Prosecutors and Public Defenders Training Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Local Public Prosecutors and Public Defenders Training Fund"
+    },
+    {
+      "fundCode": "0425",
+      "fundName": "Victim - Witness Assistance Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Victim - Witness Assistance Fund"
+    },
+    {
+      "fundCode": "6061",
+      "fundName": "Transit System Safety, Security, and Disaster Response Account, Highway",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Transit System Safety, Security, and Disaster Response Account, Highway"
+    },
+    {
+      "fundCode": "8069",
+      "fundName": "Child Victims of Human Trafficking Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Child Victims of Human Trafficking Fund"
+    },
+    {
+      "fundCode": "8084",
+      "fundName": "American Red Cross, California Chapters Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "American Red Cross, California Chapters Fund"
+    },
+    {
+      "fundCode": "8093",
+      "fundName": "California Sexual Violence Victim Services Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Sexual Violence Victim Services Fund"
+    },
+    {
+      "fundCode": "8104",
+      "fundName": "California Domestic Violence Victims Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Domestic Violence Victims Fund"
+    },
+    {
+      "fundCode": "0012",
+      "fundName": "Attorney General Antitrust Account",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Attorney General Antitrust Account"
+    },
+    {
+      "fundCode": "0158",
+      "fundName": "Travel Seller Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Travel Seller Fund"
+    },
+    {
+      "fundCode": "0378",
+      "fundName": "False Claims Act Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "False Claims Act Fund"
+    },
+    {
+      "fundCode": "3053",
+      "fundName": "Public Rights Law Enforcement Special Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Public Rights Law Enforcement Special Fund"
+    },
+    {
+      "fundCode": "3087",
+      "fundName": "Unfair Competition Law Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Unfair Competition Law Fund"
+    },
+    {
+      "fundCode": "3088",
+      "fundName": "Registry of Charitable Trusts Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Registry of Charitable Trusts Fund"
+    },
+    {
+      "fundCode": "3297",
+      "fundName": "Major League Sporting Event Raffle Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Major League Sporting Event Raffle Fund"
+    },
+    {
+      "fundCode": "3308",
+      "fundName": "Tobacco Law Enforcement Account, California Healthcare, Research and",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Tobacco Law Enforcement Account, California Healthcare, Research and"
+    },
+    {
+      "fundCode": "9731",
+      "fundName": "Legal Services Revolving Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Legal Services Revolving Fund"
+    },
+    {
+      "fundCode": "0032",
+      "fundName": "Firearm Safety Account",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Firearm Safety Account"
+    },
+    {
+      "fundCode": "0142",
+      "fundName": "Department of Justice Sexual Habitual Offender Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Department of Justice Sexual Habitual Offender Fund"
+    },
+    {
+      "fundCode": "0460",
+      "fundName": "Dealers Record of Sale Special Account",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Dealers Record of Sale Special Account"
+    },
+    {
+      "fundCode": "0569",
+      "fundName": "Gambling Control Fines and Penalties Account",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Gambling Control Fines and Penalties Account"
+    },
+    {
+      "fundCode": "1008",
+      "fundName": "Firearms Safety and Enforcement Special Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Firearms Safety and Enforcement Special Fund"
+    },
+    {
+      "fundCode": "3016",
+      "fundName": "Missing Persons DNA Data Base Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Missing Persons DNA Data Base Fund"
+    },
+    {
+      "fundCode": "3086",
+      "fundName": "DNA Identification Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "DNA Identification Fund"
+    },
+    {
+      "fundCode": "3131",
+      "fundName": "California Bingo Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Bingo Fund"
+    },
+    {
+      "fundCode": "3303",
+      "fundName": "Ammunition Safety and Enforcement Special Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Ammunition Safety and Enforcement Special Fund"
+    },
+    {
+      "fundCode": "0017",
+      "fundName": "Fingerprint Fees Account",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Fingerprint Fees Account"
+    },
+    {
+      "fundCode": "0256",
+      "fundName": "Sexual Predator Public Information Account",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Sexual Predator Public Information Account"
+    },
+    {
+      "fundCode": "0566",
+      "fundName": "Department of Justice Child Abuse Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Department of Justice Child Abuse Fund"
+    },
+    {
+      "fundCode": "3240",
+      "fundName": "Secondhand Dealer and Pawnbroker Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Secondhand Dealer and Pawnbroker Fund"
+    },
+    {
+      "fundCode": "3285",
+      "fundName": "Electronic Recording Authorization Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Electronic Recording Authorization Fund"
+    },
+    {
+      "fundCode": "0641",
+      "fundName": "Domestic Violence Restraining Order Reimbursement Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Domestic Violence Restraining Order Reimbursement Fund"
+    },
+    {
+      "fundCode": "0061",
+      "fundName": "Motor Vehicle Fuel Account, Transportation Tax Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Motor Vehicle Fuel Account, Transportation Tax Fund"
+    },
+    {
+      "fundCode": "0062",
+      "fundName": "Highway Users Tax Account, Transportation Tax Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Highway Users Tax Account, Transportation Tax Fund"
+    },
+    {
+      "fundCode": "0064",
+      "fundName": "Motor Vehicle License Fee Account, Transportation Tax Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Motor Vehicle License Fee Account, Transportation Tax Fund"
+    },
+    {
+      "fundCode": "0107",
+      "fundName": "Abandoned Vehicle Trust Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Abandoned Vehicle Trust Fund"
+    },
+    {
+      "fundCode": "0330",
+      "fundName": "Local Revenue Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Local Revenue Fund"
+    },
+    {
+      "fundCode": "0494",
+      "fundName": "Other - Unallocated Special Funds",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Other - Unallocated Special Funds"
+    },
+    {
+      "fundCode": "0797",
+      "fundName": "Unallocated Bond Funds - Select",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Unallocated Bond Funds - Select"
+    },
+    {
+      "fundCode": "0877",
+      "fundName": "DMV Local Agency Collection Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "DMV Local Agency Collection Fund"
+    },
+    {
+      "fundCode": "0969",
+      "fundName": "Public Safety Account, Local Public Safety Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Public Safety Account, Local Public Safety Fund"
+    },
+    {
+      "fundCode": "0988",
+      "fundName": "Other - Unallocated Non-Governmental Cost Funds",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Other - Unallocated Non-Governmental Cost Funds"
+    },
+    {
+      "fundCode": "3268",
+      "fundName": "Senior Citizens and Disabled Citizens Property Tax Postponement Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Senior Citizens and Disabled Citizens Property Tax Postponement Fund"
+    },
+    {
+      "fundCode": "3033",
+      "fundName": "California Memorial Scholarship Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Memorial Scholarship Fund"
+    },
+    {
+      "fundCode": "0215",
+      "fundName": "Industrial Development Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Industrial Development Fund"
+    },
+    {
+      "fundCode": "0528",
+      "fundName": "California Alternative Energy Authority Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Alternative Energy Authority Fund"
+    },
+    {
+      "fundCode": "8073",
+      "fundName": "California Health Access Model Program Account, California Health Facilities",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Health Access Model Program Account, California Health Facilities"
+    },
+    {
+      "fundCode": "8101",
+      "fundName": "California ABLE Administrative Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California ABLE Administrative Fund"
+    },
+    {
+      "fundCode": "0900",
+      "fundName": "California Urban Waterfront Restoration Financing",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Urban Waterfront Restoration Financing"
+    },
+    {
+      "fundCode": "8081",
+      "fundName": "Secure Choice Retirement Savings Program Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Secure Choice Retirement Savings Program Fund"
+    },
+    {
+      "fundCode": "0920",
+      "fundName": "Charter School Facilities Program",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Charter School Facilities Program"
+    },
+    {
+      "fundCode": "0925",
+      "fundName": "State Charter School Facilities Incentive",
+      "fundGroup": "Other Funds",
+      "fundDescription": "State Charter School Facilities Incentive"
+    },
+    {
+      "fundCode": "0935",
+      "fundName": "Charter School Revolving Loan Program",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Charter School Revolving Loan Program"
+    },
+    {
+      "fundCode": "0954",
+      "fundName": "Scholarshare Investment Board - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Scholarshare Investment Board - Continued"
+    },
+    {
+      "fundCode": "0348",
+      "fundName": "Senate Operating Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Senate Operating Fund"
+    },
+    {
+      "fundCode": "0110",
+      "fundName": "Senate - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Senate - Continued"
+    },
+    {
+      "fundCode": "0125",
+      "fundName": "Assembly Operating Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Assembly Operating Fund"
+    },
+    {
+      "fundCode": "0120",
+      "fundName": "Assembly - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Assembly - Continued"
+    },
+    {
+      "fundCode": "0160",
+      "fundName": "Legislative Counsel Bureau - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Legislative Counsel Bureau - Continued"
+    },
+    {
+      "fundCode": "0250",
+      "fundName": "Judicial Branch - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Judicial Branch - Continued"
+    },
+    {
+      "fundCode": "9750",
+      "fundName": "Immigrant Integration Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Immigrant Integration Fund"
+    },
+    {
+      "fundCode": "0509",
+      "fundName": "Governor's Office of Business and Economic Development (GO-Biz) -",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Governor's Office of Business and Economic Development (GO-Biz) -"
+    },
+    {
+      "fundCode": "0511",
+      "fundName": "Secretary for Government Operations Agency - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Secretary for Government Operations Agency - Continued"
+    },
+    {
+      "fundCode": "2975",
+      "fundName": "Workload and Administrative Adjustments",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Workload and Administrative Adjustments"
+    },
+    {
+      "fundCode": "0515",
+      "fundName": "Secretary for Business, Consumer Services, and Housing Agency -",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Secretary for Business, Consumer Services, and Housing Agency -"
+    },
+    {
+      "fundCode": "0521",
+      "fundName": "Secretary for Transportation Agency - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Secretary for Transportation Agency - Continued"
+    },
+    {
+      "fundCode": "6052",
+      "fundName": "Disaster Preparedness and Flood Prevention Bond Fund of 2006",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Disaster Preparedness and Flood Prevention Bond Fund of 2006"
+    },
+    {
+      "fundCode": "0540",
+      "fundName": "Secretary of the Natural Resources Agency - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Secretary of the Natural Resources Agency - Continued"
+    },
+    {
+      "fundCode": "0552",
+      "fundName": "Office of the Inspector General - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Office of the Inspector General - Continued"
+    },
+    {
+      "fundCode": "0555",
+      "fundName": "Secretary for Environmental Protection - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Secretary for Environmental Protection - Continued"
+    },
+    {
+      "fundCode": "0559",
+      "fundName": "Secretary for Labor and Workforce Development Agency - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Secretary for Labor and Workforce Development Agency - Continued"
+    },
+    {
+      "fundCode": "0650",
+      "fundName": "Office of Planning and Research - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Office of Planning and Research - Continued"
+    },
+    {
+      "fundCode": "0690",
+      "fundName": "Office of Emergency Services - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Office of Emergency Services - Continued"
+    },
+    {
+      "fundCode": "0375",
+      "fundName": "Disaster Response-Emergency Operations Account, Special Fund for Economic",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Disaster Response-Emergency Operations Account, Special Fund for Economic"
+    },
+    {
+      "fundCode": "3075",
+      "fundName": "Unlawful Sales Reduction Fund S",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Unlawful Sales Reduction Fund S"
+    },
+    {
+      "fundCode": "3266",
+      "fundName": "Prepaid MTS 911 Account S",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Prepaid MTS 911 Account S"
+    },
+    {
+      "fundCode": "3320",
+      "fundName": "Department of Justice Subaccount, Tobacco Law Enforcement Account, CA",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Department of Justice Subaccount, Tobacco Law Enforcement Account, CA"
+    },
+    {
+      "fundCode": "0820",
+      "fundName": "Department of Justice - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Department of Justice - Continued"
+    },
+    {
+      "fundCode": "0288",
+      "fundName": "The Registry of International Student Exchange Visitor Placement Organizations",
+      "fundGroup": "Other Funds",
+      "fundDescription": "The Registry of International Student Exchange Visitor Placement Organizations"
+    },
+    {
+      "fundCode": "3132",
+      "fundName": "Charity Bingo Mitigation Fund S",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Charity Bingo Mitigation Fund S"
+    },
+    {
+      "fundCode": "3136",
+      "fundName": "Foreclosure Consultant Regulation Fund S",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Foreclosure Consultant Regulation Fund S"
+    },
+    {
+      "fundCode": "0979",
+      "fundName": "California Firefighters Memorial Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Firefighters Memorial Fund"
+    },
+    {
+      "fundCode": "0442",
+      "fundName": "California Olympic Training Account S",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Olympic Training Account S"
+    },
+    {
+      "fundCode": "0845",
+      "fundName": "Department of Insurance - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Department of Insurance - Continued"
+    },
+    {
+      "fundCode": "0850",
+      "fundName": "California State Lottery Commission - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California State Lottery Commission - Continued"
+    },
+    {
+      "fundCode": "0855",
+      "fundName": "California Gambling Control Commission - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Gambling Control Commission - Continued"
+    },
+    {
+      "fundCode": "0004",
+      "fundName": "Breast Cancer Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Breast Cancer Fund"
+    },
+    {
+      "fundCode": "0230",
+      "fundName": "Cigarette and Tobacco Products Surtax Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Cigarette and Tobacco Products Surtax Fund"
+    },
+    {
+      "fundCode": "0623",
+      "fundName": "California Children and Families First Trust Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Children and Families First Trust Fund"
+    },
+    {
+      "fundCode": "0965",
+      "fundName": "Timber Tax Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Timber Tax Fund"
+    },
+    {
+      "fundCode": "3063",
+      "fundName": "State Responsibility Area Fire Prevention Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "State Responsibility Area Fire Prevention Fund"
+    },
+    {
+      "fundCode": "3067",
+      "fundName": "Cigarette and Tobacco Products Compliance Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Cigarette and Tobacco Products Compliance Fund"
+    },
+    {
+      "fundCode": "3251",
+      "fundName": "Prepaid Mobile Telephony Services Surcharge Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Prepaid Mobile Telephony Services Surcharge Fund"
+    },
+    {
+      "fundCode": "3270",
+      "fundName": "Local Charges for Prepaid Mobile Telephony Service Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Local Charges for Prepaid Mobile Telephony Service Fund"
+    },
+    {
+      "fundCode": "0860",
+      "fundName": "State Board of Equalization - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "State Board of Equalization - Continued"
+    },
+    {
+      "fundCode": "3304",
+      "fundName": "California Healthcare, Research and Prevention Tobacco Tax Act of 2016 Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Healthcare, Research and Prevention Tobacco Tax Act of 2016 Fund"
+    },
+    {
+      "fundCode": "0950",
+      "fundName": "State Treasurer - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "State Treasurer - Continued"
+    },
+    {
+      "fundCode": "0467",
+      "fundName": "State Notes Expense Account S",
+      "fundGroup": "Other Funds",
+      "fundDescription": "State Notes Expense Account S"
+    },
+    {
+      "fundCode": "3059",
+      "fundName": "Fiscal Recovery Fund S",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Fiscal Recovery Fund S"
+    },
+    {
+      "fundCode": "0956",
+      "fundName": "California Debt and Investment Advisory Commission - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Debt and Investment Advisory Commission - Continued"
+    },
+    {
+      "fundCode": "0959",
+      "fundName": "California Debt Limit Allocation Committee - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Debt Limit Allocation Committee - Continued"
+    },
+    {
+      "fundCode": "0968",
+      "fundName": "California Tax Credit Allocation Committee - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Tax Credit Allocation Committee - Continued"
+    },
+    {
+      "fundCode": "8102",
+      "fundName": "California Seismic Safety Capital Access Loan Program Fund",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Seismic Safety Capital Access Loan Program Fund"
+    },
+    {
+      "fundCode": "0977",
+      "fundName": "California Health Facilities Financing Authority - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Health Facilities Financing Authority - Continued"
+    },
+    {
+      "fundCode": "0981",
+      "fundName": "California ABLE Act Board - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California ABLE Act Board - Continued"
+    },
+    {
+      "fundCode": "0989",
+      "fundName": "California Educational Facilities Authority - Continued",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Educational Facilities Authority - Continued"
+    },
+    {
+      "fundCode": "2002",
+      "fundName": "APPROPRIATIONS",
+      "fundGroup": "Other Funds",
+      "fundDescription": "APPROPRIATIONS"
+    },
+    {
+      "fundCode": "0971",
+      "fundName": "California Alternative Energy and Advanced Transportation Financing",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Alternative Energy and Advanced Transportation Financing"
+    },
+    {
+      "fundCode": "6090",
+      "fundName": "Children's Hospital Bond Act Fund of 2018",
+      "fundGroup": "Other Funds",
+      "fundDescription": "Children's Hospital Bond Act Fund of 2018"
+    },
+    {
+      "fundCode": "0910",
+      "fundName": "California Secure Choice Retirement Savings",
+      "fundGroup": "Other Funds",
+      "fundDescription": "California Secure Choice Retirement Savings"
     }
   ],
   "lastUpdated": "2025-05-26T20:07:13.420Z"
