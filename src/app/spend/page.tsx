@@ -270,24 +270,24 @@ function SpendPageClient() {
         <p className="text-sm text-gray-600">
           Comprehensive spending data from budget allocations and vendor transactions.
         </p>
-      </div>
+          </div>
 
       {/* Controls */}
       <div className="mb-6 space-y-4">
         {/* View Selection */}
-        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4">
           <label className="text-sm font-medium">Display:</label>
-          <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
+            <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
             {['vendor', 'budget', 'compare'].map((viewOption) => (
-              <Button
+                <Button
                 key={viewOption}
                 variant={view === viewOption ? "secondary" : "ghost"}
-                size="sm"
+                  size="sm"
                 className={`rounded-full text-xs ${view === viewOption ? 'bg-white shadow-sm' : ''}`}
                 onClick={() => handleViewChange(viewOption)}
-              >
+                >
                 {viewOption.charAt(0).toUpperCase() + viewOption.slice(1)}
-              </Button>
+                </Button>
             ))}
           </div>
         </div>
@@ -470,7 +470,7 @@ function SpendPageClient() {
                           className="text-blue-600 hover:underline"
                         >
                           {record.department}
-                        </Link>
+              </Link>
                       ) : (
                         record.department
                       )}
@@ -556,11 +556,11 @@ function SpendPageClient() {
             Showing {((spendData.pagination.currentPage - 1) * spendData.pagination.itemsPerPage) + 1} to{' '}
             {Math.min(spendData.pagination.currentPage * spendData.pagination.itemsPerPage, spendData.pagination.totalItems)} of{' '}
             {spendData.pagination.totalItems} records
-          </div>
+            </div>
           <div className="flex items-center space-x-2">
-            <Button
+              <Button
               variant="outline"
-              size="sm"
+                size="sm"
               disabled={!spendData.pagination.hasPrevPage}
               onClick={() => {
                 const newPage = page - 1;
@@ -569,13 +569,13 @@ function SpendPageClient() {
               }}
             >
               Previous
-            </Button>
+              </Button>
             <span className="text-sm">
               Page {spendData.pagination.currentPage} of {spendData.pagination.totalPages}
             </span>
-            <Button
+              <Button
               variant="outline"
-              size="sm"
+                size="sm"
               disabled={!spendData.pagination.hasNextPage}
               onClick={() => {
                 const newPage = page + 1;
@@ -584,7 +584,7 @@ function SpendPageClient() {
               }}
             >
               Next
-            </Button>
+              </Button>
           </div>
         </div>
       )}
