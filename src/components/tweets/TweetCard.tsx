@@ -216,6 +216,19 @@ export function TweetCard({ tweet }: TweetCardProps) {
   // Function to clean media URLs
   const cleanMediaUrl = (url: string, media: any) => {
     if (!url) return '/icon2.svg';
+    
+    // Check for corrupted URLs that contain multiple path segments or malformed paths
+    if (url.includes('.com/2/media/') || url.includes('_0.com/')) {
+      console.warn('Detected corrupted media URL, using fallback:', url);
+      return '/icon2.svg';
+    }
+    
+    // If it's a news image URL that's no longer available, use fallback
+    if (url.includes('pbs.twimg.com/news_img')) {
+      console.warn('News image no longer available, using fallback:', url);
+      return '/icon2.svg';
+    }
+    
     // If it's already a full URL, return it
     if (url.startsWith('http')) return url;
     // If it's already a clean media URL, return it
