@@ -1,6 +1,122 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "text": "RT @ZavalaA: Today: As California prepares for closure of two oil refiners within the next year, top officials in Gov. Newsom’s administrat…",
+      "entities": {
+        "annotations": [
+          {
+            "start": 23,
+            "end": 32,
+            "probability": 0.9836,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 114,
+            "end": 116,
+            "probability": 0.7503,
+            "type": "Place",
+            "normalized_text": "Gov"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "ZavalaA",
+            "id": "47337027"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1927761722602901719"
+      ],
+      "id": "1927761722602901719",
+      "created_at": "2025-05-28T16:19:45.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "May 28, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "attachments": {
         "media_keys": [
           "3_1927502850004840448"
@@ -12908,8 +13024,8 @@
     }
   ],
   "meta": {
-    "result_count": 115,
-    "newest_id": "1927502856677994990",
+    "result_count": 116,
+    "newest_id": "1927761722602901719",
     "oldest_id": "1882144700762878208"
   }
 }
