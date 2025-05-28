@@ -1,6 +1,150 @@
 {
   "tweets": [
     {
+      "attachments": {
+        "media_keys": [
+          "3_1927502850004840448"
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1927502856677994990"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "text": "California DOGE now supports searching by keyword. I also improved the way vendor data and department budgets are displayed. 15M data rows processed to date. \n\nI worked all night to get this out, so it has a few minor bugs. I will be ironing these out and processing another 30M https://t.co/KSr28ycue4",
+      "entities": {
+        "annotations": [
+          {
+            "start": 0,
+            "end": 14,
+            "probability": 0.6731,
+            "type": "Place",
+            "normalized_text": "California DOGE"
+          }
+        ],
+        "urls": [
+          {
+            "start": 279,
+            "end": 302,
+            "url": "https://t.co/KSr28ycue4",
+            "expanded_url": "https://x.com/cali_doge/status/1927502856677994990/photo/1",
+            "display_url": "pic.x.com/KSr28ycue4",
+            "media_key": "3_1927502850004840448"
+          }
+        ]
+      },
+      "id": "1927502856677994990",
+      "created_at": "2025-05-27T23:11:06.000Z",
+      "created_at_formatted": "May 27, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1927502856677994990_0.jpg",
+          "width": 1160,
+          "height": 2048
+        }
+      ]
+    },
+    {
       "created_at": "2025-05-26T00:26:51.000Z",
       "context_annotations": [
         {
@@ -12764,8 +12908,8 @@
     }
   ],
   "meta": {
-    "result_count": 114,
-    "newest_id": "1926797141546062154",
+    "result_count": 115,
+    "newest_id": "1927502856677994990",
     "oldest_id": "1882144700762878208"
   }
 }
