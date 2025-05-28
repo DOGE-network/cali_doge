@@ -4,6 +4,8 @@ import '@/styles/globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import WebVitalsTracker from '@/components/WebVitalsTracker';
 const inter = Inter({ subsets: ['latin'] });
 import MailingListPopup from '@/components/MailingListPopup'
 
@@ -104,7 +106,20 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        
+        {/* Three-Layer Analytics Setup */}
+        {/* Layer 1: Vercel Analytics - Performance and Core Web Vitals */}
         <Analytics />
+        
+        {/* Layer 2: Google Analytics - Marketing and User Behavior */}
+        <GoogleAnalytics 
+          measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-6JEFTMFJB8'}
+          enableDevelopment={process.env.NEXT_PUBLIC_GA_ENABLE_DEVELOPMENT === 'true'}
+        />
+        
+        {/* Layer 3: Web Vitals - Performance Monitoring and Optimization */}
+        <WebVitalsTracker />
+        
         <MailingListPopup />
       </body>
     </html>

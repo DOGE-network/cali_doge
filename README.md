@@ -17,6 +17,7 @@
 - [Data Architecture](#data-architecture)
   - [Fiscal Year Representation](#fiscal-year-representation)
   - [Data Processing Pipeline](#data-processing)
+  - [Data Analysis](#data-analysis)
   - [Executive Branch Hierarchy](#executive-branch-hierarchy)
   - [Data Sources](#data-sources)
 - [Key System Components](#key-system-components)
@@ -72,7 +73,7 @@ Where 2720 is the business unit/organization/organizational code for the Califor
 **All the codes explained**
 
 **1. Organization/Business Unit Code (4 digits)**  
-- **Definition:** Identifies a state department, agency, or entity. The terms “organizational code,” “organization code,” and “business unit code” all refer to the same four-digit identifier used to represent a department or entity in the California state budget and fiscal systems. Used for budgeting, accounting, and fiscal reporting across all state agencies. **General rule for if budget organization code and name is a department. It must have headcount to be a department otherwise it is simply a finance placeholder.**
+- **Definition:** Identifies a state department, agency, or entity. The terms "organizational code," "organization code," and "business unit code" all refer to the same four-digit identifier used to represent a department or entity in the California state budget and fiscal systems. Used for budgeting, accounting, and fiscal reporting across all state agencies. **General rule for if budget organization code and name is a department. It must have headcount to be a department otherwise it is simply a finance placeholder.**
 - **Example:** `0280` = Commission on Judicial Performance.  
 - **Source:**  
   - Defined in the **Uniform Codes Manual** https://www.dgs.ca.gov/Resources/SAM/TOC/7100/7131  ,  https://dof.ca.gov/wp-content/uploads/sites/352/Accounting/Policies_and_Procedures/Uniform_Codes_Manual/18fndsrc.pdf  
@@ -92,7 +93,7 @@ Where 2720 is the business unit/organization/organizational code for the Califor
 **3. Program Code in ebudget.ca.gov (4 digits)**  
 - The 4-digit "program codes" in ebudget.ca.gov are actually **Program + Element codes** from the 10-digit structure.  
   - **Example:** `9801` = Program `98` (State-Mandated Local Programs) + Element `01` (a specific subprogram).  
-- **Why It’s Confusing:**  
+- **Why It's Confusing:**  
   ebudget.ca.gov simplifies the display by combining the 2-digit program and 2-digit element into a 4-digit code for readability.  
 
 ---
@@ -141,11 +142,11 @@ Program or grant names are commonly used but are not always consistent or unique
 
 ---
 
-**Program and Department with the same name**: The state’s budgeting and accounting systems require both an organization code (to identify the department/entity) and a program code (to identify the function or activity), even if there is only one program within a department. For small or single-purpose departments, the department and its primary program often have the same or similar names, because the department essentially exists to run that one program.
+**Program and Department with the same name**: The state's budgeting and accounting systems require both an organization code (to identify the department/entity) and a program code (to identify the function or activity), even if there is only one program within a department. For small or single-purpose departments, the department and its primary program often have the same or similar names, because the department essentially exists to run that one program.
 
 #### State Controller Office
 
-State Controller’s Office (SCO) Entity Codes. Used for payroll, compensation, and certain public reporting systems. These codes are unique to the SCO’s internal and public reporting needs and do not always correspond directly to DOF organization codes.
+State Controller's Office (SCO) Entity Codes. Used for payroll, compensation, and certain public reporting systems. These codes are unique to the SCO's internal and public reporting needs and do not always correspond directly to DOF organization codes.
 
 Other than being the number published in the CSV salary download files, this code does not appear to be published anywhere publicly.  
 
@@ -328,6 +329,55 @@ The data processing pipeline consists of several stages:
    - JSON files for structured data
    - Markdown files for department pages
    - Media files for visual content
+
+### Data Analysis
+
+For analyzing the data files in the repository, you can use the following commands to get row and line counts:
+
+#### Count All CSV and Text Files
+
+To get a comprehensive count of all CSV and text files recursively under `src/data`:
+
+```bash
+# Navigate to data directory
+cd src/data
+
+# Count total files and rows for CSV and text files
+find . -type f \( -name "*.txt" -o -name "*.csv" \) -exec wc -l {} + | tail -1
+
+# Get breakdown by file type
+echo "CSV files:" && find . -name "*.csv" | wc -l
+echo "TXT files:" && find . -name "*.txt" | wc -l
+
+# Get detailed line counts sorted by size (largest first)
+find . -type f \( -name "*.txt" -o -name "*.csv" \) -exec wc -l {} + | sort -nr | head -20
+```
+
+#### Count All Data Files (Including JSON and Markdown)
+
+To include JSON and Markdown files in the analysis:
+
+```bash
+# Count all data files
+find . -type f \( -name "*.txt" -o -name "*.csv" -o -name "*.md" -o -name "*.json" \) -exec wc -l {} + | tail -1
+
+# Get breakdown by all file types
+echo "=== FILE TYPE BREAKDOWN ===" 
+echo "CSV files:" && find . -name "*.csv" | wc -l
+echo "TXT files:" && find . -name "*.txt" | wc -l  
+echo "JSON files:" && find . -name "*.json" | wc -l
+echo "MD files:" && find . -name "*.md" | wc -l
+```
+
+#### Example Output
+
+Based on recent analysis, the `src/data` directory contains:
+- **Total CSV and TXT files**: 1,000+ files
+- **Total rows/lines**: 2.5+ million lines
+- **CSV files**: 900+ files with 2.4+ million rows
+- **TXT files**: 100+ files with 100,000+ lines
+
+The largest files are typically vendor transaction CSV files, which can contain 50,000+ rows each.
 
 ### Executive Branch Hierarchy
 

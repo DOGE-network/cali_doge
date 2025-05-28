@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
+import { analytics } from '@/lib/analytics';
 
 // Define the type based on what we actually get from the API
 type DepartmentSearchResult = {
@@ -132,6 +133,12 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
     });
     
     setFilteredDepartments(filtered);
+    
+    // Track search analytics
+    if (searchTerm.trim()) {
+      analytics.search(searchTerm, filtered.length, 'department_search');
+    }
+    
     resetAutoCloseTimer();
   }, [searchTerm, departments, resetAutoCloseTimer]);
 
@@ -203,6 +210,15 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
     resetAutoCloseTimer();
   };
 
+  // Handle department link click
+  const handleDepartmentClick = (department: DepartmentSearchResult) => {
+    analytics.departmentView(
+      department.name,
+      department.slug
+    );
+    onClose();
+  };
+
   if (!isOpen && !isHovering) return null;
 
   return (
@@ -257,7 +273,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                           <Link
                             href={`/workforce?department=${encodeURIComponent(dept.name)}`}
                             className="font-medium text-gray-900 hover:text-blue-600"
-                            onClick={onClose}
+                            onClick={() => handleDepartmentClick(dept)}
                           >
                             {dept.name}
                             {dept.organizationalCode && (
@@ -294,7 +310,7 @@ export function DepartmentSearch({ isOpen, onClose }: DepartmentSearchProps) {
                         <Link
                           href={`/workforce?department=${encodeURIComponent(dept.name)}`}
                           className="font-medium text-gray-900 hover:text-blue-600"
-                          onClick={onClose}
+                          onClick={() => handleDepartmentClick(dept)}
                         >
                           {dept.name}
                           {dept.organizationalCode && (

@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { analytics } from '@/lib/analytics';
+import { trackEvent as gaTrackEvent } from '@/components/GoogleAnalytics';
 import type { SearchItem, KeywordItem } from '@/types/search';
 
 interface SearchResponse {
@@ -75,10 +77,23 @@ export function EnhancedSearch({ isOpen, onClose }: EnhancedSearchProps) {
       
       setSearchResults(data);
       setIsLoading(false);
+      
+      // Track search analytics
+      if (data) {
+        const totalResults = (data.departments?.length || 0) + 
+                           (data.vendors?.length || 0) + 
+                           (data.programs?.length || 0) + 
+                           (data.funds?.length || 0) + 
+                           (data.keywords?.length || 0);
+        analytics.search(query.trim(), totalResults, 'enhanced_search');
+      }
     } catch (error) {
       console.error('Error performing search:', error);
       setIsLoading(false);
       setSearchResults(null);
+      
+      // Track search errors
+      analytics.error('search_error', error instanceof Error ? error.message : 'Unknown search error');
     }
   }, []);
 
@@ -189,43 +204,50 @@ export function EnhancedSearch({ isOpen, onClose }: EnhancedSearchProps) {
   // Handle type filter toggle
   const toggleType = (type: string) => {
     setSelectedTypes(prev => {
-      if (prev.includes(type)) {
-        return prev.filter(t => t !== type);
-      } else {
-        return [...prev, type];
-      }
+      const newTypes = prev.includes(type)
+        ? prev.filter(t => t !== type)
+        : [...prev, type];
+      
+      // Track filter usage
+      analytics.filterApplied('search_type', type, 'enhanced_search');
+      
+      return newTypes;
     });
   };
 
   // Handle result click
   const handleResultClick = (item: SearchItem | KeywordItem) => {
-    onClose();
-    setSearchTerm('');
-    setSearchResults(null);
-
-    // Navigate based on item type with enhanced detail view
-    switch (item.type) {
-      case 'department':
-        // Navigate to search page with department filter and detail view
-        router.push(`/search?q=${encodeURIComponent(item.term)}&types=department&view=details&id=${encodeURIComponent(item.id)}`);
-        break;
-      case 'vendor':
-        // Navigate to search page with vendor filter and detail view
-        router.push(`/search?q=${encodeURIComponent(item.term)}&types=vendor&view=details&id=${encodeURIComponent(item.id)}`);
-        break;
-      case 'program':
-        // Navigate to search page with program filter and detail view
-        router.push(`/search?q=${encodeURIComponent(item.id)}&types=program&view=details&id=${encodeURIComponent(item.id)}`);
-        break;
-      case 'fund':
-        // Navigate to search page with fund filter and detail view
-        router.push(`/search?q=${encodeURIComponent(item.id)}&types=fund&view=details&id=${encodeURIComponent(item.id)}`);
-        break;
-      case 'keyword':
-        // For keywords, search across all types with detail view
-        router.push(`/search?q=${encodeURIComponent(item.term)}&view=details`);
-        break;
+    // Track the click based on item type
+    if (item.type === 'keyword') {
+      // This is a KeywordItem
+      gaTrackEvent('keyword_click', { keyword: item.term, sources_count: item.sources.length });
+    } else {
+      // This is a SearchItem
+      switch (item.type) {
+        case 'department':
+          analytics.departmentView(item.term, item.id);
+          break;
+        case 'vendor':
+          analytics.vendorView(item.term);
+          break;
+        case 'program':
+          analytics.programView(item.id, item.term);
+          break;
+        case 'fund':
+          gaTrackEvent('fund_view', { fund_name: item.term, fund_id: item.id });
+          break;
+      }
     }
+
+    // Navigate to search results page
+    const params = new URLSearchParams();
+    params.set('q', item.term);
+    params.set('view', 'details');
+    if (item.type !== 'keyword') {
+      params.set('id', item.id);
+    }
+    router.push(`/search?${params.toString()}`);
+    onClose();
   };
 
   if (!isOpen && !isHovering) return null;
