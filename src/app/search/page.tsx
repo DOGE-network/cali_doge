@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
+import { analytics } from '@/lib/analytics';
 import useSWR from 'swr';
 import type { SearchItem, KeywordItem } from '@/types/search';
 import { 
@@ -47,6 +48,11 @@ function SearchPageClient() {
   const [limit, setLimit] = useState(20);
   const [viewMode, setViewMode] = useState<'list' | 'details'>('list');
   const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  // Track page view
+  useEffect(() => {
+    analytics.pageView('/search', 'Search California Government Data');
+  }, []);
 
   // Build API URL based on current filters
   const buildApiUrl = () => {
@@ -143,6 +149,9 @@ function SearchPageClient() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
+      // Track search submission
+      analytics.search(query.trim(), 0, 'search_page_form');
+      
       updateUrl({
         q: query.trim(),
         types: selectedTypes.join(','),
@@ -158,6 +167,9 @@ function SearchPageClient() {
       ? selectedTypes.filter(t => t !== type)
       : [...selectedTypes, type];
     
+    // Track filter usage
+    analytics.filterApplied('search_type', type, 'search_page');
+    
     setSelectedTypes(newTypes);
     if (query.trim()) {
       updateUrl({
@@ -171,6 +183,10 @@ function SearchPageClient() {
   // Handle exclude common toggle
   const handleExcludeCommonChange = (value: string) => {
     const newExcludeCommon = value === 'true';
+    
+    // Track filter usage
+    analytics.filterApplied('exclude_common', value, 'search_page');
+    
     setExcludeCommon(newExcludeCommon);
     if (query.trim()) {
       updateUrl({
@@ -184,6 +200,10 @@ function SearchPageClient() {
   // Handle limit change
   const handleLimitChange = (value: string) => {
     const newLimit = parseInt(value, 10);
+    
+    // Track filter usage
+    analytics.filterApplied('results_limit', value, 'search_page');
+    
     setLimit(newLimit);
     if (query.trim()) {
       updateUrl({
@@ -589,6 +609,7 @@ function SearchPageClient() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://www.ebudget.ca.gov/', 'search_sources')}
             >
               California State Budget (ebudget.ca.gov)
             </a>
@@ -599,6 +620,7 @@ function SearchPageClient() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://fiscal.ca.gov/', 'search_sources')}
             >
               California Fiscal Transparency (fiscal.ca.gov)
             </a>
@@ -609,6 +631,7 @@ function SearchPageClient() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://publicpay.ca.gov/', 'search_sources')}
             >
               California Public Pay (publicpay.ca.gov)
             </a>

@@ -8,6 +8,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import useSWR from 'swr';
+import { analytics } from '@/lib/analytics';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
@@ -485,6 +486,7 @@ function SpendPageClient() {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-300 hover:underline mr-2"
+                              onClick={() => analytics.externalLinkClick(`https://projects.propublica.org/nonprofits/search?q=${encodeURIComponent(record.vendor)}`, 'vendor_lookup_propublica')}
                             >
                               ProPublica
                             </a>
@@ -493,6 +495,7 @@ function SpendPageClient() {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-300 hover:underline"
+                              onClick={() => analytics.externalLinkClick(`https://www.datarepublican.com/search?q=${encodeURIComponent(record.vendor)}`, 'vendor_lookup_datarepublican')}
                             >
                               Data Republican
                             </a>
@@ -599,6 +602,7 @@ function SpendPageClient() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://www.ebudget.ca.gov/', 'spend_sources')}
             >
               California State Budget (ebudget.ca.gov)
             </a>
@@ -609,6 +613,7 @@ function SpendPageClient() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://fiscal.ca.gov/', 'spend_sources')}
             >
               California Fiscal Transparency (fiscal.ca.gov)
             </a>
@@ -619,6 +624,7 @@ function SpendPageClient() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://publicpay.ca.gov/', 'spend_sources')}
             >
               California Public Pay (publicpay.ca.gov)
             </a>

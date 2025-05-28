@@ -138,6 +138,7 @@ import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug
 import { log, generateTransactionId } from '@/lib/logging';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { analytics } from '@/lib/analytics';
 
 // Initialize logging
 const initTransactionId = generateTransactionId();
@@ -655,11 +656,18 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
   const _wagesData = typeof department.wages?.yearly?.[fiscalYear] === 'number' ? department.wages.yearly[fiscalYear] : undefined;
   const _averageSalary = typeof department._averageSalary === 'number' ? department._averageSalary : undefined;
   
+  const handleCardClick = () => {
+    // Track workforce card click - only pass number values
+    const employeeCount = typeof _workforceData === 'number' ? _workforceData : undefined;
+    analytics.workforceCardClick(department.name, employeeCount);
+    onClick();
+  };
+  
   return (
     <div className={`space-y-4 ${isActive ? 'ring-2 ring-blue-500 rounded-lg' : ''}`}>
       <div 
         className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white cursor-pointer relative"
-        onClick={onClick}
+        onClick={handleCardClick}
       >
         <div className="flex justify-between items-start">
           <div>
@@ -848,6 +856,9 @@ function WorkforcePageContent() {
     log('INFO', transactionId, 'Component initialized', {
       searchParams: Object.fromEntries(searchParams.entries())
     });
+    
+    // Track page view
+    analytics.pageView('/workforce', 'California State Government Workforce');
   }, [transactionId, searchParams]);
 
   // Fetch departments and build hierarchy
@@ -1057,6 +1068,10 @@ function WorkforcePageContent() {
       department: department.name,
       currentPath: activePath
     });
+    
+    // Track department view
+    analytics.departmentView(department.name, department._slug);
+    
     setSelectedDepartmentName(department.name);
   };
 
@@ -1097,7 +1112,10 @@ function WorkforcePageContent() {
                 variant={viewMode === 'parent-only' ? "secondary" : "ghost"}
                 size="sm"
                 className={`rounded-full text-xs ${viewMode === 'parent-only' ? 'bg-white shadow-sm' : ''}`}
-                onClick={() => setViewMode('parent-only')}
+                onClick={() => {
+                  analytics.filterApplied('view_mode', 'parent-only', 'workforce_page');
+                  setViewMode('parent-only');
+                }}
               >
                 Parent Only
               </Button>
@@ -1105,7 +1123,10 @@ function WorkforcePageContent() {
                 variant={viewMode === 'aggregated' ? "secondary" : "ghost"}
                 size="sm"
                 className={`rounded-full text-xs ${viewMode === 'aggregated' ? 'bg-white shadow-sm' : ''}`}
-                onClick={() => setViewMode('aggregated')}
+                onClick={() => {
+                  analytics.filterApplied('view_mode', 'aggregated', 'workforce_page');
+                  setViewMode('aggregated');
+                }}
               >
                 Include Children
               </Button>
@@ -1118,6 +1139,7 @@ function WorkforcePageContent() {
                 onChange={(e) => {
                   const year = e.target.value;
                   if (year.match(/^\d{4}$/)) {
+                    analytics.filterApplied('fiscal_year', year, 'workforce_page');
                     setSelectedFiscalYear(year as AnnualYear);
                   }
                 }}
@@ -1210,6 +1232,7 @@ function WorkforcePageContent() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://publicpay.ca.gov/Reports/State/State.aspx', 'workforce_sources')}
             >
               California State Controller&apos;s Office - Government Compensation in California
             </a>
@@ -1220,6 +1243,7 @@ function WorkforcePageContent() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://www.calhr.ca.gov/pages/workforce-planning-statistics.aspx', 'workforce_sources')}
             >
               California Department of Human Resources - Workforce Statistics
             </a>
@@ -1230,6 +1254,7 @@ function WorkforcePageContent() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://lao.ca.gov/StateWorkforce', 'workforce_sources')}
             >
               California Legislative Analyst&apos;s Office - State Workforce Reports
             </a>
@@ -1240,6 +1265,7 @@ function WorkforcePageContent() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
+              onClick={() => analytics.externalLinkClick('https://dof.ca.gov/forecasting/demographics/state-and-county-population-projections/', 'workforce_sources')}
             >
               California Department of Finance - Employment Data
             </a>
