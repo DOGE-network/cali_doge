@@ -143,11 +143,26 @@ async function fetchTweets(): Promise<void> {
               try {
                 const imgResponse = await fetch(imageUrl, { method: 'HEAD' });
                 if (imgResponse.ok) {
-                  url.images = [{
-                    url: imageUrl,
-                    width: 1200,
-                    height: 630
-                  }];
+                  // If it's a news image, download it
+                  if (imageUrl.includes('pbs.twimg.com/news_img')) {
+                    const imageId = imageUrl.match(/news_img\/\d+\/([^?]+)/)?.[1];
+                    if (imageId) {
+                      const filename = `${imageId}.jpg`;
+                      await downloadMedia(imageUrl, filename);
+                      // Update the URL to use our local copy
+                      url.images = [{
+                        url: `/media/${filename}`,
+                        width: 1200,
+                        height: 630
+                      }];
+                    }
+                  } else {
+                    url.images = [{
+                      url: imageUrl,
+                      width: 1200,
+                      height: 630
+                    }];
+                  }
                 }
               } catch (imgError) {
                 console.error(`Error validating image URL ${imageUrl}:`, imgError);

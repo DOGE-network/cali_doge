@@ -22,7 +22,7 @@ export async function GET(
       return new NextResponse('Invalid path', { status: 404 });
     }
 
-    const filePath = join(process.cwd(), 'src/data/media', ...cleanPath);
+    const filePath = join(process.cwd(), 'public/twitter_media', ...cleanPath);
     
     try {
       // Check if file exists and is readable
