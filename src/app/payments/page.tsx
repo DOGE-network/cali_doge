@@ -23,6 +23,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
 import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
@@ -67,6 +68,8 @@ function PaymentsPageClient() {
   const [order, setOrder] = useState('desc'); // asc|desc
   const [page, setPage] = useState(1);
   const [limit] = useState(100); // Top 100 vendors
+  const [filterValue, setFilterValue] = useState(''); // Add filter value state
+  const [appliedFilter, setAppliedFilter] = useState(''); // Track the currently applied filter
 
   // Available years (you might want to make this dynamic)
   const availableYears = useMemo(() => ['2024', '2023', '2022', '2021', '2020'], []);
@@ -79,6 +82,11 @@ function PaymentsPageClient() {
     params.set('order', order);
     params.set('page', page.toString());
     params.set('limit', limit.toString());
+    
+    // Use appliedFilter instead of filterValue
+    if (appliedFilter && appliedFilter.trim()) {
+      params.set('filter', appliedFilter.trim());
+    }
     
     return `/api/vendors/top?${params.toString()}`;
   };
@@ -94,11 +102,19 @@ function PaymentsPageClient() {
     }
   );
 
+  // Handle applying the filter (button click or Enter key)
+  const handleApplyFilter = () => {
+    setPage(1);
+    setAppliedFilter(filterValue); // Update the applied filter
+    updateUrl({ page: '1', filter: filterValue.trim() });
+  };
+
   // Initialize from URL params
   useEffect(() => {
     const yearParam = searchParams.get('year');
     const sortParam = searchParams.get('sort');
     const orderParam = searchParams.get('order');
+    const filterParam = searchParams.get('filter');
     
     if (yearParam && availableYears.includes(yearParam)) {
       setSelectedYear(yearParam);
@@ -108,6 +124,10 @@ function PaymentsPageClient() {
     }
     if (orderParam && ['asc', 'desc'].includes(orderParam)) {
       setOrder(orderParam);
+    }
+    if (filterParam) {
+      setFilterValue(filterParam);
+      setAppliedFilter(filterParam); // Set both the input value and applied filter
     }
   }, [searchParams, availableYears]);
 
@@ -180,13 +200,13 @@ function PaymentsPageClient() {
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-2">California State Government Payments</h1>
         <p className="text-sm text-gray-600">
-          Top 100 vendor payments by year from Fi$cal Monthly Vendor Transaction Files.
+        Vendor payments are collected from the California Open Data Portal at <a href="https://open.fiscal.ca.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">open.fiscal.ca.gov</a>
         </p>
       </div>
 
       {/* Controls */}
       <div className="mb-6 space-y-4">
-        {/* Year Selection */}
+        {/* Year Selection and Filter */}
         <div className="flex items-center space-x-4 p-4 bg-white rounded-lg border">
           <label className="text-sm font-medium">Year:</label>
           <Select value={selectedYear} onValueChange={handleYearChange}>
@@ -199,6 +219,36 @@ function PaymentsPageClient() {
               ))}
             </SelectContent>
           </Select>
+          <div className="flex-1">
+            <div className="flex flex-col space-y-2">
+              <Input
+                placeholder="Filter vendors..."
+                value={filterValue}
+                onChange={(e) => setFilterValue(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleApplyFilter();
+                  }
+                }}
+                className="w-96 bg-white"
+              />
+              <p className="text-xs text-gray-500">
+                Use AND to find vendors containing all terms (e.g. &quot;health AND care AND services&quot;). 
+                Use OR to find vendors containing any term (e.g. &quot;health OR medical&quot;). 
+                Commas are treated as AND. Use quotes for exact phrases (e.g. &quot;health care&quot;).
+              </p>
+            </div>
+          </div>
+          {filterValue && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleApplyFilter}
+              className="bg-white"
+            >
+              Apply Filter
+            </Button>
+          )}
           <div className="text-sm text-gray-600">
             Showing top {limit} vendors for {selectedYear}
           </div>

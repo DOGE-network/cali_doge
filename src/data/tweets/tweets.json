@@ -571,12 +571,12 @@
             "display_url": "cali-doge.org/workforce",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1926443992691945473/Bo_rHQjG?format=jpg&name=orig",
+                "url": "/media/Bo_rHQjG.jpg",
                 "width": 888,
                 "height": 1200
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1926443992691945473/Bo_rHQjG?format=jpg&name=150x150",
+                "url": "/media/Bo_rHQjG.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -932,12 +932,12 @@
             "display_url": "federalregister.gov/documents/2023…",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1923914302077140996/3xWeeryP?format=png&name=orig",
+                "url": "/media/3xWeeryP.jpg",
                 "width": 832,
                 "height": 200
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1923914302077140996/3xWeeryP?format=png&name=150x150",
+                "url": "/media/3xWeeryP.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -986,7 +986,12 @@
         "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
         "id": "1859283000145608705",
         "name": "California DOGE"
-      }
+      },
+      "media": [
+        {
+          "url": "/media/3xWeeryP.jpg"
+        }
+      ]
     },
     {
       "text": "3/7 California’s CARB 2022 rules (Advanced Clean Cars II) will ban new gasoline car sales by 2035. Only zero-emission vehicles (EVs, hydrogen, plug-in hybrids) will be allowed for new sales. Regulation numbers: Title 13 CCR §§ 1961.4, 1962.4, 1962.5, 1962.6, 1962.7.",
@@ -1131,12 +1136,12 @@
             "display_url": "wsj.com/business/autos…",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1923914335061147650/-TOVLmJd?format=jpg&name=orig",
+                "url": "/media/-TOVLmJd.jpg",
                 "width": 1280,
                 "height": 640
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1923914335061147650/-TOVLmJd?format=jpg&name=150x150",
+                "url": "/media/-TOVLmJd.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -1316,7 +1321,12 @@
         "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
         "id": "1859283000145608705",
         "name": "California DOGE"
-      }
+      },
+      "media": [
+        {
+          "url": "/media/-TOVLmJd.jpg"
+        }
+      ]
     },
     {
       "text": "1/7 Bad regulations kill business growth and jobs with them. \n\nFor one of the worst, look no further than the CARB 2022 regulations that outlawed gas engines. \n\nhttps://t.co/4T7Vif3GJt\n\nhttps://t.co/sddCOK3lA2",
@@ -1363,12 +1373,12 @@
             "display_url": "wsj.com/business/autos…",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1923914291956285444/2Q860Jh4?format=jpg&name=orig",
+                "url": "/media/2Q860Jh4.jpg",
                 "width": 1280,
                 "height": 640
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1923914291956285444/2Q860Jh4?format=jpg&name=150x150",
+                "url": "/media/2Q860Jh4.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -1415,7 +1425,12 @@
         "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
         "id": "1859283000145608705",
         "name": "California DOGE"
-      }
+      },
+      "media": [
+        {
+          "url": "/media/2Q860Jh4.jpg"
+        }
+      ]
     },
     {
       "entities": {
@@ -1598,12 +1613,12 @@
             "display_url": "cali-doge.org/workforce",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1922704066850807809/amp_Uk3F?format=jpg&name=orig",
+                "url": "/media/amp_Uk3F.jpg",
                 "width": 888,
                 "height": 1200
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1922704066850807809/amp_Uk3F?format=jpg&name=150x150",
+                "url": "/media/amp_Uk3F.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -4274,7 +4289,7 @@
                 "height": 630
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1915160239890194434/E9gFp9X5?format=png&name=150x150",
+                "url": "/media/E9gFp9X5.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -6795,7 +6810,7 @@
       "media": [
         {
           "type": "photo",
-          "url": "/media/1913287492364886406_0.jpg",
+          "url": "/media/Bo_rHQjG.jpg",
           "width": 1217,
           "height": 1645
         }
@@ -7659,7 +7674,7 @@
       "media": [
         {
           "type": "photo",
-          "url": "/media/1912290165105783050_0.jpg",
+          "url": "/media/amp_Uk3F.jpg",
           "width": 1217,
           "height": 1645
         }
@@ -8715,7 +8730,7 @@
       "media": [
         {
           "type": "photo",
-          "url": "/media/1906435722753765451_0.com/2/media/3_1906435717422850049"
+          "url": "/media/1906435722753765451_0.jpg"
         }
       ]
     },
@@ -8972,7 +8987,7 @@
       "media": [
         {
           "type": "photo",
-          "url": "/media/1906169739095007396_0.com/2/media/13_1905303322242023425"
+          "url": "/media/1906169739095007396_0.jpg"
         }
       ]
     },

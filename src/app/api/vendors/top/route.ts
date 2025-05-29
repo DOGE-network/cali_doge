@@ -41,6 +41,45 @@ interface TopVendorsResponse {
   };
 }
 
+function parseFilterValue(value: string): { terms: string[], operator: 'AND' | 'OR' } {
+  // Replace commas with AND
+  const normalizedValue = value.replace(/,/g, ' AND ');
+  
+  // Check if the value contains OR
+  const hasOr = normalizedValue.toUpperCase().includes(' OR ');
+  
+  // Split by the operator
+  const terms = hasOr 
+    ? normalizedValue.split(/\s+OR\s+/i)
+    : normalizedValue.split(/\s+AND\s+/i);
+  
+  // Clean up terms and handle quoted phrases
+  const cleanedTerms = terms.map(term => {
+    // Remove extra spaces
+    term = term.trim();
+    // Handle quoted phrases
+    if (term.startsWith('"') && term.endsWith('"')) {
+      return term.slice(1, -1);
+    }
+    return term;
+  }).filter(term => term.length > 0);
+  
+  return {
+    terms: cleanedTerms,
+    operator: hasOr ? 'OR' : 'AND'
+  };
+}
+
+function matchesFilter(value: string, filterTerms: { terms: string[], operator: 'AND' | 'OR' }): boolean {
+  const searchValue = value.toLowerCase();
+  
+  if (filterTerms.operator === 'OR') {
+    return filterTerms.terms.some(term => searchValue.includes(term.toLowerCase()));
+  } else {
+    return filterTerms.terms.every(term => searchValue.includes(term.toLowerCase()));
+  }
+}
+
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url || '', 'http://localhost');
@@ -52,8 +91,9 @@ export async function GET(request: Request) {
     const order = searchParams.get('order') || 'desc'; // asc|desc
     const page = parseInt(searchParams.get('page') || '1', 10);
     const limit = parseInt(searchParams.get('limit') || '100', 10);
+    const filter = searchParams.get('filter');
 
-    console.log('Top Vendors API request:', { year, sort, order, page, limit });
+    console.log('Top Vendors API request:', { year, sort, order, page, limit, filter });
 
     // Load data from multiple sources
     const [departmentSlugs, vendorsData, departmentsData] = await Promise.all([
@@ -185,8 +225,17 @@ export async function GET(request: Request) {
       });
     });
 
+    // Apply filter if present
+    let filteredVendors = topVendors;
+    if (filter) {
+      const filterTerms = parseFilterValue(filter);
+      filteredVendors = topVendors.filter(vendor => 
+        matchesFilter(vendor.vendor, filterTerms)
+      );
+    }
+
     // Apply sorting
-    topVendors.sort((a, b) => {
+    filteredVendors.sort((a, b) => {
       let aValue: any, bValue: any;
 
       switch (sort) {
@@ -214,15 +263,18 @@ export async function GET(request: Request) {
       return 0;
     });
 
+    // Limit to top 100 vendors before calculating summary and pagination
+    const limitedVendors = filteredVendors.slice(0, 100);
+
     // Calculate summary
-    const totalAmount = topVendors.reduce((sum, vendor) => sum + vendor.totalAmount, 0);
-    const vendorCount = topVendors.length;
+    const totalAmount = limitedVendors.reduce((sum, vendor) => sum + vendor.totalAmount, 0);
+    const vendorCount = limitedVendors.length;
 
     // Apply pagination
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     const totalPages = Math.ceil(vendorCount / limit);
-    const paginatedVendors = topVendors.slice(startIndex, endIndex);
+    const paginatedVendors = limitedVendors.slice(startIndex, endIndex);
 
     const response: TopVendorsResponse = {
       vendors: paginatedVendors,
@@ -247,7 +299,8 @@ export async function GET(request: Request) {
       totalAmount: totalAmount.toLocaleString(),
       paginatedCount: paginatedVendors.length,
       topVendor: paginatedVendors[0]?.vendor,
-      topAmount: paginatedVendors[0]?.totalAmount?.toLocaleString()
+      topAmount: paginatedVendors[0]?.totalAmount?.toLocaleString(),
+      filter
     });
 
     return NextResponse.json(response, {

@@ -268,10 +268,10 @@ function SpendPageClient() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-2">California State Government Spend</h1>
-        <p className="text-sm text-gray-600">
-          Comprehensive spending data from budget allocations and vendor transactions.
+        <p className="text-sm text-gray-600 mt-1">
+          Spend numbers are from the budgets found at <a href="https://ebudget.ca.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">ebudget.ca.gov</a> and vendor payments are collected from the California Open Data Portal at <a href="https://open.fiscal.ca.gov/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">open.fiscal.ca.gov</a>
         </p>
-          </div>
+      </div>
 
       {/* Controls */}
       <div className="mb-6 space-y-4">
@@ -331,17 +331,24 @@ function SpendPageClient() {
               </Select>
               
               {filter !== 'all' && (
-                <Input
-                  placeholder={`Enter ${filter}...`}
-                  value={filterValue}
-                  onChange={(e) => setFilterValue(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      handleApplyFilter();
-                    }
-                  }}
-                  className="w-48 bg-white"
-                />
+                <div className="flex flex-col space-y-2">
+                  <Input
+                    placeholder={`Enter ${filter}...`}
+                    value={filterValue}
+                    onChange={(e) => setFilterValue(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleApplyFilter();
+                      }
+                    }}
+                    className="w-96 bg-white"
+                  />
+                  <p className="text-xs text-gray-500">
+                    Use AND to find records containing all terms (e.g. &quot;diversity AND equity AND inclusion&quot;). 
+                    Use OR to find records containing any term (e.g. &quot;diversity OR equity&quot;). 
+                    Commas are treated as AND. Use quotes for exact phrases (e.g. &quot;racial justice&quot;).
+                  </p>
+                </div>
               )}
               
               {filter !== 'all' && filterValue && (
