@@ -1,6 +1,66 @@
 {
   "tweets": [
     {
+      "text": "@joffemd Our 1.6 release shows that with only half of the 2024 vendor data gathered so far, CARB has been paid $9M as a vendor by other government groups. \n\nLikely in the program data is more information to disassemble their operations. \n\nhttps://t.co/JNoFAeaaIC",
+      "entities": {
+        "annotations": [
+          {
+            "start": 92,
+            "end": 95,
+            "probability": 0.5198,
+            "type": "Other",
+            "normalized_text": "CARB"
+          }
+        ],
+        "urls": [
+          {
+            "start": 239,
+            "end": 262,
+            "url": "https://t.co/JNoFAeaaIC",
+            "expanded_url": "https://cali-doge.org/search?q=STATE+AIR+RESOURCES+BOARD&view=details&id=STATE+AIR+RESOURCES+BOARD",
+            "display_url": "cali-doge.org/search?q=STATE…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1928139213100437504/7Z4uJUB6?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1928139213100437504/7Z4uJUB6?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/search?q=STATE+AIR+RESOURCES+BOARD&view=details&id=STATE+AIR+RESOURCES+BOARD"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "created_at": "2025-05-29T17:19:45.000Z",
+      "edit_history_tweet_ids": [
+        "1928139210088927641"
+      ],
+      "id": "1928139210088927641",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "May 29, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "text": "RT @ZavalaA: Today: As California prepares for closure of two oil refiners within the next year, top officials in Gov. Newsom’s administrat…",
       "entities": {
@@ -13024,8 +13084,8 @@
     }
   ],
   "meta": {
-    "result_count": 116,
-    "newest_id": "1927761722602901719",
+    "result_count": 117,
+    "newest_id": "1928139210088927641",
     "oldest_id": "1882144700762878208"
   }
 }
