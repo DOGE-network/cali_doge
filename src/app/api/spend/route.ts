@@ -72,6 +72,46 @@ interface SpendResponse {
   yearRange?: 'recent' | 'all';
 }
 
+// Add this function before the GET handler
+function parseFilterValue(value: string): { terms: string[], operator: 'AND' | 'OR' } {
+  // Replace commas with AND
+  const normalizedValue = value.replace(/,/g, ' AND ');
+  
+  // Check if the value contains OR
+  const hasOr = normalizedValue.toUpperCase().includes(' OR ');
+  
+  // Split by the operator
+  const terms = hasOr 
+    ? normalizedValue.split(/\s+OR\s+/i)
+    : normalizedValue.split(/\s+AND\s+/i);
+  
+  // Clean up terms and handle quoted phrases
+  const cleanedTerms = terms.map(term => {
+    // Remove extra spaces
+    term = term.trim();
+    // Handle quoted phrases
+    if (term.startsWith('"') && term.endsWith('"')) {
+      return term.slice(1, -1);
+    }
+    return term;
+  }).filter(term => term.length > 0);
+  
+  return {
+    terms: cleanedTerms,
+    operator: hasOr ? 'OR' : 'AND'
+  };
+}
+
+function matchesFilter(value: string, filterTerms: { terms: string[], operator: 'AND' | 'OR' }): boolean {
+  const searchValue = value.toLowerCase();
+  
+  if (filterTerms.operator === 'OR') {
+    return filterTerms.terms.some(term => searchValue.includes(term.toLowerCase()));
+  } else {
+    return filterTerms.terms.every(term => searchValue.includes(term.toLowerCase()));
+  }
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -457,6 +497,12 @@ export async function GET(request: Request) {
       }
     }
 
+    // Parse filter values with operators
+    const departmentFilter = department ? parseFilterValue(department) : null;
+    const vendorFilter = vendor ? parseFilterValue(vendor) : null;
+    const programFilter = program ? parseFilterValue(program) : null;
+    const fundFilter = fund ? parseFilterValue(fund) : null;
+
     // Apply filters and sorting
     let filteredRecords: SpendingRecord[] | YearColumnRecord[];
     let totalAmount: number;
@@ -466,27 +512,27 @@ export async function GET(request: Request) {
       // Handle year columns filtering and sorting
       let filteredYearRecords = yearColumnRecords;
 
-      if (department) {
+      if (departmentFilter) {
         filteredYearRecords = filteredYearRecords.filter(record => 
-          record.department.toLowerCase().includes(department.toLowerCase())
+          matchesFilter(record.department, departmentFilter)
         );
       }
 
-      if (vendor) {
+      if (vendorFilter) {
         filteredYearRecords = filteredYearRecords.filter(record => 
-          record.vendor.toLowerCase().includes(vendor.toLowerCase())
+          matchesFilter(record.vendor, vendorFilter)
         );
       }
 
-      if (program) {
+      if (programFilter) {
         filteredYearRecords = filteredYearRecords.filter(record => 
-          record.program.toLowerCase().includes(program.toLowerCase())
+          matchesFilter(record.program, programFilter)
         );
       }
 
-      if (fund) {
+      if (fundFilter) {
         filteredYearRecords = filteredYearRecords.filter(record => 
-          record.fund.toLowerCase().includes(fund.toLowerCase())
+          matchesFilter(record.fund, fundFilter)
         );
       }
 
@@ -545,27 +591,27 @@ export async function GET(request: Request) {
         filteredRowRecords = filteredRowRecords.filter(record => record.year === parseInt(year));
       }
 
-      if (department) {
+      if (departmentFilter) {
         filteredRowRecords = filteredRowRecords.filter(record => 
-          record.department.toLowerCase().includes(department.toLowerCase())
+          matchesFilter(record.department, departmentFilter)
         );
       }
 
-      if (vendor) {
+      if (vendorFilter) {
         filteredRowRecords = filteredRowRecords.filter(record => 
-          record.vendor.toLowerCase().includes(vendor.toLowerCase())
+          matchesFilter(record.vendor, vendorFilter)
         );
       }
 
-      if (program) {
+      if (programFilter) {
         filteredRowRecords = filteredRowRecords.filter(record => 
-          record.program.toLowerCase().includes(program.toLowerCase())
+          matchesFilter(record.program, programFilter)
         );
       }
 
-      if (fund) {
+      if (fundFilter) {
         filteredRowRecords = filteredRowRecords.filter(record => 
-          record.fund.toLowerCase().includes(fund.toLowerCase())
+          matchesFilter(record.fund, fundFilter)
         );
       }
 

@@ -83,7 +83,8 @@ function extractNewsImageId(url: string): string | null {
 }
 
 // Add logging to file
-const logFile = path.join(process.cwd(), 'src', 'logs', 'download-specific-media.log');
+const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+const logFile = path.join(process.cwd(), 'src', 'logs', `download-specific-media-${timestamp}.log`);
 
 // Ensure logs directory exists
 if (!fs.existsSync(path.dirname(logFile))) {
@@ -123,12 +124,28 @@ async function main() {
         tweet.entities.urls.forEach((url: any) => {
           if (url.url && url.url.includes('pbs.twimg.com/news_img')) {
             newsImageUrls.add(url.url);
+            // Log the full tweet card data for this URL
+            logDetail(`Tweet card data for ${url.url}:`);
+            logDetail(JSON.stringify({
+              tweet_id: tweet.id,
+              tweet_text: tweet.text,
+              card_data: url,
+              created_at: tweet.created_at
+            }, null, 2));
           }
           // Check for images in URL previews
           if (url.images) {
             url.images.forEach((image: any) => {
               if (image.url && image.url.includes('pbs.twimg.com/news_img')) {
                 newsImageUrls.add(image.url);
+                // Log the full tweet card data for this image
+                logDetail(`Tweet card data for ${image.url}:`);
+                logDetail(JSON.stringify({
+                  tweet_id: tweet.id,
+                  tweet_text: tweet.text,
+                  image_data: image,
+                  created_at: tweet.created_at
+                }, null, 2));
               }
             });
           }
@@ -140,6 +157,14 @@ async function main() {
         tweet.media.forEach((media: any) => {
           if (media.url) {
             mediaUrls.add(media.url);
+            // Log the full media data
+            logDetail(`Media data for ${media.url}:`);
+            logDetail(JSON.stringify({
+              tweet_id: tweet.id,
+              tweet_text: tweet.text,
+              media_data: media,
+              created_at: tweet.created_at
+            }, null, 2));
           }
         });
       }
@@ -369,4 +394,4 @@ async function main() {
   }
 }
 
-main(); 
+main();

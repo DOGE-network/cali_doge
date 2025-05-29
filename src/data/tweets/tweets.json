@@ -511,12 +511,12 @@
             "display_url": "cali-doge.org/workforce",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1926443992691945473/Bo_rHQjG?format=jpg&name=orig",
+                "url": "/media/Bo_rHQjG.jpg",
                 "width": 888,
                 "height": 1200
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1926443992691945473/Bo_rHQjG?format=jpg&name=150x150",
+                "url": "/media/Bo_rHQjG.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -872,12 +872,12 @@
             "display_url": "federalregister.gov/documents/2023…",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1923914302077140996/3xWeeryP?format=png&name=orig",
+                "url": "/media/3xWeeryP.jpg",
                 "width": 832,
                 "height": 200
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1923914302077140996/3xWeeryP?format=png&name=150x150",
+                "url": "/media/3xWeeryP.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -1076,12 +1076,12 @@
             "display_url": "wsj.com/business/autos…",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1923914335061147650/-TOVLmJd?format=jpg&name=orig",
+                "url": "/media/-TOVLmJd.jpg",
                 "width": 1280,
                 "height": 640
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1923914335061147650/-TOVLmJd?format=jpg&name=150x150",
+                "url": "/media/-TOVLmJd.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -1313,12 +1313,12 @@
             "display_url": "wsj.com/business/autos…",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1923914291956285444/2Q860Jh4?format=jpg&name=orig",
+                "url": "/media/2Q860Jh4.jpg",
                 "width": 1280,
                 "height": 640
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1923914291956285444/2Q860Jh4?format=jpg&name=150x150",
+                "url": "/media/2Q860Jh4.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -1553,12 +1553,12 @@
             "display_url": "cali-doge.org/workforce",
             "images": [
               {
-                "url": "https://pbs.twimg.com/news_img/1922704066850807809/amp_Uk3F?format=jpg&name=orig",
+                "url": "/media/amp_Uk3F.jpg",
                 "width": 888,
                 "height": 1200
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1922704066850807809/amp_Uk3F?format=jpg&name=150x150",
+                "url": "/media/amp_Uk3F.jpg",
                 "width": 150,
                 "height": 150
               }
@@ -4229,7 +4229,7 @@
                 "height": 630
               },
               {
-                "url": "https://pbs.twimg.com/news_img/1915160239890194434/E9gFp9X5?format=png&name=150x150",
+                "url": "/media/E9gFp9X5.jpg",
                 "width": 150,
                 "height": 150
               }
