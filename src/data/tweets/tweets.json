@@ -1,6 +1,429 @@
 {
   "tweets": [
     {
+      "entities": {
+        "annotations": [
+          {
+            "start": 146,
+            "end": 147,
+            "probability": 0.5245,
+            "type": "Place",
+            "normalized_text": "OR"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 177,
+            "end": 182,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 183,
+            "end": 192,
+            "username": "elonmusk",
+            "id": "44196397"
+          }
+        ],
+        "urls": [
+          {
+            "start": 152,
+            "end": 175,
+            "url": "https://t.co/sH4cPEwMvE",
+            "expanded_url": "https://cali-doge.org/payments?page=1&filter=tides+center+or+gender&year=2023",
+            "display_url": "cali-doge.org/payments?page=…",
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/payments?page=1&filter=tides+center+or+gender&year=2023"
+          }
+        ]
+      },
+      "id": "1928202461321519523",
+      "created_at": "2025-05-29T21:31:05.000Z",
+      "author_id": "1859283000145608705",
+      "text": "I noticed that we needed better functionality to filter the massive amount of vendor and budget data. So I added filtering by operators like AND, OR. \n\nhttps://t.co/sH4cPEwMvE\n\n@DOGE @elonmusk",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1928202461321519523"
+      ],
+      "created_at_formatted": "May 29, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 179,
+            "end": 188,
+            "probability": 0.984,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 241,
+            "end": 264,
+            "url": "https://t.co/XzbDbAkJEg",
+            "expanded_url": "https://cali-doge.org/spend?page=1&filter=vendor&filterValue=Equity",
+            "display_url": "cali-doge.org/spend?page=1&f…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1928159004733087744/254lgXDl?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1928159004733087744/254lgXDl?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/spend?page=1&filter=vendor&filterValue=Equity"
+          },
+          {
+            "start": 265,
+            "end": 288,
+            "url": "https://t.co/cjHcVjrfwg",
+            "expanded_url": "https://x.com/cali_doge/status/1928159000928845841/photo/1",
+            "display_url": "pic.x.com/cjHcVjrfwg",
+            "media_key": "3_1928158996504207360"
+          }
+        ]
+      },
+      "id": "1928159000928845841",
+      "created_at": "2025-05-29T18:38:23.000Z",
+      "author_id": "1859283000145608705",
+      "text": "3/3 It is entirely possible that these are valid organizations with a solid purpose and mission. But with the lack of oversight due to overwhelming one party rule in the state of California, I think state vendors need some extra scrutiny. \n\nhttps://t.co/XzbDbAkJEg https://t.co/cjHcVjrfwg",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "attachments": {
+        "media_keys": [
+          "3_1928158996504207360"
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1928159000928845841"
+      ],
+      "created_at_formatted": "May 29, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1928159000928845841_0.jpg",
+          "width": 1218,
+          "height": 1701
+        }
+      ]
+    },
+    {
+      "id": "1928158993266135226",
+      "created_at": "2025-05-29T18:38:22.000Z",
+      "author_id": "1859283000145608705",
+      "text": "2/3 Here just one quick look at vendors with gender in their name from the last 1 1/2 years\n\nhttps://t.co/rMYvscJmBC",
+      "edit_history_tweet_ids": [
+        "1928158993266135226"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 93,
+            "end": 116,
+            "url": "https://t.co/rMYvscJmBC",
+            "expanded_url": "https://cali-doge.org/spend?page=1&filter=vendor&filterValue=Gender",
+            "display_url": "cali-doge.org/spend?page=1&f…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1928156404445237250/Fjkptxo2?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1928156404445237250/Fjkptxo2?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/spend?page=1&filter=vendor&filterValue=Gender"
+          }
+        ]
+      },
+      "created_at_formatted": "May 29, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "id": "1928156399378518459",
+      "created_at": "2025-05-29T18:28:03.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 183,
+            "end": 196,
+            "username": "KevinKileyCA",
+            "id": "3180247177"
+          },
+          {
+            "start": 197,
+            "end": 210,
+            "username": "SteveHiltonx",
+            "id": "2779389582"
+          },
+          {
+            "start": 211,
+            "end": 226,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 227,
+            "end": 235,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 236,
+            "end": 250,
+            "username": "RepMcClintock",
+            "id": "50152441"
+          },
+          {
+            "start": 251,
+            "end": 266,
+            "username": "repdarrellissa",
+            "id": "63650107"
+          }
+        ],
+        "urls": [
+          {
+            "start": 158,
+            "end": 181,
+            "url": "https://t.co/rMYvscJmBC",
+            "expanded_url": "https://cali-doge.org/spend?page=1&filter=vendor&filterValue=Gender",
+            "display_url": "cali-doge.org/spend?page=1&f…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1928156404445237250/Fjkptxo2?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1928156404445237250/Fjkptxo2?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/spend?page=1&filter=vendor&filterValue=Gender"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "text": "Are your state representatives and employees being good stewards of your tax dollars?\n\nUnfortunately, without oversight, some are tempted to behave poorly. \n\nhttps://t.co/rMYvscJmBC\n\n@KevinKileyCA @SteveHiltonx @DataRepublican @joffemd @RepMcClintock @repdarrellissa",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1928156399378518459"
+      ],
+      "created_at_formatted": "May 29, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "text": "@joffemd Our 1.6 release shows that with only half of the 2024 vendor data gathered so far, CARB has been paid $9M as a vendor by other government groups. \n\nLikely in the program data is more information to disassemble their operations. \n\nhttps://t.co/JNoFAeaaIC",
       "entities": {
         "annotations": [
@@ -13099,8 +13522,8 @@
     }
   ],
   "meta": {
-    "result_count": 117,
-    "newest_id": "1928139210088927641",
+    "result_count": 121,
+    "newest_id": "1928202461321519523",
     "oldest_id": "1882144700762878208"
   }
 }
