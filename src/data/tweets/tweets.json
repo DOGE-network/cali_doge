@@ -1,6 +1,208 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 153,
+            "end": 162,
+            "username": "elonmusk",
+            "id": "44196397"
+          },
+          {
+            "start": 163,
+            "end": 178,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          }
+        ],
+        "urls": [
+          {
+            "start": 128,
+            "end": 151,
+            "url": "https://t.co/wTofeUTqJl",
+            "expanded_url": "https://cali-doge.org/spend?page=1&filter=program&filterValue=Diversity+or+equity+or+inclusion&sort=amount&order=desc",
+            "display_url": "cali-doge.org/spend?page=1&f…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1928336069243678720/ig471bG5?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1928336069243678720/ig471bG5?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/spend?page=1&filter=program&filterValue=Diversity+or+equity+or+inclusion&sort=amount&order=desc"
+          },
+          {
+            "start": 179,
+            "end": 202,
+            "url": "https://t.co/hLoGz2uaRA",
+            "expanded_url": "https://x.com/cali_doge/status/1928336025761312773/photo/1",
+            "display_url": "pic.x.com/hLoGz2uaRA",
+            "media_key": "3_1928336021223264256"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 29,
+            "end": 31,
+            "probability": 0.5474,
+            "type": "Organization",
+            "normalized_text": "DEI"
+          },
+          {
+            "start": 53,
+            "end": 79,
+            "probability": 0.5097,
+            "type": "Place",
+            "normalized_text": "California State Government"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1928336025761312773"
+      ],
+      "attachments": {
+        "media_keys": [
+          "3_1928336021223264256"
+        ]
+      },
+      "text": "Found about 39M budgeted for DEI related programs in California State Government so far. This is just scratching the surface. \n\nhttps://t.co/wTofeUTqJl\n\n@elonmusk @DataRepublican https://t.co/hLoGz2uaRA",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1928336025761312773",
+      "created_at": "2025-05-30T06:21:49.000Z",
+      "created_at_formatted": "May 30, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1928336025761312773_0.jpg",
+          "width": 1242,
+          "height": 1773
+        }
+      ]
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -13522,8 +13724,8 @@
     }
   ],
   "meta": {
-    "result_count": 121,
-    "newest_id": "1928202461321519523",
+    "result_count": 122,
+    "newest_id": "1928336025761312773",
     "oldest_id": "1882144700762878208"
   }
 }
