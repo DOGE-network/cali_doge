@@ -1,6 +1,112 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1928611606222565818"
+      ],
+      "text": "@houmanhemmati @TheBabylonBee @CAgovernor @GavinNewsom frustrating levels of stupid",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 15,
+            "end": 29,
+            "username": "TheBabylonBee",
+            "id": "4914384040"
+          },
+          {
+            "start": 30,
+            "end": 41,
+            "username": "CAgovernor",
+            "id": "38349184"
+          },
+          {
+            "start": 42,
+            "end": 54,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          }
+        ]
+      },
+      "id": "1928611606222565818",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-05-31T00:36:53.000Z",
+      "created_at_formatted": "May 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -13928,8 +14034,8 @@
     }
   ],
   "meta": {
-    "result_count": 123,
-    "newest_id": "1928343630693158920",
+    "result_count": 124,
+    "newest_id": "1928611606222565818",
     "oldest_id": "1882144700762878208"
   }
 }
