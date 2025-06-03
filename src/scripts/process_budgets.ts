@@ -1,182 +1,84 @@
 /**
  * Budget Data Text File Processing Script
- * from plan datastructureandlayout.md, 2. Data Processing Scripts Update, Update Process Budgets Script
- * General rule for if budget organization code and name is a department. It must have headcount to be a department and added to the workforce hierarchy.
- * Each budget txt file has multiple department sections and each with two subsections
- * Section: for each with 4 digit organizational code and department name on a line followed by department description as paragraphs, and then followed by expenditure markers like "3-YR EXPENDITURES AND POSITIONS" or "3-YEAR EXPENDITURES POSITIONS". Until another group of text matches this, consider all of the text as part of the current section. Match 4 digit org code and or department name to a single record in departments.json using src/lib/departmentMatching.js, 
- * e.g. "0110    Senate
- *
- * The Legislature ... Assembly. 
+ * from plan datastructureandlayout.md, step 2. Data Processing Scripts Update, Update Process Budgets Script
  * 
- * 3-YR EXPENDITURES AND POSITIONS "
+ * Section Detection Rules:
+ * 1. Coordinate-Based Processing:
+ *    - Uses x,y coordinates from PDF text extraction
+ *    - Section headers appear at x < 100
+ *    - Content indentation tracked by x-coordinates
+ *    - Page boundaries marked with dimensions
  * 
- * NOTE: any text line that has "- Continued" is not a section, just a source file footer comment, e.g. "0110    Senate - Continued"
+ * 2. Section Header Format:
+ *    - Pattern: 4-digit organizational code followed by department name
+ *    - Example: "7100   Employment Development Department"
+ *    - Headers must appear at x < 100 coordinate
+ *    - Continuation headers ("- Continued") used for validation
+ *    - Excludes fund/account headers using pattern matching
  * 
- * Section Identification Logic:
- * The script uses a two-step process to correctly identify department sections:
+ * 3. Section Content Structure:
+ *    - Department description text appears at x > header x
+ *    - Each section MUST contain expenditure marker
+ *    - Expenditure marker: "3-YEAR EXPENDITURES AND POSITIONS" or variants
+ *    - Continuation headers required for multi-page sections
  * 
- * 1. Find all expenditure markers: "3-YEAR EXPENDITURES AND POSITIONS" or "3-YR EXPENDITURES AND POSITIONS"
- *    - Each marker represents exactly one department section
+ * 4. Subsection Layout:
+ *    - Program descriptions and budget data use consistent x-coordinates
+ *    - Program codes appear at leftmost x-coordinate
+ *    - Descriptions/names appear indented (higher x-coordinate)
+ *    - Budget amounts appear in fixed-width columns
+ *    - Amount columns must be evenly spaced
  * 
- * 2. For each expenditure marker, find the correct department header:
- *    - First, identify ALL valid department headers in the file (excluding "- Continued" headers)
- *    - Valid headers are either:
- *      a) Single-line format: "NNNN   Department Name" (without "- Continued")
- *      b) Two-line format: "NNNN" followed by "Department Name" (without "- Continued")
- *    - For each expenditure marker, find the closest valid header BEFORE it (within 200 lines)
- *    - This approach correctly handles PDF extraction errors where "- Continued" headers
- *      appear out of place and would otherwise cause incorrect department matching
+ * Section Structure and Header Ordering:
+ * Each section follows this mandatory structure with coordinate-based validation:
+ * 0. Section Header (x < 100) - MANDATORY
+ * 1. Department Description (x > header x) - MANDATORY  
+ * 2. 3-YEAR EXPENDITURES AND POSITIONS (section start marker) - MANDATORY
  * 
- * Validation Command (for verification):
- * ```bash
- * # Count expenditure markers
- * grep -c "3-YEAR EXPENDITURES AND POSITIONS\|3-YR EXPENDITURES AND POSITIONS" file.txt
+ * Then the following subsection headers appear in order (when present):
+ * 3. LEGAL CITATIONS AND AUTHORITY
+ * 4. DEPARTMENT AUTHORITY
+ * 5. PROGRAM AUTHORITY
+ * 6. MAJOR PROGRAM CHANGES
+ * 7. DETAILED BUDGET ADJUSTMENTS
+ * 8. PROGRAM DESCRIPTIONS
+ * 9. DETAILED EXPENDITURES BY PROGRAM
+ * 10. EXPENDITURES BY CATEGORY
+ * 11. DETAIL OF APPROPRIATIONS AND ADJUSTMENTS
+ * 12. CHANGES IN AUTHORIZED POSITIONS
  * 
- * # Count unique departments (handles both header formats)
- * awk '/^[0-9][0-9][0-9][0-9]   / {dept=$0; gsub(/ - Continued$/, "", dept)} /^[0-9][0-9][0-9][0-9]$/ {code=$0; getline; if(NF > 0 && !/^[0-9]/ && !/^2[0-9][0-9][0-9]-[0-9][0-9]/ && !/^Positions/ && !/^Expenditures/) {dept=code "   " $0; gsub(/ - Continued$/, "", dept)}} /3-YEAR EXPENDITURES AND POSITIONS|3-YR EXPENDITURES AND POSITIONS/ {if(dept) print dept}' file.txt | sort | uniq | wc -l
+ * Program Description Processing:
+ * - Located after "PROGRAM DESCRIPTIONS" marker
+ * - Program codes at consistent x-coordinate (mainHeaderX)
+ * - Program names and descriptions indented (x > mainHeaderX)
+ * - 4-digit codes converted to 7-digit (append "000")
+ * - 7-digit subprogram codes used as-is
+ * - Descriptions tracked by source file
  * 
- * # Rule: expenditure markers count must equal unique departments count (1:1 ratio)
- * # Exception rate: ~2.5% of files may have one department with multiple expenditure sections
- * ```
- * 
- * Subsection one: find "PROGRAM DESCRIPTIONS" text which has programs and subprograms following it.
- * Note that each 4 digit program code is always has 3 zeros added to the end to make it a 7 digits project code. 7 digit subprogram codes are used as is for a project code.
- * Match the 4 digit program code or 7 digit subprogram code as projectCode, program name on a single line followed by the program description with programs.json records, 
- * e.g. "3500 - MOBILE SOURCE 
- *
- * The Mobile Source Program works."
- * Use the same program json update logic as the process vendors script.
- * 
- * Subsection two: find "DETAILED EXPENDITURES BY PROGRAM" text which has budget data following it.
- * Look for a group of 4 lines of text: 3 lines of year formatted dates followed by a line of text "PROGRAM REQUIREMENTS" OR "SUBPROGRAM REQUIREMENTS"
- * The rest of this subsection are program and subprogram codes, followed by the name, fund type, fund name, fund code, and the 3 years of amounts budgeted,
- * e.g." 2015-16*
-* 2016-17*
-* 2017-18*
-* PROGRAM REQUIREMENTS
-* 0130
-* SUPREME COURT
-* State Operations:
-* 0001
-* General Fund
-* $42,554
-* $46,772
-* $47,443"
- *  For each program and subprogram in subsubsection one, there must be budget data for 3 years.
- * 
- * File Processing and Data Overwrite Logic:
- * - Budget text files contain data for the current year and 2 previous years
- * - The 2 previous years data should be updated/more accurate than what was in previous budget text documents
- * - When processing a budget file, if budgets.json org code and year match the budget file org code and year, 
- *   then overwrite the existing project code, funding type, fund code data from the budget text file
- * - Track processed files in budgets.json.processedFiles to avoid duplicate processing
- * - Skip files already in processedFiles record unless force reprocessing is enabled
- * - Log overwrite operations in both console and log file for transparency
- * 
- * Processing steps:
- * 1. Initial Setup
- *    a. Load departments.json, programs.json, and budgets.json
- *    b. Setup logging and statistics tracking
- *    c. Check for force reprocessing flag and clear processedFiles if needed
- * 
- * 2. Budget Text File Scanning and Section Identification
- *    a. Scan budget data directory for text files
- *    b. For each file:
- *       i. Skip if file already in budgets.json.processedFiles (unless force reprocessing)
- *       ii. Read and parse file content
- *       iii. Extract document year from filename (the year the budget document was published)
- *       iv. Find all department sections by:
- *           - Identifying lines with 4-digit organizational codes followed by department names
- *           - Skipping lines with "- Continued" as these are footer comments
- *           - Including all content until the next department section begins
- *           - Each section contains an expenditure marker like "3-YR EXPENDITURES AND POSITIONS" or "3-YEAR EXPENDITURES POSITIONS"
- * 
- * 3. Processing Department Sections (with two-stage user approval for each section)
- *    a. For each department section:
- *       i. Extract department information:
- *          - 4-digit organizational code
- *          - Department name
- *          - Department description (text between header and expenditure marker)
- *       ii. Match department with departments.json using departmentMatching.js
- *           - Direct match by organizational code (if available)
- *           - Name-based matching with confidence scoring
- *           - Handle unmatched departments with user prompts for new record creation
- *       iii. Compare department descriptions:
- *           - Check if description is missing, empty, or significantly different
- *           - Mark for update if needed (consolidated into approval stage)
- * 
- * 4. Processing Subsections Within Each Department Section
- *    a. Subsection One - Program Descriptions:
- *       i. Find "PROGRAM DESCRIPTIONS" text
- *       ii. Extract program/subprogram information:
- *           - Convert 4-digit program codes to 7-digit project codes (append "000")
- *           - Use 7-digit subprogram codes as-is for project codes
- *           - Extract program/subprogram names and descriptions
- *       iii. Update programs.json with extracted data (source = budget filename)
- * 
- *    b. Subsection Two - Detailed Expenditures with Overwrite Logic:
- *       i. Find "DETAILED EXPENDITURES BY PROGRAM" section
- *       ii. Locate fiscal years and "PROGRAM REQUIREMENTS"/"SUBPROGRAM REQUIREMENTS"
- *       iii. Extract budget allocations:
- *           - Program/subprogram codes
- *           - Program/subprogram names
- *           - Fund types (State Operations/Local Assistance)
- *           - Fund codes and names
- *           - Budget amounts for each fiscal year
- *       iv. For matching org code and year combinations, overwrite existing data
- *       v. Log overwrite operations for transparency
- *       vi. Update budgets.json using budget.ts types
- * 
- * 5. Two-Stage User Approval and Data Persistence
- *    a. Stage 1 - Department Changes Approval (departments.json):
- *       - Present department matching results and confidence scores
- *       - Show description changes with similarity analysis
- *       - Options: update/add description, keep existing, or skip
- *       - Save departments.json immediately when approved
- *    b. Stage 2 - Program, Budget & Fund Changes Approval (programs.json, budgets.json, funds.json):
- *       - Present program descriptions found
- *       - Show budget allocations breakdown (NEW vs OVERWRITE)
- *       - Show fund changes breakdown (NEW vs UPDATED)
- *       - Save programs.json, budgets.json, and funds.json when approved
- *    c. Handle special cases for unmatched departments:
- *       - Option to create new department with budget_status = active (has headcount)
- *       - Option to create new department with budget_status = inactive (no headcount)
- *       - Display general rule about headcount requirements for departments
- * 
- * 6. Results Summary and Final Data Persistence
- *    a. Data is saved incrementally after each approved section to prevent data loss
- *    b. Update budgets.json.processedFiles with processed file name
- *    c. Generate processing statistics:
- *       i. Total files processed
- *       ii. Departments found and matched
- *       iii. Programs/subprograms found and updated
- *       iv. Budget allocations added vs overwritten
- *    d. Write comprehensive summary to log file
+ * Budget Data Processing:
+ * - Located after "DETAILED EXPENDITURES BY PROGRAM"
+ * - Uses coordinate-based column detection
+ * - Fiscal years in fixed columns
+ * - Amounts parsed from consistent x-coordinates
+ * - Fund codes and names at x < 100
+ * - State Operations/Local Assistance markers tracked
+ * - Amounts validated for consistent spacing
  * 
  * Dependencies / Input files:
  * - departments.json: Department data
  * - programs.json: Program data
  * - budgets.json: Budget data (with processedFiles tracking)
  * - funds.json: Fund data
- * - budget/text/*.txt: Budget text files to process
+ * - budget/text/*.txt: Budget text files with coordinate data
  * - src/lib/departmentMatching.js: Department name matching logic
  * - src/types/budget.ts: Budget data types
  * 
 * Output Files:
- * - programs.json: Updated with project codes, program names, and descriptions (source = budget filename)
- * - budgets.json: Updated with detailed budget allocations (with overwrite logic for existing data)
+ * - programs.json: Updated with project codes, program names, and descriptions
+ * - budgets.json: Updated with detailed budget allocations
  * - departments.json: Updated with department data and descriptions
- * - funds.json: Updated with fund codes and names extracted from budget allocations
- * - src/logs/process_budgets-<transactionId>.log using the same format as the vendor script
- * 
- * Key Features:
- * - Two-stage approval process for granular control
- * - Consolidated description update prompts
- * - Filename-based program description sources
- * - Overwrite logic for budget allocations when org code and year match
- * - ProcessedFiles tracking to prevent duplicate processing
- * - Incremental data saving to prevent loss
- * - Comprehensive logging and statistics
+ * - funds.json: Updated with fund codes and names
+ * - src/logs/process_budgets-<transactionId>.log: Detailed processing log
  * 
  * Usage:
  * ```bash
@@ -197,6 +99,52 @@ import {
 } from '../types/budget';
 import promptSync from 'prompt-sync';
 import { generateTransactionId } from '../lib/logging';
+
+// New interfaces for coordinate-based text processing
+interface TextLine {
+  blockNum: number;
+  lineNum: number;
+  x: number;
+  y: number;
+  text: string;
+  pageNum: number;
+  rawLine: string;
+}
+
+// Helper functions for text processing
+function parseLine(line: string, currentPage: number): TextLine | null {
+  // Parse lines like: [0:0:382,335] Labor and
+  const match = line.match(/\[(\d+):(\d+):(\d+),(\d+)\]\s*(.*)/);
+  if (match) {
+    return {
+      blockNum: parseInt(match[1]),
+      lineNum: parseInt(match[2]),
+      x: parseInt(match[3]),
+      y: parseInt(match[4]),
+      text: match[5].trim(),
+      pageNum: currentPage,
+      rawLine: line
+    };
+  }
+  return null;
+}
+
+function isAmountString(text: string): boolean {
+  return /^\$?[\d,]+(?:\.\d+)?$/.test(text.trim()) || text.trim() === '-';
+}
+
+function parseAmount(text: string): number {
+  if (text.trim() === '-') return 0;
+  return parseFloat(text.replace(/[\$,]/g, '')) || 0;
+}
+
+function isFundCode(text: string): boolean {
+  return /^\d{4,5}$/.test(text.trim());
+}
+
+function isProjectCode(text: string): boolean {
+  return /^\d{4}(?:000)?$/.test(text.trim()) || /^\d{7}$/.test(text.trim());
+}
 
 // Main configuration
 const DATA_DIRECTORY = path.join(process.cwd(), 'src/data');
@@ -354,10 +302,14 @@ async function main() {
     // Step 1: Initial Setup
     log('1. Initial Setup');
     
-    // Check for force reprocessing flag
+    // Check for force reprocessing flag and specific file argument
     const forceReprocess = process.argv.includes('--force');
+    const specificFile = process.argv[2];
     if (forceReprocess) {
       log('Force reprocessing flag detected. Will reprocess all files.', true);
+    }
+    if (specificFile && !specificFile.startsWith('--')) {
+      log(`Processing specific file: ${specificFile}`, true);
     }
     
     // Step 1a: Load JSON files
@@ -398,10 +350,22 @@ async function main() {
     // Step 2: Budget Text File Scanning and Section Identification
     log('2. Budget Text File Scanning and Section Identification');
     
-    // Step 2a: Scan budget data directory
-    log('2a. Scanning budget text files', true);
-    const textFiles = await scanBudgetTextDirectory();
-    log(`Found ${textFiles.length} budget text files to process`, true);
+    // Step 2a: Get files to process
+    log('2a. Determining files to process', true);
+    let textFiles: string[];
+    if (specificFile && !specificFile.startsWith('--')) {
+      // Process single file
+      const fullPath = path.isAbsolute(specificFile) ? specificFile : path.join(BUDGET_TEXT_DIR, path.basename(specificFile));
+      if (!fs.existsSync(fullPath)) {
+        throw new Error(`File not found: ${fullPath}`);
+      }
+      textFiles = [fullPath];
+      log(`Processing single file: ${path.basename(fullPath)}`, true);
+    } else {
+      // Scan directory for all files
+      textFiles = await scanBudgetTextDirectory();
+      log(`Found ${textFiles.length} budget text files to process`, true);
+    }
     
     // Filter out already processed files unless force reprocessing
     const filesToProcess = textFiles.filter(file => {
@@ -421,14 +385,10 @@ async function main() {
       try {
       await processBudgetFile(file, departmentsData, programsData, budgetsData, fundsData);
       } catch (error: any) {
-        if (error.message.includes('Section identification failed') || error.message.includes('User did not approve')) {
-          consoleOutput(`\n🛑 STOPPING PROCESSING: ${error.message}`);
-          log(`Processing stopped due to identification failure or user rejection: ${error.message}`, false, true);
-          break; // Stop processing remaining files
-        } else {
-          // Re-throw other errors
-          throw error;
-        }
+        log(`Error processing file ${path.basename(file)}: ${error.message}`, false, true);
+        log(error.stack, true, true);
+        stats.errorFiles++;
+        // Continue processing other files instead of stopping
       }
     }
     
@@ -551,7 +511,15 @@ async function processBudgetFile(
     
     // Step 2b.iii: Find all department sections
     log('2b.iii: Finding department sections by identifying expenditure markers', true);
-    const departmentSections = await findDepartmentSections(filePath, departmentsData, programsData, fileName);
+    const departmentSections = await findDepartmentSections(filePath);
+    
+    // Check if user approved this file
+    if (departmentSections.length === 0) {
+      log(`File ${fileName} was not approved for processing - skipping`, true);
+      stats.skippedFiles++;
+      return;
+    }
+    
     log(`Found ${departmentSections.length} department sections`, true);
     
     // Step 3: Process each department section (with two-stage user approval for each section)
@@ -596,189 +564,193 @@ async function processBudgetFile(
 }
 
 /**
- * Find all department sections using expenditure markers as the definitive rule
- * Rule: Each "3-YEAR EXPENDITURES AND POSITIONS" marker = 1 department section
+ * Find all department sections using staged detection approach
  */
 async function findDepartmentSections(
-  filePath: string, 
-  departmentsData: DepartmentsJSON, 
-  programsData: ProgramsJSON, 
-  fileName: string
+  filePath: string
 ): Promise<Array<{orgCode: string, departmentName: string, content: string}>> {
   const sections: Array<{orgCode: string, departmentName: string, content: string}> = [];
   
   try {
-    consoleOutput('\n' + '='.repeat(100));
-    consoleOutput(`SECTION IDENTIFICATION FOR: ${fileName}`);
-    consoleOutput('='.repeat(100));
-    
-    // Read the file content
+    // Read file content
     const fileContent = await fs.promises.readFile(filePath, 'utf8');
-    const normalizedContent = fileContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-    const lines = normalizedContent.split('\n');
+    const lines = fileContent.split('\n');
+    log(`Read ${lines.length} lines from file`, true);
     
-    // Find all expenditure markers - these define the sections
-    const expenditureMarkers: number[] = [];
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
-      if (line.match(/^3[\s\-](?:YR|YEAR)[\s\-]*EXPENDITURES[\s\-]*(?:AND[\s\-]*)?POSITIONS/)) {
-        expenditureMarkers.push(i);
-      }
-    }
+    // Stage 1: Find expenditure headers
+    const expenditurePattern = /(?:3|THREE)[\s\-]*(?:YR|YEAR|Years?)[\s\-]*EXPENDITURES?(?:[\s\-]*AND[\s\-]*POSITIONS?)?/i;
+    const expenditureLines = lines
+      .map((line, index) => ({ line, index }))
+      .filter(({ line }) => expenditurePattern.test(line));
     
-    // First, find all valid department headers in the file (not continuation headers)
-    const allValidHeaders: Array<{line: number, header: string, orgCode: string}> = [];
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
-      
-      // Check for single-line format: "NNNN   Department Name" (WITHOUT "- Continued")
-      const singleLineMatch = line.match(/^(\d{4})\s{3,}(.+?)$/);
-      if (singleLineMatch && !line.includes('- Continued')) {
-        const orgCode = singleLineMatch[1];
-        const deptName = singleLineMatch[2].trim();
-        allValidHeaders.push({
-          line: i,
-          header: `${orgCode}   ${deptName}`,
-          orgCode: orgCode
+    log(`Found ${expenditureLines.length} expenditure headers`, true);
+    
+    // Stage 2: Find continuation headers
+    const continuationPattern = /^\[[\d:,]+\]\s*(\d{4})\s+(.+?)\s*-\s*Continued\s*$/;
+    const continuedPattern = /^\[[\d:,]+\]\s*-\s*Continued\s*$/;
+    const headerPattern = /^\[[\d:,]+\]\s*(\d{4})\s+(.+?)\s*$/;
+    
+    const continuationHeaders = lines
+      .map((line, index) => {
+        // First try single-line format
+        const match = line.match(continuationPattern);
+        if (match) {
+          log(`Found continuation line at ${index + 1}: "${line.trim()}"`, true);
+          return {
+            orgCode: match[1],
+            departmentName: match[2].trim(),
+            index
+          };
+        }
+        
+        // Then try split format (header followed by "- Continued")
+        const headerMatch = line.match(headerPattern);
+        if (headerMatch && index < lines.length - 2) {
+          const nextLine = lines[index + 1];
+          const continuedLine = lines[index + 2];
+          if (nextLine.trim() === '' && continuedPattern.test(continuedLine)) {
+            log(`Found split continuation header at ${index + 1}: "${line.trim()} / ${continuedLine.trim()}"`, true);
+            return {
+              orgCode: headerMatch[1],
+              departmentName: headerMatch[2].trim(),
+              index
+            };
+          }
+        }
+        
+        return null;
+      })
+      .filter((header): header is NonNullable<typeof header> => header !== null);
+    
+    log(`Found ${continuationHeaders.length} continuation headers`, true);
+    
+    // Group continuation headers by org code
+    const sectionsByOrgCode = new Map<string, {
+      orgCode: string,
+      departmentName: string,
+      indices: number[]
+    }>();
+    
+    for (const header of continuationHeaders) {
+      if (!sectionsByOrgCode.has(header.orgCode)) {
+        sectionsByOrgCode.set(header.orgCode, {
+          orgCode: header.orgCode,
+          departmentName: header.departmentName,
+          indices: []
         });
       }
-      
-      // Check for two-line format: "NNNN" followed by "Department Name" (WITHOUT "- Continued")
-      if (line.match(/^(\d{4})$/) && i + 1 < lines.length) {
-        const nextLine = lines[i + 1].trim();
-        if (nextLine && 
-            !nextLine.match(/^\d+$/) && 
-            !nextLine.match(/^\$/) &&
-            !nextLine.match(/^[\d,]+$/) &&
-            !nextLine.match(/^-$/) &&
-            !nextLine.startsWith('State Operations:') &&
-            !nextLine.startsWith('Local Assistance:') &&
-            !nextLine.startsWith('Positions') &&
-            !nextLine.startsWith('Expenditures') &&
-            !nextLine.match(/^2[0-9][0-9][0-9]-[0-9][0-9]/) &&
-            nextLine.match(/[A-Za-z]/) &&
-            nextLine.length > 2 &&
-            !nextLine.includes('- Continued')) {
-          
-          allValidHeaders.push({
-            line: i,
-            header: `${line}   ${nextLine}`,
-            orgCode: line
-          });
-        }
-      }
+      sectionsByOrgCode.get(header.orgCode)?.indices.push(header.index);
     }
     
-    // For each expenditure marker, find the closest valid department header BEFORE it
-    const validDepartmentHeaders: string[] = [];
+    log(`Found ${sectionsByOrgCode.size} sections from ${continuationHeaders.length} continuation headers`, true);
     
-    for (let i = 0; i < expenditureMarkers.length; i++) {
-      const expenditureLineIndex = expenditureMarkers[i];
+    // If we have fewer sections than expenditure headers, look for missing ones
+    if (sectionsByOrgCode.size < expenditureLines.length) {
+      log(`Missing ${expenditureLines.length - sectionsByOrgCode.size} sections - searching near expenditure markers`, true);
       
-      // Find the closest valid header before this expenditure marker
-      let closestHeader: {line: number, header: string, orgCode: string} | null = null;
-      let closestDistance = Infinity;
+      // Track which sections we already have
+      const knownSections = new Set(sectionsByOrgCode.keys());
       
-      for (const headerInfo of allValidHeaders) {
-        if (headerInfo.line < expenditureLineIndex) {
-          const distance = expenditureLineIndex - headerInfo.line;
-          if (distance < closestDistance && distance <= 200) { // Within 200 lines
-            closestDistance = distance;
-            closestHeader = headerInfo;
-          }
-        }
-      }
-      
-      if (closestHeader) {
-        validDepartmentHeaders.push(closestHeader.header);
-      } else {
-        consoleOutput(`❌ Could not find valid department header for expenditure marker ${i + 1} at line ${expenditureLineIndex + 1}`);
-      }
-    }
-      
-    consoleOutput(`Found ${expenditureMarkers.length} expenditure markers (= ${expenditureMarkers.length} department sections)`);
-    consoleOutput(`Found ${validDepartmentHeaders.length} valid department headers (ignoring out-of-place continuation headers)`);
-    
-    if (validDepartmentHeaders.length !== expenditureMarkers.length) {
-      consoleOutput(`❌ ERROR: Mismatch between expenditure markers (${expenditureMarkers.length}) and valid department headers (${validDepartmentHeaders.length})`);
-      throw new Error(`Department header count mismatch for ${fileName}`);
-    } 
-    
-    // STEP 4: Require user approval
-    consoleOutput(`\nSection identification complete. Ready to process ${expenditureMarkers.length} sections.`);
-    const approval = promptUser('Approve section identification and proceed with processing? (y/n): ').toLowerCase();
-    logUser(`User section identification approval: ${approval}`);
-         
-    if (approval !== 'y') {
-      consoleOutput('Section identification not approved. Stopping all file processing.');
-      logUser('User did not approve section identification - stopping processing');
-      throw new Error(`User did not approve section identification for ${fileName}`);
-    }
-    
-    // STEP 5: Build sections using the valid department headers
-    consoleOutput('\nExtracting department information and building sections...');
-    
-    // Build sections using the valid department headers
-    for (let i = 0; i < validDepartmentHeaders.length; i++) {
-      const deptHeader = validDepartmentHeaders[i].trim();
-      
-      // Extract org code and department name from header
-      const match = deptHeader.match(/^(\d{4})\s{3,}(.+)$/);
-      if (match) {
-        const orgCode = match[1];
-        const departmentName = match[2].trim();
-        
-        // Find the section boundaries
-        const expenditureLineIndex = expenditureMarkers[i];
-        
-        // Find department header line in file
-        let sectionStartIndex = -1;
-        for (let j = expenditureLineIndex - 1; j >= 0; j--) {
-          const line = lines[j].trim();
-          if (line === deptHeader || line === deptHeader + ' - Continued') {
-            sectionStartIndex = j;
-            break;
-          }
-          // Check two-line format
-          if (line.match(/^(\d{4})$/) && j + 1 < lines.length) {
-            const nextLine = lines[j + 1].trim();
-            const combinedLine = `${line}   ${nextLine}`;
-            if (combinedLine === deptHeader || combinedLine === deptHeader + ' - Continued') {
-              sectionStartIndex = j;
+      // Look for headers near remaining expenditure markers
+      for (const expHeader of expenditureLines) {
+        // Look up to 20 lines before expenditure header
+        for (let i = Math.max(0, expHeader.index - 20); i < expHeader.index; i++) {
+          const line = lines[i];
+          const match = line.match(/^\[[\d:,]+\]\s*(\d{4})\s+([^-]+)$/);
+          if (match) {
+            const orgCode = match[1];
+            const departmentName = match[2].trim();
+            
+            // Skip if we already have this section
+            if (knownSections.has(orgCode)) continue;
+            
+            // Found a potential new section
+            log(`Found potential new section at line ${i + 1}: ${orgCode} - ${departmentName}`, true);
+            
+            // Ask user if this is a valid section header
+            consoleOutput('\n' + '='.repeat(80));
+            consoleOutput('POTENTIAL NEW SECTION FOUND');
+            consoleOutput('='.repeat(80));
+            consoleOutput(`At line ${i + 1}:`);
+            // Show context
+            for (let j = Math.max(0, i - 5); j <= Math.min(lines.length - 1, i + 5); j++) {
+              const prefix = j === i ? '>' : ' ';
+              consoleOutput(`${prefix} ${j + 1}: ${lines[j]}`);
+            }
+            
+            const isValid = promptUser('\nIs this a valid section header? (y/n): ').toLowerCase() === 'y';
+            logUser(`User response for potential section at line ${i + 1}: ${isValid ? 'yes' : 'no'}`);
+            
+            if (isValid) {
+              // Add to sections map
+              sectionsByOrgCode.set(orgCode, {
+                orgCode,
+                departmentName,
+                indices: [i]
+              });
+              knownSections.add(orgCode);
+              log(`Added new section: ${orgCode} - ${departmentName}`, true);
               break;
             }
           }
         }
-        
-        if (sectionStartIndex !== -1) {
-          // Find end of section (next department or end of file)
-          let sectionEndIndex = lines.length;
-          if (i < validDepartmentHeaders.length - 1) {
-            const nextExpenditure = expenditureMarkers[i + 1];
-            sectionEndIndex = nextExpenditure;
-          }
-          
-          const sectionLines = lines.slice(sectionStartIndex, sectionEndIndex);
-          const sectionContent = sectionLines.join('\n');
-          
-          sections.push({
-            orgCode,
-            departmentName,
-            content: sectionContent
-          });
-          
-          consoleOutput(`  ✅ Section ${sections.length}: ${departmentName} (${orgCode})`);
-        } else {
-          consoleOutput(`  ❌ Could not find section content for ${departmentName} (${orgCode})`);
-        }
-      } else {
-        consoleOutput(`  ❌ Could not parse department header: ${deptHeader}`);
       }
     }
     
-    log(`Extracted ${sections.length} department sections total`, true);
+    // Now process all found sections
+    for (const section of Array.from(sectionsByOrgCode.values())) {
+      const firstIndex = Math.min(...section.indices);
+      let startIndex = firstIndex;
+      
+      // Look backwards for main header
+      for (let i = firstIndex - 1; i >= Math.max(0, firstIndex - 20); i--) {
+        const line = lines[i];
+        if (line.includes(section.orgCode) && !line.includes('Continued')) {
+          startIndex = i;
+          break;
+        }
+      }
+      
+      const lastIndex = Math.max(...section.indices);
+      let endIndex = lastIndex;
+      
+      // Look forward for next section or end
+      for (let i = lastIndex + 1; i < lines.length; i++) {
+        const line = lines[i];
+        if (continuedPattern.test(line) || expenditurePattern.test(line)) {
+          endIndex = i - 1;
+          break;
+        }
+      }
+      
+      sections.push({
+            orgCode: section.orgCode,
+            departmentName: section.departmentName,
+        content: lines.slice(startIndex, endIndex + 1).join('\n')
+      });
+      
+      log(`Added section: ${section.orgCode} - ${section.departmentName}`, true);
+      log(`  Content from line ${startIndex + 1} to ${endIndex + 1}`, true);
+    }
     
-    return sections;
+    // Always ask user before returning sections
+    if (sections.length === 0) {
+      log('No sections found', true);
+      return [];
+    }
+    
+    consoleOutput('\n' + '='.repeat(80));
+    consoleOutput('SECTION DETECTION SUMMARY');
+    consoleOutput('='.repeat(80));
+    consoleOutput(`Found ${sections.length} sections out of ${expenditureLines.length} expected`);
+    for (const section of sections) {
+      consoleOutput(`- ${section.orgCode}: ${section.departmentName}`);
+    }
+    
+    const proceed = promptUser('\nProceed with these sections? (y/n): ').toLowerCase() === 'y';
+    logUser(`User response for proceeding with sections: ${proceed ? 'yes' : 'no'}`);
+    
+    return proceed ? sections : [];
   } catch (error: any) {
     log(`Error in findDepartmentSections: ${error.message}`, true, true);
     return sections;
@@ -1383,70 +1355,140 @@ async function processDepartmentSection(
 }
 
 /**
- * Extract program descriptions from section content
+ * Extract program descriptions using coordinate-based processing
  */
 function extractProgramDescriptions(sectionContent: string): Array<{ projectCode: string, name: string, description: string }> {
   const programs: Array<{ projectCode: string, name: string, description: string }> = [];
   
   try {
-    const programDescriptionsIndex = sectionContent.indexOf('PROGRAM DESCRIPTIONS');
-    if (programDescriptionsIndex === -1) {
+    const lines = sectionContent.split('\n');
+    const processedLines: TextLine[] = [];
+    let currentPage = 0;
+
+    // First pass: parse all lines with coordinates
+    for (const line of lines) {
+      // Check for page markers
+      const pageMatch = line.match(/# === PAGE (\d+) === \[size: (\d+)x(\d+)\]/);
+      if (pageMatch) {
+        currentPage = parseInt(pageMatch[1]);
+        continue;
+      }
+
+      const parsedLine = parseLine(line, currentPage);
+      if (parsedLine) {
+        processedLines.push(parsedLine);
+      }
+    }
+
+    // Find PROGRAM DESCRIPTIONS section
+    const programDescIndex = processedLines.findIndex(line => 
+      line.text === 'PROGRAM DESCRIPTIONS'
+    );
+
+    if (programDescIndex === -1) {
       log('No "PROGRAM DESCRIPTIONS" section found', true);
       return programs;
     }
     
-    const detailedExpendituresIndex = sectionContent.indexOf('DETAILED EXPENDITURES BY PROGRAM');
-    if (detailedExpendituresIndex === -1) {
-      log('No "DETAILED EXPENDITURES BY PROGRAM" section found', true);
-      return programs;
+    // Find end of program descriptions (DETAILED EXPENDITURES BY PROGRAM)
+    const detailedExpIndex = processedLines.findIndex((line, idx) => 
+      idx > programDescIndex && line.text.match(/^DETAILED EXPENDITURES BY PROGRAM/)
+    );
+
+    const endIndex = detailedExpIndex === -1 ? processedLines.length : detailedExpIndex;
+
+    // Process program descriptions using x-coordinates
+    let currentProgram: { 
+      projectCode: string, 
+      name: string, 
+      description: string[], 
+      startX: number,
+      startY: number 
+    } | null = null;
+
+    // Track x-coordinates for program headers
+    const headerXCoords = new Set<number>();
+
+    // First pass: identify program header x-coordinates
+    for (let i = programDescIndex + 1; i < endIndex; i++) {
+      const line = processedLines[i];
+      const text = line.text.trim();
+
+      if (isProjectCode(text)) {
+        headerXCoords.add(line.x);
+      }
     }
-    
-    log(`Found PROGRAM DESCRIPTIONS at index ${programDescriptionsIndex}`, true);
-    log(`Found DETAILED EXPENDITURES BY PROGRAM at index ${detailedExpendituresIndex}`, true);
-    
-    const programDescriptionsText = sectionContent.substring(
-      programDescriptionsIndex + 'PROGRAM DESCRIPTIONS'.length,
-      detailedExpendituresIndex
-    ).trim();
-    
-    // Simple extraction logic - can be enhanced later
-    const programRegex = /\n(?=\d{4}(?:\d{3})?\s*[\s\-]+\s*[A-Z])/g;
-    const programSections = programDescriptionsText.split(programRegex);
-    
-    for (let section of programSections) {
-      section = section.trim();
-      if (!section) continue;
-      
-      // Try to match program codes
-      let match = section.match(/^(\d{4})\s*[\s\-]+\s*([^\n]+)/);
-      let projectCode = '';
-      let programName = '';
-      
-      if (match) {
-        projectCode = match[1] + '000'; // Convert 4-digit to 7-digit
-        programName = match[2].trim();
-      } else {
-        match = section.match(/^(\d{7})\s*[\s\-]+\s*([^\n]+)/);
-        if (match) {
-          projectCode = match[1];
-          programName = match[2].trim();
-        } else {
+
+    // Convert to array and sort for consistent comparison
+    const headerXArray = Array.from(headerXCoords).sort((a, b) => a - b);
+    const mainHeaderX = headerXArray[0]; // Leftmost x-coordinate is main program header
+
+    // Second pass: extract programs and descriptions
+    for (let i = programDescIndex + 1; i < endIndex; i++) {
+      const line = processedLines[i];
+      const text = line.text.trim();
+
+      if (!text) continue;
+
+      // Check for program headers using x-coordinate and pattern
+      if (line.x === mainHeaderX && isProjectCode(text)) {
+        // Save previous program if exists
+        if (currentProgram) {
+          programs.push({
+            projectCode: currentProgram.projectCode,
+            name: currentProgram.name,
+            description: currentProgram.description.join('\n').trim()
+          });
+        }
+
+        // Start new program
+        currentProgram = {
+          projectCode: text.length === 4 ? text + '000' : text,
+          name: '',
+          description: [],
+          startX: line.x,
+          startY: line.y
+        };
+
+        // Look for program name on next line
+        const nextLine = processedLines[i + 1];
+        if (nextLine && !isProjectCode(nextLine.text) && nextLine.text.match(/[A-Za-z]/)) {
+          currentProgram.name = nextLine.text.trim();
+          i++; // Skip name line
+        }
           continue;
         }
+
+      // Add to description if we have a current program and line is not a header
+      if (currentProgram && line.x > mainHeaderX) {
+        // Check if this line belongs to the current program
+        // It should be indented relative to the program header
+        if (line.x > currentProgram.startX) {
+          currentProgram.description.push(text);
+        }
       }
+    }
+
+    // Add final program if exists
+    if (currentProgram) {
+      programs.push({
+        projectCode: currentProgram.projectCode,
+        name: currentProgram.name,
+        description: currentProgram.description.join('\n').trim()
+      });
+    }
+
+    // Validate results
+    if (programs.length > 0) {
+      log(`Found ${programs.length} programs with descriptions`, true);
       
-      const headerEndIndex = section.indexOf('\n');
-      if (headerEndIndex === -1) continue;
-      
-      let description = section.substring(headerEndIndex).trim();
-      description = description.replace(/\n{3,}/g, '\n\n').replace(/[ \t]+/g, ' ').trim();
-      
-      if (projectCode && programName && description) {
-        programs.push({ projectCode, name: programName, description });
-      }
+      // Log x-coordinate analysis
+      log(`Program header x-coordinates: ${headerXArray.join(', ')}`, true);
+      log(`Main program header x-coordinate: ${mainHeaderX}`, true);
     }
     
     return programs;
+
   } catch (error: any) {
     log(`Error extracting program descriptions: ${error.message}`, true, true);
     return programs;
@@ -1496,7 +1538,7 @@ function analyzeProgramDescriptions(
 }
 
 /**
- * Extract budget allocations from section content
+ * Extract budget allocations using coordinate-based processing
  */
 function extractBudgetAllocations(
   sectionContent: string, 
@@ -1521,171 +1563,114 @@ function extractBudgetAllocations(
   }> = [];
   
   try {
-    const detailedExpendituresIndex = sectionContent.indexOf('DETAILED EXPENDITURES BY PROGRAM');
-    if (detailedExpendituresIndex === -1) {
+    const lines = sectionContent.split('\n');
+    const processedLines: TextLine[] = [];
+    let currentPage = 0;
+
+    // First pass: parse all lines with coordinates
+    for (const line of lines) {
+      // Check for page markers
+      const pageMatch = line.match(/# === PAGE (\d+) === \[size: (\d+)x(\d+)\]/);
+      if (pageMatch) {
+        currentPage = parseInt(pageMatch[1]);
+        continue;
+      }
+
+      const parsedLine = parseLine(line, currentPage);
+      if (parsedLine) {
+        processedLines.push(parsedLine);
+      }
+    }
+
+    // Find DETAILED EXPENDITURES BY PROGRAM section
+    const detailedExpIndex = processedLines.findIndex(line => 
+      line.text.match(/^DETAILED EXPENDITURES BY PROGRAM/)
+    );
+
+    if (detailedExpIndex === -1) {
       log('No "DETAILED EXPENDITURES BY PROGRAM" section found in budget extraction', true);
       return results;
     }
     
-    log(`Found DETAILED EXPENDITURES BY PROGRAM at index ${detailedExpendituresIndex} in budget extraction`, true);
-    
-    const expendituresText = sectionContent.substring(detailedExpendituresIndex);
-    
-    // Find fiscal years pattern
-    const fiscalYearsMatch = expendituresText.match(/(\d{4}-\d{2})[*\s\n]+(\d{4}-\d{2})[*\s\n]+(\d{4}-\d{2})/);
-    if (!fiscalYearsMatch) {
-      log('No fiscal years pattern found in expenditures section', true);
-      // Add debug: show the first 500 characters to understand the format
-      log(`Expenditures text preview: ${expendituresText.substring(0, 500)}`, true);
+    // Find fiscal years pattern using x-coordinates
+    const fiscalYears: string[] = [];
+    let yearStartIndex = -1;
+
+    // Look for fiscal years after DETAILED EXPENDITURES
+    for (let i = detailedExpIndex + 1; i < processedLines.length; i++) {
+      const line = processedLines[i];
+      if (line.text.match(/^\d{4}-\d{2}[*\s]*$/)) {
+        fiscalYears.push(line.text.replace(/[*\s]/g, ''));
+        if (yearStartIndex === -1) yearStartIndex = i;
+        if (fiscalYears.length === 3) break;
+      }
+    }
+
+    if (fiscalYears.length !== 3 || yearStartIndex === -1) {
+      log('Could not find all three fiscal years', true);
       return results;
     }
     
-    const fiscalYears = [fiscalYearsMatch[1], fiscalYearsMatch[2], fiscalYearsMatch[3]];
-    log(`Found fiscal years: ${fiscalYears.join(', ')}`, true);
-    
-    // Find requirements section
-    const requirementsIndex = expendituresText.indexOf('PROGRAM REQUIREMENTS', fiscalYearsMatch.index);
-    const subrequirementsIndex = expendituresText.indexOf('SUBPROGRAM REQUIREMENTS', fiscalYearsMatch.index);
-    
-    let requirementsSectionStart = -1;
-    if (requirementsIndex !== -1) {
-      requirementsSectionStart = requirementsIndex + 'PROGRAM REQUIREMENTS'.length;
-      log(`Found PROGRAM REQUIREMENTS at index ${requirementsIndex}`, true);
-    } else if (subrequirementsIndex !== -1) {
-      requirementsSectionStart = subrequirementsIndex + 'SUBPROGRAM REQUIREMENTS'.length;
-      log(`Found SUBPROGRAM REQUIREMENTS at index ${subrequirementsIndex}`, true);
-    } else {
-      log('No PROGRAM REQUIREMENTS or SUBPROGRAM REQUIREMENTS found', true);
-      return results;
-    }
-    
-    const budgetDataText = expendituresText.substring(requirementsSectionStart).trim();
-    log(`Budget data text preview (first 500 chars): ${budgetDataText.substring(0, 500)}`, true);
-    const lines = budgetDataText.split('\n');
-    log(`Budget data has ${lines.length} lines to process`, true);
-    
+    // Find amount column x-coordinates using the first set of amounts
+    const amountColumns: number[] = [];
     let currentProjectCode = '';
     let currentFundingType: FundingType | null = null;
     let currentFundCode = '';
     let currentFundName = '';
     let amounts: number[] = [];
     
-    // Check if the first line is a program code (for the initial program after PROGRAM REQUIREMENTS)
-    if (lines.length > 0) {
-      const firstLine = lines[0].trim();
-      const initialProgramMatch = firstLine.match(/^(\d{4})$/);
-      if (initialProgramMatch) {
-        currentProjectCode = initialProgramMatch[1] + '000';
-        log(`Found initial program section: ${initialProgramMatch[1]} -> project code: ${currentProjectCode}`, true);
-      }
-    }
-    
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
-      if (!line) continue;
-      
-      log(`Processing line ${i}: "${line}"`, true);
-      
-      // Check for funding type
-      if (line === 'State Operations:') {
+    // Process lines after fiscal years
+    for (let i = yearStartIndex; i < processedLines.length; i++) {
+      const line = processedLines[i];
+      const text = line.text.trim();
+
+      // Skip empty lines
+      if (!text) continue;
+
+      // Check for funding type markers
+      if (text === 'State Operations:') {
         currentFundingType = 0;
-        log(`Found funding type: State Operations (0)`, true);
         continue;
-      } else if (line === 'Local Assistance:') {
+      } else if (text === 'Local Assistance:') {
         currentFundingType = 1;
-        log(`Found funding type: Local Assistance (1)`, true);
         continue;
       }
       
-      // Check for new program section (PROGRAM REQUIREMENTS followed by 4-digit code)
-      if (line === 'PROGRAM REQUIREMENTS' && i + 1 < lines.length) {
-        const nextLine = lines[i + 1].trim();
-        const programMatch = nextLine.match(/^(\d{4})$/);
-        if (programMatch) {
-          const newProjectCode = programMatch[1] + '000';
-          currentProjectCode = newProjectCode;
-          currentFundingType = null; // Reset funding type for new program
+      // Check for project codes using x-coordinate and pattern
+      if (line.x < 100 && isProjectCode(text)) {
+        currentProjectCode = text.length === 4 ? text + '000' : text;
+        currentFundingType = null;
           currentFundCode = '';
           currentFundName = '';
           amounts = [];
-          log(`Found new program section: ${programMatch[1]} -> project code: ${currentProjectCode}`, true);
-          i++; // Skip the program code line
+          continue;
+      }
+
+      // Check for fund codes using x-coordinate
+      if (currentFundingType !== null && currentProjectCode && line.x < 100 && isFundCode(text)) {
+        const nextLine = processedLines[i + 1];
+        if (nextLine && !isAmountString(nextLine.text) && nextLine.text.match(/[A-Za-z]/)) {
+        currentFundCode = text;
+          currentFundName = nextLine.text.trim();
+          amounts = [];
+          i++; // Skip fund name line
           continue;
         }
       }
       
-      // Check for subprogram codes (7-digit codes that appear after program names)
-      const subprogramMatch = line.match(/^(\d{7})$/);
-      if (subprogramMatch && i + 1 < lines.length) {
-        const nextLine = lines[i + 1].trim();
-        // Subprogram names should contain letters and not be amounts or fund codes
-        if (nextLine && 
-            !nextLine.match(/^\d+$/) && 
-            !nextLine.match(/^\$/) &&
-            !nextLine.match(/^[\d,]+$/) &&
-            !nextLine.match(/^-$/) &&
-            !nextLine.startsWith('State Operations:') &&
-            !nextLine.startsWith('Local Assistance:') &&
-            nextLine.match(/[A-Za-z]/) &&
-            nextLine.length > 3) {
-          
-          currentProjectCode = subprogramMatch[1];
-          currentFundingType = null; // Reset funding type for new subprogram
-          currentFundCode = '';
-          currentFundName = '';
-          amounts = [];
-          log(`Found subprogram code: ${subprogramMatch[1]}`, true);
-          i++; // Skip the subprogram name line
-          continue;
-        }
-      }
-      
-      // Check for fund code ONLY when funding type is set and we have a current project
-      if (currentFundingType !== null && currentProjectCode) {
-        const fundCodeMatch = line.match(/^(\d{4,5})$/);
-        if (fundCodeMatch && i + 1 < lines.length) {
-          const nextLine = lines[i + 1].trim();
-          // Fund names should contain letters and not be amounts or totals
-          if (nextLine && 
-              !nextLine.match(/^\d+$/) && 
-              !nextLine.match(/^\$/) && 
-              !nextLine.match(/^[\d,]+$/) &&
-              !nextLine.match(/^-$/) &&
-              !nextLine.startsWith('Totals,') &&
-              nextLine.match(/[A-Za-z]/) &&
-              nextLine.length > 2) {
-            currentFundCode = fundCodeMatch[1];
-            currentFundName = nextLine;
-            log(`Found fund code: ${currentFundCode}, fund name: ${currentFundName}`, true);
-            i++; // Skip the fund name line
-            amounts = [];
-            continue;
-          }
-        }
-      }
-      
-      // Check for amounts (with or without $ prefix)
-      const amountWithDollarMatch = line.match(/^\$(\d{1,3}(?:,\d{3})*(?:\.\d+)?)$/);
-      const amountWithoutDollarMatch = line.match(/^(\d{1,3}(?:,\d{3})*(?:\.\d+)?)$/);
-      const dashMatch = line.match(/^-$/);
-      
+      // Check for amounts using x-coordinate patterns
       if (currentProjectCode && currentFundingType !== null && currentFundCode) {
-        let amount = 0;
-        
-        if (amountWithDollarMatch) {
-          amount = parseFloat(amountWithDollarMatch[1].replace(/,/g, ''));
-        } else if (amountWithoutDollarMatch) {
-          amount = parseFloat(amountWithoutDollarMatch[1].replace(/,/g, ''));
-        } else if (dashMatch) {
-          amount = 0; // Dash represents zero
-        }
-        
-        if ((amountWithDollarMatch || amountWithoutDollarMatch || dashMatch) && !isNaN(amount)) {
+        if (isAmountString(text)) {
+          // Store amount column x-coordinate if not already known
+          if (amountColumns.length < 3 && !amountColumns.includes(line.x)) {
+            amountColumns.push(line.x);
+          }
+
+          const amount = parseAmount(text);
           amounts.push(amount);
-          log(`Found amount: $${amount} (total amounts so far: ${amounts.length})`, true);
           
           if (amounts.length === 3) {
-            log(`Processing 3 amounts for project ${currentProjectCode}, fund ${currentFundCode}`, true);
+            // Add budget allocations for all three years
             for (let j = 0; j < 3; j++) {
               results.push({
                 projectCode: currentProjectCode,
@@ -1696,10 +1681,9 @@ function extractBudgetAllocations(
                 amount: amounts[j],
                 fiscalYear: fiscalYears[j]
               });
-              
-              log(`Added allocation: ${currentProjectCode}, ${fiscalYears[j]}, $${amounts[j]}`, true);
             }
             
+            // Reset for next set
             amounts = [];
             currentFundCode = '';
             currentFundName = '';
@@ -1708,8 +1692,20 @@ function extractBudgetAllocations(
       }
     }
     
-    log(`Total budget allocations extracted: ${results.length}`, true);
+    // Validate results
+    if (results.length > 0) {
+      log(`Extracted ${results.length} budget allocations`, true);
+      
+      // Log amount column analysis
+      if (amountColumns.length === 3) {
+        log(`Found amount columns at x-coordinates: ${amountColumns.join(', ')}`, true);
+      } else {
+        log(`Warning: Expected 3 amount columns, found ${amountColumns.length}`, true, true);
+      }
+    }
+
     return results;
+
   } catch (error: any) {
     log(`Error extracting budget allocations: ${error.message}`, true, true);
     return results;
