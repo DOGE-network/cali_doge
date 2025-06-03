@@ -1,6 +1,331 @@
 {
   "tweets": [
     {
+      "text": "@houmanhemmati @TheBabylonBee @CAgovernor @GavinNewsom Oh, and the cost would be just for labor since these API are free and you can use vercel and github for deploying the application for free as well.",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974597226799105",
+            "name": "B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974597172203520",
+            "name": "Services - B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10040692468",
+            "name": "GitHub"
+          }
+        }
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 108,
+            "end": 110,
+            "probability": 0.4235,
+            "type": "Other",
+            "normalized_text": "API"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 15,
+            "end": 29,
+            "username": "TheBabylonBee",
+            "id": "4914384040"
+          },
+          {
+            "start": 30,
+            "end": 41,
+            "username": "CAgovernor",
+            "id": "38349184"
+          },
+          {
+            "start": 42,
+            "end": 54,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1929660093135736935"
+      ],
+      "id": "1929660093135736935",
+      "created_at": "2025-06-02T22:03:12.000Z",
+      "created_at_formatted": "Jun 2, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "@houmanhemmati @TheBabylonBee @CAgovernor @GavinNewsom Using open APIs like OpenWeatherMap or NWS, it is easy to build a similar application to the CalHeatScore. From scratch, estimate about 20 hours of work.",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 76,
+            "end": 89,
+            "probability": 0.8766,
+            "type": "Other",
+            "normalized_text": "OpenWeatherMap"
+          },
+          {
+            "start": 94,
+            "end": 96,
+            "probability": 0.6261,
+            "type": "Other",
+            "normalized_text": "NWS"
+          },
+          {
+            "start": 148,
+            "end": 159,
+            "probability": 0.8702,
+            "type": "Other",
+            "normalized_text": "CalHeatScore"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 15,
+            "end": 29,
+            "username": "TheBabylonBee",
+            "id": "4914384040"
+          },
+          {
+            "start": 30,
+            "end": 41,
+            "username": "CAgovernor",
+            "id": "38349184"
+          },
+          {
+            "start": 42,
+            "end": 54,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1929659192593551419"
+      ],
+      "id": "1929659192593551419",
+      "created_at": "2025-06-02T21:59:37.000Z",
+      "created_at_formatted": "Jun 2, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -14034,8 +14359,8 @@
     }
   ],
   "meta": {
-    "result_count": 124,
-    "newest_id": "1928611606222565818",
+    "result_count": 126,
+    "newest_id": "1929660093135736935",
     "oldest_id": "1882144700762878208"
   }
 }
