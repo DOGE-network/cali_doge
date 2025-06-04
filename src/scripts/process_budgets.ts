@@ -732,7 +732,7 @@ async function processDepartmentSection(
   fileName: string = "",
   fundsData: FundsJSON,
   orgCode?: string,
-  departmentName?: string
+  departmentName?: string,
 ): Promise<void> {
   try {
     // Normalize line endings
@@ -768,53 +768,43 @@ async function processDepartmentSection(
     
     // Start from line 1 (after the header)
     for (let i = 1; i < lines.length; i++) {
-      const line = lines[i].trim();
+      const line = lines[i];
+      const cleanedLine = line.replace(/\[[\d:,]+\]\s*/, '').trim(); // Remove coordinate details
       
       // Stop if we hit the expenditure marker
-      if (line.match(/3[\s\-](?:YR|YEAR)[\s\-]*EXPENDITURES[\s\-]*(?:AND[\s\-]*)?POSITIONS/)) {
+      if (cleanedLine.match(/^(?:3|THREE)[\s\-]*(?:YR|YEAR|Years?)[\s\-]*EXPENDITURES?(?:[\s\-]*AND[\s\-]*POSITIONS?)?$/i)) {
         break;
-      }
-      
-      // Stop if we hit budget data patterns (amounts, fund codes, etc.)
-      if (line.match(/^\$[\d,]+$/) ||           // Dollar amounts like $160,139
-          line.match(/^\d{1,3}(,\d{3})*$/) ||  // Numbers like 160,139
-          line.match(/^\d{4}$/) ||              // 4-digit codes
-          line === 'State Operations:' ||
-          line === 'Local Assistance:' ||
-          line.includes('PROGRAM REQUIREMENTS') ||
-          line.includes('DETAILED EXPENDITURES') ||
-          line.includes('Expenditure Adjustments:') ||
-          line.includes('FUND BALANCE') ||
-          line.includes('BEGINNING BALANCE') ||
-          line.includes('Positions') && line.includes('Expenditures')) {
-        break;
-      }
-      
-      // Skip "- Continued" lines but continue reading description
-      if (line.match(/^\d{4}\s+.*\s*-\s*Continued\s*$/)) {
-        continue;
       }
       
       // Skip empty lines at the beginning
-      if (!foundDescription && line === '') {
+      if (!foundDescription && !cleanedLine) {
+        continue;
+      }
+      
+      // Skip continuation headers
+      if (cleanedLine.match(/^\d{4}\s+.*\s*-\s*Continued\s*$/)) {
         continue;
       }
       
       // If we have content, we've found the description
-      if (line !== '') {
+      if (cleanedLine) {
         foundDescription = true;
+        descriptionLines.push(cleanedLine);
+      } else if (foundDescription) {
+        // Keep empty lines that are between description paragraphs
+        descriptionLines.push('');
       }
-      
-      // Add the line to description
-      descriptionLines.push(line);
     }
     
     // Clean up the description
     departmentDescription = descriptionLines
       .join('\n')
       .trim()
-      .replace(/\n{3,}/g, '\n\n')
-      .replace(/[ \t]+/g, ' ');
+      .replace(/\n{2,}/g, '\n') // Replace multiple newlines with single newline
+      .replace(/[ \t]+/g, ' ')  // Replace multiple spaces with single space
+      .replace(/\n +/g, '\n')   // Remove leading spaces after newlines
+      .replace(/ +\n/g, '\n')   // Remove trailing spaces before newlines
+      .replace(/\n+$/, '');     // Remove trailing newlines at end
     
     log(`Processing department: ${departmentName} (Org Code: ${orgCode})`, true);
     if (departmentDescription) {
