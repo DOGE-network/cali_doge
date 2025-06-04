@@ -2,50 +2,49 @@
  * Budget Data Text File Processing Script
  * from plan datastructureandlayout.md, step 2. Data Processing Scripts Update, Update Process Budgets Script
  * 
- * Section Detection Rules:
+ * Steps:
  * 1. Coordinate-Based Processing:
- *    - Uses x,y coordinates from PDF text extraction
- *    - Section headers appear at x < 100
- *    - Content indentation tracked by x-coordinates
- *    - Page boundaries marked with dimensions
+ *    1.1. Extract x,y coordinates from PDF text
+ *    1.2. Track section header positions (x < 100)
+ *    1.3. Track content indentation by x-coordinates
+ *    1.4. Mark page boundaries with dimensions
  * 
- * 2. Section Header Format:
- *    - Pattern: 4-digit organizational code followed by department name
- *    - Example: "7100   Employment Development Department"
- *    - Headers must appear at x < 100 coordinate
- *    - Continuation headers ("- Continued") used for validation
- *    - Excludes fund/account headers using pattern matching
+ * 2. Section Detection:
+ *    2.1. Find expenditure markers ("3-YEAR EXPENDITURES AND POSITIONS")
+ *    2.2. Track continuation headers ("- Continued")
+ *    2.3. Extract section content between beginning of section (section header) and end of section (just before next section header)
+ *    2.4. Validate section boundaries and content
  * 
  * 3. Section Content Structure:
- *    - Department description text appears at x > header x
- *    - Each section MUST contain expenditure marker
- *    - Expenditure marker: "3-YEAR EXPENDITURES AND POSITIONS" or variants
- *    - Continuation headers required for multi-page sections
+ *    3.1. Extract department description
+ *    3.2. Process program descriptions
+ *    3.3. Process budget allocations
  * 
- * 4. Subsection Layout:
- *    - Program descriptions and budget data use consistent x-coordinates
- *    - Program codes appear at leftmost x-coordinate
- *    - Descriptions/names appear indented (higher x-coordinate)
- *    - Budget amounts appear in fixed-width columns
- *    - Amount columns must be evenly spaced
- * 
- * Section Structure and Header Ordering:
- * Each section follows this mandatory structure with coordinate-based validation:
- * 0. Section Header (x < 100) - MANDATORY
- * 1. Department Description (x > header x) - MANDATORY  
- * 2. 3-YEAR EXPENDITURES AND POSITIONS (section start marker) - MANDATORY
+ * 4. Budget Data Processing:
+ *    4.1. Extract program codes and descriptions
+ *    4.2. Parse fiscal years and amounts
+ *    4.3. Track fund codes and names
+ *    4.4. Validate amount column spacing
+ *    4.5. Process State Operations vs Local Assistance
+ *
+ * Section Structure:
+ * Each section follows this structure:
+ * 1. Section Header (4-digit org code + department name) [one per section, required]
+ * 2. Department Description [one per section, required]
+ * 3. 3-YEAR EXPENDITURES AND POSITIONS marker [one per section, required]
+ * 4. Continuation headers (section header text (4-digit org code + department name) followed by "- Continued") [zero or more per section, may appear anywhere in the section around the header and footer text]
  * 
  * Then the following subsection headers appear in order (when present):
- * 3. LEGAL CITATIONS AND AUTHORITY
- * 4. DEPARTMENT AUTHORITY
- * 5. PROGRAM AUTHORITY
- * 6. MAJOR PROGRAM CHANGES
- * 7. DETAILED BUDGET ADJUSTMENTS
- * 8. PROGRAM DESCRIPTIONS
- * 9. DETAILED EXPENDITURES BY PROGRAM
- * 10. EXPENDITURES BY CATEGORY
- * 11. DETAIL OF APPROPRIATIONS AND ADJUSTMENTS
- * 12. CHANGES IN AUTHORIZED POSITIONS
+ * 5. LEGAL CITATIONS AND AUTHORITY [one per section]
+ * 6. DEPARTMENT AUTHORITY [one per section]
+ * 7. PROGRAM AUTHORITY [one per section]
+ * 8. MAJOR PROGRAM CHANGES [one per section]
+ * 9. DETAILED BUDGET ADJUSTMENTS [one per section]
+ * 10. PROGRAM DESCRIPTIONS [one per section]
+ * 11. DETAILED EXPENDITURES BY PROGRAM [one per section]
+ * 12. EXPENDITURES BY CATEGORY [one per section]
+ * 13. DETAIL OF APPROPRIATIONS AND ADJUSTMENTS [one per section]
+ * 14. CHANGES IN AUTHORIZED POSITIONS [one per section]
  * 
  * Program Description Processing:
  * - Located after "PROGRAM DESCRIPTIONS" marker
@@ -98,7 +97,7 @@ import {
   FundingType
 } from '../types/budget';
 import promptSync from 'prompt-sync';
-import { generateTransactionId } from '../lib/logging';
+import { generateTransactionId, FileLogger } from '../lib/logging';
 
 // New interfaces for coordinate-based text processing
 interface TextLine {
@@ -110,6 +109,8 @@ interface TextLine {
   pageNum: number;
   rawLine: string;
 }
+
+
 
 // Helper functions for text processing
 function parseLine(line: string, currentPage: number): TextLine | null {
@@ -157,15 +158,9 @@ const FUNDS_FILE = path.join(DATA_DIRECTORY, 'funds.json');
 // Generate a transaction ID for this processing session
 const TRANSACTION_ID = generateTransactionId();
 
-// Create log file for this processing session
+// Create logger instance
 const LOG_DIR = path.join(process.cwd(), 'src/logs');
-if (!fs.existsSync(LOG_DIR)) {
-  fs.mkdirSync(LOG_DIR, { recursive: true });
-}
-const LOG_FILE = path.join(LOG_DIR, `process_budgets_${TRANSACTION_ID}.log`);
-
-// Initialize log file
-fs.writeFileSync(LOG_FILE, `Process Budgets Log - ${new Date().toISOString()}\n`, 'utf8');
+const logger = new FileLogger(LOG_DIR, `process_budgets_${TRANSACTION_ID}`);
 
 /**
  * Calculate string similarity using Levenshtein distance
@@ -204,30 +199,18 @@ function calculateStringSimilarity(str1: string, str2: string): number {
   return Math.round(((maxLength - distance) / maxLength) * 100);
 }
 
-// Logging function that writes ONLY to log file (not console)
-function log(message: string, isSubStep = false, isError = false): void {
-  const timestamp = new Date().toISOString();
-  const level = isError ? 'ERROR' : 'INFO';
-  const prefix = isSubStep ? '  - ' : '• ';
-  const logEntry = `[${level}] [${timestamp}] ${prefix}${message}\n`;
-  
-  // Write only to log file, not console
-  fs.appendFileSync(LOG_FILE, logEntry, 'utf8');
-}
+// Logging functions that use the logger instance
+const log = (message: string, isSubStep = false, isError = false): void => {
+  logger.log(message, isSubStep, isError);
+};
 
-// User interaction logging - also only to log file
-function logUser(message: string): void {
-  const timestamp = new Date().toISOString();
-  const logEntry = `[USER] [${timestamp}] ${message}\n`;
-  
-  // Write only to log file, not console
-  fs.appendFileSync(LOG_FILE, logEntry, 'utf8');
-}
+const logUser = (message: string): void => {
+  logger.logUser(message);
+};
 
-// Console output function for user prompts and interaction (console only)
-function consoleOutput(message: string): void {
+const consoleOutput = (message: string): void => {
   console.log(message);
-}
+};
 
 // Statistics tracking
 interface ProcessingStats {
@@ -568,24 +551,32 @@ async function processBudgetFile(
  */
 async function findDepartmentSections(
   filePath: string
-): Promise<Array<{orgCode: string, departmentName: string, content: string}>> {
-  const sections: Array<{orgCode: string, departmentName: string, content: string}> = [];
+): Promise<Array<{orgCode: string, departmentName: string, content: string, startLine: number}>> {
+  const sections: Array<{orgCode: string, departmentName: string, content: string, startLine: number}> = [];
   
   try {
     // Read file content
+    log('Step 1.1: Extracting x,y coordinates from text file', true);
     const fileContent = await fs.promises.readFile(filePath, 'utf8');
     const lines = fileContent.split('\n');
-    log(`Read ${lines.length} lines from file`, true);
+    log(`Step 1.1: Extracted coordinates from ${lines.length} lines`, true);
     
-    // Stage 1: Find expenditure headers
-    const expenditurePattern = /(?:3|THREE)[\s\-]*(?:YR|YEAR|Years?)[\s\-]*EXPENDITURES?(?:[\s\-]*AND[\s\-]*POSITIONS?)?/i;
+    // Find expenditure headers
+    log('Step 2.1: Scanning for EXPENDITURES markers', true);
+    const expenditurePattern = /\[[\d:,]+\]\s*(?:3|THREE)[\s\-]*(?:YR|YEAR|Years?)[\s\-]*EXPENDITURES?(?:[\s\-]*AND[\s\-]*POSITIONS?)?/i;
     const expenditureLines = lines
       .map((line, index) => ({ line, index }))
       .filter(({ line }) => expenditurePattern.test(line));
     
-    log(`Found ${expenditureLines.length} expenditure headers`, true);
+    // Log each found expenditure marker with its line number
+    expenditureLines.forEach(({ line, index }) => {
+      log(`Step 2.1: Found expenditure marker at file line ${index + 1}: "${line.trim()}"`, true);
+    });
     
-    // Stage 2: Find continuation headers
+    log(`Step 2.1: Found ${expenditureLines.length} potential markers`, true);
+    
+    // Find continuation headers
+    log('Step 2.2: Scanning for continuation headers', true);
     const continuationPattern = /^\[[\d:,]+\]\s*(\d{4})\s+(.+?)\s*-\s*Continued\s*$/;
     const continuedPattern = /^\[[\d:,]+\]\s*-\s*Continued\s*$/;
     const headerPattern = /^\[[\d:,]+\]\s*(\d{4})\s+(.+?)\s*$/;
@@ -595,11 +586,12 @@ async function findDepartmentSections(
         // First try single-line format
         const match = line.match(continuationPattern);
         if (match) {
-          log(`Found continuation line at ${index + 1}: "${line.trim()}"`, true);
+          log(`Step 2.2: Found continuation header at line ${index + 1}: "${line.trim()}"`, true);
           return {
             orgCode: match[1],
             departmentName: match[2].trim(),
-            index
+            index,
+            text: line.trim()
           };
         }
         
@@ -609,11 +601,12 @@ async function findDepartmentSections(
           const nextLine = lines[index + 1];
           const continuedLine = lines[index + 2];
           if (nextLine.trim() === '' && continuedPattern.test(continuedLine)) {
-            log(`Found split continuation header at ${index + 1}: "${line.trim()} / ${continuedLine.trim()}"`, true);
+            log(`Step 2.2: Found split continuation header at line ${index + 1}`, true);
             return {
               orgCode: headerMatch[1],
               departmentName: headerMatch[2].trim(),
-              index
+              index,
+              text: line.trim()
             };
           }
         }
@@ -622,137 +615,188 @@ async function findDepartmentSections(
       })
       .filter((header): header is NonNullable<typeof header> => header !== null);
     
-    log(`Found ${continuationHeaders.length} continuation headers`, true);
+    log(`Step 2.2: Found ${continuationHeaders.length} total continuation headers`, true);
     
-    // Group continuation headers by org code
-    const sectionsByOrgCode = new Map<string, {
-      orgCode: string,
-      departmentName: string,
-      indices: number[]
-    }>();
+    // Step 2.3: Extract sections using expenditure markers and continuation headers
+    log('Step 2.3: Extracting sections using expenditure markers and continuation headers', true);
     
-    for (const header of continuationHeaders) {
-      if (!sectionsByOrgCode.has(header.orgCode)) {
-        sectionsByOrgCode.set(header.orgCode, {
-          orgCode: header.orgCode,
-          departmentName: header.departmentName,
-          indices: []
+    // Log summary of data from previous steps
+    log('\nStep 2.3: Summary of data from previous steps:', true);
+    log(`Step 2.3: Found ${expenditureLines.length} expenditure markers:`, true);
+    expenditureLines.forEach(({ index, line }) => {
+      log(`Step 2.3: - Expenditure marker at file line ${index + 1}: "${line.trim()}"`, true);
+    });
+    
+    log(`\nStep 2.3: Found ${continuationHeaders.length} continuation headers:`, true);
+    continuationHeaders.forEach(header => {
+      log(`Step 2.3: - Continuation at file line ${header.index + 1}: ${header.orgCode} - "${header.departmentName}"`, true);
+    });
+    log('', true);
+
+    // Define patterns for section components
+    const patterns = {
+      sectionHeader: /^\[[\d:,]+\]\s*(\d{4})\s+([^-]+)$/,
+      expenditureMarker: /\[[\d:,]+\]\s*(?:3|THREE|3-|THREE-)?[\s\-]*(?:YR|YEAR|Years?|YEAR EXPENDITURE|YEAR EXPENDITURES)[\s\-]*(?:AND[\s\-]*POSITIONS?)?/i,
+      subsections: {
+        legalCitations: /^LEGAL CITATIONS AND AUTHORITY$/,
+        deptAuthority: /^DEPARTMENT AUTHORITY$/,
+        progAuthority: /^PROGRAM AUTHORITY$/,
+        majorChanges: /^MAJOR PROGRAM CHANGES$/,
+        budgetAdjustments: /^DETAILED BUDGET ADJUSTMENTS$/,
+        progDescriptions: /^PROGRAM DESCRIPTIONS$/,
+        detailedExp: /^DETAILED EXPENDITURES BY PROGRAM$/,
+        expByCategory: /^EXPENDITURES BY CATEGORY$/,
+        appropriations: /^DETAIL OF APPROPRIATIONS AND ADJUSTMENTS$/,
+        positions: /^CHANGES IN AUTHORIZED POSITIONS$/
+      }
+    };
+
+    // Process sections using expenditure markers
+    const sections: Array<{orgCode: string, departmentName: string, content: string, startLine: number}> = [];
+    
+    // Sort expenditure markers by line number
+    const sortedExpenditureMarkers = expenditureLines.sort((a, b) => a.index - b.index);
+    
+    // Process each pair of expenditure markers to find section boundaries
+    for (let i = 0; i < sortedExpenditureMarkers.length; i++) {
+      const currentMarker = sortedExpenditureMarkers[i];
+      const nextMarker = sortedExpenditureMarkers[i + 1];
+      
+      log(`\nStep 2.3: Processing section between expenditure markers:`, true);
+      log(`- Current marker at line ${currentMarker.index + 1}`, true);
+      if (nextMarker) {
+        log(`- Next marker at line ${nextMarker.index + 1}`, true);
+      } else {
+        log(`- This is the last marker`, true);
+      }
+
+      // Find continuation headers around this expenditure marker
+      const relevantContinuations = continuationHeaders.filter(h => 
+        h.index > (i === 0 ? 0 : sortedExpenditureMarkers[i - 1].index) && 
+        h.index < (nextMarker ? nextMarker.index : lines.length)
+      );
+
+      if (relevantContinuations.length > 0) {
+        log(`Found ${relevantContinuations.length} continuation headers in this section:`, true);
+        relevantContinuations.forEach(cont => {
+          log(`- Continuation at line ${cont.index + 1}: ${cont.orgCode} - "${cont.departmentName}"`, true);
         });
       }
-      sectionsByOrgCode.get(header.orgCode)?.indices.push(header.index);
-    }
-    
-    log(`Found ${sectionsByOrgCode.size} sections from ${continuationHeaders.length} continuation headers`, true);
-    
-    // If we have fewer sections than expenditure headers, look for missing ones
-    if (sectionsByOrgCode.size < expenditureLines.length) {
-      log(`Missing ${expenditureLines.length - sectionsByOrgCode.size} sections - searching near expenditure markers`, true);
+
+      // Search backwards from current expenditure marker to find section header
+      let sectionStartIndex = -1;
+      let sectionHeaderName = '';
+      let sectionOrgCode = '';
       
-      // Track which sections we already have
-      const knownSections = new Set(sectionsByOrgCode.keys());
+      // Search up to 50 lines before expenditure marker
+      const searchStartIndex = Math.max(0, currentMarker.index - 50);
+      log(`Searching for section header between lines ${searchStartIndex + 1} and ${currentMarker.index}`, true);
       
-      // Look for headers near remaining expenditure markers
-      for (const expHeader of expenditureLines) {
-        // Look up to 20 lines before expenditure header
-        for (let i = Math.max(0, expHeader.index - 20); i < expHeader.index; i++) {
-          const line = lines[i];
-          const match = line.match(/^\[[\d:,]+\]\s*(\d{4})\s+([^-]+)$/);
-          if (match) {
-            const orgCode = match[1];
-            const departmentName = match[2].trim();
-            
-            // Skip if we already have this section
-            if (knownSections.has(orgCode)) continue;
-            
-            // Found a potential new section
-            log(`Found potential new section at line ${i + 1}: ${orgCode} - ${departmentName}`, true);
-            
-            // Ask user if this is a valid section header
-            consoleOutput('\n' + '='.repeat(80));
-            consoleOutput('POTENTIAL NEW SECTION FOUND');
-            consoleOutput('='.repeat(80));
-            consoleOutput(`At line ${i + 1}:`);
-            // Show context
-            for (let j = Math.max(0, i - 5); j <= Math.min(lines.length - 1, i + 5); j++) {
-              const prefix = j === i ? '>' : ' ';
-              consoleOutput(`${prefix} ${j + 1}: ${lines[j]}`);
-            }
-            
-            const isValid = promptUser('\nIs this a valid section header? (y/n): ').toLowerCase() === 'y';
-            logUser(`User response for potential section at line ${i + 1}: ${isValid ? 'yes' : 'no'}`);
-            
-            if (isValid) {
-              // Add to sections map
-              sectionsByOrgCode.set(orgCode, {
-                orgCode,
-                departmentName,
-                indices: [i]
-              });
-              knownSections.add(orgCode);
-              log(`Added new section: ${orgCode} - ${departmentName}`, true);
+      for (let j = currentMarker.index - 1; j >= searchStartIndex; j--) {
+        const line = lines[j];
+        const match = line.match(patterns.sectionHeader);
+        if (match) {
+          const [, orgCode, deptName] = match;
+          // If we have continuations, verify org code matches
+          if (relevantContinuations.length > 0) {
+            if (relevantContinuations.some(cont => cont.orgCode === orgCode)) {
+              sectionStartIndex = j;
+              sectionHeaderName = deptName.trim();
+              sectionOrgCode = orgCode;
+              log(`Found section header at line ${j + 1}: ${orgCode} - ${deptName.trim()}`, true);
               break;
             }
+          } else {
+            // No continuations, take the first header we find
+            sectionStartIndex = j;
+            sectionHeaderName = deptName.trim();
+            sectionOrgCode = orgCode;
+            log(`Found section header at line ${j + 1}: ${orgCode} - ${deptName.trim()}`, true);
+            break;
           }
         }
       }
-    }
-    
-    // Now process all found sections
-    for (const section of Array.from(sectionsByOrgCode.values())) {
-      const firstIndex = Math.min(...section.indices);
-      let startIndex = firstIndex;
+
+      if (sectionStartIndex === -1) {
+        log(`WARNING: Could not find section header for expenditure marker at line ${currentMarker.index + 1}`, true);
+        continue;
+      }
+
+      // Determine section end
+      const sectionEndIndex = nextMarker ? nextMarker.index - 1 : lines.length - 1;
       
-      // Look backwards for main header
-      for (let i = firstIndex - 1; i >= Math.max(0, firstIndex - 20); i--) {
-        const line = lines[i];
-        if (line.includes(section.orgCode) && !line.includes('Continued')) {
-          startIndex = i;
-          break;
-        }
+      // Find description (text between header and expenditure marker)
+      let description: { startIndex: number; endIndex: number; } | undefined = undefined;
+      let descStart = sectionStartIndex + 1;
+      let descEnd = currentMarker.index - 1;
+      
+      // Skip initial blank lines
+      while (descStart < descEnd && !lines[descStart].trim()) {
+        descStart++;
       }
       
-      const lastIndex = Math.max(...section.indices);
-      let endIndex = lastIndex;
-      
-      // Look forward for next section or end
-      for (let i = lastIndex + 1; i < lines.length; i++) {
-        const line = lines[i];
-        if (continuedPattern.test(line) || expenditurePattern.test(line)) {
-          endIndex = i - 1;
-          break;
-        }
+      // Trim trailing blank lines
+      while (descEnd > descStart && !lines[descEnd].trim()) {
+        descEnd--;
       }
       
+      if (descStart < descEnd) {
+        description = { startIndex: descStart, endIndex: descEnd };
+        log(`Found description from line ${descStart + 1} to ${descEnd + 1}`, true);
+      }
+
+      // Validate section structure
+      if (!description) {
+        log(`WARNING: Missing required description for section ${sectionOrgCode}`, true);
+        continue;
+      }
+
+      // Add valid section
       sections.push({
-            orgCode: section.orgCode,
-            departmentName: section.departmentName,
-        content: lines.slice(startIndex, endIndex + 1).join('\n')
+        orgCode: sectionOrgCode,
+        departmentName: sectionHeaderName,
+        content: lines.slice(sectionStartIndex, sectionEndIndex + 1).join('\n'),
+        startLine: sectionStartIndex + 1
       });
       
-      log(`Added section: ${section.orgCode} - ${section.departmentName}`, true);
-      log(`  Content from line ${startIndex + 1} to ${endIndex + 1}`, true);
+      log(`Added valid section for ${sectionOrgCode}:`, true);
+      log(`- Header at line ${sectionStartIndex + 1}: ${sectionHeaderName}`, true);
+      log(`- Expenditure marker at line ${currentMarker.index + 1}`, true);
+      log(`- Description from line ${description.startIndex + 1} to ${description.endIndex + 1}`, true);
+      log(`- Section ends at line ${sectionEndIndex + 1}`, true);
     }
-    
-    // Always ask user before returning sections
+
     if (sections.length === 0) {
-      log('No sections found', true);
+      log('Step 2.4: No valid sections found', true);
       return [];
     }
     
     consoleOutput('\n' + '='.repeat(80));
     consoleOutput('SECTION DETECTION SUMMARY');
     consoleOutput('='.repeat(80));
-    consoleOutput(`Found ${sections.length} sections out of ${expenditureLines.length} expected`);
+    consoleOutput(`Found ${sections.length} sections`);
+    
+    // Display detailed section information with actual file line numbers
     for (const section of sections) {
-      consoleOutput(`- ${section.orgCode}: ${section.departmentName}`);
+      consoleOutput(`\nSection: ${section.orgCode} - ${section.departmentName}`);
+      consoleOutput(`Starts at file line: ${section.startLine}`);
+      const lines = section.content.split('\n');
+      consoleOutput('Content preview (first 5 lines):');
+      lines.slice(0, 5).forEach((line, idx) => {
+        const actualLineNum = section.startLine + idx;
+        consoleOutput(`  File line ${actualLineNum}: ${line}`);
+      });
+      if (lines.length > 5) {
+        consoleOutput(`  ... and ${lines.length - 5} more lines`);
+      }
     }
     
     const proceed = promptUser('\nProceed with these sections? (y/n): ').toLowerCase() === 'y';
-    logUser(`User response for proceeding with sections: ${proceed ? 'yes' : 'no'}`);
+    logUser(`Step 2.4: User response for proceeding with sections: ${proceed ? 'yes' : 'no'}`);
     
     return proceed ? sections : [];
   } catch (error: any) {
-    log(`Error in findDepartmentSections: ${error.message}`, true, true);
+    log(`Step 2.4: Error in findDepartmentSections: ${error.message}`, true, true);
     return sections;
   }
 }
@@ -1386,7 +1430,7 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
     );
 
     if (programDescIndex === -1) {
-      log('No "PROGRAM DESCRIPTIONS" section found', true);
+      log('Step 4.1: No program descriptions section found', true);
       return programs;
     }
     
@@ -1408,8 +1452,9 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
 
     // Track x-coordinates for program headers
     const headerXCoords = new Set<number>();
-
+    
     // First pass: identify program header x-coordinates
+    log('Step 4.1: Analyzing program header positions', true);
     for (let i = programDescIndex + 1; i < endIndex; i++) {
       const line = processedLines[i];
       const text = line.text.trim();
@@ -1419,11 +1464,12 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
       }
     }
 
-    // Convert to array and sort for consistent comparison
     const headerXArray = Array.from(headerXCoords).sort((a, b) => a - b);
     const mainHeaderX = headerXArray[0]; // Leftmost x-coordinate is main program header
+    log('Step 4.1: Found program header x-coordinates', true);
 
     // Second pass: extract programs and descriptions
+    log('Step 4.1: Extracting program descriptions', true);
     for (let i = programDescIndex + 1; i < endIndex; i++) {
       const line = processedLines[i];
       const text = line.text.trim();
@@ -1456,8 +1502,8 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
           currentProgram.name = nextLine.text.trim();
           i++; // Skip name line
         }
-          continue;
-        }
+        continue;
+      }
 
       // Add to description if we have a current program and line is not a header
       if (currentProgram && line.x > mainHeaderX) {
@@ -1480,17 +1526,14 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
 
     // Validate results
     if (programs.length > 0) {
-      log(`Found ${programs.length} programs with descriptions`, true);
-      
-      // Log x-coordinate analysis
-      log(`Program header x-coordinates: ${headerXArray.join(', ')}`, true);
-      log(`Main program header x-coordinate: ${mainHeaderX}`, true);
+      log(`Step 4.1: Extracted ${programs.length} program descriptions`, true);
+      log('Step 4.1: Validated program header x-coordinates', true);
     }
-    
+
     return programs;
 
   } catch (error: any) {
-    log(`Error extracting program descriptions: ${error.message}`, true, true);
+    log(`Error in program description extraction: ${error.message}`, true, true);
     return programs;
   }
 }
@@ -1588,7 +1631,7 @@ function extractBudgetAllocations(
     );
 
     if (detailedExpIndex === -1) {
-      log('No "DETAILED EXPENDITURES BY PROGRAM" section found in budget extraction', true);
+      log('Step 4.2: No detailed expenditures section found', true);
       return results;
     }
     
@@ -1597,6 +1640,7 @@ function extractBudgetAllocations(
     let yearStartIndex = -1;
 
     // Look for fiscal years after DETAILED EXPENDITURES
+    log('Step 4.2: Scanning for fiscal year headers', true);
     for (let i = detailedExpIndex + 1; i < processedLines.length; i++) {
       const line = processedLines[i];
       if (line.text.match(/^\d{4}-\d{2}[*\s]*$/)) {
@@ -1607,18 +1651,21 @@ function extractBudgetAllocations(
     }
 
     if (fiscalYears.length !== 3 || yearStartIndex === -1) {
-      log('Could not find all three fiscal years', true);
+      log('Step 4.2: Failed to find all three fiscal years', true);
       return results;
     }
-    
-    // Find amount column x-coordinates using the first set of amounts
-    const amountColumns: number[] = [];
+
+    // Process amounts and fund codes
+    log('Step 4.3: Processing fund codes and amounts', true);
     let currentProjectCode = '';
     let currentFundingType: FundingType | null = null;
     let currentFundCode = '';
     let currentFundName = '';
     let amounts: number[] = [];
-    
+
+    // Track amount column x-coordinates
+    const amountColumns: number[] = [];
+
     // Process lines after fiscal years
     for (let i = yearStartIndex; i < processedLines.length; i++) {
       const line = processedLines[i];
@@ -1630,45 +1677,50 @@ function extractBudgetAllocations(
       // Check for funding type markers
       if (text === 'State Operations:') {
         currentFundingType = 0;
+        log('Step 4.5: Processing State Operations section', true);
         continue;
       } else if (text === 'Local Assistance:') {
         currentFundingType = 1;
+        log('Step 4.5: Processing Local Assistance section', true);
         continue;
       }
-      
-      // Check for project codes using x-coordinate and pattern
+
+      // Check for project codes
       if (line.x < 100 && isProjectCode(text)) {
         currentProjectCode = text.length === 4 ? text + '000' : text;
         currentFundingType = null;
-          currentFundCode = '';
-          currentFundName = '';
-          amounts = [];
-          continue;
+        currentFundCode = '';
+        currentFundName = '';
+        amounts = [];
+        log(`Step 4.1: Processing project code ${currentProjectCode}`, true);
+        continue;
       }
 
-      // Check for fund codes using x-coordinate
+      // Check for fund codes
       if (currentFundingType !== null && currentProjectCode && line.x < 100 && isFundCode(text)) {
         const nextLine = processedLines[i + 1];
         if (nextLine && !isAmountString(nextLine.text) && nextLine.text.match(/[A-Za-z]/)) {
-        currentFundCode = text;
+          currentFundCode = text;
           currentFundName = nextLine.text.trim();
           amounts = [];
+          log(`Step 4.3: Processing fund ${currentFundCode} - ${currentFundName}`, true);
           i++; // Skip fund name line
           continue;
         }
       }
-      
-      // Check for amounts using x-coordinate patterns
+
+      // Check for amounts
       if (currentProjectCode && currentFundingType !== null && currentFundCode) {
         if (isAmountString(text)) {
           // Store amount column x-coordinate if not already known
           if (amountColumns.length < 3 && !amountColumns.includes(line.x)) {
             amountColumns.push(line.x);
+            log(`Step 4.4: Found amount column at x=${line.x}`, true);
           }
 
           const amount = parseAmount(text);
           amounts.push(amount);
-          
+
           if (amounts.length === 3) {
             // Add budget allocations for all three years
             for (let j = 0; j < 3; j++) {
@@ -1682,7 +1734,9 @@ function extractBudgetAllocations(
                 fiscalYear: fiscalYears[j]
               });
             }
-            
+
+            log(`Step 4.2: Added budget allocations for ${currentProjectCode} - ${currentFundCode}`, true);
+
             // Reset for next set
             amounts = [];
             currentFundCode = '';
@@ -1691,16 +1745,16 @@ function extractBudgetAllocations(
         }
       }
     }
-    
+
     // Validate results
     if (results.length > 0) {
-      log(`Extracted ${results.length} budget allocations`, true);
+      log(`Step 4: Processed ${results.length} budget allocations`, true);
       
       // Log amount column analysis
       if (amountColumns.length === 3) {
-        log(`Found amount columns at x-coordinates: ${amountColumns.join(', ')}`, true);
+        log('Step 4.4: Validated amount column spacing', true);
       } else {
-        log(`Warning: Expected 3 amount columns, found ${amountColumns.length}`, true, true);
+        log('Step 4.4: Warning - inconsistent amount column spacing', true, true);
       }
     }
 
@@ -2018,13 +2072,13 @@ function updateFundData(
 
 // Start the script execution
 main().then(() => {
-  const finalMessage = `Processing completed successfully - logs written to: ${LOG_FILE}`;
+  const finalMessage = `Processing completed successfully - logs written to: ${logger.getLogFile()}`;
   consoleOutput(finalMessage);
-  log('Processing completed successfully');
+  logger.log('Processing completed successfully');
 }).catch((error: any) => {
   const errorMessage = `Error: ${error.message}`;
   consoleOutput(errorMessage);
-  log(`Unhandled error: ${error.message}`, false, true);
-  log(error.stack, true, true);
+  logger.error(`Unhandled error: ${error.message}`);
+  logger.error(error.stack || '');
   process.exit(1);
 });

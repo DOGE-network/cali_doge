@@ -167,37 +167,37 @@ def extract_text_with_layout(pdf_path):
             
             for block_idx, block in enumerate(blocks):
                 if not isinstance(block, dict):
-            continue
+                    continue
                 
                 for line_idx, line in enumerate(block.get('lines', [])):
                     if not isinstance(line, dict):
                         continue
-                        
-                    # Get line position and text
-                    bbox = line.get('bbox', [])
-                    spans = line.get('spans', [])
-                    line_text = ' '.join(span.get('text', '') for span in spans if isinstance(span, dict))
                     
-                    if line_text.strip():
-                        # Log bbox for debugging
-                        log(f"Line bbox: {bbox}", True)
+                # Get line position and text
+                bbox = line.get('bbox', [])
+                spans = line.get('spans', [])
+                line_text = ' '.join(span.get('text', '') for span in spans if isinstance(span, dict))
+                
+                if line_text.strip():
+                    # Log bbox for debugging
+                    log(f"Line bbox: {bbox}", True)
+                    
+                    # Get coordinates from bbox (which is a list [x0, y0, x1, y1])
+                    try:
+                        x = int(float(bbox[0])) if isinstance(bbox, (list, tuple)) and len(bbox) > 0 else 0
+                        y = int(float(bbox[1])) if isinstance(bbox, (list, tuple)) and len(bbox) > 1 else 0
+                    except (ValueError, TypeError, IndexError):
+                        x, y = 0, 0
+                        log(f"Failed to extract coordinates from bbox: {bbox}", True, True)
                         
-                        # Get coordinates from bbox (which is a list [x0, y0, x1, y1])
-                        try:
-                            x = int(float(bbox[0])) if isinstance(bbox, (list, tuple)) and len(bbox) > 0 else 0
-                            y = int(float(bbox[1])) if isinstance(bbox, (list, tuple)) and len(bbox) > 1 else 0
-                        except (ValueError, TypeError, IndexError):
-                            x, y = 0, 0
-                            log(f"Failed to extract coordinates from bbox: {bbox}", True, True)
-                            
-                        pos_info = f"[{block_idx}:{line_idx}:{x},{y}]"
-                        page_lines.append(f"{pos_info} {line_text}")
-            
-            # Add page lines (even if empty)
-            processed_lines.extend(page_lines)
-            
-            # Add empty line after each page
-            processed_lines.append("")
+                    pos_info = f"[{block_idx}:{line_idx}:{x},{y}]"
+                    page_lines.append(f"{pos_info} {line_text}")
+        
+        # Add page lines (even if empty)
+        processed_lines.extend(page_lines)
+        
+        # Add empty line after each page
+        processed_lines.append("")
         
         console_output(f"    ✅ Completed processing {len(pages)} pages")
         log(f"Completed processing {len(pages)} pages", True)
