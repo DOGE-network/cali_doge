@@ -1,6 +1,266 @@
 {
   "tweets": [
     {
+      "text": "@houmanhemmati @davidaherzl @aclima @GavinNewsom @AirResources So far $1.6M for FY2024,I am processing this month, so probably a bit more\n\n@CA__DOGE \n\nhttps://t.co/REhmL3EzVc",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "id": "1930139719725396023",
+      "created_at": "2025-06-04T05:49:04.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1930139719725396023"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 15,
+            "end": 27,
+            "username": "davidaherzl",
+            "id": "225997890"
+          },
+          {
+            "start": 28,
+            "end": 35,
+            "username": "aclima",
+            "id": "329787461"
+          },
+          {
+            "start": 36,
+            "end": 48,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          },
+          {
+            "start": 49,
+            "end": 62,
+            "username": "AirResources",
+            "id": "226338599"
+          },
+          {
+            "start": 139,
+            "end": 148,
+            "username": "CA__DOGE",
+            "id": "1861563798248988672"
+          }
+        ],
+        "urls": [
+          {
+            "start": 151,
+            "end": 174,
+            "url": "https://t.co/REhmL3EzVc",
+            "expanded_url": "https://cali-doge.org/search?q=ACLIMA+INC&view=details&id=ACLIMA+INC",
+            "display_url": "cali-doge.org/search?q=ACLIM…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1930139721692524546/fI2e8s75?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1930139721692524546/fI2e8s75?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/search?q=ACLIMA+INC&view=details&id=ACLIMA+INC"
+          }
+        ]
+      },
+      "created_at_formatted": "Jun 4, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "@T_Q_Gardner That was amazing and touching. Good work people.",
+      "id": "1930097422103130207",
+      "created_at": "2025-06-04T03:00:59.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1930097422103130207"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ]
+      },
+      "created_at_formatted": "Jun 4, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "@T_Q_Gardner Try again to make me speaker?",
+      "id": "1930083396967116913",
+      "created_at": "2025-06-04T02:05:15.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1930083396967116913"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ]
+      },
+      "created_at_formatted": "Jun 4, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "@T_Q_Gardner My audio stopped working when you added me as speaker…",
+      "id": "1930082607003512870",
+      "created_at": "2025-06-04T02:02:07.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1930082607003512870"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ]
+      },
+      "created_at_formatted": "Jun 4, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "@T_Q_Gardner Homeless search results with partial data processed\n \nhttps://t.co/Qn0UqcF3wa",
+      "id": "1930079504850211133",
+      "created_at": "2025-06-04T01:49:47.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1930079504850211133"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ],
+        "urls": [
+          {
+            "start": 67,
+            "end": 90,
+            "url": "https://t.co/Qn0UqcF3wa",
+            "expanded_url": "https://cali-doge.org/search?q=Homeless&types=keyword%2Cfund%2Cprogram%2Cvendor%2Cdepartment&exclude_common=true&limit=20",
+            "display_url": "cali-doge.org/search?q=Homel…",
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/search?q=Homeless&types=keyword%2Cfund%2Cprogram%2Cvendor%2Cdepartment&exclude_common=true&limit=20"
+          }
+        ]
+      },
+      "created_at_formatted": "Jun 4, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
       "text": "@houmanhemmati @TheBabylonBee @CAgovernor @GavinNewsom Oh, and the cost would be just for labor since these API are free and you can use vercel and github for deploying the application for free as well.",
       "context_annotations": [
         {
@@ -14359,8 +14619,8 @@
     }
   ],
   "meta": {
-    "result_count": 126,
-    "newest_id": "1929660093135736935",
+    "result_count": 131,
+    "newest_id": "1930139719725396023",
     "oldest_id": "1882144700762878208"
   }
 }
