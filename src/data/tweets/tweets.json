@@ -1,6 +1,55 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1930277934637691338"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1930277934637691338",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "hamill_law",
+            "id": "728102354151559168"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 34,
+            "end": 49,
+            "probability": 0.392,
+            "type": "Place",
+            "normalized_text": "California State"
+          }
+        ]
+      },
+      "text": "@hamill_law And a large amount of California State funds are distributed to local municipalities",
+      "created_at": "2025-06-04T14:58:17.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Jun 4, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
       "text": "@houmanhemmati @davidaherzl @aclima @GavinNewsom @AirResources So far $1.6M for FY2024,I am processing this month, so probably a bit more\n\n@CA__DOGE \n\nhttps://t.co/REhmL3EzVc",
       "context_annotations": [
         {
@@ -14619,8 +14668,8 @@
     }
   ],
   "meta": {
-    "result_count": 131,
-    "newest_id": "1930139719725396023",
+    "result_count": 132,
+    "newest_id": "1930277934637691338",
     "oldest_id": "1882144700762878208"
   }
 }
