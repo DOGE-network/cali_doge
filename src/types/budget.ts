@@ -46,7 +46,7 @@ export interface FiscalYearData {
  * Represents an organizational budget with organization code and fiscal years
  */
 export interface OrganizationalBudget {
-  code: string;  // 4-digit fund code as string to preserve leading zeros
+  code: string;  // 4-digit organization code as string to preserve leading zeros
   fiscalYear: FiscalYearData[];
 }
 

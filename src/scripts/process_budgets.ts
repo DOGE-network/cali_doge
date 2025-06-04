@@ -25,7 +25,7 @@
  *    4.2. Parse fiscal years and amounts
  *    4.3. Track fund codes and names
  *    4.4. Validate amount column spacing
- *    4.5. Process State Operations vs Local Assistance
+ *    4.5. Process fundingType: State Operations and Local Assistance
  *
  * Section Structure:
  * Each section follows this structure:
@@ -130,17 +130,9 @@ function parseLine(line: string, currentPage: number): TextLine | null {
   return null;
 }
 
-function isAmountString(text: string): boolean {
-  return /^\$?[\d,]+(?:\.\d+)?$/.test(text.trim()) || text.trim() === '-';
-}
-
 function parseAmount(text: string): number {
   if (text.trim() === '-') return 0;
   return parseFloat(text.replace(/[\$,]/g, '')) || 0;
-}
-
-function isFundCode(text: string): boolean {
-  return /^\d{4,5}$/.test(text.trim());
 }
 
 function isProjectCode(text: string): boolean {
@@ -1334,7 +1326,7 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
 
     // Find PROGRAM DESCRIPTIONS section
     const programDescIndex = processedLines.findIndex(line => 
-      line.text === 'PROGRAM DESCRIPTIONS'
+      line.text.trim() === 'PROGRAM DESCRIPTIONS'
     );
 
     if (programDescIndex === -1) {
@@ -1342,12 +1334,21 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
       return programs;
     }
     
-    // Find end of program descriptions (DETAILED EXPENDITURES BY PROGRAM)
-    const detailedExpIndex = processedLines.findIndex((line, idx) => 
-      idx > programDescIndex && line.text.match(/^DETAILED EXPENDITURES BY PROGRAM/)
-    );
-
-    const endIndex = detailedExpIndex === -1 ? processedLines.length : detailedExpIndex;
+    // Find end of program descriptions - look for any of these section headers
+    const endSectionHeaders = [
+      'DETAILED EXPENDITURES BY PROGRAM',
+      'EXPENDITURES BY CATEGORY',
+      'DETAIL OF APPROPRIATIONS AND ADJUSTMENTS',
+      'CHANGES IN AUTHORIZED POSITIONS'
+    ];
+    
+    const endIndices = endSectionHeaders.map(header => 
+      processedLines.findIndex((line, idx) => 
+        idx > programDescIndex && line.text.trim() === header
+      )
+    ).filter(idx => idx !== -1);
+    
+    const endIndex = endIndices.length > 0 ? Math.min(...endIndices) : processedLines.length;
 
     // Process program descriptions using x-coordinates
     let currentProgram: { 
@@ -1373,8 +1374,13 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
     }
 
     const headerXArray = Array.from(headerXCoords).sort((a, b) => a - b);
+    if (headerXArray.length === 0) {
+      log('Step 4.1: No program headers found', true);
+      return programs;
+    }
+    
     const mainHeaderX = headerXArray[0]; // Leftmost x-coordinate is main program header
-    log('Step 4.1: Found program header x-coordinates', true);
+    log(`Step 4.1: Found program header x-coordinate at ${mainHeaderX}`, true);
 
     // Second pass: extract programs and descriptions
     log('Step 4.1: Extracting program descriptions', true);
@@ -1384,15 +1390,27 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
 
       if (!text) continue;
 
+      // Skip continuation headers
+      if (text.match(/^.*\s*-\s*Continued\s*$/)) {
+        continue;
+      }
+
       // Check for program headers using x-coordinate and pattern
       if (line.x === mainHeaderX && isProjectCode(text)) {
         // Save previous program if exists
         if (currentProgram) {
-          programs.push({
-            projectCode: currentProgram.projectCode,
-            name: currentProgram.name,
-            description: currentProgram.description.join('\n').trim()
-          });
+          const description = currentProgram.description
+            .join('\n')
+            .trim()
+            .replace(/\n{3,}/g, '\n\n'); // Replace multiple newlines with double newline
+          
+          if (description) { // Only add if there's a description
+            programs.push({
+              projectCode: currentProgram.projectCode,
+              name: currentProgram.name,
+              description: description
+            });
+          }
         }
 
         // Start new program
@@ -1404,20 +1422,34 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
           startY: line.y
         };
 
-        // Look for program name on next line
-        const nextLine = processedLines[i + 1];
-        if (nextLine && !isProjectCode(nextLine.text) && nextLine.text.match(/[A-Za-z]/)) {
-          currentProgram.name = nextLine.text.trim();
-          i++; // Skip name line
+        // Look for program name on next lines
+        let j = i + 1;
+        let nameLines: string[] = [];
+        while (j < endIndex) {
+          const nextLine = processedLines[j];
+          if (!nextLine || !nextLine.text.trim() || isProjectCode(nextLine.text.trim())) {
+            break;
+          }
+          // Name should be at same x-coordinate or slightly indented
+          if (nextLine.x >= line.x && nextLine.x < line.x + 50) {
+            nameLines.push(nextLine.text.trim());
+            j++;
+          } else {
+            break;
+          }
+        }
+        
+        if (nameLines.length > 0) {
+          currentProgram.name = nameLines.join(' ').trim();
+          i = j - 1; // Skip processed name lines
         }
         continue;
       }
 
-      // Add to description if we have a current program and line is not a header
+      // Add to description if we have a current program and line is indented
       if (currentProgram && line.x > mainHeaderX) {
-        // Check if this line belongs to the current program
-        // It should be indented relative to the program header
-        if (line.x > currentProgram.startX) {
+        // Skip lines that look like amounts or page numbers
+        if (!text.match(/^[\d,\.\$\-]+$/) && !text.match(/^Page \d+$/)) {
           currentProgram.description.push(text);
         }
       }
@@ -1425,17 +1457,26 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
 
     // Add final program if exists
     if (currentProgram) {
-      programs.push({
-        projectCode: currentProgram.projectCode,
-        name: currentProgram.name,
-        description: currentProgram.description.join('\n').trim()
-      });
+      const description = currentProgram.description
+        .join('\n')
+        .trim()
+        .replace(/\n{3,}/g, '\n\n'); // Replace multiple newlines with double newline
+      
+      if (description) { // Only add if there's a description
+        programs.push({
+          projectCode: currentProgram.projectCode,
+          name: currentProgram.name,
+          description: description
+        });
+      }
     }
 
     // Validate results
     if (programs.length > 0) {
       log(`Step 4.1: Extracted ${programs.length} program descriptions`, true);
-      log('Step 4.1: Validated program header x-coordinates', true);
+      programs.forEach(prog => {
+        log(`Step 4.1: Found program ${prog.projectCode} - ${prog.name}`, true);
+      });
     }
 
     return programs;
@@ -1535,7 +1576,7 @@ function extractBudgetAllocations(
 
     // Find DETAILED EXPENDITURES BY PROGRAM section
     const detailedExpIndex = processedLines.findIndex(line => 
-      line.text.match(/^DETAILED EXPENDITURES BY PROGRAM/)
+      line.text.trim() === 'DETAILED EXPENDITURES BY PROGRAM'
     );
 
     if (detailedExpIndex === -1) {
@@ -1543,25 +1584,69 @@ function extractBudgetAllocations(
       return results;
     }
     
-    // Find fiscal years pattern using x-coordinates
-    const fiscalYears: string[] = [];
-    let yearStartIndex = -1;
+    log(`Step 4.2: Found DETAILED EXPENDITURES BY PROGRAM at line ${detailedExpIndex + 1}`, true);
+
+    // Find end of budget section (EXPENDITURES BY CATEGORY)
+    const expByCategoryIndex = processedLines.findIndex((line, idx) => 
+      idx > detailedExpIndex && line.text.trim() === 'EXPENDITURES BY CATEGORY'
+    );
+
+    if (expByCategoryIndex === -1) {
+      log('Step 4.2: Warning - No EXPENDITURES BY CATEGORY marker found, will process until end', true);
+    }
+    
+    const sectionEndIndex = expByCategoryIndex !== -1 ? expByCategoryIndex : processedLines.length;
+    log(`Step 4.2: Budget section ends at line ${sectionEndIndex + 1}`, true);
 
     // Look for fiscal years after DETAILED EXPENDITURES
     log('Step 4.2: Scanning for fiscal year headers', true);
-    for (let i = detailedExpIndex + 1; i < processedLines.length; i++) {
+    const fiscalYears: string[] = [];
+    let yearStartIndex = -1;
+    let yearEndIndex = -1;
+
+    // Debug: Show lines after section header
+    for (let i = detailedExpIndex + 1; i < Math.min(detailedExpIndex + 10, processedLines.length); i++) {
       const line = processedLines[i];
-      if (line.text.match(/^\d{4}-\d{2}[*\s]*$/)) {
-        fiscalYears.push(line.text.replace(/[*\s]/g, ''));
-        if (yearStartIndex === -1) yearStartIndex = i;
-        if (fiscalYears.length === 3) break;
+      log(`Step 4.2: Line ${i + 1}: "${line.text}" (x: ${line.x}, y: ${line.y})`, true);
+    }
+
+    // Look for fiscal year pattern
+    for (let i = detailedExpIndex + 1; i < Math.min(detailedExpIndex + 10, processedLines.length); i++) {
+      const line = processedLines[i];
+      const text = line.text.trim();
+      
+      // First try to match multiple years on one line
+      const multiYearMatches = text.match(/(\d{4}-\d{2})[*\s]+(\d{4}-\d{2})[*\s]+(\d{4}-\d{2})[*\s]*/);
+      if (multiYearMatches) {
+        log(`Step 4.2: Found multiple fiscal years on line ${i + 1}: "${text}"`, true);
+        const years = [multiYearMatches[1], multiYearMatches[2], multiYearMatches[3]];
+        
+        // Validate each year
+        let allValid = true;
+        years.forEach(year => {
+          const [fullYear, shortYear] = year.split('-').map(y => parseInt(y));
+          if (shortYear !== (fullYear + 1) % 100) {
+            log(`Step 4.2: Invalid fiscal year format: ${year}`, true);
+            allValid = false;
+          }
+        });
+        
+        if (allValid) {
+          fiscalYears.push(...years);
+          yearStartIndex = i;
+          yearEndIndex = i;
+          log(`Step 4.2: Validated fiscal years: ${years.join(', ')}`, true);
+          break;
+        }
       }
     }
 
-    if (fiscalYears.length !== 3 || yearStartIndex === -1) {
-      log('Step 4.2: Failed to find all three fiscal years', true);
+    if (fiscalYears.length !== 3) {
+      log(`Step 4.2: Failed to find all three fiscal years. Found: ${fiscalYears.join(', ')}`, true);
       return results;
     }
+
+    log(`Step 4.2: Found fiscal years: ${fiscalYears.join(', ')} between lines ${yearStartIndex + 1} and ${yearEndIndex + 1}`, true);
 
     // Process amounts and fund codes
     log('Step 4.3: Processing fund codes and amounts', true);
@@ -1569,101 +1654,174 @@ function extractBudgetAllocations(
     let currentFundingType: FundingType | null = null;
     let currentFundCode = '';
     let currentFundName = '';
-    let amounts: number[] = [];
+    let continuedLine = '';
 
-    // Track amount column x-coordinates
-    const amountColumns: number[] = [];
-
-    // Process lines after fiscal years
-    for (let i = yearStartIndex; i < processedLines.length; i++) {
+    // Track section totals for validation
+    const sectionTotals: number[] = [-1, -1, -1];
+    
+    // Process lines after fiscal years until section end
+    for (let i = yearStartIndex + 1; i < sectionEndIndex; i++) {
       const line = processedLines[i];
       const text = line.text.trim();
 
       // Skip empty lines
       if (!text) continue;
 
+      // Check for program requirements section
+      if (text.match(/^(?:PROGRAM|SUBPROGRAM)\s+REQUIREMENTS$/)) {
+        // Reset program code - we expect a new one
+        currentProjectCode = '';
+        continue;
+      }
+
+      // Check for program code and name (e.g. "0960   SUPPORT OF THE SENATE")
+      const programMatch = text.match(/^(\d{4})\s+([^$]+)$/);
+      if (line.x < 100 && programMatch) {
+        currentProjectCode = programMatch[1] + '000';  // Convert 4-digit to 7-digit
+        log(`Step 4.1: Found program code: ${programMatch[1]} -> ${currentProjectCode} (${programMatch[2].trim()})`, true);
+        continue;
+      }
+
+      // Check for 7-digit subprogram code
+      if (line.x < 100 && text.match(/^\d{7}\s+/)) {
+        currentProjectCode = text.substring(0, 7);  // Use full 7-digit code
+        log(`Step 4.1: Found subprogram code: ${currentProjectCode}`, true);
+        continue;
+      }
+
       // Check for funding type markers
       if (text === 'State Operations:') {
         currentFundingType = 0;
-        log('Step 4.5: Processing State Operations section', true);
+        log(`Step 4.5: Processing State Operations section at line ${i + 1} (project: ${currentProjectCode || 'none'})`, true);
         continue;
       } else if (text === 'Local Assistance:') {
         currentFundingType = 1;
-        log('Step 4.5: Processing Local Assistance section', true);
+        log(`Step 4.5: Processing Local Assistance section at line ${i + 1} (project: ${currentProjectCode || 'none'})`, true);
         continue;
       }
 
-      // Check for project codes
-      if (line.x < 100 && isProjectCode(text)) {
-        currentProjectCode = text.length === 4 ? text + '000' : text;
-        currentFundingType = null;
-        currentFundCode = '';
-        currentFundName = '';
-        amounts = [];
-        log(`Step 4.1: Processing project code ${currentProjectCode}`, true);
-        continue;
-      }
+      // Check for fund codes and amounts
+      if (currentFundingType !== null && line.x < 100) {
+        log(`Step 4.3: Checking line ${i + 1} for fund/amounts: "${text}"`, true);
+        log(`Step 4.3: Current state - fundingType: ${currentFundingType}, projectCode: ${currentProjectCode || 'none'}`, true);
+        
+        // Try to match fund code, name and amounts all on one line
+        const fundAmountMatch = text.match(/^(\d{4})\s+(.*?)\s+([\$\d,\-]+)\s+([\$\d,\-]+)\s+([\$\d,\-]+)$/);
+        if (fundAmountMatch) {
+          currentFundCode = fundAmountMatch[1];
+          currentFundName = fundAmountMatch[2].trim();
+          const lineAmounts = [
+            parseAmount(fundAmountMatch[3]),
+            parseAmount(fundAmountMatch[4]), 
+            parseAmount(fundAmountMatch[5])
+          ];
+          
+          log(`Step 4.3: ✓ Matched fund with amounts at line ${i + 1}:`, true);
+          log(`Step 4.3:   Fund: ${currentFundCode} - ${currentFundName}`, true);
+          log(`Step 4.3:   Amounts: ${lineAmounts.join(', ')}`, true);
 
-      // Check for fund codes
-      if (currentFundingType !== null && currentProjectCode && line.x < 100 && isFundCode(text)) {
-        const nextLine = processedLines[i + 1];
-        if (nextLine && !isAmountString(nextLine.text) && nextLine.text.match(/[A-Za-z]/)) {
-          currentFundCode = text;
-          currentFundName = nextLine.text.trim();
-          amounts = [];
-          log(`Step 4.3: Processing fund ${currentFundCode} - ${currentFundName}`, true);
-          i++; // Skip fund name line
-          continue;
-        }
-      }
-
-      // Check for amounts
-      if (currentProjectCode && currentFundingType !== null && currentFundCode) {
-        if (isAmountString(text)) {
-          // Store amount column x-coordinate if not already known
-          if (amountColumns.length < 3 && !amountColumns.includes(line.x)) {
-            amountColumns.push(line.x);
-            log(`Step 4.4: Found amount column at x=${line.x}`, true);
+          // Add budget allocations for all three years
+          for (let j = 0; j < 3; j++) {
+            if (!currentProjectCode) {
+              log(`Step 4.3: Warning - No project code found, using org code ${orgCode}000`, true);
+              currentProjectCode = orgCode + '000';
+            }
+            results.push({
+              projectCode: currentProjectCode,
+              organizationCode: orgCode,
+              fundingType: currentFundingType,
+              fundCode: currentFundCode,
+              fundName: currentFundName,
+              amount: lineAmounts[j],
+              fiscalYear: fiscalYears[j]
+            });
           }
 
-          const amount = parseAmount(text);
-          amounts.push(amount);
+          log(`Step 4.2: Added budget allocations for ${currentProjectCode} - ${currentFundCode}`, true);
+          continue;
+        }
 
-          if (amounts.length === 3) {
-            // Add budget allocations for all three years
+        // Check for multi-line fund entries
+        // First line: fund code and start of name
+        const fundStartMatch = text.match(/^(\d{4})\s+(.+)$/);
+        if (fundStartMatch && !fundAmountMatch) {
+          currentFundCode = fundStartMatch[1];
+          continuedLine = fundStartMatch[2];
+          log(`Step 4.3: Found potential multi-line fund entry starting at line ${i + 1}:`, true);
+          log(`Step 4.3:   Fund code: ${currentFundCode}`, true);
+          log(`Step 4.3:   Initial text: ${continuedLine}`, true);
+          continue;
+        }
+
+        // Continuation line with amounts
+        if (currentFundCode && continuedLine) {
+          // Try to match amounts at the end of this line
+          const amountMatch = text.match(/(.*?)\s+([\$\d,\-]+)\s+([\$\d,\-]+)\s+([\$\d,\-]+)$/);
+          if (amountMatch) {
+            currentFundName = (continuedLine + ' ' + amountMatch[1]).trim();
+            const lineAmounts = [
+              parseAmount(amountMatch[2]),
+              parseAmount(amountMatch[3]),
+              parseAmount(amountMatch[4])
+            ];
+
+            log(`Step 4.3: ✓ Completed multi-line fund entry at line ${i + 1}:`, true);
+            log(`Step 4.3:   Fund: ${currentFundCode} - ${currentFundName}`, true);
+            log(`Step 4.3:   Amounts: ${lineAmounts.join(', ')}`, true);
+
+            // Add budget allocations
             for (let j = 0; j < 3; j++) {
               results.push({
-                projectCode: currentProjectCode,
+                projectCode: currentProjectCode || orgCode,
                 organizationCode: orgCode,
                 fundingType: currentFundingType,
                 fundCode: currentFundCode,
                 fundName: currentFundName,
-                amount: amounts[j],
+                amount: lineAmounts[j],
                 fiscalYear: fiscalYears[j]
               });
             }
 
-            log(`Step 4.2: Added budget allocations for ${currentProjectCode} - ${currentFundCode}`, true);
-
-            // Reset for next set
-            amounts = [];
+            log(`Step 4.2: Added budget allocations for ${currentProjectCode || orgCode} - ${currentFundCode}`, true);
+            
+            // Reset continuation tracking
+            continuedLine = '';
             currentFundCode = '';
             currentFundName = '';
+            continue;
+          } else {
+            // Still continuing - append this line
+            continuedLine += ' ' + text;
+            log(`Step 4.3: Continuing multi-line fund entry: "${continuedLine}"`, true);
           }
         }
+      }
+    }
+
+    // Validate section totals if found
+    if (sectionTotals[0] !== -1) {
+      const calculatedTotals = [0, 0, 0];
+      results.forEach(allocation => {
+        const yearIndex = fiscalYears.indexOf(allocation.fiscalYear);
+        if (yearIndex !== -1) {
+          calculatedTotals[yearIndex] += allocation.amount;
+        }
+      });
+
+      // Compare totals
+      const totalsMatch = sectionTotals.every((total, idx) => total === calculatedTotals[idx]);
+      if (totalsMatch) {
+        log('Step 4.2: ✓ Section totals validated successfully', true);
+      } else {
+        log('Step 4.2: ⚠ Section totals do not match:', true);
+        log(`Step 4.2:   Expected: ${sectionTotals.join(', ')}`, true);
+        log(`Step 4.2:   Calculated: ${calculatedTotals.join(', ')}`, true);
       }
     }
 
     // Validate results
     if (results.length > 0) {
       log(`Step 4: Processed ${results.length} budget allocations`, true);
-      
-      // Log amount column analysis
-      if (amountColumns.length === 3) {
-        log('Step 4.4: Validated amount column spacing', true);
-      } else {
-        log('Step 4.4: Warning - inconsistent amount column spacing', true, true);
-      }
     }
 
     return results;
