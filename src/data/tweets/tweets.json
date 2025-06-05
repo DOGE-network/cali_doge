@@ -1,6 +1,372 @@
 {
   "tweets": [
     {
+      "entities": {
+        "urls": [
+          {
+            "start": 162,
+            "end": 185,
+            "url": "https://t.co/7w83ZH5l6I",
+            "expanded_url": "https://twitter.com/T_Q_Gardner/status/1930694726690492660",
+            "display_url": "x.com/T_Q_Gardner/st…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 89,
+            "end": 99,
+            "username": "WillSwaim",
+            "id": "44485284"
+          },
+          {
+            "start": 100,
+            "end": 108,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 109,
+            "end": 114,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 115,
+            "end": 124,
+            "username": "elonmusk",
+            "id": "44196397"
+          },
+          {
+            "start": 125,
+            "end": 138,
+            "username": "SteveHiltonx",
+            "id": "2779389582"
+          },
+          {
+            "start": 139,
+            "end": 148,
+            "username": "CA__DOGE",
+            "id": "1861563798248988672"
+          },
+          {
+            "start": 149,
+            "end": 161,
+            "username": "adamcarolla",
+            "id": "10926202"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1490751295698837510",
+            "name": "Podcasts"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1537496662574125057",
+            "name": "Crypto & Blockchain podcast"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        }
+      ],
+      "id": "1930698755667623943",
+      "created_at": "2025-06-05T18:50:28.000Z",
+      "edit_history_tweet_ids": [
+        "1930698755667623943"
+      ],
+      "text": "Join me and other state data minded people to discuss and review current efforts, plans\n\n@WillSwaim @joffemd @DOGE @elonmusk @SteveHiltonx @CA__DOGE @adamcarolla https://t.co/7w83ZH5l6I",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 5, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1930680110811881711",
+      "created_at": "2025-06-05T17:36:23.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 119,
+            "end": 128,
+            "probability": 0.9727,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "CAlowdown",
+            "id": "1755651872013381634"
+          },
+          {
+            "start": 11,
+            "end": 27,
+            "username": "BrandonRichards",
+            "id": "865675081"
+          },
+          {
+            "start": 92,
+            "end": 103,
+            "username": "CAgovernor",
+            "id": "38349184"
+          },
+          {
+            "start": 279,
+            "end": 287,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 288,
+            "end": 300,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1930680110811881711"
+      ],
+      "text": "@CAlowdown @BrandonRichards We see these monuments to past civilizations in many countries. @CAgovernor is making sure California is remembered thousands of years from now. The Greeks and Romans didn’t complain about a few billion here and there to be remembered for all time. \n\n@joffemd @T_Q_Gardner",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 5, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1930277934637691338"
       ],
@@ -14668,8 +15034,8 @@
     }
   ],
   "meta": {
-    "result_count": 132,
-    "newest_id": "1930277934637691338",
+    "result_count": 134,
+    "newest_id": "1930698755667623943",
     "oldest_id": "1882144700762878208"
   }
 }
