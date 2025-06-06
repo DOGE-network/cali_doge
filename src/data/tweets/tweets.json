@@ -2,6 +2,480 @@
   "tweets": [
     {
       "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "WillSwaim",
+            "id": "44485284"
+          },
+          {
+            "start": 11,
+            "end": 23,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          },
+          {
+            "start": 24,
+            "end": 33,
+            "username": "politico",
+            "id": "9300262"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 34,
+            "end": 49,
+            "probability": 0.7029,
+            "type": "Organization",
+            "normalized_text": "California State"
+          }
+        ],
+        "urls": [
+          {
+            "start": 143,
+            "end": 166,
+            "url": "https://t.co/SQecOdrwge",
+            "expanded_url": "https://cali-doge.org/workforce",
+            "display_url": "cali-doge.org/workforce",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1926443992691945473/Bo_rHQjG?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1926443992691945473/Bo_rHQjG?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce"
+          },
+          {
+            "start": 167,
+            "end": 190,
+            "url": "https://t.co/vhRxIVk81p",
+            "expanded_url": "https://cali-doge.org/payments",
+            "display_url": "cali-doge.org/payments",
+            "status": 200,
+            "title": "Possible future home of https://doge.ca.gov",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/payments"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1931054359863050255"
+      ],
+      "text": "@WillSwaim @GavinNewsom @politico California State Government employment and spending has incredible staying power, increasing year over year\n\nhttps://t.co/SQecOdrwge\nhttps://t.co/vhRxIVk81p",
+      "created_at": "2025-06-06T18:23:31.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1931054359863050255",
+      "created_at_formatted": "Jun 6, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1931052560967954662"
+      ],
+      "text": "@twinforces But it is great marketing! \n\nPlus the added benefit of watching the political class switch sides in a heartbeat.",
+      "created_at": "2025-06-06T18:16:22.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1931052560967954662",
+      "created_at_formatted": "Jun 6, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1931025832841220117"
+      ],
+      "text": "California DOGE work aims to connect the dots with this work by identifying NGOs vendors. Either by API and or other means we can then broaden the picture to include states. https://t.co/IgkQwXaSpZ",
+      "created_at": "2025-06-06T16:30:09.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 0,
+            "end": 14,
+            "probability": 0.6327,
+            "type": "Place",
+            "normalized_text": "California DOGE"
+          },
+          {
+            "start": 100,
+            "end": 102,
+            "probability": 0.449,
+            "type": "Organization",
+            "normalized_text": "API"
+          }
+        ],
+        "urls": [
+          {
+            "start": 174,
+            "end": 197,
+            "url": "https://t.co/IgkQwXaSpZ",
+            "expanded_url": "https://twitter.com/t_q_gardner/status/1930991647078195631",
+            "display_url": "x.com/t_q_gardner/st…"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1931025832841220117",
+      "created_at_formatted": "Jun 6, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 40,
+            "end": 47,
+            "probability": 0.8921,
+            "type": "Place",
+            "normalized_text": "Bay Area"
+          },
+          {
+            "start": 53,
+            "end": 63,
+            "probability": 0.9797,
+            "type": "Place",
+            "normalized_text": "Los Angeles"
+          }
+        ],
+        "urls": [
+          {
+            "start": 112,
+            "end": 135,
+            "url": "https://t.co/VXpi0ele3w",
+            "expanded_url": "https://www.visualcapitalist.com/americas-fastest-growing-and-declining-headquarter-markets/",
+            "display_url": "visualcapitalist.com/americas-faste…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1930721374818955264/9ftAc3bT?format=jpg&name=orig",
+                "width": 1200,
+                "height": 628
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1930721374818955264/9ftAc3bT?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Charted: The U.S. Cities Gaining and Losing Corporate HQs",
+            "description": "While Texas is booming, California is facing an exodus of corporate headquarters. In this graphic, we show the top markets for relocations.",
+            "unwound_url": "https://www.visualcapitalist.com/americas-fastest-growing-and-declining-headquarter-markets/"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "856860708847222784",
+            "name": "Los Angeles",
+            "description": "Los Angeles"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1930976400619741625"
+      ],
+      "text": "RT @joffemd: During the Newsom era, the Bay Area and Los Angeles have been the biggest losers of corporate HQs. https://t.co/VXpi0ele3w via…",
+      "created_at": "2025-06-06T13:13:44.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1930976400619741625",
+      "created_at_formatted": "Jun 6, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 9,
+            "end": 19,
+            "username": "VisualCap",
+            "id": "352515718"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 58,
+            "end": 76,
+            "probability": 0.6201,
+            "type": "Place",
+            "normalized_text": "Silicon Valley IPOs"
+          },
+          {
+            "start": 82,
+            "end": 97,
+            "probability": 0.4415,
+            "type": "Organization",
+            "normalized_text": "California State"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "1486467051363258370",
+            "name": "IPOs"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1930976271363916028"
+      ],
+      "text": "@joffemd @VisualCap This contributes to the stagnation of Silicon Valley IPOs and California State Government deficits. That tax revenue is not coming back.",
+      "created_at": "2025-06-06T13:13:13.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1930976271363916028",
+      "created_at_formatted": "Jun 6, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
         "urls": [
           {
             "start": 162,
@@ -15034,8 +15508,8 @@
     }
   ],
   "meta": {
-    "result_count": 134,
-    "newest_id": "1930698755667623943",
+    "result_count": 139,
+    "newest_id": "1931054359863050255",
     "oldest_id": "1882144700762878208"
   }
 }
