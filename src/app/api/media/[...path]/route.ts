@@ -7,11 +7,12 @@ import path from 'path';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
   try {
+    const resolvedParams = await params;
     // Clean the path by removing any 'media' prefixes and normalizing the path
-    const cleanPath = params.path
+    const cleanPath = resolvedParams.path
       .filter(segment => segment !== 'media')
       .join('/')
       .split('/')

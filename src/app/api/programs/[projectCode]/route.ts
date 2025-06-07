@@ -7,10 +7,11 @@ export const revalidate = 3600; // Revalidate every hour
 
 export async function GET(
   request: Request,
-  { params }: { params: { projectCode: string } }
+  { params }: { params: Promise<{ projectCode: string }> }
 ) {
   try {
-    const { projectCode } = params;
+    const resolvedParams = await params;
+    const { projectCode } = resolvedParams;
 
     console.log('Program API - individual program request:', { projectCode });
 

@@ -1,5 +1,10 @@
-import * as fs from 'fs';
 import * as path from 'path';
+
+// Only import fs in Node.js environment
+let fs: any;
+if (typeof window === 'undefined') {
+  fs = require('fs');
+}
 
 type LogLevel = 'INFO' | 'WARN' | 'ERROR' | 'DEBUG';
 
@@ -21,11 +26,13 @@ export function log(level: LogLevel, transactionId: string, message: string, dat
   console.log(JSON.stringify(logEntry, null, 2));
 }
 
-export class FileLogger {
+// Only export FileLogger in Node.js environment
+export const FileLogger = typeof window === 'undefined' ? class {
   private logFile: string;
-  private logStream: fs.WriteStream;
+  private logStream: NodeJS.WriteStream;
 
   constructor(logDir: string, prefix: string) {
+    if (typeof window !== 'undefined') throw new Error('FileLogger is only available in Node.js environment');
     // Create log directory if it doesn't exist
     if (!fs.existsSync(logDir)) {
       fs.mkdirSync(logDir, { recursive: true });
@@ -58,6 +65,8 @@ export class FileLogger {
   }
 
   private writeSync(message: string): void {
+    if (!fs) throw new Error('FileLogger is only available in Node.js environment');
+    
     // Write to console immediately
     process.stdout.write(message);
     
@@ -97,4 +106,4 @@ export class FileLogger {
   public getLogFile(): string {
     return this.logFile;
   }
-} 
+} : undefined; 
