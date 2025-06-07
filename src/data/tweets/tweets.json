@@ -5,6 +5,114 @@
         "mentions": [
           {
             "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1931174833058128206"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-06-07T02:22:14.000Z",
+      "text": "@T_Q_Gardner I think I am on her side. That is not normal oreo.",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974596740190208",
+            "name": "CPG"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974596144599042",
+            "name": "Snacks - CPG"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696888568045569",
+            "name": "Food & Beverage Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent and related to foods & beverages such as snacks, soft drinks, beers."
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10026568582",
+            "name": "Oreo"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "825047692124442624",
+            "name": "Food",
+            "description": "Food"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10026568582",
+            "name": "Oreo"
+          }
+        },
+        {
+          "domain": {
+            "id": "152",
+            "name": "Food",
+            "description": "Topics about food, like Donuts or Brunch"
+          },
+          "entity": {
+            "id": "825058563915526145",
+            "name": "Cookies",
+            "description": "Cookies"
+          }
+        }
+      ],
+      "id": "1931174833058128206",
+      "created_at_formatted": "Jun 7, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
             "end": 10,
             "username": "WillSwaim",
             "id": "44485284"
@@ -15508,8 +15616,8 @@
     }
   ],
   "meta": {
-    "result_count": 139,
-    "newest_id": "1931054359863050255",
+    "result_count": 140,
+    "newest_id": "1931174833058128206",
     "oldest_id": "1882144700762878208"
   }
 }
