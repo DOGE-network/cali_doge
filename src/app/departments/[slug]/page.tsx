@@ -5,14 +5,15 @@ import BackButton from '@/components/BackButton'
 import Link from 'next/link'
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
   const posts = await getAllPosts()
-  const post = posts.find((p) => p.id === params.slug)
+  const post = posts.find((p) => p.id === resolvedParams.slug)
 
   if (!post) {
     return {
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPost({ params }: Props) {
+  const resolvedParams = await params;
   const [posts, departmentSlugs] = await Promise.all([
     getAllPosts(),
     getDepartmentSlugs()
@@ -38,10 +40,10 @@ export default async function BlogPost({ params }: Props) {
     return codeA.localeCompare(codeB)
   })
   
-  const post = sortedPosts.find((p) => p.id === params.slug)
+  const post = sortedPosts.find((p) => p.id === resolvedParams.slug)
   if (!post) notFound()
 
-  const departmentExists = departmentSlugs.includes(params.slug)
+  const departmentExists = departmentSlugs.includes(resolvedParams.slug)
   const departmentName = encodeURIComponent(post.name)
   
   const dataLinks = [

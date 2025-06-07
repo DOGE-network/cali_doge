@@ -47,16 +47,6 @@
                       "code": "0001",
                       "count": 1,
                       "amount": 128779
-                    },
-                    {
-                      "code": "0348",
-                      "count": 1,
-                      "amount": 12
-                    },
-                    {
-                      "code": "0110",
-                      "count": 1,
-                      "amount": 4
                     }
                   ]
                 }
@@ -77,181 +67,6 @@
                       "code": "0001",
                       "count": 1,
                       "amount": 134213
-                    },
-                    {
-                      "code": "0348",
-                      "count": 1,
-                      "amount": 14
-                    },
-                    {
-                      "code": "0110",
-                      "count": 1,
-                      "amount": 0
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "year": 2018,
-          "projectCode": [
-            {
-              "code": "0960000",
-              "fundingType": [
-                {
-                  "type": 0,
-                  "fundCode": [
-                    {
-                      "code": "0001",
-                      "count": 1,
-                      "amount": 139622
-                    },
-                    {
-                      "code": "0348",
-                      "count": 1,
-                      "amount": 14
-                    },
-                    {
-                      "code": "0110",
-                      "count": 1,
-                      "amount": 0
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "year": 2019,
-          "projectCode": [
-            {
-              "code": "0960000",
-              "fundingType": [
-                {
-                  "type": 0,
-                  "fundCode": [
-                    {
-                      "code": "0001",
-                      "count": 1,
-                      "amount": 145458
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "year": 2020,
-          "projectCode": [
-            {
-              "code": "0960000",
-              "fundingType": [
-                {
-                  "type": 0,
-                  "fundCode": [
-                    {
-                      "code": "0001",
-                      "count": 1,
-                      "amount": 150724
-                    },
-                    {
-                      "code": "0348",
-                      "count": 1,
-                      "amount": 0
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "year": 2021,
-          "projectCode": [
-            {
-              "code": "0960000",
-              "fundingType": [
-                {
-                  "type": 0,
-                  "fundCode": [
-                    {
-                      "code": "0001",
-                      "count": 1,
-                      "amount": 157884
-                    },
-                    {
-                      "code": "0348",
-                      "count": 1,
-                      "amount": 0
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "year": 2022,
-          "projectCode": [
-            {
-              "code": "0960000",
-              "fundingType": [
-                {
-                  "type": 0,
-                  "fundCode": [
-                    {
-                      "code": "0001",
-                      "count": 1,
-                      "amount": 170357
-                    },
-                    {
-                      "code": "0348",
-                      "count": 1,
-                      "amount": 150724
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "year": 2023,
-          "projectCode": [
-            {
-              "code": "0960000",
-              "fundingType": [
-                {
-                  "type": 0,
-                  "fundCode": [
-                    {
-                      "code": "0001",
-                      "count": 1,
-                      "amount": 177325
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "year": 2024,
-          "projectCode": [
-            {
-              "code": "0960000",
-              "fundingType": [
-                {
-                  "type": 0,
-                  "fundCode": [
-                    {
-                      "code": "0001",
-                      "count": 1,
-                      "amount": 184471
                     }
                   ]
                 }
@@ -531,6 +346,36 @@
                   ]
                 }
               ]
+            },
+            {
+              "code": "0985000",
+              "fundingType": [
+                {
+                  "type": 0,
+                  "fundCode": [
+                    {
+                      "code": "0001",
+                      "count": 1,
+                      "amount": -4114
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "0990000",
+              "fundingType": [
+                {
+                  "type": 0,
+                  "fundCode": [
+                    {
+                      "code": "0001",
+                      "count": 1,
+                      "amount": -4114
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -551,6 +396,36 @@
                   ]
                 }
               ]
+            },
+            {
+              "code": "0985000",
+              "fundingType": [
+                {
+                  "type": 0,
+                  "fundCode": [
+                    {
+                      "code": "0001",
+                      "count": 1,
+                      "amount": -4359
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "0990000",
+              "fundingType": [
+                {
+                  "type": 0,
+                  "fundCode": [
+                    {
+                      "code": "0001",
+                      "count": 1,
+                      "amount": -4359
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -567,6 +442,36 @@
                       "code": "0001",
                       "count": 1,
                       "amount": 9086
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "0985000",
+              "fundingType": [
+                {
+                  "type": 0,
+                  "fundCode": [
+                    {
+                      "code": "0001",
+                      "count": 1,
+                      "amount": -4543
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "0990000",
+              "fundingType": [
+                {
+                  "type": 0,
+                  "fundCode": [
+                    {
+                      "code": "0001",
+                      "count": 1,
+                      "amount": -4543
                     }
                   ]
                 }
@@ -886,7 +791,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 85863
+                      "amount": 82826
                     },
                     {
                       "code": "0995",
@@ -1741,7 +1646,7 @@
                     {
                       "code": "0932",
                       "count": 1,
-                      "amount": 11325
+                      "amount": 0
                     }
                   ]
                 }
@@ -1781,7 +1686,22 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 761636
+                      "amount": -26662
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "0140019",
+              "fundingType": [
+                {
+                  "type": 0,
+                  "fundCode": [
+                    {
+                      "code": "0932",
+                      "count": 1,
+                      "amount": 12369
                     }
                   ]
                 }
@@ -1801,7 +1721,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 44751
+                      "amount": 46772
                     },
                     {
                       "code": "3060",
@@ -1826,7 +1746,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 222047
+                      "amount": 226808
                     },
                     {
                       "code": "3060",
@@ -1856,7 +1776,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 113573
+                      "amount": 159498
                     },
                     {
                       "code": "0044",
@@ -1941,7 +1861,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 103151
+                      "amount": 105000
                     },
                     {
                       "code": "0044",
@@ -2016,7 +1936,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 10422
+                      "amount": 54498
                     },
                     {
                       "code": "0942",
@@ -2056,7 +1976,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 1344540
+                      "amount": 1362405
                     },
                     {
                       "code": "0159",
@@ -2106,7 +2026,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 731565
+                      "amount": 749429
                     },
                     {
                       "code": "0159",
@@ -2216,7 +2136,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 103458
+                      "amount": 103459
                     },
                     {
                       "code": "0932",
@@ -2271,7 +2191,7 @@
                     {
                       "code": "0890",
                       "count": 1,
-                      "amount": 565
+                      "amount": 800
                     }
                   ]
                 }
@@ -2286,7 +2206,7 @@
                     {
                       "code": "0890",
                       "count": 1,
-                      "amount": 97
+                      "amount": 700
                     }
                   ]
                 }
@@ -2346,7 +2266,7 @@
                     {
                       "code": "0890",
                       "count": 1,
-                      "amount": 694
+                      "amount": 775
                     }
                   ]
                 }
@@ -2411,7 +2331,7 @@
                     {
                       "code": "0932",
                       "count": 1,
-                      "amount": 11393
+                      "amount": 11325
                     }
                   ]
                 }
@@ -2426,7 +2346,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 14699
+                      "amount": 14725
                     },
                     {
                       "code": "0890",
@@ -2451,7 +2371,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 22753
+                      "amount": -45864
                     },
                     {
                       "code": "0250",
@@ -2541,6 +2461,21 @@
                   ]
                 }
               ]
+            },
+            {
+              "code": "0140019",
+              "fundingType": [
+                {
+                  "type": 0,
+                  "fundCode": [
+                    {
+                      "code": "0932",
+                      "count": 1,
+                      "amount": 0
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -2556,7 +2491,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 48239
+                      "amount": 47443
                     },
                     {
                       "code": "3060",
@@ -2581,7 +2516,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 229230
+                      "amount": 227400
                     },
                     {
                       "code": "3060",
@@ -2611,7 +2546,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 162357
+                      "amount": 115204
                     },
                     {
                       "code": "0044",
@@ -2696,7 +2631,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 109890
+                      "amount": 105705
                     },
                     {
                       "code": "0044",
@@ -2771,7 +2706,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 52467
+                      "amount": 9499
                     },
                     {
                       "code": "0942",
@@ -2811,7 +2746,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 1327451
+                      "amount": 1318867
                     },
                     {
                       "code": "0159",
@@ -2861,7 +2796,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 676898
+                      "amount": 684199
                     },
                     {
                       "code": "0159",
@@ -2931,7 +2866,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 356206
+                      "amount": 341431
                     },
                     {
                       "code": "0932",
@@ -2956,7 +2891,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 28117
+                      "amount": 27005
                     },
                     {
                       "code": "0932",
@@ -2976,7 +2911,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 103632
+                      "amount": 103633
                     },
                     {
                       "code": "0932",
@@ -3011,7 +2946,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 1102
+                      "amount": 1160
                     },
                     {
                       "code": "0995",
@@ -3031,7 +2966,7 @@
                     {
                       "code": "0890",
                       "count": 1,
-                      "amount": 881
+                      "amount": 800
                     }
                   ]
                 }
@@ -3046,7 +2981,7 @@
                     {
                       "code": "0890",
                       "count": 1,
-                      "amount": 90
+                      "amount": 700
                     }
                   ]
                 }
@@ -3171,7 +3106,7 @@
                     {
                       "code": "0932",
                       "count": 1,
-                      "amount": 10079
+                      "amount": 11325
                     }
                   ]
                 }
@@ -3186,7 +3121,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 15515
+                      "amount": 14788
                     },
                     {
                       "code": "0890",
@@ -3211,7 +3146,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 913487
+                      "amount": -45864
                     },
                     {
                       "code": "0250",
@@ -3295,6 +3230,21 @@
                     },
                     {
                       "code": "3259",
+                      "count": 1,
+                      "amount": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "0140019",
+              "fundingType": [
+                {
+                  "type": 0,
+                  "fundCode": [
+                    {
+                      "code": "0932",
                       "count": 1,
                       "amount": 0
                     }
@@ -8461,7 +8411,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 4894
+                      "amount": 4895
                     },
                     {
                       "code": "0995",
@@ -8496,7 +8446,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 4964
+                      "amount": 4965
                     },
                     {
                       "code": "0995",
@@ -8771,6 +8721,21 @@
                   ]
                 }
               ]
+            },
+            {
+              "code": "0200000",
+              "fundingType": [
+                {
+                  "type": 1,
+                  "fundCode": [
+                    {
+                      "code": "0815",
+                      "count": 1,
+                      "amount": 199271
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -8786,7 +8751,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 4257
+                      "amount": 4116
                     }
                   ]
                 }
@@ -8801,7 +8766,22 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 265498
+                      "amount": 264465
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "0200000",
+              "fundingType": [
+                {
+                  "type": 1,
+                  "fundCode": [
+                    {
+                      "code": "0815",
+                      "count": 1,
+                      "amount": 201862
                     }
                   ]
                 }
@@ -8821,7 +8801,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 5717
+                      "amount": 4399
                     }
                   ]
                 }
@@ -8836,7 +8816,22 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 273296
+                      "amount": 268830
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "0200000",
+              "fundingType": [
+                {
+                  "type": 1,
+                  "fundCode": [
+                    {
+                      "code": "0815",
+                      "count": 1,
+                      "amount": 209625
                     }
                   ]
                 }
@@ -46171,7 +46166,7 @@
                     {
                       "code": "0001",
                       "count": 1,
-                      "amount": 14056
+                      "amount": 13534
                     },
                     {
                       "code": "9740",
@@ -64187,16 +64182,7 @@
       ]
     }
   ],
-  "processedFiles": [
-    "0010_Legislative_Judicial_and_Executive_2017_budget.txt",
-    "0010_Legislative_Judicial_and_Executive_2018_budget.txt",
-    "0010_Legislative_Judicial_and_Executive_2019_budget.txt",
-    "0010_Legislative_Judicial_and_Executive_2020_budget.txt",
-    "0010_Legislative_Judicial_and_Executive_2021_budget.txt",
-    "0010_Legislative_Judicial_and_Executive_2022_budget.txt",
-    "0010_Legislative_Judicial_and_Executive_2023_budget.txt",
-    "0010_Legislative_Judicial_and_Executive_2024_budget.txt"
-  ],
-  "lastProcessedFile": "0010_Legislative_Judicial_and_Executive_2024_budget.txt",
-  "lastProcessedTimestamp": "2025-05-27T08:22:48.902Z"
+  "processedFiles": [],
+  "lastProcessedFile": "0010_Legislative_Judicial_and_Executive_2017_budget.txt",
+  "lastProcessedTimestamp": "2025-06-03T19:24:40.771Z"
 }
