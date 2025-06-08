@@ -1,6 +1,186 @@
 {
   "tweets": [
     {
+      "id": "1931508773698543890",
+      "entities": {
+        "mentions": [
+          {
+            "start": 87,
+            "end": 95,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "urls": [
+          {
+            "start": 98,
+            "end": 121,
+            "url": "https://t.co/u9lcYLZTIO",
+            "expanded_url": "https://nypost.com/2025/06/07/sports/sovereignty-beats-out-journalism-to-win-the-2025-belmont-stakes/?utm_campaign=iphone_nyp&utm_source=pasteboard_app",
+            "display_url": "nypost.com/2025/06/07/spo…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1931490361345540096/v8kBdWLG?format=jpg&name=orig",
+                "width": 1024,
+                "height": 646
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1931490361345540096/v8kBdWLG?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Sovereignty beats out Journalism to win the 2025 Belmont Stakes",
+            "description": "Sovereignty reigns supreme in more than just geopolitics.",
+            "unwound_url": "https://nypost.com/2025/06/07/sports/sovereignty-beats-out-journalism-to-win-the-2025-belmont-stakes/?utm_campaign=iphone_nyp&utm_source=pasteboard_app"
+          }
+        ]
+      },
+      "text": "Reality as allegory?\n\nSovereignty beats out Journalism to win the 2025 Belmont Stakes\n\n@joffemd \n\nhttps://t.co/u9lcYLZTIO",
+      "created_at": "2025-06-08T00:29:12.000Z",
+      "edit_history_tweet_ids": [
+        "1931508773698543890"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697289971322880",
+            "name": "Sports & Fitness Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to sports nutrition, athletic apparel, sports apps, fitness venues"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847900493514891265",
+            "name": "Sports",
+            "description": "Sports"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847901716024446977",
+            "name": "Horse racing & equestrian",
+            "description": "Horse racing"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1237072960952750081",
+            "name": "Journalism"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1278000653416099840",
+            "name": "Writing"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1286401121641103360",
+            "name": "Sports events"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1386765694545514497",
+            "name": "Triple Crown Horse Racing"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1436053202835689485",
+            "name": "Events"
+          }
+        },
+        {
+          "domain": {
+            "id": "11",
+            "name": "Sport",
+            "description": "Types of sports, like soccer and basketball"
+          },
+          "entity": {
+            "id": "847901716024446977",
+            "name": "Horse racing & equestrian",
+            "description": "Horse racing"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847900493514891265",
+            "name": "Sports",
+            "description": "Sports"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847901716024446977",
+            "name": "Horse racing & equestrian",
+            "description": "Horse racing"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 8, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -15616,8 +15796,8 @@
     }
   ],
   "meta": {
-    "result_count": 140,
-    "newest_id": "1931174833058128206",
+    "result_count": 141,
+    "newest_id": "1931508773698543890",
     "oldest_id": "1882144700762878208"
   }
 }
