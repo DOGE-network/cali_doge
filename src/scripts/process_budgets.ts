@@ -845,17 +845,16 @@ async function findDepartmentSections(
       });
 
       // Sort markers by line number
-      const sortedMarkers = [...expenditureMarkers].sort((a, b) => a.index - b.index);
+      // const sortedMarkers = [...expenditureMarkers].sort((a, b) => a.index - b.index);
       let currentContinuationHeaderGroupIndex = 0;
       let previousSection: SectionHeader | null = null;
-      let sectionsToProcess: Array<{index: number, line: string}> = [];
 
       // Process each section
-      for (let i = 0; i < sortedMarkers.length; i++) {
-        const currentMarker = sortedMarkers[i];
-        const nextMarker = i < sortedMarkers.length - 1 ? sortedMarkers[i + 1] : null;
+      for (let i = 0; i < expenditureMarkers.length; i++) {
+        const currentMarker = expenditureMarkers[i];
+        const nextMarker = i < expenditureMarkers.length - 1 ? expenditureMarkers[i + 1] : null;
 
-        log(`\nProcessing section ${i + 1}/${sortedMarkers.length} at line ${currentMarker.index + 1}:`, true);
+        log(`\nProcessing section ${i + 1}/${expenditureMarkers.length} at line ${currentMarker.index + 1}:`, true);
         
         // Get current continuation header group
         const currentGroup = continuationHeaderGroups[currentContinuationHeaderGroupIndex];
@@ -910,6 +909,14 @@ async function findDepartmentSections(
             content: lines.slice(sectionHeader.lineNum, nextMarker ? nextMarker.index : lines.length).join('\n'),
             startLine: sectionHeader.lineNum
           });
+          // if expenditureMarkers at end of array and continuationHeaderGroups not at end of array, then run loop Process each section loop again
+          if (i === expenditureMarkers.length - 1 && 
+              currentContinuationHeaderGroupIndex < continuationHeaderGroups.length - 1) {
+            // We're at the last expenditure marker but have more continuation headers
+            // Decrement i to process the current marker again
+            i--; // Will process the current marker again in the next iteration
+            log(`  Reached last expenditure marker but have more continuation headers. Processing current marker again.`, true);
+          }
 
           // Update tracking variables
           previousSection = sectionHeader;
@@ -949,85 +956,6 @@ async function findDepartmentSections(
             };
             currentGroup.lastVerifiedLineNum = currentMarker.index;
             currentContinuationHeaderGroupIndex++;
-          } else {
-            // If no sections were recovered, add this marker to sectionsToProcess
-            // to be processed again in the next iteration
-            log(`  ⚠️ No marker found, will retry marker at line ${currentMarker.index + 1}`, true);
-            sectionsToProcess.push(currentMarker);
-          }
-        }
-      }
-
-      // Process any remaining sections that need to be retried
-      if (sectionsToProcess.length > 0) {
-        log(`\nProcessing ${sectionsToProcess.length} remaining sections...`, true);
-        for (const marker of sectionsToProcess) {
-          // Process these sections with the same logic as above
-          // This will effectively try to find the section header again
-          // with potentially different continuation header groups
-          const currentGroup = continuationHeaderGroups[currentContinuationHeaderGroupIndex];
-          if (!currentGroup) {
-            log(`  No more continuation header groups available, skipping marker`, true);
-            continue;
-          }
-
-          log(`  Retrying marker at line ${marker.index + 1}`, true);
-          
-          // Calculate search range - use last verified line number from previous group
-          const searchStartLine = currentContinuationHeaderGroupIndex > 0 ? 
-            (continuationHeaderGroups[currentContinuationHeaderGroupIndex - 1].lastVerifiedLineNum || 1) : 1;
-          log(`  Searching between lines ${searchStartLine} and ${marker.index + 1}`, true);
-
-          // Search for section header
-          let sectionHeader: SectionHeader | null = null;
-          for (let j = searchStartLine; j <= marker.index - 1; j++) {
-            const line = lines[j].trim();
-            const strippedLine = line.replace(/\[\d+:\d+:\d+,\d+\]\s*/, '').trim();
-            
-            if (strippedLine === currentGroup.baseText) {
-              const match = strippedLine.match(/^(\d{4})\s+(.+)$/);
-              if (match) {
-                const [, orgCode, departmentName] = match;
-                sectionHeader = {
-                  lineNum: j,
-                  orgCode,
-                  departmentName: departmentName.trim()
-                };
-                log(`  Found section header at line ${j + 1}: "${strippedLine}"`, true);
-                break;
-              }
-            }
-          }
-
-          if (sectionHeader) {
-            // Found valid section header
-            sections.push({
-              orgCode: sectionHeader.orgCode,
-              departmentName: sectionHeader.departmentName,
-              content: lines.slice(sectionHeader.lineNum, lines.length).join('\n'),
-              startLine: sectionHeader.lineNum
-            });
-
-            // Update tracking variables
-            previousSection = sectionHeader;
-            currentGroup.lastVerifiedLineNum = marker.index;
-            currentContinuationHeaderGroupIndex++;
-            log(`  Found section header at line ${sectionHeader.lineNum + 1}`, true);
-            log(`  Advanced to continuation header group ${currentContinuationHeaderGroupIndex + 1}/${continuationHeaderGroups.length}`, true);
-          } else {
-            // If still no section header found, add to review sections
-            reviewSections.push({
-              markerLine: marker.index + 1,
-              expectedHeader: currentGroup.baseText,
-              searchStartLine: searchStartLine,
-              searchEndLine: marker.index + 1,
-              fileName: path.basename(filePath),
-              previousSectionHeader: previousSection ? `${previousSection.orgCode} ${previousSection.departmentName}` : null,
-              previousSectionEndLine: currentGroup.lastVerifiedLineNum,
-              nextSectionHeader: null,
-              nextSectionStartLine: null
-            });
-            log(`  ⚠️ REVIEW SECTION: Still unable to find header "${currentGroup.baseText}" between lines ${searchStartLine}-${marker.index + 1}`, true);
           }
         }
       }
