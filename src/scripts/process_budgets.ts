@@ -98,7 +98,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { DepartmentData, DepartmentsJSON, organizationalCode, ValidSlug, OrgLevel, BudgetStatus, AnnualYear, RequiredDepartmentJSONFields, FiscalYearKey, TenureRange, SalaryRange, AgeRange } from '../types/department';
-import { ProgramsJSON } from '../types/program';
+import { Program, ProgramsJSON } from '../types/program';
 import { FundsJSON, Fund } from '../types/fund';
 import { 
   BudgetsJSON, 
@@ -116,6 +116,19 @@ interface TextLine {
   text: string;
   pageNum: number;
   rawLine: string;
+}
+
+// eslint-disable-next-line no-unused-vars
+interface BudgetAllocation {
+  projectCode: string;
+  organizationCode: string;
+  fundingType: FundingType;
+  fundCode: string;
+  fundName: string;
+  amount: number;
+  fiscalYear: string;
+  // eslint-disable-next-line no-unused-vars
+  programName?: string;
 }
 
 interface Section {
@@ -1216,20 +1229,43 @@ async function processDepartmentSection(
     }
     
     // ## Step 4.1: Program Extract #########################################################
-    const programDescriptions = extractProgramDescriptions(normalizedContent);
+    let programDescriptions = extractProgramDescriptions(normalizedContent);
     log(`Found ${programDescriptions.length} program descriptions`, true);
-    
-    // ## Step 4.2: Program Compare #########################################################
-    let programAnalysis = { newPrograms: 0, updatedPrograms: 0 };
-    if (programDescriptions.length > 0) {
-      programAnalysis = analyzeProgramDescriptions(programDescriptions, programsData, fileName);
-    }
     
     // ## Step 5.1: Budget Extract #########################################################
     const budgetData = extractBudgetAllocations(normalizedContent, orgCode);
     log(`Found ${budgetData ? budgetData.length : 0} budget allocations`, true);
     
-    // ## Step 5.2: Budget Compare #########################################################
+    // If no program descriptions found, use budget allocations
+    if (programDescriptions.length === 0 && budgetData && budgetData.length > 0) {
+      // Get unique project codes from budget allocations
+      const uniqueProjectCodes = Array.from(new Set(budgetData.map(a => a.projectCode)));
+      
+      programDescriptions = uniqueProjectCodes.map(projectCode => {
+        const allocations = budgetData.filter(a => a.projectCode === projectCode);
+        const programName = allocations[0]?.programName || `Program ${projectCode}`;
+        log(`Found program code: ${projectCode} -> project code: ${projectCode}000, program name: ${programName}`, true);
+        return {
+          projectCode: `${projectCode}000`,
+          name: programName,
+          description: '' // Empty description since we're using budget data
+        };
+      });
+      
+      log(`Created ${programDescriptions.length} program entries from budget allocations`, true);
+    }
+    
+    // ## Step 4.2: Program Compare #########################################################
+    let programAnalysis = { newPrograms: 0, updatedPrograms: 0 };
+    if (programDescriptions.length > 0) {
+      programAnalysis = analyzeProgramDescriptions(programDescriptions, programsData, fileName);
+      // Update program data after analysis
+      for (const progDesc of programDescriptions) {
+        updateProgramData(progDesc, programsData, fileName);
+      }
+    }
+    
+    // ## Step 5.2: Budget Compare  #########################################################
     let budgetAnalysis = { newAllocations: 0, overwriteAllocations: 0, overwriteDetails: [] as string[] };
     if (budgetData && budgetData.length > 0) {
       budgetAnalysis = analyzeBudgetAllocations(budgetData, budgetsData);
@@ -1270,19 +1306,22 @@ async function processDepartmentSection(
       log(`  Description: none found in budget file`);
     }
     
+
+    
     // Show program analysis
     if (programDescriptions.length > 0) {
+      const source = programDescriptions[0].description ? 'program descriptions' : 'budget allocations';
       if (programAnalysis.newPrograms > 0 && programAnalysis.updatedPrograms > 0) {
-        log(`  Programs: ${programDescriptions.length} found (${programAnalysis.newPrograms} new, ${programAnalysis.updatedPrograms} updated)`);
+        log(`  Programs: ${programDescriptions.length} found from ${source} (${programAnalysis.newPrograms} new, ${programAnalysis.updatedPrograms} updated)`);
       } else if (programAnalysis.newPrograms > 0) {
-        log(`  Programs: ${programDescriptions.length} found (${programAnalysis.newPrograms} new)`);
+        log(`  Programs: ${programDescriptions.length} found from ${source} (${programAnalysis.newPrograms} new)`);
       } else if (programAnalysis.updatedPrograms > 0) {
-        log(`  Programs: ${programDescriptions.length} found (${programAnalysis.updatedPrograms} updated)`);
+        log(`  Programs: ${programDescriptions.length} found from ${source} (${programAnalysis.updatedPrograms} updated)`);
       } else {
-        log(`  Programs: ${programDescriptions.length} found (all already exist with same descriptions)`);
+        log(`  Programs: ${programDescriptions.length} found from ${source} (all already exist with same descriptions)`);
       }
     } else {
-      log(`  Programs: none found`);
+      log(`  Programs: no program descriptions found`);
     }
     
     // Show detailed budget allocation counts
@@ -1639,13 +1678,12 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
             .trim()
             .replace(/\n{3,}/g, '\n\n'); // Replace multiple newlines with double newline
           
-          if (description) { // Only add if there's a description
-            programs.push({
-              projectCode: currentProgram.projectCode,
-              name: currentProgram.name,
-              description: description
-            });
-          }
+          // Always add the program, even if it doesn't have a description
+          programs.push({
+            projectCode: currentProgram.projectCode,
+            name: currentProgram.name,
+            description: description
+          });
         }
 
         // Start new program
@@ -1697,13 +1735,12 @@ function extractProgramDescriptions(sectionContent: string): Array<{ projectCode
         .trim()
         .replace(/\n{3,}/g, '\n\n'); // Replace multiple newlines with double newline
       
-      if (description) { // Only add if there's a description
-        programs.push({
-          projectCode: currentProgram.projectCode,
-          name: currentProgram.name,
-          description: description
-        });
-      }
+      // Always add the program, even if it doesn't have a description
+      programs.push({
+        projectCode: currentProgram.projectCode,
+        name: currentProgram.name,
+        description: description
+      });
     }
 
     // Validate results
@@ -1733,11 +1770,14 @@ function analyzeProgramDescriptions(
   
   log('## Step 4.2: Program Compare  #########################################################', true);
   for (const progDesc of programDescriptions) {
-    const existingProgram = programsData.programs.find(p => p.projectCode === progDesc.projectCode);
+    log(`Checking program ${progDesc.projectCode} - ${progDesc.name} in programs.json`, true);
+    const existingProgram = programsData.programs.find(p => p.projectCode === progDesc.projectCode) as Program | undefined;
     
     if (!existingProgram) {
+      log(`Program ${progDesc.projectCode} not found in programs.json`, true);
       newPrograms++;
     } else {
+      log(`Found existing program ${progDesc.projectCode} in programs.json`, true);
       // Check if this description already exists from the same source file
       const existingDescIndex = existingProgram.programDescriptions.findIndex(
         desc => desc.description === progDesc.description && desc.source === fileName
@@ -1774,7 +1814,8 @@ function extractBudgetAllocations(
   fundCode: string,
   fundName: string,
   amount: number,
-  fiscalYear: string
+  fiscalYear: string,
+  programName?: string
 }> {
   const results: Array<{
     projectCode: string,
@@ -1783,7 +1824,8 @@ function extractBudgetAllocations(
     fundCode: string,
     fundName: string,
     amount: number,
-    fiscalYear: string
+    fiscalYear: string,
+    programName?: string
   }> = [];
   
   log('## Step 5.1: Budget Extract  #########################################################', true);
@@ -1892,6 +1934,7 @@ function extractBudgetAllocations(
     let currentFundingType: FundingType | null = null;
     let currentFundCode = '';
     let continuedLine = '';
+    let currentProgramName = '';
     
     // Track funds within current funding type group
     let currentFundGroup: Array<{
@@ -1931,7 +1974,8 @@ function extractBudgetAllocations(
                 fundCode: fund.fundCode,
                 fundName: fund.fundName,
                 amount: fund.amounts[j],
-                fiscalYear: fiscalYears[j]
+                fiscalYear: fiscalYears[j],
+                programName: currentProgramName || undefined
               });
             }
           }
@@ -1956,7 +2000,8 @@ function extractBudgetAllocations(
                 fundCode: fund.fundCode,
                 fundName: fund.fundName,
                 amount: fund.amounts[j],
-                fiscalYear: fiscalYears[j]
+                fiscalYear: fiscalYears[j],
+                programName: currentProgramName || undefined
               });
             }
           }
@@ -2026,7 +2071,8 @@ function extractBudgetAllocations(
                       fundCode: fund.fundCode,
                       fundName: fund.fundName,
                       amount: fund.amounts[j],
-                      fiscalYear: fiscalYears[j]
+                      fiscalYear: fiscalYears[j],
+                      programName: currentProgramName || undefined
                     });
                   }
                 }
@@ -2075,6 +2121,11 @@ function extractBudgetAllocations(
         // Check for program code and name
         const programMatch = text.match(/^(\d{4})\s+([^$]+)$/);
         if (line.x < 100 && programMatch) {
+          const [_, code, name] = programMatch;
+          currentProjectCode = code + '000';
+          currentProgramName = name.trim();  // Set the program name
+          log(`Found program code: ${code} -> project code: ${currentProjectCode}, program name: ${currentProgramName}`, true);
+          
           // Process any remaining funds in current group before resetting
           if (currentFundGroup.length > 0 && currentFundingType !== null) {
             for (const fund of currentFundGroup) {
@@ -2086,7 +2137,8 @@ function extractBudgetAllocations(
                   fundCode: fund.fundCode,
                   fundName: fund.fundName,
                   amount: fund.amounts[j],
-                  fiscalYear: fiscalYears[j]
+                  fiscalYear: fiscalYears[j],
+                  programName: currentProgramName || undefined
                 });
               }
             }
@@ -2101,20 +2153,15 @@ function extractBudgetAllocations(
           while (nextLineIndex < processedLines.length && !processedLines[nextLineIndex].text.trim()) {
             nextLineIndex++;
           }
-          
           if (nextLineIndex < processedLines.length) {
             const nextLine = processedLines[nextLineIndex];          
             if (nextLine.x < 100 && 
                 !nextLine.text.match(/^(State Operations|Local Assistance|Totals[.,\s]*)/)) {
-              programName += ' ' + nextLine.text.trim();
+              // eslint-disable-next-line no-unused-vars
+                  programName += ' ' + nextLine.text.trim();
               i = nextLineIndex + 1; // Skip to the line after the continuation
-            } else {
-              log(`Not appending - line is a section marker or not indented`, true);
             }
           }
-          
-          log(`Found program code: ${programMatch[1]} -> project code: ${currentProjectCode}, program name: ${programName}`, true);
-          continue;
         }
 
         // Check for subprogram code and name
@@ -2131,7 +2178,8 @@ function extractBudgetAllocations(
                   fundCode: fund.fundCode,
                   fundName: fund.fundName,
                   amount: fund.amounts[j],
-                  fiscalYear: fiscalYears[j]
+                  fiscalYear: fiscalYears[j],
+                  programName: currentProgramName || undefined
                 });
               }
             }
@@ -2156,7 +2204,8 @@ function extractBudgetAllocations(
             fundCode: fund.fundCode,
             fundName: fund.fundName,
             amount: fund.amounts[j],
-            fiscalYear: fiscalYears[j]
+            fiscalYear: fiscalYears[j],
+            programName: currentProgramName || undefined
           });
         }
       }
@@ -2187,7 +2236,7 @@ function updateProgramData(
       programDescriptions: []
     };
     programsData.programs.push(program);
-    log(`Added new program: ${program.name} (${program.projectCode})`, true);
+    log(`Adding new program: ${program.name} ${program.projectCode}`, true);
   }
   
   const existingDescIndex = program.programDescriptions.findIndex(
