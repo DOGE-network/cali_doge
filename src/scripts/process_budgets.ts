@@ -1244,9 +1244,9 @@ async function processDepartmentSection(
       programDescriptions = uniqueProjectCodes.map(projectCode => {
         const allocations = budgetData.filter(a => a.projectCode === projectCode);
         const programName = allocations[0]?.programName || `Program ${projectCode}`;
-        log(`Found program code: ${projectCode} -> project code: ${projectCode}000, program name: ${programName}`, true);
+        log(`Found program code: ${projectCode} -> project code: ${projectCode}, program name: ${programName}`, true);
         return {
-          projectCode: `${projectCode}000`,
+          projectCode: `${projectCode}`,
           name: programName,
           description: '' // Empty description since we're using budget data
         };
@@ -1828,6 +1828,17 @@ function extractBudgetAllocations(
     programName?: string
   }> = [];
   
+  let currentProjectCode: string | null = null;
+  let currentProgramName: string | null = null;
+  let currentFundingType: FundingType | null = null;
+  let currentFundGroup: Array<{
+    fundCode: string,
+    fundName: string,
+    amounts: number[]
+  }> = [];
+  let isContinuation = false;
+  let continuationHeader: string | null = null;
+  
   log('## Step 5.1: Budget Extract  #########################################################', true);
   try {
     const lines = sectionContent.split('\n');
@@ -1930,18 +1941,7 @@ function extractBudgetAllocations(
       return results;
     }
 
-    let currentProjectCode = '';
-    let currentFundingType: FundingType | null = null;
-    let currentFundCode = '';
     let continuedLine = '';
-    let currentProgramName = '';
-    
-    // Track funds within current funding type group
-    let currentFundGroup: Array<{
-      fundCode: string,
-      fundName: string,
-      amounts: number[]
-    }> = [];
     
     // Process lines after fiscal years until section end
     for (let i = yearStartIndex + 1; i < sectionEndIndex; i++) {
@@ -1951,22 +1951,90 @@ function extractBudgetAllocations(
       // Skip empty lines
       if (!text) continue;
 
+      // Add detailed state logging for each line
+      log(`[DEBUG] === Processing Line ${i + 1} ===`, true);
+      log(`[DEBUG] Current line: "${text}"`, true);
+      log(`[DEBUG] Current state:`, true);
+      log(`[DEBUG] - Project Code: ${currentProjectCode}`, true);
+      log(`[DEBUG] - Program Name: ${currentProgramName}`, true);
+      log(`[DEBUG] - Funding Type: ${currentFundingType}`, true);
+      log(`[DEBUG] - Fund Group Size: ${currentFundGroup.length}`, true);
+      log(`[DEBUG] - Is Continuation: ${isContinuation}`, true);
+      log(`[DEBUG] - Continuation Header: ${continuationHeader || 'none'}`, true);
+
       // Check for program requirements section
       const programType = text.match(/^(?:PROGRAM|SUBPROGRAM)\s+REQUIREMENTS$/);
       if (programType) {
-        // Reset program code and fund group - we expect a new one
+        log(`[DEBUG] Found program requirements section: "${text}"`, true);
+        // Process any remaining funds in current group before resetting
+        if (currentFundGroup.length > 0 && currentFundingType !== null) {
+          log(`[DEBUG] Processing ${currentFundGroup.length} funds before program requirements section`, true);
+          for (const fund of currentFundGroup) {
+            log(`[DEBUG] Processing fund ${fund.fundCode}`, true);
+            for (let j = 0; j < 3; j++) {
+              log(`[DEBUG] Adding allocation for ${fiscalYears[j]}: ${fund.amounts[j]}`, true);
+              results.push({
+                projectCode: currentProjectCode || orgCode + '000',
+                organizationCode: orgCode,
+                fundingType: currentFundingType,
+                fundCode: fund.fundCode,
+                fundName: fund.fundName,
+                amount: fund.amounts[j],
+                fiscalYear: fiscalYears[j],
+                programName: currentProgramName || undefined
+              });
+            }
+          }
+          log(`[DEBUG] Cleared fund group after processing`, true);
+          currentFundGroup = [];
+        }
+        // Reset program code, program name and fund group - we expect a new one
         currentProjectCode = '';
-        currentFundGroup = [];
+        currentProgramName = null;  // Reset program name
         log(`Found: ${text}`, true);
+        log(`[DEBUG] Reset project code, program name and fund group`, true);
         continue;
+      }
+
+      // Check for fund line - must have amounts and not be a totals line
+      const fundMatch = text.match(/^(\d{4})\s+(.+?)\s+(\$[-\d,]+)\s+(\$[-\d,]+)\s+(\$[-\d,]+)$/);
+      if (line.x < 100 && fundMatch && !text.startsWith('Totals,')) {
+        const fundCode = fundMatch[1];
+        const fundName = fundMatch[2].trim();
+        const amounts = fundMatch.slice(3).map(parseAmount);
+        
+        log(`[DEBUG] Found fund line: "${text}"`, true);
+        log(`[DEBUG] Adding fund ${fundCode} to current group`, true);
+        currentFundGroup.push({ fundCode, fundName, amounts });
+        log(`[DEBUG] Current fund group size: ${currentFundGroup.length}`, true);
+        continue;
+      }
+
+      // Check for program code line
+      const programMatch = text.match(/^(\d{4})\s+(.+?)(?:\s+\$[-\d,]+)?$/);
+      if (line.x < 100 && programMatch && !text.includes("General Fund")) {
+        log(`[DEBUG] Found program line: "${text}"`, true);
+        const [_, programCode, programName] = programMatch;
+        
+        log(`[DEBUG] Parsed program: ${programCode} - ${programName}`, true);
+        
+        // Set project code to 7 digits by adding trailing zeros
+        currentProjectCode = programCode.padEnd(7, '0');
+        currentProgramName = programName.trim();
+        
+        log(`[DEBUG] Set project code to ${currentProjectCode} and program name to "${currentProgramName}"`, true);
       }
 
       // Processing funding type markers    
       if (text === 'State Operations:' || text === 'Local Assistance:') {
+        log(`[DEBUG] Found funding type marker: "${text}"`, true);
         // Process any remaining funds in current group before switching funding type
         if (currentFundGroup.length > 0 && currentFundingType !== null) {
+          log(`[DEBUG] Processing ${currentFundGroup.length} funds before funding type change`, true);
           for (const fund of currentFundGroup) {
+            log(`[DEBUG] Processing fund ${fund.fundCode}`, true);
             for (let j = 0; j < 3; j++) {
+              log(`[DEBUG] Adding allocation for ${fiscalYears[j]}: ${fund.amounts[j]}`, true);
               results.push({
                 projectCode: currentProjectCode || orgCode + '000',
                 organizationCode: orgCode,
@@ -2044,16 +2112,18 @@ function extractBudgetAllocations(
         // First line: fund code and start of name
         const fundStartMatch = text.match(/^(\d{4})\s+(.+)$/);
         if (fundStartMatch && !fundAmountMatch) {
-          currentFundCode = fundStartMatch[1];
+          const fundCode = fundStartMatch[1];
+          currentProjectCode = fundCode.padEnd(7, '0');  // Ensure 7-digit project code
           continuedLine = fundStartMatch[2];
           log(`Found potential multi-line fund entry starting at line ${i + 1}:`, true);
-          log(`   Fund code: ${currentFundCode}`, true);
+          log(`   Fund code: ${fundCode}`, true);
+          log(`   Project code: ${currentProjectCode}`, true);
           log(`   Initial text: ${continuedLine}`, true);
           continue;
         }
 
         // Continuation line with amounts
-        if (currentFundCode && continuedLine) {
+        if (currentProjectCode && continuedLine) {
           // Try to match amounts at the end of this line
           const amountMatch = text.match(/(.*?)\s+([\$\d,\-]+)\s+([\$\d,\-]+)\s+([\$\d,\-]+)$/);
           if (amountMatch) {
@@ -2064,8 +2134,12 @@ function extractBudgetAllocations(
               if (currentFundGroup.length > 0 && currentFundingType !== null) {
                 for (const fund of currentFundGroup) {
                   for (let j = 0; j < 3; j++) {
+                    if (!currentProjectCode) {
+                      log(`Error: No project code set for fund ${fund.fundCode}`, true, true);
+                      continue;
+                    }
                     results.push({
-                      projectCode: currentProjectCode || orgCode + '000',
+                      projectCode: currentProjectCode,
                       organizationCode: orgCode,
                       fundingType: currentFundingType,
                       fundCode: fund.fundCode,
@@ -2080,7 +2154,7 @@ function extractBudgetAllocations(
               }
               // Reset continuation tracking
               continuedLine = '';
-              currentFundCode = '';
+              currentProjectCode = '';
               continue;
             }
 
@@ -2092,21 +2166,21 @@ function extractBudgetAllocations(
             ];
 
             log(` ✓ Parsed fund multi-line line ${i + 1}:`, true);
-            log(`   Fund: ${currentFundCode} - ${fundName}`, true);
+            log(`   Fund: ${currentProjectCode} - ${fundName}`, true);
             log(`   Amounts: ${lineAmounts.join(', ')}`, true);
 
             // Add to current fund group
             currentFundGroup.push({
-              fundCode: currentFundCode,
+              fundCode: currentProjectCode,
               fundName,
               amounts: lineAmounts
             });
 
-            log(`Added fund ${currentFundCode} to current group`, true);
+            log(`Added fund ${currentProjectCode} to current group`, true);
             
             // Reset continuation tracking
             continuedLine = '';
-            currentFundCode = '';
+            currentProjectCode = '';
           }
         }
 
@@ -2121,47 +2195,64 @@ function extractBudgetAllocations(
         // Check for program code and name
         const programMatch = text.match(/^(\d{4})\s+([^$]+)$/);
         if (line.x < 100 && programMatch) {
-          const [_, code, name] = programMatch;
-          currentProjectCode = code + '000';
-          currentProgramName = name.trim();  // Set the program name
-          log(`Found program code: ${code} -> project code: ${currentProjectCode}, program name: ${currentProgramName}`, true);
-          
-          // Process any remaining funds in current group before resetting
-          if (currentFundGroup.length > 0 && currentFundingType !== null) {
-            for (const fund of currentFundGroup) {
-              for (let j = 0; j < 3; j++) {
-                results.push({
-                  projectCode: currentProjectCode || orgCode + '000',
-                  organizationCode: orgCode,
-                  fundingType: currentFundingType,
-                  fundCode: fund.fundCode,
-                  fundName: fund.fundName,
-                  amount: fund.amounts[j],
-                  fiscalYear: fiscalYears[j],
-                  programName: currentProgramName || undefined
-                });
-              }
-            }
-            currentFundGroup = [];
-          }
+          log(`[DEBUG] === Program Transition ===`, true);
+          log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+          log(`[DEBUG] Line number: ${i + 1}`, true);
+          log(`[DEBUG] Current line: "${text}"`, true);
+          log(`[DEBUG] Before transition - Project Code: ${currentProjectCode}, Program Name: ${currentProgramName}, Funding Type: ${currentFundingType}`, true);
+          log(`[DEBUG] Current fund group size: ${currentFundGroup.length}`, true);
 
-          currentProjectCode = programMatch[1] + '000';  // Convert 4-digit to 7-digit
-          let programName = programMatch[2].trim();
-                  
-          // Check next non-blank line for continuation
-          let nextLineIndex = i + 1;
-          while (nextLineIndex < processedLines.length && !processedLines[nextLineIndex].text.trim()) {
-            nextLineIndex++;
-          }
-          if (nextLineIndex < processedLines.length) {
-            const nextLine = processedLines[nextLineIndex];          
-            if (nextLine.x < 100 && 
-                !nextLine.text.match(/^(State Operations|Local Assistance|Totals[.,\s]*)/)) {
-              // eslint-disable-next-line no-unused-vars
-                  programName += ' ' + nextLine.text.trim();
-              i = nextLineIndex + 1; // Skip to the line after the continuation
+          const match = text.match(/^(\d{4})\s+(.+)$/);
+          if (match) {
+            const programCode = match[1];
+            const programName = match[2];
+            const projectCode = programCode.padEnd(7, '0');
+            
+            log(`[DEBUG] Found program code: ${programCode} -> project code: ${projectCode}, program name: ${programName}`, true);
+            
+            // Store current state
+            // eslint-disable-next-line no-unused-vars
+            const previousProjectCode = currentProjectCode;
+            // eslint-disable-next-line no-unused-vars
+            const previousProgramName = currentProgramName;
+            
+            // Process any remaining funds in current group
+            if (currentFundGroup.length > 0 && currentFundingType !== null) {
+              log(`[DEBUG] Processing remaining funds before program change:`, true);
+              log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+              for (const fund of currentFundGroup) {
+                if (!currentProjectCode) {
+                  log(`Error: No project code set for fund ${fund.fundCode}`, true, true);
+                  continue;
+                }
+                log(`[DEBUG] Processing fund ${fund.fundCode} with project code ${currentProjectCode}`, true);
+                log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+                for (let j = 0; j < 3; j++) {
+                  log(`[DEBUG] Adding allocation - Project: ${currentProjectCode}, Fund: ${fund.fundCode}, Amount: ${fund.amounts[j]}, Year: ${fiscalYears[j]}`, true);
+                  results.push({
+                    projectCode: currentProjectCode,
+                    organizationCode: orgCode,
+                    fundingType: currentFundingType,
+                    fundCode: fund.fundCode,
+                    fundName: fund.fundName,
+                    amount: fund.amounts[j],
+                    fiscalYear: fiscalYears[j],
+                    programName: currentProgramName || undefined
+                  });
+                }
+              }
+              currentFundGroup = [];
             }
+
+            // Update program state
+            currentProjectCode = projectCode;
+            currentProgramName = programName;
+            
+            log(`[DEBUG] After transition - Project Code: ${currentProjectCode}, Program Name: ${currentProgramName}, Funding Type: ${currentFundingType}`, true);
+            log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
           }
+          log(`[DEBUG] === End Program Transition ===`, true);
+          continue;
         }
 
         // Check for subprogram code and name
@@ -2169,10 +2260,16 @@ function extractBudgetAllocations(
         if (line.x < 100 && subprogramMatch) {
           // Process any remaining funds in current group before resetting
           if (currentFundGroup.length > 0 && currentFundingType !== null) {
+            log(`[DEBUG] Processing ${currentFundGroup.length} funds for subprogram ${currentProjectCode}`, true);
             for (const fund of currentFundGroup) {
               for (let j = 0; j < 3; j++) {
+                if (!currentProjectCode) {
+                  log(`Error: No project code set for fund ${fund.fundCode}`, true, true);
+                  log(`[DEBUG] Failed to process fund ${fund.fundCode} - missing project code`, true);
+                  continue;
+                }
                 results.push({
-                  projectCode: currentProjectCode || orgCode + '000',
+                  projectCode: currentProjectCode,
                   organizationCode: orgCode,
                   fundingType: currentFundingType,
                   fundCode: fund.fundCode,
@@ -2188,6 +2285,337 @@ function extractBudgetAllocations(
 
           currentProjectCode = subprogramMatch[1];  // Use full 7-digit code
           log(`Found subprogram code: ${currentProjectCode} program name: ${subprogramMatch[2].trim()}`, true);
+          log(`[DEBUG] Current state - Project Code: ${currentProjectCode}, Program Name: ${currentProgramName}, Funding Type: ${currentFundingType}`, true);
+          continue;
+        }
+      }
+
+      // Check for funding type headers
+      if (text.match(/^(State Operations|Local Assistance):$/)) {
+        log(`[DEBUG] === Funding Type Transition ===`, true);
+        log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+        log(`[DEBUG] Current state before transition:`, true);
+        log(`[DEBUG] - Project Code: ${currentProjectCode}`, true);
+        log(`[DEBUG] - Program Name: ${currentProgramName}`, true);
+        log(`[DEBUG] - Funding Type: ${currentFundingType}`, true);
+        log(`[DEBUG] - Fund Group Size: ${currentFundGroup.length}`, true);
+        log(`[DEBUG] - Current line: "${text}"`, true);
+        log(`[DEBUG] - Line number: ${i + 1}`, true);
+
+        // Store current state
+        const previousProjectCode = currentProjectCode;
+        const previousProgramName = currentProgramName;
+
+        // Process any remaining funds in current group
+        if (currentFundGroup.length > 0 && currentFundingType !== null) {
+          log(`[DEBUG] Processing remaining funds before funding type change:`, true);
+          log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+          for (const fund of currentFundGroup) {
+            if (!currentProjectCode) {
+              log(`Error: No project code set for fund ${fund.fundCode}`, true, true);
+              continue;
+            }
+            log(`[DEBUG] Processing fund ${fund.fundCode} with project code ${currentProjectCode}`, true);
+            log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+            for (let j = 0; j < 3; j++) {
+              log(`[DEBUG] Adding allocation - Project: ${currentProjectCode}, Fund: ${fund.fundCode}, Amount: ${fund.amounts[j]}, Year: ${fiscalYears[j]}`, true);
+              results.push({
+                projectCode: currentProjectCode,
+                organizationCode: orgCode,
+                fundingType: currentFundingType,
+                fundCode: fund.fundCode,
+                fundName: fund.fundName,
+                amount: fund.amounts[j],
+                fiscalYear: fiscalYears[j],
+                programName: currentProgramName || undefined
+              });
+            }
+          }
+          currentFundGroup = [];
+        }
+
+        // Update funding type
+        const newFundingType = text.startsWith('State Operations') ? 0 : 1;
+        currentFundingType = newFundingType;
+        log(`[DEBUG] Changed funding type to: ${text.startsWith('State Operations') ? 'State Operations' : 'Local Assistance'}`, true);
+        log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+
+        // Restore previous state
+        currentProjectCode = previousProjectCode;
+        currentProgramName = previousProgramName;
+        
+        log(`[DEBUG] State after transition:`, true);
+        log(`[DEBUG] - Project Code: ${currentProjectCode}`, true);
+        log(`[DEBUG] - Program Name: ${currentProgramName}`, true);
+        log(`[DEBUG] - Funding Type: ${currentFundingType}`, true);
+        log(`[DEBUG] - Fund Group Size: ${currentFundGroup.length}`, true);
+        log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+        continue;
+      }
+
+      // If we're in a funding type group, prioritize fund detection
+      if (currentFundingType !== null && line.x < 100) {
+        log(`[DEBUG] === Fund Processing ===`, true);
+        log(`[DEBUG] Function: extractBudgetAllocations, Loop: fund processing loop`, true);
+        log(`[DEBUG] Current state - Project Code: ${currentProjectCode}, Program Name: ${currentProgramName}, Funding Type: ${currentFundingType}`, true);
+        log(`[DEBUG] Current line: "${text}"`, true);
+        log(`[DEBUG] Line number: ${i + 1}`, true);
+        
+        // Parse fund code, name and amounts all on one line
+        const fundAmountMatch = text.match(/^(\d{4})\s+(.*?)\s+([\$\d,\-]+)\s+([\$\d,\-]+)\s+([\$\d,\-]+)$/);
+        if (fundAmountMatch) {
+          const fundCode = fundAmountMatch[1];
+          const fundName = fundAmountMatch[2].trim();
+          const lineAmounts = [
+            parseAmount(fundAmountMatch[3]),
+            parseAmount(fundAmountMatch[4]), 
+            parseAmount(fundAmountMatch[5])
+          ];
+          
+          log(`✓ Parsed fund line ${i + 1}:`, true);
+          log(`   Fund: ${fundCode} - ${fundName}`, true);
+          log(`   Amounts: ${lineAmounts.join(', ')}`, true);
+          log(`[DEBUG] Adding fund ${fundCode} to group with project code ${currentProjectCode}`, true);
+
+          // Add to current fund group
+          currentFundGroup.push({
+            fundCode,
+            fundName,
+            amounts: lineAmounts
+          });
+
+          log(`Added fund ${fundCode} to current group`, true);
+          log(`[DEBUG] === End Fund Processing ===`, true);
+          continue;
+        }
+
+        // Check for multi-line fund entries
+        // First line: fund code and start of name
+        const fundStartMatch = text.match(/^(\d{4})\s+(.+)$/);
+        if (fundStartMatch && !fundAmountMatch) {
+          log(`[DEBUG] === Multi-line Fund Start ===`, true);
+          log(`[DEBUG] Function: extractBudgetAllocations, Loop: multi-line fund processing`, true);
+          currentProjectCode = fundStartMatch[1];
+          continuedLine = fundStartMatch[2];
+          log(`Found potential multi-line fund entry starting at line ${i + 1}:`, true);
+          log(`   Fund code: ${currentProjectCode}`, true);
+          log(`   Initial text: ${continuedLine}`, true);
+          log(`[DEBUG] Current project code: ${currentProjectCode}`, true);
+          log(`[DEBUG] === End Multi-line Fund Start ===`, true);
+          continue;
+        }
+
+        // Continuation line with amounts
+        if (currentProjectCode && continuedLine) {
+          log(`[DEBUG] === Multi-line Fund Continuation ===`, true);
+          log(`[DEBUG] Function: extractBudgetAllocations, Loop: multi-line fund continuation`, true);
+          // Try to match amounts at the end of this line
+          const amountMatch = text.match(/(.*?)\s+([\$\d,\-]+)\s+([\$\d,\-]+)\s+([\$\d,\-]+)$/);
+          if (amountMatch) {
+            // Check if this is a totals line
+            if (text.trim().startsWith('Totals')) {
+              log(`[DEBUG] Found totals line, stopping fund processing`, true);
+              log(`[DEBUG] Current project code: ${currentProjectCode}`, true);
+              // Process any remaining funds in current group
+              if (currentFundGroup.length > 0 && currentFundingType !== null) {
+                log(`[DEBUG] Processing ${currentFundGroup.length} funds before totals line`, true);
+                for (const fund of currentFundGroup) {
+                  for (let j = 0; j < 3; j++) {
+                    if (!currentProjectCode) {
+                      log(`Error: No project code set for fund ${fund.fundCode}`, true, true);
+                      log(`[DEBUG] Failed to process fund ${fund.fundCode} - missing project code`, true);
+                      continue;
+                    }
+                    results.push({
+                      projectCode: currentProjectCode,
+                      organizationCode: orgCode,
+                      fundingType: currentFundingType,
+                      fundCode: fund.fundCode,
+                      fundName: fund.fundName,
+                      amount: fund.amounts[j],
+                      fiscalYear: fiscalYears[j],
+                      programName: currentProgramName || undefined
+                    });
+                  }
+                }
+                currentFundGroup = [];
+              }
+              // Reset continuation tracking
+              continuedLine = '';
+              currentProjectCode = '';
+              log(`[DEBUG] === End Totals Processing ===`, true);
+              continue;
+            }
+
+            const fundName = (continuedLine + ' ' + amountMatch[1]).trim();
+            const lineAmounts = [
+              parseAmount(amountMatch[2]),
+              parseAmount(amountMatch[3]),
+              parseAmount(amountMatch[4])
+            ];
+
+            log(` ✓ Parsed fund multi-line line ${i + 1}:`, true);
+            log(`   Fund: ${currentProjectCode} - ${fundName}`, true);
+            log(`   Amounts: ${lineAmounts.join(', ')}`, true);
+            log(`[DEBUG] Current project code: ${currentProjectCode}`, true);
+
+            // Add to current fund group
+            currentFundGroup.push({
+              fundCode: currentProjectCode,
+              fundName,
+              amounts: lineAmounts
+            });
+
+            log(`Added fund ${currentProjectCode} to current group`, true);
+            
+            // Reset continuation tracking
+            continuedLine = '';
+            currentProjectCode = '';
+          }
+          log(`[DEBUG] === End Multi-line Fund Continuation ===`, true);
+        }
+
+        // If we get here and we're in a funding type group, this line might be a fund
+        // that doesn't match our patterns - log it for debugging
+        log(`Potential fund line not matched: "${text}"`, true);
+        continue;
+      }
+
+      // Only check for program codes if we're not in a funding type group
+      if (!currentFundingType) {
+        // Check for program code and name
+        const programMatch = text.match(/^(\d{4})\s+([^$]+)$/);
+        if (line.x < 100 && programMatch) {
+          log(`[DEBUG] === Program Transition ===`, true);
+          log(`[DEBUG] Function: extractBudgetAllocations, Loop: program processing`, true);
+          log(`[DEBUG] Line number: ${i + 1}`, true);
+          log(`[DEBUG] Current line: "${text}"`, true);
+          log(`[DEBUG] Before transition - Project Code: ${currentProjectCode}, Program Name: ${currentProgramName}, Funding Type: ${currentFundingType}`, true);
+          log(`[DEBUG] Current fund group size: ${currentFundGroup.length}`, true);
+
+          const match = text.match(/^(\d{4})\s+(.+)$/);
+          if (match) {
+            const programCode = match[1];
+            const programName = match[2];
+            const projectCode = programCode.padEnd(7, '0');
+            
+            log(`[DEBUG] Found program code: ${programCode} -> project code: ${projectCode}, program name: ${programName}`, true);
+            
+            // Store current state
+            // eslint-disable-next-line no-unused-vars
+            const previousProjectCode = currentProjectCode;
+            // eslint-disable-next-line no-unused-vars
+            const previousProgramName = currentProgramName;
+            
+            // Process any remaining funds in current group
+            if (currentFundGroup.length > 0 && currentFundingType !== null) {
+              log(`[DEBUG] Processing remaining funds before program change:`, true);
+              log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+              for (const fund of currentFundGroup) {
+                if (!currentProjectCode) {
+                  log(`Error: No project code set for fund ${fund.fundCode}`, true, true);
+                  continue;
+                }
+                log(`[DEBUG] Processing fund ${fund.fundCode} with project code ${currentProjectCode}`, true);
+                log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+                for (let j = 0; j < 3; j++) {
+                  log(`[DEBUG] Adding allocation - Project: ${currentProjectCode}, Fund: ${fund.fundCode}, Amount: ${fund.amounts[j]}, Year: ${fiscalYears[j]}`, true);
+                  results.push({
+                    projectCode: currentProjectCode,
+                    organizationCode: orgCode,
+                    fundingType: currentFundingType,
+                    fundCode: fund.fundCode,
+                    fundName: fund.fundName,
+                    amount: fund.amounts[j],
+                    fiscalYear: fiscalYears[j],
+                    programName: currentProgramName || undefined
+                  });
+                }
+              }
+              currentFundGroup = [];
+            }
+
+            // Update program state
+            currentProjectCode = projectCode;
+            currentProgramName = programName;
+            
+            log(`[DEBUG] After transition - Project Code: ${currentProjectCode}, Program Name: ${currentProgramName}, Funding Type: ${currentFundingType}`, true);
+            log(`[DEBUG] Current loop: ${isContinuation ? 'continuation' : 'main'}`, true);
+          }
+          log(`[DEBUG] === End Program Transition ===`, true);
+          
+          // Process any remaining funds in current group before resetting
+          if (currentFundGroup.length > 0 && currentFundingType !== null) {
+            log(`[DEBUG] Processing ${currentFundGroup.length} funds for project ${currentProjectCode}`, true);
+            for (const fund of currentFundGroup) {
+              for (let j = 0; j < 3; j++) {
+                if (!currentProjectCode) {
+                  log(`Error: No project code set for fund ${fund.fundCode}`, true, true);
+                  log(`[DEBUG] Failed to process fund ${fund.fundCode} - missing project code`, true);
+                  continue;
+                }
+                results.push({
+                  projectCode: currentProjectCode,
+                  organizationCode: orgCode,
+                  fundingType: currentFundingType,
+                  fundCode: fund.fundCode,
+                  fundName: fund.fundName,
+                  amount: fund.amounts[j],
+                  fiscalYear: fiscalYears[j],
+                  programName: currentProgramName || undefined
+                });
+              }
+            }
+            currentFundGroup = [];
+          }
+                  
+          // Check next non-blank line for continuation
+          let nextLineIndex = i + 1;
+          while (nextLineIndex < processedLines.length && !processedLines[nextLineIndex].text.trim()) {
+            nextLineIndex++;
+          }
+          if (nextLineIndex < processedLines.length) {
+            const nextLine = processedLines[nextLineIndex];          
+            if (nextLine.x < 100 && 
+                !nextLine.text.match(/^(State Operations|Local Assistance|Totals[.,\s]*)/)) {
+              currentProgramName += ' ' + nextLine.text.trim();
+              i = nextLineIndex + 1; // Skip to the line after the continuation
+              log(`[DEBUG] Updated program name to: ${currentProgramName}`, true);
+            }
+          }
+        }
+
+        // Check for subprogram code and name
+        const subprogramMatch = text.match(/^\d{7}\s+([^$]+)$/);
+        if (line.x < 100 && subprogramMatch) {
+          // Process any remaining funds in current group before resetting
+          if (currentFundGroup.length > 0 && currentFundingType !== null) {
+            log(`[DEBUG] Processing ${currentFundGroup.length} funds for subprogram ${currentProjectCode}`, true);
+            for (const fund of currentFundGroup) {
+              for (let j = 0; j < 3; j++) {
+                if (!currentProjectCode) {
+                  log(`Error: No project code set for fund ${fund.fundCode}`, true, true);
+                  log(`[DEBUG] Failed to process fund ${fund.fundCode} - missing project code`, true);
+                  continue;
+                }
+                results.push({
+                  projectCode: currentProjectCode,
+                  organizationCode: orgCode,
+                  fundingType: currentFundingType,
+                  fundCode: fund.fundCode,
+                  fundName: fund.fundName,
+                  amount: fund.amounts[j],
+                  fiscalYear: fiscalYears[j],
+                  programName: currentProgramName || undefined
+                });
+              }
+            }
+            currentFundGroup = [];
+          }
+
+          currentProjectCode = subprogramMatch[1];  // Use full 7-digit code
+          log(`Found subprogram code: ${currentProjectCode} program name: ${subprogramMatch[2].trim()}`, true);
+          log(`[DEBUG] Current state - Project Code: ${currentProjectCode}, Program Name: ${currentProgramName}, Funding Type: ${currentFundingType}`, true);
           continue;
         }
       }
@@ -2197,8 +2625,12 @@ function extractBudgetAllocations(
     if (currentFundGroup.length > 0 && currentFundingType !== null) {
       for (const fund of currentFundGroup) {
         for (let j = 0; j < 3; j++) {
+          if (!currentProjectCode) {
+            log(`Error: No project code set for fund ${fund.fundCode}`, true, true);
+            continue;
+          }
           results.push({
-            projectCode: currentProjectCode || orgCode + '000',
+            projectCode: currentProjectCode,
             organizationCode: orgCode,
             fundingType: currentFundingType,
             fundCode: fund.fundCode,
@@ -2212,8 +2644,58 @@ function extractBudgetAllocations(
     }
 
     log(`Processed ${results.length / 3} budget allocations`, true);
-    return results;
 
+    // Debug logging for fund groups and program information
+    log(`[DEBUG] === Budget Extraction Debug Information === (Org: ${orgCode}, Allocations: ${results.length})`, true);
+    
+    // Log program codes and names
+    const programInfo = new Map<string, string>();
+    const fundGroups = new Map<string, Array<{
+      fundCode: string,
+      fundName: string,
+      amount: number,
+      fiscalYear: string
+    }>>();
+
+    // First pass: collect all unique program codes and names
+    for (const allocation of results) {
+      const projectCode = allocation.projectCode;
+      if (!programInfo.has(projectCode)) {
+        programInfo.set(projectCode, allocation.programName || 'No program name');
+      }
+    }
+    
+    log(`[DEBUG] Program Codes and Names Found (Total: ${programInfo.size})`, true);
+    programInfo.forEach((name, code) => {
+      log(`[DEBUG] Program: ${code} - ${name}`, true);
+    });
+
+    // Second pass: group funds by their original project code
+    for (const allocation of results) {
+      const key = `${allocation.projectCode}-${allocation.fundingType}`;
+      if (!fundGroups.has(key)) {
+        fundGroups.set(key, []);
+      }
+      fundGroups.get(key)?.push({
+        fundCode: allocation.fundCode,
+        fundName: allocation.fundName,
+        amount: allocation.amount,
+        fiscalYear: allocation.fiscalYear
+      });
+    }
+
+    log(`[DEBUG] Fund Groups Found (Total: ${fundGroups.size})`, true);
+    fundGroups.forEach((funds, key) => {
+      const [projectCode, fundingType] = key.split('-');
+      log(`[DEBUG] Group: ${projectCode} (${fundingType})`, true);
+      funds.forEach(fund => {
+        log(`[DEBUG]   Fund: ${fund.fundCode} (${fund.fundName}) - ${fund.amount} (${fund.fiscalYear})`, true);
+      });
+    });
+    
+    log('[DEBUG] === End Debug Information ===', true);
+
+    return results;
   } catch (error: any) {
     log(`Error extracting budget allocations: ${error.message}`, true, true);
     return results;
@@ -2271,7 +2753,6 @@ function updateBudgetData(
   }>,
   budgetsData: BudgetsJSON
 ): void {
-  
   log('## Step 5.4: Budget Update  #########################################################', true);
   for (const allocation of budgetAllocations) {
     const fiscalYear = parseInt(allocation.fiscalYear.split('-')[0], 10);
@@ -2298,15 +2779,17 @@ function updateBudgetData(
       log(`Created new fiscal year ${fiscalYear} for org ${allocation.organizationCode}`, true);
     }
     
-    let projectCodeData = fiscalYearData.projectCode.find(pc => pc.code === allocation.projectCode);
+    // Ensure project code is 7 digits
+    const projectCode = allocation.projectCode.padEnd(7, '0');
+    let projectCodeData = fiscalYearData.projectCode.find(pc => pc.code === projectCode);
     
     if (!projectCodeData) {
       projectCodeData = {
-        code: allocation.projectCode,
+        code: projectCode,
         fundingType: []
       };
       fiscalYearData.projectCode.push(projectCodeData);
-      log(`Created new project code ${allocation.projectCode} for org ${allocation.organizationCode}, year ${fiscalYear}`, true);
+      log(`Created new project code ${projectCode} for org ${allocation.organizationCode}, year ${fiscalYear}`, true);
     }
     
     let fundingTypeData = projectCodeData.fundingType.find(ft => ft.type === allocation.fundingType);
@@ -2317,7 +2800,7 @@ function updateBudgetData(
         fundCode: []
       };
       projectCodeData.fundingType.push(fundingTypeData);
-      log(`Created new funding type ${allocation.fundingType} for project ${allocation.projectCode}`, true);
+      log(`Created new funding type ${allocation.fundingType} for project ${projectCode}`, true);
     }
     
     let fundAllocation = fundingTypeData.fundCode.find(fc => fc.code === allocation.fundCode);
@@ -2331,7 +2814,7 @@ function updateBudgetData(
       };
       fundingTypeData.fundCode.push(fundAllocation);
       stats.budgetAllocationsAdded++;
-      const newAllocationMessage = `Added new fund allocation for ${allocation.organizationCode}-${allocation.projectCode}-${allocation.fundCode} (${allocation.fiscalYear}): $${allocation.amount}`;
+      const newAllocationMessage = `Added new fund allocation for ${allocation.organizationCode}-${projectCode}-${allocation.fundCode} (${allocation.fiscalYear}): $${allocation.amount}`;
       log(newAllocationMessage, true);
       log(`  ✓ ${newAllocationMessage}`);
     } else {
@@ -2344,7 +2827,7 @@ function updateBudgetData(
       
       stats.budgetAllocationsOverwritten++;
       
-      const overwriteMessage = `Overwritten fund allocation for ${allocation.organizationCode}-${allocation.projectCode}-${allocation.fundCode} (${allocation.fiscalYear}): $${oldAmount} (count: ${oldCount}) → $${allocation.amount} (count: 1)`;
+      const overwriteMessage = `Overwritten fund allocation for ${allocation.organizationCode}-${projectCode}-${allocation.fundCode} (${allocation.fiscalYear}): $${oldAmount} (count: ${oldCount}) → $${allocation.amount} (count: 1)`;
       log(overwriteMessage, true);
       log(`  ⚠️  ${overwriteMessage}`);
     }
