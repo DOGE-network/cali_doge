@@ -1,6 +1,32 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1931888596950323382"
+      ],
+      "id": "1931888596950323382",
+      "text": "@Alladdin1983 Happy to participate in the future",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at": "2025-06-09T01:38:28.000Z",
+      "created_at_formatted": "Jun 9, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
       "id": "1931508773698543890",
       "entities": {
         "mentions": [
@@ -15796,8 +15822,8 @@
     }
   ],
   "meta": {
-    "result_count": 141,
-    "newest_id": "1931508773698543890",
+    "result_count": 142,
+    "newest_id": "1931888596950323382",
     "oldest_id": "1882144700762878208"
   }
 }
