@@ -4,6 +4,19 @@ import { join } from 'path';
 import { TwitterApiResponse } from '@/types/twitter';
 import { groupTweetsIntoThreads } from '@/lib/twitter/utils';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+// Add revalidation period
+export const revalidate = 3600; // Revalidate every hour
+
+// Add metadata for better SEO
+export const metadata: Metadata = {
+  title: "Cali DOGE: California's Independent Government Transparency Platform | California DOGE, CA DOGE",
+  description: "Explore Cali DOGE for California government waste data. Search 15M+ records with our CA DOGE platform. Independent, transparent, and data-driven insights into California government operations.",
+  alternates: {
+    canonical: '/',
+  },
+};
 
 async function getLatestTweets(): Promise<TwitterApiResponse | null> {
   try {
@@ -39,8 +52,36 @@ export default async function Home() {
         </div>
       </div>
       
+      {/* Welcome Section with H1 */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <h1 className="text-3xl font-bold mb-4">Cali DOGE: Uncovering California Government Waste</h1>
+        <div className="prose prose-lg text-gray-600 mb-8">
+          <p className="mb-4">
+            Welcome to Cali DOGE (California DOGE), your independent platform for government transparency. With over 15M records in our database and 300+ hours of research, we provide unprecedented access to California government operations, programs, and spending data.
+          </p>
+          <p className="mb-4">
+            Our CA DOGE platform helps you discover hidden taxes, track government efficiency, and understand how your tax dollars are being spent. Unlike other transparency platforms, we focus exclusively on California, delivering detailed insights into state and local government operations.
+          </p>
+          <div className="flex gap-4 mt-6">
+            <Link 
+              href="/search" 
+              className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors"
+            >
+              Search Database
+            </Link>
+            <Link 
+              href="/whistleblower" 
+              className="bg-gray-100 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-200 transition-colors"
+            >
+              Report Waste
+            </Link>
+          </div>
+        </div>
+      </section>
+      
       {/* Tweets Section */}
       <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <h2 className="text-2xl font-semibold mb-6">Latest Updates from Cali DOGE</h2>
         {tweetGroups.length > 0 ? (
           <div className="space-y-6">
             {/* Display all tweet groups in chronological order */}

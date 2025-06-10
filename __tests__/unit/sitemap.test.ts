@@ -35,8 +35,8 @@ describe('sitemap', () => {
       }));
     });
 
-    // Verify total number of pages (10 core pages + department pages)
-    expect(result.length).toBe(10 + mockDepartmentSlugs.length);
+    // Verify total number of pages (11 core pages + department pages)
+    expect(result.length).toBe(11 + mockDepartmentSlugs.length);
   });
 
   it('should handle empty department list', async () => {
@@ -47,7 +47,7 @@ describe('sitemap', () => {
     const result = await sitemap();
 
     // Verify only core pages are included
-    expect(result.length).toBe(10); // 10 core pages
+    expect(result.length).toBe(11); // 11 core pages
     expect(result.every((page: MetadataRoute.Sitemap[number]) => !page.url.includes('/departments/'))).toBe(true);
   });
 }); 

@@ -60,7 +60,7 @@ export function DepartmentDetailCard({ item, isSelected }: DetailCardProps) {
   // Type guard to ensure we have a SearchItem
   if (item.type !== 'department') return null;
   const departmentItem = item as SearchItem;
-  const departmentSlug = departmentItem.id.toString().toLowerCase().replace(/[^a-z0-9]/g, '-');
+  const departmentSlug = departmentItem.id.toString().toLowerCase().replace(/[^a-z0-9_]/g, '-');
 
   return (
     <div className={`p-6 border rounded-lg transition-all ${

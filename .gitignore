@@ -414,3 +414,9 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 .vercel
+
+# Ignore uncompressed vendors.json
+src/data/vendors.json
+
+# But track the compressed version
+!src/data/vendors.json.gz

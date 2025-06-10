@@ -218,9 +218,8 @@ function SearchPageClient() {
   const getResultLink = (item: SearchItem | KeywordItem) => {
     switch (item.type) {
       case 'department':
-        // Try to navigate to department page first
-        const departmentSlug = item.id.toString().toLowerCase().replace(/[^a-z0-9]/g, '-');
-        return `/departments/${departmentSlug}`;
+        // Use the ID directly since it's already in the correct format (e.g. 0690_office_of_emergency_services)
+        return `/departments/${item.id}`;
       case 'vendor':
         return `/search?q=${encodeURIComponent(item.term)}&types=vendor&view=details&id=${encodeURIComponent(item.id)}`;
       case 'program':

@@ -3,13 +3,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import type { SearchJSON, KeywordSource } from '../types/search';
-import type { DepartmentsJSON } from '../types/department';
 import type { ProgramsJSON } from '../types/program';
 import type { FundsJSON } from '../types/fund';
+import { getAllPosts } from '../lib/blog';
 
 // Paths to data files
 const DATA_DIR = path.join(__dirname, '../data');
-const DEPARTMENTS_PATH = path.join(DATA_DIR, 'departments.json');
 const VENDORS_PATH = path.join(DATA_DIR, 'vendors.json');
 const PROGRAMS_PATH = path.join(DATA_DIR, 'programs.json');
 const FUNDS_PATH = path.join(DATA_DIR, 'funds.json');
@@ -66,7 +65,7 @@ function extractKeywords(text: string): string[] {
   return Array.from(new Set(words));
 }
 
-function generateSearchIndex(): SearchJSON {
+async function generateSearchIndex(): Promise<SearchJSON> {
   console.log('🔍 Generating search index...');
   
   const searchIndex: SearchJSON = {
@@ -80,24 +79,23 @@ function generateSearchIndex(): SearchJSON {
 
   const keywordMap = new Map<string, KeywordSource[]>();
 
-  // Process Departments
+  // Process Departments from blog posts
   console.log('📁 Processing departments...');
-  const departmentsData = readJsonFile<DepartmentsJSON>(DEPARTMENTS_PATH);
-  if (departmentsData?.departments) {
-    for (const dept of departmentsData.departments) {
+  const posts = await getAllPosts();
+  if (posts) {
+    for (const post of posts) {
       // Add department to search items
       searchIndex.departments.push({
-        term: dept.name,
+        term: post.name,
         type: 'department',
-        id: dept.organizationalCode?.toString() || dept._slug
+        id: post.id // Use just the ID since it already contains the organizational code
       });
 
       // Extract keywords from department data
       const deptKeywords = [
-        ...extractKeywords(dept.name),
-        ...extractKeywords(dept.keyFunctions || ''),
-        ...extractKeywords(dept.canonicalName || ''),
-        ...(dept.aliases || []).flatMap(alias => extractKeywords(alias))
+        ...extractKeywords(post.name),
+        ...extractKeywords(post.excerpt || ''),
+        ...extractKeywords(post.content || '')
       ];
 
       // Add keywords with department context
@@ -107,8 +105,8 @@ function generateSearchIndex(): SearchJSON {
         }
         keywordMap.get(keyword)!.push({
           type: 'department',
-          id: dept.organizationalCode?.toString() || dept._slug,
-          context: dept.keyFunctions || dept.name
+          id: post.id, // Use just the ID since it already contains the organizational code
+          context: post.excerpt || post.name
         });
       }
     }
@@ -290,12 +288,11 @@ function writeSearchIndex(searchIndex: SearchJSON): void {
   }
 }
 
-// Main execution
-function main(): void {
+async function main(): Promise<void> {
   console.log('🚀 Starting search index generation...\n');
   
   try {
-    const searchIndex = generateSearchIndex();
+    const searchIndex = await generateSearchIndex();
     writeSearchIndex(searchIndex);
     
     console.log('\n🎉 Search index generation completed successfully!');
@@ -308,7 +305,10 @@ function main(): void {
 
 // Run if called directly
 if (require.main === module) {
-  main();
+  main().catch(error => {
+    console.error('❌ Error in main:', error);
+    process.exit(1);
+  });
 }
 
 export { generateSearchIndex, writeSearchIndex }; 

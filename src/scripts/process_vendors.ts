@@ -46,6 +46,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { parse } from 'csv-parse/sync';
+import { gzip } from 'zlib';
+import { promisify } from 'util';
 // import * as einResolution from '../lib/einResolution';
 const dataValidation = require('../lib/dataValidation');
 
@@ -855,6 +857,10 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
     log({ message: `4.2 Writing enhanced vendor data after processing ${file}` });
     writeVendorData(enhancedVendorData, ENHANCED_VENDORS_PATH);
     
+    // Compress the vendors.json file
+    log({ message: 'Compressing vendors.json for GitHub' });
+    await compressVendorData(ENHANCED_VENDORS_PATH);
+    
     // Write data files only if there were changes
     let hasChanges = false;
     
@@ -974,6 +980,19 @@ function validateProgramCodesInVendorData(vendorData: any): { isValid: boolean; 
   }
 }
 
+// Add compression function
+async function compressVendorData(filePath: string): Promise<void> {
+  try {
+    const data = fs.readFileSync(filePath, 'utf8');
+    const compressed = await promisify(gzip)(data);
+    const compressedPath = `${filePath}.gz`;
+    fs.writeFileSync(compressedPath, compressed);
+    log({ message: `Compressed ${filePath} to ${compressedPath}` });
+  } catch (error) {
+    log({ message: `Error compressing ${filePath}: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
+  }
+}
+
 async function main(): Promise<void> {
   try {
     // Check for specific command-line argument for EIN resolution only
@@ -1053,7 +1072,7 @@ async function main(): Promise<void> {
     
     const defaultEnhancedData = {
       vendors: [],
-      processedFiles: [],
+      pf: [],
       lastProcessedFile: null,
       lastProcessedTimestamp: null,
       sources: [
@@ -1080,7 +1099,7 @@ async function main(): Promise<void> {
         yearlyTransactionData[year].pf = [];
       });
       
-      enhancedVendorData.processedFiles = [];
+      enhancedVendorData.pf = [];
       log({ message: 'Cleared processed files history for force reprocessing' });
     }
     
@@ -1114,7 +1133,7 @@ async function main(): Promise<void> {
     // Process each file
     for (const file of files) {
       // Skip files that have been processed for all years (unless force reprocessing)
-      if (!forceReprocess && enhancedVendorData.processedFiles && enhancedVendorData.processedFiles.includes(file)) {
+      if (!forceReprocess && enhancedVendorData.pf && enhancedVendorData.pf.includes(file)) {
         log({ message: `Skipping ${file} - already processed for all years` });
         continue;
       }
@@ -1134,6 +1153,10 @@ async function main(): Promise<void> {
     // Final write after EIN resolution
     log({ message: 'STEP 4. Writing final enhanced vendor data with EINs' });
     writeVendorData(enhancedVendorData, ENHANCED_VENDORS_PATH);
+    
+    // Compress the vendors.json file
+    log({ message: 'Compressing vendors.json for GitHub' });
+    await compressVendorData(ENHANCED_VENDORS_PATH);
 
     // Detailed validation against departments
     log({ message: '4.3 Validating vendor data against departments' });
@@ -1165,7 +1188,7 @@ async function main(): Promise<void> {
     log({ message: '5.1 Processing statistics' });
     
     const vendorCount = enhancedVendorData.v.length;
-    const processedFileCount = enhancedVendorData.processedFiles ? enhancedVendorData.processedFiles.length : 0;
+    const processedFileCount = enhancedVendorData.pf ? enhancedVendorData.pf.length : 0;
     const yearsProcessed = Object.keys(yearlyTransactionData).length;
     
     log({ message: `Total vendors processed: ${vendorCount}` });
