@@ -22,14 +22,18 @@ interface LogMessage {
   type?: 'info' | 'error' | 'warn';
 }
 
-// Initialize logger
-let log: (_message: LogMessage) => void;
+// Initialize basic console logging first
+const consoleLog = ({ message, type = 'info' }: LogMessage) => {
+  const timestamp = new Date().toISOString();
+  const logType = type.toUpperCase();
+  console.log(`[${timestamp}] [${logType}] ${message}`);
+};
 
 // Ensure directories exist
 function ensureDirectoryExists(dirPath: string): void {
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
-    log({ message: `Created directory: ${dirPath}` });
+    consoleLog({ message: `Created directory: ${dirPath}` });
   }
 }
 
@@ -39,7 +43,8 @@ function setupLogging() {
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const logFile = path.join(LOG_DIR, `generate_search_index_${timestamp}.log`);
   
-  log = ({ message, type = 'info' }: LogMessage) => {
+  // Create file logging function
+  const fileLog = ({ message, type = 'info' }: LogMessage) => {
     const timestamp = new Date().toISOString();
     const logType = type.toUpperCase();
     
@@ -48,11 +53,11 @@ function setupLogging() {
     console.log(message);
   };
   
-  return log;
+  return fileLog;
 }
 
-// Initialize logger
-log = setupLogging();
+// Initialize logging
+const log = setupLogging();
 
 // Common words to exclude from keyword extraction
 const COMMON_WORDS = new Set([
