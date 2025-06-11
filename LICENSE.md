@@ -24,6 +24,16 @@ You are free to share and adapt the data and text for any purpose, provided you 
 
 Some data in this repository was originally published by the California state government and is used here under terms that permit reuse. See the NOTICE file for details and required attributions.
 
+## Social Media Data
+
+This repository may include data sourced from social media platforms. While we encourage proper attribution to original content creators, the use of publicly available social media data in this repository is governed by:
+
+1. The Apache License 2.0 for code and technical implementations
+2. The Creative Commons Attribution 4.0 International License for non-code content
+3. Applicable fair use provisions
+
+Attribution to original content creators is appreciated but not required.
+
 ## Notices
 
 See the NOTICE file for additional attributions and information.
