@@ -2,6 +2,173 @@
   "tweets": [
     {
       "edit_history_tweet_ids": [
+        "1932604074027098283"
+      ],
+      "text": "RT @T_Q_Gardner: https://t.co/LE1yCKkTtn",
+      "id": "1932604074027098283",
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 15,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ],
+        "urls": [
+          {
+            "start": 17,
+            "end": 40,
+            "url": "https://t.co/LE1yCKkTtn",
+            "expanded_url": "https://x.com/i/spaces/1ypJdZYXObYKW",
+            "display_url": "x.com/i/spaces/1ypJd…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1930694539825602561/QNm9U_Ng?format=jpg&name=orig",
+                "width": 1200,
+                "height": 630
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1930694539825602561/QNm9U_Ng?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Scheduled: TE: State DOGE efforts",
+            "description": "The Questionable Gardner’s Space · Where live audio conversations happen",
+            "unwound_url": "https://twitter.com/i/spaces/1ypJdZYXObYKW/peek"
+          }
+        ]
+      },
+      "created_at": "2025-06-11T01:01:31.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 11, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1932568990846800097"
+      ],
+      "text": "RT @americancloudco: We’ll migrate you from heroku for free, and give you your first month free if you’re experiencing issues from the hero…",
+      "id": "1932568990846800097",
+      "entities": {
+        "annotations": [
+          {
+            "start": 44,
+            "end": 49,
+            "probability": 0.5152,
+            "type": "Other",
+            "normalized_text": "heroku"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 19,
+            "username": "americancloudco",
+            "id": "1560280369739534341"
+          }
+        ]
+      },
+      "created_at": "2025-06-10T22:42:07.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 10, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1932568249063072203"
+      ],
+      "text": "RT @JenniferHorn: Meet the Los Angeles protestors...",
+      "id": "1932568249063072203",
+      "entities": {
+        "annotations": [
+          {
+            "start": 27,
+            "end": 37,
+            "probability": 0.8565,
+            "type": "Place",
+            "normalized_text": "Los Angeles"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 16,
+            "username": "JenniferHorn",
+            "id": "14423929"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "856860708847222784",
+            "name": "Los Angeles",
+            "description": "Los Angeles"
+          }
+        }
+      ],
+      "created_at": "2025-06-10T22:39:10.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 10, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1932567802210365786"
+      ],
+      "text": "RT @T_Q_Gardner: Come listen as @cali_doge discusses ideas for reform at the state level.",
+      "id": "1932567802210365786",
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 15,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 32,
+            "end": 42,
+            "username": "cali_doge",
+            "id": "1859283000145608705"
+          }
+        ]
+      },
+      "created_at": "2025-06-10T22:37:24.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 10, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
         "1931888596950323382"
       ],
       "id": "1931888596950323382",
@@ -15822,8 +15989,8 @@
     }
   ],
   "meta": {
-    "result_count": 142,
-    "newest_id": "1931888596950323382",
+    "result_count": 146,
+    "newest_id": "1932604074027098283",
     "oldest_id": "1882144700762878208"
   }
 }
