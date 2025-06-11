@@ -180,7 +180,12 @@ export interface OptimizedVendor {
 }
 
 export interface OptimizedVendorsJSON {
-  vendors: OptimizedVendor[];
+  v: OptimizedVendor[];
+  pf?: string[];  // processed files
+  lpf?: string | null;  // last processed file
+  lpt?: string | null;  // last processed timestamp
+  sources?: Array<{ name: string; url: string }>;
+  lastUpdated?: string;
 }
 
 // EIN resolution metadata (used in processing scripts)

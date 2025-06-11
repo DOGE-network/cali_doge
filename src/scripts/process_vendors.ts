@@ -46,8 +46,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { parse } from 'csv-parse/sync';
-import { gzip } from 'zlib';
-import { promisify } from 'util';
 // import * as einResolution from '../lib/einResolution';
 const dataValidation = require('../lib/dataValidation');
 
@@ -201,7 +199,7 @@ function writeVendorData(data: any, filePath: string): void {
 
 // Gets the vendor transaction file path for a specific year
 function getVendorTransactionPath(year: string): string {
-  return path.join(DATA_DIR, `vendor_transaction_${year}.json`);
+  return path.join(DATA_DIR, `vendors_${year}.json`);
 }
 
 // Function to validate that a fund code is 4 digits
@@ -857,10 +855,6 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
     log({ message: `4.2 Writing enhanced vendor data after processing ${file}` });
     writeVendorData(enhancedVendorData, ENHANCED_VENDORS_PATH);
     
-    // Compress the vendors.json file
-    log({ message: 'Compressing vendors.json for GitHub' });
-    await compressVendorData(ENHANCED_VENDORS_PATH);
-    
     // Write data files only if there were changes
     let hasChanges = false;
     
@@ -977,19 +971,6 @@ function validateProgramCodesInVendorData(vendorData: any): { isValid: boolean; 
   } catch (error) {
     log({ message: `Error validating program codes: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
     return { isValid: false, invalidCodes: ['Error validating program codes'] };
-  }
-}
-
-// Add compression function
-async function compressVendorData(filePath: string): Promise<void> {
-  try {
-    const data = fs.readFileSync(filePath, 'utf8');
-    const compressed = await promisify(gzip)(data);
-    const compressedPath = `${filePath}.gz`;
-    fs.writeFileSync(compressedPath, compressed);
-    log({ message: `Compressed ${filePath} to ${compressedPath}` });
-  } catch (error) {
-    log({ message: `Error compressing ${filePath}: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
   }
 }
 
@@ -1153,10 +1134,6 @@ async function main(): Promise<void> {
     // Final write after EIN resolution
     log({ message: 'STEP 4. Writing final enhanced vendor data with EINs' });
     writeVendorData(enhancedVendorData, ENHANCED_VENDORS_PATH);
-    
-    // Compress the vendors.json file
-    log({ message: 'Compressing vendors.json for GitHub' });
-    await compressVendorData(ENHANCED_VENDORS_PATH);
 
     // Detailed validation against departments
     log({ message: '4.3 Validating vendor data against departments' });

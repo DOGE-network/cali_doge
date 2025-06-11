@@ -1,36 +1,15 @@
 import { NextResponse } from 'next/server';
-import budgetsData from '@/data/budgets.json';
-import programsData from '@/data/programs.json';
-import fundsData from '@/data/funds.json';
-const { getVendorsData, readJsonFile } = require('@/lib/api/dataAccess');
-import type { BudgetsJSON } from '@/types/budget';
-import type { OptimizedVendorsJSON } from '@/types/vendor';
-import type { ProgramsJSON } from '@/types/program';
-import type { FundsJSON } from '@/types/fund';
+import { getVendorsData, readJsonFile } from '@/lib/api/dataAccess';
 import { getDepartmentSlugs } from '@/lib/blog';
 import type { DepartmentsJSON } from '@/types/department';
+import type { BudgetsJSON } from '@/types/budget';
+import type { ProgramsJSON } from '@/types/program';
+import type { FundsJSON } from '@/types/fund';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
 
-// Helper function to format fiscal year
-function formatFiscalYear(year: number): string {
-  return `FY${year}_FY${year + 1}`;
-}
-
-// Helper function to get year range
-function getYearRange(yearRange: string, availableYears: number[]): number[] {
-  const sortedYears = [...availableYears].sort((a, b) => b - a); // Most recent first
-  
-  if (yearRange === 'recent') {
-    // Return last 3 years
-    return sortedYears.slice(0, 3);
-  }
-  
-  // Return all years
-  return sortedYears;
-}
-
+// Types
 interface SpendingRecord {
   year: number;
   department: string;
@@ -50,9 +29,10 @@ interface YearColumnRecord {
   vendor: string;
   program: string;
   fund: string;
-  [key: string]: string | number | undefined; // For dynamic year columns like FY2023_FY2024
+  [key: string]: string | number | undefined; // For dynamic year columns
 }
 
+// eslint-disable-next-line no-unused-vars
 interface SpendResponse {
   spending: SpendingRecord[] | YearColumnRecord[];
   pagination: {
@@ -72,24 +52,16 @@ interface SpendResponse {
   yearRange?: 'recent' | 'all';
 }
 
-// Add this function before the GET handler
+// Helper functions
 function parseFilterValue(value: string): { terms: string[], operator: 'AND' | 'OR' } {
-  // Replace commas with AND
   const normalizedValue = value.replace(/,/g, ' AND ');
-  
-  // Check if the value contains OR
   const hasOr = normalizedValue.toUpperCase().includes(' OR ');
-  
-  // Split by the operator
   const terms = hasOr 
     ? normalizedValue.split(/\s+OR\s+/i)
     : normalizedValue.split(/\s+AND\s+/i);
   
-  // Clean up terms and handle quoted phrases
   const cleanedTerms = terms.map(term => {
-    // Remove extra spaces
     term = term.trim();
-    // Handle quoted phrases
     if (term.startsWith('"') && term.endsWith('"')) {
       return term.slice(1, -1);
     }
@@ -104,7 +76,6 @@ function parseFilterValue(value: string): { terms: string[], operator: 'AND' | '
 
 function matchesFilter(value: string, filterTerms: { terms: string[], operator: 'AND' | 'OR' }): boolean {
   const searchValue = value.toLowerCase();
-  
   if (filterTerms.operator === 'OR') {
     return filterTerms.terms.some(term => searchValue.includes(term.toLowerCase()));
   } else {
@@ -112,603 +83,606 @@ function matchesFilter(value: string, filterTerms: { terms: string[], operator: 
   }
 }
 
+// Main API handler
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
+    const url = new URL(request.url || '', 'http://localhost');
+    const searchParams = url.searchParams;
+    
     // Parse query parameters
-    const view = searchParams.get('view') || 'vendor'; // budget|vendor|compare
-    const compareBy = searchParams.get('compareBy') || 'department'; // department|program|fund (for compare view)
-    const filter = searchParams.get('filter') || 'all'; // all|year|department|vendor|program|fund
-    const year = searchParams.get('year');
-    const department = searchParams.get('department');
-    const vendor = searchParams.get('vendor');
-    const program = searchParams.get('program');
-    const fund = searchParams.get('fund');
-    const sort = searchParams.get('sort') || 'amount'; // year|department|vendor|program|fund|amount
-    const order = searchParams.get('order') || 'desc'; // asc|desc
+    const view = searchParams.get('view') || 'vendor';
+    const year = searchParams.get('year') || '2024';
+    const sort = searchParams.get('sort') || 'totalAmount';
+    const order = searchParams.get('order') || 'desc';
     const page = parseInt(searchParams.get('page') || '1', 10);
     const limit = parseInt(searchParams.get('limit') || '50', 10);
-    const yearRange = searchParams.get('yearRange') || 'all'; // all|recent
-    const yearColumns = searchParams.get('yearColumns') === 'true';
+    const filter = searchParams.get('filter');
+    const department = searchParams.get('department');
 
-    console.log('Spend API request:', { view, filter, year, department, vendor, program, fund, sort, order, page, limit });
+    // Validate year format
+    if (!/^\d{4}$/.test(year)) {
+      return NextResponse.json(
+        { error: 'Invalid year format. Year must be a 4-digit number.' },
+        { status: 400 }
+      );
+    }
 
     // Load data from multiple sources
-    const [departmentSlugs, vendorsData, departmentsData] = await Promise.all([
+    const [departmentSlugs, vendorsData, departmentsData, budgetsData, programsData, fundsData] = await Promise.all([
       getDepartmentSlugs(),
-      getVendorsData() as Promise<OptimizedVendorsJSON>,
-      readJsonFile('departments.json') as Promise<DepartmentsJSON>
+      getVendorsData(year),
+      readJsonFile('departments.json') as Promise<DepartmentsJSON>,
+      readJsonFile('budgets.json') as Promise<BudgetsJSON>,
+      readJsonFile('programs.json') as Promise<ProgramsJSON>,
+      readJsonFile('funds.json') as Promise<FundsJSON>
     ]);
-    
-    const typedBudgets = budgetsData as unknown as BudgetsJSON;
-    const typedVendors = vendorsData as OptimizedVendorsJSON;
-    const typedPrograms = programsData as unknown as ProgramsJSON;
-    const typedFunds = fundsData as unknown as FundsJSON;
-    const typedDepartments = departmentsData as DepartmentsJSON;
 
-    // Create department lookup maps
+    // Create lookup maps
     const departmentByOrgCode = new Map();
     const departmentSlugMap = new Map();
-    
-    typedDepartments.departments.forEach(dept => {
+    const programMap = new Map();
+    const fundMap = new Map();
+
+    // Populate department maps
+    departmentsData.departments.forEach(dept => {
       departmentByOrgCode.set(String(dept.organizationalCode).padStart(4, '0'), dept.name);
-      
-      // Find matching markdown slug
       const matchingSlug = departmentSlugs.find(slug => {
         const [orgCode] = slug.split('_');
         return orgCode === String(dept.organizationalCode).padStart(4, '0');
       });
-      
       if (matchingSlug) {
         departmentSlugMap.set(dept.name, matchingSlug);
       }
     });
 
-    // Create program lookup map
-    const programMap = new Map();
-    typedPrograms.programs.forEach(prog => {
+    // Populate program map
+    programsData.programs.forEach(prog => {
       programMap.set(prog.projectCode, prog.name || 'Unknown Program');
     });
 
-    // Create fund lookup map
-    const fundMap = new Map();
-    typedFunds.funds.forEach(fundItem => {
-      fundMap.set(fundItem.fundCode, fundItem.fundName);
+    // Populate fund map
+    fundsData.funds.forEach(fund => {
+      fundMap.set(fund.fundCode, fund.fundName);
     });
 
-    // Collect all available years
-    const availableYearsSet = new Set<number>();
-    
-    // Get years from vendor data
-    const vendors = (typedVendors as any).v || [];
-    vendors.forEach((vendorGroup: any) => {
-      const vendorNames = vendorGroup.n || [];
-      vendorNames.forEach((vendor: any) => {
-        const fiscalYears = vendor.fy || [];
-        fiscalYears.forEach((fiscalYear: any) => {
-          availableYearsSet.add(parseInt(fiscalYear.y));
-        });
-      });
-    });
-    
-    // Get years from budget data
-    typedBudgets.budget.forEach(orgBudget => {
-      orgBudget.fiscalYear.forEach(fiscalYear => {
-        availableYearsSet.add(fiscalYear.year);
-      });
-    });
-
-    const availableYears = Array.from(availableYearsSet);
-    const selectedYears = getYearRange(yearRange, availableYears);
-
-    let spendingRecords: SpendingRecord[] = [];
-    let yearColumnRecords: YearColumnRecord[] = [];
-
-    if (yearColumns) {
-      // Year columns view - aggregate by entity with year amounts as columns
-      const aggregationMap = new Map<string, YearColumnRecord>();
-
-      // Process vendor data
-      if (view === 'vendor' || view === 'compare') {
-        vendors.forEach((vendorGroup: any) => {
-          const vendorNames = vendorGroup.n || [];
-          vendorNames.forEach((vendor: any) => {
-            const fiscalYears = vendor.fy || [];
-            fiscalYears.forEach((fiscalYear: any) => {
-              const year = parseInt(fiscalYear.y);
-              if (!selectedYears.includes(year)) return;
-
-              const projectCodes = fiscalYear.pc || [];
-              projectCodes.forEach((projectCode: any) => {
-                const orgCodes = projectCode.oc || [];
-                orgCodes.forEach((orgCode: any) => {
-                  const fundCodes = orgCode.fc || [];
-                  fundCodes.forEach((fundCode: any) => {
-                    const deptName = departmentByOrgCode.get(String(orgCode.c).padStart(4, '0')) || 'Unknown Department';
-                    const progName = programMap.get(projectCode.c) || 'Unknown Program';
-                    const fundName = fundMap.get(String(fundCode.c)) || 'Unknown Fund';
-                    const departmentSlug = departmentSlugMap.get(deptName);
-
-                    const key = `${deptName}|${vendor.n}|${progName}|${fundName}`;
-                    
-                    if (!aggregationMap.has(key)) {
-                      aggregationMap.set(key, {
-                        department: deptName,
-                        departmentSlug,
-                        vendor: vendor.n,
-                        program: progName,
-                        fund: fundName
-                      });
-                    }
-
-                    const existing = aggregationMap.get(key)!;
-                    const yearKey = formatFiscalYear(year);
-                    const currentAmount = (existing[yearKey] as number) || 0;
-                    existing[yearKey] = currentAmount + fundCode.a;
-                  });
-                });
-              });
-            });
-          });
-        });
-      }
-
-      // Process budget data
-      if (view === 'budget' || view === 'compare') {
-        typedBudgets.budget.forEach(orgBudget => {
-          orgBudget.fiscalYear.forEach(fiscalYear => {
-            if (!selectedYears.includes(fiscalYear.year)) return;
-
-            fiscalYear.projectCode.forEach(projectCode => {
-              projectCode.fundingType.forEach(fundingType => {
-                fundingType.fundCode.forEach(fundAllocation => {
-                  const deptName = departmentByOrgCode.get(String(orgBudget.code).padStart(4, '0')) || 'Unknown Department';
-                  const progName = programMap.get(projectCode.code) || 'Unknown Program';
-                  const fundName = fundMap.get(String(fundAllocation.code)) || 'Unknown Fund';
-                  const departmentSlug = departmentSlugMap.get(deptName);
-
-                  const vendorName = view === 'budget' ? 'Budget Allocation' : 'Budget Allocation';
-                  const key = `${deptName}|${vendorName}|${progName}|${fundName}`;
-                  
-                  if (!aggregationMap.has(key)) {
-                    aggregationMap.set(key, {
-                      department: deptName,
-                      departmentSlug,
-                      vendor: vendorName,
-                      program: progName,
-                      fund: fundName
-                    });
-                  }
-
-                  const existing = aggregationMap.get(key)!;
-                  const yearKey = formatFiscalYear(fiscalYear.year);
-                  
-                  if (view === 'compare') {
-                    // For compare view, add to budget amount columns
-                    const budgetYearKey = `budget_${yearKey}`;
-                    const currentAmount = (existing[budgetYearKey] as number) || 0;
-                    existing[budgetYearKey] = currentAmount + fundAllocation.amount;
-                  } else {
-                    // For budget view, add to regular year columns
-                    const currentAmount = (existing[yearKey] as number) || 0;
-                    existing[yearKey] = currentAmount + fundAllocation.amount;
-                  }
-                });
-              });
-            });
-          });
-        });
-      }
-
-             yearColumnRecords = Array.from(aggregationMap.values());
-
-    } else {
-      // Original row-based view (existing logic)
-      if (view === 'compare') {
-        // For compare view, aggregate vendor and budget amounts by the specified field
-        const aggregationMap = new Map<string, {
-          year: number;
-          department: string;
-          departmentSlug?: string;
-          program: string;
-          fund: string;
-          vendorAmount: number;
-          budgetAmount: number;
-        }>();
-
-        // Process vendor data
-        vendors.forEach((vendorGroup: any) => {
-          const vendorNames = vendorGroup.n || [];
-          vendorNames.forEach((vendor: any) => {
-            const fiscalYears = vendor.fy || [];
-            fiscalYears.forEach((fiscalYear: any) => {
-              const projectCodes = fiscalYear.pc || [];
-              projectCodes.forEach((projectCode: any) => {
-                const orgCodes = projectCode.oc || [];
-                orgCodes.forEach((orgCode: any) => {
-                  const fundCodes = orgCode.fc || [];
-                  fundCodes.forEach((fundCode: any) => {
-                    const deptName = departmentByOrgCode.get(String(orgCode.c).padStart(4, '0')) || 'Unknown Department';
-                    const progName = programMap.get(projectCode.c) || 'Unknown Program';
-                    const fundName = fundMap.get(String(fundCode.c)) || 'Unknown Fund';
-                    const departmentSlug = departmentSlugMap.get(deptName);
-
-                    // Create aggregation key based on compareBy field
-                    let compareValue: string;
-                    switch (compareBy) {
-                      case 'program':
-                        compareValue = progName;
-                        break;
-                      case 'fund':
-                        compareValue = fundName;
-                        break;
-                      case 'department':
-                      default:
-                        compareValue = deptName;
-                        break;
-                    }
-
-                    const key = `${parseInt(fiscalYear.y)}-${compareValue}`;
-                    
-                    if (!aggregationMap.has(key)) {
-                      aggregationMap.set(key, {
-                        year: parseInt(fiscalYear.y),
-                        department: deptName,
-                        departmentSlug,
-                        program: progName,
-                        fund: fundName,
-                        vendorAmount: 0,
-                        budgetAmount: 0
-                      });
-                    }
-
-                    const existing = aggregationMap.get(key)!;
-                    existing.vendorAmount += fundCode.a;
-                  });
-                });
-              });
-            });
-          });
-        });
-
-        // Process budget data
-        budgetsData.budget.forEach(orgBudget => {
-          orgBudget.fiscalYear.forEach(fiscalYear => {
-            fiscalYear.projectCode.forEach(projectCode => {
-              projectCode.fundingType.forEach(fundingType => {
-                fundingType.fundCode.forEach(fundAllocation => {
-                  const deptName = departmentByOrgCode.get(String(orgBudget.code).padStart(4, '0')) || 'Unknown Department';
-                  const progName = programMap.get(projectCode.code) || 'Unknown Program';
-                  const fundName = fundMap.get(String(fundAllocation.code)) || 'Unknown Fund';
-                  const departmentSlug = departmentSlugMap.get(deptName);
-
-                  // Create aggregation key based on compareBy field
-                  let compareValue: string;
-                  switch (compareBy) {
-                    case 'program':
-                      compareValue = progName;
-                      break;
-                    case 'fund':
-                      compareValue = fundName;
-                      break;
-                    case 'department':
-                    default:
-                      compareValue = deptName;
-                      break;
-                  }
-
-                  const key = `${fiscalYear.year}-${compareValue}`;
-                  
-                  if (!aggregationMap.has(key)) {
-                    aggregationMap.set(key, {
-                      year: fiscalYear.year,
-                      department: deptName,
-                      departmentSlug,
-                      program: progName,
-                      fund: fundName,
-                      vendorAmount: 0,
-                      budgetAmount: 0
-                    });
-                  }
-
-                  const existing = aggregationMap.get(key)!;
-                  existing.budgetAmount += fundAllocation.amount;
-                });
-              });
-            });
-          });
-        });
-
-        // Convert aggregation map to records
-        spendingRecords = Array.from(aggregationMap.values()).map(item => ({
-          year: item.year,
-          department: item.department,
-          departmentSlug: item.departmentSlug,
-          vendor: 'Comparison', // Not used in compare view
-          program: item.program,
-          fund: item.fund,
-          amount: item.vendorAmount + item.budgetAmount, // Total for sorting
-          vendorAmount: item.vendorAmount,
-          budgetAmount: item.budgetAmount
-        }));
-
-      } else if (view === 'vendor') {
-        // Process vendor data - handle actual structure with v array
-        const vendors = (vendorsData as any).v || [];
-        vendors.forEach((vendorGroup: any) => {
-          const vendorNames = vendorGroup.n || [];
-          vendorNames.forEach((vendor: any) => {
-            const fiscalYears = vendor.fy || [];
-            fiscalYears.forEach((fiscalYear: any) => {
-              const projectCodes = fiscalYear.pc || [];
-              projectCodes.forEach((projectCode: any) => {
-                const orgCodes = projectCode.oc || [];
-                orgCodes.forEach((orgCode: any) => {
-                  const fundCodes = orgCode.fc || [];
-                  fundCodes.forEach((fundCode: any) => {
-                    const deptName = departmentByOrgCode.get(String(orgCode.c).padStart(4, '0')) || 'Unknown Department';
-                    const progName = programMap.get(projectCode.c) || 'Unknown Program';
-                    const fundName = fundMap.get(String(fundCode.c)) || 'Unknown Fund';
-                    const departmentSlug = departmentSlugMap.get(deptName);
-
-                    spendingRecords.push({
-                      year: parseInt(fiscalYear.y),
-                      department: deptName,
-                      departmentSlug,
-                      vendor: vendor.n,
-                      program: progName,
-                      fund: fundName,
-                      amount: fundCode.a
-                    });
-                  });
-                });
-              });
-            });
-          });
-        });
-      }
-
-      if (view === 'budget') {
-        // Process budget data
-        budgetsData.budget.forEach(orgBudget => {
-          orgBudget.fiscalYear.forEach(fiscalYear => {
-            fiscalYear.projectCode.forEach(projectCode => {
-              projectCode.fundingType.forEach(fundingType => {
-                fundingType.fundCode.forEach(fundAllocation => {
-                  const deptName = departmentByOrgCode.get(String(orgBudget.code).padStart(4, '0')) || 'Unknown Department';
-                  const progName = programMap.get(projectCode.code) || 'Unknown Program';
-                  const fundName = fundMap.get(String(fundAllocation.code)) || 'Unknown Fund';
-                  const departmentSlug = departmentSlugMap.get(deptName);
-
-                  spendingRecords.push({
-                    year: fiscalYear.year,
-                    department: deptName,
-                    departmentSlug,
-                    vendor: 'Budget Allocation',
-                    program: progName,
-                    fund: fundName,
-                    amount: fundAllocation.amount
-                  });
-                });
-              });
-            });
-          });
-        });
-      }
-    }
-
-    // Parse filter values with operators
-    const departmentFilter = department ? parseFilterValue(department) : null;
-    const vendorFilter = vendor ? parseFilterValue(vendor) : null;
-    const programFilter = program ? parseFilterValue(program) : null;
-    const fundFilter = fund ? parseFilterValue(fund) : null;
-
-    // Apply filters and sorting
-    let filteredRecords: SpendingRecord[] | YearColumnRecord[];
-    let totalAmount: number;
-    let recordCount: number;
-
-    if (yearColumns) {
-      // Handle year columns filtering and sorting
-      let filteredYearRecords = yearColumnRecords;
-
-      if (departmentFilter) {
-        filteredYearRecords = filteredYearRecords.filter(record => 
-          matchesFilter(record.department, departmentFilter)
-        );
-      }
-
-      if (vendorFilter) {
-        filteredYearRecords = filteredYearRecords.filter(record => 
-          matchesFilter(record.vendor, vendorFilter)
-        );
-      }
-
-      if (programFilter) {
-        filteredYearRecords = filteredYearRecords.filter(record => 
-          matchesFilter(record.program, programFilter)
-        );
-      }
-
-      if (fundFilter) {
-        filteredYearRecords = filteredYearRecords.filter(record => 
-          matchesFilter(record.fund, fundFilter)
-        );
-      }
-
-      // Apply sorting for year columns
-      filteredYearRecords.sort((a, b) => {
-        let aValue: any, bValue: any;
-
-        switch (sort) {
-          case 'department':
-            aValue = a.department.toLowerCase();
-            bValue = b.department.toLowerCase();
-            break;
-          case 'vendor':
-            aValue = a.vendor.toLowerCase();
-            bValue = b.vendor.toLowerCase();
-            break;
-          case 'program':
-            aValue = a.program.toLowerCase();
-            bValue = b.program.toLowerCase();
-            break;
-          case 'fund':
-            aValue = a.fund.toLowerCase();
-            bValue = b.fund.toLowerCase();
-            break;
-          default:
-            // For year columns, sort by first available year column
-            const firstYearKey = selectedYears.length > 0 ? formatFiscalYear(selectedYears[0]) : '';
-            aValue = (a[firstYearKey] as number) || 0;
-            bValue = (b[firstYearKey] as number) || 0;
-            break;
+    // Process data based on view
+    if (view === 'vendor') {
+      // Support both formats: year-specific (t) and all-vendors (v or vendors)
+      let vendors: any[] = [];
+      if (vendorsData) {
+        if (Array.isArray(vendorsData.v)) {
+          vendors = vendorsData.v;
+        } else if (Array.isArray(vendorsData.vendors)) {
+          vendors = vendorsData.vendors;
+        } else if (Array.isArray(vendorsData.t)) {
+          vendors = vendorsData.t;
         }
+      }
 
-        if (aValue < bValue) return order === 'asc' ? -1 : 1;
-        if (aValue > bValue) return order === 'asc' ? 1 : -1;
-        return 0;
+      // Filter vendors for the specified year
+      let yearVendors: any[] = [];
+      if (vendors.length > 0) {
+        if (typeof vendors[0].n === 'string') {
+          yearVendors = vendors;
+        } else {
+          yearVendors = vendors.filter(vendor => {
+            return Array.isArray(vendor.n) && vendor.n.some(nameEntry => {
+              return Array.isArray(nameEntry.fy) && nameEntry.fy.some(yearEntry => yearEntry.y === year);
+            });
+          });
+        }
+      }
+
+      // Calculate totals for each vendor
+      const vendorAggregates = new Map<string, {
+        totalAmount: number;
+        transactionCount: number;
+        departments: Set<string>;
+        programs: Set<string>;
+        funds: Set<string>;
+        departmentAmounts: Map<string, number>;
+      }>();
+
+      yearVendors.forEach(vendor => {
+        if (typeof vendor.n === 'string') {
+          // Year-specific format
+          if (Array.isArray(vendor.d)) {
+            vendor.d.forEach(dept => {
+              dept.at?.forEach(accountType => {
+                accountType.ac?.forEach(accountCat => {
+                  accountCat.asc?.forEach(subCat => {
+                    subCat.ad?.forEach(desc => {
+                      const deptName = departmentByOrgCode.get(String(dept.oc).padStart(4, '0')) || 'Unknown Department';
+                      const progName = programMap.get(desc.pc) || 'Unknown Program';
+                      const fundName = fundMap.get(String(desc.fc)) || 'Unknown Fund';
+
+                      if (!vendorAggregates.has(vendor.n)) {
+                        vendorAggregates.set(vendor.n, {
+                          totalAmount: 0,
+                          transactionCount: 0,
+                          departments: new Set(),
+                          programs: new Set(),
+                          funds: new Set(),
+                          departmentAmounts: new Map()
+                        });
+                      }
+
+                      const aggregate = vendorAggregates.get(vendor.n)!;
+                      aggregate.totalAmount += desc.a || 0;
+                      aggregate.transactionCount += desc.ct || 0;
+                      aggregate.departments.add(deptName);
+                      aggregate.programs.add(progName);
+                      aggregate.funds.add(fundName);
+
+                      const currentDeptAmount = aggregate.departmentAmounts.get(deptName) || 0;
+                      aggregate.departmentAmounts.set(deptName, currentDeptAmount + (desc.a || 0));
+                    });
+                  });
+                });
+              });
+            });
+          }
+        } else if (Array.isArray(vendor.n)) {
+          // All-vendors format
+          vendor.n.forEach(nameEntry => {
+            if (Array.isArray(nameEntry.fy)) {
+              nameEntry.fy.forEach(fiscalYear => {
+                if (fiscalYear.y === year) {
+                  fiscalYear.pc?.forEach(projectCode => {
+                    projectCode.oc?.forEach(orgCode => {
+                      orgCode.fc?.forEach(fundCode => {
+                        const deptName = departmentByOrgCode.get(String(orgCode.c).padStart(4, '0')) || 'Unknown Department';
+                        const progName = programMap.get(projectCode.c) || 'Unknown Program';
+                        const fundName = fundMap.get(String(fundCode.c)) || 'Unknown Fund';
+
+                        if (!vendorAggregates.has(nameEntry.n)) {
+                          vendorAggregates.set(nameEntry.n, {
+                            totalAmount: 0,
+                            transactionCount: 0,
+                            departments: new Set(),
+                            programs: new Set(),
+                            funds: new Set(),
+                            departmentAmounts: new Map()
+                          });
+                        }
+
+                        const aggregate = vendorAggregates.get(nameEntry.n)!;
+                        aggregate.totalAmount += fundCode.a || 0;
+                        aggregate.transactionCount += fundCode.ct || 0;
+                        aggregate.departments.add(deptName);
+                        aggregate.programs.add(progName);
+                        aggregate.funds.add(fundName);
+
+                        const currentDeptAmount = aggregate.departmentAmounts.get(deptName) || 0;
+                        aggregate.departmentAmounts.set(deptName, currentDeptAmount + (fundCode.a || 0));
+                      });
+                    });
+                  });
+                }
+              });
+            }
+          });
+        }
       });
 
-      // Calculate summary for year columns
-      totalAmount = filteredYearRecords.reduce((sum, record) => {
-        let recordTotal = 0;
-        selectedYears.forEach(year => {
-          const yearKey = formatFiscalYear(year);
-          recordTotal += (record[yearKey] as number) || 0;
+      // Convert aggregates to records
+      const vendorRecords = Array.from(vendorAggregates.entries()).map(([name, data]) => {
+        // Find primary department (highest amount)
+        let primaryDepartment = 'Unknown Department';
+        let maxAmount = 0;
+        data.departmentAmounts.forEach((amount, dept) => {
+          if (amount > maxAmount) {
+            maxAmount = amount;
+            primaryDepartment = dept;
+          }
         });
-        return sum + recordTotal;
-      }, 0);
-      
-      recordCount = filteredYearRecords.length;
-      filteredRecords = filteredYearRecords;
 
-    } else {
-      // Handle regular row-based filtering and sorting
-      let filteredRowRecords = spendingRecords;
+        // Pick a representative program and fund (or join all)
+        const program = data.programs.size > 0 ? Array.from(data.programs).join(', ') : 'Unknown Program';
+        const fund = data.funds.size > 0 ? Array.from(data.funds).join(', ') : 'Unknown Fund';
 
-      if (year) {
-        filteredRowRecords = filteredRowRecords.filter(record => record.year === parseInt(year));
-      }
+        return {
+          year: parseInt(year),
+          vendor: name,
+          totalAmount: data.totalAmount,
+          amount: data.totalAmount, // For table display
+          transactionCount: data.transactionCount,
+          departments: Array.from(data.departments),
+          programs: Array.from(data.programs),
+          funds: Array.from(data.funds),
+          program, // For table display
+          fund,    // For table display
+          department: primaryDepartment, // For table display
+          departmentSlug: departmentSlugMap.get(primaryDepartment), // For table display
+          primaryDepartment,
+          primaryDepartmentSlug: departmentSlugMap.get(primaryDepartment)
+        };
+      });
 
-      if (departmentFilter) {
-        filteredRowRecords = filteredRowRecords.filter(record => 
-          matchesFilter(record.department, departmentFilter)
-        );
-      }
-
-      if (vendorFilter) {
-        filteredRowRecords = filteredRowRecords.filter(record => 
-          matchesFilter(record.vendor, vendorFilter)
-        );
-      }
-
-      if (programFilter) {
-        filteredRowRecords = filteredRowRecords.filter(record => 
-          matchesFilter(record.program, programFilter)
-        );
-      }
-
-      if (fundFilter) {
-        filteredRowRecords = filteredRowRecords.filter(record => 
-          matchesFilter(record.fund, fundFilter)
-        );
-      }
-
-      // Apply sorting for regular rows
-      filteredRowRecords.sort((a, b) => {
-        let aValue: any, bValue: any;
-
+      // Sort records
+      vendorRecords.sort((a, b) => {
+        const multiplier = order === 'desc' ? -1 : 1;
         switch (sort) {
-          case 'year':
-            aValue = a.year;
-            bValue = b.year;
-            break;
-          case 'department':
-            aValue = a.department.toLowerCase();
-            bValue = b.department.toLowerCase();
-            break;
           case 'vendor':
-            aValue = a.vendor.toLowerCase();
-            bValue = b.vendor.toLowerCase();
-            break;
+            return multiplier * a.vendor.localeCompare(b.vendor);
+          case 'transactionCount':
+            return multiplier * (a.transactionCount - b.transactionCount);
+          case 'primaryDepartment':
+            return multiplier * (a.primaryDepartment || '').localeCompare(b.primaryDepartment || '');
+          case 'totalAmount':
+          default:
+            return multiplier * (a.totalAmount - b.totalAmount);
+        }
+      });
+
+      // Apply filter if provided
+      let filteredRecords = vendorRecords;
+      if (filter) {
+        const filterTerms = parseFilterValue(filter);
+        filteredRecords = vendorRecords.filter(record => 
+          matchesFilter(record.vendor, filterTerms) ||
+          record.departments.some(dept => matchesFilter(dept, filterTerms)) ||
+          record.programs.some(prog => matchesFilter(prog, filterTerms)) ||
+          record.funds.some(fund => matchesFilter(fund, filterTerms))
+        );
+      }
+
+      // Apply department filter if provided
+      if (department) {
+        const departmentLower = department.toLowerCase();
+        filteredRecords = filteredRecords
+          .map(record => {
+            const match = Array.isArray(record.departments)
+              ? record.departments.find(d => d.toLowerCase().includes(departmentLower))
+              : undefined;
+            if (match) {
+              return { ...record, department: match };
+            }
+            return undefined as typeof record | undefined;
+          })
+          .filter((r): r is typeof filteredRecords[0] => Boolean(r));
+      }
+
+      // Apply vendor filter if provided
+      const vendorParam = searchParams.get('vendor');
+      if (vendorParam) {
+        const vendorLower = vendorParam.toLowerCase();
+        filteredRecords = filteredRecords
+          .map(record => {
+            if (record.vendor && record.vendor.toLowerCase().includes(vendorLower)) {
+              return record;
+            }
+            return undefined as typeof record | undefined;
+          })
+          .filter((r): r is typeof filteredRecords[0] => Boolean(r));
+      }
+
+      // Apply fund filter if provided
+      const fundParam = searchParams.get('fund');
+      if (fundParam) {
+        const fundLower = fundParam.toLowerCase();
+        filteredRecords = filteredRecords
+          .map(record => {
+            const match = Array.isArray(record.funds)
+              ? record.funds.find(f => f.toLowerCase().includes(fundLower))
+              : undefined;
+            if (match) {
+              return { ...record, fund: match };
+            }
+            return undefined as typeof record | undefined;
+          })
+          .filter((r): r is typeof filteredRecords[0] => Boolean(r));
+      }
+
+      // Apply program filter if provided
+      const programParam = searchParams.get('program');
+      if (programParam) {
+        const programLower = programParam.toLowerCase();
+        filteredRecords = filteredRecords
+          .map(record => {
+            const match = Array.isArray(record.programs)
+              ? record.programs.find(p => p.toLowerCase().includes(programLower))
+              : undefined;
+            if (match) {
+              return { ...record, program: match };
+            }
+            return undefined as typeof record | undefined;
+          })
+          .filter((r): r is typeof filteredRecords[0] => Boolean(r));
+      }
+
+      // Pagination
+      const totalItems = filteredRecords.length;
+      const totalPages = Math.ceil(totalItems / limit);
+      const startIndex = (page - 1) * limit;
+      const endIndex = startIndex + limit;
+      const paginatedRecords = filteredRecords.slice(startIndex, endIndex);
+
+      // Calculate summary statistics
+      const totalAmount = filteredRecords.reduce((sum, record) => sum + record.totalAmount, 0);
+      const recordCount = filteredRecords.length;
+
+      // Collect available years
+      const availableYearsSet = new Set<number>();
+      if (typeof vendors[0]?.n === 'string') {
+        const fs = require('fs');
+        const path = require('path');
+        const dataDir = path.join(process.cwd(), 'src/data');
+        const files = fs.readdirSync(dataDir);
+        files.forEach(file => {
+          const match = file.match(/^vendors_(\d{4})\.json$/);
+          if (match) availableYearsSet.add(parseInt(match[1]));
+        });
+      } else {
+        vendors.forEach(vendor => {
+          if (Array.isArray(vendor.n)) {
+            vendor.n.forEach(nameEntry => {
+              if (Array.isArray(nameEntry.fy)) {
+                nameEntry.fy.forEach(fiscalYear => {
+                  availableYearsSet.add(fiscalYear.y);
+                });
+              }
+            });
+          }
+        });
+      }
+
+      const availableYears = Array.from(availableYearsSet).sort((a, b) => b - a);
+
+      return NextResponse.json({
+        spending: paginatedRecords,
+        pagination: {
+          currentPage: page,
+          totalPages,
+          totalItems,
+          itemsPerPage: limit,
+          hasNextPage: page < totalPages,
+          hasPrevPage: page > 1
+        },
+        summary: {
+          totalAmount,
+          recordCount
+        },
+        availableYears
+      });
+
+    } else if (view === 'budget') {
+      // Process budget data
+      const budgetRecords: SpendingRecord[] = [];
+      budgetsData.budget.forEach(orgBudget => {
+        orgBudget.fiscalYear.forEach(fiscalYear => {
+          fiscalYear.projectCode.forEach(projectCode => {
+            projectCode.fundingType.forEach(fundingType => {
+              fundingType.fundCode.forEach(fundAllocation => {
+                const deptName = departmentByOrgCode.get(String(orgBudget.code).padStart(4, '0')) || 'Unknown Department';
+                const progName = programMap.get(projectCode.code) || 'Unknown Program';
+                const fundName = fundMap.get(String(fundAllocation.code)) || 'Unknown Fund';
+                const departmentSlug = departmentSlugMap.get(deptName);
+
+                budgetRecords.push({
+                  year: fiscalYear.year,
+                  department: deptName,
+                  departmentSlug,
+                  vendor: 'Budget Allocation',
+                  program: progName,
+                  fund: fundName,
+                  amount: fundAllocation.amount
+                });
+              });
+            });
+          });
+        });
+      });
+
+      // Filter by year if specified
+      let filteredRecords = budgetRecords;
+      if (year) {
+        filteredRecords = budgetRecords.filter(record => record.year === parseInt(year));
+      }
+
+      // Sort records
+      filteredRecords.sort((a, b) => {
+        const multiplier = order === 'desc' ? -1 : 1;
+        switch (sort) {
+          case 'department':
+            return multiplier * a.department.localeCompare(b.department);
           case 'program':
-            aValue = a.program.toLowerCase();
-            bValue = b.program.toLowerCase();
-            break;
+            return multiplier * a.program.localeCompare(b.program);
           case 'fund':
-            aValue = a.fund.toLowerCase();
-            bValue = b.fund.toLowerCase();
-            break;
-          case 'vendorAmount':
-            aValue = a.vendorAmount || 0;
-            bValue = b.vendorAmount || 0;
-            break;
-          case 'budgetAmount':
-            aValue = a.budgetAmount || 0;
-            bValue = b.budgetAmount || 0;
-            break;
+            return multiplier * a.fund.localeCompare(b.fund);
           case 'amount':
           default:
-            aValue = a.amount;
-            bValue = b.amount;
-            break;
+            return multiplier * (a.amount - b.amount);
         }
-
-        if (aValue < bValue) return order === 'asc' ? -1 : 1;
-        if (aValue > bValue) return order === 'asc' ? 1 : -1;
-        return 0;
       });
 
-      // Calculate summary for regular rows
-      totalAmount = filteredRowRecords.reduce((sum, record) => sum + record.amount, 0);
-      recordCount = filteredRowRecords.length;
-      filteredRecords = filteredRowRecords;
+      // Pagination
+      const totalItems = filteredRecords.length;
+      const totalPages = Math.ceil(totalItems / limit);
+      const startIndex = (page - 1) * limit;
+      const endIndex = startIndex + limit;
+      const paginatedRecords = filteredRecords.slice(startIndex, endIndex);
+
+      // Calculate summary statistics
+      const totalAmount = filteredRecords.reduce((sum, record) => sum + record.amount, 0);
+      const recordCount = filteredRecords.length;
+
+      return NextResponse.json({
+        spending: paginatedRecords,
+        pagination: {
+          currentPage: page,
+          totalPages,
+          totalItems,
+          itemsPerPage: limit,
+          hasNextPage: page < totalPages,
+          hasPrevPage: page > 1
+        },
+        summary: {
+          totalAmount,
+          recordCount
+        }
+      });
     }
 
-    // Apply pagination
-    const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
-    const totalPages = Math.ceil(recordCount / limit);
-    const paginatedRecords = filteredRecords.slice(startIndex, endIndex);
-
-    const response: SpendResponse = {
-      spending: paginatedRecords,
-      pagination: {
-        currentPage: page,
-        totalPages,
-        totalItems: recordCount,
-        itemsPerPage: limit,
-        hasNextPage: page < totalPages,
-        hasPrevPage: page > 1
-      },
-      summary: {
-        totalAmount,
-        recordCount
-      },
-      yearColumns: selectedYears.map(formatFiscalYear),
-      availableYears: selectedYears,
-             yearRange: yearRange as 'recent' | 'all'
-    };
-
-    console.log('Spend API response summary:', {
-      totalRecords: recordCount,
-      totalAmount: totalAmount.toLocaleString(),
-      paginatedCount: paginatedRecords.length,
-      view,
-      filters: { year, department, vendor, program, fund }
-    });
-
-    return NextResponse.json(response, {
-      headers: {
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+    // Minimal compare view handler
+    else if (view === 'compare') {
+      // Get compareBy field (department, program, fund)
+      const compareBy = searchParams.get('compareBy') || 'department';
+      // Aggregate vendor data
+      const vendorAgg = new Map<string, { year: number, key: string, vendorAmount: number }>();
+      // Use all years in vendor data
+      let vendors: any[] = [];
+      if (vendorsData) {
+        if (Array.isArray(vendorsData.v)) {
+          vendors = vendorsData.v;
+        } else if (Array.isArray(vendorsData.vendors)) {
+          vendors = vendorsData.vendors;
+        } else if (Array.isArray(vendorsData.t)) {
+          vendors = vendorsData.t;
+        }
       }
-    });
+      vendors.forEach(vendor => {
+        if (typeof vendor.n === 'string') {
+          // Year-specific format
+          if (Array.isArray(vendor.d)) {
+            vendor.d.forEach(dept => {
+              dept.at?.forEach(accountType => {
+                accountType.ac?.forEach(accountCat => {
+                  accountCat.asc?.forEach(subCat => {
+                    subCat.ad?.forEach(desc => {
+                      let key = '';
+                      if (compareBy === 'department') key = dept.n;
+                      else if (compareBy === 'program') key = desc.pc || 'Unknown Program';
+                      else if (compareBy === 'fund') key = desc.fc ? fundMap.get(String(desc.fc)) || 'Unknown Fund' : 'Unknown Fund';
+                      if (!key) key = 'Unknown';
+                      const mapKey = `${desc.y || year}_${key}`;
+                      const prev = vendorAgg.get(mapKey);
+                      vendorAgg.set(mapKey, {
+                        year: desc.y || parseInt(year),
+                        key,
+                        vendorAmount: (prev?.vendorAmount || 0) + (desc.a || 0)
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          }
+        } else if (Array.isArray(vendor.n)) {
+          // All-vendors format
+          vendor.n.forEach(nameEntry => {
+            if (Array.isArray(nameEntry.fy)) {
+              nameEntry.fy.forEach(fiscalYear => {
+                const y = fiscalYear.y;
+                fiscalYear.pc?.forEach(projectCode => {
+                  projectCode.oc?.forEach(orgCode => {
+                    orgCode.fc?.forEach(fundCode => {
+                      let key = '';
+                      if (compareBy === 'department') key = departmentByOrgCode.get(String(orgCode.c).padStart(4, '0')) || 'Unknown Department';
+                      else if (compareBy === 'program') key = programMap.get(projectCode.c) || 'Unknown Program';
+                      else if (compareBy === 'fund') key = fundMap.get(String(fundCode.c)) || 'Unknown Fund';
+                      if (!key) key = 'Unknown';
+                      const mapKey = `${y}_${key}`;
+                      const prev = vendorAgg.get(mapKey);
+                      vendorAgg.set(mapKey, {
+                        year: y,
+                        key,
+                        vendorAmount: (prev?.vendorAmount || 0) + (fundCode.a || 0)
+                      });
+                    });
+                  });
+                });
+              });
+            }
+          });
+        }
+      });
+      // Aggregate budget data
+      const budgetAgg = new Map<string, { year: number, key: string, budgetAmount: number }>();
+      budgetsData.budget.forEach(orgBudget => {
+        orgBudget.fiscalYear.forEach(fiscalYear => {
+          fiscalYear.projectCode.forEach(projectCode => {
+            projectCode.fundingType.forEach(fundingType => {
+              fundingType.fundCode.forEach(fundAllocation => {
+                let key = '';
+                if (compareBy === 'department') key = departmentByOrgCode.get(String(orgBudget.code).padStart(4, '0')) || 'Unknown Department';
+                else if (compareBy === 'program') key = programMap.get(projectCode.code) || 'Unknown Program';
+                else if (compareBy === 'fund') key = fundMap.get(String(fundAllocation.code)) || 'Unknown Fund';
+                if (!key) key = 'Unknown';
+                const mapKey = `${fiscalYear.year}_${key}`;
+                const prev = budgetAgg.get(mapKey);
+                budgetAgg.set(mapKey, {
+                  year: fiscalYear.year,
+                  key,
+                  budgetAmount: (prev?.budgetAmount || 0) + (fundAllocation.amount || 0)
+                });
+              });
+            });
+          });
+        });
+      });
+      // Merge results
+      const allKeys = new Set(Array.from(vendorAgg.keys()).concat(Array.from(budgetAgg.keys())));
+      let compareRecords = Array.from(allKeys).map(mapKey => {
+        const v = vendorAgg.get(mapKey);
+        const b = budgetAgg.get(mapKey);
+        return {
+          year: v?.year || b?.year || parseInt(year),
+          [compareBy]: v?.key || b?.key || 'Unknown',
+          vendorAmount: v?.vendorAmount || 0,
+          budgetAmount: b?.budgetAmount || 0
+        };
+      });
+      // Sort and paginate
+      if (sort === 'vendorAmount' || sort === 'budgetAmount') {
+        const multiplier = order === 'asc' ? 1 : -1;
+        compareRecords.sort((a, b) => multiplier * ((a[sort] || 0) - (b[sort] || 0)));
+      } else if (sort === 'year') {
+        const multiplier = order === 'asc' ? 1 : -1;
+        compareRecords.sort((a, b) => multiplier * ((a.year || 0) - (b.year || 0)));
+      } else if (sort === compareBy) {
+        const multiplier = order === 'asc' ? 1 : -1;
+        compareRecords.sort((a, b) => {
+          const aVal = (a[compareBy] || '').toString();
+          const bVal = (b[compareBy] || '').toString();
+          return multiplier * aVal.localeCompare(bVal);
+        });
+      } else {
+        // Default: sort by year desc
+        compareRecords.sort((a, b) => b.year - a.year);
+      }
+      const totalItems = compareRecords.length;
+      const totalPages = Math.ceil(totalItems / limit);
+      const startIndex = (page - 1) * limit;
+      const endIndex = startIndex + limit;
+      const paginatedRecords = compareRecords.slice(startIndex, endIndex);
+      // Return
+      return NextResponse.json({
+        spending: paginatedRecords,
+        pagination: {
+          currentPage: page,
+          totalPages,
+          totalItems,
+          itemsPerPage: limit,
+          hasNextPage: page < totalPages,
+          hasPrevPage: page > 1
+        },
+        summary: {
+          totalAmount: paginatedRecords.reduce((sum, r) => sum + (r.vendorAmount || 0), 0),
+          recordCount: paginatedRecords.length
+        }
+      });
+    }
 
-  } catch (error) {
-    console.error('Error in Spend API:', error);
     return NextResponse.json(
-      { 
+      { error: 'Invalid view parameter. Must be either "vendor", "budget", or "compare".' },
+      { status: 400 }
+    );
+
+  } catch (err) {
+    console.error('Spend API error:', err);
+    return NextResponse.json(
+      {
         error: 'Failed to fetch spending data',
         spending: [],
         pagination: {
@@ -722,10 +696,7 @@ export async function GET(request: Request) {
         summary: {
           totalAmount: 0,
           recordCount: 0
-        },
-        yearColumns: [],
-        availableYears: [],
-        yearRange: 'recent'
+        }
       },
       { status: 500 }
     );

@@ -9,10 +9,47 @@ import { getAllPosts } from '../lib/blog';
 
 // Paths to data files
 const DATA_DIR = path.join(__dirname, '../data');
-const VENDORS_PATH = path.join(DATA_DIR, 'vendors.json');
 const PROGRAMS_PATH = path.join(DATA_DIR, 'programs.json');
 const FUNDS_PATH = path.join(DATA_DIR, 'funds.json');
+const DEPARTMENTS_PATH = path.join(DATA_DIR, 'departments.json');
 const SEARCH_OUTPUT_PATH = path.join(DATA_DIR, 'search.json');
+const LOG_DIR = path.join(__dirname, '../logs');
+const _VERSION = '1.0.1';
+
+// Interface definitions
+interface LogMessage {
+  message: string;
+  type?: 'info' | 'error' | 'warn';
+}
+
+// Setup logging with step tracking
+function setupLogging() {
+  ensureDirectoryExists(LOG_DIR);
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const logFile = path.join(LOG_DIR, `generate_search_index_${timestamp}.log`);
+  
+  const log = ({ message, type = 'info' }: LogMessage) => {
+    const timestamp = new Date().toISOString();
+    const logType = type.toUpperCase();
+    
+    const logMessage = `[${timestamp}] [${logType}] ${message}`;
+    fs.appendFileSync(logFile, logMessage + '\n');
+    console.log(message);
+  };
+  
+  return log;
+}
+
+// Initialize logger
+const log = setupLogging();
+
+// Ensure directories exist
+function ensureDirectoryExists(dirPath: string): void {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+    log({ message: `Created directory: ${dirPath}` });
+  }
+}
 
 // Common words to exclude from keyword extraction
 const COMMON_WORDS = new Set([
@@ -32,13 +69,13 @@ const COMMON_WORDS = new Set([
 function readJsonFile<T>(filePath: string): T | null {
   try {
     if (!fs.existsSync(filePath)) {
-      console.warn(`File not found: ${filePath}`);
+      log({ message: `File not found: ${filePath}`, type: 'warn' });
       return null;
     }
     const content = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(content) as T;
   } catch (error) {
-    console.error(`Error reading ${filePath}:`, error);
+    log({ message: `Error reading ${filePath}: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
     return null;
   }
 }
@@ -65,8 +102,16 @@ function extractKeywords(text: string): string[] {
   return Array.from(new Set(words));
 }
 
+// Get all vendor files
+function getVendorFiles(): string[] {
+  const files = fs.readdirSync(DATA_DIR);
+  return files
+    .filter(file => file.startsWith('vendors_') && file.endsWith('.json'))
+    .map(file => path.join(DATA_DIR, file));
+}
+
 async function generateSearchIndex(): Promise<SearchJSON> {
-  console.log('🔍 Generating search index...');
+  log({ message: '🔍 Generating search index...' });
   
   const searchIndex: SearchJSON = {
     departments: [],
@@ -78,18 +123,21 @@ async function generateSearchIndex(): Promise<SearchJSON> {
   };
 
   const keywordMap = new Map<string, KeywordSource[]>();
+  const processedDepartments = new Set<string>(); // Track unique departments by ID
 
   // Process Departments from blog posts
-  console.log('📁 Processing departments...');
+  log({ message: '📁 Processing departments from blog posts...' });
   const posts = await getAllPosts();
   if (posts) {
     for (const post of posts) {
-      // Add department to search items
+      // Add department to search items with enhanced information
       searchIndex.departments.push({
         term: post.name,
         type: 'department',
-        id: post.id // Use just the ID since it already contains the organizational code
+        id: post.id,
+        lastUpdated: post.date || new Date().toISOString()
       });
+      processedDepartments.add(post.id);
 
       // Extract keywords from department data
       const deptKeywords = [
@@ -105,46 +153,142 @@ async function generateSearchIndex(): Promise<SearchJSON> {
         }
         keywordMap.get(keyword)!.push({
           type: 'department',
-          id: post.id, // Use just the ID since it already contains the organizational code
+          id: post.id,
           context: post.excerpt || post.name
         });
       }
     }
-    console.log(`✅ Processed ${searchIndex.departments.length} departments`);
+    log({ message: `✅ Processed ${searchIndex.departments.length} departments from blog posts` });
+  }
+
+  // Process Departments from departments.json
+  log({ message: '📁 Processing departments from departments.json...' });
+  const departmentsData = readJsonFile<any>(DEPARTMENTS_PATH);
+  if (departmentsData?.departments) {
+    for (const dept of departmentsData.departments) {
+      // Skip if we've already processed this department from blog posts
+      if (processedDepartments.has(dept.id)) {
+        continue;
+      }
+
+      // Add department to search items
+      searchIndex.departments.push({
+        term: dept.name,
+        type: 'department',
+        id: dept.id
+      });
+
+      // Extract keywords from department data
+      const deptKeywords = [
+        ...extractKeywords(dept.name),
+        ...extractKeywords(dept.description || '')
+      ];
+
+      // Add keywords with department context
+      for (const keyword of deptKeywords) {
+        if (!keywordMap.has(keyword)) {
+          keywordMap.set(keyword, []);
+        }
+        keywordMap.get(keyword)!.push({
+          type: 'department',
+          id: dept.id,
+          context: dept.description || dept.name
+        });
+      }
+    }
+    log({ message: `✅ Added ${searchIndex.departments.length - processedDepartments.size} departments from departments.json` });
   }
 
   // Process Vendors
-  console.log('🏢 Processing vendors...');
-  const vendorsData = readJsonFile<any>(VENDORS_PATH); // Use any since the structure is complex
-  if (vendorsData?.v) {
-    for (const vendorGroup of vendorsData.v) {
-      if (vendorGroup.n && Array.isArray(vendorGroup.n)) {
-        for (const vendor of vendorGroup.n) {
-          // Add vendor to search items
-          searchIndex.vendors.push({
-            term: vendor.n, // vendor name
-            type: 'vendor',
-            id: vendorGroup.e || vendor.n // EIN from group or name as fallback
-          });
+  log({ message: '🏢 Processing vendors...' });
+  const vendorFiles = getVendorFiles();
+  log({ message: `Found vendor files: ${vendorFiles.join(', ')}` });
+  
+  const processedVendors = new Set<string>(); // Track unique vendors by name
+  let stats = {
+    totalVendors: 0,
+    vendorsWithEIN: 0,
+    vendorsWithoutEIN: 0
+  };
 
-          // Extract keywords from vendor name
-          const vendorKeywords = extractKeywords(vendor.n);
-          
-          // Add keywords with vendor context (limited to avoid too much noise)
-          for (const keyword of vendorKeywords.slice(0, 3)) { // Limit to first 3 keywords per vendor
-            if (!keywordMap.has(keyword)) {
-              keywordMap.set(keyword, []);
-            }
-            // Don't add vendor context to keywords to avoid clutter
+  for (const vendorFile of vendorFiles) {
+    log({ message: `📄 Processing ${path.basename(vendorFile)}...` });
+    const vendorsData = readJsonFile<any>(vendorFile);
+    
+    // Debug log the structure
+    log({ message: `File structure keys: ${Object.keys(vendorsData || {}).join(', ')}` });
+    
+    if (!vendorsData) {
+      log({ message: `❌ Failed to read vendor file: ${vendorFile}`, type: 'error' });
+      continue;
+    }
+
+    if (vendorsData.t) {
+      log({ message: `Found ${vendorsData.t.length} transactions in file` });
+      
+      for (const transaction of vendorsData.t) {
+        if (!transaction.n) {
+          log({ message: `⚠️ Skipping transaction with no name`, type: 'warn' });
+          continue;
+        }
+        
+        const vendorId = transaction.n; // Use vendor name as ID
+        // Skip if we've already processed this vendor
+        if (processedVendors.has(vendorId)) {
+          continue;
+        }
+        
+        processedVendors.add(vendorId);
+        stats.totalVendors++;
+
+        // Track EIN status
+        if (transaction.e) {
+          stats.vendorsWithEIN++;
+        } else {
+          stats.vendorsWithoutEIN++;
+        }
+
+        // Add vendor to search items
+        searchIndex.vendors.push({
+          term: transaction.n,
+          type: 'vendor',
+          id: vendorId,
+          lastUpdated: vendorsData.lastUpdated
+        });
+
+        // Extract keywords from vendor name
+        const vendorKeywords = extractKeywords(transaction.n);
+        
+        // Add keywords with vendor context (limited to avoid too much noise)
+        for (const keyword of vendorKeywords.slice(0, 3)) { // Limit to first 3 keywords per vendor
+          if (!keywordMap.has(keyword)) {
+            keywordMap.set(keyword, []);
           }
+          // Add vendor context to keywords
+          keywordMap.get(keyword)!.push({
+            type: 'department', // Use department type for vendor keywords to maintain consistency
+            id: vendorId,
+            context: transaction.n
+          });
         }
       }
+    } else {
+      log({ message: `⚠️ No 't' array found in vendor file: ${vendorFile}`, type: 'warn' });
     }
-    console.log(`✅ Processed ${searchIndex.vendors.length} vendors`);
   }
 
+  // Log vendor processing statistics
+  log({ message: '\n📊 Vendor Processing Statistics:' });
+  log({ message: `  Total Vendors Processed: ${stats.totalVendors}` });
+  log({ message: `  Vendors with EIN: ${stats.vendorsWithEIN}` });
+  log({ message: `  Vendors without EIN: ${stats.vendorsWithoutEIN}` });
+  log({ message: `  Files Processed: ${vendorFiles.length}` });
+  log({ message: `  Unique Vendors: ${processedVendors.size}\n` });
+
+  log({ message: `✅ Processed ${searchIndex.vendors.length} unique vendors from ${vendorFiles.length} files` });
+
   // Process Programs
-  console.log('📋 Processing programs...');
+  log({ message: '📋 Processing programs...' });
   const programsData = readJsonFile<ProgramsJSON>(PROGRAMS_PATH);
   if (programsData?.programs) {
     for (const program of programsData.programs) {
@@ -157,7 +301,8 @@ async function generateSearchIndex(): Promise<SearchJSON> {
       searchIndex.programs.push({
         term: program.name,
         type: 'program',
-        id: program.projectCode
+        id: program.projectCode,
+        lastUpdated: programsData.lastUpdated
       });
 
       // Extract keywords from program data
@@ -183,11 +328,11 @@ async function generateSearchIndex(): Promise<SearchJSON> {
         });
       }
     }
-    console.log(`✅ Processed ${searchIndex.programs.length} programs`);
+    log({ message: `✅ Processed ${searchIndex.programs.length} programs` });
   }
 
   // Process Funds
-  console.log('💰 Processing funds...');
+  log({ message: '💰 Processing funds...' });
   const fundsData = readJsonFile<FundsJSON>(FUNDS_PATH);
   if (fundsData?.funds) {
     for (const fund of fundsData.funds) {
@@ -200,7 +345,8 @@ async function generateSearchIndex(): Promise<SearchJSON> {
       searchIndex.funds!.push({
         term: fund.fundName,
         type: 'fund',
-        id: fund.fundCode
+        id: fund.fundCode,
+        lastUpdated: fundsData.lastUpdated
       });
 
       // Extract keywords from fund data
@@ -218,11 +364,11 @@ async function generateSearchIndex(): Promise<SearchJSON> {
         // Don't add fund context to keywords to keep them focused on departments/programs
       }
     }
-    console.log(`✅ Processed ${searchIndex.funds!.length} funds`);
+    log({ message: `✅ Processed ${searchIndex.funds!.length} funds` });
   }
 
   // Convert keyword map to keyword items
-  console.log('🔤 Processing keywords...');
+  log({ message: '🔤 Processing keywords...' });
   for (const [term, sources] of Array.from(keywordMap.entries())) {
     // Only include keywords that have context sources (from departments or programs)
     const contextSources = sources.filter(source => 
@@ -246,7 +392,7 @@ async function generateSearchIndex(): Promise<SearchJSON> {
   // Sort keywords by number of sources (most relevant first)
   searchIndex.keywords.sort((a, b) => b.sources.length - a.sources.length);
   
-  console.log(`✅ Processed ${searchIndex.keywords.length} keywords`);
+  log({ message: `✅ Processed ${searchIndex.keywords.length} keywords` });
 
   return searchIndex;
 }
@@ -265,40 +411,40 @@ function writeSearchIndex(searchIndex: SearchJSON): void {
       'utf-8'
     );
     
-    console.log(`✅ Search index written to: ${SEARCH_OUTPUT_PATH}`);
+    log({ message: `✅ Search index written to: ${SEARCH_OUTPUT_PATH}` });
     
     // Log statistics
-    console.log('\n📊 Search Index Statistics:');
-    console.log(`  Departments: ${searchIndex.departments.length}`);
-    console.log(`  Vendors: ${searchIndex.vendors.length}`);
-    console.log(`  Programs: ${searchIndex.programs.length}`);
-    console.log(`  Funds: ${searchIndex.funds!.length}`);
-    console.log(`  Keywords: ${searchIndex.keywords.length}`);
-    console.log(`  Total searchable items: ${
+    log({ message: '\n📊 Search Index Statistics:' });
+    log({ message: `  Departments: ${searchIndex.departments.length}` });
+    log({ message: `  Vendors: ${searchIndex.vendors.length}` });
+    log({ message: `  Programs: ${searchIndex.programs.length}` });
+    log({ message: `  Funds: ${searchIndex.funds!.length}` });
+    log({ message: `  Keywords: ${searchIndex.keywords.length}` });
+    log({ message: `  Total searchable items: ${
       searchIndex.departments.length + 
       searchIndex.vendors.length + 
       searchIndex.programs.length + 
       searchIndex.funds!.length + 
       searchIndex.keywords.length
-    }`);
+    }` });
     
   } catch (error) {
-    console.error('❌ Error writing search index:', error);
+    log({ message: `❌ Error writing search index: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
     process.exit(1);
   }
 }
 
 async function main(): Promise<void> {
-  console.log('🚀 Starting search index generation...\n');
+  log({ message: '🚀 Starting search index generation...\n' });
   
   try {
     const searchIndex = await generateSearchIndex();
     writeSearchIndex(searchIndex);
     
-    console.log('\n🎉 Search index generation completed successfully!');
+    log({ message: '\n🎉 Search index generation completed successfully!' });
     
   } catch (error) {
-    console.error('❌ Error generating search index:', error);
+    log({ message: `❌ Error generating search index: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
     process.exit(1);
   }
 }
@@ -306,7 +452,7 @@ async function main(): Promise<void> {
 // Run if called directly
 if (require.main === module) {
   main().catch(error => {
-    console.error('❌ Error in main:', error);
+    log({ message: `❌ Error in main: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
     process.exit(1);
   });
 }

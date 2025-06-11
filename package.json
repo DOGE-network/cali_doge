@@ -1,10 +1,10 @@
 {
   "name": "cali-doge",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "npx tsx src/scripts/decompress_vendors.ts && npx tsx src/scripts/generate_search_index.ts && next build",
+    "build": "npx tsx src/scripts/generate_search_index.ts && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

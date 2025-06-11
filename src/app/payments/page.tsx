@@ -30,7 +30,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 interface TopVendorRecord {
   year: number;
-  vendor: string;
+  name: string;
   totalAmount: number;
   transactionCount: number;
   departments: string[];
@@ -54,6 +54,7 @@ interface TopVendorsResponse {
     totalAmount: number;
     vendorCount: number;
     year: number;
+    availableYears: string[];
   };
 }
 
@@ -71,8 +72,24 @@ function PaymentsPageClient() {
   const [filterValue, setFilterValue] = useState(''); // Add filter value state
   const [appliedFilter, setAppliedFilter] = useState(''); // Track the currently applied filter
 
-  // Available years (you might want to make this dynamic)
-  const availableYears = useMemo(() => ['2024', '2023', '2022', '2021', '2020'], []);
+  // Get available years from the vendors API response
+  const { data: yearsData } = useSWR<TopVendorsResponse>(
+    `/api/vendors/top?year=2024&limit=1`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 30000
+    }
+  );
+
+  // Extract available years from vendor data
+  const availableYears = useMemo(() => {
+    if (yearsData?.summary?.availableYears) {
+      return yearsData.summary.availableYears.sort((a, b) => parseInt(b) - parseInt(a));
+    }
+    return ['2024', '2023', '2022', '2021', '2020']; // Fallback to hardcoded years
+  }, [yearsData]);
 
   // Build API URL for top 100 vendors
   const buildApiUrl = () => {
@@ -262,6 +279,7 @@ function PaymentsPageClient() {
             <tr className="bg-gray-100">
               {[
                 { key: 'vendor', label: 'Vendor' },
+                { key: 'year', label: 'Year' },
                 { key: 'totalAmount', label: 'Total Amount' },
                 { key: 'transactionCount', label: 'Transactions' },
                 { key: 'primaryDepartment', label: 'Primary Department' },
@@ -286,10 +304,10 @@ function PaymentsPageClient() {
               <tr key={index} className="hover:bg-gray-50">
                 <td className="border border-gray-300 px-4 py-2">
                   <div className="group relative">
-                    <span className="font-medium">{vendor.vendor}</span>
+                    <span className="font-medium">{vendor.name}</span>
                     <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block bg-black text-white text-xs rounded px-2 py-1 whitespace-nowrap z-10">
                       <a 
-                        href={`https://projects.propublica.org/nonprofits/search?q=${encodeURIComponent(vendor.vendor)}`}
+                        href={`https://projects.propublica.org/nonprofits/search?q=${encodeURIComponent(vendor.name)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-300 hover:underline mr-2"
@@ -297,7 +315,7 @@ function PaymentsPageClient() {
                         ProPublica
                       </a>
                       <a 
-                        href={`https://www.datarepublican.com/search?q=${encodeURIComponent(vendor.vendor)}`}
+                        href={`https://www.datarepublican.com/search?q=${encodeURIComponent(vendor.name)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-300 hover:underline"
@@ -307,11 +325,12 @@ function PaymentsPageClient() {
                     </div>
                   </div>
                 </td>
+                <td className="border border-gray-300 px-4 py-2 text-center">{vendor.year || selectedYear}</td>
                 <td className="border border-gray-300 px-4 py-2 text-right font-mono">
                   {formatCurrency(vendor.totalAmount)}
                 </td>
                 <td className="border border-gray-300 px-4 py-2 text-center">
-                  {vendor.transactionCount.toLocaleString()}
+                  {vendor.transactionCount?.toLocaleString()}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   {vendor.primaryDepartmentSlug ? (
@@ -327,30 +346,30 @@ function PaymentsPageClient() {
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   <div className="text-sm">
-                    {vendor.departments.length > 3 ? (
+                    {vendor.departments && vendor.departments.length > 3 ? (
                       <span title={vendor.departments.join(', ')}>
                         {vendor.departments.slice(0, 3).join(', ')} +{vendor.departments.length - 3} more
                       </span>
                     ) : (
-                      vendor.departments.join(', ')
+                      vendor.departments?.join(', ')
                     )}
                   </div>
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   <div className="text-sm">
-                    {vendor.programs.length > 2 ? (
+                    {vendor.programs && vendor.programs.length > 2 ? (
                       <span title={vendor.programs.join(', ')}>
                         {vendor.programs.slice(0, 2).join(', ')} +{vendor.programs.length - 2} more
                       </span>
-                    ) : (
-                      vendor.programs.join(', ')
-                    )}
+                    ) : 
+                      vendor.programs?.join(', ')
+                    }
                   </div>
                 </td>
               </tr>
             )) : (
               <tr>
-                <td colSpan={6} className="border border-gray-300 px-4 py-8 text-center text-gray-500">
+                <td colSpan={7} className="border border-gray-300 px-4 py-8 text-center text-gray-500">
                   No vendor payment data found for {selectedYear}
                 </td>
               </tr>

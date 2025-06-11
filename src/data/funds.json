@@ -137,9 +137,9 @@
     },
     {
       "fundCode": "3288",
-      "fundName": "Marijuana Control Fund",
+      "fundName": "Cannabis Control Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Marijuana Control Fund"
+      "fundDescription": "Cannabis Control Fund"
     },
     {
       "fundCode": "0493",
@@ -1079,9 +1079,9 @@
     },
     {
       "fundCode": "0985",
-      "fundName": "Emergency Housing Assistance",
+      "fundName": "Emergency Housing Assistance F",
       "fundGroup": "Other Funds",
-      "fundDescription": "Emergency Housing Assistance"
+      "fundDescription": "Emergency Housing Assistance F"
     },
     {
       "fundCode": "0587",
@@ -1349,9 +1349,9 @@
     },
     {
       "fundCode": "8132",
-      "fundName": "California Investment and Innovation Fund",
+      "fundName": "CA INVESTMENT AND INNOVATION",
       "fundGroup": "Other Funds",
-      "fundDescription": "California Investment and Innovation Fund"
+      "fundDescription": "CA INVESTMENT AND INNOVATION"
     },
     {
       "fundCode": "0014",
@@ -1511,9 +1511,9 @@
     },
     {
       "fundCode": "0660",
-      "fundName": "Public Bldg Construction Fund",
+      "fundName": "Public Buildings Constr Fund",
       "fundGroup": "Other Funds",
-      "fundDescription": "Public Bldg Construction Fund"
+      "fundDescription": "Public Buildings Constr Fund"
     },
     {
       "fundCode": "3353",
@@ -1781,9 +1781,9 @@
     },
     {
       "fundCode": "0679",
-      "fundName": "State Water Quality Cntrl Fund",
+      "fundName": "State Water Quality Control Fu",
       "fundGroup": "Other Funds",
-      "fundDescription": "State Water Quality Cntrl Fund"
+      "fundDescription": "State Water Quality Control Fu"
     },
     {
       "fundCode": "6049",
@@ -2429,9 +2429,9 @@
     },
     {
       "fundCode": "3294",
-      "fundName": "Consumer Research Account",
+      "fundName": "Consumer Recovery Account",
       "fundGroup": "Other Funds",
-      "fundDescription": "Consumer Research Account"
+      "fundDescription": "Consumer Recovery Account"
     },
     {
       "fundCode": "0696",
@@ -2747,9 +2747,9 @@
     },
     {
       "fundCode": "8124",
-      "fundName": "Suicide Prevention Voluntary Contribution Fund",
+      "fundName": "SUICIDE PREVENT VOL CON FUND",
       "fundGroup": "Other Funds",
-      "fundDescription": "Suicide Prevention Voluntary Contribution Fund"
+      "fundDescription": "SUICIDE PREVENT VOL CON FUND"
     },
     {
       "fundCode": "3416",
@@ -3467,9 +3467,9 @@
     },
     {
       "fundCode": "3063",
-      "fundName": "Responsibility Area Fire Preve",
+      "fundName": "State Responsibility Area Fire",
       "fundGroup": "Other Funds",
-      "fundDescription": "Responsibility Area Fire Preve"
+      "fundDescription": "State Responsibility Area Fire"
     },
     {
       "fundCode": "3067",
@@ -4144,5 +4144,5 @@
       "fundDescription": ""
     }
   ],
-  "lastUpdated": "2025-06-10T01:50:44.096Z"
+  "lastUpdated": "2025-06-10T19:34:16.133Z"
 }

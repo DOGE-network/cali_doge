@@ -5,9 +5,8 @@
  * for better performance.
  */
 
-// Don't declare fs/path since they appear to be already in scope
-const fs_mod = require('fs');
-const path_mod = require('path');
+import fs from 'fs';
+import path from 'path';
 
 // Cache for data files to reduce disk I/O
 const dataCache = new Map();
@@ -25,22 +24,22 @@ function getDataPath(filename: string): string {
   const possiblePaths = [
     // Production optimized files (smaller versions)
     ...(isProduction ? [
-      path_mod.join(process.cwd(), 'src', 'data', 'production', filename),
-      path_mod.join('/var/task', 'src', 'data', 'production', filename),
-      path_mod.join(process.cwd(), '.next', 'server', 'src', 'data', 'production', filename),
+      path.join(process.cwd(), 'src', 'data', 'production', filename),
+      path.join('/var/task', 'src', 'data', 'production', filename),
+      path.join(process.cwd(), '.next', 'server', 'src', 'data', 'production', filename),
     ] : []),
     // Vercel production paths (full files)
-    path_mod.join(process.cwd(), 'src', 'data', filename),
-    path_mod.join('/var/task', 'src', 'data', filename),
-    path_mod.join(process.cwd(), '.next', 'server', 'src', 'data', filename),
+    path.join(process.cwd(), 'src', 'data', filename),
+    path.join('/var/task', 'src', 'data', filename),
+    path.join(process.cwd(), '.next', 'server', 'src', 'data', filename),
     // Development paths
-    path_mod.join(__dirname, '..', '..', 'data', filename),
-    path_mod.join(process.cwd(), 'src', 'data', filename),
+    path.join(__dirname, '..', '..', 'data', filename),
+    path.join(process.cwd(), 'src', 'data', filename),
   ];
 
   for (const testPath of possiblePaths) {
     try {
-      if (fs_mod.existsSync(testPath)) {
+      if (fs.existsSync(testPath)) {
         console.log(`Found data file at: ${testPath}`);
         return testPath;
       }
@@ -50,7 +49,7 @@ function getDataPath(filename: string): string {
   }
 
   // If no file found, return the most likely path for error reporting
-  return path_mod.join(process.cwd(), 'src', 'data', filename);
+  return path.join(process.cwd(), 'src', 'data', filename);
 }
 
 /**
@@ -58,7 +57,7 @@ function getDataPath(filename: string): string {
  */
 function isFileTooLarge(filePath: string): boolean {
   try {
-    const stats = fs_mod.statSync(filePath);
+    const stats = fs.statSync(filePath);
     const sizeInMB = stats.size / (1024 * 1024);
     
     // Vercel has memory limits, files over 50MB are problematic
@@ -79,20 +78,20 @@ function isFileTooLarge(filePath: string): boolean {
  * @param filename Path to the JSON file
  * @returns Parsed JSON data
  */
-function readJsonFile(filename: string) {
+export function readJsonFile(filename: string) {
   try {
-    const fullPath = path_mod.isAbsolute(filename) 
+    const fullPath = path.isAbsolute(filename) 
       ? filename 
       : getDataPath(filename);
     
     // Check if file exists
-    if (!fs_mod.existsSync(fullPath)) {
+    if (!fs.existsSync(fullPath)) {
       console.error(`Data file not found: ${fullPath}`);
       console.log('Available files in directory:');
       try {
-        const dir = path_mod.dirname(fullPath);
-        if (fs_mod.existsSync(dir)) {
-          const files = fs_mod.readdirSync(dir);
+        const dir = path.dirname(fullPath);
+        if (fs.existsSync(dir)) {
+          const files = fs.readdirSync(dir);
           console.log('Files found:', files);
         } else {
           console.log('Directory does not exist:', dir);
@@ -110,7 +109,7 @@ function readJsonFile(filename: string) {
       throw new Error(`Data file not found: ${filename}`);
     }
     
-    const stats = fs_mod.statSync(fullPath);
+    const stats = fs.statSync(fullPath);
     
     // Check if file is too large for production
     if (isFileTooLarge(fullPath)) {
@@ -133,7 +132,7 @@ function readJsonFile(filename: string) {
     console.log(`Reading data file: ${fullPath} (${(stats.size / 1024 / 1024).toFixed(2)}MB)`);
     
     // Read and parse file
-    const fileContent = fs_mod.readFileSync(fullPath, 'utf8');
+    const fileContent = fs.readFileSync(fullPath, 'utf8');
     const data = JSON.parse(fileContent);
     
     // Update cache
@@ -195,130 +194,96 @@ function readLargeFileOptimized(fullPath: string, filename: string) {
     // For now, try to read with increased memory awareness
     console.log(`Attempting optimized read of large file: ${filename}`);
     
-    const fileContent = fs_mod.readFileSync(fullPath, 'utf8');
+    const fileContent = fs.readFileSync(fullPath, 'utf8');
     const data = JSON.parse(fileContent);
     
     return data;
   } catch (error) {
-    console.error(`Failed to read large file optimized: ${filename}`, error);
+    console.error(`Error reading large file ${filename}:`, error);
     return getEmptyDataStructure(filename);
   }
 }
 
 /**
  * Get budgets data
- * 
- * @returns Budgets data from budgets.json
  */
-function getBudgetsData() {
+export function getBudgetsData() {
   return readJsonFile('budgets.json');
 }
 
 /**
  * Get funds data
- * 
- * @returns Funds data from funds.json
  */
-function getFundsData() {
+export function getFundsData() {
   return readJsonFile('funds.json');
 }
 
 /**
  * Get programs data
- * 
- * @returns Programs data from programs.json
  */
-function getProgramsData() {
+export function getProgramsData() {
   return readJsonFile('programs.json');
 }
 
 /**
- * Get vendors data
- * 
- * @returns Vendors data from vendors.json
+ * Get vendors data for a specific year
  */
-function getVendorsData() {
+export function getVendorsDataByYear(year: string) {
+  return readJsonFile(`vendors_${year}.json`);
+}
+
+/**
+ * Get vendors data
+ */
+export function getVendorsData(year?: string) {
+  if (year) {
+    return getVendorsDataByYear(year);
+  }
   return readJsonFile('vendors.json');
 }
 
 /**
- * Get vendor transactions data (deprecated - files removed)
- * 
- * @returns Empty data structure
+ * Get vendor transactions data
  */
-function getVendorTransactionsData() {
-  console.warn('getVendorTransactionsData: Vendor transaction files have been removed');
-  return { transactions: [] };
+export function getVendorTransactionsData() {
+  return readJsonFile('vendor_transactions.json');
 }
 
 /**
  * Get search data
- * 
- * @returns Search data from search.json
  */
-function getSearchData() {
+export function getSearchData() {
   return readJsonFile('search.json');
 }
 
 /**
- * Clear the data cache
- * 
- * @param filePath Optional specific file path to clear from cache
+ * Clear data cache for a specific file
  */
-function clearDataCache(filePath) {
-  if (filePath) {
-    const fullPath = path_mod.isAbsolute(filePath) 
-      ? filePath 
-      : path_mod.join(process.cwd(), filePath);
-    
-    dataCache.delete(fullPath);
-  } else {
-    dataCache.clear();
-  }
+export function clearDataCache(filePath: string) {
+  dataCache.delete(filePath);
 }
 
 /**
- * Write JSON data to a file with proper formatting
- * 
- * @param filePath Path to the output file
- * @param data Data to write
+ * Write data to a JSON file
  */
-function writeJsonFile(filePath, data) {
+export function writeJsonFile(filePath: string, data: any) {
   try {
-    const fullPath = path_mod.isAbsolute(filePath) 
+    const fullPath = path.isAbsolute(filePath) 
       ? filePath 
-      : path_mod.join(process.cwd(), filePath);
+      : getDataPath(filePath);
     
-    const dirPath = path_mod.dirname(fullPath);
-    if (!fs_mod.existsSync(dirPath)) {
-      fs_mod.mkdirSync(dirPath, { recursive: true });
-    }
-    
-    fs_mod.writeFileSync(
-      fullPath, 
-      JSON.stringify(data, null, 2),
-      'utf8'
-    );
+    const jsonContent = JSON.stringify(data, null, 2);
+    fs.writeFileSync(fullPath, jsonContent, 'utf8');
     
     // Update cache
     dataCache.set(fullPath, {
       data,
       timestamp: Date.now()
     });
+    
+    return true;
   } catch (error) {
     console.error(`Error writing JSON file ${filePath}:`, error);
-    throw new Error(`Failed to write data file: ${filePath}`);
+    return false;
   }
-}
-
-module.exports = {
-  readJsonFile,
-  getBudgetsData,
-  getFundsData,
-  getProgramsData,
-  getVendorsData,
-  getVendorTransactionsData,
-  getSearchData,
-  clearDataCache,
-  writeJsonFile
-}; 
+} 

@@ -9,6 +9,11 @@ export interface SearchItem {
   term: string;
   type: 'department' | 'vendor' | 'program' | 'fund';
   id: string;
+  // Enhanced fields for financial and temporal information
+  totalAmount?: number;
+  transactionCount?: number;
+  years?: number[];
+  lastUpdated?: string;
 }
 
 /**

@@ -27,9 +27,19 @@ interface ProgramData {
 export function DepartmentDetailCard({ item, isSelected }: DetailCardProps) {
   const [spendData, setSpendData] = useState<SpendData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [hasPage, setHasPage] = useState(false);
 
   useEffect(() => {
-    if (isSelected && item.type === 'department') {
+    if (item.type === 'department' && item.id) {
+      // Check if department has a markdown page using API endpoint
+      fetch('/api/departments/available')
+        .then(res => res.json())
+        .then(data => {
+          setHasPage(data.slugs.includes(item.id));
+        })
+        .catch(console.error);
+    }
+    if (isSelected && item.type === 'department' && item.id) {
       setLoading(true);
       // Fetch department spending data
       fetch(`/api/spend?department=${encodeURIComponent(item.term)}&limit=1`)
@@ -42,7 +52,6 @@ export function DepartmentDetailCard({ item, isSelected }: DetailCardProps) {
             const topVendors: string[] = Array.from(new Set(data.spending.slice(0, 5).map((s: any) => String(s.vendor || ''))));
             const topPrograms: string[] = Array.from(new Set(data.spending.slice(0, 5).map((s: any) => String(s.program || ''))));
             const recentYear = Math.max(...data.spending.map((s: any) => s.year));
-            
             setSpendData({
               totalAmount,
               transactionCount,
@@ -60,7 +69,9 @@ export function DepartmentDetailCard({ item, isSelected }: DetailCardProps) {
   // Type guard to ensure we have a SearchItem
   if (item.type !== 'department') return null;
   const departmentItem = item as SearchItem;
-  const departmentSlug = departmentItem.id.toString().toLowerCase().replace(/[^a-z0-9_]/g, '-');
+  
+  // The item.id is already in the correct format for the URL
+  const departmentSlug = departmentItem.id || 'unknown-department';
 
   return (
     <div className={`p-6 border rounded-lg transition-all ${
@@ -69,14 +80,20 @@ export function DepartmentDetailCard({ item, isSelected }: DetailCardProps) {
       <div className="flex items-start justify-between mb-4">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{departmentItem.term}</h3>
-          <p className="text-sm text-gray-600">Department • ID: {departmentItem.id}</p>
+          <p className="text-sm text-gray-600">Department • ID: {departmentItem.id || 'N/A'}</p>
         </div>
+        {hasPage ? (
         <Link
           href={`/departments/${departmentSlug}`}
           className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
         >
           View Details
         </Link>
+        ) : (
+          <span className="px-3 py-1 text-sm bg-gray-100 text-gray-500 rounded">
+            Details Not Available
+          </span>
+        )}
       </div>
 
       {isSelected && (
