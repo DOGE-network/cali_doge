@@ -22,13 +22,24 @@ interface LogMessage {
   type?: 'info' | 'error' | 'warn';
 }
 
+// Initialize logger
+let log: (_message: LogMessage) => void;
+
+// Ensure directories exist
+function ensureDirectoryExists(dirPath: string): void {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+    log({ message: `Created directory: ${dirPath}` });
+  }
+}
+
 // Setup logging with step tracking
 function setupLogging() {
   ensureDirectoryExists(LOG_DIR);
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const logFile = path.join(LOG_DIR, `generate_search_index_${timestamp}.log`);
   
-  const log = ({ message, type = 'info' }: LogMessage) => {
+  log = ({ message, type = 'info' }: LogMessage) => {
     const timestamp = new Date().toISOString();
     const logType = type.toUpperCase();
     
@@ -41,15 +52,7 @@ function setupLogging() {
 }
 
 // Initialize logger
-const log = setupLogging();
-
-// Ensure directories exist
-function ensureDirectoryExists(dirPath: string): void {
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-    log({ message: `Created directory: ${dirPath}` });
-  }
-}
+log = setupLogging();
 
 // Common words to exclude from keyword extraction
 const COMMON_WORDS = new Set([
