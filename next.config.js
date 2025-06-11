@@ -1,49 +1,48 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    turbo: {
-      rules: {
-        // Add any specific rules if needed
-        // Example: "*.mdx": ["mdx-loader"]
-      }
-    },
-    // Configure file tracing for serverless functions - include only specific files each API needs
-    outputFileTracingIncludes: {
-      '/api/departments': ['./src/data/departments.json'],
-      '/api/spend': [
-        './src/data/budgets.json',
-        './src/data/vendors.json', 
-        './src/data/programs.json',
-        './src/data/funds.json',
-        './src/data/departments.json'
-      ],
-      '/api/vendors/top': [
-        './src/data/vendors.json',
-        './src/data/programs.json',
-        './src/data/funds.json',
-        './src/data/departments.json'
-      ],
-      '/api/programs': ['./src/data/programs.json'],
-      '/api/programs/[projectCode]': ['./src/data/programs.json'],
-      '/api/search': ['./src/data/search.json'],
-      '/api/send-email': ['./src/data/tweets/tweets.json']
-    },
-    // Exclude the large source directories (CSV/PDF files) but keep the JSON files
-    outputFileTracingExcludes: {
-      '*': [
-        './src/data/vendors/**/*',
-        './src/data/budget/**/*', 
-        './src/data/workforce/**/*'
-      ]
-    }
+  // Configure file tracing for serverless functions - include only specific files each API needs
+  outputFileTracingIncludes: {
+    '/api/departments': ['./src/data/departments.json'],
+    '/api/spend': [
+      './src/data/budgets.json',
+      './src/data/vendors.json', 
+      './src/data/programs.json',
+      './src/data/funds.json',
+      './src/data/departments.json'
+    ],
+    '/api/vendors/top': [
+      './src/data/vendors.json',
+      './src/data/programs.json',
+      './src/data/funds.json',
+      './src/data/departments.json'
+    ],
+    '/api/programs': ['./src/data/programs.json'],
+    '/api/programs/[projectCode]': ['./src/data/programs.json'],
+    '/api/search': ['./src/data/search.json'],
+    '/api/send-email': ['./src/data/tweets/tweets.json']
+  },
+  // Exclude the large source directories (CSV/PDF files) but keep the JSON files
+  outputFileTracingExcludes: {
+    '*': [
+      './src/data/vendors/**/*',
+      './src/data/budget/**/*', 
+      './src/data/workforce/**/*'
+    ]
   },
   // Optimize for serverless functions
   output: 'standalone',
   
-  // Enable compression and optimizations (Turbopack handles most optimizations)
+  // Enable compression and optimizations
   compress: true,
-  swcMinify: true,
   productionBrowserSourceMaps: false,
+  
+  // Turbopack configuration
+  turbopack: {
+    rules: {
+      // Add any specific rules if needed
+      // Example: "*.mdx": ["mdx-loader"]
+    }
+  },
   
   images: {
     formats: ['image/webp', 'image/avif'],

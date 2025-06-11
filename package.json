@@ -1,10 +1,10 @@
 {
   "name": "cali-doge",
-  "version": "1.6.2",
+  "version": "1.6.4",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "npm run generate-search && next build",
+    "build": "npx tsx src/scripts/generate_search_index.ts && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

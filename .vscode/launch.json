@@ -1,6 +1,7 @@
 {
   "version": "0.2.0",
   "configurations": [
+
     {
       "type": "node",
       "request": "launch",
@@ -8,12 +9,13 @@
       "skipFiles": ["<node_internals>/**"],
       "runtimeExecutable": "npx",
       "runtimeArgs": ["tsx"],
-      "args": ["${workspaceFolder}/src/scripts/process_department_spending.ts"],
+      "args": ["${workspaceFolder}/src/scripts/process_budgets.ts"],
       "sourceMaps": true,
       "resolveSourceMapLocations": [
         "${workspaceFolder}/**",
         "!**/node_modules/**"
-      ]
+      ],
+      "console": "integratedTerminal"
     }
   ]
 } 

@@ -199,7 +199,7 @@ function writeVendorData(data: any, filePath: string): void {
 
 // Gets the vendor transaction file path for a specific year
 function getVendorTransactionPath(year: string): string {
-  return path.join(DATA_DIR, `vendor_transaction_${year}.json`);
+  return path.join(DATA_DIR, `vendors_${year}.json`);
 }
 
 // Function to validate that a fund code is 4 digits
@@ -1053,7 +1053,7 @@ async function main(): Promise<void> {
     
     const defaultEnhancedData = {
       vendors: [],
-      processedFiles: [],
+      pf: [],
       lastProcessedFile: null,
       lastProcessedTimestamp: null,
       sources: [
@@ -1080,7 +1080,7 @@ async function main(): Promise<void> {
         yearlyTransactionData[year].pf = [];
       });
       
-      enhancedVendorData.processedFiles = [];
+      enhancedVendorData.pf = [];
       log({ message: 'Cleared processed files history for force reprocessing' });
     }
     
@@ -1114,7 +1114,7 @@ async function main(): Promise<void> {
     // Process each file
     for (const file of files) {
       // Skip files that have been processed for all years (unless force reprocessing)
-      if (!forceReprocess && enhancedVendorData.processedFiles && enhancedVendorData.processedFiles.includes(file)) {
+      if (!forceReprocess && enhancedVendorData.pf && enhancedVendorData.pf.includes(file)) {
         log({ message: `Skipping ${file} - already processed for all years` });
         continue;
       }
@@ -1165,7 +1165,7 @@ async function main(): Promise<void> {
     log({ message: '5.1 Processing statistics' });
     
     const vendorCount = enhancedVendorData.v.length;
-    const processedFileCount = enhancedVendorData.processedFiles ? enhancedVendorData.processedFiles.length : 0;
+    const processedFileCount = enhancedVendorData.pf ? enhancedVendorData.pf.length : 0;
     const yearsProcessed = Object.keys(yearlyTransactionData).length;
     
     log({ message: `Total vendors processed: ${vendorCount}` });

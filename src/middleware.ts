@@ -49,6 +49,14 @@ export function middleware(request: NextRequest) {
     );
   }
 
+  // Add caching headers for the root page
+  if (request.nextUrl.pathname === '/') {
+    response.headers.set(
+      'Cache-Control',
+      'public, s-maxage=3600, stale-while-revalidate=7200'
+    );
+  }
+
   return response;
 }
 

@@ -7,8 +7,8 @@ export async function POST(request: Request) {
   log('INFO', transactionId, 'Received email request');
   
   try {
-    const { email, message, subject } = await request.json();
-    log('INFO', transactionId, 'Parsed request data', { email, message, subject });
+    const { email, to, from, message, subject } = await request.json();
+    log('INFO', transactionId, 'Parsed request data', { email, to, from, message, subject });
 
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       log('ERROR', transactionId, 'Email configuration error', {
@@ -41,8 +41,8 @@ export async function POST(request: Request) {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: subject ? email : process.env.EMAIL_USER, // Send to subscriber for welcome emails, to admin for join requests
+      from: from || process.env.EMAIL_USER,
+      to: to || email || process.env.EMAIL_USER, // Use to field, then email field, then fallback to admin email
       subject: subject || 'New Join Request from California DOGE',
       text: message,
       html: subject ? message : `
