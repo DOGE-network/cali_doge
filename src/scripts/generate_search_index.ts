@@ -13,51 +13,7 @@ const PROGRAMS_PATH = path.join(DATA_DIR, 'programs.json');
 const FUNDS_PATH = path.join(DATA_DIR, 'funds.json');
 const DEPARTMENTS_PATH = path.join(DATA_DIR, 'departments.json');
 const SEARCH_OUTPUT_PATH = path.join(DATA_DIR, 'search.json');
-const LOG_DIR = path.join(__dirname, '../logs');
 const _VERSION = '1.0.1';
-
-// Interface definitions
-interface LogMessage {
-  message: string;
-  type?: 'info' | 'error' | 'warn';
-}
-
-// Initialize basic console logging first
-const consoleLog = ({ message, type = 'info' }: LogMessage) => {
-  const timestamp = new Date().toISOString();
-  const logType = type.toUpperCase();
-  console.log(`[${timestamp}] [${logType}] ${message}`);
-};
-
-// Ensure directories exist
-function ensureDirectoryExists(dirPath: string): void {
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-    consoleLog({ message: `Created directory: ${dirPath}` });
-  }
-}
-
-// Setup logging with step tracking
-function setupLogging() {
-  ensureDirectoryExists(LOG_DIR);
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-  const logFile = path.join(LOG_DIR, `generate_search_index_${timestamp}.log`);
-  
-  // Create file logging function
-  const fileLog = ({ message, type = 'info' }: LogMessage) => {
-    const timestamp = new Date().toISOString();
-    const logType = type.toUpperCase();
-    
-    const logMessage = `[${timestamp}] [${logType}] ${message}`;
-    fs.appendFileSync(logFile, logMessage + '\n');
-    console.log(message);
-  };
-  
-  return fileLog;
-}
-
-// Initialize logging
-const log = setupLogging();
 
 // Common words to exclude from keyword extraction
 const COMMON_WORDS = new Set([
@@ -77,13 +33,13 @@ const COMMON_WORDS = new Set([
 function readJsonFile<T>(filePath: string): T | null {
   try {
     if (!fs.existsSync(filePath)) {
-      log({ message: `File not found: ${filePath}`, type: 'warn' });
+      console.log(`File not found: ${filePath}`);
       return null;
     }
     const content = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(content) as T;
   } catch (error) {
-    log({ message: `Error reading ${filePath}: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
+    console.error(`Error reading ${filePath}:`, error);
     return null;
   }
 }
@@ -119,7 +75,7 @@ function getVendorFiles(): string[] {
 }
 
 async function generateSearchIndex(): Promise<SearchJSON> {
-  log({ message: '🔍 Generating search index...' });
+  console.log('🔍 Generating search index...');
   
   const searchIndex: SearchJSON = {
     departments: [],
@@ -134,7 +90,7 @@ async function generateSearchIndex(): Promise<SearchJSON> {
   const processedDepartments = new Set<string>(); // Track unique departments by ID
 
   // Process Departments from blog posts
-  log({ message: '📁 Processing departments from blog posts...' });
+  console.log('📁 Processing departments from blog posts...');
   const posts = await getAllPosts();
   if (posts) {
     for (const post of posts) {
@@ -166,11 +122,11 @@ async function generateSearchIndex(): Promise<SearchJSON> {
         });
       }
     }
-    log({ message: `✅ Processed ${searchIndex.departments.length} departments from blog posts` });
+    console.log(`✅ Processed ${searchIndex.departments.length} departments from blog posts`);
   }
 
   // Process Departments from departments.json
-  log({ message: '📁 Processing departments from departments.json...' });
+  console.log('📁 Processing departments from departments.json...');
   const departmentsData = readJsonFile<any>(DEPARTMENTS_PATH);
   if (departmentsData?.departments) {
     for (const dept of departmentsData.departments) {
@@ -204,13 +160,13 @@ async function generateSearchIndex(): Promise<SearchJSON> {
         });
       }
     }
-    log({ message: `✅ Added ${searchIndex.departments.length - processedDepartments.size} departments from departments.json` });
+    console.log(`✅ Added ${searchIndex.departments.length - processedDepartments.size} departments from departments.json`);
   }
 
   // Process Vendors
-  log({ message: '🏢 Processing vendors...' });
+  console.log('🏢 Processing vendors...');
   const vendorFiles = getVendorFiles();
-  log({ message: `Found vendor files: ${vendorFiles.join(', ')}` });
+  console.log(`Found vendor files: ${vendorFiles.join(', ')}`);
   
   const processedVendors = new Set<string>(); // Track unique vendors by name
   let stats = {
@@ -220,23 +176,23 @@ async function generateSearchIndex(): Promise<SearchJSON> {
   };
 
   for (const vendorFile of vendorFiles) {
-    log({ message: `📄 Processing ${path.basename(vendorFile)}...` });
+    console.log(`📄 Processing ${path.basename(vendorFile)}...`);
     const vendorsData = readJsonFile<any>(vendorFile);
     
     // Debug log the structure
-    log({ message: `File structure keys: ${Object.keys(vendorsData || {}).join(', ')}` });
+    console.log(`File structure keys: ${Object.keys(vendorsData || {}).join(', ')}`);
     
     if (!vendorsData) {
-      log({ message: `❌ Failed to read vendor file: ${vendorFile}`, type: 'error' });
+      console.error(`❌ Failed to read vendor file: ${vendorFile}`);
       continue;
     }
 
     if (vendorsData.t) {
-      log({ message: `Found ${vendorsData.t.length} transactions in file` });
+      console.log(`Found ${vendorsData.t.length} transactions in file`);
       
       for (const transaction of vendorsData.t) {
         if (!transaction.n) {
-          log({ message: `⚠️ Skipping transaction with no name`, type: 'warn' });
+          console.warn(`⚠️ Skipping transaction with no name`);
           continue;
         }
         
@@ -281,22 +237,22 @@ async function generateSearchIndex(): Promise<SearchJSON> {
         }
       }
     } else {
-      log({ message: `⚠️ No 't' array found in vendor file: ${vendorFile}`, type: 'warn' });
+      console.warn(`⚠️ No 't' array found in vendor file: ${vendorFile}`);
     }
   }
 
   // Log vendor processing statistics
-  log({ message: '\n📊 Vendor Processing Statistics:' });
-  log({ message: `  Total Vendors Processed: ${stats.totalVendors}` });
-  log({ message: `  Vendors with EIN: ${stats.vendorsWithEIN}` });
-  log({ message: `  Vendors without EIN: ${stats.vendorsWithoutEIN}` });
-  log({ message: `  Files Processed: ${vendorFiles.length}` });
-  log({ message: `  Unique Vendors: ${processedVendors.size}\n` });
+  console.log('\n📊 Vendor Processing Statistics:');
+  console.log(`  Total Vendors Processed: ${stats.totalVendors}`);
+  console.log(`  Vendors with EIN: ${stats.vendorsWithEIN}`);
+  console.log(`  Vendors without EIN: ${stats.vendorsWithoutEIN}`);
+  console.log(`  Files Processed: ${vendorFiles.length}`);
+  console.log(`  Unique Vendors: ${processedVendors.size}\n`);
 
-  log({ message: `✅ Processed ${searchIndex.vendors.length} unique vendors from ${vendorFiles.length} files` });
+  console.log(`✅ Processed ${searchIndex.vendors.length} unique vendors from ${vendorFiles.length} files`);
 
   // Process Programs
-  log({ message: '📋 Processing programs...' });
+  console.log('📋 Processing programs...');
   const programsData = readJsonFile<ProgramsJSON>(PROGRAMS_PATH);
   if (programsData?.programs) {
     for (const program of programsData.programs) {
@@ -336,11 +292,11 @@ async function generateSearchIndex(): Promise<SearchJSON> {
         });
       }
     }
-    log({ message: `✅ Processed ${searchIndex.programs.length} programs` });
+    console.log(`✅ Processed ${searchIndex.programs.length} programs`);
   }
 
   // Process Funds
-  log({ message: '💰 Processing funds...' });
+  console.log('💰 Processing funds...');
   const fundsData = readJsonFile<FundsJSON>(FUNDS_PATH);
   if (fundsData?.funds) {
     for (const fund of fundsData.funds) {
@@ -372,11 +328,11 @@ async function generateSearchIndex(): Promise<SearchJSON> {
         // Don't add fund context to keywords to keep them focused on departments/programs
       }
     }
-    log({ message: `✅ Processed ${searchIndex.funds!.length} funds` });
+    console.log(`✅ Processed ${searchIndex.funds!.length} funds`);
   }
 
   // Convert keyword map to keyword items
-  log({ message: '🔤 Processing keywords...' });
+  console.log('🔤 Processing keywords...');
   for (const [term, sources] of Array.from(keywordMap.entries())) {
     // Only include keywords that have context sources (from departments or programs)
     const contextSources = sources.filter(source => 
@@ -400,7 +356,7 @@ async function generateSearchIndex(): Promise<SearchJSON> {
   // Sort keywords by number of sources (most relevant first)
   searchIndex.keywords.sort((a, b) => b.sources.length - a.sources.length);
   
-  log({ message: `✅ Processed ${searchIndex.keywords.length} keywords` });
+  console.log(`✅ Processed ${searchIndex.keywords.length} keywords`);
 
   return searchIndex;
 }
@@ -419,40 +375,40 @@ function writeSearchIndex(searchIndex: SearchJSON): void {
       'utf-8'
     );
     
-    log({ message: `✅ Search index written to: ${SEARCH_OUTPUT_PATH}` });
+    console.log(`✅ Search index written to: ${SEARCH_OUTPUT_PATH}`);
     
     // Log statistics
-    log({ message: '\n📊 Search Index Statistics:' });
-    log({ message: `  Departments: ${searchIndex.departments.length}` });
-    log({ message: `  Vendors: ${searchIndex.vendors.length}` });
-    log({ message: `  Programs: ${searchIndex.programs.length}` });
-    log({ message: `  Funds: ${searchIndex.funds!.length}` });
-    log({ message: `  Keywords: ${searchIndex.keywords.length}` });
-    log({ message: `  Total searchable items: ${
+    console.log('\n📊 Search Index Statistics:');
+    console.log(`  Departments: ${searchIndex.departments.length}`);
+    console.log(`  Vendors: ${searchIndex.vendors.length}`);
+    console.log(`  Programs: ${searchIndex.programs.length}`);
+    console.log(`  Funds: ${searchIndex.funds!.length}`);
+    console.log(`  Keywords: ${searchIndex.keywords.length}`);
+    console.log(`  Total searchable items: ${
       searchIndex.departments.length + 
       searchIndex.vendors.length + 
       searchIndex.programs.length + 
       searchIndex.funds!.length + 
       searchIndex.keywords.length
-    }` });
+    }`);
     
   } catch (error) {
-    log({ message: `❌ Error writing search index: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
+    console.error(`❌ Error writing search index:`, error);
     process.exit(1);
   }
 }
 
 async function main(): Promise<void> {
-  log({ message: '🚀 Starting search index generation...\n' });
+  console.log('🚀 Starting search index generation...\n');
   
   try {
     const searchIndex = await generateSearchIndex();
     writeSearchIndex(searchIndex);
     
-    log({ message: '\n🎉 Search index generation completed successfully!' });
+    console.log('\n🎉 Search index generation completed successfully!');
     
   } catch (error) {
-    log({ message: `❌ Error generating search index: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
+    console.error(`❌ Error generating search index:`, error);
     process.exit(1);
   }
 }
@@ -460,7 +416,7 @@ async function main(): Promise<void> {
 // Run if called directly
 if (require.main === module) {
   main().catch(error => {
-    log({ message: `❌ Error in main: ${error instanceof Error ? error.message : String(error)}`, type: 'error' });
+    console.error(`❌ Error in main:`, error);
     process.exit(1);
   });
 }
