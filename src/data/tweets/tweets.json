@@ -1,6 +1,284 @@
 {
   "tweets": [
     {
+      "created_at": "2025-06-11T23:45:11.000Z",
+      "entities": {
+        "hashtags": [
+          {
+            "start": 233,
+            "end": 242,
+            "tag": "CaliDOGE"
+          },
+          {
+            "start": 243,
+            "end": 259,
+            "tag": "GovTransparency"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 154,
+            "end": 163,
+            "probability": 0.9429,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 234,
+            "end": 241,
+            "probability": 0.493,
+            "type": "Place",
+            "normalized_text": "CaliDOGE"
+          }
+        ]
+      },
+      "id": "1932947251308949870",
+      "edit_history_tweet_ids": [
+        "1932947251308949870"
+      ],
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "🚀 Exciting news! Our latest update (1.6.4) is here! 🎉 With bug fixes, new vendor data, and a dedicated whistleblower page, we're enhancing your access to California government transparency. Discover how your tax dollars are spent! 💰 #CaliDOGE #GovTransparency",
+      "created_at_formatted": "Jun 11, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "created_at": "2025-06-11T22:08:37.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 73,
+            "end": 81,
+            "probability": 0.5673,
+            "type": "Other",
+            "normalized_text": "cali-doge"
+          },
+          {
+            "start": 95,
+            "end": 100,
+            "probability": 0.976,
+            "type": "Other",
+            "normalized_text": "GitHub"
+          }
+        ],
+        "urls": [
+          {
+            "start": 140,
+            "end": 163,
+            "url": "https://t.co/cMQkWfXhoE",
+            "expanded_url": "https://github.com/opendatainitiative/tables/tree/main/raw",
+            "display_url": "github.com/opendatainitia…",
+            "unwound_url": "https://github.com/opendatainitiative/tables/tree/main/raw"
+          },
+          {
+            "start": 165,
+            "end": 188,
+            "url": "https://t.co/wOqNXpLGEn",
+            "expanded_url": "https://github.com/opendatainitiative/cali_doge",
+            "display_url": "github.com/opendatainitia…",
+            "status": 200,
+            "title": "GitHub - opendatainitiative/cali_doge: Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services. Get Involved. We welcome volunteers to help with: strategy, development, research, content updates and data analysis, marketing, ",
+            "description": "Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services. Get Involved. We welcome volunteers to help with: strategy, devel...",
+            "unwound_url": "https://github.com/opendatainitiative/cali_doge"
+          }
+        ]
+      },
+      "id": "1932922949218283970",
+      "edit_history_tweet_ids": [
+        "1932922949218283970"
+      ],
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974597226799105",
+            "name": "B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974597172203520",
+            "name": "Services - B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10040692468",
+            "name": "GitHub"
+          }
+        }
+      ],
+      "text": "my fellow contributors and travelers, if you like this repository and or cali-doge, star it on GitHub so you can get notified of changes. \n\nhttps://t.co/cMQkWfXhoE\n\nhttps://t.co/wOqNXpLGEn",
+      "created_at_formatted": "Jun 11, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1892219241295945729/D7ERfTOL_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "id": "1932864294607335726",
       "context_annotations": [
         {
@@ -16240,8 +16518,8 @@
     }
   ],
   "meta": {
-    "result_count": 148,
-    "newest_id": "1932864294607335726",
+    "result_count": 150,
+    "newest_id": "1932947251308949870",
     "oldest_id": "1882144700762878208"
   }
 }
