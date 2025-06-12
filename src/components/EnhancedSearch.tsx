@@ -256,17 +256,35 @@ export function EnhancedSearch({ isOpen, onClose }: EnhancedSearchProps) {
   const hasResults = searchResults && searchResults.totalResults > 0;
   const showMessage = searchResults?.message;
 
+  // Responsive popup classes
+  const popupClass = `z-50 transition-all duration-200 ease-in-out bg-white border border-gray-300 shadow-lg
+    absolute right-0 top-12 w-[500px] rounded-lg
+    sm:absolute sm:right-0 sm:top-12 sm:w-[500px] sm:rounded-lg
+    max-sm:fixed max-sm:left-0 max-sm:right-0 max-sm:top-[72px] max-sm:w-full max-sm:rounded-none max-sm:border-t max-sm:border-b max-sm:shadow-xl max-sm:p-0`;
+
   return (
     <div 
       ref={searchRef}
-      className="absolute right-0 top-12 w-[500px] bg-white rounded-lg shadow-lg border border-gray-300 z-50 transition-all duration-200 ease-in-out"
+      className={popupClass}
+      style={{ maxWidth: '100vw' }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleUserInteraction}
       onClick={handleUserInteraction}
       onKeyDown={handleUserInteraction}
     >
-      <div className="p-4">
+      {/* Mobile close button */}
+      <button
+        type="button"
+        className="sm:hidden absolute right-4 top-4 z-10 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600"
+        aria-label="Close search"
+        onClick={onClose}
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <div className="p-4 pt-2 sm:pt-4">
         {/* Search Input */}
         <div className="relative mb-4">
           <input
