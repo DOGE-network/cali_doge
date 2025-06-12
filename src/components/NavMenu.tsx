@@ -146,10 +146,10 @@ export function NavMenu() {
       </div>
 
       {/* Department Search */}
-              <EnhancedSearch 
-          isOpen={isSearchOpen || isSearchHovering} 
-          onClose={() => setIsSearchOpen(false)} 
-        />
+      <EnhancedSearch 
+        isOpen={isSearchOpen || isSearchHovering} 
+        onClose={() => { setIsSearchOpen(false); setIsSearchHovering(false); }} 
+      />
 
       {/* Navigation Menu */}
       <div

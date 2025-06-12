@@ -55,7 +55,7 @@ function SearchPageClient() {
   const [excludeCommon, setExcludeCommon] = useState(true);
   const [limit, setLimit] = useState(20);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   // Build API URL based on current filters
   const buildApiUrl = () => {
@@ -181,20 +181,6 @@ function SearchPageClient() {
     if (!params.has('limit')) {
       params.set('limit', limit.toString());
     }
-    
-    router.push(`/search?${params.toString()}`);
-  };
-
-  // Handle search submission
-  const handleSearch = () => {
-    if (!query.trim()) return;
-    
-    setIsLoading(true);
-    const params = new URLSearchParams();
-    params.set('q', query.trim());
-    params.set('types', selectedTypes.join(','));
-    params.set('limit', '10');
-    params.set('exclude_common', 'true');
     
     router.push(`/search?${params.toString()}`);
   };
@@ -328,12 +314,6 @@ function SearchPageClient() {
             placeholder="Search departments, vendors, programs, funds..."
             className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <button
-            onClick={handleSearch}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            Search
-          </button>
         </div>
         <div className="mt-4">
           <SearchTypeFilter

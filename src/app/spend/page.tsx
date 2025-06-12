@@ -498,11 +498,11 @@ function SpendPageClient() {
                               ProPublica
                             </a>
                             <a 
-                              href={`https://www.datarepublican.com/search?q=${encodeURIComponent(record.vendor)}`}
+                              href={`https://datarepublican.com/nonprofit/assets/?filter=${encodeURIComponent(record.vendor)}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-300 hover:underline"
-                              onClick={() => analytics.externalLinkClick(`https://www.datarepublican.com/search?q=${encodeURIComponent(record.vendor)}`, 'vendor_lookup_datarepublican')}
+                              onClick={() => analytics.externalLinkClick(`https://datarepublican.com/nonprofit/assets/?filter=${encodeURIComponent(record.vendor)}`, 'vendor_lookup_datarepublican')}
                             >
                               Data Republican
                             </a>

@@ -315,7 +315,7 @@ function PaymentsPageClient() {
                         ProPublica
                       </a>
                       <a 
-                        href={`https://www.datarepublican.com/search?q=${encodeURIComponent(vendor.name)}`}
+                        href={`https://datarepublican.com/nonprofit/assets/?filter=${encodeURIComponent(vendor.name)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-300 hover:underline"

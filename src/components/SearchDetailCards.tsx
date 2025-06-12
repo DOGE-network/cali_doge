@@ -190,7 +190,7 @@ export function VendorDetailCard({ item, isSelected, onSelect }: DetailCardProps
             ProPublica
           </a>
           <a
-            href={`https://www.datarepublican.com/search?q=${encodeURIComponent(vendorItem.term)}`}
+            href={`https://datarepublican.com/nonprofit/assets/?filter=${encodeURIComponent(vendorItem.term)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
