@@ -8,19 +8,30 @@
 - **Data Access Layer** - Unified data access with caching and error handling
 - **Department API** - Enhanced department data with markdown integration
 - **Search API** - Comprehensive search with keyword filtering, relevance scoring, and testing
+- **Supabase Migration Plan** - Complete migration strategy for moving data from JSON to Supabase
+- **Data Update Pipeline** - Automated update process with CI/CD integration
+- **Monitoring Setup** - Comprehensive monitoring with Datadog integration
+- **Error Handling Strategy** - Three-tier error handling with Sentry integration
+- **CDN Configuration** - Edge caching strategy with optimized cache headers
+- **Database Schema Design** - Complete schema design for all data types
+- **Migration Scripts** - Scripts for data migration and validation
+- **CI/CD Integration** - GitHub Actions workflow for automated updates
+- **Vendor Data Migration** - Complete migration of vendor data to Supabase
+- **Data Validation** - Implementation of validation scripts
+- **API Route Updates** - All routes updated to use Supabase
+- **Frontend Component Updates** - Components updated to use new data sources
+- **Production Migration** - Migration to production environment complete
+- **Documentation** - System documentation and training materials
+- **Performance Optimization** - Query and caching optimization complete
+- **Security Audit** - Comprehensive security review completed
 
-### 🔄 READY FOR IMPLEMENTATION
-- **Vendor API** - Unified vendor API to replace existing endpoints
-- **Program API** - Program details with hover functionality support
-- **Budget API** - Budget data access with filtering
-- **Fund API** - Fund information access
-- **Spend API** - Comprehensive spending data with filtering and sorting
-- **Frontend UI Updates** - All pages ready for API integration
+### 🔄 IN PROGRESS
+- **Staging Deployment** - Final testing in staging environment
+- **Post-Launch Monitoring** - Initial monitoring and performance tracking
 
 ### ⏳ PENDING
-- **EIN Resolution** - Framework ready, pending API integration decisions
-- **Frontend Implementation** - UI components for updated pages
-- **Additional API Testing** - Unit and integration tests for remaining APIs
+- **User Feedback Collection** - Gathering feedback for potential optimizations
+- **Future Enhancements** - Planning for additional features based on usage
 
 ## Current Data Pipeline
 
@@ -40,718 +51,121 @@
    - ebudget for department, fund, and program json
    - fiscal for vendor json
 
-# Reordered Implementation Plan
-
-## 1. Data Model Definition and Type Files - IMPLEMENTED
-
-All type files have been implemented with enhanced features beyond the original plan:
-
-### Programs JSON and Type File - IMPLEMENTED ✅
-**Location:** `src/types/program.ts`
-
-**Implemented Features:**
-```typescript
-export interface ProgramDescription {
-  description: string;
-  source: string;
-}
-
-export interface Program {
-  projectCode: string;
-  name: string;
-  programDescriptions: ProgramDescription[];
-}
-
-export interface ProgramsJSON {
-  programs: Program[];
-  sources?: Array<{ name: string; url: string; }>; // Enhanced with metadata
-  lastUpdated?: string; // Enhanced with tracking
-}
-```
-
-### Funds JSON and Type File - IMPLEMENTED ✅
-**Location:** `src/types/fund.ts`
-
-**Implemented Features:**
-```typescript
-export interface Fund {
-  fundCode: string;  // Enhanced: string to preserve leading zeros
-  fundName: string;
-  fundGroup: string;
-  fundDescription: string;
-}
-
-export type FundGroup = // Enhanced: typed fund groups
-  | "Governmental Cost Funds" | "Special Revenue Funds"
-  | "Transportation Funds" | "Bond Funds" | "Federal Funds" | "Other Funds";
-
-export interface FundsJSON {
-  funds: Fund[];
-  sources?: Array<{ name: string; url: string; }>; // Enhanced with metadata
-  lastUpdated?: string; // Enhanced with tracking
-}
-```
-
-### Budgets JSON and Type File - IMPLEMENTED ✅
-**Location:** `src/types/budget.ts`
-
-**Implemented Features:**
-```typescript
-export type FundingType = 0 | 1; // 0 = "State Operations:" or 1 = "Local Assistance:"
-
-export interface FundAllocation {
-  code: string;  // Enhanced: string to preserve leading zeros
-  count: number;
-  amount: number;
-}
-
-export interface FundingTypeData {
-  type: FundingType;
-  fundCode: FundAllocation[];
-}
-
-export interface ProjectCodeData {
-  code: string;  // Enhanced: string to preserve leading zeros
-  fundingType: FundingTypeData[];
-}
-
-export interface FiscalYearData {
-  year: number;
-  projectCode: ProjectCodeData[];
-}
-
-export interface OrganizationalBudget {
-  code: string;  // Enhanced: string to preserve leading zeros
-  fiscalYear: FiscalYearData[];
-}
-
-export interface BudgetsJSON {
-  budget: OrganizationalBudget[];
-  processedFiles?: string[]; // Enhanced: processing tracking
-  lastProcessedFile?: string | null;
-  lastProcessedTimestamp?: string | null;
-  sources?: Array<{ name: string; url: string; }>;
-  lastUpdated?: string;
-}
-```
-
-### Search JSON and Type File - IMPLEMENTED ✅
-**Location:** `src/types/search.ts`
-
-**Implemented Features:**
-```typescript
-export interface SearchItem {
-  term: string;
-  type: 'department' | 'vendor' | 'program' | 'fund';
-  id: string;
-}
-
-export interface KeywordSource {
-  type: 'department' | 'program';
-  id: string;
-  context: string;
-}
-
-export interface KeywordItem {
-  term: string;
-  type: 'keyword';
-  sources: KeywordSource[];
-}
-
-export interface SearchJSON {
-  departments: SearchItem[];
-  vendors: SearchItem[];
-  programs: SearchItem[];
-  funds?: SearchItem[];
-  keywords: KeywordItem[];
-  lastUpdated?: string; // Enhanced with tracking
-}
-
-// Enhanced: Additional search functionality
-export interface SearchOptions {
-  types?: ('department' | 'vendor' | 'program' | 'fund' | 'keyword')[];
-  limit?: number;
-  includeFunds?: boolean;
-  includePrograms?: boolean;
-  includeKeywords?: boolean;
-}
-```
-
-### Vendors JSON Structure - IMPLEMENTED ✅
-**Location:** `src/types/vendor.ts`
-
-**Implemented Structure (Optimized):**
-```typescript
-export interface OptimizedVendor {
-  n: string;    // name
-  e?: string;   // ein (optional)
-  fy: OptimizedFiscalYear[];
-}
-
-export interface OptimizedFiscalYear {
-  y: number;    // year
-  pc: OptimizedProjectCode[];
-}
-
-export interface OptimizedProjectCode {
-  c: string;    // code
-  oc: OptimizedOrgCode[];
-}
-
-export interface OptimizedOrgCode {
-  c: number;    // code
-  fc: OptimizedFundCode[];
-}
-
-export interface OptimizedFundCode {
-  c: number;    // code
-  ct: number;   // count
-  a: number;    // amount
-}
-
-export interface OptimizedVendorsJSON {
-  vendors: OptimizedVendor[];
-}
-```
-
-**Additional Vendor Types Implemented:**
-- `VendorTransaction` - Yearly transaction data with compressed field names
-- `VendorTransactionsCSV` - CSV import structure
-- `EINMetadata` - EIN resolution tracking
-- Multiple API response structures for different views
-
-## 2. Data Processing Scripts Update
-
-### Process Budgets Script (process_budgets.ts) - IMPLEMENTED
-The budget processing script is already implemented with comprehensive functionality:
-
-**Current Implementation Features:**
-- **Two-stage user approval process** for granular control over department and budget data updates
-- **Section identification logic** using expenditure markers ("3-YEAR EXPENDITURES AND POSITIONS" or "3-YR EXPENDITURES AND POSITIONS")
-- **Department matching** using src/lib/departmentMatching.js with confidence scoring
-- **Program descriptions processing** with 4-digit to 7-digit project code conversion
-- **Budget allocations extraction** with overwrite logic for existing data
-- **ProcessedFiles tracking** to prevent duplicate processing
-- **Comprehensive logging** with transaction IDs and detailed statistics
-- **Incremental data saving** to prevent data loss
-
-**Data Processing Flow:**
-1. **Initial Setup**: Load departments.json, programs.json, budgets.json, and funds.json
-2. **File Scanning**: Process budget text files with skip logic for already processed files
-3. **Section Identification**: Find department sections using organizational codes and expenditure markers
-4. **Department Processing**: Match departments with confidence scoring and user approval
-5. **Program Descriptions**: Extract and update program data with source tracking
-6. **Budget Allocations**: Extract detailed expenditures with overwrite logic for existing data
-7. **Two-Stage Approval**: Separate approval for department changes vs program/budget/fund changes
-8. **Data Persistence**: Incremental saving with comprehensive statistics tracking
-
-**Output Files:**
-- programs.json: Updated with project codes, names, and descriptions
-- budgets.json: Updated with detailed budget allocations and processedFiles tracking
-- departments.json: Updated with department data and descriptions
-- funds.json: Updated with fund codes and names
-- Comprehensive log files with transaction IDs
-
-### Process Vendors Script (process_vendors.ts) - IMPLEMENTED
-The vendor processing script is already implemented with advanced functionality:
-
-**Current Implementation Features:**
-- **Yearly transaction data structure** with compressed field names for efficiency
-- **EIN resolution framework** (commented out but structured for future implementation)
-- **Program and fund validation** with automatic updates to programs.json and funds.json
-- **ProcessedFiles tracking** to prevent duplicate processing
-- **Memory usage monitoring** and progress tracking for large datasets
-- **Comprehensive validation** for fund codes and program codes
-- **Multiple output formats** supporting both transaction and vendor-centric views
-
-**Data Processing Flow:**
-1. **Initialization**: Setup logging, create directories, load existing data
-2. **CSV Processing**: Parse vendor transaction CSV files by fiscal year
-3. **Data Extraction**: Extract vendor, department, program, and fund information
-4. **Validation**: Validate fund codes and program codes against existing data
-5. **Structure Generation**: Create yearly transaction files and enhanced vendor data
-6. **EIN Resolution**: Framework ready for EIN lookup integration
-7. **Data Persistence**: Write validated data with comprehensive statistics
-
-**Output Files:**
-- vendor_transaction_YYYY.json: Yearly transaction data with compressed structure
-- vendors.json: Enhanced vendor data with EIN framework
-- Updated programs.json and funds.json with new entries
-- Comprehensive log files with processing statistics
-
-### EIN Resolution Framework - READY FOR IMPLEMENTATION
-Both scripts include frameworks for EIN resolution but are currently commented out pending API integration decisions.
-
-### EIN Resolution and Management (not implemented)
-
-#### Integration with Vendor Processing
-```typescript
-// In src/scripts/process_vendors.ts
-import axios from 'axios';
-import prompt from 'prompt-sync';
-
-// Add string similarity function for name matching
-function calculateStringSimilarity(str1: string, str2: string): number {
-  // Implementation details...
-}
-
-// Add EIN lookup functions
-async function lookupNonprofitEIN(vendorName: string): Promise<{ein: string | null, matches: any[]}> {
-  // Implementation details...
-}
-
-async function lookupBusinessEIN(vendorName: string, state?: string): Promise<{ein: string | null, matches: any[]}> {
-  // Implementation details...
-}
-
-// Process each vendor
-for (const vendorName in vendorData.vendors) {
-  // EIN resolution logic...
-}
-
-// After processing all vendors, write updated data
-log({ message: 'Writing updated vendor data with EINs...', isSubStep: true });
-writeVendorData({ transactions: Object.values(vendorData.vendors) }, VENDOR_TRANSACTION_PATH);
-```
-
-#### Batch Processing for EIN Resolution
-```typescript
-async function batchResolveEINs() {
-  const vendors = await loadVendorsWithoutEINs();
-  const results = {
-    resolved: 0,
-    failed: 0,
-    total: vendors.length
-  };
-  
-  // Process in small batches with delays to respect API limits
-  // Implementation details...
-  
-  return results;
-}
-```
-
-#### Data Governance for EIN Management
-- Implement a data governance process for EIN data:
-  1. Record provenance of all EINs (source, date acquired, confidence level)
-  2. Regular validation process against authoritative sources
-  3. Audit trail for all EIN changes
-
-### Validation and Error Handling
-
-#### Input Validation
-```typescript
-function validateInputSchema(data: unknown, schema: JSONSchema): ValidationResult {
-  const validator = new Validator();
-  const result = validator.validate(data, schema);
-  return {
-    isValid: result.valid,
-    errors: result.errors.map(err => ({
-      path: err.property,
-      message: err.message,
-      value: err.instance
-    }))
-  };
-}
-```
-
-#### Processing Validation
-- Each processing script will implement:
-  1. Pre-processing validation (input format, required fields)
-  2. Processing-time validation (business rules, data transformations)
-  3. Post-processing validation (output schema, data consistency)
-
-#### Error Handling Strategy
-- Three-tier error handling approach for recoverable errors, partial failures, and critical failures
-
-#### Data Consistency Checks
-```typescript
-function validateConsistency() {
-  // Check departments in vendors.json exist in departments.json
-  // Implementation details...
-}
-```
-
-#### Type Validation
-```typescript
-import { z } from "zod";
-
-const ProgramSchema = z.object({
-  // Schema details...
-});
-
-function validateProgram(data: unknown): Program {
-  return ProgramSchema.parse(data);
-}
-```
-
-## 3. API Implementation
-
-### Currently Implemented APIs ✅
-
-#### Department API - IMPLEMENTED
-**Location:** `src/app/api/departments/route.ts`
-
-**Current Endpoints:**
-- `GET /api/departments` - List all departments with enhanced data
-- `GET /api/departments?format=departments` - Return departments array only
-
-**Features Implemented:**
-- **Type-safe data handling** using DepartmentsJSON interface
-- **Markdown page integration** with automatic slug matching
-- **Workforce data detection** and hasWorkforceData flags
-- **Budget status filtering** (active/inactive departments)
-- **Organizational level grouping** and parent agency distribution
-- **Caching strategy** with 1-hour revalidation
-- **Comprehensive logging** with department statistics
-
-#### Vendor APIs - TO BE REPLACED
-**Current Location:** `src/app/api/vendors/` (will be removed)
-
-**Current Endpoints (to be deprecated):**
-- `GET /api/vendors/vendor-departments` - Vendor data grouped by departments
-- `GET /api/vendors/department-vendors` - Department data grouped by vendors  
-- `GET /api/vendors/account-vendors` - Account-based vendor groupings
-- `GET /api/vendors/program-vendors` - Program-based vendor groupings
-
-**Migration Plan:**
-- **Remove existing vendor API endpoints** in `src/app/api/vendors/`
-- **Replace with unified vendor API** at `src/app/api/vendors/route.ts`
-- **Preserve existing functionality** through query parameters and response formatting
-
-#### Data Access Layer - IMPLEMENTED ✅
-**Location:** `src/lib/api/dataAccess.ts`
-
-**Features Implemented:**
-- **Cached data access** with file modification time validation
-- **Generic JSON file reading** with error handling
-- **Specialized data getters** for all data types:
-  - `getBudgetsData()` - Access to budgets.json
-  - `getFundsData()` - Access to funds.json  
-  - `getProgramsData()` - Access to programs.json
-  - `getVendorsData()` - Access to vendors.json
-  - `getSearchData()` - Access to search.json
-- **Cache management** with selective clearing
-- **File writing utilities** with directory creation
-
-### APIs Ready for Implementation
-
-#### Vendor API - READY FOR IMPLEMENTATION (REPLACEMENT)
-**Proposed Location:** `src/app/api/vendors/route.ts`
-
-**Proposed Endpoints:**
-- `GET /api/vendors` - List all vendors with pagination and filtering
-- `GET /api/vendors/top100/:year` - Get top 100 vendors by spending for specific year
-- `GET /api/vendors/:id` - Get vendor details by ID
-- `GET /api/vendors/:id/transactions` - Get vendor transactions with pagination
-
-**Query Parameters for Unified API:**
-- `view=departments` - Return vendor-departments view (replaces /vendor-departments)
-- `view=accounts` - Return account-vendors view (replaces /account-vendors)  
-- `view=programs` - Return program-vendors view (replaces /program-vendors)
-- `department=name` - Filter by department name
-- `year=YYYY` - Filter by fiscal year
-- `page=N&limit=N` - Pagination controls
-- `sort=amount|name|count|year|department|program|fund` - Enhanced sorting options
-- `order=asc|desc` - Sort order (default: desc for amount)
-
-**Response Format for Top 100 Vendors:**
-```typescript
-{
-  vendors: Array<{
-    name: string;
-    year: number;
-    department: string;
-    program: string;
-    fund: string;
-    amount: number;
-    // Additional sortable fields
-  }>;
-  pagination: PaginationInfo;
-}
-```
-
-**Implementation Notes:**
-- **Support payments page requirements** with top 100 vendors endpoint
-- **Enhanced sorting capabilities** for all required columns (year, department, vendor, program, fund, amount)
-- **Default sorting** by amount (high to low) as specified
-- **Consolidate existing functionality** from 4 separate endpoints into 1 unified API
-- **Leverage existing data access layer** with `getVendorsData()` and `getVendorTransactionsData()`
-- **Use existing type interfaces** from `src/types/vendor.ts`
-
-#### Program API - READY FOR IMPLEMENTATION
-**Proposed Endpoints:**
-- `GET /api/programs` - List all programs with pagination
-- `GET /api/programs/:projectCode` - Get program details by project code
-
-**Enhanced Response Format for Hover Functionality:**
-```typescript
-{
-  projectCode: string;
-  name: string;
-  programDescriptions: Array<{
-    description: string;
-    source: string;
-  }>;
-}
-```
-
-**Implementation Notes:**
-- **Support spend page hover functionality** with program descriptions and sources
-- Data access layer already supports `getProgramsData()`
-- Type interfaces fully defined in `src/types/program.ts`
-- Data populated by process_budgets.ts script
-
-#### Budget API - READY FOR IMPLEMENTATION  
-**Proposed Endpoints:**
-- `GET /api/budgets` - List budget data with filtering options
-- `GET /api/budgets/:organizationalCode` - Get budget by organizational code
-- `GET /api/budgets/:organizationalCode/:fiscalYear` - Get budget for specific fiscal year
-
-**Implementation Notes:**
-- Data access layer already supports `getBudgetsData()`
-- Type interfaces fully defined in `src/types/budget.ts`
-- Data populated by process_budgets.ts script with processedFiles tracking
-
-#### Fund API - READY FOR IMPLEMENTATION
-**Proposed Endpoints:**
-- `GET /api/funds` - List all funds with filtering
-- `GET /api/funds/:fundCode` - Get fund details by code
-
-**Implementation Notes:**
-- Data access layer already supports `getFundsData()`
-- Type interfaces fully defined in `src/types/fund.ts`
-- Data populated by both process_budgets.ts and process_vendors.ts scripts
-
-#### Spend API - READY FOR IMPLEMENTATION (NEW)
-**Proposed Location:** `src/app/api/spend/route.ts`
-
-**Proposed Endpoints:**
-- `GET /api/spend` - Get spending data with comprehensive filtering and sorting
-
-**Query Parameters for Spend Page:**
-- `view=budget|vendor|compare` - Display mode selection
-- `filter=all|year|department|vendor|program|fund` - Filter type
-- `year=YYYY` - Filter by fiscal year
-- `department=name` - Filter by department name
-- `vendor=name` - Filter by vendor name
-- `program=code` - Filter by program code
-- `fund=code` - Filter by fund code
-- `sort=year|department|vendor|program|fund|amount` - Sort column
-- `order=asc|desc` - Sort order (default: desc for amount)
-- `page=N&limit=N` - Pagination controls
-
-**Response Format:**
-```typescript
-{
-  spending: Array<{
-    year: number;
-    department: string;
-    departmentSlug?: string; // For markdown page links
-    vendor: string;
-    program: string;
-    fund: string;
-    amount: number;
-  }>;
-  pagination: PaginationInfo;
-  summary: {
-    totalAmount: number;
-    recordCount: number;
-  };
-}
-```
-
-**Implementation Notes:**
-- **Support updated spend page requirements** with comprehensive filtering and sorting
-- **Department markdown links** included when available
-- **Default amount sorting** (high to low) as specified
-- **Leverage existing data access layer** for budget, vendor, and program data
-- **Combine data from multiple sources** for comprehensive spend view
-
-#### Search API - IMPLEMENTED & TESTED ✅
-**Location:** `src/app/api/search/route.ts`
-
-**Implemented Endpoints:**
-- `GET /api/search` - Enhanced search across all data types
-- `GET /api/search?q=query&types=department,vendor,program,fund`
-
-**Implemented Features:**
-- **Broad search capability** across all data types (departments, vendors, programs, funds, keywords)
-- **Common word filtering** - excludes 60+ common words like "the", "and", "like", etc.
-- **Relevance scoring** with exact match, starts-with, contains, and word boundary matching
-- **Keyword context search** - searches within keyword source contexts
-- **Type filtering** - search specific data types or all types
-- **Result limiting** - configurable limit (default: 10, max: 100)
-
-**Query Parameters:**
-- `q=query` - Search query string (required)
-- `types=department,vendor,program,fund,keyword` - Filter by data types (default: all)
-- `limit=N` - Limit number of results (default: 10, max: 100)
-- `exclude_common=true` - Exclude common words (default: true)
-
-**Response Format:**
-```typescript
-{
-  departments: SearchItem[];
-  vendors: SearchItem[];
-  programs: SearchItem[];
-  funds: SearchItem[];
-  keywords: KeywordItem[];
-  totalResults: number;
-  query: string;
-  appliedFilters: {
-    types: string[];
-    excludeCommon: boolean;
-    limit: number;
-  };
-}
-```
-
-**Advanced Features Implemented:**
-- **Relevance scoring algorithm** with multiple scoring factors
-- **Multi-word query support** with word-based matching
-- **Context-aware keyword search** in source descriptions
-- **Common word detection** with comprehensive word list
-- **Error handling** with graceful fallbacks
-- **Caching strategy** with 1-hour revalidation
-- **Comprehensive logging** for debugging and monitoring
-
-**Testing Results:**
-- ✅ Basic search functionality (departments, vendors, programs, funds, keywords)
-- ✅ Type filtering (specific data types vs all types)
-- ✅ Common word filtering (excludes "the", "and", etc.)
-- ✅ Common word filtering toggle (exclude_common=false)
-- ✅ Keyword search with context sources
-- ✅ Partial matching ("fish" finds "Department of Fish and Wildlife")
-- ✅ Empty query handling (returns empty results)
-- ✅ Result limiting (respects limit parameter)
-- ✅ Maximum limit enforcement (caps at 100)
-- ✅ Multi-word queries ("fish wildlife")
-- ✅ Case insensitivity ("EDUCATION" = "education")
-- ✅ Invalid type filtering (removes invalid types)
-- ✅ Relevance scoring and sorting
-- ✅ Error handling and graceful fallbacks
-
-**Implementation Notes:**
-- Uses existing data access layer with `getSearchData()`
-- Leverages type interfaces from `src/types/search.ts`
-- Supports search.json data structure with departments, vendors, programs, funds, and keywords
-- Thoroughly tested with 14 comprehensive test cases
-- Ready for frontend integration with autocomplete and search functionality
-
-### Integration with Existing APIs ✅
-- **Department API** already enhanced with new data structures
-- **Vendor APIs** fully implemented with multiple view perspectives
-- **Data access layer** provides unified interface for all data types
-- **Type safety** maintained across all implementations
-
-## 4. Frontend UI Updates
-
-### Updated Payments Page - READY FOR IMPLEMENTATION
-- Display the top 100 vendors spend for each year
-- Display all the fields as sortable columns
-- Pull data from vendor API (ready for implementation)
-
-**Implementation Notes:**
-- Vendor API endpoints ready with top100 functionality
-- Sorting capabilities implemented in API
-- Type interfaces available for frontend integration
-
-### Updated Spend Page - READY FOR IMPLEMENTATION
-- Pull data from spend API (ready for implementation)
-- Pulldown option to display budget, vendor, or compare
-- Filter pulldown by all, year, department, vendor, program or fund 
-- Display columns year, department, vendor, program, fund, amount
-- Each column will sort toggle high or low on click
-- Default sort amount column high to low
-- For each department name show link to markdown page if exists
-- For each program on hover show program descriptions and their sources (pull from program API - ready for implementation)
-- For each vendor on hover show link options to propublica and data republican using the name
-
-**Implementation Notes:**
-- Spend API ready for implementation with comprehensive filtering and sorting
-- Program API ready for hover functionality with descriptions and sources
-- Department markdown linking supported in API responses
-
-### Enhanced Search Functionality - API IMPLEMENTED ✅, FRONTEND READY FOR INTEGRATION
-- ✅ **Search API implemented and tested** - sources from search.json with comprehensive functionality
-- ✅ **Broad search capability implemented** - searches across departments, vendors, programs, funds, and keywords
-- ✅ **Common word filtering implemented** - excludes 60+ common words like "the", "and", "like", etc.
-- ✅ **Relevance scoring and multi-word support** - advanced matching algorithms
-- ✅ **Type filtering and result limiting** - configurable search parameters
-
-**Ready for Frontend Integration:**
-- Display search options with vendor, program, fund, and department as user types
-- Implement autocomplete functionality using search API
-- Support keyword search with context sources
-- Real-time search with debouncing for performance
-
-**API Endpoints Available:**
-- `GET /api/search?q=query&types=department,vendor,program,fund,keyword&limit=10`
-- Comprehensive response format with relevance scoring
-- Error handling and graceful fallbacks implemented
-
-### Department Specific Markdown Pages - READY FOR IMPLEMENTATION
-- Spend section: from json sources, fiscal year, vendor name, program name, fund name, total amount spend
-- Workforce section: points to workforce page display for department
-- Custom text on the department from the markdown text
-- Sources from the markdown text
-
-**Implementation Notes:**
-- Department API already provides enhanced data with markdown integration
-- Spend data available through spend API (ready for implementation)
-- Workforce data detection implemented in department API
-
-## 5. Testing Strategy
-
-### Unit Tests for Data Processing Scripts
-- Test data extraction and transformation logic
-- Test EIN resolution functions
-- Test validation and error handling
-
-### Integration Tests for API Endpoints - PARTIALLY IMPLEMENTED ✅
-- ✅ **Search API thoroughly tested** with 14 comprehensive test cases:
-  - Basic search functionality across all data types
-  - Type filtering and parameter validation
-  - Common word filtering and toggle functionality
-  - Multi-word queries and case insensitivity
-  - Result limiting and pagination
-  - Relevance scoring and sorting
-  - Error handling and graceful fallbacks
-  - Keyword search with context sources
-- **Remaining APIs to test:** vendor, program, budget, fund, spend APIs
-- Test data consistency across endpoints
-- Test backward compatibility with existing endpoints
-
-### End-to-End Tests for Critical User Flows
-- ✅ **Search functionality tested** - API level testing complete
-- **Frontend integration testing needed:** search UI, autocomplete, real-time search
-- Test department page navigation
-- Test spend page filtering and display
+## 8. Implementation Phases
+
+A. **Phase 1: Setup and Planning** - ✅ COMPLETED
+1. Create Supabase project
+2. Set up database structure
+3. Develop initial migration scripts
+4. Set up monitoring and error reporting
+5. Configure Vercel environment
+
+Tasks:
+- ✅ Create Supabase project and set up proper access controls
+- ✅ Create database tables with appropriate indexes
+- ✅ Develop and test migration scripts for smaller datasets
+- ✅ Set up Datadog/Sentry for monitoring
+- ✅ Configure Vercel with required environment variables
+- ✅ Update package.json with new dependencies
+
+B. **Phase 2: Initial Migration** - ✅ COMPLETED
+1. Migrate static reference data
+2. Migrate historical vendor data
+3. Create and test data access layer
+4. Develop API routes
+5. Test and validate data integrity
+
+Tasks:
+- ✅ Migrate departments, programs, funds data
+- ✅ Migrate vendor data (start with smaller datasets)
+- ✅ Develop and test data access functions
+- ✅ Implement API routes for departments, vendors, search
+- ✅ Create validation scripts to verify data integrity
+- ✅ Implement caching strategy
+- ✅ Deploy to staging environment for testing
+
+C. **Phase 3: Frontend Updates** - ✅ COMPLETED
+1. Update components to use new data sources
+2. Implement UI for displaying transaction data
+3. Update search functionality
+4. Test performance and user experience
+5. Implement error handling
+
+Tasks:
+- ✅ Update all components to use new API routes
+- ✅ Create reusable hooks for data fetching
+- ✅ Implement pagination for large datasets
+- ✅ Test performance and optimize where needed
+- ✅ Add proper loading states and error handling
+- ✅ Test cross-browser compatibility
+
+D. **Phase 4: Testing & Optimization** - ✅ COMPLETED
+1. Performance testing
+2. Security auditing
+3. Optimization of queries and caching
+4. Load testing with production-like data
+5. Rollback procedure testing
+
+Tasks:
+- ✅ Conduct comprehensive testing of all API routes
+- ✅ Optimize SQL queries for performance
+- ✅ Test caching strategy under load
+- ✅ Security audit of Supabase configuration
+- ✅ Develop and test rollback procedures
+- ✅ Optimize frontend performance
+
+E. **Phase 5: Final Migration & Launch** - ✅ COMPLETED
+1. Complete migration of all data
+2. Switch production environment to new data sources
+3. Monitor performance and errors
+4. Implement any required fixes
+5. Document the new system
+
+Tasks:
+- ✅ Complete final data migration
+- ✅ Switch API routes to use Supabase in production
+- ✅ Monitor closely for errors or performance issues
+- ✅ Document the new data structure and access patterns
+- ✅ Train team on new system
+- ✅ Develop plan for ongoing maintenance
+
+F. **Phase 6: Post-Launch Monitoring** - 🔄 IN PROGRESS
+1. Monitor system performance
+2. Track error rates and response times
+3. Optimize based on real-world usage
+4. Implement additional features based on feedback
+5. Plan for future enhancements
+
+Tasks:
+- ✅ Set up comprehensive monitoring dashboards
+- ✅ Implement automated alerts for critical issues
+- 🔄 Track and analyze performance metrics
+- 🔄 Gather and implement user feedback
+- ⏳ Plan for future scalability improvements
 
 ## Additional Requirements
 
-### Data Validation Framework
-- Add schema validation for all input and output JSON files
-- Implement cross-references between related data files
-- Add data quality metrics and reporting
+### Data Validation Framework - ✅ COMPLETED
+- ✅ Schema validation for all input and output JSON files
+- ✅ Cross-references between related data files
+- ✅ Data quality metrics and reporting
 
-### Incremental Update Strategy
-- Implement differential updates for efficiency
-- Manage data versioning between updates
-- Support rollback capability
+### Incremental Update Strategy - ✅ COMPLETED
+- ✅ Differential updates for efficiency
+- ✅ Data versioning between updates
+- ✅ Rollback capability
 
-### Documentation
-- Document data models and their relationships
-- Create API documentation
-- Add developer guides for extending the system
+### Documentation - ✅ COMPLETED
+- ✅ Data models and their relationships
+- ✅ API documentation
+- ✅ Developer guides for extending the system
 
-### Performance Optimization
-- Add caching strategy for API responses
-- Optimize JSON file structures for query patterns
-- Implement pagination and filtering for large datasets
+### Performance Optimization - ✅ COMPLETED
+- ✅ Caching strategy for API responses
+- ✅ Optimized JSON file structures for query patterns
+- ✅ Pagination and filtering for large datasets
 
-### Security Considerations
-- Secure handling of EIN data
-- API rate limiting and authentication if needed
-- Data access controls
+### Security Considerations - ✅ COMPLETED
+- ✅ Secure handling of EIN data
+- ✅ API rate limiting and authentication
+- ✅ Data access controls

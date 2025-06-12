@@ -87,7 +87,7 @@ export default async function BlogPost({ params }: Props) {
 
         <div 
           className="department-content" 
-          dangerouslySetInnerHTML={{ __html: post.content }} 
+          dangerouslySetInnerHTML={{ __html: typeof post.content === 'string' ? post.content : (console.warn('Invalid post.content for department', post), '') }} 
         />
       </article>
     </div>

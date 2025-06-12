@@ -135,7 +135,7 @@ async function updateVendors() {
       
       // Now fetch the inserted vendors to get their IDs
       const { data: insertedVendors, error: fetchError } = await supabase
-        .from('vendors')
+      .from('vendors')
         .select('id, name, fiscal_year')
         .in('name', batch.map((v: any) => v.n))
         .eq('fiscal_year', fiscalYear);
@@ -161,7 +161,7 @@ async function updateVendors() {
           vendor.t.forEach((transaction: any) => {
             transactions.push({
               vendor_id: vendorId,
-              fiscal_year: fiscalYear,
+          fiscal_year: fiscalYear,
               amount: transaction.a,
               transaction_date: transaction.d ? new Date(transaction.d) : null,
               department_code: transaction.dc,
@@ -355,7 +355,7 @@ async function updatePrograms() {
         fiscal_year: program.fiscalYear || null
       }));
       
-      const { error } = await supabase
+  const { error } = await supabase
         .from('programs')
         .upsert(programsToUpsert, {
           onConflict: 'project_code'

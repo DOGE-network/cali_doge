@@ -31,52 +31,40 @@ export default function GoogleAnalytics({
 
   useEffect(() => {
     if (!shouldLoadGA) return;
-
+    console.log('Google Analytics initializing with ID:', measurementId, 'isProduction:', isProduction, 'shouldLoadGA:', shouldLoadGA);
     // Initialize dataLayer
     window.dataLayer = window.dataLayer || [];
-    
     function gtag(...args: any[]) {
       window.dataLayer.push(args);
     }
-
     // Set up gtag function
     window.gtag = gtag;
-
     // Configure marketing-focused settings for social media and newsletter growth
     gtag('js', new Date());
     gtag('config', measurementId, {
-      // Marketing-focused settings for social media and newsletter campaigns
-      anonymize_ip: false, // Allow IP tracking for better demographics
-      allow_google_signals: true, // Enable for audience insights and remarketing
-      allow_ad_personalization_signals: true, // Enable for marketing insights
-      restricted_data_processing: false, // Allow full data processing for marketing
-      
-      // Performance and debugging
+      anonymize_ip: false,
+      allow_google_signals: true,
+      allow_ad_personalization_signals: true,
+      restricted_data_processing: false,
       send_page_view: true,
       debug_mode: !isProduction,
-      
-      // Enhanced marketing tracking
-      enhanced_conversions: true, // Better conversion tracking
-      automatic_screen_view: true, // Track single-page app navigation
-      
-      // Custom dimensions for government transparency data
+      enhanced_conversions: true,
+      automatic_screen_view: true,
       custom_map: {
         'custom_parameter_1': 'department',
-        'custom_parameter_2': 'data_type', 
+        'custom_parameter_2': 'data_type',
         'custom_parameter_3': 'search_query',
         'custom_parameter_4': 'fiscal_year',
         'custom_parameter_5': 'user_engagement_level'
       }
     });
-
     // Track initial page view with enhanced context
     gtag('event', 'page_view', {
       page_title: document.title,
       page_location: window.location.href,
-      content_group1: 'government_transparency', // Main category
-      content_group2: 'california_doge', // Site identifier
+      content_group1: 'government_transparency',
+      content_group2: 'california_doge',
     });
-
   }, [measurementId, shouldLoadGA, isProduction]);
 
   if (!shouldLoadGA) {
