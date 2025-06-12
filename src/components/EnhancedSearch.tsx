@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { analytics } from '@/lib/analytics';
 import { trackEvent as gaTrackEvent } from '@/components/GoogleAnalytics';
 import type { SearchItem, KeywordItem } from '@/types/search';
+import { SearchTypeFilter } from './SearchTypeFilter';
 
 interface SearchResponse {
   departments: SearchItem[];
@@ -306,27 +307,10 @@ export function EnhancedSearch({ isOpen, onClose }: EnhancedSearchProps) {
         {showTypeFilter && (
           <div className="mb-4 p-3 bg-gray-50 rounded-lg">
             <div className="text-sm font-medium text-gray-700 mb-2">Search in:</div>
-            <div className="flex flex-wrap gap-2">
-              {[
-                { key: 'department', label: 'Departments' },
-                { key: 'vendor', label: 'Vendors' },
-                { key: 'program', label: 'Programs' },
-                { key: 'fund', label: 'Funds' },
-                { key: 'keyword', label: 'Keywords' }
-              ].map(({ key, label }) => (
-                <button
-                  key={key}
-                  onClick={() => toggleType(key)}
-                  className={`px-3 py-1 text-xs rounded-full border transition-colors ${
-                    selectedTypes.includes(key)
-                      ? 'bg-blue-500 text-white border-blue-500'
-                      : 'bg-white text-gray-600 border-gray-300 hover:border-blue-300'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+            <SearchTypeFilter
+              selectedTypes={selectedTypes}
+              onToggleType={toggleType}
+            />
           </div>
         )}
 
