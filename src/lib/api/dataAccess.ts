@@ -7,6 +7,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import type { SearchJSON } from '@/types/search';
 
 // Cache for data files to reduce disk I/O
 const dataCache = new Map();
@@ -60,8 +61,8 @@ function isFileTooLarge(filePath: string): boolean {
     const stats = fs.statSync(filePath);
     const sizeInMB = stats.size / (1024 * 1024);
     
-    // Vercel has memory limits, files over 50MB are problematic
-    if (isVercel && sizeInMB > 50) {
+    // Vercel has memory limits, files over 250MB are problematic
+    if (isVercel && sizeInMB > 250) {
       console.warn(`File ${filePath} is ${sizeInMB.toFixed(2)}MB, which may cause memory issues in production`);
       return true;
     }
@@ -252,8 +253,18 @@ export function getVendorTransactionsData() {
 /**
  * Get search data
  */
-export function getSearchData() {
-  return readJsonFile('search.json');
+export async function getSearchData(): Promise<SearchJSON | null> {
+  try {
+    const data = await readJsonFile('search.json') as SearchJSON;
+    if (!data) {
+      console.error('Search data not found or empty');
+      return null;
+    }
+    return data;
+  } catch (error) {
+    console.error('Error loading search data:', error);
+    return null;
+  }
 }
 
 /**

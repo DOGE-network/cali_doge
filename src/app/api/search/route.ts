@@ -18,19 +18,18 @@ interface SearchResponse {
     excludeCommon: boolean;
     limit: number;
   };
+  details: {
+    departments: Record<string, any>;
+    vendors: Record<string, any>;
+    programs: Record<string, any>;
+    funds: Record<string, any>;
+  };
 }
 
 // Common words to exclude from search
 const COMMON_WORDS = new Set([
-  'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by',
-  'from', 'up', 'about', 'into', 'through', 'during', 'before', 'after', 'above',
-  'below', 'between', 'among', 'under', 'over', 'is', 'are', 'was', 'were', 'be',
-  'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
-  'could', 'should', 'may', 'might', 'must', 'can', 'like', 'such', 'than',
-  'so', 'very', 'just', 'now', 'then', 'here', 'there', 'where', 'when', 'why',
-  'how', 'what', 'which', 'who', 'whom', 'whose', 'this', 'that', 'these', 'those',
-  'a', 'an', 'as', 'if', 'each', 'all', 'any', 'both', 'either', 'neither',
-  'some', 'many', 'much', 'more', 'most', 'few', 'little', 'less', 'least'
+  'the', 'and', 'of', 'to', 'a', 'in', 'for', 'is', 'on', 'that', 'by', 'this', 'with', 'as', 'at', 'from',
+  'an', 'be', 'or', 'are', 'it', 'not', 'if', 'but', 'what', 'when', 'where', 'which', 'who', 'why', 'how'
 ]);
 
 function isCommonWord(word: string): boolean {
@@ -183,25 +182,70 @@ function calculateRelevanceScore(item: SearchItem | KeywordItem, query: string):
 
 export async function GET(request: NextRequest) {
   try {
-    // Use NextRequest.nextUrl.searchParams instead of new URL(request.url)
-    const searchParams = request.nextUrl.searchParams;
-    
-    // Parse query parameters
-    const query = searchParams.get('q') || '';
-    const typesParam = searchParams.get('types');
-    const limitParam = searchParams.get('limit');
-    const excludeCommonParam = searchParams.get('exclude_common');
-    
-    // Validate and set defaults
-    const limit = limitParam ? Math.min(parseInt(limitParam, 10), 100) : 10;
-    const excludeCommon = excludeCommonParam !== 'false'; // Default to true
-    const requestedTypes = typesParam ? typesParam.split(',') : ['department', 'vendor', 'program', 'fund', 'keyword'];
-    
+    const { searchParams } = new URL(request.url);
+    const query = searchParams.get('q')?.toLowerCase() || '';
+    const types = searchParams.get('types')?.split(',') || ['departments', 'vendors', 'programs', 'funds'];
+    const limit = parseInt(searchParams.get('limit') || '10', 10);
+    const excludeCommon = searchParams.get('exclude_common') === 'true';
+
+    // Get search data
+    const searchData = await getSearchData();
+    if (!searchData) {
+      return NextResponse.json({
+        departments: [],
+        vendors: [],
+        programs: [],
+        funds: [],
+        keywords: [],
+        totalResults: 0,
+        query,
+        appliedFilters: {
+          types,
+          excludeCommon,
+          limit
+        },
+        details: {
+          departments: {},
+          vendors: {},
+          programs: {},
+          funds: {}
+        }
+      });
+    }
+
+    // Normalize search terms
+    const searchTerms = query.split(/\s+/).filter(term => 
+      term.length > 0 && (!excludeCommon || !COMMON_WORDS.has(term))
+    );
+
+    if (searchTerms.length === 0) {
+      return NextResponse.json({
+        departments: [],
+        vendors: [],
+        programs: [],
+        funds: [],
+        keywords: [],
+        totalResults: 0,
+        query,
+        appliedFilters: {
+          types,
+          excludeCommon,
+          limit
+        },
+        details: {
+          departments: {},
+          vendors: {},
+          programs: {},
+          funds: {}
+        }
+      });
+    }
+
     // Validate types
     const validTypes = ['department', 'vendor', 'program', 'fund', 'keyword'];
-    const types = requestedTypes.filter(type => validTypes.includes(type));
+    const filteredTypes = types.filter(type => validTypes.includes(type));
     
-    console.log('Search API request:', { query, types, limit, excludeCommon });
+    console.log('Search API request:', { query, types: filteredTypes, limit, excludeCommon });
     
     // If no query provided, return empty results
     if (!query.trim()) {
@@ -217,6 +261,12 @@ export async function GET(request: NextRequest) {
           types,
           excludeCommon,
           limit
+        },
+        details: {
+          departments: {},
+          vendors: {},
+          programs: {},
+          funds: {}
         }
       });
     }
@@ -237,12 +287,22 @@ export async function GET(request: NextRequest) {
           excludeCommon,
           limit
         },
+        details: {
+          departments: {},
+          vendors: {},
+          programs: {},
+          funds: {}
+        },
         message: 'Query contains only common words that are excluded from search'
       });
     }
     
-    // Load search data
+    // Load search data - this will throw if search.json is not found
     const typedSearchData = await getSearchData() as SearchJSON;
+    if (!typedSearchData || !typedSearchData.departments || !typedSearchData.vendors || 
+        !typedSearchData.programs || !typedSearchData.funds || !typedSearchData.keywords) {
+      throw new Error('Search index not found or invalid. Please run the generate_search_index script.');
+    }
     
     let results: {
       departments: SearchItem[];
@@ -259,7 +319,7 @@ export async function GET(request: NextRequest) {
     };
     
     // Search in each category if requested
-    if (types.includes('department') && typedSearchData.departments) {
+    if (filteredTypes.includes('department')) {
       results.departments = typedSearchData.departments
         .filter(item => item && (item.term || item.id))
         .filter(item => searchInItem(item, query))
@@ -268,7 +328,7 @@ export async function GET(request: NextRequest) {
         .slice(0, limit);
     }
     
-    if (types.includes('vendor') && typedSearchData.vendors) {
+    if (filteredTypes.includes('vendor')) {
       results.vendors = typedSearchData.vendors
         .filter(item => item && (item.term || item.id))
         .filter(item => searchInItem(item, query))
@@ -277,7 +337,7 @@ export async function GET(request: NextRequest) {
         .slice(0, limit);
     }
     
-    if (types.includes('program') && typedSearchData.programs) {
+    if (filteredTypes.includes('program')) {
       results.programs = typedSearchData.programs
         .filter(item => item && (item.term || item.id))
         .filter(item => searchInItem(item, query))
@@ -286,7 +346,7 @@ export async function GET(request: NextRequest) {
         .slice(0, limit);
     }
     
-    if (types.includes('fund') && typedSearchData.funds) {
+    if (filteredTypes.includes('fund')) {
       results.funds = typedSearchData.funds
         .filter(item => item && (item.term || item.id))
         .filter(item => searchInItem(item, query))
@@ -295,7 +355,7 @@ export async function GET(request: NextRequest) {
         .slice(0, limit);
     }
     
-    if (types.includes('keyword') && typedSearchData.keywords) {
+    if (filteredTypes.includes('keyword')) {
       results.keywords = typedSearchData.keywords
         .filter(item => item && item.term && typeof item.term === 'string')
         .filter(item => {
@@ -321,6 +381,51 @@ export async function GET(request: NextRequest) {
       keywords: results.keywords.map(({ score: _score, ...item }: any) => item)
     };
     
+    // Get details for each result
+    const details = {
+      departments: {},
+      vendors: {},
+      programs: {},
+      funds: {}
+    };
+    
+    // Add details from search.json for each result
+    cleanResults.departments.forEach(dept => {
+      if (dept.id && typedSearchData.departments) {
+        const detail = typedSearchData.departments.find(d => d.id === dept.id);
+        if (detail) {
+          details.departments[dept.id] = detail;
+        }
+      }
+    });
+    
+    cleanResults.vendors.forEach(vendor => {
+      if (vendor.id && typedSearchData.vendors) {
+        const detail = typedSearchData.vendors.find(v => v.id === vendor.id);
+        if (detail) {
+          details.vendors[vendor.id] = detail;
+        }
+      }
+    });
+    
+    cleanResults.programs.forEach(program => {
+      if (program.id && typedSearchData.programs) {
+        const detail = typedSearchData.programs.find(p => p.id === program.id);
+        if (detail) {
+          details.programs[program.id] = detail;
+        }
+      }
+    });
+    
+    cleanResults.funds.forEach(fund => {
+      if (fund.id && typedSearchData.funds) {
+        const detail = typedSearchData.funds.find(f => f.id === fund.id);
+        if (detail) {
+          details.funds[fund.id] = detail;
+        }
+      }
+    });
+    
     const totalResults = Object.values(cleanResults).reduce((sum, arr) => sum + arr.length, 0);
     
     const response: SearchResponse = {
@@ -331,7 +436,8 @@ export async function GET(request: NextRequest) {
         types,
         excludeCommon,
         limit
-      }
+      },
+      details
     };
     
     console.log('Search API response:', {
@@ -354,7 +460,7 @@ export async function GET(request: NextRequest) {
     console.error('Error in Search API:', error);
     return NextResponse.json(
       { 
-        error: 'Failed to perform search',
+        error: 'Failed to perform search. Search index not found or invalid.',
         departments: [],
         vendors: [],
         programs: [],
@@ -366,6 +472,12 @@ export async function GET(request: NextRequest) {
           types: [],
           excludeCommon: true,
           limit: 10
+        },
+        details: {
+          departments: {},
+          vendors: {},
+          programs: {},
+          funds: {}
         }
       },
       { status: 500 }

@@ -7,6 +7,7 @@ import type { SearchItem, KeywordItem } from '@/types/search';
 interface DetailCardProps {
   item: SearchItem | KeywordItem;
   isSelected?: boolean;
+  onSelect?: () => void;
 }
 
 interface SpendData {
@@ -130,7 +131,7 @@ export function DepartmentDetailCard({ item, isSelected }: DetailCardProps) {
   );
 }
 
-export function VendorDetailCard({ item, isSelected }: DetailCardProps) {
+export function VendorDetailCard({ item, isSelected, onSelect }: DetailCardProps) {
   const [spendData, setSpendData] = useState<SpendData | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -167,9 +168,12 @@ export function VendorDetailCard({ item, isSelected }: DetailCardProps) {
   const vendorItem = item as SearchItem;
 
   return (
-    <div className={`p-6 border rounded-lg transition-all ${
-      isSelected ? 'border-green-300 bg-green-50' : 'border-gray-200 hover:border-green-300 hover:shadow-md'
-    }`}>
+    <div 
+      className={`p-6 border rounded-lg transition-all cursor-pointer ${
+        isSelected ? 'border-green-300 bg-green-50' : 'border-gray-200 hover:border-green-300 hover:shadow-md'
+      }`}
+      onClick={onSelect}
+    >
       <div className="flex items-start justify-between mb-4">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{vendorItem.term}</h3>
@@ -181,6 +185,7 @@ export function VendorDetailCard({ item, isSelected }: DetailCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+            onClick={e => e.stopPropagation()}
           >
             ProPublica
           </a>
@@ -189,6 +194,7 @@ export function VendorDetailCard({ item, isSelected }: DetailCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+            onClick={e => e.stopPropagation()}
           >
             Data Republican
           </a>
@@ -204,10 +210,10 @@ export function VendorDetailCard({ item, isSelected }: DetailCardProps) {
           ) : spendData ? (
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Contract Overview</h4>
+                <h4 className="font-medium text-gray-900 mb-2">Spending Overview</h4>
                 <div className="space-y-1 text-sm">
-                  <div>Total Received: <span className="font-medium">${spendData.totalAmount.toLocaleString()}</span></div>
-                  <div>Contracts: <span className="font-medium">{spendData.transactionCount.toLocaleString()}</span></div>
+                  <div>Total Amount: <span className="font-medium">${spendData.totalAmount.toLocaleString()}</span></div>
+                  <div>Transactions: <span className="font-medium">{spendData.transactionCount.toLocaleString()}</span></div>
                   <div>Recent Year: <span className="font-medium">{spendData.recentYear}</span></div>
                 </div>
               </div>
@@ -215,13 +221,13 @@ export function VendorDetailCard({ item, isSelected }: DetailCardProps) {
                 <h4 className="font-medium text-gray-900 mb-2">Top Departments</h4>
                 <div className="space-y-1 text-sm">
                   {spendData.topDepartments.slice(0, 3).map((dept, index) => (
-                    <div key={index} className="text-gray-600 truncate">{dept}</div>
+                    <div key={`dept-${index}`} className="text-gray-600 truncate">{dept}</div>
                   ))}
                 </div>
               </div>
             </div>
           ) : (
-            <div className="text-sm text-gray-500">No contract data available</div>
+            <div className="text-sm text-gray-500">No spending data available</div>
           )}
         </div>
       )}
@@ -229,31 +235,25 @@ export function VendorDetailCard({ item, isSelected }: DetailCardProps) {
   );
 }
 
-export function ProgramDetailCard({ item, isSelected }: DetailCardProps) {
+export function ProgramDetailCard({ item, isSelected, onSelect }: DetailCardProps) {
   const [programData, setProgramData] = useState<ProgramData | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isSelected && item.type === 'program') {
       setLoading(true);
-      // Fetch program details
-      Promise.all([
-        fetch(`/api/programs/${item.id}`).then(res => res.json()),
-        fetch(`/api/spend?program=${encodeURIComponent(item.id)}&limit=1`).then(res => res.json())
-      ])
-        .then(([programRes, spendRes]) => {
-          const description = programRes.programDescriptions?.[0]?.description || 'No description available';
-          const sources = programRes.programDescriptions?.map((pd: any) => pd.source) || [];
-          const departments: string[] = spendRes.spending ? 
-            Array.from(new Set(spendRes.spending.slice(0, 5).map((s: any) => String(s.department || '')))) : [];
-          const totalBudget = spendRes.summary?.totalAmount || 0;
-          
-          setProgramData({
-            description,
-            departments,
-            totalBudget,
-            sources
-          });
+      // Fetch program data
+      fetch(`/api/programs/${encodeURIComponent(item.id)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data) {
+            setProgramData({
+              description: data.description || '',
+              departments: data.departments || [],
+              totalBudget: data.totalBudget || 0,
+              sources: data.sources || []
+            });
+          }
         })
         .catch(console.error)
         .finally(() => setLoading(false));
@@ -265,13 +265,16 @@ export function ProgramDetailCard({ item, isSelected }: DetailCardProps) {
   const programItem = item as SearchItem;
 
   return (
-    <div className={`p-6 border rounded-lg transition-all ${
-      isSelected ? 'border-purple-300 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:shadow-md'
-    }`}>
+    <div 
+      className={`p-6 border rounded-lg transition-all cursor-pointer ${
+        isSelected ? 'border-purple-300 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:shadow-md'
+      }`}
+      onClick={onSelect}
+    >
       <div className="flex items-start justify-between mb-4">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{programItem.term}</h3>
-          <p className="text-sm text-gray-600">Program • Code: {programItem.id}</p>
+          <p className="text-sm text-gray-600">Program • ID: {programItem.id}</p>
         </div>
       </div>
 
@@ -282,31 +285,18 @@ export function ProgramDetailCard({ item, isSelected }: DetailCardProps) {
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-500"></div>
             </div>
           ) : programData ? (
-            <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-medium text-gray-900 mb-2">Program Details</h4>
+                <div className="space-y-1 text-sm">
+                  <div>Total Budget: <span className="font-medium">${programData.totalBudget.toLocaleString()}</span></div>
+                  <div>Departments: <span className="font-medium">{programData.departments.length}</span></div>
+                  <div>Sources: <span className="font-medium">{programData.sources.length}</span></div>
+                </div>
+              </div>
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Description</h4>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {programData.description.length > 300 
-                    ? `${programData.description.substring(0, 300)}...` 
-                    : programData.description}
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Budget Overview</h4>
-                  <div className="text-sm">
-                    Total Budget: <span className="font-medium">${programData.totalBudget.toLocaleString()}</span>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Departments</h4>
-                  <div className="space-y-1 text-sm">
-                    {programData.departments.slice(0, 3).map((dept, index) => (
-                      <div key={index} className="text-gray-600 truncate">{dept}</div>
-                    ))}
-                  </div>
-                </div>
+                <p className="text-sm text-gray-600">{programData.description}</p>
               </div>
             </div>
           ) : (
@@ -318,31 +308,19 @@ export function ProgramDetailCard({ item, isSelected }: DetailCardProps) {
   );
 }
 
-export function FundDetailCard({ item, isSelected }: DetailCardProps) {
-  const [spendData, setSpendData] = useState<SpendData | null>(null);
+export function FundDetailCard({ item, isSelected, onSelect }: DetailCardProps) {
+  const [fundData, setFundData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isSelected && item.type === 'fund') {
       setLoading(true);
-      // Fetch fund spending data
-      fetch(`/api/spend?fund=${encodeURIComponent(item.id)}&limit=1`)
+      // Fetch fund data
+      fetch(`/api/funds/${encodeURIComponent(item.id)}`)
         .then(res => res.json())
         .then(data => {
-          if (data.spending && data.spending.length > 0) {
-            const totalAmount = data.summary?.totalAmount || 0;
-            const transactionCount = data.summary?.recordCount || 0;
-            const topDepartments: string[] = Array.from(new Set(data.spending.slice(0, 5).map((s: any) => String(s.department || ''))));
-            const topPrograms: string[] = Array.from(new Set(data.spending.slice(0, 5).map((s: any) => String(s.program || ''))));
-            const recentYear = Math.max(...data.spending.map((s: any) => s.year));
-            
-            setSpendData({
-              totalAmount,
-              transactionCount,
-              topDepartments,
-              topPrograms,
-              recentYear
-            });
+          if (data) {
+            setFundData(data);
           }
         })
         .catch(console.error)
@@ -355,13 +333,16 @@ export function FundDetailCard({ item, isSelected }: DetailCardProps) {
   const fundItem = item as SearchItem;
 
   return (
-    <div className={`p-6 border rounded-lg transition-all ${
-      isSelected ? 'border-orange-300 bg-orange-50' : 'border-gray-200 hover:border-orange-300 hover:shadow-md'
-    }`}>
+    <div 
+      className={`p-6 border rounded-lg transition-all cursor-pointer ${
+        isSelected ? 'border-orange-300 bg-orange-50' : 'border-gray-200 hover:border-orange-300 hover:shadow-md'
+      }`}
+      onClick={onSelect}
+    >
       <div className="flex items-start justify-between mb-4">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{fundItem.term}</h3>
-          <p className="text-sm text-gray-600">Fund • Code: {fundItem.id}</p>
+          <p className="text-sm text-gray-600">Fund • ID: {fundItem.id}</p>
         </div>
       </div>
 
@@ -371,27 +352,18 @@ export function FundDetailCard({ item, isSelected }: DetailCardProps) {
             <div className="flex justify-center py-4">
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-orange-500"></div>
             </div>
-          ) : spendData ? (
+          ) : fundData ? (
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Fund Usage</h4>
+                <h4 className="font-medium text-gray-900 mb-2">Fund Details</h4>
                 <div className="space-y-1 text-sm">
-                  <div>Total Amount: <span className="font-medium">${spendData.totalAmount.toLocaleString()}</span></div>
-                  <div>Transactions: <span className="font-medium">{spendData.transactionCount.toLocaleString()}</span></div>
-                  <div>Recent Year: <span className="font-medium">{spendData.recentYear}</span></div>
-                </div>
-              </div>
-              <div>
-                <h4 className="font-medium text-gray-900 mb-2">Top Departments</h4>
-                <div className="space-y-1 text-sm">
-                  {spendData.topDepartments.slice(0, 3).map((dept, index) => (
-                    <div key={index} className="text-gray-600 truncate">{dept}</div>
-                  ))}
+                  <div>Total Budget: <span className="font-medium">${fundData.totalBudget?.toLocaleString() || '0'}</span></div>
+                  <div>Description: <span className="font-medium">{fundData.description || 'N/A'}</span></div>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="text-sm text-gray-500">No fund usage data available</div>
+            <div className="text-sm text-gray-500">No fund data available</div>
           )}
         </div>
       )}
@@ -399,37 +371,33 @@ export function FundDetailCard({ item, isSelected }: DetailCardProps) {
   );
 }
 
-export function KeywordDetailCard({ item, isSelected }: DetailCardProps) {
+export function KeywordDetailCard({ item, isSelected, onSelect }: DetailCardProps) {
+  // Type guard to ensure we have a KeywordItem
   if (item.type !== 'keyword') return null;
-  
   const keywordItem = item as KeywordItem;
 
   return (
-    <div className={`p-6 border rounded-lg transition-all ${
-      isSelected ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-red-300 hover:shadow-md'
-    }`}>
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold text-gray-900 mb-1">{keywordItem.term}</h3>
-        <p className="text-sm text-gray-600">
-          Found in {keywordItem.sources.length} context{keywordItem.sources.length !== 1 ? 's' : ''}
-        </p>
+    <div 
+      className={`p-6 border rounded-lg transition-all cursor-pointer ${
+        isSelected ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-red-300 hover:shadow-md'
+      }`}
+      onClick={onSelect}
+    >
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-1">{keywordItem.term}</h3>
+          <p className="text-sm text-gray-600">Keyword • Sources: {keywordItem.sources?.length || 0}</p>
+        </div>
       </div>
 
-      {isSelected && (
+      {isSelected && keywordItem.sources && keywordItem.sources.length > 0 && (
         <div className="mt-4 pt-4 border-t border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-3">Context Sources</h4>
-          <div className="space-y-3 max-h-64 overflow-y-auto">
+          <h4 className="font-medium text-gray-900 mb-2">Context</h4>
+          <div className="space-y-2">
             {keywordItem.sources.map((source, index) => (
-              <div key={index} className="p-3 bg-white rounded border border-gray-200">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
-                    {source.type}
-                  </span>
-                  <span className="text-xs text-gray-400">ID: {source.id}</span>
-                </div>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  &quot;{source.context}&quot;
-                </p>
+              <div key={`source-${index}`} className="text-sm text-gray-600">
+                <p className="font-medium">{source.type}: {source.id}</p>
+                <p className="mt-1">{source.context}</p>
               </div>
             ))}
           </div>
