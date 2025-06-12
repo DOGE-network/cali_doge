@@ -116,6 +116,33 @@ export default function RootLayout({
           measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-6JEFTMFJB8'}
           enableDevelopment={process.env.NEXT_PUBLIC_GA_ENABLE_DEVELOPMENT === 'true'}
         />
+        {/* Fallback for static export/SSR: ensures GA script is always loaded */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-6JEFTMFJB8'}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+            title="Google Tag Manager"
+          ></iframe>
+        </noscript>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var s = document.createElement('script');
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-6JEFTMFJB8'}';
+                s.async = true;
+                document.head.appendChild(s);
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-6JEFTMFJB8'}');
+              })();
+            `,
+          }}
+        />
         
         {/* Layer 3: Web Vitals - Performance Monitoring and Optimization */}
         <WebVitalsTracker />
