@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { analytics } from '@/lib/analytics';
 import useSWR from 'swr';
 import type { SearchItem, KeywordItem } from '@/types/search';
@@ -37,7 +37,15 @@ interface SearchResponse {
 }
 
 // Client component that uses useSearchParams
-export default function SearchPageClient() {
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading search...</div>}>
+      <SearchPageClient />
+    </Suspense>
+  );
+}
+
+function SearchPageClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
