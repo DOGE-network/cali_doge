@@ -13,7 +13,7 @@ export default function Header() {
             <Link href="/" className="flex items-center space-x-6">
               <div className="w-20 h-20 relative flex-shrink-0">
                 <Image
-                  src="/icon2.svg"
+                  src="/icon.svg"
                   alt="DOGE Logo"
                   width={80}
                   height={80}
@@ -27,7 +27,7 @@ export default function Header() {
                   <div className="absolute -left-4 -top-4">
                     <div className="w-20 h-20 relative -rotate-15">
                       <Image
-                        src="/unofficial-stamp.svg"
+                        src="/doge-network.svg"
                         alt="Unofficial Stamp"
                         width={80}
                         height={80}
