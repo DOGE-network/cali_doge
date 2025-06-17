@@ -1,6 +1,48 @@
 {
   "tweets": [
     {
+      "text": "RT @Alladdin1983: 🚨The U.S. Department of Health and Human Services (HHS) granted $133.3 million to Catholic Charities Diocese of Fort Wort…",
+      "edit_history_tweet_ids": [
+        "1934715219009524028"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-06-16T20:50:28.000Z",
+      "id": "1934715219009524028",
+      "entities": {
+        "annotations": [
+          {
+            "start": 23,
+            "end": 66,
+            "probability": 0.7469,
+            "type": "Place",
+            "normalized_text": "U.S. Department of Health and Human Services"
+          },
+          {
+            "start": 130,
+            "end": 138,
+            "probability": 0.6456,
+            "type": "Place",
+            "normalized_text": "Fort Wort"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 16,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          }
+        ]
+      },
+      "created_at_formatted": "Jun 16, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -16632,8 +16674,8 @@
     }
   ],
   "meta": {
-    "result_count": 151,
-    "newest_id": "1933281772902752261",
+    "result_count": 152,
+    "newest_id": "1934715219009524028",
     "oldest_id": "1882144700762878208"
   }
 }
