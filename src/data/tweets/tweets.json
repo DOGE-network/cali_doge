@@ -1,6 +1,32 @@
 {
   "tweets": [
     {
+      "text": "@DataRepublican I am not posting as deep into data processing….",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1934785304097095833",
+      "edit_history_tweet_ids": [
+        "1934785304097095833"
+      ],
+      "created_at": "2025-06-17T01:28:57.000Z",
+      "created_at_formatted": "Jun 17, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "text": "RT @Alladdin1983: 🚨The U.S. Department of Health and Human Services (HHS) granted $133.3 million to Catholic Charities Diocese of Fort Wort…",
       "edit_history_tweet_ids": [
         "1934715219009524028"
@@ -16674,8 +16700,8 @@
     }
   ],
   "meta": {
-    "result_count": 152,
-    "newest_id": "1934715219009524028",
+    "result_count": 153,
+    "newest_id": "1934785304097095833",
     "oldest_id": "1882144700762878208"
   }
 }
