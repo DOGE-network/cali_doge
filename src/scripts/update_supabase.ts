@@ -21,11 +21,11 @@
  *    2.1. Read and validate departments.json
  *    2.2. Validate required fields for each department
  *    2.3. Process departments in batches
- *    2.4. Insert new department records
+ *    2.4. Upsert new department records
  *    2.5. Handle validation errors and logging
- *    2.6. Update department spending data
- *    2.7. Update department workforce data
- *    2.8. Update department distributions
+ *    2.6. Upsert department spending data
+ *    2.7. Upsert department workforce data
+ *    2.8. Upsert department distributions
  * 
  * 3. Program Update (updatePrograms)
  *    3.1. Read and validate programs.json
@@ -43,25 +43,27 @@
  * 
  * 5. Budget Update (updateBudgets)
  *    5.1. Read and validate budgets.json
+ *    5.2. Delete existing database table records
  *    5.3. Process each department's budget
- *    5.4. Upsert budget records
+ *    5.4. insert budget records
  *    5.5. Process line items in batches
- *    5.6. Handle project codes and fund codes
+ *    5.6. Upsert missing project codes and fund codes
  * 
  * 6. Vendor Update (updateVendors)
- *    6.1. Find latest vendor file (vendors_YYYY.json)
+ *    6.1. Find all vendor files (vendors_YYYY.json)
  *    6.2. Validate vendor data structure
- *    6.4. Process vendors in batches
- *    6.5. Upsert vendors and get their IDs
+ *    6.3  Delete existing database table records for each fiscal year
+ *    6.4. Process vendors in batches for each fiscal year
+ *    6.5. Insert vendors and get their IDs
  *    6.6. Process transactions for each vendor
- *    6.7. Handle transaction categories and descriptions
+ *    6.7. Insert transaction categories and descriptions
  * 
  * 7. Search Index Update (updateSearchIndex)
  *    7.1. Ensure search_index table has full-text search
  *    7.2. Fetch data from all tables
  *    7.3. Process search items in batches
  *    7.4. Map data to search index schema
- *    7.5. Handle additional data fields
+ *    7.5. Upsert additional data fields
  *    7.6. Upsert with conflict handling
  * 
  * 8. Cleanup and Logging
@@ -75,7 +77,7 @@
  * 1. Read and validate the source JSON file
  * 2. Delete existing data for the current year
  * 3. Process data in batches
- * 4. Insert new data with proper error handling
+ * 4. Upsert new data with proper error handling
  * 
  * Dependencies:
  * - @supabase/supabase-js: For database operations
@@ -210,9 +212,10 @@ interface DepartmentWorkforce {
 interface ProgramData {
   projectCode: string;
   name: string;
-  descriptions?: {
-    default?: string;
-  };
+  programDescriptions?: Array<{
+    description: string;
+    source: string | string[];
+  }>;
   departmentCode?: string;
   fiscalYear?: number;
 }
@@ -389,14 +392,14 @@ async function processBatches<T>(
  * Update vendors data in the database
  * 
  * This function:
- * 1. Finds the latest vendor file (vendors_YYYY.json)
+ * 1. Finds all vendor files (vendors_YYYY.json)
  * 2. Validates the data structure
  * 3. Deletes existing vendor data for the current year
  * 4. Processes vendors in batches:
- *    - Inserts vendors to get their IDs
+ *    - Upsert vendors to get their IDs
  *    - Maps vendor names to IDs
  *    - Processes transactions for each vendor
- *    - Inserts transactions in batches
+ *    - Upsert transactions in batches
  * 
  * Data Structure:
  * - VendorDepartment: { n: string, d: Array<{ n: string, oc: number, at: Array<{ t: string, ac: Array<{ c: string, asc: Array<{ sc: string, ad: Array<{ d: string, pc: string, fc: string, a: number, ct: number }> }> }> }> }
@@ -415,249 +418,301 @@ async function updateVendors(): Promise<ProcessingResult> {
   fileLogger.log('Starting Step 6: Vendor Update');
   
   try {
-    // Step 6.1: Find latest vendor file
-    log('INFO', transactionId, 'Step 6.1: Finding latest vendor file', { step: '6.1', context });
-    fileLogger.log('Step 6.1: Finding latest vendor file');
+    // Step 6.1: Find all vendor files
+    log('INFO', transactionId, 'Step 6.1: Finding all vendor files', { step: '6.1', context });
+    fileLogger.log('Step 6.1: Finding all vendor files');
     
-  const vendorFiles = fs.readdirSync(config.dataDir)
-    .filter(file => file.startsWith('vendors_') && file.endsWith('.json'))
-      .sort()
-      .reverse();
+    const vendorFiles = fs.readdirSync(config.dataDir)
+      .filter(file => file.startsWith('vendors_') && file.endsWith('.json'))
+      .sort();
 
-  if (vendorFiles.length === 0) {
+    if (vendorFiles.length === 0) {
       log('ERROR', transactionId, 'No vendor files found in data directory', { step: '6.1', context });
       fileLogger.error('No vendor files found in data directory');
-    return {
-      success: false,
+      return {
+        success: false,
         message: 'No vendor files found in data directory'
       };
     }
-    
-    const latestVendorFile = vendorFiles[0];
-    const filePath = path.join(config.dataDir, latestVendorFile);
-    const fiscalYear = parseInt(latestVendorFile.replace('vendors_', '').replace('.json', ''));
-    
-    log('INFO', transactionId, `Using vendor file: ${latestVendorFile} for fiscal year ${fiscalYear}`, { step: '6.1', context });
-    fileLogger.log(`Using vendor file: ${latestVendorFile} for fiscal year ${fiscalYear}`);
-    
-    if (!fs.existsSync(filePath)) {
-      log('ERROR', transactionId, `${latestVendorFile} does not exist`, { step: '6.1', context });
-      fileLogger.error(`${latestVendorFile} does not exist`);
-      return {
-        success: false,
-        message: `${latestVendorFile} does not exist`
-      };
-    }
 
-    // Step 6.2: Validate vendor data structure
-    log('INFO', transactionId, 'Step 6.2: Validating vendor data structure', { step: '6.2', context });
-    fileLogger.log('Step 6.2: Validating vendor data structure');
-    
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as { t: VendorDepartment[] };
-    if (!data.t || !Array.isArray(data.t)) {
-      log('ERROR', transactionId, 'Invalid vendors data structure', { 
-        step: '6.2',
-        context,
-        data: JSON.stringify(data).slice(0, 1000) // Log first 1000 chars of data for debugging
-      });
-      fileLogger.error('Invalid vendors data structure');
-      return {
-        success: false,
-        message: 'Invalid vendors data structure'
-      };
-    }
+    // Process each vendor file
+    for (const vendorFile of vendorFiles) {
+      const filePath = path.join(config.dataDir, vendorFile);
+      const fiscalYear = parseInt(vendorFile.replace('vendors_', '').replace('.json', ''));
+      
+      log('INFO', transactionId, `Processing vendor file: ${vendorFile} for fiscal year ${fiscalYear}`, { step: '6.1', context });
+      fileLogger.log(`Processing vendor file: ${vendorFile} for fiscal year ${fiscalYear}`);
+      
+      if (!fs.existsSync(filePath)) {
+        log('ERROR', transactionId, `${vendorFile} does not exist`, { step: '6.1', context });
+        fileLogger.error(`${vendorFile} does not exist`);
+        continue;
+      }
 
-    // Step 6.4: Process vendors in batches
-    log('INFO', transactionId, 'Step 6.4: Processing vendors in batches', { step: '6.4', context });
-    fileLogger.log('Step 6.4: Processing vendors in batches');
-    
-    await processBatches(
-      data.t,
-      config.batchSize,
-      async (batch) => {
-        // Step 6.5: Upsert vendors
-        log('INFO', transactionId, 'Step 6.5: Upserting vendors', { step: '6.5', context, batchSize: batch.length });
-        fileLogger.log(`Step 6.5: Upserting ${batch.length} vendors`);
-
-        const vendorsToUpsert = batch.map((vendor: VendorDepartment) => ({
-          name: vendor.n,
-          ein: '' // No EIN in this structure
-        }));
-
-        log('DEBUG', transactionId, 'Vendor data to upsert:', { 
-          step: '6.5', 
+      // Step 6.2: Validate vendor data structure
+      log('INFO', transactionId, 'Step 6.2: Validating vendor data structure', { step: '6.2', context });
+      fileLogger.log('Step 6.2: Validating vendor data structure');
+      
+      const data = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as { t: VendorDepartment[] };
+      if (!data.t || !Array.isArray(data.t)) {
+        log('ERROR', transactionId, 'Invalid vendors data structure', { 
+          step: '6.2',
           context,
-          sample: vendorsToUpsert.slice(0, 2)
+          data: JSON.stringify(data).slice(0, 1000) // Log first 1000 chars of data for debugging
         });
-        fileLogger.log(`Vendor data to upsert: ${JSON.stringify(vendorsToUpsert.slice(0, 2), null, 2)}`);
+        fileLogger.error('Invalid vendors data structure');
+        continue;
+      }
 
-        const { data: upsertedVendors, error: upsertError } = await supabase
+      // Step 6.3: Delete existing database table records for this fiscal year
+      log('INFO', transactionId, `Step 6.3: Deleting existing database table records for fiscal year ${fiscalYear}`, { step: '6.3', context });
+      fileLogger.log(`Step 6.3: Deleting existing database table records for fiscal year ${fiscalYear}`);
+
+      // First get all vendor IDs that have transactions for this fiscal year
+      const { data: vendorIds, error: fetchError } = await supabase
+        .from('vendor_transactions')
+        .select('vendor_id')
+        .eq('fiscal_year', fiscalYear);
+
+      if (fetchError) {
+        log('ERROR', transactionId, `Error fetching vendor IDs: ${fetchError.message}`, { 
+          step: '6.3', 
+          context,
+          error: fetchError
+        });
+        fileLogger.error(`Error fetching vendor IDs: ${fetchError.message}`);
+        throw fetchError;
+      }
+
+      // Delete existing transactions for the fiscal year
+      const { error: deleteError } = await supabase
+        .from('vendor_transactions')
+        .delete()
+        .eq('fiscal_year', fiscalYear);
+
+      if (deleteError) {
+        log('ERROR', transactionId, `Error deleting existing transactions: ${deleteError.message}`, { 
+          step: '6.3', 
+          context,
+          error: deleteError
+        });
+        fileLogger.error(`Error deleting existing transactions: ${deleteError.message}`);
+        throw deleteError;
+      }
+
+      // Delete vendors that had transactions for this fiscal year
+      if (vendorIds && vendorIds.length > 0) {
+        const { error: deleteVendorError } = await supabase
           .from('vendors')
-          .upsert(vendorsToUpsert, { onConflict: 'name' })
-          .select('id, name');
+          .delete()
+          .in('id', vendorIds.map(v => v.vendor_id));
 
-        if (upsertError) {
-          log('ERROR', transactionId, `Error upserting vendors: ${upsertError.message}`, { 
+        if (deleteVendorError) {
+          log('ERROR', transactionId, `Error deleting existing vendors: ${deleteVendorError.message}`, { 
+            step: '6.3', 
+            context,
+            error: deleteVendorError
+          });
+          fileLogger.error(`Error deleting existing vendors: ${deleteVendorError.message}`);
+          throw deleteVendorError;
+        }
+      }
+
+      // Step 6.4: Process vendors in batches for this fiscal year
+      log('INFO', transactionId, `Step 6.4: Processing vendors in batches for fiscal year ${fiscalYear}`, { step: '6.4', context });
+      fileLogger.log(`Step 6.4: Processing vendors in batches for fiscal year ${fiscalYear}`);
+      
+      await processBatches(
+        data.t,
+        config.batchSize,
+        async (batch) => {
+          // Step 6.5: Upsert vendors
+          log('INFO', transactionId, 'Step 6.5: Upserting vendors', { step: '6.5', context, batchSize: batch.length });
+          fileLogger.log(`Step 6.5: Upserting ${batch.length} vendors`);
+
+          const vendorsToUpsert = batch.map((vendor: VendorDepartment) => ({
+            name: vendor.n,
+            ein: '' // No EIN in this structure
+          }));
+
+          log('DEBUG', transactionId, 'Vendor data to upsert:', { 
             step: '6.5', 
             context,
-            error: upsertError
+            sample: vendorsToUpsert.slice(0, 2)
           });
-          fileLogger.error(`Error upserting vendors: ${upsertError.message}`);
-          throw upsertError;
-        }
+          fileLogger.log(`Vendor data to upsert: ${JSON.stringify(vendorsToUpsert.slice(0, 2), null, 2)}`);
 
-        log('INFO', transactionId, `Successfully upserted ${upsertedVendors.length} vendors`, { 
-          step: '6.5', 
-          context 
-        });
-        fileLogger.log(`Successfully upserted ${upsertedVendors.length} vendors`);
+          const { data: upsertedVendors, error: upsertError } = await supabase
+            .from('vendors')
+            .upsert(vendorsToUpsert, { onConflict: 'name' })
+            .select('id, name');
 
-        // Step 6.6: Process transactions
-        log('INFO', transactionId, 'Step 6.6: Processing transactions', { step: '6.6', context });
-        fileLogger.log('Step 6.6: Processing transactions');
-
-        const transactions: DatabaseVendorTransaction[] = [];
-        const vendorMap = new Map(upsertedVendors.map(v => [v.name, v.id]));
-
-        // Track unique program codes and their details
-        const programDetails = new Map<string, { name: string; description: string }>();
-
-        for (const vendor of batch) {
-          const vendorId = vendorMap.get(vendor.n);
-          if (!vendorId) {
-            log('WARN', transactionId, `No ID found for vendor: ${vendor.n}`, { step: '6.6', context });
-            fileLogger.log(`No ID found for vendor: ${vendor.n}`);
-            continue;
+          if (upsertError) {
+            log('ERROR', transactionId, `Error upserting vendors: ${upsertError.message}`, { 
+              step: '6.5', 
+              context,
+              error: upsertError
+            });
+            fileLogger.error(`Error upserting vendors: ${upsertError.message}`);
+            throw upsertError;
           }
-          for (const dept of vendor.d) {
-            for (const accountType of dept.at) {
-              for (const category of accountType.ac) {
-                for (const subcategory of category.asc) {
-                  for (const tx of subcategory.ad) {
-                    if (tx.pc) {
-                      // Store program details from the transaction
-                      programDetails.set(tx.pc, {
-                        name: subcategory.sc, // Use subcategory as name
-                        description: tx.d      // Use transaction description
+
+          log('INFO', transactionId, `Successfully upserted ${upsertedVendors.length} vendors`, { 
+            step: '6.5', 
+            context 
+          });
+          fileLogger.log(`Successfully upserted ${upsertedVendors.length} vendors`);
+
+          // Step 6.6: Process transactions
+          log('INFO', transactionId, 'Step 6.6: Processing transactions', { step: '6.6', context });
+          fileLogger.log('Step 6.6: Processing transactions');
+
+          const transactions: DatabaseVendorTransaction[] = [];
+          const vendorMap = new Map(upsertedVendors.map(v => [v.name, v.id]));
+
+          // Track unique program codes and their details
+          const programDetails = new Map<string, { name: string; description: string }>();
+
+          for (const vendor of batch) {
+            const vendorId = vendorMap.get(vendor.n);
+            if (!vendorId) {
+              log('WARN', transactionId, `No ID found for vendor: ${vendor.n}`, { step: '6.6', context });
+              fileLogger.log(`No ID found for vendor: ${vendor.n}`);
+              continue;
+            }
+            for (const dept of vendor.d) {
+              for (const accountType of dept.at) {
+                for (const category of accountType.ac) {
+                  for (const subcategory of category.asc) {
+                    for (const tx of subcategory.ad) {
+                      if (tx.pc) {
+                        // Store program details from the transaction
+                        programDetails.set(tx.pc, {
+                          name: subcategory.sc, // Use subcategory as name
+                          description: tx.d      // Use transaction description
+                        });
+                      }
+                      transactions.push({
+                        vendor_id: vendorId,
+                        fiscal_year: fiscalYear,
+                        amount: tx.a,
+                        transaction_date: null,
+                        transaction_count: tx.ct,
+                        department_code: undefined,
+                        program_code: tx.pc,
+                        fund_code: tx.fc,
+                        category: category.c,
+                        description: tx.d
                       });
                     }
-                    transactions.push({
-                      vendor_id: vendorId,
-                      fiscal_year: fiscalYear,
-                      amount: tx.a,
-                      transaction_date: null,
-                      transaction_count: tx.ct,
-                      department_code: undefined,
-                      program_code: tx.pc,
-                      fund_code: tx.fc,
-                      category: category.c,
-                      description: tx.d
-                    });
                   }
                 }
               }
             }
           }
-        }
 
-        // Check which programs already exist
-        if (programDetails.size > 0) {
-          const { data: existingPrograms, error: fetchError } = await supabase
-            .from('programs')
-            .select('project_code')
-            .in('project_code', Array.from(programDetails.keys()));
-
-          if (fetchError) {
-            log('ERROR', transactionId, `Error fetching existing programs: ${fetchError.message}`, { 
-              step: '6.6', 
-              context,
-              error: fetchError
-            });
-            fileLogger.error(`Error fetching existing programs: ${fetchError.message}`);
-            throw fetchError;
-          }
-
-          // Filter out programs that already exist
-          const existingCodes = new Set(existingPrograms?.map(p => p.project_code) || []);
-          const programsToCreate = Array.from(programDetails.entries())
-            .filter(([code]) => !existingCodes.has(code))
-            .map(([code, details]) => ({
-              project_code: code,
-              name: details.name,
-              description: details.description,
-              sources: [latestVendorFile] // Use the vendor file name as source
-            }));
-
-          if (programsToCreate.length > 0) {
-            log('INFO', transactionId, `Creating ${programsToCreate.length} new programs`, { step: '6.6', context });
-            fileLogger.log(`Creating ${programsToCreate.length} new programs`);
-
-            const { error: programError } = await supabase
+          // Check which programs already exist
+          if (programDetails.size > 0) {
+            const { data: existingPrograms, error: fetchError } = await supabase
               .from('programs')
-              .insert(programsToCreate);
+              .select('project_code')
+              .in('project_code', Array.from(programDetails.keys()));
 
-            if (programError) {
-              log('ERROR', transactionId, `Error creating programs: ${programError.message}`, { 
+            if (fetchError) {
+              log('ERROR', transactionId, `Error fetching existing programs: ${fetchError.message}`, { 
                 step: '6.6', 
                 context,
-                error: programError
+                error: fetchError
               });
-              fileLogger.error(`Error creating programs: ${programError.message}`);
-              throw programError;
+              fileLogger.error(`Error fetching existing programs: ${fetchError.message}`);
+              throw fetchError;
+            }
+
+            // Filter out programs that already exist
+            const existingCodes = new Set(existingPrograms?.map(p => p.project_code) || []);
+            const programsToCreate = Array.from(programDetails.entries())
+              .filter(([code]) => !existingCodes.has(code))
+              .map(([code, details]) => ({
+                project_code: code,
+                name: details.name,
+                description: details.description,
+                sources: [vendorFile] // Use the vendor file name as source
+              }));
+
+            if (programsToCreate.length > 0) {
+              log('INFO', transactionId, `Creating ${programsToCreate.length} new programs`, { step: '6.6', context });
+              fileLogger.log(`Creating ${programsToCreate.length} new programs`);
+
+              const { error: programError } = await supabase
+                .from('programs')
+                .upsert(programsToCreate, {
+                  onConflict: 'project_code'
+                });
+
+              if (programError) {
+                log('ERROR', transactionId, `Error creating programs: ${programError.message}`, { 
+                  step: '6.6', 
+                  context,
+                  error: programError
+                });
+                fileLogger.error(`Error creating programs: ${programError.message}`);
+                throw programError;
+              }
             }
           }
-        }
 
-        log('DEBUG', transactionId, `Prepared ${transactions.length} transactions for insert`, { 
-          step: '6.6', 
-          context,
-          sample: transactions.slice(0, 2)
-        });
-        fileLogger.log(`Prepared ${transactions.length} transactions for insert`);
+          log('DEBUG', transactionId, `Prepared ${transactions.length} transactions for insert`, { 
+            step: '6.6', 
+            context,
+            sample: transactions.slice(0, 2)
+          });
+          fileLogger.log(`Prepared ${transactions.length} transactions for insert`);
 
-        // Step 6.7: Insert transactions in batches
-        if (transactions.length > 0) {
-          log('INFO', transactionId, 'Step 6.7: Inserting transactions', { step: '6.7', context });
-          fileLogger.log('Step 6.7: Inserting transactions');
+          // Step 6.7: Insert transactions in batches
+          if (transactions.length > 0) {
+            log('INFO', transactionId, 'Step 6.7: Processing transactions', { step: '6.7', context });
+            fileLogger.log('Step 6.7: Processing transactions');
 
-          await processBatches(
-            transactions,
-            config.batchSize,
-            async (transactionBatch) => {
-              const { error: transactionError } = await supabase
-                .from('vendor_transactions')
-                .insert(transactionBatch);
+            // Insert new transactions in batches
+            await processBatches(
+              transactions,
+              config.batchSize,
+              async (transactionBatch) => {
+                const { error: transactionError } = await supabase
+                  .from('vendor_transactions')
+                  .insert(transactionBatch);
 
-              if (transactionError) {
-                log('ERROR', transactionId, `Error inserting transactions: ${transactionError.message}`, { 
+                if (transactionError) {
+                  log('ERROR', transactionId, `Error inserting transactions: ${transactionError.message}`, { 
+                    step: '6.7', 
+                    context,
+                    error: transactionError,
+                    batchSize: transactionBatch.length
+                  });
+                  fileLogger.error(`Error inserting transactions: ${transactionError.message}`);
+                  throw transactionError;
+                }
+
+                log('INFO', transactionId, `Successfully inserted ${transactionBatch.length} transactions`, { 
                   step: '6.7', 
-                  context,
-                  error: transactionError,
-                  batchSize: transactionBatch.length
+                  context 
                 });
-                fileLogger.error(`Error inserting transactions: ${transactionError.message}`);
-                throw transactionError;
-              }
-
-              log('INFO', transactionId, `Successfully inserted ${transactionBatch.length} transactions`, { 
-                step: '6.7', 
-                context 
-              });
-              fileLogger.log(`Successfully inserted ${transactionBatch.length} transactions`);
-            },
-            'vendor-transactions'
-          );
-        }
-      },
-      'updateVendors'
-    );
+                fileLogger.log(`Successfully inserted ${transactionBatch.length} transactions`);
+              },
+              'vendor-transactions'
+            );
+          }
+        },
+        'updateVendors'
+      );
+    }
 
     log('INFO', transactionId, 'Step 6: Vendor Update completed', { step: '6.0', context });
     fileLogger.log('Step 6: Vendor Update completed');
-  return {
-    success: true,
-    message: 'Vendors data update completed'
-  };
+    return {
+      success: true,
+      message: 'Vendors data update completed'
+    };
   } catch (error) {
     log('ERROR', transactionId, 'Failed to update vendors data', { 
       step: '6.0',
@@ -783,12 +838,12 @@ async function updateFunds(): Promise<ProcessingResult> {
 }
 
 /**
- * Update departments data in the database
+ * Upsert departments data in the database
  * 
  * This function:
  * 1. Reads departments.json
  * 2. Validates required fields:
- *    - name (required, only field that prevents data insertion)
+ *    - name (required, only field that prevents data upsert)
  *    - organizationalCode (required for SQL operations)
  *    - canonicalName, aliases, keyFunctions, abbreviation, orgLevel, budget_status
  *    Note: Fields prefixed with underscore (_) like _slug are deprecated and should not be used
@@ -1463,12 +1518,27 @@ async function updatePrograms(): Promise<ProcessingResult> {
       log('INFO', transactionId, 'Step 3.3: Mapping program data to database schema', { step: '3.3', context });
       fileLogger.log('Step 3.3: Mapping program data to database schema');
 
-      const programsToUpsert = batch.map((program: ProgramData) => ({
-        project_code: program.projectCode,
-        name: program.name || 'Unnamed Program',
-        description: program.descriptions?.default || null,
-        sources: ['legacy_import']
-      }));
+      const programsToUpsert = batch.map((program: ProgramData) => {
+        // Get all unique sources from program descriptions
+        const sources = new Set<string>();
+        program.programDescriptions?.forEach(desc => {
+          if (Array.isArray(desc.source)) {
+            desc.source.forEach(s => sources.add(s));
+          } else if (typeof desc.source === 'string') {
+            sources.add(desc.source);
+          }
+        });
+
+        // Get the first description if available
+        const description = program.programDescriptions?.[0]?.description || null;
+
+        return {
+          project_code: program.projectCode,
+          name: program.name || 'Unnamed Program',
+          description: description,
+          sources: Array.from(sources)
+        };
+      });
       
       // Step 3.4: Upsert programs with conflict handling
       log('INFO', transactionId, 'Step 3.4: Upserting programs with conflict handling', { step: '3.4', context });
@@ -1917,286 +1987,279 @@ async function updateBudgets(): Promise<ProcessingResult> {
       };
     }
 
+    // Step 5.2: Delete existing database table records
+    log('INFO', transactionId, 'Step 5.2: Deleting existing database table records', { step: '5.2', context });
+    fileLogger.log('Step 5.2: Deleting existing database table records');
+
+    // Get all fiscal years from the data
+    const fiscalYears = new Set(data.budget.map(b => 
+      Math.max(...b.fiscalYear.map(y => y.year))
+    ));
+
+    // Delete existing budget data for these fiscal years
+    log('INFO', transactionId, `Deleting existing budget data for fiscal years: ${Array.from(fiscalYears).join(', ')}`, { 
+      step: '5.2', 
+      context 
+    });
+    fileLogger.log(`Deleting existing budget data for fiscal years: ${Array.from(fiscalYears).join(', ')}`);
+
+    // First get all budget IDs for the fiscal years
+    const { data: existingBudgets, error: fetchError } = await supabase
+      .from('budgets')
+      .select('id')
+      .in('fiscal_year', Array.from(fiscalYears));
+
+    if (fetchError) {
+      log('ERROR', transactionId, 'Error fetching existing budgets', {
+        step: '5.2',
+        context,
+        error: fetchError
+      });
+      fileLogger.error(`Error fetching existing budgets: ${fetchError.message}`);
+      throw fetchError;
+    }
+
+    const budgetIds = existingBudgets?.map(b => b.id) || [];
+
+    if (budgetIds.length > 0) {
+      // Delete budget line items first (due to foreign key constraints)
+      const { error: deleteLineItemsError } = await supabase
+        .from('budget_line_items')
+        .delete()
+        .in('budget_id', budgetIds);
+
+      if (deleteLineItemsError) {
+        log('ERROR', transactionId, 'Error deleting existing budget line items', {
+          step: '5.2',
+          context,
+          error: deleteLineItemsError
+        });
+        fileLogger.error(`Error deleting existing budget line items: ${deleteLineItemsError.message}`);
+        throw deleteLineItemsError;
+      }
+    }
+
+    // Then delete budget records
+    const { error: deleteBudgetsError } = await supabase
+      .from('budgets')
+      .delete()
+      .in('fiscal_year', Array.from(fiscalYears));
+
+    if (deleteBudgetsError) {
+      log('ERROR', transactionId, 'Error deleting existing budgets', {
+        step: '5.2',
+        context,
+        error: deleteBudgetsError
+      });
+      fileLogger.error(`Error deleting existing budgets: ${deleteBudgetsError.message}`);
+      throw deleteBudgetsError;
+    }
+
     // Step 5.3: Process each department's budget
-    log('INFO', transactionId, 'Step 5.3: Processing each department\'s budget', { step: '5.3', context });
-    fileLogger.log('Step 5.3: Processing each department\'s budget');
-    
-    // Debug: Log total number of departments in budget data
-    log('DEBUG', transactionId, `Total departments in budget data: ${data.budget.length}`, { step: '5.3', context });
-    fileLogger.log(`Total departments in budget data: ${data.budget.length}`);
-    
+    log('INFO', transactionId, 'Step 5.3: Processing department budgets', { step: '5.3', context });
+    fileLogger.log('Step 5.3: Processing department budgets');
+
+    // Process each department's budget
     for (const deptBudget of data.budget) {
       // Debug: Log department code and available fiscal years
       const availableYears = deptBudget.fiscalYear.map(y => y.year);
-      const mostRecentYear = Math.max(...availableYears);
       
       log('DEBUG', transactionId, `Processing department ${deptBudget.code}`, { 
         step: '5.3', 
         context,
         department_code: deptBudget.code,
-        available_years: availableYears,
-        most_recent_year: mostRecentYear
+        available_years: availableYears
       });
-      fileLogger.log(`Processing department ${deptBudget.code} - Available years: ${availableYears.join(', ')} - Using most recent year: ${mostRecentYear}`);
+      fileLogger.log(`Processing department ${deptBudget.code} - Available years: ${availableYears.join(', ')}`);
 
-      // Find the fiscal year data for most recent year
-      const yearData = deptBudget.fiscalYear.find(y => y.year === mostRecentYear);
-      if (!yearData) {
-        log('ERROR', transactionId, `No budget data found for department ${deptBudget.code}`, { 
+      // Process each fiscal year for this department
+      for (const yearData of deptBudget.fiscalYear) {
+        log('DEBUG', transactionId, `Processing year ${yearData.year} for department ${deptBudget.code}`, { 
           step: '5.3', 
           context,
           department_code: deptBudget.code,
-          available_years: availableYears
+          fiscal_year: yearData.year
         });
-        fileLogger.error(`No budget data found for department ${deptBudget.code} (Available years: ${availableYears.join(', ')})`);
-        continue;
-      }
+        fileLogger.log(`Processing year ${yearData.year} for department ${deptBudget.code}`);
 
-      // Step 5.4: Upsert budget record
-      log('INFO', transactionId, `Step 5.4: Upserting budget record for department ${deptBudget.code}`, { step: '5.4', context });
-      fileLogger.log(`Step 5.4: Upserting budget record for department ${deptBudget.code}`);
-      
-      const totalAmount = yearData.projectCode.reduce((total, pc) => 
-        total + pc.fundingType.reduce((typeTotal, ft) => 
-          typeTotal + ft.fundCode.reduce((fundTotal, fc) => fundTotal + fc.amount, 0), 0), 0);
+        // Step 5.4: Insert budget record
+        log('INFO', transactionId, `Step 5.4: Inserting budget record for department ${deptBudget.code}, year ${yearData.year}`, { step: '5.4', context });
+        fileLogger.log(`Step 5.4: Inserting budget record for department ${deptBudget.code}, year ${yearData.year}`);
 
-      // Debug: Log the budget data being upserted
-      log('DEBUG', transactionId, `Attempting to upsert budget data`, { 
-        step: '5.4', 
-        context,
-        department_code: deptBudget.code,
-        fiscal_year: mostRecentYear,
-        amount: totalAmount
-      });
-      fileLogger.log(`Attempting to upsert budget data for department ${deptBudget.code}, year ${mostRecentYear}, amount ${totalAmount}`);
-
-      // First try to get existing budget
-      const { data: existingBudget, error: fetchError } = await supabase
-        .from('budgets')
-        .select('id')
-        .eq('department_code', deptBudget.code)
-        .eq('fiscal_year', mostRecentYear)
-        .single();
-
-      if (fetchError && fetchError.code !== 'PGRST116') { // PGRST116 is "no rows returned"
-        log('ERROR', transactionId, `Error fetching existing budget for ${deptBudget.code}`, { 
-          step: '5.4', 
-          context, 
-          error: fetchError,
-          department_code: deptBudget.code,
-          fiscal_year: mostRecentYear
-        });
-        fileLogger.error(`Error fetching existing budget for ${deptBudget.code}: ${fetchError.message}`);
-        continue;
-      }
-
-      let budgetId: string;
-      if (existingBudget) {
-        // Update existing budget
-        const { data: updateData, error: updateError } = await supabase
-          .from('budgets')
-          .update({ amount: totalAmount })
-          .eq('id', existingBudget.id)
-          .select('id')
-          .single();
-
-        if (updateError) {
-          log('ERROR', transactionId, `Error updating budget for ${deptBudget.code}`, { 
-            step: '5.4', 
-            context, 
-            error: updateError,
-            department_code: deptBudget.code,
-            fiscal_year: mostRecentYear,
-            amount: totalAmount
-          });
-          fileLogger.error(`Error updating budget for ${deptBudget.code}: ${updateError.message}`);
-          continue;
-        }
-        budgetId = updateData.id;
-      } else {
-        // Insert new budget
         const { data: insertData, error: insertError } = await supabase
           .from('budgets')
           .insert({
             department_code: deptBudget.code,
-            fiscal_year: mostRecentYear,
-            amount: totalAmount
+            fiscal_year: yearData.year
           })
           .select('id')
           .single();
 
         if (insertError) {
-          log('ERROR', transactionId, `Error inserting budget for ${deptBudget.code}`, { 
+          log('ERROR', transactionId, `Error inserting budget for ${deptBudget.code}, ${yearData.year}`, { 
             step: '5.4', 
             context, 
             error: insertError,
             department_code: deptBudget.code,
-            fiscal_year: mostRecentYear,
-            amount: totalAmount
+            fiscal_year: yearData.year
           });
-          fileLogger.error(`Error inserting budget for ${deptBudget.code}: ${insertError.message}`);
+          fileLogger.error(`Error inserting budget for ${deptBudget.code}, ${yearData.year}: ${insertError.message}`);
           continue;
         }
-        budgetId = insertData.id;
-      }
 
-      log('INFO', transactionId, `Successfully upserted budget for ${deptBudget.code}`, { 
-        step: '5.4', 
-        context,
-        department_code: deptBudget.code,
-        fiscal_year: mostRecentYear,
-        budget_id: budgetId
-      });
-      fileLogger.log(`Successfully upserted budget for ${deptBudget.code} with ID ${budgetId}`);
+        const budgetId = insertData.id;
 
-      // Step 5.5: Process line items in batches
-      log('INFO', transactionId, `Step 5.5: Processing line items for department ${deptBudget.code}`, { step: '5.5', context });
-      fileLogger.log(`Step 5.5: Processing line items for department ${deptBudget.code}`);
-      
-      const lineItems: Array<{
-        budget_id: string;
-        project_code: string;
-        fund_code: string;
-        amount: number;
-      }> = [];
-      
-      // Get all program codes for this department's budget
-      const projectCodes = yearData.projectCode.map(pc => pc.code);
-      
-      // Verify program codes exist
-      const { data: existingPrograms, error: programError } = await supabase
-        .from('programs')
-        .select('project_code')
-        .in('project_code', projectCodes);
-
-      if (programError) {
-        log('ERROR', transactionId, `Error verifying program codes for department ${deptBudget.code}`, { 
-          step: '5.5', 
-          context,
-          error: programError,
-          department_code: deptBudget.code,
-          project_codes: projectCodes
-        });
-        fileLogger.error(`Error verifying program codes for department ${deptBudget.code}: ${programError.message}`);
-        continue;
-      }
-
-      // Create a set of existing program codes for quick lookup
-      const existingProjectCodes = new Set(existingPrograms?.map(p => p.project_code) || []);
-      
-      // Create missing programs
-      const missingPrograms = yearData.projectCode.filter(pc => !existingProjectCodes.has(pc.code));
-      if (missingPrograms.length > 0) {
-        log('INFO', transactionId, `Creating ${missingPrograms.length} missing programs for department ${deptBudget.code}`, {
-          step: '5.5',
+        log('INFO', transactionId, `Successfully inserted budget for ${deptBudget.code}, ${yearData.year}`, { 
+          step: '5.4', 
           context,
           department_code: deptBudget.code,
-          missing_programs: missingPrograms.map(p => p.code)
+          fiscal_year: yearData.year,
+          budget_id: budgetId
         });
-        fileLogger.log(`Creating ${missingPrograms.length} missing programs for department ${deptBudget.code}`);
+        fileLogger.log(`Successfully inserted budget for ${deptBudget.code}, ${yearData.year} with ID ${budgetId}`);
 
-        // Create programs with basic information
-        const programsToCreate = missingPrograms.map(pc => ({
-          project_code: pc.code,
-          name: pc.code, // Using code as name since we don't have better info
-          sources: [`budget_${deptBudget.code}_${mostRecentYear}`]
-        }));
-
-        const { error: createError } = await supabase
+        // Step 5.5: Process line items in batches
+        log('INFO', transactionId, `Step 5.5: Processing line items for department ${deptBudget.code}, year ${yearData.year}`, { step: '5.5', context });
+        fileLogger.log(`Step 5.5: Processing line items for department ${deptBudget.code}, year ${yearData.year}`);
+        
+        const lineItems: Array<{
+          budget_id: string;
+          project_code: string;
+          fund_code: string;
+          fund_type: number;
+          amount: number;
+        }> = [];
+        
+        // Get all program codes for this department's budget
+        const projectCodes = yearData.projectCode.map(pc => pc.code);
+        
+        // Verify program codes exist
+        const { data: existingPrograms, error: programError } = await supabase
           .from('programs')
-          .insert(programsToCreate);
+          .select('project_code')
+          .in('project_code', projectCodes);
 
-        if (createError) {
-          log('ERROR', transactionId, `Error creating missing programs for department ${deptBudget.code}`, {
+        if (programError) {
+          log('ERROR', transactionId, `Error verifying program codes for department ${deptBudget.code}`, { 
+            step: '5.5', 
+            context,
+            error: programError,
+            department_code: deptBudget.code,
+            project_codes: projectCodes
+          });
+          fileLogger.error(`Error verifying program codes for department ${deptBudget.code}: ${programError.message}`);
+          continue;
+        }
+
+        // Create a set of existing program codes for quick lookup
+        const existingProjectCodes = new Set(existingPrograms?.map(p => p.project_code) || []);
+        
+        // Create missing programs
+        const missingPrograms = yearData.projectCode.filter(pc => !existingProjectCodes.has(pc.code));
+        
+        if (missingPrograms.length > 0) {
+          log('INFO', transactionId, `Creating ${missingPrograms.length} missing programs`, { 
+            step: '5.5', 
+            context,
+            department_code: deptBudget.code,
+            missing_programs: missingPrograms.map(p => p.code)
+          });
+          fileLogger.log(`Creating ${missingPrograms.length} missing programs: ${missingPrograms.map(p => p.code).join(', ')}`);
+          
+          const { error: createError } = await supabase
+            .from('programs')
+            .upsert(missingPrograms.map(pc => ({
+              project_code: pc.code,
+              name: `Program ${pc.code}`,
+              sources: ['budget_import']
+            })), {
+              onConflict: 'project_code'
+            });
+            
+          if (createError) {
+            log('ERROR', transactionId, `Error creating missing programs for ${deptBudget.code}`, { 
+              step: '5.5', 
+              context,
+              error: createError,
+              department_code: deptBudget.code,
+              missing_programs: missingPrograms.map(p => p.code)
+            });
+            fileLogger.error(`Error creating missing programs for ${deptBudget.code}: ${createError.message}`);
+            continue;
+          }
+        }
+        
+        // Create line items for all programs (now they all exist)
+        for (const projectCode of yearData.projectCode) {
+          for (const fundingType of projectCode.fundingType) {
+            for (const fundCode of fundingType.fundCode) {
+              lineItems.push({
+                budget_id: budgetId,
+                project_code: projectCode.code,
+                fund_code: fundCode.code,
+                fund_type: fundingType.type,
+                amount: fundCode.amount
+              });
+            }
+          }
+        }
+
+        if (lineItems.length === 0) {
+          log('INFO', transactionId, `No line items to insert for department ${deptBudget.code}`, {
             step: '5.5',
             context,
-            error: createError,
-            department_code: deptBudget.code,
-            programs: programsToCreate
+            department_code: deptBudget.code
           });
-          fileLogger.error(`Error creating missing programs for department ${deptBudget.code}: ${createError.message}`);
+          fileLogger.log(`No line items to insert for department ${deptBudget.code}`);
           continue;
         }
 
-        log('INFO', transactionId, `Successfully created ${programsToCreate.length} programs`, {
-          step: '5.5',
-          context,
-          department_code: deptBudget.code
-        });
-        fileLogger.log(`Successfully created ${programsToCreate.length} programs`);
-      }
-      
-      // Create line items for all programs (now they all exist)
-      for (const projectCode of yearData.projectCode) {
-        for (const fundingType of projectCode.fundingType) {
-          for (const fundCode of fundingType.fundCode) {
-            lineItems.push({
-              budget_id: budgetId,
-              project_code: projectCode.code,
-              fund_code: fundCode.code,
-              amount: fundCode.amount
-            });
-          }
-        }
-      }
+        // Step 5.6: Handle project codes and fund codes
+        log('INFO', transactionId, `Step 5.6: Handling project codes and fund codes for department ${deptBudget.code}`, { step: '5.6', context });
+        fileLogger.log(`Step 5.6: Handling project codes and fund codes for department ${deptBudget.code}`);
+        
+        await processBatches(
+          lineItems,
+          config.batchSize,
+          async (batch) => {
+            const { error } = await supabase
+              .from('budget_line_items')
+              .insert(batch);
 
-      if (lineItems.length === 0) {
-        log('INFO', transactionId, `No line items to insert for department ${deptBudget.code}`, {
-          step: '5.5',
-          context,
-          department_code: deptBudget.code
-        });
-        fileLogger.log(`No line items to insert for department ${deptBudget.code}`);
-        continue;
+            if (error) {
+              log('ERROR', transactionId, 'Error updating budget line items', { 
+                step: '5.6', 
+                context, 
+                error,
+                department_code: deptBudget.code,
+                batch_size: batch.length
+              });
+              fileLogger.error(`Error updating budget line items: ${error.message}`);
+            } else {
+              log('INFO', transactionId, `Successfully inserted ${batch.length} line items`, { step: '5.6', context });
+              fileLogger.log(`Successfully inserted ${batch.length} line items`);
+            }
+          },
+          'budget_line_items'
+        );
       }
-
-      // Step 5.6: Handle project codes and fund codes
-      log('INFO', transactionId, `Step 5.6: Handling project codes and fund codes for department ${deptBudget.code}`, { step: '5.6', context });
-      fileLogger.log(`Step 5.6: Handling project codes and fund codes for department ${deptBudget.code}`);
-      
-      await processBatches(
-        lineItems,
-        config.batchSize,
-        async (batch) => {
-          const { error } = await supabase
-            .from('budget_line_items')
-            .insert(batch);
-
-          if (error) {
-            log('ERROR', transactionId, 'Error updating budget line items', { 
-              step: '5.6', 
-              context, 
-              error,
-              department_code: deptBudget.code,
-              batch_size: batch.length
-            });
-            fileLogger.error(`Error updating budget line items: ${error.message}`);
-          } else {
-            log('INFO', transactionId, `Successfully inserted ${batch.length} line items`, { step: '5.6', context });
-            fileLogger.log(`Successfully inserted ${batch.length} line items`);
-          }
-        },
-        'budget_line_items'
-      );
     }
 
-    log('INFO', transactionId, 'Step 5: Budget Update completed', { step: '5.0', context });
-    fileLogger.log('Step 5: Budget Update completed');
     return {
       success: true,
-      message: 'Budgets data update completed'
+      message: 'Successfully updated budgets'
     };
-  } catch (error) {
-    log('ERROR', transactionId, 'Failed to update budgets', {
+  } catch (error: any) {
+    log('ERROR', transactionId, 'Error updating budgets', { 
       step: '5.0', 
-      context,
-      error: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined
+      context, 
+      error: error.message,
+      stack: error.stack
     });
-    fileLogger.error(`Failed to update budgets: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    fileLogger.error(`Error updating budgets: ${error.message}\n${error.stack}`);
     return {
       success: false,
-      message: `Error updating budgets: ${error instanceof Error ? error.message : String(error)}`
+      message: `Error updating budgets: ${error.message}`
     };
   }
 }
