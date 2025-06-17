@@ -1,6 +1,4 @@
-# text
-
-1. **Data Analysis & Migration Strategy**
+## **Data Sources**
   * vendors_2016.json
   * vendors_2017.json
   * vendors_2018.json
@@ -15,24 +13,50 @@
   * budgets.json
   * departments.json 
 
-2. **Migration Reasoning**
-- Move to Supabase:
-  * Historical vendor data (2016-2023): Keep in Supabase for querying
-  * Current year vendor data (2024): Keep in Supabase for active queries
-  * Search index: Move to Supabase for real-time search
-  * Departments/Programs: Keep in Supabase for relationship queries
-- Keep in JSON:
-  * Budget data: Small enough to keep in Vercel
-  * Any static reference data
-
-3. **Monthly Update Process**
-
-A. **Automated Update Pipeline**:
+## **Monthly Update Supabase Script**:
 ```typescript
 // src/scripts/update_supabase.ts
 import { createClient } from '@supabase/supabase-js';
 import * as fs from 'fs';
 import * as path from 'path';
+
+// Configuration
+const config = {
+  batchSize: 100,
+  dataDir: path.join(process.cwd(), 'src/data'),
+  currentYear: new Date().getFullYear()
+};
+
+// Error handling and logging
+const logError = (context: string, error: any) => {
+  console.error({
+    timestamp: new Date().toISOString(),
+    context,
+    error: error.message,
+    details: error.details || {}
+  });
+};
+
+// Data validation
+const validateData = (data: any, type: string) => {
+  switch (type) {
+    case 'vendor':
+      if (!data.n || !data.e || typeof data.a !== 'number' || typeof data.c !== 'number') {
+        throw new Error('Invalid vendor data structure');
+      }
+      break;
+    case 'fund':
+      if (!data.fundCode || !data.fundName || !data.fundGroup) {
+        throw new Error('Invalid fund data structure');
+      }
+      break;
+    case 'department':
+      if (!data.organizationalCode || !data.name) {
+        throw new Error('Invalid department data structure');
+      }
+      break;
+  }
+};
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -71,7 +95,6 @@ async function updateVendors() {
     console.error(`${currentYearFile} does not exist`);
     return;
   }
-  
   const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
   const fiscalYear = CURRENT_YEAR;
   
@@ -191,6 +214,48 @@ async function updateVendors() {
   );
 }
 
+// Update funds data
+async function updateFunds() {
+  console.log('Updating funds data...');
+  const filePath = path.join(DATA_DIR, 'funds.json');
+  
+  if (!fs.existsSync(filePath)) {
+    console.error('funds.json does not exist');
+    return;
+  }
+  
+  const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  
+  if (!data.funds || !Array.isArray(data.funds)) {
+    console.error('Invalid funds data structure');
+    return;
+  }
+  
+  // Process funds in batches
+  await processBatches(
+    data.funds,
+    100,
+    async (batch) => {
+      const fundsToUpsert = batch.map((fund: any) => ({
+        fund_code: fund.fundCode,
+        name: fund.fundName,
+        fund_group: fund.fundGroup,
+        description: fund.fundDescription
+      }));
+      
+      const { error } = await supabase
+        .from('funds')
+        .upsert(fundsToUpsert, {
+          onConflict: 'fund_code'
+        });
+        
+      if (error) console.error(`Error updating funds:`, error);
+    }
+  );
+  
+  console.log('Funds data update completed');
+}
+
 // Update departments data
 async function updateDepartments() {
   console.log('Updating departments data...');
@@ -212,7 +277,6 @@ async function updateDepartments() {
         organizational_code: dept.organizationalCode,
         name: dept.name,
         canonical_name: dept.canonicalName,
-        slug: dept.slug,
         org_level: dept.orgLevel,
         budget_status: dept.budget_status,
         key_functions: dept.keyFunctions,
@@ -260,10 +324,7 @@ async function updateDepartments() {
             department_code: dept.organizationalCode,
             fiscal_year: CURRENT_YEAR,
             head_count: dept.headCount.yearly[CURRENT_YEAR],
-            total_wages: dept.wages?.yearly?.[CURRENT_YEAR] || null,
-            average_tenure: dept.averageTenureYears,
-            average_salary: dept.averageSalary,
-            average_age: dept.averageAge
+            total_wages: dept.wages?.yearly?.[CURRENT_YEAR] || null
           });
         }
       }
@@ -369,42 +430,106 @@ async function updatePrograms() {
 // Update search index
 async function updateSearchIndex() {
   console.log('Updating search index...');
-  const filePath = path.join(DATA_DIR, 'search.json');
   
-  if (!fs.existsSync(filePath)) {
-    console.error('search.json does not exist');
+  // First, ensure the search_index table has the full-text search column
+  const { error: alterError } = await supabase.rpc('ensure_search_index_fts');
+  if (alterError) {
+    console.error('Error ensuring search index structure:', alterError);
     return;
   }
   
-  const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  // Process each data type and update search index
+  const searchItems = [];
   
-  // Delete existing search index for the current year's entities
-  console.log('Deleting existing search index entries for current year...');
-  
-  // We need to be careful here and only delete entries related to the current year
-  // This requires knowing which entries correspond to the current year
-  // For simplicity, we can add a fiscal_year field to the search_index table
-  // and filter based on that
-  
-  // Insert/update search index
+  // Process departments
+  const { data: departments } = await supabase
+    .from('departments')
+    .select('*');
+    
+  if (departments) {
+    departments.forEach(dept => {
+      searchItems.push({
+        term: dept.name,
+        type: 'department',
+        source_id: dept.organizational_code,
+        additional_data: {
+          display: dept.name,
+          context: dept.description || dept.name,
+          slug: dept.slug
+        }
+      });
+    });
+  }
+
+  // Process vendors
+  const { data: vendors } = await supabase
+    .from('vendors')
+    .select('*');
+    
+  if (vendors) {
+    vendors.forEach(vendor => {
+      searchItems.push({
+        term: vendor.name,
+        type: 'vendor',
+        source_id: vendor.id,
+        additional_data: {
+          display: vendor.name,
+          context: `Vendor with EIN: ${vendor.ein || 'N/A'}`,
+          total_amount: vendor.total_amount
+        }
+      });
+    });
+  }
+
+  // Process programs
+  const { data: programs } = await supabase
+    .from('programs')
+    .select('*');
+    
+  if (programs) {
+    programs.forEach(program => {
+      searchItems.push({
+        term: program.name,
+        type: 'program',
+        source_id: program.project_code,
+        additional_data: {
+          display: program.name,
+          context: program.description || program.name,
+          department_code: program.department_code
+        }
+      });
+    });
+  }
+
+  // Process funds
+  const { data: funds } = await supabase
+    .from('funds')
+    .select('*');
+    
+  if (funds) {
+    funds.forEach(fund => {
+      searchItems.push({
+        term: fund.name,
+        type: 'fund',
+        source_id: fund.fund_code,
+        additional_data: {
+          display: fund.name,
+          context: fund.description || fund.name,
+          fund_group: fund.fund_group
+        }
+      });
+    });
+  }
+
+  // Batch insert search items
   await processBatches(
-    data.keywords,
+    searchItems,
     100,
     async (batch) => {
-      const searchItems = batch.map((item: any) => ({
-        term: item.term,
-        type: item.type,
-        source_id: item.id,
-        additional_data: {
-          display: item.display,
-          score: item.score
-        }
-      }));
-      
       const { error } = await supabase
         .from('search_index')
-        .upsert(searchItems, {
-          onConflict: 'term, type, source_id'
+        .upsert(batch, {
+          onConflict: 'term,type,source_id'
         });
         
       if (error) console.error(`Error updating search index:`, error);
@@ -494,6 +619,7 @@ async function runUpdates() {
   try {
     await updateDepartments();
     await updatePrograms();
+    await updateFunds();
     await updateBudgets();
     await updateVendors();
     await updateSearchIndex();
@@ -506,69 +632,7 @@ async function runUpdates() {
 runUpdates();
 ```
 
-B. **CI/CD Integration**:
-```yaml
-# .github/workflows/update-supabase.yml
-name: Update Supabase Data
-
-on:
-  schedule:
-    # Run on the 1st and 15th of each month
-    - cron: '0 0 1,15 * *'
-  workflow_dispatch:
-    # Allow manual triggers
-
-jobs:
-  update-data:
-    runs-on: ubuntu-latest
-    environment: production
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          cache: 'npm'
-          
-      - name: Install dependencies
-        run: npm ci
-        
-      - name: Generate JSON data files
-        run: npm run generate-data
-        
-      - name: Update Supabase
-        run: npm run update-supabase
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-          
-      - name: Notify on success
-        if: success()
-        uses: slackapi/slack-github-action@v1
-        with:
-          payload: |
-            {
-              "text": "Supabase data update completed successfully!"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          
-      - name: Notify on failure
-        if: failure()
-        uses: slackapi/slack-github-action@v1
-        with:
-          payload: |
-            {
-              "text": "⚠️ Supabase data update failed! Please check the logs."
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-```
-
-C. **Monitoring and Validation**:
+## **Monitoring and Validation**:
 ```typescript
 // src/scripts/validate_supabase_data.ts
 import { createClient } from '@supabase/supabase-js';
@@ -583,73 +647,77 @@ const supabase = createClient(
 const DATA_DIR = path.join(process.cwd(), 'src/data');
 const CURRENT_YEAR = new Date().getFullYear();
 
-async function validateVendors() {
-  console.log('Validating vendors data...');
+// Combined validation and consistency check
+async function validateData() {
+  console.log('Starting data validation...');
   
-  // Count vendors in JSON file
-  const filePath = path.join(DATA_DIR, `vendors_${CURRENT_YEAR}.json`);
-  const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-  const jsonCount = jsonData.t.length;
+  // Validate vendors data
+  const vendorsValid = await validateVendors();
+  if (!vendorsValid) {
+    console.error('Vendors validation failed');
+    return false;
+  }
   
-  // Count vendors in Supabase
-  const { count: dbCount, error } = await supabase
+  // Validate funds data
+  const fundsValid = await validateFunds();
+  if (!fundsValid) {
+    console.error('Funds validation failed');
+    return false;
+  }
+  
+  // Validate search index
+  const searchValid = await validateSearchIndex();
+  if (!searchValid) {
+    console.error('Search index validation failed');
+    return false;
+  }
+  
+  // Check data consistency
+  const consistencyValid = await checkDataConsistency();
+  if (!consistencyValid) {
+    console.error('Data consistency check failed');
+    return false;
+  }
+  
+  console.log('All validations passed successfully!');
+  return true;
+}
+
+// Check data consistency across related tables
+async function checkDataConsistency() {
+  console.log('Checking data consistency...');
+  
+  // Verify vendor amounts match transaction totals
+  const { data: vendors } = await supabase
     .from('vendors')
-    .select('*', { count: 'exact', head: true })
+    .select('id, total_amount')
     .eq('fiscal_year', CURRENT_YEAR);
     
-  if (error) {
-    console.error('Error counting vendors in Supabase:', error);
+  if (!vendors) {
+    console.error('No vendors found for consistency check');
     return false;
   }
   
-  console.log(`JSON vendors count: ${jsonCount}, Supabase vendors count: ${dbCount}`);
-  
-  // Allow for some discrepancy due to de-duplication
-  const threshold = 0.95; // 95% match
-  return dbCount >= jsonCount * threshold;
-}
-
-async function validateSearchIndex() {
-  console.log('Validating search index...');
-  
-  // Count search entries in JSON file
-  const filePath = path.join(DATA_DIR, 'search.json');
-  const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-  const jsonCount = jsonData.keywords.length;
-  
-  // Count search entries in Supabase
-  const { count: dbCount, error } = await supabase
-    .from('search_index')
-    .select('*', { count: 'exact', head: true });
+  for (const vendor of vendors) {
+    const { data: transactions } = await supabase
+      .from('vendor_transactions')
+      .select('amount')
+      .eq('vendor_id', vendor.id);
+      
+    if (!transactions) continue;
     
-  if (error) {
-    console.error('Error counting search entries in Supabase:', error);
-    return false;
+    const total = transactions.reduce((sum, t) => sum + t.amount, 0);
+    if (Math.abs(total - vendor.total_amount) > 0.01) {
+      console.error(`Inconsistent total for vendor ${vendor.id}: expected ${vendor.total_amount}, got ${total}`);
+      return false;
+    }
   }
   
-  console.log(`JSON search entries count: ${jsonCount}, Supabase search entries count: ${dbCount}`);
-  
-  // Allow for some discrepancy
-  const threshold = 0.95; // 95% match
-  return dbCount >= jsonCount * threshold;
+  return true;
 }
 
-async function runValidation() {
-  console.log('Starting validation...');
-  
-  const vendorsValid = await validateVendors();
-  const searchValid = await validateSearchIndex();
-  
-  if (vendorsValid && searchValid) {
-    console.log('Validation passed!');
-    return true;
-  } else {
-    console.error('Validation failed!');
-    return false;
-  }
-}
-
-runValidation()
+// Run validation
+validateData()
   .then(success => {
     if (!success) {
       process.exit(1);
@@ -661,9 +729,1261 @@ runValidation()
   });
 ```
 
-4. **Codebase Modifications**
+## **Database Table Designs**
 
-A. **Supabase Client Setup**:
+### **Funds Table**:
+```sql
+CREATE TABLE funds (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  fund_code TEXT NOT NULL UNIQUE,  -- Stored as text to preserve leading zeros
+  name TEXT NOT NULL,
+  fund_group TEXT NOT NULL,
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Indexes
+CREATE INDEX idx_funds_fund_code ON funds(fund_code);
+CREATE INDEX idx_funds_fund_group ON funds(fund_group);
+
+-- Full-text search index for name and description
+CREATE INDEX idx_funds_search ON funds USING GIN(to_tsvector('english', name || ' ' || COALESCE(description, '')));
+```
+
+### **Departments Table**:
+```sql
+CREATE TABLE departments (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  organizational_code TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  canonical_name TEXT,
+  slug TEXT NOT NULL UNIQUE,
+  org_level INTEGER,
+  budget_status TEXT,
+  key_functions TEXT,
+  abbreviation TEXT,
+  parent_agency TEXT,
+  entity_code INTEGER,
+  note TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Indexes
+CREATE INDEX idx_departments_org_code ON departments(organizational_code);
+CREATE INDEX idx_departments_slug ON departments(slug);
+CREATE INDEX idx_departments_parent ON departments(parent_agency);
+
+-- Full-text search index
+CREATE INDEX idx_departments_search ON departments USING GIN(to_tsvector('english', 
+  name || ' ' || 
+  COALESCE(canonical_name, '') || ' ' || 
+  COALESCE(abbreviation, '') || ' ' || 
+  COALESCE(key_functions, '')
+));
+```
+
+#### **Department Spending Table**:
+```sql
+CREATE TABLE department_spending (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  department_code TEXT NOT NULL REFERENCES departments(organizational_code),
+  fiscal_year INTEGER NOT NULL,
+  total_amount DECIMAL(20, 2) NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(department_code, fiscal_year)
+);
+
+-- Indexes
+CREATE INDEX idx_dept_spending_dept ON department_spending(department_code);
+CREATE INDEX idx_dept_spending_year ON department_spending(fiscal_year);
+```
+
+#### **Department Workforce Table**:
+```sql
+CREATE TABLE department_workforce (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  department_code TEXT NOT NULL REFERENCES departments(organizational_code),
+  fiscal_year INTEGER NOT NULL,
+  head_count INTEGER NOT NULL,
+  total_wages DECIMAL(20, 2),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(department_code, fiscal_year)
+);
+
+-- Indexes
+CREATE INDEX idx_dept_workforce_dept ON department_workforce(department_code);
+CREATE INDEX idx_dept_workforce_year ON department_workforce(fiscal_year);
+```
+
+#### **Department Distributions Table**:
+```sql
+CREATE TABLE department_distributions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  department_code TEXT NOT NULL REFERENCES departments(organizational_code),
+  fiscal_year INTEGER NOT NULL,
+  distribution_type TEXT NOT NULL CHECK (distribution_type IN ('tenure', 'salary', 'age')),
+  distribution_data JSONB NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(department_code, fiscal_year, distribution_type)
+);
+
+-- Indexes
+CREATE INDEX idx_dept_dist_dept ON department_distributions(department_code);
+CREATE INDEX idx_dept_dist_year ON department_distributions(fiscal_year);
+CREATE INDEX idx_dept_dist_type ON department_distributions(distribution_type);
+CREATE INDEX idx_dept_dist_data ON department_distributions USING GIN(distribution_data);
+```
+
+#### update to departments table
+```sql
+-- Drop the slug index first
+DROP INDEX IF EXISTS idx_departments_slug;
+
+-- Remove the unique constraint on slug
+ALTER TABLE departments DROP CONSTRAINT IF EXISTS departments_slug_key;
+
+-- Remove the slug column
+ALTER TABLE departments DROP COLUMN IF EXISTS slug;
+
+-- Update any views or functions that might reference the slug column
+-- Note: You may need to update these based on your specific views/functions
+DROP VIEW IF EXISTS department_search_view;
+CREATE OR REPLACE VIEW department_search_view AS
+SELECT 
+  id,
+  organizational_code,
+  name,
+  canonical_name,
+  org_level,
+  budget_status,
+  key_functions,
+  abbreviation,
+  parent_agency,
+  entity_code,
+  note,
+  to_tsvector('english', 
+    name || ' ' || 
+    COALESCE(canonical_name, '') || ' ' || 
+    COALESCE(abbreviation, '') || ' ' || 
+    COALESCE(key_functions, '')
+  ) as search_vector
+FROM departments; 
+```
+
+#### second update to departments table
+```sql
+-- Add aliases column to departments table
+-- This column will store an array of department name aliases
+ALTER TABLE departments
+ADD COLUMN aliases TEXT[] DEFAULT '{}';
+
+-- Add comment to explain the column's purpose
+COMMENT ON COLUMN departments.aliases IS 'Array of alternative names/aliases for the department';
+
+-- Create an index for faster searches on aliases
+CREATE INDEX idx_departments_aliases ON departments USING GIN (aliases);
+
+-- Example of how to update aliases for a department:
+-- UPDATE departments 
+-- SET aliases = ARRAY['Alternative Name 1', 'Alternative Name 2']
+-- WHERE organizational_code = 'DEPT_CODE'; 
+```
+
+#### third update to departments table
+```sql
+-- Add description column to departments table
+ALTER TABLE departments
+ADD COLUMN description TEXT;
+
+-- Add comment to explain the column's purpose
+COMMENT ON COLUMN departments.description IS 'Optional description of the department'; 
+```
+
+### **Programs Table**:
+```sql
+CREATE TABLE programs (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  project_code TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  description TEXT,
+  department_code TEXT REFERENCES departments(organizational_code),
+  fiscal_year INTEGER,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Indexes
+CREATE INDEX idx_programs_project_code ON programs(project_code);
+CREATE INDEX idx_programs_department ON programs(department_code);
+CREATE INDEX idx_programs_fiscal_year ON programs(fiscal_year);
+
+-- Full-text search index
+CREATE INDEX idx_programs_search ON programs USING GIN(to_tsvector('english', 
+  name || ' ' || COALESCE(description, '')
+));
+```
+#### second update programs table
+```sql
+-- Rename program_code to project_code in budget_line_items table
+ALTER TABLE budget_line_items RENAME COLUMN program_code TO project_code;
+
+-- Remove department_code and fiscal_year columns
+ALTER TABLE programs DROP COLUMN IF EXISTS department_code;
+ALTER TABLE programs DROP COLUMN IF EXISTS fiscal_year;
+
+-- Add sources array column
+ALTER TABLE programs ADD COLUMN IF NOT EXISTS sources text[] DEFAULT '{}';
+
+-- Update existing programs to include legacy_import source
+UPDATE programs SET sources = ARRAY['legacy_import'] WHERE sources IS NULL OR sources = '{}';
+
+-- Add foreign key constraint for project_code
+ALTER TABLE budget_line_items 
+  ADD CONSTRAINT budget_line_items_project_code_fkey 
+  FOREIGN KEY (project_code) 
+  REFERENCES programs(project_code) 
+  ON DELETE CASCADE;
+
+-- Add index on sources array for better query performance
+CREATE INDEX IF NOT EXISTS idx_programs_sources ON programs USING GIN (sources);
+
+-- Add comment to explain the sources field
+COMMENT ON COLUMN programs.sources IS 'Array of source identifiers where this program was found (e.g., budget_0110_2024)';
+
+```
+
+### **Budgets Table**:
+```sql
+CREATE TABLE budgets (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  department_code TEXT NOT NULL REFERENCES departments(organizational_code),
+  fiscal_year INTEGER NOT NULL,
+  amount DECIMAL(20, 2) NOT NULL,
+  budget_type TEXT NOT NULL, -- 'enacted', 'proposed', etc.
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(department_code, fiscal_year, budget_type)
+);
+
+-- Indexes
+CREATE INDEX idx_budgets_department ON budgets(department_code);
+CREATE INDEX idx_budgets_fiscal_year ON budgets(fiscal_year);
+CREATE INDEX idx_budgets_type ON budgets(budget_type);
+```
+
+#### **Budget Line Items Table**:
+```sql
+CREATE TABLE budget_line_items (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  budget_id UUID NOT NULL REFERENCES budgets(id) ON DELETE CASCADE,
+  program_code TEXT REFERENCES programs(project_code),
+  fund_code TEXT REFERENCES funds(fund_code),
+  amount DECIMAL(20, 2) NOT NULL,
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Indexes
+CREATE INDEX idx_budget_items_budget ON budget_line_items(budget_id);
+CREATE INDEX idx_budget_items_program ON budget_line_items(program_code);
+CREATE INDEX idx_budget_items_fund ON budget_line_items(fund_code);
+```
+
+### **Vendors Table**:
+-- ein field does not have values yet.
+```sql
+CREATE TABLE vendors (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  ein TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Indexes
+CREATE INDEX idx_vendors_name ON vendors(name);
+CREATE INDEX idx_vendors_ein ON vendors(ein);
+CREATE INDEX idx_vendors_fiscal_year ON vendors(fiscal_year);
+CREATE INDEX idx_vendors_amount ON vendors(total_amount);
+
+-- Full-text search index
+CREATE INDEX idx_vendors_search ON vendors USING GIN(to_tsvector('english', name));
+```
+
+### **Vendor Transactions Table**:
+```sql
+CREATE TABLE vendor_transactions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  vendor_id UUID NOT NULL REFERENCES vendors(id) ON DELETE CASCADE,
+  fiscal_year INTEGER NOT NULL,
+  amount DECIMAL(20, 2) NOT NULL,
+  transaction_date TIMESTAMPTZ,
+  transaction_count INTEGER NOT NULL,
+  department_code TEXT REFERENCES departments(organizational_code),
+  program_code TEXT REFERENCES programs(project_code),
+  fund_code TEXT REFERENCES funds(fund_code),
+  category TEXT,
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Indexes
+CREATE INDEX idx_vendor_trans_vendor ON vendor_transactions(vendor_id);
+CREATE INDEX idx_vendor_trans_fiscal_year ON vendor_transactions(fiscal_year);
+CREATE INDEX idx_vendor_trans_department ON vendor_transactions(department_code);
+CREATE INDEX idx_vendor_trans_program ON vendor_transactions(program_code);
+CREATE INDEX idx_vendor_trans_fund ON vendor_transactions(fund_code);
+CREATE INDEX idx_vendor_trans_date ON vendor_transactions(transaction_date);
+CREATE INDEX idx_vendor_trans_category ON vendor_transactions(category);
+```
+
+### **Search Index Table**:
+
+#### third update table script
+```sql
+-- Create search index table
+CREATE TABLE IF NOT EXISTS search_index (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  term TEXT NOT NULL,
+  type TEXT NOT NULL CHECK (type IN ('department', 'vendor', 'program', 'fund')),
+  source_id TEXT NOT NULL,
+  total_amount NUMERIC,
+  transaction_count INTEGER,
+  years INTEGER[],
+  additional_data JSONB,
+  last_updated TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(term, type, source_id)
+); 
+```
+
+#### secondary update table script
+```sql
+-- Enable UUID extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Create funds table
+CREATE TABLE IF NOT EXISTS funds (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  fund_code TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  fund_group TEXT NOT NULL,
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create departments table
+CREATE TABLE IF NOT EXISTS departments (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  organizational_code TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  canonical_name TEXT,
+  slug TEXT NOT NULL UNIQUE,
+  org_level INTEGER,
+  budget_status TEXT,
+  key_functions TEXT,
+  abbreviation TEXT,
+  parent_agency TEXT,
+  entity_code INTEGER,
+  note TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create department spending table
+CREATE TABLE IF NOT EXISTS department_spending (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  department_code TEXT NOT NULL REFERENCES departments(organizational_code),
+  fiscal_year INTEGER NOT NULL,
+  total_amount DECIMAL(20, 2) NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(department_code, fiscal_year)
+);
+
+-- Create department workforce table
+CREATE TABLE IF NOT EXISTS department_workforce (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  department_code TEXT NOT NULL REFERENCES departments(organizational_code),
+  fiscal_year INTEGER NOT NULL,
+  head_count INTEGER NOT NULL,
+  total_wages DECIMAL(20, 2),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(department_code, fiscal_year)
+);
+
+-- Create department distributions table
+CREATE TABLE IF NOT EXISTS department_distributions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  department_code TEXT NOT NULL REFERENCES departments(organizational_code),
+  fiscal_year INTEGER NOT NULL,
+  distribution_type TEXT NOT NULL CHECK (distribution_type IN ('tenure', 'salary', 'age')),
+  distribution_data JSONB NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(department_code, fiscal_year, distribution_type)
+);
+
+-- Create programs table
+CREATE TABLE IF NOT EXISTS programs (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  project_code TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  description TEXT,
+  department_code TEXT REFERENCES departments(organizational_code),
+  fiscal_year INTEGER,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create budgets table
+CREATE TABLE IF NOT EXISTS budgets (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  department_code TEXT NOT NULL REFERENCES departments(organizational_code),
+  fiscal_year INTEGER NOT NULL,
+  amount DECIMAL(20, 2) NOT NULL,
+  budget_type TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(department_code, fiscal_year, budget_type)
+);
+
+-- Create budget line items table
+CREATE TABLE IF NOT EXISTS budget_line_items (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  budget_id UUID NOT NULL REFERENCES budgets(id) ON DELETE CASCADE,
+  program_code TEXT REFERENCES programs(project_code),
+  fund_code TEXT REFERENCES funds(fund_code),
+  amount DECIMAL(20, 2) NOT NULL,
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create vendors table
+CREATE TABLE IF NOT EXISTS vendors (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  ein TEXT,
+  fiscal_year INTEGER NOT NULL,
+  total_amount DECIMAL(20, 2) NOT NULL,
+  transaction_count INTEGER NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create vendor transactions table
+CREATE TABLE IF NOT EXISTS vendor_transactions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  vendor_id UUID NOT NULL REFERENCES vendors(id) ON DELETE CASCADE,
+  fiscal_year INTEGER NOT NULL,
+  amount DECIMAL(20, 2) NOT NULL,
+  transaction_date TIMESTAMPTZ,
+  department_code TEXT REFERENCES departments(organizational_code),
+  program_code TEXT REFERENCES programs(project_code),
+  fund_code TEXT REFERENCES funds(fund_code),
+  category TEXT,
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create search index table
+CREATE TABLE IF NOT EXISTS search_index (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  term TEXT NOT NULL,
+  type TEXT NOT NULL CHECK (type IN ('department', 'vendor', 'program', 'fund')),
+  source_id TEXT NOT NULL,
+  total_amount NUMERIC,
+  transaction_count INTEGER,
+  years INTEGER[],
+  last_updated TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(term, type, source_id)
+);
+
+-- Create indexes
+CREATE INDEX IF NOT EXISTS idx_funds_fund_code ON funds(fund_code);
+CREATE INDEX IF NOT EXISTS idx_funds_fund_group ON funds(fund_group);
+CREATE INDEX IF NOT EXISTS idx_funds_search ON funds USING GIN(to_tsvector('english', name || ' ' || COALESCE(description, '')));
+
+CREATE INDEX IF NOT EXISTS idx_departments_org_code ON departments(organizational_code);
+CREATE INDEX IF NOT EXISTS idx_departments_slug ON departments(slug);
+CREATE INDEX IF NOT EXISTS idx_departments_parent ON departments(parent_agency);
+CREATE INDEX IF NOT EXISTS idx_departments_search ON departments USING GIN(to_tsvector('english', 
+  name || ' ' || 
+  COALESCE(canonical_name, '') || ' ' || 
+  COALESCE(abbreviation, '') || ' ' || 
+  COALESCE(key_functions, '')
+));
+
+CREATE INDEX IF NOT EXISTS idx_dept_spending_dept ON department_spending(department_code);
+CREATE INDEX IF NOT EXISTS idx_dept_spending_year ON department_spending(fiscal_year);
+
+CREATE INDEX IF NOT EXISTS idx_dept_workforce_dept ON department_workforce(department_code);
+CREATE INDEX IF NOT EXISTS idx_dept_workforce_year ON department_workforce(fiscal_year);
+
+CREATE INDEX IF NOT EXISTS idx_dept_dist_dept ON department_distributions(department_code);
+CREATE INDEX IF NOT EXISTS idx_dept_dist_year ON department_distributions(fiscal_year);
+CREATE INDEX IF NOT EXISTS idx_dept_dist_type ON department_distributions(distribution_type);
+CREATE INDEX IF NOT EXISTS idx_dept_dist_data ON department_distributions USING GIN(distribution_data);
+
+CREATE INDEX IF NOT EXISTS idx_programs_project_code ON programs(project_code);
+CREATE INDEX IF NOT EXISTS idx_programs_department ON programs(department_code);
+CREATE INDEX IF NOT EXISTS idx_programs_fiscal_year ON programs(fiscal_year);
+CREATE INDEX IF NOT EXISTS idx_programs_search ON programs USING GIN(to_tsvector('english', 
+  name || ' ' || COALESCE(description, '')
+));
+
+CREATE INDEX IF NOT EXISTS idx_budgets_department ON budgets(department_code);
+CREATE INDEX IF NOT EXISTS idx_budgets_fiscal_year ON budgets(fiscal_year);
+CREATE INDEX IF NOT EXISTS idx_budgets_type ON budgets(budget_type);
+
+CREATE INDEX IF NOT EXISTS idx_budget_items_budget ON budget_line_items(budget_id);
+CREATE INDEX IF NOT EXISTS idx_budget_items_program ON budget_line_items(program_code);
+CREATE INDEX IF NOT EXISTS idx_budget_items_fund ON budget_line_items(fund_code);
+
+CREATE INDEX IF NOT EXISTS idx_vendors_name ON vendors(name);
+CREATE INDEX IF NOT EXISTS idx_vendors_ein ON vendors(ein);
+CREATE INDEX IF NOT EXISTS idx_vendors_fiscal_year ON vendors(fiscal_year);
+CREATE INDEX IF NOT EXISTS idx_vendors_amount ON vendors(total_amount);
+CREATE INDEX IF NOT EXISTS idx_vendors_search ON vendors USING GIN(to_tsvector('english', name));
+
+CREATE INDEX IF NOT EXISTS idx_vendor_trans_vendor ON vendor_transactions(vendor_id);
+CREATE INDEX IF NOT EXISTS idx_vendor_trans_fiscal_year ON vendor_transactions(fiscal_year);
+CREATE INDEX IF NOT EXISTS idx_vendor_trans_department ON vendor_transactions(department_code);
+CREATE INDEX IF NOT EXISTS idx_vendor_trans_program ON vendor_transactions(program_code);
+CREATE INDEX IF NOT EXISTS idx_vendor_trans_fund ON vendor_transactions(fund_code);
+CREATE INDEX IF NOT EXISTS idx_vendor_trans_date ON vendor_transactions(transaction_date);
+CREATE INDEX IF NOT EXISTS idx_vendor_trans_category ON vendor_transactions(category);
+
+CREATE INDEX IF NOT EXISTS idx_search_term ON search_index(term);
+CREATE INDEX IF NOT EXISTS idx_search_type ON search_index(type);
+CREATE INDEX IF NOT EXISTS idx_search_source ON search_index(source_id);
+CREATE INDEX IF NOT EXISTS idx_search_fiscal_year ON search_index(fiscal_year);
+CREATE INDEX IF NOT EXISTS idx_search_text ON search_index USING GIN(to_tsvector('english', term));
+
+-- Create function to ensure search index structure
+CREATE OR REPLACE FUNCTION ensure_search_index_fts()
+RETURNS void AS $$
+BEGIN
+  -- Add fts column if it doesn't exist
+  IF NOT EXISTS (
+    SELECT 1 
+    FROM information_schema.columns 
+    WHERE table_name = 'search_index' 
+    AND column_name = 'fts'
+  ) THEN
+    ALTER TABLE search_index
+    ADD COLUMN fts tsvector 
+    GENERATED ALWAYS AS (
+      to_tsvector('english', 
+        term || ' ' || 
+        COALESCE(additional_data->>'display', '') || ' ' ||
+        COALESCE(additional_data->>'context', '')
+      )
+    ) STORED;
+    
+    CREATE INDEX idx_search_fts ON search_index USING GIN(fts);
+  END IF;
+END;
+$$ LANGUAGE plpgsql; 
+```
+
+#### intial table script
+```sql
+CREATE TABLE search_index (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  term TEXT NOT NULL,
+  type TEXT NOT NULL,
+  source_id TEXT NOT NULL,
+  additional_data JSONB,
+  fiscal_year INTEGER,
+  fts tsvector GENERATED ALWAYS AS (
+    to_tsvector('english', 
+      term || ' ' || 
+      COALESCE(additional_data->>'display', '') || ' ' ||
+      COALESCE(additional_data->>'context', '')
+    )
+  ) STORED,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(term, type, source_id)
+);
+
+-- Indexes
+CREATE INDEX idx_search_term ON search_index(term);
+CREATE INDEX idx_search_type ON search_index(type);
+CREATE INDEX idx_search_source ON search_index(source_id);
+CREATE INDEX idx_search_fiscal_year ON search_index(fiscal_year);
+CREATE INDEX idx_search_additional_data ON search_index USING GIN(additional_data);
+CREATE INDEX idx_search_fts ON search_index USING GIN(fts);
+
+-- Full-text search index
+CREATE INDEX idx_search_text ON search_index USING GIN(to_tsvector('english', term));
+
+-- Function to ensure search index structure
+CREATE OR REPLACE FUNCTION ensure_search_index_fts()
+RETURNS void AS $$
+BEGIN
+  -- Add fts column if it doesn't exist
+  IF NOT EXISTS (
+    SELECT 1 
+    FROM information_schema.columns 
+    WHERE table_name = 'search_index' 
+    AND column_name = 'fts'
+  ) THEN
+    ALTER TABLE search_index
+    ADD COLUMN fts tsvector 
+    GENERATED ALWAYS AS (
+      to_tsvector('english', 
+        term || ' ' || 
+        COALESCE(additional_data->>'display', '') || ' ' ||
+        COALESCE(additional_data->>'context', '')
+      )
+    ) STORED;
+    
+    CREATE INDEX idx_search_fts ON search_index USING GIN(fts);
+  END IF;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+## **Codebase Modifications**
+
+### **Search API Migration**:
+```typescript
+// src/app/api/search/route.ts
+import { NextResponse, NextRequest } from 'next/server';
+import { getServiceSupabase } from '@/lib/supabase';
+import { getFromCache, setInCache } from '@/lib/cache';
+import { trackSearch } from '@/lib/analytics/search';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
+
+export async function GET(request: NextRequest) {
+  try {
+  const { searchParams } = new URL(request.url);
+    const query = searchParams.get('q')?.toLowerCase() || '';
+    const types = searchParams.get('types')?.split(',') || ['departments', 'vendors', 'programs', 'funds'];
+    const limit = parseInt(searchParams.get('limit') || '10', 10);
+    const excludeCommon = searchParams.get('exclude_common') === 'true';
+  
+  // Try to get from cache first
+    const cacheKey = `search:${query}:${types.join(',')}:${limit}:${excludeCommon}`;
+    const cachedResults = await getFromCache(cacheKey);
+  if (cachedResults) {
+    return NextResponse.json(cachedResults);
+  }
+  
+  const supabase = getServiceSupabase();
+  
+    // Build the search query using PostgreSQL full-text search
+    let searchQuery = supabase
+    .from('search_index')
+      .select('*')
+      .textSearch('fts', query, {
+        type: 'websearch',
+        config: 'english'
+      });
+
+    // Apply type filters if specified
+    if (types.length > 0) {
+      searchQuery = searchQuery.in('type', types);
+    }
+
+    // Get results with pagination
+    const { data, error, count } = await searchQuery
+    .order('term')
+      .limit(limit);
+    
+  if (error) {
+      console.error('Search error:', error);
+      return NextResponse.json({ error: 'Search failed' }, { status: 500 });
+    }
+
+    // Format results by type
+  const results = {
+      departments: data.filter(item => item.type === 'department'),
+      vendors: data.filter(item => item.type === 'vendor'),
+      programs: data.filter(item => item.type === 'program'),
+      funds: data.filter(item => item.type === 'fund'),
+      keywords: data.filter(item => item.type === 'keyword'),
+      totalResults: count || 0,
+      query,
+      appliedFilters: {
+        types,
+        excludeCommon,
+        limit
+      }
+  };
+  
+  // Cache results for 1 hour
+    await setInCache(cacheKey, results, { ex: 3600 });
+    
+    // Track search analytics
+    await trackSearch(query, { types, excludeCommon, limit }, count || 0);
+  
+  return NextResponse.json(results);
+  } catch (error) {
+    console.error('Search error:', error);
+    return NextResponse.json({ error: 'Search failed' }, { status: 500 });
+  }
+}
+```
+
+### **Update search with tips**
+
+```typescript
+// src/app/search/page.tsx
+// Add SearchTips component
+function SearchTips() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="mb-4 bg-gray-50 rounded-lg p-3 text-sm">
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="flex items-center justify-between w-full text-gray-700 hover:text-gray-900"
+      >
+        <span className="font-medium">Search Tips</span>
+        <span className="text-gray-500">{isExpanded ? '▼' : '▶'}</span>
+      </button>
+      
+      {isExpanded && (
+        <div className="mt-2 space-y-2 text-gray-600">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div>
+              <h4 className="font-medium mb-1">Basic Search</h4>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Simple word: <code className="bg-gray-100 px-1 rounded">california</code></li>
+                <li>Phrase: <code className="bg-gray-100 px-1 rounded">"public safety"</code></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-medium mb-1">Advanced Operators</h4>
+              <ul className="list-disc list-inside space-y-1">
+                <li>AND: <code className="bg-gray-100 px-1 rounded">health & safety</code></li>
+                <li>OR: <code className="bg-gray-100 px-1 rounded">police | fire</code></li>
+                <li>NOT: <code className="bg-gray-100 px-1 rounded">!private</code></li>
+                <li>Prefix: <code className="bg-gray-100 px-1 rounded">calif*</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+### **Vendors API Migration**:
+```typescript
+// src/app/api/vendors/top/route.ts
+import { NextResponse } from 'next/server';
+import { getServiceSupabase } from '@/lib/supabase';
+import { getFromCache, setInCache } from '@/lib/cache';
+
+export async function GET(request: Request) {
+  try {
+  const { searchParams } = new URL(request.url);
+  const year = parseInt(searchParams.get('year') || new Date().getFullYear().toString());
+  const limit = parseInt(searchParams.get('limit') || '10');
+  
+  // Try to get from cache first
+    const cacheKey = `vendors:top:${year}:${limit}`;
+    const cachedResults = await getFromCache(cacheKey);
+  if (cachedResults) {
+    return NextResponse.json(cachedResults);
+  }
+  
+  const supabase = getServiceSupabase();
+  
+  // Get top vendors by total amount
+  const { data, error } = await supabase
+    .from('vendors')
+      .select(`
+        *,
+        vendor_transactions (
+          amount,
+          transaction_date,
+          department_code,
+          program_code,
+          fund_code
+        )
+      `)
+    .eq('fiscal_year', year)
+    .order('total_amount', { ascending: false })
+    .limit(limit);
+    
+  if (error) {
+      console.error('Error fetching top vendors:', error);
+      return NextResponse.json({ error: 'Failed to fetch top vendors' }, { status: 500 });
+    }
+
+    const results = {
+      vendors: data,
+      year,
+      limit
+    };
+  
+  // Cache results for 24 hours
+    await setInCache(cacheKey, results, { ex: 86400 });
+
+    return NextResponse.json(results);
+  } catch (error) {
+    console.error('Error in top vendors API:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+```
+
+### **Departments API Migration**:
+```typescript
+// src/app/api/departments/[slug]/route.ts
+import { NextResponse } from 'next/server';
+import { getServiceSupabase } from '@/lib/supabase';
+import { getFromCache, setInCache } from '@/lib/cache';
+import { getDepartmentSlugs } from '@/lib/blog';
+
+export async function GET(
+  request: Request,
+  { params }: { params: { slug: string } }
+) {
+  try {
+    const slug = params.slug;
+    
+    // Verify this is a valid department slug
+    const validSlugs = await getDepartmentSlugs();
+    if (!validSlugs.includes(slug)) {
+      return NextResponse.json({ error: 'Department not found' }, { status: 404 });
+    }
+    
+    // Extract organizational code from slug (format: {orgCode}_{name})
+    const [orgCode] = slug.split('_');
+    
+    // Try to get from cache first
+    const cacheKey = `department:${slug}`;
+    const cachedDepartment = await getFromCache(cacheKey);
+    if (cachedDepartment) {
+      return NextResponse.json(cachedDepartment);
+    }
+    
+    const supabase = getServiceSupabase();
+    
+    // Get department by organizational code
+    const { data: department, error: deptError } = await supabase
+      .from('departments')
+      .select('*')
+      .eq('organizational_code', orgCode)
+      .single();
+      
+    if (deptError || !department) {
+      return NextResponse.json({ error: 'Department not found' }, { status: 404 });
+    }
+    
+    // Get workforce data
+    const { data: workforce } = await supabase
+      .from('department_workforce')
+      .select('*')
+      .eq('department_code', department.organizational_code)
+      .order('fiscal_year', { ascending: false });
+      
+    // Get distributions
+    const { data: distributions } = await supabase
+      .from('department_distributions')
+      .select('*')
+      .eq('department_code', department.organizational_code);
+      
+    // Format the results
+    const result = {
+      ...department,
+      workforce: {
+        yearly: workforce?.reduce((acc, item) => {
+          acc[item.fiscal_year] = {
+            headCount: item.head_count,
+            wages: item.total_wages
+          };
+          return acc;
+        }, {} as Record<number, any>)
+      },
+      distributions: distributions?.reduce((acc, item) => {
+        if (!acc[item.distribution_type]) {
+          acc[item.distribution_type] = {};
+        }
+        acc[item.distribution_type][item.fiscal_year] = item.distribution_data;
+        return acc;
+      }, {} as Record<string, Record<number, any>>)
+    };
+    
+    // Cache the result for 24 hours
+    await setInCache(cacheKey, result, { ex: 86400 });
+    
+    return NextResponse.json(result);
+  } catch (error) {
+    console.error('Error in department API:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+```
+
+### **Programs API Migration**:
+```typescript
+// src/app/api/programs/route.ts
+import { NextResponse } from 'next/server';
+import { getServiceSupabase } from '@/lib/supabase';
+import { getFromCache, setInCache } from '@/lib/cache';
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const departmentCode = searchParams.get('department');
+    const fiscalYear = searchParams.get('year');
+
+    // Try to get from cache first
+    const cacheKey = `programs:${departmentCode}:${fiscalYear}`;
+    const cachedPrograms = await getFromCache(cacheKey);
+    if (cachedPrograms) {
+      return NextResponse.json(cachedPrograms);
+    }
+
+    const supabase = getServiceSupabase();
+
+    // Build the query
+    let query = supabase
+      .from('programs')
+      .select('*');
+
+    // Apply filters if provided
+    if (departmentCode) {
+      query = query.eq('department_code', departmentCode);
+    }
+    if (fiscalYear) {
+      query = query.eq('fiscal_year', fiscalYear);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error('Error fetching programs:', error);
+      return NextResponse.json({ error: 'Failed to fetch programs' }, { status: 500 });
+    }
+
+    // Cache results for 1 hour
+    await setInCache(cacheKey, data, { ex: 3600 });
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error('Error in programs API:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+```
+
+### **Funds API Migration**:
+```typescript
+// src/app/api/funds/route.ts
+import { NextResponse } from 'next/server';
+import { getServiceSupabase } from '@/lib/supabase';
+import { getFromCache, setInCache } from '@/lib/cache';
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const fundGroup = searchParams.get('group');
+  
+  // Try to get from cache first
+    const cacheKey = `funds:${fundGroup || 'all'}`;
+    const cachedFunds = await getFromCache(cacheKey);
+    if (cachedFunds) {
+      return NextResponse.json(cachedFunds);
+    }
+  
+  const supabase = getServiceSupabase();
+  
+    // Build the query
+    let query = supabase
+      .from('funds')
+      .select('*');
+
+    // Apply group filter if provided
+    if (fundGroup) {
+      query = query.eq('fund_group', fundGroup);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error('Error fetching funds:', error);
+      return NextResponse.json({ error: 'Failed to fetch funds' }, { status: 500 });
+    }
+
+    // Cache results for 24 hours
+    await setInCache(cacheKey, data, { ex: 86400 });
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error('Error in funds API:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+```
+
+### **Budgets API Migration**:
+```typescript
+// src/app/api/budgets/route.ts
+import { NextResponse } from 'next/server';
+import { getServiceSupabase } from '@/lib/supabase';
+import { getFromCache, setInCache } from '@/lib/cache';
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const departmentCode = searchParams.get('department');
+    const fiscalYear = searchParams.get('year');
+    const budgetType = searchParams.get('type') || 'enacted';
+  
+  // Try to get from cache first
+    const cacheKey = `budgets:${departmentCode}:${fiscalYear}:${budgetType}`;
+    const cachedBudgets = await getFromCache(cacheKey);
+    if (cachedBudgets) {
+      return NextResponse.json(cachedBudgets);
+    }
+  
+  const supabase = getServiceSupabase();
+  
+    // Get budget data
+    const { data: budgets, error: budgetError } = await supabase
+      .from('budgets')
+      .select(`
+        *,
+        budget_line_items (
+          program_code,
+          fund_code,
+          amount,
+          description
+        )
+      `)
+      .eq('department_code', departmentCode)
+      .eq('fiscal_year', fiscalYear)
+      .eq('budget_type', budgetType);
+
+    if (budgetError) {
+      console.error('Error fetching budgets:', budgetError);
+      return NextResponse.json({ error: 'Failed to fetch budgets' }, { status: 500 });
+    }
+
+    // Cache results for 24 hours
+    await setInCache(cacheKey, budgets, { ex: 86400 });
+
+    return NextResponse.json(budgets);
+  } catch (error) {
+    console.error('Error in budgets API:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+```
+
+### **Data Access Layer**:
+```typescript
+// src/lib/api/dataAccess.ts
+import { getServiceSupabase } from '@/lib/supabase';
+import { getFromCache, setInCache } from '@/lib/cache';
+import type { Database } from '@/types/supabase';
+
+// Base class for all data access
+class QueryBuilder<T> {
+  protected table: string;
+  protected defaultTTL: number = 3600; // 1 hour default cache
+
+  constructor(table: string) {
+    this.table = table;
+  }
+
+  protected async getFromCache<T>(key: string): Promise<T | null> {
+    return getFromCache<T>(key);
+  }
+
+  protected async setInCache<T>(key: string, data: T, ttl: number = this.defaultTTL): Promise<void> {
+    await setInCache(key, data, { ex: ttl });
+  }
+
+  protected getCacheKey(...parts: (string | number)[]): string {
+    return `${this.table}:${parts.join(':')}`;
+  }
+}
+
+// Department data access
+class DepartmentAccess extends QueryBuilder<Database['public']['Tables']['departments']['Row']> {
+  constructor() {
+    super('departments');
+  }
+
+  async getDepartments(fiscalYear?: number) {
+    const cacheKey = this.getCacheKey('all', fiscalYear || 'all');
+    const cached = await this.getFromCache(cacheKey);
+    if (cached) return cached;
+
+    const supabase = getServiceSupabase();
+    let query = supabase.from('departments').select('*');
+    
+    if (fiscalYear) {
+      query = query.eq('fiscal_year', fiscalYear);
+    }
+
+    const { data, error } = await query;
+    if (error) throw error;
+
+    await this.setInCache(cacheKey, data);
+    return data;
+  }
+
+  async getDepartmentBySlug(slug: string) {
+    const cacheKey = this.getCacheKey('slug', slug);
+    const cached = await this.getFromCache(cacheKey);
+    if (cached) return cached;
+
+    const supabase = getServiceSupabase();
+    const { data, error } = await supabase
+      .from('departments')
+      .select('*')
+      .eq('slug', slug)
+      .single();
+
+    if (error) throw error;
+    await this.setInCache(cacheKey, data);
+    return data;
+  }
+}
+
+// Vendor data access
+class VendorAccess extends QueryBuilder<Database['public']['Tables']['vendors']['Row']> {
+  constructor() {
+    super('vendors');
+  }
+
+  async getVendors(filters: {
+    fiscalYear?: number;
+    sortBy?: 'total_amount' | 'transaction_count';
+    limit?: number;
+  } = {}) {
+    const { fiscalYear, sortBy = 'total_amount', limit = 10 } = filters;
+    const cacheKey = this.getCacheKey('list', fiscalYear || 'all', sortBy, limit);
+    const cached = await this.getFromCache(cacheKey);
+    if (cached) return cached;
+
+    const supabase = getServiceSupabase();
+    let query = supabase.from('vendors').select('*');
+
+    if (fiscalYear) {
+      query = query.eq('fiscal_year', fiscalYear);
+    }
+
+    query = query.order(sortBy, { ascending: false }).limit(limit);
+    const { data, error } = await query;
+
+    if (error) throw error;
+    await this.setInCache(cacheKey, data);
+    return data;
+  }
+}
+
+// Search data access
+class SearchAccess extends QueryBuilder<Database['public']['Tables']['search_index']['Row']> {
+  constructor() {
+    super('search');
+  }
+
+  async search(query: string, options: {
+    types?: string[];
+    limit?: number;
+  } = {}) {
+    const { types, limit = 10 } = options;
+    const cacheKey = this.getCacheKey('query', query, types?.join(',') || 'all', limit);
+    const cached = await this.getFromCache(cacheKey);
+    if (cached) return cached;
+
+    const supabase = getServiceSupabase();
+    let searchQuery = supabase
+      .from('search_index')
+      .select('*')
+      .textSearch('fts', query, {
+        type: 'websearch',
+        config: 'english'
+      });
+
+    if (types?.length) {
+      searchQuery = searchQuery.in('type', types);
+    }
+
+    const { data, error } = await searchQuery.limit(limit);
+    if (error) throw error;
+
+    await this.setInCache(cacheKey, data);
+    return data;
+  }
+}
+
+// Spend data access
+class SpendAccess extends QueryBuilder<Database['public']['Tables']['vendor_transactions']['Row']> {
+  constructor() {
+    super('spend');
+  }
+
+  async getSpendData(filters: {
+    fiscalYear?: number;
+    departmentCode?: string;
+    vendorId?: string;
+    programCode?: string;
+    fundCode?: string;
+  } = {}) {
+    const cacheKey = this.getCacheKey('spend', JSON.stringify(filters));
+    const cached = await this.getFromCache(cacheKey);
+    if (cached) return cached;
+
+    const supabase = getServiceSupabase();
+    let query = supabase.from('vendor_transactions').select('*');
+
+    if (filters.fiscalYear) {
+      query = query.eq('fiscal_year', filters.fiscalYear);
+    }
+    if (filters.departmentCode) {
+      query = query.eq('department_code', filters.departmentCode);
+    }
+    if (filters.vendorId) {
+      query = query.eq('vendor_id', filters.vendorId);
+    }
+    if (filters.programCode) {
+      query = query.eq('program_code', filters.programCode);
+    }
+    if (filters.fundCode) {
+      query = query.eq('fund_code', filters.fundCode);
+    }
+
+    const { data, error } = await query;
+    if (error) throw error;
+
+    await this.setInCache(cacheKey, data);
+    return data;
+  }
+}
+
+// Export singleton instances
+export const departments = new DepartmentAccess();
+export const vendors = new VendorAccess();
+export const search = new SearchAccess();
+export const spend = new SpendAccess();
+```
+
+### **Supabase Client Setup**:
 ```typescript
 // src/lib/supabase.ts
 import { createClient } from '@supabase/supabase-js';
@@ -681,364 +2001,28 @@ export const getServiceSupabase = () => {
 };
 ```
 
-B. **API Routes Updates (Examples)**:
-
-1. **Search API**:
-```typescript
-// src/app/api/search/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import { getServiceSupabase } from '@/lib/supabase';
-import { kv } from '@vercel/kv';
-
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const query = searchParams.get('q') || '';
-  const limit = parseInt(searchParams.get('limit') || '10');
-  const offset = parseInt(searchParams.get('offset') || '0');
-  
-  // Cache key based on query parameters
-  const cacheKey = `search:${query}:${limit}:${offset}`;
-  
-  // Try to get from cache first
-  const cachedResults = await kv.get(cacheKey);
-  if (cachedResults) {
-    return NextResponse.json(cachedResults);
-  }
-  
-  const supabase = getServiceSupabase();
-  
-  // Perform search with proper pagination
-  const { data, error, count } = await supabase
-    .from('search_index')
-    .select('*', { count: 'exact' })
-    .ilike('term', `%${query}%`)
-    .order('term')
-    .range(offset, offset + limit - 1);
-    
-  if (error) {
-    return NextResponse.json(
-      { error: 'Search failed', details: error.message },
-      { status: 500 }
-    );
-  }
-  
-  const results = {
-    items: data,
-    total: count,
-    limit,
-    offset,
-    query
-  };
-  
-  // Cache results for 1 hour
-  await kv.set(cacheKey, results, { ex: 3600 });
-  
-  return NextResponse.json(results);
-}
-```
-
-2. **Vendors API**:
-```typescript
-// src/app/api/vendors/top/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import { getServiceSupabase } from '@/lib/supabase';
-import { kv } from '@vercel/kv';
-
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const year = parseInt(searchParams.get('year') || new Date().getFullYear().toString());
-  const limit = parseInt(searchParams.get('limit') || '10');
-  
-  // Cache key
-  const cacheKey = `vendors:top:${year}:${limit}`;
-  
-  // Try to get from cache first
-  const cachedResults = await kv.get(cacheKey);
-  if (cachedResults) {
-    return NextResponse.json(cachedResults);
-  }
-  
-  const supabase = getServiceSupabase();
-  
-  // Get top vendors by total amount
-  const { data, error } = await supabase
-    .from('vendors')
-    .select('*')
-    .eq('fiscal_year', year)
-    .order('total_amount', { ascending: false })
-    .limit(limit);
-    
-  if (error) {
-    return NextResponse.json(
-      { error: 'Failed to fetch top vendors', details: error.message },
-      { status: 500 }
-    );
-  }
-  
-  // Cache results for 24 hours
-  await kv.set(cacheKey, { vendors: data, year, limit }, { ex: 86400 });
-  
-  return NextResponse.json({ vendors: data, year, limit });
-}
-```
-
-3. **Department API**:
-```typescript
-// src/app/api/departments/[slug]/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import { getServiceSupabase } from '@/lib/supabase';
-import { kv } from '@vercel/kv';
-
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { slug: string } }
-) {
-  const slug = params.slug;
-  
-  // Cache key
-  const cacheKey = `department:${slug}`;
-  
-  // Try to get from cache first
-  const cachedDepartment = await kv.get(cacheKey);
-  if (cachedDepartment) {
-    return NextResponse.json(cachedDepartment);
-  }
-  
-  const supabase = getServiceSupabase();
-  
-  // Get department by slug
-  const { data: department, error: deptError } = await supabase
-    .from('departments')
-    .select('*')
-    .eq('slug', slug)
-    .single();
-    
-  if (deptError || !department) {
-    return NextResponse.json(
-      { error: 'Department not found' },
-      { status: 404 }
-    );
-  }
-  
-  // Get spending data
-  const { data: spending, error: spendingError } = await supabase
-    .from('department_spending')
-    .select('*')
-    .eq('department_code', department.organizational_code)
-    .order('fiscal_year', { ascending: false });
-    
-  // Get workforce data
-  const { data: workforce, error: workforceError } = await supabase
-    .from('department_workforce')
-    .select('*')
-    .eq('department_code', department.organizational_code)
-    .order('fiscal_year', { ascending: false });
-    
-  // Get distributions
-  const { data: distributions, error: distributionsError } = await supabase
-    .from('department_distributions')
-    .select('*')
-    .eq('department_code', department.organizational_code);
-    
-  // Format the results to match the existing structure
-  const result = {
-    ...department,
-    spending: {
-      yearly: spending?.reduce((acc, item) => {
-        acc[item.fiscal_year] = item.total_amount;
-        return acc;
-      }, {} as Record<number, number>)
-    },
-    headCount: {
-      yearly: workforce?.reduce((acc, item) => {
-        acc[item.fiscal_year] = item.head_count;
-        return acc;
-      }, {} as Record<number, number>)
-    },
-    wages: {
-      yearly: workforce?.reduce((acc, item) => {
-        acc[item.fiscal_year] = item.total_wages;
-        return acc;
-      }, {} as Record<number, number>)
-    }
-    // Additional formatting for other properties...
-  };
-  
-  // Cache the result for 24 hours
-  await kv.set(cacheKey, result, { ex: 86400 });
-  
-  return NextResponse.json(result);
-}
-```
-
-C. **Frontend Component Updates**:
-
-1. **Search Component Update**:
-```typescript
-// src/components/SearchComponent.tsx
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
-export function SearchComponent() {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  
-  useEffect(() => {
-    if (!query) {
-      setResults([]);
-      return;
-    }
-    
-    const searchTimeout = setTimeout(async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-        const data = await response.json();
-        setResults(data.items);
-      } catch (error) {
-        console.error('Search error:', error);
-      } finally {
-        setLoading(false);
-      }
-    }, 300);
-    
-    return () => clearTimeout(searchTimeout);
-  }, [query]);
-  
-  const handleResultClick = (result) => {
-    // Navigate based on result type
-    switch (result.type) {
-      case 'department':
-        router.push(`/departments/${result.additional_data.display.slug}`);
-        break;
-      case 'vendor':
-        router.push(`/vendors/${result.source_id}`);
-        break;
-      default:
-        router.push(`/search/results?q=${encodeURIComponent(query)}`);
-    }
-  };
-  
-  return (
-    <div className="search-container">
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search departments, vendors, programs..."
-        className="search-input"
-      />
-      
-      {loading && <div className="search-loading">Loading...</div>}
-      
-      {results.length > 0 && (
-        <ul className="search-results">
-          {results.map((result) => (
-            <li 
-              key={`${result.type}-${result.source_id}`}
-              onClick={() => handleResultClick(result)}
-              className="search-result-item"
-            >
-              <span className="result-type">{result.type}</span>
-              <span className="result-name">{result.term}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-```
-
-D. **Data Access Layer**:
-```typescript
-// src/lib/data/vendors.ts
-import { getServiceSupabase } from '@/lib/supabase';
-import { kv } from '@vercel/kv';
-
-export async function getTopVendors(year: number, limit: number = 10) {
-  const cacheKey = `vendors:top:${year}:${limit}`;
-  
-  // Try to get from cache first
-  const cached = await kv.get(cacheKey);
-  if (cached) return cached;
-  
-  const supabase = getServiceSupabase();
-  
-  const { data, error } = await supabase
-    .from('vendors')
-    .select('*')
-    .eq('fiscal_year', year)
-    .order('total_amount', { ascending: false })
-    .limit(limit);
-    
-  if (error) throw new Error(`Failed to fetch top vendors: ${error.message}`);
-  
-  const result = { vendors: data, year, limit };
-  
-  // Cache for 24 hours
-  await kv.set(cacheKey, result, { ex: 86400 });
-  
-  return result;
-}
-
-export async function getVendorById(id: string) {
-  const cacheKey = `vendor:${id}`;
-  
-  // Try to get from cache first
-  const cached = await kv.get(cacheKey);
-  if (cached) return cached;
-  
-  const supabase = getServiceSupabase();
-  
-  const { data, error } = await supabase
-    .from('vendors')
-    .select('*')
-    .eq('id', id)
-    .single();
-    
-  if (error) throw new Error(`Vendor not found: ${error.message}`);
-  
-  // Cache for 24 hours
-  await kv.set(cacheKey, data, { ex: 86400 });
-  
-  return data;
-}
-
-// Similar functions for other vendor-related operations...
-```
-
-E. **Required Package Updates**:
+### **Required Package Updates**:
 ```json
 // package.json additions
 {
   "dependencies": {
     "@supabase/supabase-js": "^2.20.0",
-    "@vercel/kv": "^0.2.0"
+    "@upstash/redis": "^1.28.4"
   }
 }
 ```
 
-5. **Vercel Configuration**
+## **Vercel Configuration**
 
-A. **Environment Variables**:
-```yaml
-# .env.example
-NEXT_PUBLIC_SUPABASE_URL=your-project-url.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_KEY=your-service-key
-KV_URL=your-kv-url
-KV_REST_API_URL=your-kv-rest-api-url
-KV_REST_API_TOKEN=your-kv-rest-api-token
-KV_REST_API_READ_ONLY_TOKEN=your-kv-read-only-token
-```
+### **Environment Variables**:
+- created by creating the upstash kv through vercel storage
+- var saved to .env.local for testing and vercel env var automatically
 
-B. **Vercel Project Settings**:
+### **Vercel Project Settings**:
 ```json
 // vercel.json
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
     {
       "path": "/api/cron/update-data",
@@ -1054,12 +2038,21 @@ B. **Vercel Project Settings**:
           "value": "public, max-age=60, stale-while-revalidate=600"
         }
       ]
+    },
+    {
+      "source": "/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ],
-  "regions": ["sfo1"],
   "functions": {
     "api/vendors/top/route.ts": {
-      "memory": 1024
+      "memory": 1024,
+      "maxDuration": 10
     },
     "api/search/route.ts": {
       "memory": 1024,
@@ -1069,14 +2062,24 @@ B. **Vercel Project Settings**:
       "memory": 2048,
       "maxDuration": 15
     }
-  }
+  },
+  "regions": ["sfo1"],
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next"
 }
 ```
 
-C. **KV Cache Configuration**:
+### **Upstash KV Cache Configuration**:
 ```typescript
 // src/lib/cache.ts
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+import type { SetCommandOptions } from '@upstash/redis';
+
+// Redis.fromEnv() will automatically read UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN
+const redis = Redis.fromEnv();
 
 export type CacheOptions = {
   ex?: number; // Expiration in seconds
@@ -1084,27 +2087,46 @@ export type CacheOptions = {
   tags?: string[]; // Tags for cache invalidation
 };
 
+/**
+ * Get a value from the cache
+ * @param key The cache key
+ * @returns The cached value or null if not found
+ */
 export async function getFromCache<T>(key: string): Promise<T | null> {
   try {
-    return await kv.get<T>(key);
+    return await redis.get<T>(key);
   } catch (error) {
     console.error('Cache get error:', error);
     return null;
   }
 }
 
+/**
+ * Set a value in the cache
+ * @param key The cache key
+ * @param value The value to cache
+ * @param options Cache options including expiration and tags
+ */
 export async function setInCache<T>(
   key: string, 
   value: T, 
   options: CacheOptions = {}
 ): Promise<void> {
   try {
-    await kv.set(key, value, options);
+    const { tags, ...redisOptions } = options;
+    // Type assertion needed due to Upstash Redis type definitions being more restrictive than necessary.
+    // The options we're passing are valid at runtime, but TypeScript's type system is too strict.
+    const setOptions = {
+      ex: redisOptions.ex,
+      nx: redisOptions.nx ? true : undefined
+    } as unknown as SetCommandOptions;
+    
+    await redis.set(key, value, setOptions);
     
     // If tags are provided, store key references for later invalidation
-    if (options.tags && options.tags.length > 0) {
-      for (const tag of options.tags) {
-        await kv.sadd(`tag:${tag}`, key);
+    if (tags && tags.length > 0) {
+      for (const tag of tags) {
+        await redis.sadd(`tag:${tag}`, key);
       }
     }
   } catch (error) {
@@ -1112,14 +2134,18 @@ export async function setInCache<T>(
   }
 }
 
+/**
+ * Invalidate all cache entries with a specific tag
+ * @param tag The tag to invalidate
+ */
 export async function invalidateByTag(tag: string): Promise<void> {
   try {
     // Get all keys with this tag
-    const keys = await kv.smembers<string>(`tag:${tag}`);
+    const keys = await redis.smembers<string[]>(`tag:${tag}`);
     
     // Delete all keys
-    if (keys.length > 0) {
-      await kv.del(...keys, `tag:${tag}`);
+    if (keys && keys.length > 0) {
+      await redis.del(...keys, `tag:${tag}`);
     }
   } catch (error) {
     console.error('Cache invalidation error:', error);
@@ -1127,57 +2153,7 @@ export async function invalidateByTag(tag: string): Promise<void> {
 }
 ```
 
-D. **CRON API for Data Updates**:
-```typescript
-// src/app/api/cron/update-data/route.ts
-import { NextResponse } from 'next/server';
-import { exec } from 'child_process';
-import { promisify } from 'util';
-import { invalidateByTag } from '@/lib/cache';
-
-const execAsync = promisify(exec);
-
-// Vercel will call this endpoint based on the cron schedule in vercel.json
-export async function GET(request: Request) {
-  // Verify that this is a legitimate cron request
-  const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET_KEY}`) {
-    return new Response('Unauthorized', { status: 401 });
-  }
-  
-  try {
-    // Run data generation script (this would normally be part of the CI/CD process)
-    // but for completeness, we include it here
-    console.log('Running data generation...');
-    await execAsync('npm run generate-data');
-    
-    // Update Supabase with new data
-    console.log('Updating Supabase...');
-    await execAsync('npm run update-supabase');
-    
-    // Invalidate relevant caches
-    console.log('Invalidating cache...');
-    await invalidateByTag('vendors');
-    await invalidateByTag('departments');
-    await invalidateByTag('search');
-    
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Data update completed successfully' 
-    });
-  } catch (error) {
-    console.error('Data update failed:', error);
-    return NextResponse.json({ 
-      success: false, 
-      error: error instanceof Error ? error.message : String(error) 
-    }, { status: 500 });
-  }
-}
-```
-
-6. **CDN Configuration**
-
-A. **Edge Caching Strategy**:
+### **CDN Configuration**:
 ```typescript
 // middleware.ts
 import { NextResponse } from 'next/server';
@@ -1226,177 +2202,51 @@ export const config = {
 };
 ```
 
-7. **Additional Considerations**
+## **Implementation Steps**
 
-A. **Monitoring Setup**:
-```typescript
-// src/lib/monitoring.ts
-import { Datadog } from '@datadog/browser-rum';
-import { createClient } from '@supabase/supabase-js';
+### **Step 1: Setup and Planning** 
 
-// Initialize monitoring
-export function initMonitoring() {
-  if (process.env.NEXT_PUBLIC_DATADOG_APP_ID) {
-    Datadog.init({
-      applicationId: process.env.NEXT_PUBLIC_DATADOG_APP_ID,
-      clientToken: process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN!,
-      site: 'datadoghq.com',
-      service: 'cali-doge-frontend',
-      env: process.env.NEXT_PUBLIC_VERCEL_ENV,
-      version: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
-      trackInteractions: true,
-      defaultPrivacyLevel: 'mask-user-input'
-    });
-  }
-}
+1. Create Supabase project and set up proper access controls ✅ COMPLETED
+2. Manually create database tables with appropriate indexes ✅ COMPLETED
+3. Develop and test migration scripts for smaller datasets ✅ COMPLETED
+4. Configure Vercel with required environment variables ✅ COMPLETED
+5. Update package.json with new dependencies ✅ COMPLETED
 
-// Log Supabase query performance
-export async function logQueryPerformance<T>(
-  tableName: string,
-  operation: string,
-  callback: () => Promise<T>
-): Promise<T> {
-  const start = performance.now();
-  
-  try {
-    const result = await callback();
-    const duration = performance.now() - start;
-    
-    // Log to monitoring system
-    console.log(`[DB] ${operation} on ${tableName} took ${duration.toFixed(2)}ms`);
-    
-    if (duration > 1000) {
-      // Alert on slow queries
-      console.warn(`[DB] Slow query: ${operation} on ${tableName} took ${duration.toFixed(2)}ms`);
-    }
-    
-    return result;
-  } catch (error) {
-    const duration = performance.now() - start;
-    console.error(`[DB] Error in ${operation} on ${tableName} after ${duration.toFixed(2)}ms:`, error);
-    throw error;
-  }
-}
-```
+### **Step 2: Initial Migration** 
 
-B. **Error Handling Strategy**:
-```typescript
-// src/lib/error-handling.ts
-import * as Sentry from '@sentry/nextjs';
+1. Migrate departments, programs, funds, vendor data 🔄 IN PROGRESS
+2. Implement data access functions
+3. Implement API routes for departments, vendors, search
+4. Test validation scripts to verify data integrity
+5. Implement caching strategy
+6. Implement jest tests
+7. 
 
-export function initErrorHandling() {
-  if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-    Sentry.init({
-      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-      environment: process.env.NEXT_PUBLIC_VERCEL_ENV,
-      release: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA
-    });
-  }
-}
+### **Step 3: Frontend Updates**
 
-export function captureError(error: Error, context?: Record<string, any>) {
-  console.error('Error:', error, context);
-  
-  if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-    Sentry.captureException(error, { extra: context });
-  }
-}
-
-export class ApiError extends Error {
-  public statusCode: number;
-  
-  constructor(message: string, statusCode: number = 500) {
-    super(message);
-    this.statusCode = statusCode;
-    this.name = 'ApiError';
-  }
-}
-
-export function handleApiError(error: unknown) {
-  if (error instanceof ApiError) {
-    return { error: error.message, statusCode: error.statusCode };
-  }
-  
-  captureError(error instanceof Error ? error : new Error(String(error)));
-  
-  return { 
-    error: 'An unexpected error occurred', 
-    statusCode: 500 
-  };
-}
-```
-
-8. **Implementation Phases**
-
-A. **Phase 1: Setup and Planning** (Week 1)
-1. Create Supabase project
-2. Set up database structure
-3. Develop initial migration scripts
-4. Set up monitoring and error reporting
-5. Configure Vercel environment
-
-Tasks:
-- Create Supabase project and set up proper access controls
-- Create database tables with appropriate indexes
-- Develop and test migration scripts for smaller datasets
-- Set up Datadog/Sentry for monitoring
-- Configure Vercel with required environment variables
-- Update package.json with new dependencies
-
-B. **Phase 2: Initial Migration** (Weeks 2-3)
-1. Migrate static reference data
-2. Migrate historical vendor data
-3. Create and test data access layer
-4. Develop API routes
-5. Test and validate data integrity
-
-Tasks:
-- Migrate departments, programs, funds data
-- Migrate vendor data (start with smaller datasets)
-- Develop and test data access functions
-- Implement API routes for departments, vendors, search
-- Create validation scripts to verify data integrity
-- Implement caching strategy
-- Deploy to staging environment for testing
-
-C. **Phase 3: Frontend Updates** (Weeks 3-4)
-1. Update components to use new data sources
-2. Implement UI for displaying transaction data
-3. Update search functionality
-4. Test performance and user experience
-5. Implement error handling
-
-Tasks:
 - Update all components to use new API routes
 - Create reusable hooks for data fetching
 - Implement pagination for large datasets
 - Test performance and optimize where needed
 - Add proper loading states and error handling
 - Test cross-browser compatibility
+- Add search query operator documentation and examples
+- Implement search result highlighting
+- Add search filters and type selection
+- Implement search analytics tracking
 
-D. **Phase 4: Testing & Optimization** (Week 5)
-1. Performance testing
-2. Security auditing
-3. Optimization of queries and caching
-4. Load testing with production-like data
-5. Rollback procedure testing
+### **Step 4: Testing & Optimization**
 
-Tasks:
 - Conduct comprehensive testing of all API routes
 - Optimize SQL queries for performance
 - Test caching strategy under load
 - Security audit of Supabase configuration
 - Develop and test rollback procedures
 - Optimize frontend performance
+- Migrate vendor data (2016 - 2022)
 
-E. **Phase 5: Final Migration & Launch** (Week 6)
-1. Complete migration of all data
-2. Switch production environment to new data sources
-3. Monitor performance and errors
-4. Implement any required fixes
-5. Document the new system
+### **Step 5: Final Migration & Launch**
 
-Tasks:
 - Complete final data migration
 - Switch API routes to use Supabase in production
 - Monitor closely for errors or performance issues
@@ -1404,3 +2254,9 @@ Tasks:
 - Train team on new system
 - Develop plan for ongoing maintenance
 
+### **Step 6: Protect IP**
+
+- move processing scripts, json and text data as result of processing to backend private repository
+- remove these files from git history
+- cali-doge will become frontend application
+- backend will support the commercial data analytics business
