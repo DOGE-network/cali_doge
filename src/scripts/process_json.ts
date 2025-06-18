@@ -1,5 +1,5 @@
 /**
- * Supabase Database Update Script
+ * process_json - Supabase Database Update Script
  * 
  * This script updates the Supabase database with the latest data from various JSON files.
  * It handles the following data types:
@@ -98,7 +98,7 @@
  * 
  * Logging:
  * - Console logs for immediate feedback
- * - File logs in src/logs/supabase_update_YYYY-MM-DDTHH-mm-ss-SSSZ.log
+ * - File logs in src/logs/process_json_YYYY-MM-DDTHH-mm-ss-SSSZ.log
  * - Transaction ID tracking for correlation
  * 
  * Error Handling:

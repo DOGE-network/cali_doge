@@ -34,6 +34,14 @@ if [ $EXIT_CODE -eq 0 ]; then
 fi
 
 if [ $EXIT_CODE -eq 0 ]; then
+    echo "Running unit tests..."
+    if ! $NPM_PATH run test:dev; then
+        echo "❌ Unit tests failed. Please fix the unit test errors above and try committing again."
+        EXIT_CODE=1
+    fi
+fi
+
+if [ $EXIT_CODE -eq 0 ]; then
     echo "✅ All checks passed!"
 else
     echo "❌ Some checks failed. See above for details."

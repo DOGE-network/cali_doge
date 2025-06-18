@@ -19,8 +19,11 @@
     "process-budgets": "npx tsx src/scripts/process_budgets.ts",
     "download-vendors": "node src/scripts/download_vendor_transactions.js",
     "process-vendors": "npx tsx src/scripts/process_vendors.ts",
-    "test": "jest",
-    "update-supabase": "npx tsx src/scripts/update_supabase.ts"
+    "test": "jest --config jest.config.js",
+    "test:dev": "TEST_MODE=mock jest --config jest.config.js",
+    "test:watch": "jest --config jest.config.js --watch",
+    "process-json": "npx tsx src/scripts/process_json.ts",
+    "update-supabase-types": "npx supabase gen types typescript --project-id sdopdxbeiqrktcmskplt > src/types/supabase.ts"
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.2.2",

@@ -1,13 +1,37 @@
 import { NextResponse } from 'next/server';
-import { getVendorsData, readJsonFile } from '@/lib/api/dataAccess';
 import { getDepartmentSlugs } from '@/lib/blog';
 import type { DepartmentsJSON } from '@/types/department';
 import type { BudgetsJSON } from '@/types/budget';
 import type { ProgramsJSON } from '@/types/program';
 import type { FundsJSON } from '@/types/fund';
+import fs from 'fs';
+import path from 'path';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
+
+// Helper function to read JSON files
+async function readJsonFile(filename: string): Promise<any> {
+  try {
+    const filePath = path.join(process.cwd(), 'src/data', filename);
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(fileContent);
+  } catch (error) {
+    console.error(`Error reading ${filename}:`, error);
+    throw new Error(`Failed to read ${filename}`);
+  }
+}
+
+// Helper function to get vendors data
+async function getVendorsData(year: string): Promise<any> {
+  try {
+    const filename = `vendors_${year}.json`;
+    return readJsonFile(filename);
+  } catch (error) {
+    console.error(`Error getting vendors data for ${year}:`, error);
+    throw new Error(`Failed to get vendors data for ${year}`);
+  }
+}
 
 // Types
 interface SpendingRecord {
