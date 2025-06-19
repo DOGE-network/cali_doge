@@ -1,6 +1,174 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1935816531444990228"
+      ],
+      "text": "@DataRepublican I published tsv version at https://t.co/gRfU8xhDxY\n\nWith the next release of California DOGE 1.7, it will be  using these csv and tsv on build to create search groups. This should make looking at these orgs a bit easier.",
+      "entities": {
+        "annotations": [
+          {
+            "start": 28,
+            "end": 30,
+            "probability": 0.7163,
+            "type": "Other",
+            "normalized_text": "tsv"
+          },
+          {
+            "start": 93,
+            "end": 111,
+            "probability": 0.738,
+            "type": "Other",
+            "normalized_text": "California DOGE 1.7"
+          },
+          {
+            "start": 146,
+            "end": 148,
+            "probability": 0.4127,
+            "type": "Other",
+            "normalized_text": "tsv"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          }
+        ],
+        "urls": [
+          {
+            "start": 43,
+            "end": 66,
+            "url": "https://t.co/gRfU8xhDxY",
+            "expanded_url": "https://github.com/DOGE-network/tables/blob/master/source/Open_Society_Grants_19jun25.tsv",
+            "display_url": "github.com/DOGE-network/t…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1935816535479865344/dWBTC2mB?format=jpg&name=orig",
+                "width": 1200,
+                "height": 600
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1935816535479865344/dWBTC2mB?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "tables/source/Open_Society_Grants_19jun25.tsv at master · DOGE-network/tables",
+            "description": "holds source data for cali-doge and other transparency tools to utilize - DOGE-network/tables",
+            "unwound_url": "https://github.com/DOGE-network/tables/blob/master/source/Open_Society_Grants_19jun25.tsv"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at": "2025-06-19T21:46:41.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1935816531444990228",
+      "created_at_formatted": "Jun 19, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -16997,8 +17165,8 @@
     }
   ],
   "meta": {
-    "result_count": 155,
-    "newest_id": "1935007612543873139",
+    "result_count": 156,
+    "newest_id": "1935816531444990228",
     "oldest_id": "1882144700762878208"
   }
 }
