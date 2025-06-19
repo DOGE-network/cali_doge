@@ -8,6 +8,22 @@ from
   vendor_transactions vt
   join vendors v on vt.vendor_id = v.id;
 
+CREATE MATERIALIZED VIEW vendor_totals_all_years AS
+SELECT 
+  vendor_id,
+  vendor_name,
+  SUM(amount) as total_amount,
+  COUNT(*) as transaction_count,
+  ARRAY_AGG(DISTINCT fiscal_year) as years,
+  ARRAY_AGG(DISTINCT department_code) as departments,
+  ARRAY_AGG(DISTINCT program_code) as programs,
+  ARRAY_AGG(DISTINCT fund_code) as funds,
+  ARRAY_AGG(DISTINCT category) as categories,
+  ARRAY_AGG(DISTINCT description) as descriptions
+FROM vendor_transactions_with_vendor
+GROUP BY vendor_id, vendor_name;
+
+
 CREATE MATERIALIZED VIEW budget_line_items_with_names AS
 SELECT
   bli.id,
@@ -94,3 +110,4 @@ CREATE INDEX IF NOT EXISTS idx_department_compare_summary_department_code_year O
 CREATE INDEX IF NOT EXISTS idx_program_compare_summary_program_code_year ON program_compare_summary(program_code, year);
 CREATE INDEX IF NOT EXISTS idx_vendor_transactions_with_vendor_vendor_code_year ON vendor_transactions_with_vendor(vendor_name, program_code, fiscal_year);
 CREATE INDEX IF NOT EXISTS idx_budget_line_items_with_names_project_code_year ON budget_line_items_with_names(project_code, fiscal_year);
+CREATE INDEX idx_vendor_totals_amount ON vendor_totals_all_years(total_amount DESC);
