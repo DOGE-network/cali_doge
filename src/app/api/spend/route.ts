@@ -1,10 +1,5 @@
 import { NextResponse } from 'next/server';
-import { departments, programs, funds } from '@/lib/api/dataAccess';
 import { parseFilterValue, matchesFilter } from '@/lib/utils';
-import type { Database } from '@/types/supabase';
-type Department = Database['public']['Tables']['departments']['Row'];
-type Program = Database['public']['Tables']['programs']['Row'];
-type Fund = Database['public']['Tables']['funds']['Row'];
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -182,11 +177,11 @@ export async function GET(request: Request) {
         if (fundParam) {
           query = query.ilike('fund_name', `%${fundParam}%`);
         }
-        if (filter) {
+      if (filter) {
           // Free-text filter across department, program, fund
           const filterValue = `%${filter}%`;
           query = query.or(`department_name.ilike.${filterValue},program_name.ilike.${filterValue},fund_name.ilike.${filterValue}`);
-        }
+      }
 
         // Sorting
         const sortable = {
@@ -220,24 +215,24 @@ export async function GET(request: Request) {
 
         // Pagination metadata
         const totalItems = count ?? mappedRecords.length;
-        const totalPages = Math.ceil(totalItems / limit);
+      const totalPages = Math.ceil(totalItems / limit);
         const paginatedRecords = mappedRecords;
         const totalAmount = mappedRecords.reduce((sum, record) => sum + record.amount, 0);
         const recordCount = mappedRecords.length;
 
         console.debug('[Budget API] Returning response', { totalItems, totalPages, recordCount, totalAmount });
-        return NextResponse.json({
-          spending: paginatedRecords,
-          pagination: {
-            currentPage: page,
-            totalPages,
-            totalItems,
-            itemsPerPage: limit,
-            hasNextPage: page < totalPages,
+      return NextResponse.json({
+        spending: paginatedRecords,
+        pagination: {
+          currentPage: page,
+          totalPages,
+          totalItems,
+          itemsPerPage: limit,
+          hasNextPage: page < totalPages,
             hasPrevPage: page > 1,
-          },
-          summary: {
-            totalAmount,
+        },
+        summary: {
+          totalAmount,
             recordCount,
           },
           availableYears: [],
@@ -248,112 +243,93 @@ export async function GET(request: Request) {
       }
     }
     if (view === 'compare') {
-      const compareBy = searchParams.get('compareBy') || 'department';
-      const { data: transactions, error: txError } = await supabase
-        .from('vendor_transactions')
-        .select('*');
-      if (txError) throw txError;
-      const { data: budgets, error: budgetError } = await supabase
-        .from('budgets')
-        .select('*, budget_line_items(project_code, fund_code, amount)', { count: 'exact' });
-      if (budgetError) throw budgetError;
-      const departmentMap = new Map<string, string>();
-      const programMap = new Map<string, string>();
-      const fundMap = new Map<string, string>();
-      (await departments.getDepartments() as Department[]).forEach(dept => {
-        if (dept.organizational_code && dept.name) {
-          departmentMap.set(dept.organizational_code, dept.name);
-        }
-      });
-      (await programs.getPrograms({}) as Program[]).forEach(prog => {
-        if (prog.project_code && prog.name) {
-          programMap.set(prog.project_code, prog.name);
-        }
-      });
-      (await funds.getFunds({}) as Fund[]).forEach(fund => {
-        if (fund.fund_code && fund.name) {
-          fundMap.set(fund.fund_code, fund.name);
-        }
-      });
-      const vendorAgg = new Map();
-      transactions.forEach(tx => {
-        let key = '';
-        if (compareBy === 'department') key = departmentMap.get(tx.department_code) || 'Unknown Department';
-        else if (compareBy === 'program') key = programMap.get(tx.program_code) || 'Unknown Program';
-        else if (compareBy === 'fund') key = fundMap.get(tx.fund_code) || 'Unknown Fund';
-        if (!key) key = 'Unknown';
-        const mapKey = `${key}`;
-        const prev = vendorAgg.get(mapKey);
-        vendorAgg.set(mapKey, {
-          key,
-          vendorAmount: (prev?.vendorAmount || 0) + (tx.amount || 0)
-        });
-      });
-      const budgetAgg = new Map();
-      budgets.forEach(budget => {
-        (budget.budget_line_items || []).forEach(item => {
-          let key = '';
-          if (compareBy === 'department') key = departmentMap.get(budget.department_code) || 'Unknown Department';
-          else if (compareBy === 'program') key = programMap.get(item.project_code) || 'Unknown Program';
-          else if (compareBy === 'fund') key = fundMap.get(item.fund_code) || 'Unknown Fund';
-          if (!key) key = 'Unknown';
-          const mapKey = `${key}`;
-          const prev = budgetAgg.get(mapKey);
-          budgetAgg.set(mapKey, {
-            key,
-            budgetAmount: (prev?.budgetAmount || 0) + (item.amount || 0)
-          });
-        });
-      });
-      const allKeysArr = Array.from(new Set([
-        ...Array.from(vendorAgg.keys()),
-        ...Array.from(budgetAgg.keys())
-      ]));
-      let compareRecords = allKeysArr.map(mapKey => {
-        const v = vendorAgg.get(mapKey);
-        const b = budgetAgg.get(mapKey);
-        return {
-          [compareBy]: v?.key || b?.key || 'Unknown',
-          vendorAmount: v?.vendorAmount || 0,
-          budgetAmount: b?.budgetAmount || 0
+      try {
+        const compareBy = searchParams.get('compareBy') || 'department';
+        const startIndex = (page - 1) * limit;
+        const endIndex = startIndex + limit - 1;
+        const yearParam = searchParams.get('year');
+
+        // Map compareBy to summary table and columns
+        const compareConfig = {
+          fund: {
+            table: 'fund_compare_summary',
+            codeField: 'fund_code',
+            nameField: 'fund_name',
+          },
+          department: {
+            table: 'department_compare_summary',
+            codeField: 'department_code',
+            nameField: 'department_name',
+          },
+          program: {
+            table: 'program_compare_summary',
+            codeField: 'program_code',
+            nameField: 'program_name',
+          },
         };
-      });
-      if (sort === 'vendorAmount' || sort === 'budgetAmount') {
-        const multiplier = order === 'asc' ? 1 : -1;
-        compareRecords.sort((a, b) => multiplier * ((a[sort] || 0) - (b[sort] || 0)));
-      } else if (sort === 'year') {
-        const multiplier = order === 'asc' ? 1 : -1;
-        compareRecords.sort((a, b) => multiplier * ((a.year || 0) - (b.year || 0)));
-      } else if (sort === compareBy) {
-        const multiplier = order === 'asc' ? 1 : -1;
-        compareRecords.sort((a, b) => {
-          const aVal = (a[compareBy] || '').toString();
-          const bVal = (b[compareBy] || '').toString();
-          return multiplier * aVal.localeCompare(bVal);
-        });
-      } else {
-        compareRecords.sort((a, b) => b.year - a.year);
-      }
-      const totalItems = compareRecords.length;
-      const totalPages = Math.ceil(totalItems / limit);
-      const startIndex = (page - 1) * limit;
-      const endIndex = startIndex + limit;
-      const paginatedRecords = compareRecords.slice(startIndex, endIndex);
-      return NextResponse.json({
-        spending: paginatedRecords,
-        pagination: {
-          currentPage: page,
-          totalPages,
-          totalItems,
-          itemsPerPage: limit,
-          hasNextPage: page < totalPages,
-          hasPrevPage: page > 1
-        },
-        summary: {
-          totalAmount: paginatedRecords.reduce((sum, r) => sum + (r.vendorAmount || 0), 0),
-          recordCount: paginatedRecords.length
+        const { table, codeField, nameField } = compareConfig[compareBy];
+
+        let query = supabase.from(table).select('*', { count: 'exact' });
+
+        // Filtering by year
+        if (yearParam) {
+          query = query.eq('year', parseInt(yearParam, 10));
         }
-      });
+
+        // Filtering by compareBy field (code or name)
+        if (filter) {
+          query = query.or(`${codeField}.ilike.%${filter}%,${nameField}.ilike.%${filter}%`);
+        }
+
+        // Sorting
+        if (sort === 'vendorAmount') {
+          query = query.order('vendor_amount', { ascending: order === 'asc' });
+        } else if (sort === 'budgetAmount') {
+          query = query.order('budget_amount', { ascending: order === 'asc' });
+        } else if (sort === 'year') {
+          query = query.order('year', { ascending: order === 'asc' });
+        } else if (sort === `${compareBy}`) {
+          query = query.order(nameField, { ascending: order === 'asc' });
+        } else if (sort === `${compareBy}Name`) {
+          query = query.order(nameField, { ascending: order === 'asc' });
+        }
+        // Pagination
+        query = query.range(startIndex, endIndex);
+
+        const { data, error, count } = await query;
+        if (error) throw error;
+
+        // Map to UI format
+        const records = (data || []).map(row => ({
+          year: row.year,
+          [`${compareBy}Code`]: row[codeField],
+          [`${compareBy}Name`]: row[nameField],
+          vendorAmount: row.vendor_amount || 0,
+          budgetAmount: row.budget_amount || 0,
+        }));
+
+        const totalItems = count ?? records.length;
+        const totalPages = Math.ceil(totalItems / limit);
+
+        return NextResponse.json({
+          spending: records,
+          pagination: {
+            currentPage: page,
+            totalPages,
+            totalItems,
+            itemsPerPage: limit,
+            hasNextPage: page < totalPages,
+            hasPrevPage: page > 1,
+          },
+          summary: {
+            totalAmount: records.reduce((sum, r) => sum + (r.vendorAmount || 0), 0),
+            recordCount: records.length,
+          },
+        });
+      } catch (err) {
+        console.error('[Compare API] Caught error', err);
+        throw err;
+      }
     }
     return NextResponse.json({ error: 'Invalid view parameter. Must be either "vendor", "budget", or "compare".' }, { status: 400 });
   } catch (err) {

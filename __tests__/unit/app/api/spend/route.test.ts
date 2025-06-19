@@ -86,4 +86,79 @@ describe('spend API budget view', () => {
     });
     expect(json.pagination.totalItems).toBe(1);
   });
+});
+
+// --- New tests for compare view ---
+describe('spend API compare view', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('returns department comparison data with correct structure', async () => {
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?view=compare&compareBy=department&page=1&limit=1' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    
+    // Verify the response structure
+    expect(json).toHaveProperty('spending');
+    expect(json).toHaveProperty('pagination');
+    expect(json).toHaveProperty('summary');
+    
+    // Verify pagination structure
+    expect(json.pagination).toHaveProperty('currentPage');
+    expect(json.pagination).toHaveProperty('totalPages');
+    expect(json.pagination).toHaveProperty('totalItems');
+    expect(json.pagination).toHaveProperty('itemsPerPage');
+    expect(json.pagination).toHaveProperty('hasNextPage');
+    expect(json.pagination).toHaveProperty('hasPrevPage');
+    
+    // Verify summary structure
+    expect(json.summary).toHaveProperty('totalAmount');
+    expect(json.summary).toHaveProperty('recordCount');
+  });
+
+  it('handles fund comparison correctly', async () => {
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?view=compare&compareBy=fund&page=1&limit=1' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json.spending).toBeDefined();
+    expect(Array.isArray(json.spending)).toBe(true);
+  });
+
+  it('handles program comparison correctly', async () => {
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?view=compare&compareBy=program&page=1&limit=1' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json.spending).toBeDefined();
+    expect(Array.isArray(json.spending)).toBe(true);
+  });
+
+  it('handles year filtering in compare view', async () => {
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?view=compare&compareBy=department&year=2024&page=1&limit=1' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json.spending).toBeDefined();
+  });
+
+  it('handles sorting in compare view', async () => {
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?view=compare&compareBy=department&sort=vendorAmount&order=desc&page=1&limit=1' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json.spending).toBeDefined();
+  });
 }); 

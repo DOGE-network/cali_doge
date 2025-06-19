@@ -67,10 +67,12 @@
  *    7.6. Upsert with conflict handling
  * 
  * 8. Cleanup and Logging
- *    8.1. Log completion status
- *    8.2. Track failed updates
- *    8.3. Cleanup file logger
- *    8.4. Generate final status report
+ *    8.1. Refresh all materialized views and create indexes by executing process_views.sql
+ *         - Logs success or failure for each view refresh and index creation
+ *    8.2. Log completion status
+ *    8.3. Track failed updates
+ *    8.4. Cleanup file logger
+ *    8.5. Generate final status report
  * 
  * The script processes data in batches to avoid memory issues and provides detailed logging.
  * Each update function follows a similar pattern:
@@ -2285,10 +2287,30 @@ async function runUpdates() {
   log('INFO', transactionId, 'Starting Step 8: Cleanup and Logging', { step: '8.0', context });
   fileLogger.log('Starting Step 8: Cleanup and Logging');
   
+  // Step 8.1: Refresh materialized views and create indexes
+  log('INFO', transactionId, 'Step 8.1: Refreshing materialized views and creating indexes', { step: '8.1', context });
+  fileLogger.log('Step 8.1: Refreshing materialized views and creating indexes');
+  const { execSync } = require('child_process');
+  const sqlPath = path.join(__dirname, 'sql', 'process_views.sql');
+  if (fs.existsSync(sqlPath)) {
+    try {
+      const result = execSync(`psql "$SUPABASE_DB_URL" -f "${sqlPath}"`, { encoding: 'utf8' });
+      log('INFO', transactionId, 'Materialized views and indexes refreshed successfully', { step: '8.1', context, result });
+      fileLogger.log('Materialized views and indexes refreshed successfully');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      log('ERROR', transactionId, 'Error refreshing materialized views and creating indexes', { step: '8.1', context, error: errorMessage });
+      fileLogger.error(`Error refreshing materialized views and creating indexes: ${errorMessage}`);
+    }
+  } else {
+    log('ERROR', transactionId, 'process_views.sql not found', { step: '8.1', context, sqlPath });
+    fileLogger.error(`process_views.sql not found at ${sqlPath}`);
+  }
+
   try {
-    // Step 8.1: Log completion status
-    log('INFO', transactionId, 'Step 8.1: Logging completion status', { step: '8.1', context });
-    fileLogger.log('Step 8.1: Logging completion status');
+    // Step 8.2: Log completion status
+    log('INFO', transactionId, 'Step 8.2: Logging completion status', { step: '8.2', context });
+    fileLogger.log('Step 8.2: Logging completion status');
     
     log('INFO', transactionId, 'Starting database updates', { context });
     fileLogger.log('Starting database updates');
@@ -2326,9 +2348,9 @@ async function runUpdates() {
     fileLogger.log('Updating search index...');
     results.push(await updateSearchIndex());
     
-    // Step 8.2: Track failed updates
-    log('INFO', transactionId, 'Step 8.2: Tracking failed updates', { step: '8.2', context });
-    fileLogger.log('Step 8.2: Tracking failed updates');
+    // Step 8.3: Track failed updates
+    log('INFO', transactionId, 'Step 8.3: Tracking failed updates', { step: '8.3', context });
+    fileLogger.log('Step 8.3: Tracking failed updates');
     
     const allSuccessful = results.every(result => result.success);
     
@@ -2348,24 +2370,22 @@ async function runUpdates() {
       fileLogger.error(`Some updates failed: ${failedUpdates.join(', ')}`);
     }
   } catch (error: unknown) {
-    // Step 8.3: Handle errors
-    log('ERROR', transactionId, 'Step 8.3: Handling errors', { step: '8.3', context });
-    fileLogger.log('Step 8.3: Handling errors');
+    // Step 8.4: Handle errors
+    log('ERROR', transactionId, 'Step 8.4: Handling errors', { step: '8.4', context });
+    fileLogger.log('Step 8.4: Handling errors');
     
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     log('ERROR', transactionId, `Update process failed: ${errorMessage}`, { 
-      step: '8.3',
+      step: '8.4',
       context,
       error 
     });
     fileLogger.error(`Update process failed: ${errorMessage}`);
   } finally {
-    // Step 8.4: Cleanup file logger
-    log('INFO', transactionId, 'Step 8.4: Cleaning up file logger', { step: '8.4', context });
-    fileLogger.log('Step 8.4: Cleaning up file logger');
-    
+    // Step 8.5: Cleanup file logger
+    log('INFO', transactionId, 'Step 8.5: Cleaning up file logger', { step: '8.5', context });
+    fileLogger.log('Step 8.5: Cleaning up file logger');
     fileLogger.cleanup();
-    
     log('INFO', transactionId, 'Step 8: Cleanup and Logging completed', { step: '8.0', context });
     fileLogger.log('Step 8: Cleanup and Logging completed');
   }
