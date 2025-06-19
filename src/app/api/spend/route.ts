@@ -160,104 +160,92 @@ export async function GET(request: Request) {
       });
     }
     if (view === 'budget') {
-      const { data: budgets, error: budgetError } = await supabase
-        .from('budgets')
-        .select('*, budget_line_items (program_code, fund_code, amount, description)');
-      if (budgetError) throw budgetError;
-      const departmentMap = new Map<string, string>();
-      const programMap = new Map<string, string>();
-      const fundMap = new Map<string, string>();
-      (await departments.getDepartments() as Department[]).forEach(dept => {
-        if (dept.organizational_code && dept.name) {
-          departmentMap.set(dept.organizational_code, dept.name);
+      try {
+        // Pagination params
+        const startIndex = (page - 1) * limit;
+        const endIndex = startIndex + limit - 1;
+
+        console.debug('[Budget API] Start budget view (using view budget_line_items_with_names)', { page, limit, sort, order, department, programParam, fundParam, filter });
+
+        // Query the flattened view
+        let query = supabase
+          .from('budget_line_items_with_names')
+          .select('*', { count: 'exact' });
+
+        // Filtering (move as much as possible to SQL)
+        if (department) {
+          query = query.ilike('department_code', `%${department}%`);
         }
-      });
-      (await programs.getPrograms({}) as Program[]).forEach(prog => {
-        if (prog.project_code && prog.name) {
-          programMap.set(prog.project_code, prog.name);
+        if (programParam) {
+          query = query.ilike('program_name', `%${programParam}%`);
         }
-      });
-      (await funds.getFunds({}) as Fund[]).forEach(fund => {
-        if (fund.fund_code && fund.name) {
-          fundMap.set(fund.fund_code, fund.name);
+        if (fundParam) {
+          query = query.ilike('fund_name', `%${fundParam}%`);
         }
-      });
-      let budgetRecords: any[] = [];
-      budgets.forEach(budget => {
-        (budget.budget_line_items || []).forEach(item => {
-          budgetRecords.push({
-            fiscal_year: budget.fiscal_year,
-            department: departmentMap.get(budget.department_code) || 'Unknown Department',
-            vendor: 'Budget Allocation',
-            program: programMap.get(item.program_code) || 'Unknown Program',
-            fund: fundMap.get(item.fund_code) || 'Unknown Fund',
-            amount: item.amount || 0
-          });
+        if (filter) {
+          // Free-text filter across department, program, fund
+          const filterValue = `%${filter}%`;
+          query = query.or(`department_name.ilike.${filterValue},program_name.ilike.${filterValue},fund_name.ilike.${filterValue}`);
+        }
+
+        // Sorting
+        const sortable = {
+          year: 'fiscal_year',
+          department: 'department_name',
+          program: 'program_name',
+          fund: 'fund_name',
+          amount: 'amount',
+        };
+        const sortCol = sortable[sort] || 'amount';
+        query = query.order(sortCol, { ascending: order === 'asc' });
+
+        // Pagination
+        query = query.range(startIndex, endIndex);
+
+        console.debug('[Budget API] Fetching from view...');
+        const { data: records, error: viewError, count } = await query;
+        if (viewError) { console.error('[Budget API] viewError', viewError); throw viewError; }
+        console.debug('[Budget API] Records fetched', { count: records?.length, total: count });
+
+        // Map each record for the UI
+        const mappedRecords = (records || []).map(item => ({
+          year: item.fiscal_year,
+          department: item.department_name || 'Unknown Department',
+          vendor: 'Budget Allocation',
+          program: item.program_name || 'Unknown Program',
+          fund: item.fund_name || 'Unknown Fund',
+          amount: item.amount || 0,
+        }));
+        console.debug('[Budget API] Records mapped', { count: mappedRecords.length });
+
+        // Pagination metadata
+        const totalItems = count ?? mappedRecords.length;
+        const totalPages = Math.ceil(totalItems / limit);
+        const paginatedRecords = mappedRecords;
+        const totalAmount = mappedRecords.reduce((sum, record) => sum + record.amount, 0);
+        const recordCount = mappedRecords.length;
+
+        console.debug('[Budget API] Returning response', { totalItems, totalPages, recordCount, totalAmount });
+        return NextResponse.json({
+          spending: paginatedRecords,
+          pagination: {
+            currentPage: page,
+            totalPages,
+            totalItems,
+            itemsPerPage: limit,
+            hasNextPage: page < totalPages,
+            hasPrevPage: page > 1,
+          },
+          summary: {
+            totalAmount,
+            recordCount,
+          },
+          availableYears: [],
         });
-      });
-      let filteredRecords: any[] = budgetRecords;
-      if (filter) {
-        const filterTerms = parseFilterValue(filter);
-        filteredRecords = filteredRecords.filter(record => 
-          matchesFilter(record.department, filterTerms) ||
-          matchesFilter(record.program, filterTerms) ||
-          matchesFilter(record.fund, filterTerms)
-        );
+      } catch (err) {
+        console.error('[Budget API] Caught error', err);
+        throw err;
       }
-      if (department) {
-        const departmentLower = department.toLowerCase();
-        filteredRecords = filteredRecords.filter(record =>
-          record.department.toLowerCase().includes(departmentLower)
-        );
-      }
-      if (fundParam) {
-        const fundLower = fundParam.toLowerCase();
-        filteredRecords = filteredRecords.filter(record =>
-          record.fund.toLowerCase().includes(fundLower)
-        );
-      }
-      if (programParam) {
-        const programLower = programParam.toLowerCase();
-        filteredRecords = filteredRecords.filter(record =>
-          record.program.toLowerCase().includes(programLower)
-        );
-      }
-      filteredRecords.sort((a, b) => {
-        const multiplier = order === 'desc' ? -1 : 1;
-        switch (sort) {
-          case 'department':
-            return multiplier * a.department.localeCompare(b.department);
-          case 'program':
-            return multiplier * a.program.localeCompare(b.program);
-          case 'fund':
-            return multiplier * a.fund.localeCompare(b.fund);
-          case 'amount':
-          default:
-            return multiplier * (a.amount - b.amount);
-        }
-      });
-      const totalItems = filteredRecords.length;
-      const totalPages = Math.ceil(totalItems / limit);
-      const startIndex = (page - 1) * limit;
-      const endIndex = startIndex + limit;
-      const paginatedRecords = filteredRecords.slice(startIndex, endIndex);
-      const totalAmount = filteredRecords.reduce((sum, record) => sum + record.amount, 0);
-      const recordCount = filteredRecords.length;
-      return NextResponse.json({
-        spending: paginatedRecords,
-        pagination: {
-          currentPage: page,
-          totalPages,
-          totalItems,
-          itemsPerPage: limit,
-          hasNextPage: page < totalPages,
-          hasPrevPage: page > 1
-        },
-        summary: {
-          totalAmount,
-          recordCount
-        }
-      });
     }
     if (view === 'compare') {
       const compareBy = searchParams.get('compareBy') || 'department';
@@ -267,7 +255,7 @@ export async function GET(request: Request) {
       if (txError) throw txError;
       const { data: budgets, error: budgetError } = await supabase
         .from('budgets')
-        .select('*, budget_line_items (program_code, fund_code, amount, description)');
+        .select('*, budget_line_items(project_code, fund_code, amount)', { count: 'exact' });
       if (budgetError) throw budgetError;
       const departmentMap = new Map<string, string>();
       const programMap = new Map<string, string>();
@@ -306,7 +294,7 @@ export async function GET(request: Request) {
         (budget.budget_line_items || []).forEach(item => {
           let key = '';
           if (compareBy === 'department') key = departmentMap.get(budget.department_code) || 'Unknown Department';
-          else if (compareBy === 'program') key = programMap.get(item.program_code) || 'Unknown Program';
+          else if (compareBy === 'program') key = programMap.get(item.project_code) || 'Unknown Program';
           else if (compareBy === 'fund') key = fundMap.get(item.fund_code) || 'Unknown Fund';
           if (!key) key = 'Unknown';
           const mapKey = `${key}`;
