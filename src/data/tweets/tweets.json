@@ -1,6 +1,155 @@
 {
   "tweets": [
     {
+      "entities": {
+        "annotations": [
+          {
+            "start": 99,
+            "end": 125,
+            "probability": 0.6546,
+            "type": "Place",
+            "normalized_text": "Los Angeles County Assessor"
+          },
+          {
+            "start": 228,
+            "end": 229,
+            "probability": 0.4549,
+            "type": "Place",
+            "normalized_text": "St"
+          },
+          {
+            "start": 243,
+            "end": 253,
+            "probability": 0.7642,
+            "type": "Place",
+            "normalized_text": "Los Angeles"
+          },
+          {
+            "start": 256,
+            "end": 257,
+            "probability": 0.7994,
+            "type": "Place",
+            "normalized_text": "CA"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 13,
+            "end": 28,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 29,
+            "end": 44,
+            "username": "LauraPowellEsq",
+            "id": "374174560"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1936081837216219410"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "856860708847222784",
+            "name": "Los Angeles",
+            "description": "Los Angeles"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-06-20T15:20:55.000Z",
+      "text": "@T_Q_Gardner @DataRepublican @LauraPowellEsq Nothing there unfortunately. \n\nA FOIA request for the Los Angeles County Assessor’s office must be made by phone, Public Information Officer: (213) 974-3101, in person: 500 W. Temple St., Room 320, Los Angeles, CA 90012 or by snail mail.",
+      "id": "1936081837216219410",
+      "created_at_formatted": "Jun 20, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 76,
+            "end": 79,
+            "probability": 0.4631,
+            "type": "Other",
+            "normalized_text": "FOIA"
+          },
+          {
+            "start": 121,
+            "end": 126,
+            "probability": 0.7081,
+            "type": "Other",
+            "normalized_text": "Heroku"
+          }
+        ],
+        "urls": [
+          {
+            "start": 96,
+            "end": 119,
+            "url": "https://t.co/2xlNQkxdeB",
+            "expanded_url": "https://www.muckrock.com/agency/?q=Los%20Angeles%20tax",
+            "display_url": "muckrock.com/agency/?q=Los%…",
+            "status": 200,
+            "title": "MuckRock",
+            "description": "MuckRock is a collaborative news site that gives you the tools to hold the government accountable.",
+            "unwound_url": "https://www.muckrock.com/agency/?q=Los%20Angeles%20tax"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 13,
+            "end": 28,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 29,
+            "end": 44,
+            "username": "LauraPowellEsq",
+            "id": "374174560"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1936058542672535866"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-06-20T13:48:21.000Z",
+      "text": "@T_Q_Gardner @DataRepublican @LauraPowellEsq I started by doing a search on FOIA requests so at https://t.co/2xlNQkxdeB. Heroku continues to have problems, so their application is down.",
+      "id": "1936058542672535866",
+      "created_at_formatted": "Jun 20, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "text": "@T_Q_Gardner @DataRepublican @LauraPowellEsq @joffemd what do you think about this thread? Legal explanation, incompetence, or malfeasance…",
       "entities": {
         "mentions": [
@@ -17491,8 +17640,8 @@
     }
   ],
   "meta": {
-    "result_count": 160,
-    "newest_id": "1935938795867869518",
+    "result_count": 162,
+    "newest_id": "1936081837216219410",
     "oldest_id": "1882144700762878208"
   }
 }
