@@ -1,6 +1,253 @@
 {
   "tweets": [
     {
+      "text": "@T_Q_Gardner @DataRepublican @LauraPowellEsq @joffemd what do you think about this thread? Legal explanation, incompetence, or malfeasance…",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 13,
+            "end": 28,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 29,
+            "end": 44,
+            "username": "LauraPowellEsq",
+            "id": "374174560"
+          },
+          {
+            "start": 45,
+            "end": 53,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1935938795867869518"
+      ],
+      "created_at": "2025-06-20T05:52:31.000Z",
+      "id": "1935938795867869518",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 20, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 246,
+            "end": 249,
+            "probability": 0.4087,
+            "type": "Other",
+            "normalized_text": "FOIA"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 13,
+            "end": 28,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 29,
+            "end": 44,
+            "username": "LauraPowellEsq",
+            "id": "374174560"
+          }
+        ]
+      },
+      "text": "@T_Q_Gardner @DataRepublican @LauraPowellEsq I think the legal ownership change without money exchanged could be a reasonable explanation. Some of the responses echo this possibility. \n\nHowever, with 3 whistleblower previous complaints, it seems FOIA requests for the assessment file, internal communications, and",
+      "edit_history_tweet_ids": [
+        "1935936941985612138"
+      ],
+      "created_at": "2025-06-20T05:45:09.000Z",
+      "id": "1935936941985612138",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 20, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 55,
+            "end": 64,
+            "probability": 0.6853,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 217,
+            "end": 240,
+            "url": "https://t.co/xSYomOV6dk",
+            "expanded_url": "https://x.com/cali_doge/status/1935880275789267424/photo/1",
+            "display_url": "pic.x.com/xSYomOV6dk",
+            "media_key": "3_1935880271074648064"
+          }
+        ]
+      },
+      "attachments": {
+        "media_keys": [
+          "3_1935880271074648064"
+        ]
+      },
+      "text": "I just turned on Tips for my profile. While I grow the California DOGE site and begin partnering with new state DOGE folks, I could use help paying for tools and infrastructure. \n\nAppreciate any help you can provide. https://t.co/xSYomOV6dk",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696940178935808",
+            "name": "Gaming Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to offline and online games such as gaming consoles, tabletop games, video game publishers"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1935880275789267424"
+      ],
+      "created_at": "2025-06-20T01:59:59.000Z",
+      "id": "1935880275789267424",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 20, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1935880275789267424_0.jpg",
+          "width": 644,
+          "height": 647
+        }
+      ]
+    },
+    {
       "id": "1935835549786640385",
       "entities": {
         "mentions": [
@@ -17244,8 +17491,8 @@
     }
   ],
   "meta": {
-    "result_count": 157,
-    "newest_id": "1935835549786640385",
+    "result_count": 160,
+    "newest_id": "1935938795867869518",
     "oldest_id": "1882144700762878208"
   }
 }
