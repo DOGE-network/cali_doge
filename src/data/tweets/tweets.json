@@ -1,6 +1,85 @@
 {
   "tweets": [
     {
+      "id": "1935835549786640385",
+      "entities": {
+        "mentions": [
+          {
+            "start": 272,
+            "end": 277,
+            "username": "grok",
+            "id": "1720665183188922368"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 19,
+            "end": 28,
+            "probability": 0.9563,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 37,
+            "end": 41,
+            "probability": 0.5001,
+            "type": "Other",
+            "normalized_text": "SB270"
+          }
+        ],
+        "urls": [
+          {
+            "start": 278,
+            "end": 301,
+            "url": "https://t.co/2aZrNzMOxv",
+            "expanded_url": "https://x.com/cali_doge/status/1935835549786640385/photo/1",
+            "display_url": "pic.x.com/2aZrNzMOxv",
+            "media_key": "3_1935835543147102208"
+          }
+        ]
+      },
+      "created_at": "2025-06-19T23:02:15.000Z",
+      "text": "Bad Law highlight: California’s 2014 SB270 plastic bag ban aimed to cut waste by charging $0.10 per bag. Instead landfill waste increased as plastic bags were made heavier to comply with the law. Plastic bag waste rose from 157K tons (2014) to estimated 231K tons (2025). @grok https://t.co/2aZrNzMOxv",
+      "attachments": {
+        "media_keys": [
+          "3_1935835543147102208"
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1935835549786640385"
+      ],
+      "created_at_formatted": "Jun 19, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1935835549786640385_0.jpg",
+          "width": 1117,
+          "height": 892
+        }
+      ]
+    },
+    {
       "edit_history_tweet_ids": [
         "1935816531444990228"
       ],
@@ -17165,8 +17244,8 @@
     }
   ],
   "meta": {
-    "result_count": 156,
-    "newest_id": "1935816531444990228",
+    "result_count": 157,
+    "newest_id": "1935835549786640385",
     "oldest_id": "1882144700762878208"
   }
 }
