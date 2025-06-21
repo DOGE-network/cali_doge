@@ -1,6 +1,345 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070735149568913408",
+            "name": "John Moorlach",
+            "description": "American politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "1070735149568913408",
+            "name": "John Moorlach",
+            "description": "American politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974597310615553",
+            "name": "Entertainment"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974597105094656",
+            "name": "TV/Movies Related - Entertainment"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697121477832705",
+            "name": "Publisher & News Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to  marketing and advertiser agencies, publishers of magazines, newspapers, blogs, books"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "1065657279150665728",
+            "name": "Fox News",
+            "description": "Fox News"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "940681364155768832",
+            "name": "Tom McClintock",
+            "description": "US Representative Tom McClintock (CA-4)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1046545033657081857",
+            "name": "News",
+            "description": "News"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1065657279150665728",
+            "name": "Fox News",
+            "description": "Fox News"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070735149568913408",
+            "name": "John Moorlach",
+            "description": "American politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1196447117297905665",
+            "name": "News outlets"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1936463811202195820",
+      "edit_history_tweet_ids": [
+        "1936463811202195820"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 27,
+            "end": 42,
+            "probability": 0.8236,
+            "type": "Organization",
+            "normalized_text": "California State"
+          },
+          {
+            "start": 163,
+            "end": 164,
+            "probability": 0.6993,
+            "type": "Place",
+            "normalized_text": "CA"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 191,
+            "end": 199,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 200,
+            "end": 210,
+            "username": "WillSwaim",
+            "id": "44485284"
+          },
+          {
+            "start": 211,
+            "end": 226,
+            "username": "repdarrellissa",
+            "id": "63650107"
+          },
+          {
+            "start": 227,
+            "end": 241,
+            "username": "RepMcClintock",
+            "id": "50152441"
+          },
+          {
+            "start": 242,
+            "end": 258,
+            "username": "SenatorMoorlach",
+            "id": "3243703117"
+          }
+        ],
+        "urls": [
+          {
+            "start": 259,
+            "end": 282,
+            "url": "https://t.co/yeqyypffFR",
+            "expanded_url": "https://twitter.com/hamill_law/status/1936134967001841960",
+            "display_url": "x.com/hamill_law/sta…"
+          }
+        ]
+      },
+      "text": "Additional proof that many California State government programs are at risk of losing federal funding. Will the legislature change these risky programs or ask the CA taxpayers to fund them. \n@joffemd @WillSwaim @repdarrellissa @RepMcClintock @SenatorMoorlach https://t.co/yeqyypffFR",
+      "created_at": "2025-06-21T16:38:45.000Z",
+      "created_at_formatted": "Jun 21, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "id": "1936460950447767583",
+      "edit_history_tweet_ids": [
+        "1936460950447767583"
+      ],
+      "text": "@twinforces @DataRepublican Great work. Thanks for the demo!\n\nI will working grift nipple into conversation from now on.",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          },
+          {
+            "start": 12,
+            "end": 27,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          }
+        ]
+      },
+      "created_at": "2025-06-21T16:27:22.000Z",
+      "created_at_formatted": "Jun 21, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "id": "1936459120149934472",
+      "edit_history_tweet_ids": [
+        "1936459120149934472"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 66,
+            "end": 71,
+            "probability": 0.5226,
+            "type": "Other",
+            "normalized_text": "sankey"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 14,
+            "username": "twinforces",
+            "id": "258495978"
+          },
+          {
+            "start": 100,
+            "end": 115,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          }
+        ]
+      },
+      "text": "RT @twinforces: So I made a demo/tutorial video of how to use the sankey to browse the grift on the @DataRepublican site, this talks about:…",
+      "created_at": "2025-06-21T16:20:06.000Z",
+      "created_at_formatted": "Jun 21, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1936197773847937248"
       ],
@@ -17707,8 +18046,8 @@
     }
   ],
   "meta": {
-    "result_count": 163,
-    "newest_id": "1936197773847937248",
+    "result_count": 166,
+    "newest_id": "1936463811202195820",
     "oldest_id": "1882144700762878208"
   }
 }
