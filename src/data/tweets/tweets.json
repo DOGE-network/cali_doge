@@ -1,6 +1,73 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1936197773847937248"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "1582737213132918785",
+            "name": "McNeil-PPC, Inc"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 14,
+            "end": 25,
+            "username": "nicksortor",
+            "id": "2162812627"
+          },
+          {
+            "start": 26,
+            "end": 42,
+            "username": "GuntherEagleman",
+            "id": "1355721251180961792"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 55,
+            "end": 66,
+            "probability": 0.4586,
+            "type": "Other",
+            "normalized_text": "MERISTEM INC"
+          },
+          {
+            "start": 88,
+            "end": 116,
+            "probability": 0.4595,
+            "type": "Other",
+            "normalized_text": "CA Workforce Investment Board"
+          }
+        ]
+      },
+      "id": "1936197773847937248",
+      "text": "@Alladdin1983 @nicksortor @GuntherEagleman I show that MERISTEM INC was paid $5M by the CA Workforce Investment Board in 2021 as a Special Item of Expense grant. \n\nEven more interesting, the money was paid on one line and then subtracted on another. If you are not paying attention, this zeros out the spend. I will start",
+      "created_at": "2025-06-20T23:01:36.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jun 20, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -17640,8 +17707,8 @@
     }
   ],
   "meta": {
-    "result_count": 162,
-    "newest_id": "1936081837216219410",
+    "result_count": 163,
+    "newest_id": "1936197773847937248",
     "oldest_id": "1882144700762878208"
   }
 }
