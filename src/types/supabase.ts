@@ -98,13 +98,6 @@ export type Database = {
             foreignKeyName: "budgets_department_code_fkey"
             columns: ["department_code"]
             isOneToOne: false
-            referencedRelation: "department_search_view"
-            referencedColumns: ["organizational_code"]
-          },
-          {
-            foreignKeyName: "budgets_department_code_fkey"
-            columns: ["department_code"]
-            isOneToOne: false
             referencedRelation: "departments"
             referencedColumns: ["organizational_code"]
           },
@@ -139,13 +132,6 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
-          {
-            foreignKeyName: "department_distributions_department_code_fkey"
-            columns: ["department_code"]
-            isOneToOne: false
-            referencedRelation: "department_search_view"
-            referencedColumns: ["organizational_code"]
-          },
           {
             foreignKeyName: "department_distributions_department_code_fkey"
             columns: ["department_code"]
@@ -185,13 +171,6 @@ export type Database = {
             foreignKeyName: "department_spending_department_code_fkey"
             columns: ["department_code"]
             isOneToOne: false
-            referencedRelation: "department_search_view"
-            referencedColumns: ["organizational_code"]
-          },
-          {
-            foreignKeyName: "department_spending_department_code_fkey"
-            columns: ["department_code"]
-            isOneToOne: false
             referencedRelation: "departments"
             referencedColumns: ["organizational_code"]
           },
@@ -226,13 +205,6 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
-          {
-            foreignKeyName: "department_workforce_department_code_fkey"
-            columns: ["department_code"]
-            isOneToOne: false
-            referencedRelation: "department_search_view"
-            referencedColumns: ["organizational_code"]
-          },
           {
             foreignKeyName: "department_workforce_department_code_fkey"
             columns: ["department_code"]
@@ -461,13 +433,6 @@ export type Database = {
             foreignKeyName: "vendor_transactions_department_code_fkey"
             columns: ["department_code"]
             isOneToOne: false
-            referencedRelation: "department_search_view"
-            referencedColumns: ["organizational_code"]
-          },
-          {
-            foreignKeyName: "vendor_transactions_department_code_fkey"
-            columns: ["department_code"]
-            isOneToOne: false
             referencedRelation: "departments"
             referencedColumns: ["organizational_code"]
           },
@@ -520,51 +485,6 @@ export type Database = {
       }
     }
     Views: {
-      department_search_view: {
-        Row: {
-          abbreviation: string | null
-          budget_status: string | null
-          canonical_name: string | null
-          entity_code: number | null
-          id: string | null
-          key_functions: string | null
-          name: string | null
-          note: string | null
-          org_level: number | null
-          organizational_code: string | null
-          parent_agency: string | null
-          search_vector: unknown | null
-        }
-        Insert: {
-          abbreviation?: string | null
-          budget_status?: string | null
-          canonical_name?: string | null
-          entity_code?: number | null
-          id?: string | null
-          key_functions?: string | null
-          name?: string | null
-          note?: string | null
-          org_level?: number | null
-          organizational_code?: string | null
-          parent_agency?: string | null
-          search_vector?: never
-        }
-        Update: {
-          abbreviation?: string | null
-          budget_status?: string | null
-          canonical_name?: string | null
-          entity_code?: number | null
-          id?: string | null
-          key_functions?: string | null
-          name?: string | null
-          note?: string | null
-          org_level?: number | null
-          organizational_code?: string | null
-          parent_agency?: string | null
-          search_vector?: never
-        }
-        Relationships: []
-      }
     }
     Functions: {
       ensure_search_index_fts: {

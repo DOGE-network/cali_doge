@@ -45,10 +45,14 @@ class NodeFileLogger {
         fs.mkdirSync(logsDir, { recursive: true });
       }
       
-      NodeFileLogger._logFile = path.join(logsDir, `supabase_update_${new Date().toISOString().replace(/[:.]/g, '-')}.log`);
+      // Get the script name from process.argv
+      const scriptPath = process.argv[1] || 'unknown_script';
+      const scriptName = path.basename(scriptPath, path.extname(scriptPath));
+      
+      NodeFileLogger._logFile = path.join(logsDir, `${scriptName}_${new Date().toISOString().replace(/[:.]/g, '-')}.log`);
       
       // Initialize the log file with a header
-      fs.writeFileSync(NodeFileLogger._logFile, `Process Budgets Log - ${new Date().toISOString()}\n`);
+      fs.writeFileSync(NodeFileLogger._logFile, `${scriptName} Log - ${new Date().toISOString()}\n`);
     }
     return NodeFileLogger._logFile;
   }
