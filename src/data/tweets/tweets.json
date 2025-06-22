@@ -1,6 +1,57 @@
 {
   "tweets": [
     {
+      "created_at": "2025-06-22T00:39:06.000Z",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 18,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          }
+        ],
+        "urls": [
+          {
+            "start": 50,
+            "end": 73,
+            "url": "https://t.co/kVjUke2hEc",
+            "expanded_url": "https://x.com/i/broadcasts/1zqJVjELnWAJB",
+            "display_url": "x.com/i/broadcasts/1…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1936581972199194624/FgPaUaL0?format=jpg&name=orig",
+                "width": 1920,
+                "height": 1080
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1936581972199194624/FgPaUaL0?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Patriot Dad 🇺🇸",
+            "description": "Weekly Update | June 21, 2025",
+            "unwound_url": "https://twitter.com/i/broadcasts/1zqJVjELnWAJB"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1936584698844881149"
+      ],
+      "text": "RT @PatriotDad_USA: Weekly Update | June 21, 2025 https://t.co/kVjUke2hEc",
+      "id": "1936584698844881149",
+      "created_at_formatted": "Jun 22, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -18046,8 +18097,8 @@
     }
   ],
   "meta": {
-    "result_count": 166,
-    "newest_id": "1936463811202195820",
+    "result_count": 167,
+    "newest_id": "1936584698844881149",
     "oldest_id": "1882144700762878208"
   }
 }
