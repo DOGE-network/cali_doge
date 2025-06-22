@@ -1144,6 +1144,29 @@ async function updateDepartments(): Promise<ProcessingResult> {
     fileLogger.log('Step 2.5: Updating department spending data');
 
     try {
+      // First, get all department IDs from the database
+      const { data: departmentsFromDB, error: deptError } = await supabase
+        .from('departments')
+        .select('id, name, organizational_code');
+
+      if (deptError) {
+        log('ERROR', transactionId, 'Error fetching departments from database', {
+          step: '2.5',
+          context,
+          error: deptError
+        });
+        fileLogger.error(`Error fetching departments from database: ${deptError.message}`);
+        throw deptError;
+      }
+
+      // Create a map of department organizational codes to IDs
+      const departmentCodeToId = new Map<string, string>();
+      departmentsFromDB?.forEach(dept => {
+        if (dept.organizational_code) {
+          departmentCodeToId.set(dept.organizational_code, dept.id);
+        }
+      });
+
       // Delete existing spending data
       const { error: deleteError } = await supabase
         .from('department_spending')
@@ -1162,22 +1185,35 @@ async function updateDepartments(): Promise<ProcessingResult> {
 
       // Insert new spending data
       const spendingDataMap = new Map<string, {
-        department_code: string;
+        department_id: string;
         fiscal_year: number;
         total_amount: number;
       }>();
 
-      // Deduplicate spending data by using a Map with department_code as key
+      // Deduplicate spending data by using a Map with department_id as key
       departmentsData.departments
         .filter(dept => dept.organizationalCode && dept.spending)
         .forEach(dept => {
-          const key = dept.organizationalCode!;
+          // Get the department ID from the database
+          const departmentId = departmentCodeToId.get(dept.organizationalCode!);
+          if (!departmentId) {
+            log('WARN', transactionId, `Department not found in database for spending data: ${dept.organizationalCode}`, {
+              step: '2.5',
+              context,
+              department_name: dept.name,
+              organizational_code: dept.organizationalCode
+            });
+            fileLogger.log(`Department not found in database for spending data: ${dept.organizationalCode} (${dept.name})`);
+            return; // Skip this department
+          }
+
+          const key = departmentId;
           const amount = typeof dept.spending === 'object' && dept.spending?.yearly?.[config.currentYear] 
             ? dept.spending.yearly[config.currentYear] 
             : (typeof dept.spending === 'number' ? dept.spending : 0);
           
           spendingDataMap.set(key, {
-            department_code: key,
+            department_id: key,
             fiscal_year: config.currentYear,
             total_amount: amount
           });
@@ -1189,7 +1225,7 @@ async function updateDepartments(): Promise<ProcessingResult> {
         const { error: insertError } = await supabase
           .from('department_spending')
           .upsert(spendingData, {
-            onConflict: 'department_code,fiscal_year'
+            onConflict: 'department_id,fiscal_year'
           });
 
         if (insertError) {
@@ -1393,9 +1429,32 @@ async function updateDepartments(): Promise<ProcessingResult> {
     fileLogger.log('Step 2.7: Updating department distributions');
 
     try {
+      // First, get all department IDs from the database (reuse from spending section)
+      const { data: departmentsFromDB, error: deptError } = await supabase
+        .from('departments')
+        .select('id, name, organizational_code');
+
+      if (deptError) {
+        log('ERROR', transactionId, 'Error fetching departments from database', {
+          step: '2.7',
+          context,
+          error: deptError
+        });
+        fileLogger.error(`Error fetching departments from database: ${deptError.message}`);
+        throw deptError;
+      }
+
+      // Create a map of department organizational codes to IDs
+      const departmentCodeToId = new Map<string, string>();
+      departmentsFromDB?.forEach(dept => {
+        if (dept.organizational_code) {
+          departmentCodeToId.set(dept.organizational_code, dept.id);
+        }
+      });
+
       // Create distribution data with deduplication
       const distributionDataMap = new Map<string, {
-        department_code: string;
+        department_id: string;
         fiscal_year: number;
         distribution_type: 'tenure' | 'salary' | 'age';
         distribution_data: any;
@@ -1405,30 +1464,43 @@ async function updateDepartments(): Promise<ProcessingResult> {
       departmentsData.departments
         .filter(dept => dept.organizationalCode)
         .forEach(dept => {
-          const key = `${dept.organizationalCode}_tenure`;
+          // Get the department ID from the database
+          const departmentId = departmentCodeToId.get(dept.organizationalCode!);
+          if (!departmentId) {
+            log('WARN', transactionId, `Department not found in database for distributions: ${dept.organizationalCode}`, {
+              step: '2.7',
+              context,
+              department_name: dept.name,
+              organizational_code: dept.organizationalCode
+            });
+            fileLogger.log(`Department not found in database for distributions: ${dept.organizationalCode} (${dept.name})`);
+            return; // Skip this department
+          }
+
+          const key = `${departmentId}_tenure`;
           if (dept.tenureDistribution) {
             distributionDataMap.set(key, {
-              department_code: dept.organizationalCode!,
+              department_id: departmentId,
               fiscal_year: config.currentYear,
               distribution_type: 'tenure',
               distribution_data: dept.tenureDistribution
             });
           }
 
-          const salaryKey = `${dept.organizationalCode}_salary`;
+          const salaryKey = `${departmentId}_salary`;
           if (dept.salaryDistribution) {
             distributionDataMap.set(salaryKey, {
-              department_code: dept.organizationalCode!,
+              department_id: departmentId,
               fiscal_year: config.currentYear,
               distribution_type: 'salary',
               distribution_data: dept.salaryDistribution
             });
           }
 
-          const ageKey = `${dept.organizationalCode}_age`;
+          const ageKey = `${departmentId}_age`;
           if (dept.ageDistribution) {
             distributionDataMap.set(ageKey, {
-              department_code: dept.organizationalCode!,
+              department_id: departmentId,
               fiscal_year: config.currentYear,
               distribution_type: 'age',
               distribution_data: dept.ageDistribution
@@ -1442,7 +1514,7 @@ async function updateDepartments(): Promise<ProcessingResult> {
         const { error: upsertError } = await supabase
           .from('department_distributions')
           .upsert(distributionData, {
-            onConflict: 'department_code,fiscal_year,distribution_type'
+            onConflict: 'department_id,fiscal_year,distribution_type'
           });
 
         if (upsertError) {
