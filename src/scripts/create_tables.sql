@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS public.programs CASCADE;
 DROP TABLE IF EXISTS public.search_index CASCADE;
 DROP TABLE IF EXISTS public.vendor_transactions CASCADE;
 DROP TABLE IF EXISTS public.vendors CASCADE;
+DROP TABLE IF EXISTS public.program_descriptions CASCADE;
 
 CREATE TABLE public.funds (
   id uuid NOT NULL DEFAULT extensions.uuid_generate_v4(),
@@ -37,13 +38,12 @@ CREATE INDEX IF NOT EXISTS idx_funds_search ON public.funds USING gin (to_tsvect
 -- );
 
 CREATE TABLE public.programs (
-  id uuid NOT NULL DEFAULT extensions.uuid_generate_v4(),
   project_code text NOT NULL,
   name text NOT NULL,
-  description text NULL,
+  program_description_ids uuid[] NULL DEFAULT '{}'::uuid[],
   created_at timestamp with time zone NULL DEFAULT now(),
   updated_at timestamp with time zone NULL DEFAULT now(),
-  CONSTRAINT programs_project_code_key UNIQUE (project_code)
+  CONSTRAINT programs_pkey PRIMARY KEY (project_code)
 );
 CREATE INDEX IF NOT EXISTS idx_programs_name ON public.programs USING btree (name);
 
@@ -215,3 +215,13 @@ CREATE INDEX IF NOT EXISTS idx_search_source ON public.search_index USING btree 
 CREATE INDEX IF NOT EXISTS idx_search_fiscal_year ON public.search_index USING btree (fiscal_year);
 CREATE INDEX IF NOT EXISTS idx_search_additional_data ON public.search_index USING gin (additional_data);
 CREATE INDEX IF NOT EXISTS idx_search_fts ON public.search_index USING gin (fts);
+
+-- New table to store individual program descriptions
+CREATE TABLE public.program_descriptions (
+  id uuid NOT NULL DEFAULT extensions.uuid_generate_v4(),
+  description text NOT NULL,
+  sources text[] NOT NULL DEFAULT '{}'::text[],
+  created_at timestamp with time zone NULL DEFAULT now(),
+  updated_at timestamp with time zone NULL DEFAULT now(),
+  CONSTRAINT program_descriptions_pkey PRIMARY KEY (id)
+);

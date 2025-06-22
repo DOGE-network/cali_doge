@@ -122,3 +122,24 @@ program_code, fiscal_year);
 CREATE INDEX IF NOT EXISTS idx_vendor_transactions_with_vendor_vendor_name_year ON vendor_transactions_with_vendor(vendor_name, program_code, fiscal_year);
 CREATE INDEX IF NOT EXISTS idx_budget_line_items_with_names_project_code_year ON budget_line_items_with_names(project_code, fiscal_year);
 CREATE INDEX idx_vendor_totals_amount ON vendor_totals_all_years(total_amount DESC);
+
+-- Create programs view with all descriptions joined
+CREATE MATERIALIZED VIEW programs_with_descriptions AS
+SELECT
+  p.project_code,
+  p.name AS program_name,
+  p.program_description_ids,
+  pd.id AS description_id,
+  pd.description,
+  pd.sources,
+  pd.created_at AS description_created_at,
+  pd.updated_at AS description_updated_at,
+  p.created_at AS program_created_at,
+  p.updated_at AS program_updated_at
+FROM programs p
+LEFT JOIN program_descriptions pd ON pd.id = ANY(p.program_description_ids)
+ORDER BY p.project_code, pd.description;
+
+-- Add index for the new programs view
+CREATE INDEX IF NOT EXISTS idx_programs_with_descriptions_project_code ON programs_with_descriptions(project_code);
+CREATE INDEX IF NOT EXISTS idx_programs_with_descriptions_description ON programs_with_descriptions(description);
