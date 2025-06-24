@@ -41,4 +41,60 @@ export function matchesFilter(value: string, filterTerms: { terms: string[], ope
   } else {
     return filterTerms.terms.every(term => searchValue.includes(term.toLowerCase()));
   }
+}
+
+// Program code to name mapping
+let programCodeToNameMap: Map<string, string> | null = null;
+
+export function getProgramName(programCode: string): string {
+  if (!programCodeToNameMap) {
+    // Initialize the map if it hasn't been loaded yet
+    try {
+      const programsData = require('@/data/programs.json');
+      programCodeToNameMap = new Map();
+      
+      programsData.programs.forEach((program: any) => {
+        if (program.projectCode && program.name) {
+          programCodeToNameMap!.set(program.projectCode, program.name);
+        }
+      });
+    } catch (error) {
+      console.error('Error loading programs data:', error);
+      programCodeToNameMap = new Map();
+    }
+  }
+  
+  return programCodeToNameMap.get(programCode) || programCode;
+}
+
+export function mapProgramCodesToNames(programCodes: string[]): string[] {
+  return programCodes.map(code => getProgramName(code));
+}
+
+// Fund code to name mapping
+let fundCodeToNameMap: Map<string, string> | null = null;
+
+export function getFundName(fundCode: string): string {
+  if (!fundCodeToNameMap) {
+    // Initialize the map if it hasn't been loaded yet
+    try {
+      const fundsData = require('@/data/funds.json');
+      fundCodeToNameMap = new Map();
+      
+      fundsData.funds.forEach((fund: any) => {
+        if (fund.fundCode && fund.fundName) {
+          fundCodeToNameMap!.set(fund.fundCode, fund.fundName);
+        }
+      });
+    } catch (error) {
+      console.error('Error loading funds data:', error);
+      fundCodeToNameMap = new Map();
+    }
+  }
+  
+  return fundCodeToNameMap.get(fundCode) || fundCode;
+}
+
+export function mapFundCodesToNames(fundCodes: string[]): string[] {
+  return fundCodes.map(code => getFundName(code));
 } 

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { parseFilterValue, matchesFilter } from '@/lib/utils';
+import { parseFilterValue, matchesFilter, mapProgramCodesToNames, mapFundCodesToNames } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -106,8 +106,8 @@ export async function GET(request: Request) {
         totalAmount: vendorTotal.total_amount || 0,
         transactionCount: vendorTotal.transaction_count || 0,
         departments: Array.isArray(vendorTotal.departments) ? vendorTotal.departments.filter(Boolean) : [],
-        programs: Array.isArray(vendorTotal.programs) ? vendorTotal.programs.filter(Boolean) : [],
-        funds: Array.isArray(vendorTotal.funds) ? vendorTotal.funds.filter(Boolean) : [],
+        programs: Array.isArray(vendorTotal.programs) ? mapProgramCodesToNames(vendorTotal.programs.filter(Boolean)) : [],
+        funds: Array.isArray(vendorTotal.funds) ? mapFundCodesToNames(vendorTotal.funds.filter(Boolean)) : [],
         categories: Array.isArray(vendorTotal.categories) ? vendorTotal.categories.filter(Boolean) : [],
         descriptions: Array.isArray(vendorTotal.descriptions) ? vendorTotal.descriptions.filter(Boolean) : [],
         primaryDepartment: undefined,

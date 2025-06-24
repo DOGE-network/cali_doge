@@ -59,6 +59,68 @@ interface TopVendorsResponse {
   };
 }
 
+// HoverTooltip component for displaying array values
+function HoverTooltip({ 
+  items, 
+  maxDisplay = 5, 
+  className = "text-sm" 
+}: { 
+  items: string[], 
+  maxDisplay?: number, 
+  className?: string 
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  if (!Array.isArray(items) || items.length === 0) {
+    return <span className={className}></span>;
+  }
+
+  const displayItems = items.slice(0, maxDisplay);
+  const hasMore = items.length > maxDisplay;
+  const remainingCount = items.length - maxDisplay;
+
+  return (
+    <div className={`${className} relative`}>
+      <span>
+        {displayItems.join(', ')}
+        {hasMore && (
+          <button
+            onClick={() => setIsHovered(true)}
+            className="ml-1 text-blue-600 hover:text-blue-800 underline"
+          >
+            +{remainingCount} more
+          </button>
+        )}
+      </span>
+      {isHovered && hasMore && (
+        <div 
+          className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4"
+          onClick={() => setIsHovered(false)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div 
+            className="bg-white rounded-lg shadow-lg w-full max-w-sm max-h-96 overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <div className="p-4">
+              <div className="text-sm font-medium mb-3 text-gray-700">All {items.length} items:</div>
+              <div className="space-y-2">
+                {items.map((item, index) => (
+                  <div key={index} className="text-sm text-gray-800 break-words">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // Client component that uses useSearchParams
 function PaymentsPageClient() {
   const searchParams = useSearchParams();
@@ -297,69 +359,19 @@ function PaymentsPageClient() {
                   {vendor.transactionCount?.toLocaleString()}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  <div className="text-sm relative group">
-                    {Array.isArray(vendor.departments) && vendor.departments.length > 0
-                      ? <>
-                          {vendor.departments.slice(0, 5).join(', ')}
-                          {vendor.departments.length > 5 && ' ...'}
-                          <span className="hidden group-hover:block absolute z-10 left-0 top-full mt-1 bg-black text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                            {vendor.departments.length} total
-                          </span>
-                        </>
-                      : ''}
-                  </div>
+                  <HoverTooltip items={vendor.departments} />
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  <div className="text-sm relative group">
-                    {Array.isArray(vendor.programs) && vendor.programs.length > 0
-                      ? <>
-                          {vendor.programs.slice(0, 5).join(', ')}
-                          {vendor.programs.length > 5 && ' ...'}
-                          <span className="hidden group-hover:block absolute z-10 left-0 top-full mt-1 bg-black text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                            {vendor.programs.length} total
-                          </span>
-                        </>
-                      : ''}
-                  </div>
+                  <HoverTooltip items={vendor.programs} />
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  <div className="text-sm relative group">
-                    {Array.isArray(vendor.funds) && vendor.funds.length > 0
-                      ? <>
-                          {vendor.funds.slice(0, 5).join(', ')}
-                          {vendor.funds.length > 5 && ' ...'}
-                          <span className="hidden group-hover:block absolute z-10 left-0 top-full mt-1 bg-black text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                            {vendor.funds.length} total
-                          </span>
-                        </>
-                      : ''}
-                  </div>
+                  <HoverTooltip items={vendor.funds} />
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  <div className="text-sm relative group">
-                    {Array.isArray(vendor.categories) && vendor.categories.length > 0
-                      ? <>
-                          {vendor.categories.slice(0, 5).join(', ')}
-                          {vendor.categories.length > 5 && ' ...'}
-                          <span className="hidden group-hover:block absolute z-10 left-0 top-full mt-1 bg-black text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                            {vendor.categories.length} total
-                          </span>
-                        </>
-                      : ''}
-                  </div>
+                  <HoverTooltip items={vendor.categories} />
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  <div className="text-sm relative group">
-                    {Array.isArray(vendor.descriptions) && vendor.descriptions.length > 0
-                      ? <>
-                          {vendor.descriptions.slice(0, 5).join(', ')}
-                          {vendor.descriptions.length > 5 && ' ...'}
-                          <span className="hidden group-hover:block absolute z-10 left-0 top-full mt-1 bg-black text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                            {vendor.descriptions.length} total
-                          </span>
-                        </>
-                      : ''}
-                  </div>
+                  <HoverTooltip items={vendor.descriptions} />
                 </td>
               </tr>
             )) : (

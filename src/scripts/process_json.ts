@@ -619,6 +619,8 @@ async function updateVendors(): Promise<ProcessingResult> {
 
           // Track unique program codes and their details
           const programDetails = new Map<string, { name: string; description: string }>();
+          // Track unique fund codes and their details
+          const fundDetails = new Map<string, { name: string; description: string }>();
 
           for (const vendor of batch) {
             const vendorId = vendorMap.get(vendor.n);
@@ -636,6 +638,14 @@ async function updateVendors(): Promise<ProcessingResult> {
                         // Store program details from the transaction
                         programDetails.set(tx.pc, {
                           name: subcategory.sc, // Use subcategory as name
+                          description: tx.d      // Use transaction description
+                        });
+                      }
+                      
+                      if (tx.fc) {
+                        // Store fund details from the transaction
+                        fundDetails.set(tx.fc, {
+                          name: `${tx.fc} Fund`, // Use fund code as name with "Fund" suffix
                           description: tx.d      // Use transaction description
                         });
                       }
@@ -748,6 +758,59 @@ async function updateVendors(): Promise<ProcessingResult> {
             }
           }
 
+          // Check which funds already exist
+          if (fundDetails.size > 0) {
+            const { data: existingFunds, error: fetchError } = await supabase
+              .from('funds')
+              .select('fund_code')
+              .in('fund_code', Array.from(fundDetails.keys()));
+
+            if (fetchError) {
+              log('ERROR', transactionId, `Error fetching existing funds: ${fetchError.message}`, { 
+                step: '6.7', 
+                context,
+                error: fetchError
+              });
+              fileLogger.error(`Error fetching existing funds: ${fetchError.message}`);
+              throw fetchError;
+            }
+
+            // Filter out funds that already exist
+            const existingFundCodes = new Set(existingFunds?.map(f => f.fund_code) || []);
+            const fundsToCreate = Array.from(fundDetails.entries())
+              .filter(([code]) => !existingFundCodes.has(code))
+              .map(([code, details]) => ({
+                fund_code: code,
+                name: details.name,
+                fund_group: 'Vendor Generated', // Default fund group for vendor-generated funds
+                description: details.description
+              }));
+
+            if (fundsToCreate.length > 0) {
+              log('INFO', transactionId, `Creating ${fundsToCreate.length} new funds`, { step: '6.7', context });
+              fileLogger.log(`Creating ${fundsToCreate.length} new funds`);
+
+              const { error: fundError } = await supabase
+                .from('funds')
+                .upsert(fundsToCreate, {
+                  onConflict: 'fund_code'
+                });
+
+              if (fundError) {
+                log('ERROR', transactionId, `Error creating funds: ${fundError.message}`, { 
+                  step: '6.7', 
+                  context,
+                  error: fundError
+                });
+                fileLogger.error(`Error creating funds: ${fundError.message}`);
+                throw fundError;
+              }
+
+              log('INFO', transactionId, `Successfully created ${fundsToCreate.length} new funds`, { step: '6.7', context });
+              fileLogger.log(`Successfully created ${fundsToCreate.length} new funds`);
+            }
+          }
+
           log('DEBUG', transactionId, `Prepared ${transactions.length} transactions for insert`, { 
             step: '6.7', 
             context,
@@ -770,13 +833,23 @@ async function updateVendors(): Promise<ProcessingResult> {
                   .insert(transactionBatch);
 
                 if (transactionError) {
-                  log('ERROR', transactionId, `Error inserting transactions: ${transactionError.message}`, { 
+                  const errorMessage = transactionError.message || 'Unknown database error';
+                  const errorDetails = transactionError.details || 'No additional details';
+                  const errorHint = transactionError.hint || 'No hint provided';
+                  
+                  log('ERROR', transactionId, `Error inserting transactions: ${errorMessage}`, { 
                     step: '6.8', 
                     context,
                     error: transactionError,
-                    batchSize: transactionBatch.length
+                    errorDetails,
+                    errorHint,
+                    batchSize: transactionBatch.length,
+                    sampleTransaction: transactionBatch[0] // Log first transaction for debugging
                   });
-                  fileLogger.error(`Error inserting transactions: ${transactionError.message}`);
+                  fileLogger.error(`Error inserting transactions: ${errorMessage}`);
+                  fileLogger.error(`Error details: ${errorDetails}`);
+                  fileLogger.error(`Error hint: ${errorHint}`);
+                  fileLogger.error(`Sample transaction: ${JSON.stringify(transactionBatch[0], null, 2)}`);
                   throw transactionError;
                 }
 
