@@ -32,7 +32,7 @@ export function TweetThread({ tweets }: TweetThreadProps) {
   if (tweets.length === 1) {
     return (
       <div className="border border-gray-200 rounded-lg overflow-hidden">
-        <TweetCard tweet={tweets[0]} />
+        <TweetCard tweet={tweets[0]} isFirst={true} />
       </div>
     );
   }
@@ -129,7 +129,7 @@ export function TweetThread({ tweets }: TweetThreadProps) {
       {/* Collapsed state - only show first tweet */}
       {isCollapsed && (
         <div>
-          <TweetCard tweet={firstTweet} />
+          <TweetCard tweet={firstTweet} isFirst={true} />
         </div>
       )}
 
@@ -147,7 +147,7 @@ export function TweetThread({ tweets }: TweetThreadProps) {
               <div className="absolute left-6 top-0 h-full w-0.5 bg-blue-100 z-0" />
             )}
             <div className={index < sortedTweets.length - 1 ? 'border-b border-gray-200' : ''}>
-              <TweetCard tweet={tweet} />
+              <TweetCard tweet={tweet} isFirst={index === 0} />
             </div>
           </div>
         ))}

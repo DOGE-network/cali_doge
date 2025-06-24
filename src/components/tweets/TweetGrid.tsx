@@ -24,10 +24,10 @@ export function TweetGrid({ tweets, showThreads = false }: TweetGridProps) {
   
   // Otherwise, display tweets in a grid without threading
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {tweets.map((tweet) => (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 tweet-grid" data-tour="twitter-content">
+      {tweets.map((tweet, index) => (
         <div key={tweet.id} className="border border-gray-200 rounded-lg overflow-hidden">
-          <TweetCard key={tweet.id} tweet={tweet} />
+          <TweetCard tweet={tweet} isFirst={index === 0} />
         </div>
       ))}
     </div>

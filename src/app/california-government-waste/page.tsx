@@ -23,12 +23,14 @@ export default function CaliforniaGovernmentWaste() {
             <Link 
               href="/search" 
               className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
+              data-tour="search-database"
             >
               Search Database
             </Link>
             <Link 
               href="/whistleblower" 
               className="bg-gray-100 text-gray-800 px-6 py-3 rounded-md hover:bg-gray-200 transition-colors"
+              data-tour="report-waste"
             >
               Report Waste
             </Link>
@@ -136,12 +138,14 @@ export default function CaliforniaGovernmentWaste() {
               <Link 
                 href="/search" 
                 className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
+                data-tour="search-database"
               >
                 Search Database
               </Link>
               <Link 
                 href="/whistleblower" 
                 className="bg-gray-100 text-gray-800 px-6 py-3 rounded-md hover:bg-gray-200 transition-colors"
+                data-tour="report-waste"
               >
                 Report Waste
               </Link>

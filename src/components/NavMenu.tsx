@@ -97,6 +97,7 @@ export function NavMenu() {
             onClick={() => setIsSearchOpen(!isSearchOpen)}
             aria-label="Search departments"
             aria-expanded={isSearchOpen}
+            data-tour="search-icon"
           >
             <div className="w-6 h-6 flex items-center justify-center">
               <svg
@@ -124,6 +125,7 @@ export function NavMenu() {
           aria-label="Toggle navigation menu"
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
+          data-tour="nav-menu"
         >
           <div className="w-6 h-6 flex items-center justify-center">
             <svg
@@ -171,6 +173,7 @@ export function NavMenu() {
               href={item.href}
               className="text-odi-black hover:bg-odi-gray-100 font-medium block px-4 py-2 mx-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-odi-blue transition-colors"
               onClick={() => setIsMenuOpen(false)}
+              data-tour={item.label === 'Report Waste' ? 'report-waste' : undefined}
             >
               {item.label}
             </Link>

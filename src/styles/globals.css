@@ -131,4 +131,43 @@ body {
 
 .source-reference:hover {
   text-decoration: underline;
+}
+
+/* Tutorial floating button animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-50%) translateX(0px);
+  }
+  50% {
+    transform: translateY(-50%) translateX(-3px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.floating-tutorial-button {
+  animation: float 4s ease-in-out infinite, fade-in 0.5s ease-out;
+  z-index: 200 !important;
+}
+
+.floating-tutorial-button:hover {
+  animation: pulse-glow 2s infinite;
 } 
