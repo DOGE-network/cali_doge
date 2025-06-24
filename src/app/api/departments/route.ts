@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServiceSupabase } from '@/lib/supabase';
-import { getDepartmentSlugs } from '@/lib/blog';
+// import { getDepartmentSlugs } from '@/lib/blog';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -12,159 +12,67 @@ export async function GET(request: Request) {
 
     const supabase = getServiceSupabase();
 
-    // Get all departments from the database
-    const { data: departments, error: deptError } = await supabase
-      .from('departments')
+    // Fetch all departments with workforce data from the materialized view
+    const { data: departmentsWithWorkforce, error: deptError } = await supabase
+      .from('departments_with_workforce')
       .select('*')
       .order('name');
-
     if (deptError) {
-      console.error('Error fetching departments:', deptError);
+      console.error('Error fetching departments with workforce:', deptError);
       return NextResponse.json({ error: 'Failed to fetch departments' }, { status: 500 });
     }
   
-  // Get all valid department slugs from markdown files
-  const validSlugs = await getDepartmentSlugs();
-  console.log('Valid markdown slugs:', validSlugs.length);
-  
-    // Get workforce data for all departments
-    const { data: workforceData, error: workforceError } = await supabase
-      .from('department_workforce')
-      .select(`
-        *,
-        departments!inner(id, name, organizational_code)
-      `);
-
-    if (workforceError) {
-      console.error('Error fetching workforce data:', workforceError);
-      return NextResponse.json({ error: 'Failed to fetch workforce data' }, { status: 500 });
-    }
-
-    // Get distribution data for all departments
-    const { data: distributionData, error: distError } = await supabase
-      .from('department_distributions')
-      .select(`
-        *,
-        departments!inner(id, name, organizational_code)
-      `);
-
-    if (distError) {
-      console.error('Error fetching distribution data:', distError);
-      return NextResponse.json({ error: 'Failed to fetch distribution data' }, { status: 500 });
-    }
-
-    // --- JOIN departments and department_workforce by department_id ---
-    // Build lookup map for departments by name
-    const deptByName = new Map();
-    departments?.forEach(dept => {
-      deptByName.set(dept.name.trim().toLowerCase(), dept);
-    });
-
-    const workforceWithDeptName = (workforceData || []).map(wf => {
-      // The workforce data now includes the department info via the join
-      const dept = wf.departments;
-      return {
-        ...wf,
-        department_name: dept ? dept.name : null,
-        department_id: dept ? dept.id : null
-      };
-    });
-
-    // Debug: Log the joined workforce data
-    console.log('Total workforce records:', workforceData?.length || 0);
-    console.log('Total departments:', departments?.length || 0);
-    console.log('Workforce records with department names:', workforceWithDeptName.filter(wf => wf.department_name).length);
-    console.log('Sample joined workforce records:', workforceWithDeptName.slice(0, 3).map(wf => ({
-      department_name: wf.department_name,
-      head_count: wf.head_count,
-      fiscal_year: wf.fiscal_year
-    })));
-
-    // Create lookup maps for workforce and distribution data
-    const workforceMap = new Map();
-    const distributionMap = new Map();
-
-    workforceWithDeptName?.forEach(record => {
-      const key = `${record.department_name}_${record.fiscal_year}`;
-      workforceMap.set(key, record);
-    });
-
-    distributionData?.forEach(record => {
-      const key = `${record.distribution_type}_${record.fiscal_year}`;
-      distributionMap.set(key, record);
-    });
-
-    // Build a lookup for workforce by department name and year
-    const workforceByNameYear = new Map();
-    workforceWithDeptName.forEach(wf => {
-      if (wf.department_name && wf.fiscal_year) {
-        workforceByNameYear.set(`${wf.department_name.trim().toLowerCase()}_${wf.fiscal_year}`, wf);
-      }
-    });
-
-    // Build a map of children for each department
-    const childrenMap = new Map();
-    departments?.forEach(dept => {
-      const parent = dept.parent_agency ? dept.parent_agency.trim().toLowerCase() : null;
-      if (parent) {
-        if (!childrenMap.has(parent)) childrenMap.set(parent, []);
-        childrenMap.get(parent).push(dept);
-      }
-    });
-
-    // Helper to get all descendants recursively
-    const getAllDescendants = (dept) => {
-      const children = childrenMap.get(dept.name.trim().toLowerCase()) || [];
-      let all = [...children];
-      for (const child of children) {
-        all = all.concat(getAllDescendants(child));
-      }
-      return all;
-    };
-
-    // For each department, calculate own and children totals for each year
-    const transformedDepartments = departments?.map(dept => {
-      const allDepts = [dept, ...getAllDescendants(dept)];
-      const headCount = {};
-      const wages = {};
+    // Transform the data to match the expected format
+    const transformedDepartments = departmentsWithWorkforce?.map(dept => {
+      // Parse workforce data from JSONB
+      const workforce = dept.workforce_yearly || {};
+      const distributions = dept.distributions_yearly || {};
       
-      for (let year = 2010; year <= 2025; year++) {
-        let sumHead = 0;
-        let sumWages = 0;
-        
-        for (const d of allDepts) {
-          // Use department name for workforce lookup
-          const wf = workforceByNameYear.get(`${d.name.trim().toLowerCase()}_${year}`);
-          if (wf) {
-            sumHead += Number(wf.head_count) || 0;
-            sumWages += Number(wf.total_wages) || 0;
-          }
+      // Extract headcount and wages by year
+      const headCount = { yearly: {} };
+      const wages = { yearly: {} };
+      
+      Object.entries(workforce).forEach(([year, data]: [string, any]) => {
+        if (data.headCount !== null && data.headCount !== undefined) {
+          headCount.yearly[year] = data.headCount;
         }
-        
-        headCount[year] = sumHead;
-        wages[year] = sumWages;
+        if (data.wages !== null && data.wages !== undefined) {
+          wages.yearly[year] = data.wages;
+        }
+      });
+      
+      // Extract distributions by type and year
+      const tenureDistribution = { yearly: {} };
+      const salaryDistribution = { yearly: {} };
+      const ageDistribution = { yearly: {} };
+      
+      // Process distributions based on the database structure
+      // The distributions are stored as: { "salary": { "yearly": { "2010": [...], "2011": [...] } } }
+      const distributionsObj = distributions as any;
+      if (distributionsObj.salary && distributionsObj.salary.yearly) {
+        Object.entries(distributionsObj.salary.yearly).forEach(([year, data]: [string, any]) => {
+          salaryDistribution.yearly[year] = data;
+        });
       }
-
-    // Find the matching markdown filename
-    const markdownSlug = validSlugs.find(slug => {
-      const normalizedDeptName = dept.name.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const normalizedSlugName = slug.split('_')[1].toLowerCase().replace(/[^a-z0-9]/g, '');
-      return normalizedDeptName === normalizedSlugName;
-    });
-    
-      // Calculate averages from 2023 data (most recent)
-      let averageSalary: number | null = null;
-      if (headCount[2023] > 0) {
-        averageSalary = wages[2023] / headCount[2023];
+      
+      if (distributionsObj.age && distributionsObj.age.yearly) {
+        Object.entries(distributionsObj.age.yearly).forEach(([year, data]: [string, any]) => {
+          ageDistribution.yearly[year] = data;
+        });
+      }
+      
+      if (distributionsObj.tenure && distributionsObj.tenure.yearly) {
+        Object.entries(distributionsObj.tenure.yearly).forEach(([year, data]: [string, any]) => {
+          tenureDistribution.yearly[year] = data;
+        });
       }
 
     return {
+        id: dept.id,
         name: dept.name,
-        _slug: dept.organizational_code || dept.name.toLowerCase().replace(/[^a-z0-9]/g, '_'),
         canonicalName: dept.canonical_name || dept.name,
         aliases: dept.aliases || [],
         description: dept.description,
-        organizationalCode: dept.organizational_code,
         entityCode: dept.entity_code,
         orgLevel: dept.org_level || 0,
         budget_status: dept.budget_status || 'active',
@@ -172,17 +80,13 @@ export async function GET(request: Request) {
         abbreviation: dept.abbreviation || '',
         parent_agency: dept.parent_agency || '',
         note: dept.note,
-        headCount: { yearly: headCount },
-        wages: { yearly: wages },
-        _averageTenureYears: null,
-        _averageSalary: averageSalary,
-        _averageAge: null,
-        tenureDistribution: { yearly: {} },
-        salaryDistribution: { yearly: {} },
-        ageDistribution: { yearly: {} },
-        hasWorkforceData: headCount[2023] > 0,
-      hasPage: Boolean(markdownSlug),
-        pageSlug: markdownSlug || null
+        organizationalCode: dept.organizational_code,
+        headCount,
+        wages,
+        tenureDistribution,
+        salaryDistribution,
+        ageDistribution,
+        hasWorkforceData: Object.keys(workforce).length > 0
       };
     }) || [];
 
@@ -190,12 +94,11 @@ export async function GET(request: Request) {
     const hasRootDepartment = transformedDepartments.some(d => d.name === 'California State Government');
     if (!hasRootDepartment) {
       const rootDepartment = {
+        id: 'root',
         name: 'California State Government',
-        _slug: 'california_state_government',
         canonicalName: 'California State Government',
         aliases: [],
         description: 'Root department representing the entire California State Government',
-        organizationalCode: null,
         entityCode: null,
         orgLevel: 0,
         budget_status: 'active' as const,
@@ -203,17 +106,13 @@ export async function GET(request: Request) {
         abbreviation: 'CA',
         parent_agency: '',
         note: null,
+        organizationalCode: null,
         headCount: { yearly: {} },
         wages: { yearly: {} },
-        _averageTenureYears: null,
-        _averageSalary: null,
-        _averageAge: null,
         tenureDistribution: { yearly: {} },
         salaryDistribution: { yearly: {} },
         ageDistribution: { yearly: {} },
-        hasWorkforceData: false,
-        hasPage: false,
-        pageSlug: null
+        hasWorkforceData: false
       };
       transformedDepartments.unshift(rootDepartment);
     }
@@ -237,6 +136,10 @@ export async function GET(request: Request) {
     return acc;
   }, {} as Record<string, number>);
   console.log('Departments by parent agency:', parentAgencyCounts);
+
+    // Debug: Log departments with 2023 headcount
+    const deptsWith2023 = transformedDepartments.filter(d => d.headCount.yearly["2023"] != null && d.headCount.yearly["2023"] > 0);
+    console.log('Departments with 2023 headcount:', deptsWith2023.length);
 
   // Return format based on query parameter
   if (format === 'departments') {

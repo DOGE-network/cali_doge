@@ -165,19 +165,7 @@ CREATE INDEX IF NOT EXISTS idx_dept_dist_year ON public.department_distributions
 CREATE INDEX IF NOT EXISTS idx_dept_dist_type ON public.department_distributions USING btree (distribution_type);
 CREATE INDEX IF NOT EXISTS idx_dept_dist_data ON public.department_distributions USING gin (distribution_data);
 
-CREATE TABLE public.department_spending (
-  id uuid NOT NULL DEFAULT extensions.uuid_generate_v4(),
-  department_id uuid NOT NULL,
-  fiscal_year integer NOT NULL,
-  total_amount numeric(20,2) NOT NULL,
-  created_at timestamp with time zone NULL DEFAULT now(),
-  updated_at timestamp with time zone NULL DEFAULT now(),
-  CONSTRAINT department_spending_pkey PRIMARY KEY (id),
-  CONSTRAINT department_spending_department_id_fiscal_year_key UNIQUE (department_id, fiscal_year),
-  CONSTRAINT department_spending_department_id_fkey FOREIGN KEY (department_id) REFERENCES public.departments(id) ON DELETE CASCADE
-);
-CREATE INDEX IF NOT EXISTS idx_dept_spending_dept ON public.department_spending USING btree (department_id);
-CREATE INDEX IF NOT EXISTS idx_dept_spending_year ON public.department_spending USING btree (fiscal_year);
+-- DEPRECATED: department_spending table removed as of 2024-06-23. 
 
 CREATE TABLE public.department_workforce (
   id uuid NOT NULL DEFAULT extensions.uuid_generate_v4(),

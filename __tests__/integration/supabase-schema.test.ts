@@ -108,14 +108,7 @@ interface BudgetLineItemRow {
   updated_at: string | null;
 }
 
-interface DepartmentSpendingRow {
-  id: string;
-  department_id: string;
-  fiscal_year: number;
-  total_amount: number;
-  created_at: string | null;
-  updated_at: string | null;
-}
+
 
 interface DepartmentWorkforceRow {
   id: string;
@@ -176,14 +169,13 @@ describe('Supabase Schema Integration Tests', () => {
   describe('Required Tables', () => {
     const requiredTables = [
       'departments',
-      'department_spending', 
-      'department_workforce',
+      'department_workforce', 
       'department_distributions',
       'programs',
       'program_descriptions',
-      'funds',
       'vendors',
       'vendor_transactions',
+      'funds',
       'budgets',
       'budget_line_items',
       'search_index'
@@ -254,34 +246,7 @@ describe('Supabase Schema Integration Tests', () => {
       }
     });
 
-    it('department_spending table should have all columns used by process_json.ts with correct types', async () => {
-      const { data, error } = await supabase
-        .from('department_spending')
-        .select('*')
-        .limit(1);
-      expect(error).toBeNull();
-      if (data && data.length > 0) {
-        const row = data[0];
-        const requiredColumns = [
-          'id',
-          'department_id',
-          'fiscal_year',
-          'total_amount',
-          'created_at',
-          'updated_at'
-        ];
-        validateRequiredColumns(row, requiredColumns);
-        const typeChecks = {
-          id: (v) => typeof v === 'string',
-          department_id: (v) => typeof v === 'string',
-          fiscal_year: (v) => typeof v === 'number',
-          total_amount: (v) => typeof v === 'number',
-          created_at: (v) => v === null || typeof v === 'string',
-          updated_at: (v) => v === null || typeof v === 'string'
-        };
-        validateColumnTypes(row, typeChecks);
-      }
-    });
+
 
     it('department_workforce table should have all columns used by process_json.ts with correct types', async () => {
       const { data, error } = await supabase
@@ -534,16 +499,13 @@ describe('Supabase Schema Integration Tests', () => {
       expect(error).toBeNull();
       if (data && data.length > 0) {
         const row = data[0];
-        // Expected columns for programs with descriptions view
+        // Expected columns for programs with descriptions view (updated schema)
         const requiredColumns = [
           'project_code',
           'program_name',
           'program_description_ids',
-          'description_id',
-          'description',
-          'sources',
-          'description_created_at',
-          'description_updated_at',
+          'description_texts',
+          'all_sources',
           'program_created_at',
           'program_updated_at'
         ];
@@ -1112,23 +1074,7 @@ describe('Supabase Schema Integration Tests', () => {
       }
     });
 
-    it('should have proper foreign key from department_spending to departments', async () => {
-      const { data, error } = await supabase
-        .from('department_spending')
-        .select(`
-          id,
-          department_id,
-          departments!inner(id, name)
-        `)
-        .limit(1);
-      
-      expect(error).toBeNull();
-      if (data && data.length > 0) {
-        expect(data[0]).toHaveProperty('departments');
-        expect(data[0].departments).toHaveProperty('id');
-        expect(data[0].departments).toHaveProperty('name');
-      }
-    });
+
 
     it('should have proper foreign key from department_workforce to departments', async () => {
       const { data, error } = await supabase
@@ -1439,34 +1385,7 @@ describe('Supabase Schema Integration Tests', () => {
       expect(queryTime).toBeLessThan(1000);
     });
 
-    it('should have efficient queries on department_spending by department_id', async () => {
-      const startTime = Date.now();
-      const { data, error } = await supabase
-        .from('department_spending')
-        .select('id, department_id, total_amount')
-        .limit(10);
-      
-      const endTime = Date.now();
-      const queryTime = endTime - startTime;
-      
-      expect(error).toBeNull();
-      expect(queryTime).toBeLessThan(1000);
-    });
 
-    it('should have efficient queries on department_spending by fiscal_year', async () => {
-      const startTime = Date.now();
-      const { data, error } = await supabase
-        .from('department_spending')
-        .select('id, department_id, fiscal_year')
-        .eq('fiscal_year', 2024)
-        .limit(10);
-      
-      const endTime = Date.now();
-      const queryTime = endTime - startTime;
-      
-      expect(error).toBeNull();
-      expect(queryTime).toBeLessThan(1000);
-    });
 
     it('should have efficient queries on department_workforce by department_id', async () => {
       const startTime = Date.now();
@@ -1713,9 +1632,10 @@ describe('Supabase Schema Integration Tests', () => {
         expect(data[0]).toHaveProperty('project_code');
         expect(data[0]).toHaveProperty('program_name');
         expect(data[0]).toHaveProperty('program_description_ids');
-        expect(data[0]).toHaveProperty('description_id');
-        expect(data[0]).toHaveProperty('description');
-        expect(data[0]).toHaveProperty('sources');
+        expect(data[0]).toHaveProperty('description_texts');
+        expect(data[0]).toHaveProperty('all_sources');
+        expect(data[0]).toHaveProperty('program_created_at');
+        expect(data[0]).toHaveProperty('program_updated_at');
       }
     });
 
@@ -1798,34 +1718,7 @@ describe('Supabase Schema Integration Tests', () => {
       }
     });
 
-    it('department_spending table should have all columns used by process_json.ts with correct types', async () => {
-      const { data, error } = await supabase
-        .from('department_spending')
-        .select('*')
-        .limit(1);
-      expect(error).toBeNull();
-      if (data && data.length > 0) {
-        const row = data[0];
-        const requiredColumns = [
-          'id',
-          'department_id',
-          'fiscal_year',
-          'total_amount',
-          'created_at',
-          'updated_at'
-        ];
-        validateRequiredColumns(row, requiredColumns);
-        const typeChecks = {
-          id: (v) => typeof v === 'string',
-          department_id: (v) => typeof v === 'string',
-          fiscal_year: (v) => typeof v === 'number',
-          total_amount: (v) => typeof v === 'number',
-          created_at: (v) => v === null || typeof v === 'string',
-          updated_at: (v) => v === null || typeof v === 'string'
-        };
-        validateColumnTypes(row, typeChecks);
-      }
-    });
+
 
     it('department_workforce table should have all columns used by process_json.ts with correct types', async () => {
       const { data, error } = await supabase
@@ -2078,16 +1971,13 @@ describe('Supabase Schema Integration Tests', () => {
       expect(error).toBeNull();
       if (data && data.length > 0) {
         const row = data[0];
-        // Expected columns for programs with descriptions view
+        // Expected columns for programs with descriptions view (updated schema)
         const requiredColumns = [
           'project_code',
           'program_name',
           'program_description_ids',
-          'description_id',
-          'description',
-          'sources',
-          'description_created_at',
-          'description_updated_at',
+          'description_texts',
+          'all_sources',
           'program_created_at',
           'program_updated_at'
         ];
@@ -2767,47 +2657,7 @@ describe('Supabase Schema Integration Tests', () => {
         .eq('name', testDept.name);
     });
 
-    it('should support upserting department_spending with all required fields', async () => {
-      // First create a test department since department_spending has a foreign key to departments
-      const testDept = {
-        name: 'Test Department for Spending',
-        organizational_code: 'TEST003'
-      };
 
-      const { data: deptData, error: deptError } = await supabase
-        .from('departments')
-        .upsert(testDept, { onConflict: 'name' })
-        .select()
-        .single();
-
-      expect(deptError).toBeNull();
-      expect(deptData).toBeDefined();
-
-      const testSpending = {
-        department_id: deptData.id,
-        fiscal_year: 2024,
-        total_amount: 5000000.00
-      };
-
-      const { data, error } = await supabase
-        .from('department_spending')
-        .upsert(testSpending, { onConflict: 'department_id,fiscal_year' })
-        .select();
-
-      expect(error).toBeNull();
-      expect(data).toBeDefined();
-      
-      // Clean up
-      await supabase
-        .from('department_spending')
-        .delete()
-        .eq('department_id', deptData.id)
-        .eq('fiscal_year', testSpending.fiscal_year);
-      await supabase
-        .from('departments')
-        .delete()
-        .eq('name', testDept.name);
-    });
 
     it('should support upserting department_workforce with all required fields', async () => {
       // First create a test department since department_workforce has a foreign key to departments

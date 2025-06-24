@@ -106,7 +106,7 @@ export type Database = {
       department_distributions: {
         Row: {
           created_at: string | null
-          department_code: string
+          department_id: string
           distribution_data: Json
           distribution_type: string
           fiscal_year: number
@@ -115,7 +115,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string | null
-          department_code: string
+          department_id: string
           distribution_data: Json
           distribution_type: string
           fiscal_year: number
@@ -124,7 +124,7 @@ export type Database = {
         }
         Update: {
           created_at?: string | null
-          department_code?: string
+          department_id?: string
           distribution_data?: Json
           distribution_type?: string
           fiscal_year?: number
@@ -133,53 +133,21 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "department_distributions_department_code_fkey"
-            columns: ["department_code"]
+            foreignKeyName: "department_distributions_department_id_fkey"
+            columns: ["department_id"]
             isOneToOne: false
             referencedRelation: "departments"
-            referencedColumns: ["organizational_code"]
+            referencedColumns: ["id"]
           },
         ]
       }
-      department_spending: {
-        Row: {
-          created_at: string | null
-          department_code: string
-          fiscal_year: number
-          id: string
-          total_amount: number
-          updated_at: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          department_code: string
-          fiscal_year: number
-          id?: string
-          total_amount: number
-          updated_at?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          department_code?: string
-          fiscal_year?: number
-          id?: string
-          total_amount?: number
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "department_spending_department_code_fkey"
-            columns: ["department_code"]
-            isOneToOne: false
-            referencedRelation: "departments"
-            referencedColumns: ["organizational_code"]
-          },
-        ]
-      }
+      // DEPRECATED: department_spending type is no longer used as of 2024-06-23.
+      // export interface DepartmentSpending { ... }
+      // (rest of department_spending type commented out below)
       department_workforce: {
         Row: {
           created_at: string | null
-          department_code: string
+          department_id: string
           fiscal_year: number
           head_count: number
           id: string
@@ -188,7 +156,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string | null
-          department_code: string
+          department_id: string
           fiscal_year: number
           head_count: number
           id?: string
@@ -197,7 +165,7 @@ export type Database = {
         }
         Update: {
           created_at?: string | null
-          department_code?: string
+          department_id?: string
           fiscal_year?: number
           head_count?: number
           id?: string
@@ -206,11 +174,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "department_workforce_department_code_fkey"
-            columns: ["department_code"]
+            foreignKeyName: "department_workforce_department_id_fkey"
+            columns: ["department_id"]
             isOneToOne: false
             referencedRelation: "departments"
-            referencedColumns: ["organizational_code"]
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -485,11 +453,93 @@ export type Database = {
       }
     }
     Views: {
+      departments_with_workforce: {
+        Row: {
+          id: string
+          organizational_code: string | null
+          name: string
+          canonical_name: string | null
+          aliases: string[] | null
+          description: string | null
+          entity_code: number | null
+          org_level: number | null
+          budget_status: string | null
+          key_functions: string | null
+          abbreviation: string | null
+          parent_agency: string | null
+          note: string | null
+          created_at: string | null
+          updated_at: string | null
+          workforce_yearly: Json
+          distributions_yearly: Json
+        }
+        Insert: {
+          id?: string
+          organizational_code?: string | null
+          name: string
+          canonical_name?: string | null
+          aliases?: string[] | null
+          description?: string | null
+          entity_code?: number | null
+          org_level?: number | null
+          budget_status?: string | null
+          key_functions?: string | null
+          abbreviation?: string | null
+          parent_agency?: string | null
+          note?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+          workforce_yearly?: Json
+          distributions_yearly?: Json
+        }
+        Update: {
+          id?: string
+          organizational_code?: string | null
+          name?: string
+          canonical_name?: string | null
+          aliases?: string[] | null
+          description?: string | null
+          entity_code?: number | null
+          org_level?: number | null
+          budget_status?: string | null
+          key_functions?: string | null
+          abbreviation?: string | null
+          parent_agency?: string | null
+          note?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+          workforce_yearly?: Json
+          distributions_yearly?: Json
+        }
+        Relationships: []
+      }
     }
     Functions: {
       ensure_search_index_fts: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      get_departments_with_workforce: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          organizational_code: string | null
+          name: string
+          canonical_name: string | null
+          aliases: string[] | null
+          description: string | null
+          entity_code: number | null
+          org_level: number | null
+          budget_status: string | null
+          key_functions: string | null
+          abbreviation: string | null
+          parent_agency: string | null
+          note: string | null
+          created_at: string | null
+          updated_at: string | null
+          workforce_yearly: Json
+          distributions_yearly: Json
+        }[]
       }
     }
     Enums: {

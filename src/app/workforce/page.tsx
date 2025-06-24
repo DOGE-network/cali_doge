@@ -453,32 +453,36 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
   // Add root to maps
   deptMap.set(root.name, root);
   levelMap.set(0, [root]);
+  // Ensure root.subDepartments is always initialized
+  if (!root.subDepartments) root.subDepartments = [];
 
   // 2.3 Parent-Child Relationships
   log('INFO', transactionId, 'Step 2.3: Establishing parent-child relationships');
 
-  // Helper function to normalize department names
-  const normalizeName = (name: string) => name.toLowerCase().replace(/\s+/g, ' ').trim();
+  // Helper function to normalize department names (lowercase, remove punctuation, trim spaces)
+  const normalizeName = (name: string) => name.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
 
   // Helper function to find best parent match
   const findParent = (parentName: string, childLevel: number): DepartmentHierarchy | undefined => {
-    let parent = deptMap.get(parentName);
-    if (parent) return parent;
-
-    parent = aliasMap.get(normalizeName(parentName));
-    if (parent) return parent;
-
     const normalizedParent = normalizeName(parentName);
+    // Try direct match in deptMap
+    for (const [deptName, dept] of Array.from(deptMap.entries())) {
+      if (normalizeName(deptName) === normalizedParent) return dept;
+    }
+    // Try alias match
+    for (const [alias, dept] of Array.from(aliasMap.entries())) {
+      if (normalizeName(alias) === normalizedParent) return dept;
+    }
+    // Try substring match in potential parents at previous level
     const potentialParents = levelMap.get(childLevel - 1) || [];
-    
     return potentialParents.find(p => {
       const normalizedName = normalizeName(p.name);
-      return normalizedName.includes(normalizedParent) || 
-             normalizedParent.includes(normalizedName) ||
-             (p.aliases || []).some(alias => 
-               normalizeName(alias).includes(normalizedParent) || 
-               normalizedParent.includes(normalizeName(alias))
-             );
+      if (normalizedName === normalizedParent) return true;
+      if (normalizedName.includes(normalizedParent) || normalizedParent.includes(normalizedName)) return true;
+      return (p.aliases || []).some(alias => {
+        const normAlias = normalizeName(alias);
+        return normAlias === normalizedParent || normAlias.includes(normalizedParent) || normalizedParent.includes(normAlias);
+      });
     });
   };
 
@@ -526,6 +530,22 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
     log('INFO', transactionId, `Step 2.3: Level ${level} complete`, {
       attached: depts.length - unattachedDepts.size,
       unattached: unattachedDepts.size
+    });
+  }
+
+  // PATCH: Attach any remaining unattached departments directly to root
+  if (unattachedDepts.size > 0) {
+    log('WARN', transactionId, 'Attaching unattached departments directly to root', {
+      unattached: Array.from(unattachedDepts)
+    });
+    unattachedDepts.forEach(deptName => {
+      if (deptName !== root.name) {
+        const dept = deptMap.get(deptName);
+        if (dept && (!root.subDepartments || !root.subDepartments.some(d => d.name === dept.name))) {
+          if (!root.subDepartments) root.subDepartments = [];
+          root.subDepartments.push(dept);
+        }
+      }
     });
   }
 
@@ -671,6 +691,35 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
   const _wagesData = typeof department.wages?.yearly?.[fiscalYear] === 'number' ? department.wages.yearly[fiscalYear] : undefined;
   const _averageSalary = typeof department._averageSalary === 'number' ? department._averageSalary : undefined;
   
+  // State for checking if department has a markdown page
+  const [hasPage, setHasPage] = useState(false);
+  const [isLoadingPage, setIsLoadingPage] = useState(true);
+
+  // Check if department has a markdown page
+  useEffect(() => {
+    const checkForPage = async () => {
+      try {
+        const response = await fetch('/api/departments/available');
+        const data = await response.json();
+        
+        // Construct the potential slug from organizational code and name
+        if (department.organizationalCode && department.name) {
+          const potentialSlug = `${department.organizationalCode}_${department.name.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, '_')}`;
+          setHasPage(data.slugs.includes(potentialSlug));
+        } else {
+          setHasPage(false);
+        }
+      } catch (error) {
+        console.error('Error checking for department page:', error);
+        setHasPage(false);
+      } finally {
+        setIsLoadingPage(false);
+      }
+    };
+
+    checkForPage();
+  }, [department.organizationalCode, department.name]);
+  
   const handleCardClick = () => {
     // Track workforce card click - only pass number values
     const employeeCount = typeof _workforceData === 'number' ? _workforceData : undefined;
@@ -687,9 +736,9 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
         <div className="flex justify-between items-start">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">
-              {department.hasPage && department.pageSlug ? (
+              {!isLoadingPage && hasPage ? (
                 <Link 
-                  href={`/departments/${department.pageSlug}`}
+                  href={`/departments/${department.organizationalCode}_${department.name.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, '_')}`}
                   onClick={(e: React.MouseEvent) => e.stopPropagation()}
                   className="text-blue-600 hover:text-blue-800 hover:underline"
                 >

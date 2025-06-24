@@ -82,15 +82,29 @@ class DepartmentAccess extends QueryBuilder<Database['public']['Tables']['depart
     return data;
   }
 
-  async getDepartmentBudgets(departmentCode: string, fiscalYear: number) {
-    const cacheKey = this.getCacheKey('budgets', departmentCode, fiscalYear);
+  async getDepartmentBudgets(departmentName: string, fiscalYear: number) {
+    const cacheKey = this.getCacheKey('budgets', departmentName, fiscalYear);
     const cached = await this.getFromCache(cacheKey);
     if (cached) return cached;
 
     const supabase = getServiceSupabase();
+
+    // First, get the department's organizational_code from its name
+    const { data: dept, error: deptError } = await supabase
+      .from('departments')
+      .select('organizational_code')
+      .eq('name', departmentName)
+      .single();
+
+    if (deptError || !dept || !dept.organizational_code) {
+      console.error('Failed to find department or department code by name for budget lookup:', departmentName);
+      return []; // Return empty array if department not found
+    }
+
     const { data, error } = await supabase
       .from('budgets')
-      .select(`
+      .select(
+        `
         *,
         budget_line_items (
           program_code,
@@ -98,8 +112,9 @@ class DepartmentAccess extends QueryBuilder<Database['public']['Tables']['depart
           amount,
           description
         )
-      `)
-      .eq('department_code', departmentCode)
+      `
+      )
+      .eq('department_code', dept.organizational_code)
       .eq('fiscal_year', fiscalYear);
 
     if (error) throw error;

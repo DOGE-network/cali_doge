@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "npx tsx src/scripts/generate_search_index.ts && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

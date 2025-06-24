@@ -36,7 +36,7 @@ export async function GET(request: Request) {
         query = query.ilike('vendor_name', `%${vendorParam}%`);
       }
       if (department) {
-        query = query.ilike('department_code', `%${department}%`);
+        query = query.ilike('department_name', `%${department}%`);
       }
       if (programParam) {
         query = query.ilike('program_code', `%${programParam}%`);
@@ -60,17 +60,18 @@ export async function GET(request: Request) {
       const { data: transactions, error: txError, count } = await query;
       if (txError) throw txError;
 
-      // Extract unique department, program, and fund codes from paginated transactions
-      const departmentCodes = Array.from(new Set(transactions.map(tx => tx.department_code).filter(Boolean)));
+      // Extract unique department, program, and fund names/codes from paginated transactions
+      const departmentNames = Array.from(new Set(transactions.map(tx => tx.department_name).filter(Boolean)));
       const programCodes = Array.from(new Set(transactions.map(tx => tx.program_code).filter(Boolean)));
       const fundCodes = Array.from(new Set(transactions.map(tx => tx.fund_code).filter(Boolean)));
+      
       // Fetch only those departments, programs, and funds
-      let allDepartments: { organizational_code: string; name: string }[] = [];
-      if (departmentCodes.length > 0) {
+      let allDepartments: { name: string }[] = [];
+      if (departmentNames.length > 0) {
         const { data: departmentsData, error: deptError } = await supabase
           .from('departments')
-          .select('organizational_code, name')
-          .in('organizational_code', departmentCodes);
+          .select('name')
+          .in('name', departmentNames);
         if (deptError) throw deptError;
         allDepartments = departmentsData || [];
       }
@@ -95,7 +96,7 @@ export async function GET(request: Request) {
       // Build lookup maps
       const departmentMap = new Map();
       allDepartments.forEach(dept => {
-        departmentMap.set(dept.organizational_code, dept.name);
+        departmentMap.set(dept.name, dept.name);
       });
       const programMap = new Map();
       allPrograms.forEach(prog => {
@@ -106,14 +107,20 @@ export async function GET(request: Request) {
         fundMap.set(fund.fund_code, fund.name);
       });
       // Map each transaction to a record for the UI
-      let records = transactions.map(tx => ({
+      let records = transactions.map(tx => {
+        const departmentName = departmentMap.get(tx.department_name);
+        if (!departmentName && tx.department_name) {
+          console.log(`[Department Mismatch] Name not found in departments table: "${tx.department_name}"`);
+        }
+        return {
         year: tx.fiscal_year,
-        department: departmentMap.get(tx.department_code) || 'Unknown Department',
+          department: departmentName || tx.department_name || 'Unknown Department',
         vendor: tx.vendor_name || 'Unknown Vendor',
         program: programMap.get(tx.program_code) || 'Unknown Program',
         fund: fundMap.get(tx.fund_code) || 'Unknown Fund',
         amount: tx.amount || 0,
-      }));
+        };
+      });
       // Filtering for free-text filter (must be done after join)
       if (filter) {
         const filterTerms = parseFilterValue(filter);
@@ -169,7 +176,7 @@ export async function GET(request: Request) {
 
         // Filtering (move as much as possible to SQL)
         if (department) {
-          query = query.ilike('department_code', `%${department}%`);
+          query = query.ilike('department_name', `%${department}%`);
         }
         if (programParam) {
           query = query.ilike('program_name', `%${programParam}%`);
@@ -258,7 +265,7 @@ export async function GET(request: Request) {
           },
           department: {
             table: 'department_compare_summary',
-            codeField: 'department_code',
+            codeField: 'department_name',
             nameField: 'department_name',
           },
           program: {

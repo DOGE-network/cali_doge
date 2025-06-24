@@ -23,9 +23,8 @@
  *    2.3. Process departments in batches
  *    2.4. Upsert new department records
  *    2.5. Handle validation errors and logging
- *    2.6. Upsert department spending data
- *    2.7. Upsert department workforce data
- *    2.8. Upsert department distributions
+ *    2.6. Upsert department workforce data
+ *    2.7. Upsert department distributions
  * 
  * 3. Program Update (updatePrograms)
  *    3.1. Read and validate programs.json
@@ -673,8 +672,8 @@ async function updateVendors(): Promise<ProcessingResult> {
 
             if (fetchError) {
               log('ERROR', transactionId, `Error fetching existing programs: ${fetchError.message}`, { 
-                step: '6.7', 
-                context,
+                          step: '6.7', 
+                          context,
                 error: fetchError
               });
               fileLogger.error(`Error fetching existing programs: ${fetchError.message}`);
@@ -1216,15 +1215,15 @@ async function updateDepartments(): Promise<ProcessingResult> {
       }
     }
 
-    // Step 2.5: Update department spending data
-    log('INFO', transactionId, 'Step 2.5: Updating department spending data', { step: '2.5', context });
-    fileLogger.log('Step 2.5: Updating department spending data');
+    // Step 2.5: Update department workforce data
+    log('INFO', transactionId, 'Step 2.5: Updating department workforce data', { step: '2.5', context });
+    fileLogger.log('Step 2.5: Updating department workforce data');
 
     try {
       // First, get all department IDs from the database
       const { data: departmentsFromDB, error: deptError } = await supabase
         .from('departments')
-        .select('id, name, organizational_code');
+        .select('id, name, canonical_name, aliases');
 
       if (deptError) {
         log('ERROR', transactionId, 'Error fetching departments from database', {
@@ -1236,127 +1235,16 @@ async function updateDepartments(): Promise<ProcessingResult> {
         throw deptError;
       }
 
-      // Create a map of department organizational codes to IDs
-      const departmentCodeToId = new Map<string, string>();
-      departmentsFromDB?.forEach(dept => {
-        if (dept.organizational_code) {
-          departmentCodeToId.set(dept.organizational_code, dept.id);
-        }
-      });
-
-      // Delete existing spending data
-      const { error: deleteError } = await supabase
-        .from('department_spending')
-        .delete()
-        .eq('fiscal_year', config.currentYear);
-
-      if (deleteError) {
-        log('ERROR', transactionId, 'Error deleting existing department spending data', {
-          step: '2.5',
-          context,
-          error: deleteError
-        });
-        fileLogger.error(`Error deleting existing department spending data: ${deleteError.message}`);
-        throw deleteError;
-      }
-
-      // Insert new spending data
-      const spendingDataMap = new Map<string, {
-        department_id: string;
-        fiscal_year: number;
-        total_amount: number;
-      }>();
-
-      // Deduplicate spending data by using a Map with department_id as key
-      departmentsData.departments
-        .filter(dept => dept.organizationalCode && dept.spending)
-        .forEach(dept => {
-          // Get the department ID from the database
-          const departmentId = departmentCodeToId.get(dept.organizationalCode!);
-          if (!departmentId) {
-            log('WARN', transactionId, `Department not found in database for spending data: ${dept.organizationalCode}`, {
-              step: '2.5',
-              context,
-              department_name: dept.name,
-              organizational_code: dept.organizationalCode
-            });
-            fileLogger.log(`Department not found in database for spending data: ${dept.organizationalCode} (${dept.name})`);
-            return; // Skip this department
-          }
-
-          const key = departmentId;
-          const amount = typeof dept.spending === 'object' && dept.spending?.yearly?.[config.currentYear] 
-            ? dept.spending.yearly[config.currentYear] 
-            : (typeof dept.spending === 'number' ? dept.spending : 0);
-          
-          spendingDataMap.set(key, {
-            department_id: key,
-            fiscal_year: config.currentYear,
-            total_amount: amount
-          });
-        });
-
-      const spendingData = Array.from(spendingDataMap.values());
-
-      if (spendingData.length > 0) {
-        const { error: insertError } = await supabase
-          .from('department_spending')
-          .upsert(spendingData, {
-            onConflict: 'department_id,fiscal_year'
-          });
-
-        if (insertError) {
-          log('ERROR', transactionId, 'Error inserting department spending data', {
-            step: '2.5',
-            context,
-            error: insertError,
-            sampleData: spendingData.slice(0, 2), // Log first two records for debugging
-            totalRecords: spendingData.length
-          });
-          fileLogger.error(`Error inserting department spending data: ${insertError.message}`);
-          throw insertError;
-        }
-
-        log('INFO', transactionId, `Successfully upserted ${spendingData.length} department spending records`, {
-          step: '2.5',
-          context
-        });
-        fileLogger.log(`Successfully upserted ${spendingData.length} department spending records`);
-      }
-    } catch (error) {
-      log('ERROR', transactionId, 'Failed to update department spending data', {
-        step: '2.5',
-        context,
-        error: error instanceof Error ? error.message : 'Unknown error'
-      });
-      fileLogger.error(`Failed to update department spending data: ${error instanceof Error ? error.message : 'Unknown error'}`);
-      throw error;
-    }
-
-    // Step 2.6: Update department workforce data
-    log('INFO', transactionId, 'Step 2.6: Updating department workforce data', { step: '2.6', context });
-    fileLogger.log('Step 2.6: Updating department workforce data');
-
-    try {
-      // First, get all department IDs from the database
-      const { data: departmentsFromDB, error: deptError } = await supabase
-        .from('departments')
-        .select('id, name');
-
-      if (deptError) {
-        log('ERROR', transactionId, 'Error fetching departments from database', {
-          step: '2.6',
-          context,
-          error: deptError
-        });
-        fileLogger.error(`Error fetching departments from database: ${deptError.message}`);
-        throw deptError;
-      }
-
-      // Create a map of department names to IDs
+      // Create maps for department name, canonicalName, and aliases to IDs
       const departmentNameToId = new Map<string, string>();
+      const departmentCanonicalToId = new Map<string, string>();
+      const departmentAliasToId = new Map<string, string>();
       departmentsFromDB?.forEach(dept => {
-        departmentNameToId.set(dept.name, dept.id);
+        if (dept.name) departmentNameToId.set(dept.name, dept.id);
+        if (dept.canonical_name) departmentCanonicalToId.set(dept.canonical_name, dept.id);
+        if (Array.isArray(dept.aliases)) {
+          dept.aliases.forEach((alias: string) => departmentAliasToId.set(alias, dept.id));
+        }
       });
 
       // Create a Map to deduplicate workforce data
@@ -1369,7 +1257,7 @@ async function updateDepartments(): Promise<ProcessingResult> {
           // Check if department has a name (required for processing)
           if (!dept.name) {
             log('ERROR', transactionId, 'Department missing name field', {
-              step: '2.6',
+              step: '2.5',
               context,
               department: {
                 organizationalCode: dept.organizationalCode,
@@ -1381,20 +1269,29 @@ async function updateDepartments(): Promise<ProcessingResult> {
             return; // Skip this department
           }
 
-          // Get the department ID from the database
-          const departmentId = departmentNameToId.get(dept.name);
+          // Enhanced: Try to find department ID by name, canonicalName, or alias
+          let departmentId = departmentNameToId.get(dept.name);
+          if (!departmentId && dept.canonicalName) {
+            departmentId = departmentCanonicalToId.get(dept.canonicalName);
+          }
+          if (!departmentId && Array.isArray(dept.aliases)) {
+            for (const alias of dept.aliases) {
+              departmentId = departmentAliasToId.get(alias);
+              if (departmentId) break;
+            }
+          }
           if (!departmentId) {
-            log('WARN', transactionId, `Department not found in database: ${dept.name}`, {
-              step: '2.6',
+            const errorMsg = `Department not found in database: ${dept.name} (checked name, canonicalName, aliases)`;
+            log('ERROR', transactionId, errorMsg, {
+              step: '2.5',
               context
             });
-            fileLogger.log(`Department not found in database: ${dept.name}`);
-            return; // Skip this department
+            fileLogger.error(errorMsg);
+            throw new Error(errorMsg);
           }
 
           const key = dept.name;
           const years = new Set<number>();
-          
           // Get all years from both headCount and wages
           if (dept.headCount?.yearly) {
             Object.keys(dept.headCount.yearly).forEach(year => years.add(parseInt(year)));
@@ -1406,7 +1303,6 @@ async function updateDepartments(): Promise<ProcessingResult> {
           const departmentData = Array.from(years).map(year => {
             const headCount = dept.headCount?.yearly?.[year];
             const wages = dept.wages?.yearly?.[year];
-            
             if (typeof headCount === 'number') {
               return {
                 department_id: departmentId,
@@ -1421,14 +1317,14 @@ async function updateDepartments(): Promise<ProcessingResult> {
           if (departmentData.length > 0) {
             workforceDataMap.set(key, departmentData);
             log('DEBUG', transactionId, `Including department ${dept.name} with data for years: ${departmentData.map(d => d.fiscal_year).join(', ')}`, {
-              step: '2.6',
+              step: '2.5',
               context,
               years: departmentData.length
             });
             fileLogger.log(`Including department ${dept.name} with data for years: ${departmentData.map(d => d.fiscal_year).join(', ')}`);
           } else {
             log('DEBUG', transactionId, `Skipping department ${dept.name} - no valid data for any year`, {
-              step: '2.6',
+              step: '2.5',
               context
             });
             fileLogger.log(`Skipping department ${dept.name} - no valid data for any year`);
@@ -1436,46 +1332,23 @@ async function updateDepartments(): Promise<ProcessingResult> {
         });
 
       const workforceData = Array.from(workforceDataMap.values()).flat();
-      log('DEBUG', transactionId, `Prepared workforceData length: ${workforceData.length}`, { step: '2.6', context });
+      log('DEBUG', transactionId, `Prepared workforceData length: ${workforceData.length}`, { step: '2.5', context });
       fileLogger.log(`Prepared workforceData length: ${workforceData.length}`);
-      
       if (workforceData.length > 0) {
         log('DEBUG', transactionId, `Sample workforceData:`, {
-          step: '2.6',
+          step: '2.5',
           context,
           sample: workforceData[0]
         });
         fileLogger.log(`Sample workforceData: ${JSON.stringify(workforceData[0], null, 2)}`);
-
-        // Delete existing records for all years we're updating
-        const yearsToUpdate = new Set(workforceData.map(d => d.fiscal_year));
-        log('DEBUG', transactionId, `Deleting existing records for years: ${Array.from(yearsToUpdate).join(', ')}`, { step: '2.6', context });
-        fileLogger.log(`Deleting existing records for years: ${Array.from(yearsToUpdate).join(', ')}`);
-
-        const { error: deleteError } = await supabase
-          .from('department_workforce')
-          .delete()
-          .in('fiscal_year', Array.from(yearsToUpdate));
-
-        if (deleteError) {
-          log('ERROR', transactionId, 'Error deleting existing department workforce data', {
-            step: '2.6',
-            context,
-            error: deleteError
-          });
-          fileLogger.error(`Error deleting existing department workforce data: ${deleteError.message}`);
-          throw deleteError;
-        }
-
         const { error: insertError } = await supabase
           .from('department_workforce')
           .upsert(workforceData, {
             onConflict: 'department_id,fiscal_year'
           });
-
         if (insertError) {
           log('ERROR', transactionId, 'Error inserting department workforce data', {
-            step: '2.6',
+            step: '2.5',
             context,
             error: insertError,
             sampleData: workforceData.slice(0, 2),
@@ -1484,16 +1357,15 @@ async function updateDepartments(): Promise<ProcessingResult> {
           fileLogger.error(`Error inserting department workforce data: ${insertError.message}`);
           throw insertError;
         }
-
         log('INFO', transactionId, `Successfully upserted ${workforceData.length} department workforce records`, {
-          step: '2.6',
+          step: '2.5',
           context
         });
         fileLogger.log(`Successfully upserted ${workforceData.length} department workforce records`);
       }
     } catch (error) {
       log('ERROR', transactionId, 'Failed to update department workforce data', {
-        step: '2.6',
+        step: '2.5',
         context,
         error: error instanceof Error ? error.message : 'Unknown error'
       });
@@ -1501,19 +1373,19 @@ async function updateDepartments(): Promise<ProcessingResult> {
       throw error;
     }
 
-    // Step 2.7: Update department distributions
-    log('INFO', transactionId, 'Step 2.7: Updating department distributions', { step: '2.7', context });
-    fileLogger.log('Step 2.7: Updating department distributions');
+    // Step 2.6: Update department distributions
+    log('INFO', transactionId, 'Step 2.6: Updating department distributions', { step: '2.6', context });
+    fileLogger.log('Step 2.6: Updating department distributions');
 
     try {
-      // First, get all department IDs from the database (reuse from spending section)
+      // First, get all department IDs from the database (reuse from workforce section)
       const { data: departmentsFromDB, error: deptError } = await supabase
         .from('departments')
-        .select('id, name, organizational_code');
+        .select('id, name, canonical_name, aliases');
 
       if (deptError) {
         log('ERROR', transactionId, 'Error fetching departments from database', {
-          step: '2.7',
+          step: '2.6',
           context,
           error: deptError
         });
@@ -1521,11 +1393,15 @@ async function updateDepartments(): Promise<ProcessingResult> {
         throw deptError;
       }
 
-      // Create a map of department organizational codes to IDs
-      const departmentCodeToId = new Map<string, string>();
+      // Create maps for department name, canonicalName, and aliases to IDs (same as workforce)
+      const departmentNameToId = new Map<string, string>();
+      const departmentCanonicalToId = new Map<string, string>();
+      const departmentAliasToId = new Map<string, string>();
       departmentsFromDB?.forEach(dept => {
-        if (dept.organizational_code) {
-          departmentCodeToId.set(dept.organizational_code, dept.id);
+        if (dept.name) departmentNameToId.set(dept.name, dept.id);
+        if (dept.canonical_name) departmentCanonicalToId.set(dept.canonical_name, dept.id);
+        if (Array.isArray(dept.aliases)) {
+          dept.aliases.forEach((alias: string) => departmentAliasToId.set(alias, dept.id));
         }
       });
 
@@ -1539,24 +1415,47 @@ async function updateDepartments(): Promise<ProcessingResult> {
 
       // Process and deduplicate distribution data
       departmentsData.departments
-        .filter(dept => dept.organizationalCode)
+        .filter(dept => dept.tenureDistribution || dept.salaryDistribution || dept.ageDistribution) // Include departments with any distribution data
         .forEach(dept => {
-          // Get the department ID from the database
-          const departmentId = departmentCodeToId.get(dept.organizationalCode!);
-          if (!departmentId) {
-            log('WARN', transactionId, `Department not found in database for distributions: ${dept.organizationalCode}`, {
-              step: '2.7',
+          // Check if department has a name (required for processing)
+          if (!dept.name) {
+            log('ERROR', transactionId, 'Department missing name field for distributions', {
+              step: '2.6',
               context,
-              department_name: dept.name,
-              organizational_code: dept.organizationalCode
+              department: {
+                organizationalCode: dept.organizationalCode,
+                hasTenureDistribution: !!dept.tenureDistribution,
+                hasSalaryDistribution: !!dept.salaryDistribution,
+                hasAgeDistribution: !!dept.ageDistribution
+              }
             });
-            fileLogger.log(`Department not found in database for distributions: ${dept.organizationalCode} (${dept.name})`);
+            fileLogger.error(`Department missing name field for distributions - organizationalCode: ${dept.organizationalCode}`);
             return; // Skip this department
           }
 
-          const key = `${departmentId}_tenure`;
+          // Enhanced: Try to find department ID by name, canonicalName, or alias (same as workforce)
+          let departmentId = departmentNameToId.get(dept.name);
+          if (!departmentId && dept.canonicalName) {
+            departmentId = departmentCanonicalToId.get(dept.canonicalName);
+          }
+          if (!departmentId && Array.isArray(dept.aliases)) {
+            for (const alias of dept.aliases) {
+              departmentId = departmentAliasToId.get(alias);
+              if (departmentId) break;
+            }
+          }
+          if (!departmentId) {
+            const errorMsg = `Department not found in database for distributions: ${dept.name} (checked name, canonicalName, aliases)`;
+            log('ERROR', transactionId, errorMsg, {
+              step: '2.6',
+              context
+            });
+            fileLogger.error(errorMsg);
+            throw new Error(errorMsg);
+          }
+
           if (dept.tenureDistribution) {
-            distributionDataMap.set(key, {
+            distributionDataMap.set(`${departmentId}_tenure`, {
               department_id: departmentId,
               fiscal_year: config.currentYear,
               distribution_type: 'tenure',
@@ -1564,9 +1463,8 @@ async function updateDepartments(): Promise<ProcessingResult> {
             });
           }
 
-          const salaryKey = `${departmentId}_salary`;
           if (dept.salaryDistribution) {
-            distributionDataMap.set(salaryKey, {
+            distributionDataMap.set(`${departmentId}_salary`, {
               department_id: departmentId,
               fiscal_year: config.currentYear,
               distribution_type: 'salary',
@@ -1574,9 +1472,8 @@ async function updateDepartments(): Promise<ProcessingResult> {
             });
           }
 
-          const ageKey = `${departmentId}_age`;
           if (dept.ageDistribution) {
-            distributionDataMap.set(ageKey, {
+            distributionDataMap.set(`${departmentId}_age`, {
               department_id: departmentId,
               fiscal_year: config.currentYear,
               distribution_type: 'age',
@@ -1596,7 +1493,7 @@ async function updateDepartments(): Promise<ProcessingResult> {
 
         if (upsertError) {
           log('ERROR', transactionId, 'Error upserting department distributions', {
-            step: '2.7',
+            step: '2.6',
             context,
             error: upsertError,
             sampleData: distributionData.slice(0, 2),
@@ -1607,14 +1504,14 @@ async function updateDepartments(): Promise<ProcessingResult> {
         }
 
         log('INFO', transactionId, `Successfully upserted ${distributionData.length} department distribution records`, {
-          step: '2.7',
+          step: '2.6',
           context
         });
         fileLogger.log(`Successfully upserted ${distributionData.length} department distribution records`);
       }
     } catch (error) {
       log('ERROR', transactionId, 'Failed to update department distributions', {
-        step: '2.7',
+        step: '2.6',
         context,
         error: error instanceof Error ? error.message : 'Unknown error'
       });
@@ -2341,8 +2238,8 @@ async function updateBudgets(): Promise<ProcessingResult> {
             fiscal_year: yearData.year
           });
           fileLogger.error(`Error inserting budget for ${deptBudget.code}, ${yearData.year}: ${insertError.message}`);
-          continue;
-        }
+                        continue;
+                      }
 
         const budgetId = insertData.id;
 
@@ -2559,112 +2456,14 @@ async function runUpdates() {
     log('INFO', transactionId, 'Starting Step 8: Cleanup and Logging', { step: '8.0', context });
     fileLogger.log('Starting Step 8: Cleanup and Logging');
     
-    // Step 8.1: Refresh materialized views and create indexes
-    log('INFO', transactionId, 'Step 8.1: Refreshing materialized views and creating indexes', { step: '8.1', context });
-    fileLogger.log('Step 8.1: Refreshing materialized views and creating indexes');
-    
-    const sqlPath = path.join(__dirname, 'process_views.sql');
-    if (fs.existsSync(sqlPath)) {
-      try {
-        // Read the SQL file content
-        const sqlContent = fs.readFileSync(sqlPath, 'utf-8');
-        
-        // Split the SQL file into individual statements
-        const statements = sqlContent
-          .split(';')
-          .map(stmt => stmt.trim())
-          .filter(stmt => stmt.length > 0 && !stmt.startsWith('--'));
-        
-        log('INFO', transactionId, `Found ${statements.length} materialized view refresh statements`, { step: '8.1', context });
-        fileLogger.log(`Found ${statements.length} materialized view refresh statements`);
-        
-        // Execute each statement using the Supabase client
-        let successCount = 0;
-        let errorCount = 0;
-        
-        for (let i = 0; i < statements.length; i++) {
-          const statement = statements[i];
-          try {
-            // Use the Supabase client's rpc method to execute raw SQL
-            // Note: This requires a custom RPC function in Supabase
-            const { error } = await supabase.rpc('execute_sql', { 
-              sql_statement: statement 
-            });
-            
-            if (error) {
-              log('ERROR', transactionId, `Error executing SQL statement ${i + 1}/${statements.length}`, { 
-                step: '8.1', 
-                context, 
-                error: error.message,
-                statement: statement.substring(0, 100) + '...' // Log first 100 chars
-              });
-              fileLogger.error(`Error executing SQL statement ${i + 1}/${statements.length}: ${error.message}`);
-              errorCount++;
-            } else {
-              log('INFO', transactionId, `Successfully executed SQL statement ${i + 1}/${statements.length}`, { step: '8.1', context });
-              fileLogger.log(`Successfully executed SQL statement ${i + 1}/${statements.length}`);
-              successCount++;
-            }
-          } catch (stmtError) {
-            log('ERROR', transactionId, `Exception executing SQL statement ${i + 1}/${statements.length}`, { 
-              step: '8.1', 
-              context, 
-              error: stmtError instanceof Error ? stmtError.message : String(stmtError),
-              statement: statement.substring(0, 100) + '...'
-            });
-            fileLogger.error(`Exception executing SQL statement ${i + 1}/${statements.length}: ${stmtError instanceof Error ? stmtError.message : String(stmtError)}`);
-            errorCount++;
-          }
-        }
-        
-        // Log final results
-        if (successCount === statements.length) {
-          log('INFO', transactionId, `All ${successCount} materialized view refresh statements executed successfully`, { step: '8.1', context });
-          fileLogger.log(`All ${successCount} materialized view refresh statements executed successfully`);
-        } else if (successCount > 0) {
-          log('WARN', transactionId, `Partial success: ${successCount}/${statements.length} statements executed, ${errorCount} failed`, { step: '8.1', context });
-          fileLogger.log(`Partial success: ${successCount}/${statements.length} statements executed, ${errorCount} failed`);
-        } else {
-          log('ERROR', transactionId, `All ${statements.length} materialized view refresh statements failed`, { step: '8.1', context });
-          fileLogger.log(`All ${statements.length} materialized view refresh statements failed`);
-          
-          // Fallback: Log the statements for manual execution
-          log('INFO', transactionId, 'Fallback: Logging statements for manual execution', { step: '8.1', context });
-          fileLogger.log('Fallback: Logging statements for manual execution:');
-          statements.forEach((stmt, i) => {
-            fileLogger.log(`  ${i + 1}. ${stmt}`);
-          });
-        }
-        
-      } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : String(err);
-        log('ERROR', transactionId, 'Error reading or processing process_views.sql', { step: '8.1', context, error: errorMessage });
-        fileLogger.error(`Error reading or processing process_views.sql: ${errorMessage}`);
-        
-        // Fallback: Try to read and log the file content for manual execution
-        try {
-          const fallbackContent = fs.readFileSync(sqlPath, 'utf-8');
-          log('INFO', transactionId, 'Fallback: Logging full SQL content for manual execution', { step: '8.1', context });
-          fileLogger.log('Fallback: Full SQL content for manual execution:');
-          fileLogger.log(fallbackContent);
-        } catch (fallbackErr) {
-          log('ERROR', transactionId, 'Fallback also failed - cannot read SQL file', { step: '8.1', context, error: fallbackErr });
-          fileLogger.error('Fallback also failed - cannot read SQL file');
-        }
-      }
-    } else {
-      log('ERROR', transactionId, 'process_views.sql not found', { step: '8.1', context, sqlPath });
-      fileLogger.error(`process_views.sql not found at ${sqlPath}`);
-    }
-
-    // Step 8.2: Log completion status
-    log('INFO', transactionId, 'Step 8.2: Logging completion status', { step: '8.2', context });
-    fileLogger.log('Step 8.2: Logging completion status');
+    // Step 8.1: Log completion status
+    log('INFO', transactionId, 'Step 8.1: Logging completion status', { step: '8.1', context });
+    fileLogger.log('Step 8.1: Logging completion status');
     
     const allSuccessful = results.every(result => result.success);
     
     if (allSuccessful) {
-      log('INFO', transactionId, 'All updates completed successfully', { step: '8.2', context });
+      log('INFO', transactionId, 'All updates completed successfully', { step: '8.1', context });
       fileLogger.log('All updates completed successfully');
     } else {
       const failedUpdates = results
@@ -2672,16 +2471,16 @@ async function runUpdates() {
         .map(result => result.message);
       
       log('ERROR', transactionId, 'Some updates failed', { 
-        step: '8.2',
+        step: '8.1',
         context,
         failedUpdates 
       });
       fileLogger.error(`Some updates failed: ${failedUpdates.join(', ')}`);
     }
     
-    // Step 8.3: Track failed updates
-    log('INFO', transactionId, 'Step 8.3: Tracking failed updates', { step: '8.3', context });
-    fileLogger.log('Step 8.3: Tracking failed updates');
+    // Step 8.2: Track failed updates
+    log('INFO', transactionId, 'Step 8.2: Tracking failed updates', { step: '8.2', context });
+    fileLogger.log('Step 8.2: Tracking failed updates');
     
     log('INFO', transactionId, 'Step 8: Cleanup and Logging completed', { step: '8.0', context });
     fileLogger.log('Step 8: Cleanup and Logging completed');

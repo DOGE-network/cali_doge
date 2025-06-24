@@ -1,43 +1,19 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import Link from 'next/link';
-import { DepartmentsJSON, FiscalYearKey, DepartmentData } from '@/types/department';
+import { DepartmentsJSON, FiscalYearKey } from '@/types/department';
 
 interface SpendingDisplayProps {
   departmentsData: DepartmentsJSON;
-  highlightedDepartment?: string | null;
   showRecentYears?: boolean;
-  showTopSpendOnly?: boolean;
 }
 
 const SpendingDisplay: React.FC<SpendingDisplayProps> = ({ 
   departmentsData, 
-  highlightedDepartment,
-  showRecentYears = true,
-  showTopSpendOnly = false
+  showRecentYears = true
 }) => {
-  // Format spending value to display with $ and M/B
-  const formatSpending = (value: number | {} | undefined): string => {
-    if (value === undefined || typeof value !== 'number') return 'N/A';
-    // Convert from thousands to actual value
-    const actualValue = value * 1000;
-    
-    if (actualValue >= 1000000000) {
-      // Billions: 1 decimal place for 3+ digits, 2 for 2 digits, 3 for 1 digit
-      const billions = actualValue / 1000000000;
-      if (billions >= 100) return `$${billions.toFixed(1)}B`;
-      if (billions >= 10) return `$${billions.toFixed(2)}B`;
-      return `$${billions.toFixed(3)}B`;
-    }
-    
-    // Millions: 1 decimal place for 3+ digits, 2 for 2 digits, 3 for 1 digit
-    const millions = actualValue / 1000000;
-    if (millions >= 100) return `$${millions.toFixed(1)}M`;
-    if (millions >= 10) return `$${millions.toFixed(2)}M`;
-    if (millions >= 1) return `$${millions.toFixed(3)}M`;
-    return `$${millions.toFixed(3)}M`;
-  };
+  // DEPRECATED: Use of department spending JSON data (spending.yearly) is removed as of 2024-06-23.
+  // All spending analytics should use normalized tables (budgets, vendors, etc).
   
   // Default years to show (FY2023-2025)
   const fiscalYears = useMemo(() => {
@@ -67,39 +43,6 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
     return yearA - yearB;
   });
 
-  // Get the most recent year for sorting by spending
-  const mostRecentYear = sortedYears.length > 0 ? sortedYears[sortedYears.length - 1] : 'FY2023-FY2024' as FiscalYearKey;
-
-  // Use the API data directly and calculate total spending
-  const agenciesToDisplay = useMemo(() => {
-    const agencies = departmentsData.departments
-      .filter((dept): dept is DepartmentData & { spending: { yearly: Record<FiscalYearKey, number | {}> } } => 
-        dept.spending?.yearly !== undefined
-      )
-      .map(dept => {
-        // Calculate total spending for the most recent year
-        const recentSpending = dept.spending.yearly[mostRecentYear];
-        const totalSpending = typeof recentSpending === 'number' ? recentSpending : 0;
-
-        return {
-          name: dept.name,
-          spending: dept.spending.yearly,
-          _slug: dept._slug,
-          pageSlug: dept.pageSlug,
-          hasPage: Boolean(dept.pageSlug),
-          totalSpending
-        };
-      })
-      .sort((a, b) => b.totalSpending - a.totalSpending);
-
-    return showTopSpendOnly ? agencies.slice(0, 20) : agencies;
-  }, [departmentsData.departments, mostRecentYear, showTopSpendOnly]);
-
-  const getSpendingValue = (agency: { spending: Record<FiscalYearKey, number | {}> }, year: FiscalYearKey) => {
-    const value = agency.spending[year];
-    return typeof value === 'number' ? value : 0;
-  };
-
   return (
     <div className="w-full overflow-x-auto">
       <table className="min-w-full table-auto">
@@ -112,33 +55,7 @@ const SpendingDisplay: React.FC<SpendingDisplayProps> = ({
           </tr>
         </thead>
         <tbody>
-          {agenciesToDisplay.map((agency) => {
-            const isHighlighted = highlightedDepartment === agency._slug;
-            return (
-              <tr 
-                key={agency.name}
-                className={`border-t ${isHighlighted ? 'bg-yellow-50' : ''} hover:bg-gray-50`}
-              >
-                <td className="px-4 py-2">
-                  {agency.hasPage && agency.pageSlug ? (
-                    <Link 
-                      href={`/departments/${agency.pageSlug}`}
-                      className="text-blue-600 hover:text-blue-800 hover:underline"
-                    >
-                      {agency.name}
-                    </Link>
-                  ) : (
-                    <span>{agency.name}</span>
-                  )}
-                </td>
-                {sortedYears.map((year) => (
-                  <td key={year} className="px-4 py-2 text-right">
-                    {formatSpending(getSpendingValue(agency, year as FiscalYearKey))}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
+          {/* DEPRECATED: Table body content removed as spending data is no longer used */}
         </tbody>
       </table>
     </div>
