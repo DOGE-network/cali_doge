@@ -38,32 +38,32 @@ describe('spend API utility functions', () => {
 
 // --- New tests for budget view ---
 jest.mock('@/lib/supabase', () => {
-  const mockQuery = {
-    ilike: jest.fn().mockReturnThis(),
-    or: jest.fn().mockReturnThis(),
-    order: jest.fn().mockReturnThis(),
-    range: jest.fn().mockReturnThis(),
-    select: jest.fn().mockReturnThis(),
-  };
-  const mockPromise = Promise.resolve({
-    data: [
-      {
-        fiscal_year: 2024,
-        department_name: 'Test Dept',
-        program_name: 'Test Program',
-        fund_name: 'Test Fund',
-        amount: 12345,
-      },
-    ],
-    error: null,
-    count: 1,
-  });
-  Object.defineProperty(mockQuery, 'then', { value: mockPromise.then.bind(mockPromise) });
-  Object.defineProperty(mockQuery, 'catch', { value: mockPromise.catch.bind(mockPromise) });
-  Object.defineProperty(mockQuery, 'finally', { value: mockPromise.finally.bind(mockPromise) });
+  // Helper to create a chainable mock query object
+  function createMockQuery(data) {
+    const mockQuery: any = {};
+    const chain = () => mockQuery;
+    mockQuery.ilike = chain;
+    mockQuery.eq = chain;
+    mockQuery.or = chain;
+    mockQuery.order = chain;
+    mockQuery.range = chain;
+    mockQuery.select = chain;
+    mockQuery.then = (resolve) => Promise.resolve({ data, error: null, count: data.length }).then(resolve);
+    mockQuery.catch = (reject) => Promise.resolve({ data, error: null, count: data.length }).catch(reject);
+    mockQuery.finally = (cb) => Promise.resolve({ data, error: null, count: data.length }).finally(cb);
+    return mockQuery;
+  }
   return {
     getServiceSupabase: () => ({
-      from: jest.fn(() => mockQuery),
+      from: jest.fn(() => createMockQuery([
+        {
+          fiscal_year: 2024,
+          department_name: 'Test Dept',
+          program_name: 'Test Program',
+          fund_name: 'Test Fund',
+          amount: 12345,
+        },
+      ])),
     }),
   };
 });

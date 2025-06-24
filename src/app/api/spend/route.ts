@@ -1,364 +1,526 @@
-import { NextResponse } from 'next/server';
-import { parseFilterValue, matchesFilter } from '@/lib/utils';
+import { NextRequest, NextResponse } from 'next/server';
+import { getServiceSupabase } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
 
-export async function GET(request: Request) {
+// Helper function to get the appropriate year-partitioned view name
+function getYearPartitionedViewName(fiscalYear: number): string {
+  return `vendor_transactions_with_vendor_fy${fiscalYear}`;
+}
+
+// Available year-partitioned views
+const AVAILABLE_YEAR_VIEWS = new Set([
+  'vendor_transactions_with_vendor_fy2016',
+  'vendor_transactions_with_vendor_fy2017',
+  'vendor_transactions_with_vendor_fy2018',
+  'vendor_transactions_with_vendor_fy2019',
+  'vendor_transactions_with_vendor_fy2020',
+  'vendor_transactions_with_vendor_fy2021',
+  'vendor_transactions_with_vendor_fy2022',
+  'vendor_transactions_with_vendor_fy2023',
+  'vendor_transactions_with_vendor_fy2024'
+]);
+
+// Helper function to check if a year-partitioned view exists
+function yearPartitionedViewExists(fiscalYear: number): boolean {
+  const viewName = getYearPartitionedViewName(fiscalYear);
+  return AVAILABLE_YEAR_VIEWS.has(viewName);
+}
+
+export async function GET(request: NextRequest) {
   try {
-    const url = new URL(request.url || '', 'http://localhost');
-    const searchParams = url.searchParams;
-    const view = searchParams.get('view') || 'vendor';
-    const sort = searchParams.get('sort') || 'vendor';
-    const order = searchParams.get('order') || 'asc';
-    const page = parseInt(searchParams.get('page') || '1', 10);
-    const limit = parseInt(searchParams.get('limit') || '50', 10);
-    const filter = searchParams.get('filter');
+    const { searchParams } = new URL(request.url);
     const department = searchParams.get('department');
-    const vendorParam = searchParams.get('vendor');
-    const fundParam = searchParams.get('fund');
-    const programParam = searchParams.get('program');
+    const vendor = searchParams.get('vendor');
+    const program = searchParams.get('program');
+    const fund = searchParams.get('fund');
+    const year = searchParams.get('year');
+    const view = searchParams.get('view') || 'vendor';
+    const compareBy = searchParams.get('compareBy') || 'department';
+    const limit = parseInt(searchParams.get('limit') || '50', 10);
+    const offset = parseInt(searchParams.get('offset') || '0', 10);
+    const page = parseInt(searchParams.get('page') || '1', 10);
+    const sort = searchParams.get('sort') || 'amount';
+    const order = searchParams.get('order') || 'desc';
 
-    const supabase = require('@/lib/supabase').getServiceSupabase();
+    const supabase = getServiceSupabase();
 
-    if (view === 'vendor') {
-      // Pagination params
-      const startIndex = (page - 1) * limit;
-      const endIndex = startIndex + limit - 1;
-
-      // Use the view for vendor transactions with vendor name
+    if (view === 'budget') {
+      // Budget view - use budget_line_items_with_names materialized view
       let query = supabase
-        .from('vendor_transactions_with_vendor')
+        .from('budget_line_items_with_names')
         .select('*', { count: 'exact' });
 
-      // Filtering (move as much as possible to SQL)
-      if (vendorParam) {
-        query = query.ilike('vendor_name', `%${vendorParam}%`);
-      }
+      // Apply filters
       if (department) {
         query = query.ilike('department_name', `%${department}%`);
       }
-      if (programParam) {
-        query = query.ilike('program_code', `%${programParam}%`);
+      if (year) {
+        query = query.eq('fiscal_year', parseInt(year));
       }
-      if (fundParam) {
-        query = query.ilike('fund_code', `%${fundParam}%`);
+      if (program) {
+        query = query.ilike('program_name', `%${program}%`);
       }
-      // Sorting
-      if (sort === 'amount') {
-        query = query.order('amount', { ascending: order === 'asc' });
-      } else if (sort === 'year') {
-        query = query.order('fiscal_year', { ascending: order === 'asc' });
-      } else if (sort === 'vendor') {
-        query = query.order('vendor_name', { ascending: order === 'asc' });
+      if (fund) {
+        query = query.ilike('fund_name', `%${fund}%`);
       }
 
-      // Pagination
-      query = query.range(startIndex, endIndex);
+      const { data, error, count } = await query
+        .order('amount', { ascending: order === 'asc' })
+        .range(offset, offset + limit - 1);
 
-      // Fetch paginated transactions and total count
-      const { data: transactions, error: txError, count } = await query;
-      if (txError) throw txError;
-
-      // Extract unique department, program, and fund names/codes from paginated transactions
-      const departmentNames = Array.from(new Set(transactions.map(tx => tx.department_name).filter(Boolean)));
-      const programCodes = Array.from(new Set(transactions.map(tx => tx.program_code).filter(Boolean)));
-      const fundCodes = Array.from(new Set(transactions.map(tx => tx.fund_code).filter(Boolean)));
-      
-      // Fetch only those departments, programs, and funds
-      let allDepartments: { name: string }[] = [];
-      if (departmentNames.length > 0) {
-        const { data: departmentsData, error: deptError } = await supabase
-          .from('departments')
-          .select('name')
-          .in('name', departmentNames);
-        if (deptError) throw deptError;
-        allDepartments = departmentsData || [];
-      }
-      let allPrograms: { project_code: string; name: string }[] = [];
-      if (programCodes.length > 0) {
-        const { data: programsData, error: progError } = await supabase
-          .from('programs')
-          .select('project_code, name')
-          .in('project_code', programCodes);
-        if (progError) throw progError;
-        allPrograms = programsData || [];
-      }
-      let allFunds: { fund_code: string; name: string }[] = [];
-      if (fundCodes.length > 0) {
-        const { data: fundsData, error: fundError } = await supabase
-          .from('funds')
-          .select('fund_code, name')
-          .in('fund_code', fundCodes);
-        if (fundError) throw fundError;
-        allFunds = fundsData || [];
-      }
-      // Build lookup maps
-      const departmentMap = new Map();
-      allDepartments.forEach(dept => {
-        departmentMap.set(dept.name, dept.name);
-      });
-      const programMap = new Map();
-      allPrograms.forEach(prog => {
-        programMap.set(prog.project_code, prog.name);
-      });
-      const fundMap = new Map();
-      allFunds.forEach(fund => {
-        fundMap.set(fund.fund_code, fund.name);
-      });
-      // Map each transaction to a record for the UI
-      let records = transactions.map(tx => {
-        const departmentName = departmentMap.get(tx.department_name);
-        if (!departmentName && tx.department_name) {
-          console.log(`[Department Mismatch] Name not found in departments table: "${tx.department_name}"`);
-        }
-        return {
-        year: tx.fiscal_year,
-          department: departmentName || tx.department_name || 'Unknown Department',
-        vendor: tx.vendor_name || 'Unknown Vendor',
-        program: programMap.get(tx.program_code) || 'Unknown Program',
-        fund: fundMap.get(tx.fund_code) || 'Unknown Fund',
-        amount: tx.amount || 0,
-        };
-      });
-      // Filtering for free-text filter (must be done after join)
-      if (filter) {
-        const filterTerms = parseFilterValue(filter);
-        records = records.filter(record =>
-          matchesFilter(record.vendor, filterTerms) ||
-          matchesFilter(record.department, filterTerms) ||
-          matchesFilter(record.program, filterTerms) ||
-          matchesFilter(record.fund, filterTerms)
-        );
-      }
-      // Sorting for department, program, fund (must be done after join)
-      if (['department', 'program', 'fund'].includes(sort)) {
-        records.sort((a, b) => {
-          const multiplier = order === 'desc' ? -1 : 1;
-          return multiplier * a[sort].localeCompare(b[sort]);
-        });
-      }
-      // Pagination metadata
-      const totalItems = count ?? records.length;
-      const totalPages = Math.ceil(totalItems / limit);
-      const paginatedRecords = records;
-      const totalAmount = records.reduce((sum, record) => sum + record.amount, 0);
-      const recordCount = records.length;
-      return NextResponse.json({
-        spending: paginatedRecords,
-        pagination: {
-          currentPage: page,
-          totalPages,
-          totalItems,
-          itemsPerPage: limit,
-          hasNextPage: page < totalPages,
-          hasPrevPage: page > 1,
-        },
-        summary: {
-          totalAmount,
-          recordCount,
-        },
-        availableYears: [],
-      });
-    }
-    if (view === 'budget') {
-      try {
-        // Pagination params
-        const startIndex = (page - 1) * limit;
-        const endIndex = startIndex + limit - 1;
-
-        console.debug('[Budget API] Start budget view (using view budget_line_items_with_names)', { page, limit, sort, order, department, programParam, fundParam, filter });
-
-        // Query the flattened view
-        let query = supabase
-          .from('budget_line_items_with_names')
-          .select('*', { count: 'exact' });
-
-        // Filtering (move as much as possible to SQL)
-        if (department) {
-          query = query.ilike('department_name', `%${department}%`);
-        }
-        if (programParam) {
-          query = query.ilike('program_name', `%${programParam}%`);
-        }
-        if (fundParam) {
-          query = query.ilike('fund_name', `%${fundParam}%`);
-        }
-      if (filter) {
-          // Free-text filter across department, program, fund
-          const filterValue = `%${filter}%`;
-          query = query.or(`department_name.ilike.${filterValue},program_name.ilike.${filterValue},fund_name.ilike.${filterValue}`);
-      }
-
-        // Sorting
-        const sortable = {
-          year: 'fiscal_year',
-          department: 'department_name',
-          program: 'program_name',
-          fund: 'fund_name',
-          amount: 'amount',
-        };
-        const sortCol = sortable[sort] || 'amount';
-        query = query.order(sortCol, { ascending: order === 'asc' });
-
-        // Pagination
-        query = query.range(startIndex, endIndex);
-
-        console.debug('[Budget API] Fetching from view...');
-        const { data: records, error: viewError, count } = await query;
-        if (viewError) { console.error('[Budget API] viewError', viewError); throw viewError; }
-        console.debug('[Budget API] Records fetched', { count: records?.length, total: count });
-
-        // Map each record for the UI
-        const mappedRecords = (records || []).map(item => ({
-          year: item.fiscal_year,
-          department: item.department_name || 'Unknown Department',
-          vendor: 'Budget Allocation',
-          program: item.program_name || 'Unknown Program',
-          fund: item.fund_name || 'Unknown Fund',
-          amount: item.amount || 0,
-        }));
-        console.debug('[Budget API] Records mapped', { count: mappedRecords.length });
-
-        // Pagination metadata
-        const totalItems = count ?? mappedRecords.length;
-      const totalPages = Math.ceil(totalItems / limit);
-        const paginatedRecords = mappedRecords;
-        const totalAmount = mappedRecords.reduce((sum, record) => sum + record.amount, 0);
-        const recordCount = mappedRecords.length;
-
-        console.debug('[Budget API] Returning response', { totalItems, totalPages, recordCount, totalAmount });
-      return NextResponse.json({
-        spending: paginatedRecords,
-        pagination: {
-          currentPage: page,
-          totalPages,
-          totalItems,
-          itemsPerPage: limit,
-          hasNextPage: page < totalPages,
-            hasPrevPage: page > 1,
-        },
-        summary: {
-          totalAmount,
-            recordCount,
-          },
-          availableYears: [],
-        });
-      } catch (err) {
-        console.error('[Budget API] Caught error', err);
-        throw err;
-      }
-    }
-    if (view === 'compare') {
-      try {
-        const compareBy = searchParams.get('compareBy') || 'department';
-        const startIndex = (page - 1) * limit;
-        const endIndex = startIndex + limit - 1;
-        const yearParam = searchParams.get('year');
-
-        // Map compareBy to summary table and columns
-        const compareConfig = {
-          fund: {
-            table: 'fund_compare_summary',
-            codeField: 'fund_code',
-            nameField: 'fund_name',
-          },
-          department: {
-            table: 'department_compare_summary',
-            codeField: 'department_name',
-            nameField: 'department_name',
-          },
-          program: {
-            table: 'program_compare_summary',
-            codeField: 'program_code',
-            nameField: 'program_name',
-          },
-        };
-        const { table, codeField, nameField } = compareConfig[compareBy];
-
-        let query = supabase.from(table).select('*', { count: 'exact' });
-
-        // Filtering by year
-        if (yearParam) {
-          query = query.eq('year', parseInt(yearParam, 10));
-        }
-
-        // Filtering by compareBy field (code or name)
-        if (filter) {
-          query = query.or(`${codeField}.ilike.%${filter}%,${nameField}.ilike.%${filter}%`);
-        }
-
-        // Sorting
-        if (sort === 'vendorAmount') {
-          query = query.order('vendor_amount', { ascending: order === 'asc' });
-        } else if (sort === 'budgetAmount') {
-          query = query.order('budget_amount', { ascending: order === 'asc' });
-        } else if (sort === 'year') {
-          query = query.order('year', { ascending: order === 'asc' });
-        } else if (sort === `${compareBy}`) {
-          query = query.order(nameField, { ascending: order === 'asc' });
-        } else if (sort === `${compareBy}Name`) {
-          query = query.order(nameField, { ascending: order === 'asc' });
-        }
-        // Pagination
-        query = query.range(startIndex, endIndex);
-
-        const { data, error, count } = await query;
-        if (error) throw error;
-
-        // Map to UI format
-        const records = (data || []).map(row => ({
-          year: row.year,
-          [`${compareBy}Code`]: row[codeField],
-          [`${compareBy}Name`]: row[nameField],
-          vendorAmount: row.vendor_amount || 0,
-          budgetAmount: row.budget_amount || 0,
-        }));
-
-        const totalItems = count ?? records.length;
-        const totalPages = Math.ceil(totalItems / limit);
-
+      if (error) {
+        console.error('Budget query error:', error);
         return NextResponse.json({
-          spending: records,
+          spending: [],
           pagination: {
-            currentPage: page,
-            totalPages,
-            totalItems,
+            currentPage: 1,
+            totalPages: 0,
+            totalItems: 0,
             itemsPerPage: limit,
-            hasNextPage: page < totalPages,
-            hasPrevPage: page > 1,
+            hasNextPage: false,
+            hasPrevPage: false
           },
           summary: {
-            totalAmount: records.reduce((sum, r) => sum + (r.vendorAmount || 0), 0),
-            recordCount: records.length,
+            totalAmount: 0,
+            recordCount: 0
           },
-        });
-      } catch (err) {
-        console.error('[Compare API] Caught error', err);
-        throw err;
+          error: 'Failed to fetch budget data',
+          details: error
+        }, { status: 500 });
       }
-    }
-    return NextResponse.json({ error: 'Invalid view parameter. Must be either "vendor", "budget", or "compare".' }, { status: 400 });
-  } catch (err) {
-    console.error('Spend API error:', err);
-    return NextResponse.json(
-      {
-        error: 'Failed to fetch spending data',
-        spending: [],
+
+      // Calculate totals
+      const { data: totalData, error: totalError } = await supabase
+        .from('budget_line_items_with_names')
+        .select('amount')
+        .ilike('department_name', department ? `%${department}%` : '%')
+        .eq('fiscal_year', year ? parseInt(year) : 0);
+
+      if (totalError) {
+        console.error('Budget total calculation error:', totalError);
+        return NextResponse.json({
+          spending: [],
+          pagination: {
+            currentPage: 1,
+            totalPages: 0,
+            totalItems: 0,
+            itemsPerPage: limit,
+            hasNextPage: false,
+            hasPrevPage: false
+          },
+          summary: {
+            totalAmount: 0,
+            recordCount: 0
+          },
+          error: 'Failed to calculate budget totals',
+          details: totalError
+        }, { status: 500 });
+      }
+
+      const totalAmount = totalData?.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0) || 0;
+
+      // Transform data to match expected format
+      const spending = data?.map(item => ({
+        year: item.fiscal_year,
+        department: item.department_name || 'Unknown Department',
+        vendor: 'Budget Allocation',
+        program: item.program_name || 'Unknown Program',
+        fund: item.fund_name || 'Unknown Fund',
+        amount: parseFloat(item.amount.toString())
+      })) || [];
+
+      const totalPages = Math.ceil((count || 0) / limit);
+      const currentPage = page;
+      const itemsPerPage = limit;
+      const totalItems = count || 0;
+
+      return NextResponse.json({
+        spending,
         pagination: {
-          currentPage: 1,
-          totalPages: 0,
-          totalItems: 0,
-          itemsPerPage: 50,
-          hasNextPage: false,
-          hasPrevPage: false
+          currentPage,
+          totalPages,
+          totalItems,
+          itemsPerPage,
+          hasNextPage: currentPage < totalPages,
+          hasPrevPage: currentPage > 1
         },
         summary: {
-          totalAmount: 0,
-          recordCount: 0
+          totalAmount,
+          recordCount: totalItems
         }
+      });
+
+    } else if (view === 'compare') {
+      // Compare view - use compare summary materialized views
+      let query;
+      let totalQuery;
+      
+      // Select the appropriate compare summary view based on compareBy parameter
+      switch (compareBy) {
+        case 'department':
+          query = supabase
+            .from('department_compare_summary')
+            .select('*', { count: 'exact' });
+          totalQuery = supabase
+            .from('department_compare_summary')
+            .select('vendor_amount, budget_amount');
+          break;
+        case 'program':
+          query = supabase
+            .from('program_compare_summary')
+            .select('*', { count: 'exact' });
+          totalQuery = supabase
+            .from('program_compare_summary')
+            .select('vendor_amount, budget_amount');
+          break;
+        case 'fund':
+          query = supabase
+            .from('fund_compare_summary')
+            .select('*', { count: 'exact' });
+          totalQuery = supabase
+            .from('fund_compare_summary')
+            .select('vendor_amount, budget_amount');
+          break;
+        default:
+          query = supabase
+            .from('department_compare_summary')
+            .select('*', { count: 'exact' });
+          totalQuery = supabase
+            .from('department_compare_summary')
+            .select('vendor_amount, budget_amount');
+      }
+
+      // Apply filters
+      if (year) {
+        query = query.eq('year', parseInt(year));
+        totalQuery = totalQuery.eq('year', parseInt(year));
+      }
+      if (department && compareBy === 'department') {
+        query = query.ilike('department_name', `%${department}%`);
+        totalQuery = totalQuery.ilike('department_name', `%${department}%`);
+      }
+      if (program && compareBy === 'program') {
+        query = query.ilike('program_name', `%${program}%`);
+        totalQuery = totalQuery.ilike('program_name', `%${program}%`);
+      }
+      if (fund && compareBy === 'fund') {
+        query = query.ilike('fund_name', `%${fund}%`);
+        totalQuery = totalQuery.ilike('fund_name', `%${fund}%`);
+      }
+
+      // Apply sorting
+      const sortField = sort === 'amount' ? 'vendor_amount' : 
+                       sort === 'year' ? 'year' :
+                       sort === 'vendorAmount' ? 'vendor_amount' :
+                       sort === 'budgetAmount' ? 'budget_amount' :
+                       compareBy === 'department' ? 'department_name' :
+                       compareBy === 'program' ? 'program_name' :
+                       compareBy === 'fund' ? 'fund_name' : 'vendor_amount';
+      const ascending = order === 'asc';
+      query = query.order(sortField, { ascending });
+
+      const { data, error, count } = await query
+        .range(offset, offset + limit - 1);
+
+      if (error) {
+        console.error('Compare query error:', error);
+        return NextResponse.json({
+          spending: [],
+          pagination: {
+            currentPage: 1,
+            totalPages: 0,
+            totalItems: 0,
+            itemsPerPage: limit,
+            hasNextPage: false,
+            hasPrevPage: false
+          },
+          summary: {
+            totalAmount: 0,
+            recordCount: 0
+          },
+          error: 'Failed to fetch compare data',
+          details: error
+        }, { status: 500 });
+      }
+
+      // Get total amounts
+      const { data: totalData, error: totalError } = await totalQuery;
+
+      if (totalError) {
+        console.error('Compare total calculation error:', totalError);
+        return NextResponse.json({
+          spending: [],
+          pagination: {
+            currentPage: 1,
+            totalPages: 0,
+            totalItems: 0,
+            itemsPerPage: limit,
+            hasNextPage: false,
+            hasPrevPage: false
+          },
+          summary: {
+            totalAmount: 0,
+            recordCount: 0
+          },
+          error: 'Failed to calculate compare totals',
+          details: totalError
+        }, { status: 500 });
+      }
+
+      const totalVendorAmount = totalData?.reduce((sum, item) => sum + parseFloat(item.vendor_amount.toString()), 0) || 0;
+      const totalBudgetAmount = totalData?.reduce((sum, item) => sum + parseFloat(item.budget_amount.toString()), 0) || 0;
+
+      // Transform data to match expected format for compare view
+      const spending = data?.map(item => ({
+        year: item.year,
+        department: compareBy === 'department' ? item.department_name : '',
+        departmentCode: compareBy === 'department' ? item.department_code : '',
+        departmentName: compareBy === 'department' ? item.department_name : '',
+        program: compareBy === 'program' ? item.program_name : '',
+        programCode: compareBy === 'program' ? item.program_code : '',
+        programName: compareBy === 'program' ? item.program_name : '',
+        fund: compareBy === 'fund' ? item.fund_name : '',
+        fundCode: compareBy === 'fund' ? item.fund_code : '',
+        fundName: compareBy === 'fund' ? item.fund_name : '',
+        vendor: 'N/A',
+        amount: 0, // Not used in compare view
+        vendorAmount: parseFloat(item.vendor_amount.toString()),
+        budgetAmount: parseFloat(item.budget_amount.toString())
+      })) || [];
+
+      const totalPages = Math.ceil((count || 0) / limit);
+      const currentPage = page;
+      const itemsPerPage = limit;
+      const totalItems = count || 0;
+
+      return NextResponse.json({
+        spending,
+        pagination: {
+          currentPage,
+          totalPages,
+          totalItems,
+          itemsPerPage,
+          hasNextPage: currentPage < totalPages,
+          hasPrevPage: currentPage > 1
+        },
+        summary: {
+          totalAmount: totalVendorAmount + totalBudgetAmount,
+          recordCount: totalItems
+        }
+      });
+
+    } else {
+      // Vendor view - use year-partitioned views for optimal performance
+      let data: any[] = [];
+      let count = 0;
+      let totalAmount = 0;
+      
+      // If year is specified, use the specific year-partitioned view
+      if (year && yearPartitionedViewExists(parseInt(year))) {
+        const viewName = getYearPartitionedViewName(parseInt(year));
+        
+        const query = (supabase as any)
+          .from(viewName)
+          .select('*', { count: 'exact' });
+          
+        const totalQuery = (supabase as any)
+          .from(viewName)
+          .select('amount');
+
+        // Apply filters
+        let filteredQuery = query;
+        let filteredTotalQuery = totalQuery;
+        
+        if (department) {
+          filteredQuery = filteredQuery.ilike('department_name', `%${department}%`);
+          filteredTotalQuery = filteredTotalQuery.ilike('department_name', `%${department}%`);
+        }
+        if (vendor) {
+          filteredQuery = filteredQuery.ilike('vendor_name', `%${vendor}%`);
+          filteredTotalQuery = filteredTotalQuery.ilike('vendor_name', `%${vendor}%`);
+        }
+        if (program) {
+          filteredQuery = filteredQuery.ilike('program_code', `%${program}%`);
+          filteredTotalQuery = filteredTotalQuery.ilike('program_code', `%${program}%`);
+        }
+        if (fund) {
+          filteredQuery = filteredQuery.ilike('fund_code', `%${fund}%`);
+          filteredTotalQuery = filteredTotalQuery.ilike('fund_code', `%${fund}%`);
+        }
+
+        // Apply sorting
+        const sortField = sort === 'amount' ? 'amount' : 
+                         sort === 'year' ? 'fiscal_year' :
+                         sort === 'department' ? 'department_name' :
+                         sort === 'vendor' ? 'vendor_name' :
+                         sort === 'program' ? 'program_code' :
+                         sort === 'fund' ? 'fund_code' : 'amount';
+        const ascending = order === 'asc';
+        filteredQuery = filteredQuery.order(sortField, { ascending });
+
+        const { data: queryData, error, count: queryCount } = await filteredQuery
+          .range(offset, offset + limit - 1);
+
+        if (error) {
+          console.error('Vendor query error:', error);
+          return NextResponse.json({
+            spending: [],
+            pagination: {
+              currentPage: 1,
+              totalPages: 0,
+              totalItems: 0,
+              itemsPerPage: limit,
+              hasNextPage: false,
+              hasPrevPage: false
+            },
+            summary: {
+              totalAmount: 0,
+              recordCount: 0
+            },
+            error: 'Failed to fetch vendor data',
+            details: error
+          }, { status: 500 });
+        }
+
+        // Get total amount
+        const { data: totalData, error: totalError } = await filteredTotalQuery;
+
+        if (totalError) {
+          console.error('Vendor total calculation error:', totalError);
+          return NextResponse.json({
+            spending: [],
+            pagination: {
+              currentPage: 1,
+              totalPages: 0,
+              totalItems: 0,
+              itemsPerPage: limit,
+              hasNextPage: false,
+              hasPrevPage: false
+            },
+            summary: {
+              totalAmount: 0,
+              recordCount: 0
+            },
+            error: 'Failed to calculate vendor totals',
+            details: totalError
+          }, { status: 500 });
+        }
+
+        data = queryData || [];
+        count = queryCount || 0;
+        totalAmount = totalData?.reduce((sum: number, item: any) => sum + parseFloat(item.amount.toString()), 0) || 0;
+
+      } else {
+        // Query all years separately and combine results
+        const years = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+        const allTransactions: any[] = [];
+        
+        for (const yearValue of years) {
+          const viewName = getYearPartitionedViewName(yearValue);
+          
+          let yearQuery = (supabase as any).from(viewName).select('*');
+          
+          // Apply filters
+          if (department) {
+            yearQuery = yearQuery.ilike('department_name', `%${department}%`);
+          }
+          if (vendor) {
+            yearQuery = yearQuery.ilike('vendor_name', `%${vendor}%`);
+          }
+          if (program) {
+            yearQuery = yearQuery.ilike('program_code', `%${program}%`);
+          }
+          if (fund) {
+            yearQuery = yearQuery.ilike('fund_code', `%${fund}%`);
+          }
+          
+          const { data: yearData, error } = await yearQuery;
+          
+          if (error) {
+            console.warn(`Error querying ${viewName}:`, error);
+            continue;
+          }
+          
+          if (yearData) {
+            allTransactions.push(...yearData);
+          }
+        }
+        
+        // Sort all transactions
+        const sortField = sort === 'amount' ? 'amount' : 
+                         sort === 'year' ? 'fiscal_year' :
+                         sort === 'department' ? 'department_name' :
+                         sort === 'vendor' ? 'vendor_name' :
+                         sort === 'program' ? 'program_code' :
+                         sort === 'fund' ? 'fund_code' : 'amount';
+        const ascending = order === 'asc';
+        
+        allTransactions.sort((a, b) => {
+          const aVal = a[sortField] || 0;
+          const bVal = b[sortField] || 0;
+          return ascending ? aVal - bVal : bVal - aVal;
+        });
+        
+        // Apply pagination
+        const startIndex = offset;
+        const endIndex = offset + limit;
+        data = allTransactions.slice(startIndex, endIndex);
+        count = allTransactions.length;
+        totalAmount = allTransactions.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0);
+      }
+
+      // Transform data to match expected format
+      const spending = data?.map(item => ({
+        year: item.fiscal_year,
+        department: item.department_name || 'Unknown Department',
+        vendor: item.vendor_name || 'Unknown Vendor',
+        program: item.program_code || 'Unknown Program',
+        fund: item.fund_code || 'Unknown Fund',
+        amount: parseFloat(item.amount.toString())
+      })) || [];
+
+      const totalPages = Math.ceil((count || 0) / limit);
+      const currentPage = page;
+      const itemsPerPage = limit;
+      const totalItems = count || 0;
+
+      return NextResponse.json({
+        spending,
+        pagination: {
+          currentPage,
+          totalPages,
+          totalItems,
+          itemsPerPage,
+          hasNextPage: currentPage < totalPages,
+          hasPrevPage: currentPage > 1
+        },
+        summary: {
+          totalAmount,
+          recordCount: totalItems
+        }
+      });
+    }
+
+  } catch (error) {
+    console.error('Spend API error:', error);
+    return NextResponse.json({
+      spending: [],
+      pagination: {
+        currentPage: 1,
+        totalPages: 0,
+        totalItems: 0,
+        itemsPerPage: 50,
+        hasNextPage: false,
+        hasPrevPage: false
       },
-      { status: 500 }
-    );
+      summary: {
+        totalAmount: 0,
+        recordCount: 0
+      },
+      error: 'Failed to fetch spending data',
+      details: error
+    }, { status: 500 });
   }
 } 

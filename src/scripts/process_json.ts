@@ -67,12 +67,10 @@
  *    7.6. Upsert with conflict handling
  * 
  * 8. Cleanup and Logging
- *    8.1. Refresh all materialized views and create indexes by executing process_views.sql
- *         - Logs success or failure for each view refresh and index creation
- *    8.2. Log completion status
- *    8.3. Track failed updates
- *    8.4. Cleanup file logger
- *    8.5. Generate final status report
+ *    8.1. Log completion status
+ *    8.2. Track failed updates
+ *    8.3. Cleanup file logger
+ *    8.4. Generate final status report
  * 
  * The script processes data in batches to avoid memory issues and provides detailed logging.
  * Each update function follows a similar pattern:

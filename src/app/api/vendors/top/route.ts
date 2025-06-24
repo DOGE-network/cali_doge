@@ -41,22 +41,21 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const rawLimit = parseInt(searchParams.get('limit') || '100', 10);
   const limit = isNaN(rawLimit) || rawLimit < 1 ? 100 : rawLimit;
+  const year = searchParams.get('year') ? parseInt(searchParams.get('year')!, 10) : null; // Default to null (all years)
   
   // Map frontend column names to database column names
   const columnMapping: Record<string, string> = {
     'vendor': 'vendor_name',
     'totalAmount': 'total_amount',
     'transactionCount': 'transaction_count'
-    // Note: programs, funds, categories, descriptions are not available in the vendor_totals_all_years view
-    // They would need to be fetched separately or added to the view
   };
   
-  // Valid sort columns for the vendor_totals_all_years view
+  // Valid sort columns for the vendor query
   const validSortColumns = ['vendor_name', 'total_amount', 'transaction_count'];
   
   try {
     const page = parseInt(searchParams.get('page') || '1', 10);
-    const frontendSortBy = searchParams.get('sort') || 'total_amount';
+    const frontendSortBy = searchParams.get('sort') || 'totalAmount';
     const sortBy = columnMapping[frontendSortBy] || frontendSortBy; // Map to database column name
     
     // Validate that the sort column exists in the view
@@ -73,14 +72,20 @@ export async function GET(request: Request) {
     // Validate and sanitize pagination parameters
     const validPage = isNaN(page) || page < 1 ? 1 : page;
 
-    console.log('Top Vendors API request:', { sortBy, sortOrder, page: validPage, limit, search });
+    console.log('Top Vendors API request:', { sortBy, sortOrder, page: validPage, limit, search, year });
 
     const supabase = require('@/lib/supabase').getServiceSupabase();
 
-    // Use the vendor_totals_all_years materialized view for efficient aggregation
+    // Use the new vendor_payments_summary view
     let query = supabase
-      .from('vendor_totals_all_years')
+      .from('vendor_payments_summary')
       .select('*', { count: 'exact' });
+
+    // Apply year filter if specified
+    if (year) {
+      query = query.contains('years_active', [year]);
+    }
+  
 
     // Apply sorting
     query = query.order(sortBy, { ascending: sortOrder === 'asc' });
@@ -91,31 +96,33 @@ export async function GET(request: Request) {
     query = query.range(startIndex, endIndex);
 
     // Execute the query
-    const { data: vendorTotals, error: txError, count } = await query;
+    const { data: vendorRecords, error: txError, count } = await query;
 
     if (txError) throw txError;
 
-    // Process vendors into records (data is already aggregated from the view)
-    let records: TopVendorRecord[] = [];
+    // Transform the data to match the expected interface
+    let records: TopVendorRecord[] = (vendorRecords || []).map((record: any) => ({
+      year: year || 0, // Use 0 to indicate all years
+      years: year ? [year.toString()] : record.years_active?.map((y: number) => y.toString()) || [],
+      vendor: record.vendor_name,
+      totalAmount: record.total_amount,
+      transactionCount: record.transaction_count,
+      departments: record.departments || [],
+      programs: record.programs || [],
+      funds: record.funds || [],
+      categories: record.categories || [],
+      descriptions: record.descriptions || [],
+      primaryDepartment: undefined,
+      primaryDepartmentSlug: undefined
+    }));
 
-    vendorTotals.forEach((vendorTotal) => {
-      records.push({
-        year: 0, // 0 indicates all years
-        years: Array.isArray(vendorTotal.years) ? vendorTotal.years.filter(Boolean) : [],
-        vendor: vendorTotal.vendor_name || 'Unknown Vendor',
-        totalAmount: vendorTotal.total_amount || 0,
-        transactionCount: vendorTotal.transaction_count || 0,
-        departments: Array.isArray(vendorTotal.departments) ? vendorTotal.departments.filter(Boolean) : [],
-        programs: Array.isArray(vendorTotal.programs) ? mapProgramCodesToNames(vendorTotal.programs.filter(Boolean)) : [],
-        funds: Array.isArray(vendorTotal.funds) ? mapFundCodesToNames(vendorTotal.funds.filter(Boolean)) : [],
-        categories: Array.isArray(vendorTotal.categories) ? vendorTotal.categories.filter(Boolean) : [],
-        descriptions: Array.isArray(vendorTotal.descriptions) ? vendorTotal.descriptions.filter(Boolean) : [],
-        primaryDepartment: undefined,
-        primaryDepartmentSlug: undefined
-      });
+    // Map program codes to names
+    records.forEach(record => {
+      record.programs = mapProgramCodesToNames(record.programs);
+      record.funds = mapFundCodesToNames(record.funds);
     });
 
-    // Apply free-text filtering if provided
+    // Apply free-text filtering if provided (in memory for now)
     if (search) {
       const filterTerms = parseFilterValue(search);
       records = records.filter(record =>
@@ -130,8 +137,8 @@ export async function GET(request: Request) {
     const totalAmount = records.reduce((sum, record) => sum + record.totalAmount, 0);
     const vendorCount = records.length;
 
-    // Pagination metadata
-    const totalItems = count || records.length;
+    // Pagination metadata - use the actual count from the database
+    const totalItems = count || 0;
     const totalPages = Math.ceil(totalItems / limit);
 
     const response: TopVendorsResponse = {
@@ -147,8 +154,8 @@ export async function GET(request: Request) {
       summary: {
         totalAmount,
         vendorCount,
-        year: 0, // 0 indicates all years
-        availableYears: [],
+        year: year || 0, // Use 0 to indicate all years
+        availableYears: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
       },
     };
 

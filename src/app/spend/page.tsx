@@ -46,6 +46,8 @@ interface SpendResponse {
     totalAmount: number;
     recordCount: number;
   };
+  error?: string;
+  details?: any;
 }
 
 interface Program {
@@ -101,9 +103,18 @@ function SpendPageClient() {
       if (appliedFilter === 'year') {
         // For year filter, add as year parameter
         params.set('year', appliedFilterValue.trim());
-      } else {
-        // For other filters, add as filter parameter
-        params.set('filter', appliedFilterValue.trim());
+      } else if (appliedFilter === 'department') {
+        // For department filter, add as department parameter
+        params.set('department', appliedFilterValue.trim());
+      } else if (appliedFilter === 'vendor') {
+        // For vendor filter, add as vendor parameter
+        params.set('vendor', appliedFilterValue.trim());
+      } else if (appliedFilter === 'program') {
+        // For program filter, add as program parameter
+        params.set('program', appliedFilterValue.trim());
+      } else if (appliedFilter === 'fund') {
+        // For fund filter, add as fund parameter
+        params.set('fund', appliedFilterValue.trim());
       }
     }
     
@@ -274,6 +285,24 @@ function SpendPageClient() {
       <div className="p-4 flex flex-col items-center justify-center min-h-[400px]">
         <LoadingSpinner size="lg" className="mb-4" />
         <p className="text-gray-600">Loading spending data...</p>
+      </div>
+    );
+  }
+
+  // Check for API error response
+  if (spendData.error) {
+    return (
+      <div className="p-4 text-red-600 bg-red-50 rounded-lg">
+        <h2 className="text-lg font-semibold mb-2">API Error</h2>
+        <p>{spendData.error}</p>
+        {spendData.details && (
+          <details className="mt-2">
+            <summary className="cursor-pointer text-sm">Error Details</summary>
+            <pre className="text-xs mt-1 bg-red-100 p-2 rounded overflow-auto">
+              {JSON.stringify(spendData.details, null, 2)}
+            </pre>
+          </details>
+        )}
       </div>
     );
   }

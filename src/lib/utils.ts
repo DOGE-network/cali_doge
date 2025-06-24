@@ -43,58 +43,24 @@ export function matchesFilter(value: string, filterTerms: { terms: string[], ope
   }
 }
 
-// Program code to name mapping
-let programCodeToNameMap: Map<string, string> | null = null;
-
+// Program code to name mapping (DEPRECATED: use API/database in data access layer)
 export function getProgramName(programCode: string): string {
-  if (!programCodeToNameMap) {
-    // Initialize the map if it hasn't been loaded yet
-    try {
-      const programsData = require('@/data/programs.json');
-      programCodeToNameMap = new Map();
-      
-      programsData.programs.forEach((program: any) => {
-        if (program.projectCode && program.name) {
-          programCodeToNameMap!.set(program.projectCode, program.name);
-        }
-      });
-    } catch (error) {
-      console.error('Error loading programs data:', error);
-      programCodeToNameMap = new Map();
-    }
-  }
-  
-  return programCodeToNameMap.get(programCode) || programCode;
+  // TODO: Implement lookup via API/database if needed
+  return programCode;
 }
 
 export function mapProgramCodesToNames(programCodes: string[]): string[] {
-  return programCodes.map(code => getProgramName(code));
+  // TODO: Implement lookup via API/database if needed
+  return programCodes;
 }
 
-// Fund code to name mapping
-let fundCodeToNameMap: Map<string, string> | null = null;
-
+// Fund code to name mapping (DEPRECATED: use API/database in data access layer)
 export function getFundName(fundCode: string): string {
-  if (!fundCodeToNameMap) {
-    // Initialize the map if it hasn't been loaded yet
-    try {
-      const fundsData = require('@/data/funds.json');
-      fundCodeToNameMap = new Map();
-      
-      fundsData.funds.forEach((fund: any) => {
-        if (fund.fundCode && fund.fundName) {
-          fundCodeToNameMap!.set(fund.fundCode, fund.fundName);
-        }
-      });
-    } catch (error) {
-      console.error('Error loading funds data:', error);
-      fundCodeToNameMap = new Map();
-    }
-  }
-  
-  return fundCodeToNameMap.get(fundCode) || fundCode;
+  // TODO: Implement lookup via API/database if needed
+  return fundCode;
 }
 
 export function mapFundCodesToNames(fundCodes: string[]): string[] {
-  return fundCodes.map(code => getFundName(code));
+  // TODO: Implement lookup via API/database if needed
+  return fundCodes;
 } 

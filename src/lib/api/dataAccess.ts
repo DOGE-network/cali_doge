@@ -193,21 +193,39 @@ class SearchAccess extends QueryBuilder<Database['public']['Tables']['search_ind
     if (cached) return cached;
 
     const supabase = getServiceSupabase();
-    let searchQuery = supabase
-      .from('search_index')
-      .select('*')
-      .textSearch('fts', query, {
-        type: 'websearch',
-        config: 'english'
-      });
+    const normalizedQuery = query.trim();
+    let data, error;
 
-    if (types?.length) {
-      searchQuery = searchQuery.in('type', types);
+    if (normalizedQuery.length <= 3) {
+      // Fuzzy match on term, abbreviation, and aliases
+      let searchQuery = supabase
+        .from('search_index')
+        .select('*')
+        .or([
+          `term.ilike.%${normalizedQuery}%`,
+          `additional_data->>abbreviation.ilike.%${normalizedQuery}%`,
+          `additional_data->>aliases.ilike.%${normalizedQuery}%`
+        ].join(','));
+      if (types?.length) {
+        searchQuery = searchQuery.in('type', types);
+      }
+      ({ data, error } = await searchQuery.limit(limit));
+    } else {
+      // Use FTS for longer queries
+      let searchQuery = supabase
+        .from('search_index')
+        .select('*')
+        .textSearch('fts', query, {
+          type: 'websearch',
+          config: 'english'
+        });
+      if (types?.length) {
+        searchQuery = searchQuery.in('type', types);
+      }
+      ({ data, error } = await searchQuery.limit(limit));
     }
 
-    const { data, error } = await searchQuery.limit(limit);
     if (error) throw error;
-
     await this.setInCache(cacheKey, data);
     return data;
   }
@@ -301,4 +319,66 @@ export const departments = new DepartmentAccess();
 export const vendors = new VendorAccess();
 export const search = new SearchAccess();
 export const funds = new FundAccess();
-export const programs = new ProgramAccess(); 
+export const programs = new ProgramAccess();
+
+// Legacy function for backward compatibility - now uses Supabase
+export async function getSearchData() {
+  const cacheKey = 'search:legacy:all';
+  const cached = await getFromCache(cacheKey);
+  if (cached) return cached;
+
+  const supabase = getServiceSupabase();
+  
+  // Get all search index entries
+  const { data: searchIndexData, error } = await supabase
+    .from('search_index')
+    .select('*')
+    .order('term');
+
+  if (error) {
+    console.error('Error fetching search data from Supabase:', error);
+    throw error;
+  }
+
+  // Transform the data to match the expected SearchJSON structure
+  const transformedData = {
+    departments: [] as any[],
+    vendors: [] as any[],
+    programs: [] as any[],
+    funds: [] as any[],
+    keywords: [] as any[],
+    lastUpdated: new Date().toISOString()
+  };
+
+  // Group by type and transform
+  searchIndexData?.forEach(item => {
+    const searchItem = {
+      term: item.term,
+      type: item.type,
+      id: item.source_id,
+      ...(item.additional_data as any)
+    };
+
+    switch (item.type) {
+      case 'department':
+        transformedData.departments.push(searchItem);
+        break;
+      case 'vendor':
+        transformedData.vendors.push(searchItem);
+        break;
+      case 'program':
+        transformedData.programs.push(searchItem);
+        break;
+      case 'fund':
+        transformedData.funds.push(searchItem);
+        break;
+      case 'keyword':
+        transformedData.keywords.push(searchItem);
+        break;
+    }
+  });
+
+  // Cache for 1 hour
+  await setInCache(cacheKey, transformedData, { ex: 3600, tags: ['search'] });
+  return transformedData;
+} 

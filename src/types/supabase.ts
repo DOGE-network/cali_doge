@@ -356,6 +356,10 @@ export type Database = {
           category: string | null
           created_at: string | null
           department_code: string | null
+          department_name: string | null
+          agency_name: string | null
+          account_type: string | null
+          subcategory: string | null
           description: string | null
           fiscal_year: number
           fund_code: string | null
@@ -371,6 +375,10 @@ export type Database = {
           category?: string | null
           created_at?: string | null
           department_code?: string | null
+          department_name?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          subcategory?: string | null
           description?: string | null
           fiscal_year: number
           fund_code?: string | null
@@ -386,6 +394,10 @@ export type Database = {
           category?: string | null
           created_at?: string | null
           department_code?: string | null
+          department_name?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          subcategory?: string | null
           description?: string | null
           fiscal_year?: number
           fund_code?: string | null
@@ -510,6 +522,714 @@ export type Database = {
           updated_at?: string | null
           workforce_yearly?: Json
           distributions_yearly?: Json
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor_fy2016: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor_fy2017: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor_fy2018: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor_fy2019: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor_fy2020: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor_fy2021: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor_fy2022: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor_fy2023: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor_fy2024: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      budget_line_items_with_names: {
+        Row: {
+          id: string
+          amount: number
+          project_code: string | null
+          fund_code: string | null
+          fiscal_year: number
+          department_code: string
+          department_name: string | null
+          program_name: string | null
+          fund_name: string | null
+        }
+        Insert: {
+          id?: string
+          amount: number
+          project_code?: string | null
+          fund_code?: string | null
+          fiscal_year: number
+          department_code: string
+          department_name?: string | null
+          program_name?: string | null
+          fund_name?: string | null
+        }
+        Update: {
+          id?: string
+          amount?: number
+          project_code?: string | null
+          fund_code?: string | null
+          fiscal_year?: number
+          department_code?: string
+          department_name?: string | null
+          program_name?: string | null
+          fund_name?: string | null
+        }
+        Relationships: []
+      }
+      vendor_transactions_with_vendor: {
+        Row: {
+          id: string
+          vendor_id: string
+          fiscal_year: number
+          department_name: string | null
+          department_code: string | null
+          agency_name: string | null
+          account_type: string | null
+          category: string | null
+          subcategory: string | null
+          description: string | null
+          program_code: string | null
+          fund_code: string | null
+          amount: number
+          created_at: string | null
+          updated_at: string | null
+          transaction_count: number | null
+          vendor_name: string
+        }
+        Insert: {
+          id?: string
+          vendor_id: string
+          fiscal_year: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name: string
+        }
+        Update: {
+          id?: string
+          vendor_id?: string
+          fiscal_year?: number
+          department_name?: string | null
+          department_code?: string | null
+          agency_name?: string | null
+          account_type?: string | null
+          category?: string | null
+          subcategory?: string | null
+          description?: string | null
+          program_code?: string | null
+          fund_code?: string | null
+          amount?: number
+          created_at?: string | null
+          updated_at?: string | null
+          transaction_count?: number | null
+          vendor_name?: string
+        }
+        Relationships: []
+      }
+      department_compare_summary: {
+        Row: {
+          department_name: string
+          department_code: string | null
+          year: number
+          vendor_amount: number
+          budget_amount: number
+        }
+        Insert: {
+          department_name: string
+          department_code?: string | null
+          year: number
+          vendor_amount: number
+          budget_amount: number
+        }
+        Update: {
+          department_name?: string
+          department_code?: string | null
+          year?: number
+          vendor_amount?: number
+          budget_amount?: number
+        }
+        Relationships: []
+      }
+      program_compare_summary: {
+        Row: {
+          program_code: string
+          program_name: string
+          year: number
+          vendor_amount: number
+          budget_amount: number
+        }
+        Insert: {
+          program_code: string
+          program_name: string
+          year: number
+          vendor_amount: number
+          budget_amount: number
+        }
+        Update: {
+          program_code?: string
+          program_name?: string
+          year?: number
+          vendor_amount?: number
+          budget_amount?: number
+        }
+        Relationships: []
+      }
+      fund_compare_summary: {
+        Row: {
+          fund_code: string
+          fund_name: string
+          year: number
+          vendor_amount: number
+          budget_amount: number
+        }
+        Insert: {
+          fund_code: string
+          fund_name: string
+          year: number
+          vendor_amount: number
+          budget_amount: number
+        }
+        Update: {
+          fund_code?: string
+          fund_name?: string
+          year?: number
+          vendor_amount?: number
+          budget_amount?: number
         }
         Relationships: []
       }
