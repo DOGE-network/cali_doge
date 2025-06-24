@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "California Government Waste: Track Spending & Inefficiency | Cali DOGE",
-  description: "Discover California government waste with Cali DOGE's 15M+ record database. Track wasteful spending, hidden taxes, and inefficiency in state and local government. Your source for California transparency.",
+  description: "Discover California government waste with Cali DOGE's 30M+ record database. Track wasteful spending, hidden taxes, and inefficiency in state and local government. Your source for California transparency.",
   alternates: {
     canonical: '/california-government-waste',
   },
@@ -17,7 +17,7 @@ export default function CaliforniaGovernmentWaste() {
         <header className="mb-12">
           <h1 className="text-4xl font-bold mb-6">California Government Waste: Track Spending & Inefficiency</h1>
           <p className="text-xl text-gray-600 mb-8">
-            Cali DOGE&apos;s database reveals billions in California government waste. Our 15M+ records help you track wasteful spending, hidden taxes, and inefficiency in state and local government operations.
+            Cali DOGE&apos;s database reveals billions in California government waste. Our 30M+ records help you track wasteful spending, hidden taxes, and inefficiency in state and local government operations.
           </p>
           <div className="flex gap-4">
             <Link 
@@ -40,7 +40,7 @@ export default function CaliforniaGovernmentWaste() {
           <section className="mb-12">
             <h2 className="text-2xl font-semibold mb-4">Types of California Government Waste</h2>
             <p>
-              Our analysis of 15M+ records reveals several categories of government waste in California:
+              Our analysis of 30M+ records reveals several categories of government waste in California:
             </p>
             <ul className="list-disc pl-6 mt-4 space-y-2">
               <li>Hidden taxes and fees in utility bills</li>

@@ -1,4 +1,11 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/cron/update-data",
+      "schedule": "0 0 1,15 * *"
+    }
+  ],
   "headers": [
     {
       "source": "/_next/static/(.*)",
@@ -32,7 +39,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, s-maxage=3600, stale-while-revalidate=7200"
+          "value": "public, max-age=60, stale-while-revalidate=600"
         }
       ]
     }
@@ -42,33 +49,34 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
+  "outputDirectory": ".next",
   "functions": {
     "src/app/api/departments/route.ts": {
-      "memory": 512,
+      "memory": 1024,
       "maxDuration": 30
     },
     "src/app/api/spend/route.ts": {
-      "memory": 3008,
-      "maxDuration": 60
+      "memory": 2048,
+      "maxDuration": 15
     },
     "src/app/api/vendors/top/route.ts": {
-      "memory": 3008,
-      "maxDuration": 60
+      "memory": 1024,
+      "maxDuration": 10
     },
     "src/app/api/programs/route.ts": {
-      "memory": 512,
+      "memory": 1024,
       "maxDuration": 30
     },
     "src/app/api/programs/[projectCode]/route.ts": {
-      "memory": 512,
+      "memory": 1024,
       "maxDuration": 30
     },
     "src/app/api/search/route.ts": {
-      "memory": 512,
-      "maxDuration": 30
+      "memory": 1024,
+      "maxDuration": 10
     },
     "src/app/api/send-email/route.ts": {
-      "memory": 512,
+      "memory": 1024,
       "maxDuration": 30
     }
   },

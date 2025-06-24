@@ -17,7 +17,7 @@ export default function CaliforniaDoge() {
         <header className="mb-12">
           <h1 className="text-4xl font-bold mb-6">California DOGE: Exclusive California Government Transparency</h1>
           <p className="text-xl text-gray-600 mb-8">
-            Unlike broader platforms, California DOGE focuses exclusively on California government data. Our 15M+ records provide unprecedented insights into state and local government operations, spending, and efficiency.
+            Unlike broader platforms, California DOGE focuses exclusively on California government data. Our 30M+ records provide unprecedented insights into state and local government operations, spending, and efficiency.
           </p>
           <div className="flex gap-4">
             <Link 

@@ -98,7 +98,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { DepartmentData, DepartmentsJSON, organizationalCode, ValidSlug, OrgLevel, BudgetStatus, AnnualYear, RequiredDepartmentJSONFields, FiscalYearKey, TenureRange, SalaryRange, AgeRange } from '../types/department';
-import { Program, ProgramsJSON } from '../types/program';
+import { ProgramsJSON } from '../types/program';
 import { FundsJSON, Fund } from '../types/fund';
 import { 
   BudgetsJSON, 
@@ -1768,10 +1768,9 @@ function analyzeProgramDescriptions(
   let newPrograms = 0;
   let updatedPrograms = 0;
   
-  log('## Step 4.2: Program Compare  #########################################################', true);
+  log('## Step 4.2: Program Analysis  #########################################################', true);
   for (const progDesc of programDescriptions) {
-    log(`Checking program ${progDesc.projectCode} - ${progDesc.name} in programs.json`, true);
-    const existingProgram = programsData.programs.find(p => p.projectCode === progDesc.projectCode) as Program | undefined;
+    const existingProgram = programsData.programs.find(p => p.projectCode === progDesc.projectCode);
     
     if (!existingProgram) {
       log(`Program ${progDesc.projectCode} not found in programs.json`, true);
@@ -1779,24 +1778,29 @@ function analyzeProgramDescriptions(
     } else {
       log(`Found existing program ${progDesc.projectCode} in programs.json`, true);
       // Check if this description already exists from the same source file
-      const existingDescIndex = existingProgram.programDescriptions.findIndex(
-        desc => desc.description === progDesc.description && desc.source === fileName
-      );
-      
-      if (existingDescIndex === -1) {
-        // Check if any description exists from this source file (for updates)
-        const existingSourceIndex = existingProgram.programDescriptions.findIndex(
-          desc => desc.source === fileName
+      if (existingProgram.programDescriptions) {
+        const existingDescIndex = existingProgram.programDescriptions.findIndex(
+          desc => desc.description === progDesc.description && desc.source === fileName
         );
         
-        if (existingSourceIndex === -1) {
-          // No description from this source file exists - this is an update
-          updatedPrograms++;
+        if (existingDescIndex === -1) {
+          // Check if any description exists from this source file (for updates)
+          const existingSourceIndex = existingProgram.programDescriptions.findIndex(
+            desc => desc.source === fileName
+          );
+          
+          if (existingSourceIndex === -1) {
+            // No description from this source file exists - this is an update
+            updatedPrograms++;
+          }
+          // If description from this source exists but is different, it's still an update
+          // If description from this source exists and is the same, don't count it
         }
-        // If description from this source exists but is different, it's still an update
-        // If description from this source exists and is the same, don't count it
+        // If exact description and source match, don't count it as new or updated
+      } else {
+        // No programDescriptions array exists, so this is an update
+        updatedPrograms++;
       }
-      // If exact description and source match, don't count it as new or updated
     }
   }
   
@@ -2517,30 +2521,46 @@ function updateProgramData(
   log('## Step 4.3: Program Update without prompt #########################################################', true);
   if (!program) {
     program = {
-      projectCode: programData.projectCode,
+      id: `program_${programData.projectCode}`,
+      project_code: programData.projectCode,
       name: programData.name,
-      programDescriptions: []
+      description: programData.description,
+      sources: [fileName],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      
+      // Legacy fields for backward compatibility
+      projectCode: programData.projectCode,
+      programDescriptions: [{
+        description: programData.description,
+        source: fileName
+      }]
     };
     programsData.programs.push(program);
     log(`Adding new program: ${program.name} ${program.projectCode}`, true);
-  }
-  
-  const existingDescIndex = program.programDescriptions.findIndex(
-    desc => desc.description === programData.description
-  );
-  
-  if (existingDescIndex === -1) {
-    program.programDescriptions.push({
-      description: programData.description,
-      source: fileName
-    });
-    log(`Added new description for program: ${program.name}`, true);
-    stats.programsUpdated++;
-  }
-  
-  if (program.name !== programData.name) {
-    log(`Updating program name from "${program.name}" to "${programData.name}"`, true);
-    program.name = programData.name;
+  } else {
+    // Ensure programDescriptions exists
+    if (!program.programDescriptions) {
+      program.programDescriptions = [];
+    }
+    
+    const existingDescIndex = program.programDescriptions.findIndex(
+      desc => desc.description === programData.description
+    );
+    
+    if (existingDescIndex === -1) {
+      program.programDescriptions.push({
+        description: programData.description,
+        source: fileName
+      });
+      log(`Added new description for program: ${program.name}`, true);
+      stats.programsUpdated++;
+    }
+    
+    if (program.name !== programData.name) {
+      log(`Updating program name from "${program.name}" to "${programData.name}"`, true);
+      program.name = programData.name;
+    }
   }
 }
 

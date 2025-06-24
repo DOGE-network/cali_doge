@@ -17,12 +17,10 @@
 
 'use client';
 
-import { useEffect, useState, useMemo, Suspense } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import useSWR from 'swr';
 
@@ -30,12 +28,15 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 interface TopVendorRecord {
   year: number;
-  name: string;
+  years: number[];
+  vendor: string;
   totalAmount: number;
   transactionCount: number;
   departments: string[];
   programs: string[];
   funds: string[];
+  categories: string[];
+  descriptions: string[];
   primaryDepartment?: string;
   primaryDepartmentSlug?: string;
 }
@@ -58,43 +59,83 @@ interface TopVendorsResponse {
   };
 }
 
+// HoverTooltip component for displaying array values
+function HoverTooltip({ 
+  items, 
+  maxDisplay = 5, 
+  className = "text-sm" 
+}: { 
+  items: string[], 
+  maxDisplay?: number, 
+  className?: string 
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  if (!Array.isArray(items) || items.length === 0) {
+    return <span className={className}></span>;
+  }
+
+  const displayItems = items.slice(0, maxDisplay);
+  const hasMore = items.length > maxDisplay;
+  const remainingCount = items.length - maxDisplay;
+
+  return (
+    <div className={`${className} relative`}>
+      <span>
+        {displayItems.join(', ')}
+        {hasMore && (
+          <button
+            onClick={() => setIsHovered(true)}
+            className="ml-1 text-blue-600 hover:text-blue-800 underline"
+          >
+            +{remainingCount} more
+          </button>
+        )}
+      </span>
+      {isHovered && hasMore && (
+        <div 
+          className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4"
+          onClick={() => setIsHovered(false)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div 
+            className="bg-white rounded-lg shadow-lg w-full max-w-sm max-h-96 overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <div className="p-4">
+              <div className="text-sm font-medium mb-3 text-gray-700">All {items.length} items:</div>
+              <div className="space-y-2">
+                {items.map((item, index) => (
+                  <div key={index} className="text-sm text-gray-800 break-words">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // Client component that uses useSearchParams
 function PaymentsPageClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  // State for filters and sorting
-  const [selectedYear, setSelectedYear] = useState('2024'); // Default to most recent year
-  const [sort, setSort] = useState('totalAmount'); // vendor|totalAmount|transactionCount|primaryDepartment
-  const [order, setOrder] = useState('desc'); // asc|desc
+  // State for pagination and filtering
   const [page, setPage] = useState(1);
-  const [limit] = useState(100); // Top 100 vendors
-  const [filterValue, setFilterValue] = useState(''); // Add filter value state
-  const [appliedFilter, setAppliedFilter] = useState(''); // Track the currently applied filter
+  const [limit] = useState(100);
+  const [sort, setSort] = useState('totalAmount'); // vendor|totalAmount|transactionCount|programs|funds|categories|descriptions
+  const [order, setOrder] = useState('desc'); // asc|desc
+  const [filterValue, setFilterValue] = useState('');
+  const [appliedFilter, setAppliedFilter] = useState('');
 
-  // Get available years from the vendors API response
-  const { data: yearsData } = useSWR<TopVendorsResponse>(
-    `/api/vendors/top?year=2024&limit=1`,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      dedupingInterval: 30000
-    }
-  );
-
-  // Extract available years from vendor data
-  const availableYears = useMemo(() => {
-    if (yearsData?.summary?.availableYears) {
-      return yearsData.summary.availableYears.sort((a, b) => parseInt(b) - parseInt(a));
-    }
-    return ['2024', '2023', '2022', '2021', '2020']; // Fallback to hardcoded years
-  }, [yearsData]);
-
-  // Build API URL for top 100 vendors
   const buildApiUrl = () => {
     const params = new URLSearchParams();
-    params.set('year', selectedYear);
     params.set('sort', sort);
     params.set('order', order);
     params.set('page', page.toString());
@@ -128,15 +169,11 @@ function PaymentsPageClient() {
 
   // Initialize from URL params
   useEffect(() => {
-    const yearParam = searchParams.get('year');
     const sortParam = searchParams.get('sort');
     const orderParam = searchParams.get('order');
     const filterParam = searchParams.get('filter');
     
-    if (yearParam && availableYears.includes(yearParam)) {
-      setSelectedYear(yearParam);
-    }
-    if (sortParam && ['vendor', 'totalAmount', 'transactionCount', 'primaryDepartment'].includes(sortParam)) {
+    if (sortParam && ['vendor', 'totalAmount', 'transactionCount'].includes(sortParam)) {
       setSort(sortParam);
     }
     if (orderParam && ['asc', 'desc'].includes(orderParam)) {
@@ -146,7 +183,7 @@ function PaymentsPageClient() {
       setFilterValue(filterParam);
       setAppliedFilter(filterParam); // Set both the input value and applied filter
     }
-  }, [searchParams, availableYears]);
+  }, [searchParams]);
 
   // Update URL when filters change
   const updateUrl = (newParams: Record<string, string>) => {
@@ -168,13 +205,6 @@ function PaymentsPageClient() {
     setOrder(newOrder);
     setPage(1);
     updateUrl({ sort: column, order: newOrder, page: '1' });
-  };
-
-  // Handle year change
-  const handleYearChange = (newYear: string) => {
-    setSelectedYear(newYear);
-    setPage(1);
-    updateUrl({ year: newYear, page: '1' });
   };
 
   // Format currency
@@ -211,6 +241,16 @@ function PaymentsPageClient() {
     );
   }
 
+  // Defensive check for pagination structure
+  if (!vendorData.pagination) {
+    return (
+      <div className="p-4 text-red-600 bg-red-50 rounded-lg">
+        <h2 className="text-lg font-semibold mb-2">Error</h2>
+        <p>Invalid response structure from API</p>
+      </div>
+    );
+  }
+
   return (
     <main className="container mx-auto px-4 py-8 max-w-7xl">
       {/* Header */}
@@ -223,19 +263,8 @@ function PaymentsPageClient() {
 
       {/* Controls */}
       <div className="mb-6 space-y-4">
-        {/* Year Selection and Filter */}
+        {/* Filter */}
         <div className="flex items-center space-x-4 p-4 bg-white rounded-lg border">
-          <label className="text-sm font-medium">Year:</label>
-          <Select value={selectedYear} onValueChange={handleYearChange}>
-            <SelectTrigger className="w-32 bg-white">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="bg-white">
-              {availableYears.map(year => (
-                <SelectItem key={year} value={year}>{year}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
           <div className="flex-1">
             <div className="flex flex-col space-y-2">
               <Input
@@ -266,9 +295,6 @@ function PaymentsPageClient() {
               Apply Filter
             </Button>
           )}
-          <div className="text-sm text-gray-600">
-            Showing top {limit} vendors for {selectedYear}
-          </div>
         </div>
       </div>
 
@@ -278,22 +304,23 @@ function PaymentsPageClient() {
           <thead>
             <tr className="bg-gray-100">
               {[
-                { key: 'vendor', label: 'Vendor' },
-                { key: 'year', label: 'Year' },
-                { key: 'totalAmount', label: 'Total Amount' },
-                { key: 'transactionCount', label: 'Transactions' },
-                { key: 'primaryDepartment', label: 'Primary Department' },
-                { key: 'departments', label: 'All Departments' },
-                { key: 'programs', label: 'Programs' }
+                { key: 'vendor', label: 'Vendor', sortable: true },
+                { key: 'totalAmount', label: 'Total Amount', sortable: true },
+                { key: 'transactionCount', label: 'Transactions', sortable: true },
+                { key: 'departments', label: 'Departments', sortable: false },
+                { key: 'programs', label: 'Programs', sortable: false },
+                { key: 'funds', label: 'Funds', sortable: false },
+                { key: 'categories', label: 'Categories', sortable: false },
+                { key: 'descriptions', label: 'Descriptions', sortable: false }
               ].map((column) => (
                 <th
                   key={column.key}
-                  className="border border-gray-300 px-4 py-2 text-left cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleSort(column.key)}
+                  className={`border border-gray-300 px-4 py-2 text-left ${column.sortable ? 'cursor-pointer hover:bg-gray-200' : ''}`}
+                  onClick={column.sortable ? () => handleSort(column.key) : undefined}
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-medium">{column.label}</span>
-                    <span className="text-xs">{getSortIcon(column.key)}</span>
+                    {column.sortable && <span className="text-xs">{getSortIcon(column.key)}</span>}
                   </div>
                 </th>
               ))}
@@ -304,10 +331,10 @@ function PaymentsPageClient() {
               <tr key={index} className="hover:bg-gray-50">
                 <td className="border border-gray-300 px-4 py-2">
                   <div className="group relative">
-                    <span className="font-medium">{vendor.name}</span>
+                    <span className="font-medium">{vendor.vendor}</span>
                     <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block bg-black text-white text-xs rounded px-2 py-1 whitespace-nowrap z-10">
                       <a 
-                        href={`https://projects.propublica.org/nonprofits/search?q=${encodeURIComponent(vendor.name)}`}
+                        href={`https://projects.propublica.org/nonprofits/search?q=${encodeURIComponent(vendor.vendor)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-300 hover:underline mr-2"
@@ -315,7 +342,7 @@ function PaymentsPageClient() {
                         ProPublica
                       </a>
                       <a 
-                        href={`https://datarepublican.com/nonprofit/assets/?filter=${encodeURIComponent(vendor.name)}`}
+                        href={`https://datarepublican.com/nonprofit/assets/?filter=${encodeURIComponent(vendor.vendor)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-300 hover:underline"
@@ -325,7 +352,6 @@ function PaymentsPageClient() {
                     </div>
                   </div>
                 </td>
-                <td className="border border-gray-300 px-4 py-2 text-center">{vendor.year || selectedYear}</td>
                 <td className="border border-gray-300 px-4 py-2 text-right font-mono">
                   {formatCurrency(vendor.totalAmount)}
                 </td>
@@ -333,44 +359,25 @@ function PaymentsPageClient() {
                   {vendor.transactionCount?.toLocaleString()}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {vendor.primaryDepartmentSlug ? (
-                    <Link 
-                      href={`/departments/${vendor.primaryDepartmentSlug}`}
-                      className="text-blue-600 hover:underline"
-                    >
-                      {vendor.primaryDepartment}
-                    </Link>
-                  ) : (
-                    vendor.primaryDepartment
-                  )}
+                  <HoverTooltip items={vendor.departments} />
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  <div className="text-sm">
-                    {vendor.departments && vendor.departments.length > 3 ? (
-                      <span title={vendor.departments.join(', ')}>
-                        {vendor.departments.slice(0, 3).join(', ')} +{vendor.departments.length - 3} more
-                      </span>
-                    ) : (
-                      vendor.departments?.join(', ')
-                    )}
-                  </div>
+                  <HoverTooltip items={vendor.programs} />
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  <div className="text-sm">
-                    {vendor.programs && vendor.programs.length > 2 ? (
-                      <span title={vendor.programs.join(', ')}>
-                        {vendor.programs.slice(0, 2).join(', ')} +{vendor.programs.length - 2} more
-                      </span>
-                    ) : 
-                      vendor.programs?.join(', ')
-                    }
-                  </div>
+                  <HoverTooltip items={vendor.funds} />
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  <HoverTooltip items={vendor.categories} />
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  <HoverTooltip items={vendor.descriptions} />
                 </td>
               </tr>
             )) : (
               <tr>
-                <td colSpan={7} className="border border-gray-300 px-4 py-8 text-center text-gray-500">
-                  No vendor payment data found for {selectedYear}
+                <td colSpan={8} className="border border-gray-300 px-4 py-8 text-center text-gray-500">
+                  No vendor payment data found
                 </td>
               </tr>
             )}
@@ -379,7 +386,7 @@ function PaymentsPageClient() {
       </div>
 
       {/* Pagination */}
-      {vendorData.pagination.totalPages > 1 && (
+      {vendorData.pagination && vendorData.pagination.totalPages > 1 && (
         <div className="mt-6 flex items-center justify-between">
           <div className="text-sm text-gray-600">
             Showing {((vendorData.pagination.currentPage - 1) * vendorData.pagination.itemsPerPage) + 1} to{' '}

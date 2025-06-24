@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "CA DOGE: Transparent California Spending Data | Cali DOGE",
-  description: "CA DOGE delivers real data on California government spending. Search 15M+ records to track government efficiency, waste, and spending patterns. Your independent source for California transparency.",
+  description: "CA DOGE delivers real data on California government spending. Search 30M+ records to track government efficiency, waste, and spending patterns. Your independent source for California transparency.",
   alternates: {
     canonical: '/ca-doge',
   },
@@ -17,7 +17,7 @@ export default function CADoge() {
         <header className="mb-12">
           <h1 className="text-4xl font-bold mb-6">CA DOGE: Data-Driven California Transparency</h1>
           <p className="text-xl text-gray-600 mb-8">
-            Your independent platform for California government data. CA DOGE provides unprecedented access to 15M+ records of government spending, contracts, and efficiency metrics.
+            Your independent platform for California government data. CA DOGE provides unprecedented access to 30M+ records of government spending, contracts, and efficiency metrics.
           </p>
           <div className="flex gap-4">
             <Link 
@@ -40,7 +40,7 @@ export default function CADoge() {
           <section className="mb-12">
             <h2 className="text-2xl font-semibold mb-4">The CA DOGE Database</h2>
             <p>
-              Our comprehensive database contains over 15M records of California government spending, making CA DOGE the most extensive transparency platform in the state. We track:
+              Our comprehensive database contains over 30M records of California government spending, making CA DOGE the most extensive transparency platform in the state. We track:
             </p>
             <ul className="list-disc pl-6 mt-4 space-y-2">
               <li>Government contracts and vendors</li>
@@ -93,7 +93,7 @@ export default function CADoge() {
           <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-3">Comprehensive Data</h3>
-              <p>Access 15M+ records of California government spending, updated in real-time.</p>
+              <p>Access 30M+ records of California government spending, updated in real-time.</p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-3">Independent Analysis</h3>

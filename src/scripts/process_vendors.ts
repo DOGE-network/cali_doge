@@ -57,10 +57,6 @@ const __dirname = path.dirname(__filename);
 const VENDORS_DIR = path.join(__dirname, '../data/vendors');
 const DATA_DIR = path.join(__dirname, '../data');
 const ENHANCED_VENDORS_PATH = path.join(__dirname, '../data/vendors.json');
-const VENDOR_DEPARTMENT_PATH = path.join(__dirname, '../data/vendors_department.json');
-const DEPARTMENT_VENDOR_PATH = path.join(__dirname, '../data/department_vendors.json');
-const VENDOR_ACCOUNTS_PATH = path.join(__dirname, '../data/vendor_accounts.json');
-const VENDOR_PROGRAMS_PATH = path.join(__dirname, '../data/vendor_programs.json');
 const DEPARTMENTS_JSON_PATH = path.join(__dirname, '../data/departments.json');
 const FUNDS_JSON_PATH = path.join(__dirname, '../data/funds.json');
 const PROGRAMS_JSON_PATH = path.join(__dirname, '../data/programs.json');
@@ -86,8 +82,9 @@ interface YearlyTransactionData {
     t: Array<{
       n: string;  // vendor_name
       d: Array<{
-        n: string;  // name
-        oc: number;  // organizationCode
+        n: string;  // department_name
+        oc: number;  // organizationCode, business_unit
+        pa: string;  // agency_name, parent_agency
         at: Array<{
           t: string;  // type
           ac: Array<{
@@ -145,10 +142,6 @@ function ensureDirectoryExists(dirPath: string): void {
 function createRequiredDirectories(): void {
   ensureDirectoryExists(DATA_DIR);
   ensureDirectoryExists(path.dirname(ENHANCED_VENDORS_PATH));
-  ensureDirectoryExists(path.dirname(VENDOR_DEPARTMENT_PATH));
-  ensureDirectoryExists(path.dirname(DEPARTMENT_VENDOR_PATH));
-  ensureDirectoryExists(path.dirname(VENDOR_ACCOUNTS_PATH));
-  ensureDirectoryExists(path.dirname(VENDOR_PROGRAMS_PATH));
   ensureDirectoryExists(LOG_DIR);
 }
 
@@ -554,7 +547,9 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
       // Step 2.3: Extract vendor information and transaction details
       const vendorName = record.VENDOR_NAME || 'Unknown Vendor';
       const fiscalYear = record.fiscal_year_begin;
-      const organizationCode = parseInt(record.business_unit.trim(), 10) || 0;
+      const departmentName = record.department_name;
+      const organizationCode = record.business_unit; // keep as string or number as in CSV
+      const agencyName = record.agency_name;
       
       // Skip records with invalid fiscal year
       if (!fiscalYear) {
@@ -580,7 +575,28 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
       
       processedYears.add(fiscalYear);
       
-      const department = record.department_name;
+      // --- Build yearly transaction data ---
+      const vendorTransactionData = yearlyTransactionData[fiscalYear];
+      if (!vendorTransactionData.t) vendorTransactionData.t = [];
+
+      let vendor = vendorTransactionData.t.find((v: any) => v.n === vendorName);
+      if (!vendor) {
+        vendor = { n: vendorName, d: [] };
+        vendorTransactionData.t.push(vendor);
+      }
+
+      let dept = vendor.d.find((d: any) => d.n === departmentName && d.oc === organizationCode && d.pa === agencyName);
+      if (!dept) {
+        dept = {
+          n: departmentName,
+          oc: organizationCode,
+          pa: agencyName,
+          at: []
+        };
+        vendor.d.push(dept);
+      }
+
+      // Continue with account type/category/subcategory/description as before
       const accountType = record.account_type;
       const accountCategory = record.account_category;
       const accountSubCategory = record.account_sub_category;
@@ -589,6 +605,7 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
       let rawFundCode = record.fund_code.trim();
       
       // Validate fund code and ensure it exists in funds.json
+      let fundCode = rawFundCode;
       try {
         const fundResult = verifyOrAddFund(rawFundCode, record, fundsData);
         if (fundResult.isNew) {
@@ -597,211 +614,121 @@ async function processVendorFile(file: string, yearlyTransactionData: YearlyTran
           stats.updatedFunds++;
         }
         // Keep fund code as string to preserve leading zeros for 4-digit format
-        const fundCode = fundResult.fundCode;
-        
-        // Verify program code and ensure it exists in programs.json
-        try {
-          const programStats = verifyOrAddProgram(record.program_code, record, programsData, file);
-          stats.newPrograms += programStats.newPrograms;
-          stats.updatedPrograms += programStats.updatedPrograms;
-          stats.newDescriptions += programStats.newDescriptions;
-          stats.updatedSources += programStats.updatedSources;
-          
-          // If any changes were made, update the lastUpdated timestamp
-          if (programStats.needsWrite) {
-            programsData.lastUpdated = new Date().toISOString();
-          }
-        } catch (error) {
-          log({ message: `Program code validation error: ${error instanceof Error ? error.message : String(error)}`, type: 'warn' });
-        }
-        
-        // Format program code to 7 digits for vendors.json
-        const programCode = formatProgramCode(record.program_code || '');
-        
-        // Get year-specific transaction data
-        const vendorTransactionData = yearlyTransactionData[fiscalYear];
-        
-        // Update transaction structure
-        if (!vendorTransactionData.t) {
-          vendorTransactionData.t = [];
-        }
-        
-        const findOrCreateVendorTransaction = () => {
-          let vendor = vendorTransactionData.t.find(
-            (v: any) => v.n === vendorName
-          );
-          
-          if (!vendor) {
-            vendor = { 
-              n: vendorName, 
-              d: [] 
-            };
-            vendorTransactionData.t.push(vendor);
-          }
-          
-          return vendor;
-        };
-        
-        const vendorTransaction = findOrCreateVendorTransaction();
-        
-        // Process transaction structure (hierarchy of nested objects)
-        const findOrCreateDepartment = (data: any) => {
-          let dept = data.d.find((d: any) => d.n === department);
-          if (!dept) {
-            dept = { 
-              n: department, 
-              oc: organizationCode,
-              at: []
-            };
-            data.d.push(dept);
-          }
-          return dept;
-        };
-        
-        const dept = findOrCreateDepartment(vendorTransaction);
-        
-        // Continue building transaction hierarchy
-        const findOrCreateAccountType = (data: any) => {
-          let acct = data.at.find((a: any) => a.t === accountType);
-          if (!acct) {
-            acct = { 
-              t: accountType, 
-              ac: [] 
-            };
-            data.at.push(acct);
-          }
-          return acct;
-        };
-        
-        const acct = findOrCreateAccountType(dept);
-        
-        // Continue with account category
-        const findOrCreateAccountCategory = (data: any) => {
-          let cat = data.ac.find((c: any) => c.c === accountCategory);
-          if (!cat) {
-            cat = { c: accountCategory, asc: [] };
-            data.ac.push(cat);
-          }
-          return cat;
-        };
-        
-        const cat = findOrCreateAccountCategory(acct);
-        
-        // Continue with sub category
-        const findOrCreateSubCategory = (data: any) => {
-          let subCat = data.asc.find((s: any) => s.sc === accountSubCategory);
-          if (!subCat) {
-            subCat = { sc: accountSubCategory, ad: [] };
-            data.asc.push(subCat);
-          }
-          return subCat;
-        };
-        
-        const subCat = findOrCreateSubCategory(cat);
-        
-        // Find or create account description with program and fund codes
-        const findOrCreateAccountDescription = (data: any) => {
-          let desc = data.ad.find((d: any) => 
-            d.d === accountDescription && 
-            d.pc === programCode && 
-            d.fc === fundCode
-          );
-          
-          if (!desc) {
-            desc = {
-              d: accountDescription,
-              pc: programCode,
-              fc: fundCode,
-              a: 0,
-              ct: 0
-            };
-            data.ad.push(desc);
-          }
-          
-          return desc;
-        };
-        
-        const desc = findOrCreateAccountDescription(subCat);
-        
-        // Update amount and count
-        desc.a += amount;
-        desc.ct += 1;
-        
-        // Update enhanced vendor structure
-        // Check if this vendor exists already
-        let enhancedVendor = enhancedVendorData.v.find((v: any) => 
-          v.n.some((n: any) => n.n === vendorName)
-        );
-        
-        // If no existing vendor, create a new one with null EIN (will be resolved later)
-        if (!enhancedVendor) {
-          enhancedVendor = {
-            e: null,
-            n: [{
-              n: vendorName,
-              fy: []
-            }]
-          };
-          enhancedVendorData.v.push(enhancedVendor);
-          stats.newVendors++;
-        }
-        
-        // Find or create vendor name entry
-        let nameEntry = enhancedVendor.n.find((n: any) => n.n === vendorName);
-        if (!nameEntry) {
-          nameEntry = {
-            n: vendorName,
-            fy: []
-          };
-          enhancedVendor.n.push(nameEntry);
-        }
-        
-        // Find or create fiscal year
-        let yearEntry = nameEntry.fy.find((y: any) => y.y === fiscalYear);
-        if (!yearEntry) {
-          yearEntry = {
-            y: fiscalYear,
-            pc: []
-          };
-          nameEntry.fy.push(yearEntry);
-        }
-        
-        // Find or create project code
-        let projectEntry = yearEntry.pc.find((p: any) => p.c === programCode);
-        if (!projectEntry) {
-          projectEntry = {
-            c: programCode,
-            oc: []
-          };
-          yearEntry.pc.push(projectEntry);
-        }
-        
-        // Find or create organization code
-        let orgEntry = projectEntry.oc.find((o: any) => o.c === organizationCode);
-        if (!orgEntry) {
-          orgEntry = {
-            c: organizationCode,
-            fc: []
-          };
-          projectEntry.oc.push(orgEntry);
-        }
-        
-        // Find or create fund code allocation - using string fund code to preserve 4 digits
-        let fundEntry = orgEntry.fc.find((f: any) => f.c === fundCode);
-        if (!fundEntry) {
-          fundEntry = {
-            c: fundCode,
-            ct: 0,
-            a: 0
-          };
-          orgEntry.fc.push(fundEntry);
-        }
-        
-        // Update count and amount for enhanced structure
-        fundEntry.ct += 1;
-        fundEntry.a += amount;
+        fundCode = fundResult.fundCode;
       } catch (error) {
         log({ message: `Fund code validation error: ${error instanceof Error ? error.message : String(error)}`, type: 'warn' });
+      }
+      
+      // Verify program code and ensure it exists in programs.json (independent of fund validation)
+      try {
+        const programStats = verifyOrAddProgram(record.program_code, record, programsData, file);
+        stats.newPrograms += programStats.newPrograms;
+        stats.updatedPrograms += programStats.updatedPrograms;
+        stats.newDescriptions += programStats.newDescriptions;
+        stats.updatedSources += programStats.updatedSources;
+        
+        // If any changes were made, update the lastUpdated timestamp
+        if (programStats.needsWrite) {
+          programsData.lastUpdated = new Date().toISOString();
+        }
+      } catch (error) {
+        log({ message: `Program code validation error: ${error instanceof Error ? error.message : String(error)}`, type: 'warn' });
+      }
+      
+      // Format program code to 7 digits for vendors.json
+      const programCode = formatProgramCode(record.program_code || '');
+
+      let acct = dept.at.find((a: any) => a.t === accountType);
+      if (!acct) {
+        acct = { t: accountType, ac: [] };
+        dept.at.push(acct);
+      }
+      let cat = acct.ac.find((c: any) => c.c === accountCategory);
+      if (!cat) {
+        cat = { c: accountCategory, asc: [] };
+        acct.ac.push(cat);
+      }
+      let subCat = cat.asc.find((s: any) => s.sc === accountSubCategory);
+      if (!subCat) {
+        subCat = { sc: accountSubCategory, ad: [] };
+        cat.asc.push(subCat);
+      }
+      let desc = subCat.ad.find((d: any) => d.d === accountDescription && d.pc === programCode && d.fc === fundCode);
+      if (!desc) {
+        desc = {
+          d: accountDescription,
+          pc: programCode,
+          fc: fundCode,
+          a: 0,
+          ct: 0
+        };
+        subCat.ad.push(desc);
+      }
+      desc.a += amount;
+      desc.ct += 1;
+
+      // --- Build enhanced vendor data ---
+      let enhancedVendor = enhancedVendorData.v.find((v: any) => v.n.some((n: any) => n.n === vendorName));
+      let isNewVendor = false;
+      let isUpdatedVendor = false;
+      
+      if (!enhancedVendor) {
+        enhancedVendor = {
+          e: null,
+          n: [{ n: vendorName, fy: [] }]
+        };
+        enhancedVendorData.v.push(enhancedVendor);
+        isNewVendor = true;
+        stats.newVendors++;
+      }
+      
+      let nameEntry = enhancedVendor.n.find((n: any) => n.n === vendorName);
+      if (!nameEntry) {
+        nameEntry = { n: vendorName, fy: [] };
+        enhancedVendor.n.push(nameEntry);
+        isUpdatedVendor = true;
+      }
+      
+      let yearEntry = nameEntry.fy.find((y: any) => y.y === fiscalYear);
+      if (!yearEntry) {
+        yearEntry = { y: fiscalYear, pc: [] };
+        nameEntry.fy.push(yearEntry);
+        isUpdatedVendor = true;
+      }
+      
+      let projectEntry = yearEntry.pc.find((p: any) => p.c === programCode);
+      if (!projectEntry) {
+        projectEntry = { c: programCode, oc: [] };
+        yearEntry.pc.push(projectEntry);
+        isUpdatedVendor = true;
+      }
+      
+      let orgEntry = projectEntry.oc.find((o: any) => o.c === organizationCode && o.n === departmentName && o.pa === agencyName);
+      if (!orgEntry) {
+        orgEntry = {
+          c: organizationCode,
+          n: departmentName,
+          pa: agencyName,
+          fc: []
+        };
+        projectEntry.oc.push(orgEntry);
+        isUpdatedVendor = true;
+      }
+      
+      let fundEntry = orgEntry.fc.find((f: any) => f.c === fundCode);
+      if (!fundEntry) {
+        fundEntry = { c: fundCode, ct: 0, a: 0 };
+        orgEntry.fc.push(fundEntry);
+        isUpdatedVendor = true;
+      }
+      
+      // Track if this record adds new transaction data
+      fundEntry.ct += 1;
+      fundEntry.a += amount;
+      
+      // If this is an existing vendor and we added new data, mark as updated
+      if (!isNewVendor && isUpdatedVendor) {
+        stats.updatedVendors++;
       }
     }
     
@@ -1052,7 +979,7 @@ async function main(): Promise<void> {
     }
     
     const defaultEnhancedData = {
-      vendors: [],
+      v: [],
       pf: [],
       lastProcessedFile: null,
       lastProcessedTimestamp: null,

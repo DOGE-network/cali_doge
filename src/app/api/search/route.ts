@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
-const { getSearchData } = require('@/lib/api/dataAccess');
-import type { SearchJSON, SearchItem, KeywordItem } from '@/types/search';
+import { search as searchAccess } from '@/lib/api/dataAccess';
+import type { SearchItem, KeywordItem } from '@/types/search';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -43,63 +43,7 @@ function normalizeSearchTerm(term: string): string {
   return term.toLowerCase().trim();
 }
 
-function searchInText(text: string, query: string): boolean {
-  if (!text || !query || typeof text !== 'string' || typeof query !== 'string') {
-    return false;
-  }
-  
-  const normalizedText = normalizeSearchTerm(text);
-  const normalizedQuery = normalizeSearchTerm(query);
-  
-  if (!normalizedText || !normalizedQuery) {
-    return false;
-  }
-  
-  // Direct substring match
-  if (normalizedText.includes(normalizedQuery)) {
-    return true;
-  }
-  
-  // Word-based matching
-  const textWords = normalizedText.split(/\s+/);
-  const queryWords = normalizedQuery.split(/\s+/);
-  
-  // Check if all query words are found in text
-  return queryWords.every(queryWord => 
-    textWords.some(textWord => textWord.includes(queryWord))
-  );
-}
-
-function searchInItem(item: SearchItem, query: string): boolean {
-  if (!item || !query) {
-    return false;
-  }
-  
-  // Search in the term (name)
-  if (item.term && searchInText(item.term, query)) {
-    return true;
-  }
-  
-  // Search in the id (code) - exact match or starts with for codes
-  if (item.id && typeof item.id === 'string') {
-    const normalizedId = item.id.toLowerCase();
-    const normalizedQuery = query.toLowerCase().trim();
-    
-    // Exact match for codes
-    if (normalizedId === normalizedQuery) {
-      return true;
-    }
-    
-    // Starts with for partial code matches
-    if (normalizedId.startsWith(normalizedQuery)) {
-      return true;
-    }
-  }
-  
-  return false;
-}
-
-function calculateRelevanceScore(item: SearchItem | KeywordItem, query: string): number {
+function calculateRelevanceScore(item: any, query: string): number {
   if (!item || !query) {
     return 0;
   }
@@ -148,13 +92,12 @@ function calculateRelevanceScore(item: SearchItem | KeywordItem, query: string):
     }
   }
   
-  // Score based on ID (code) matches - for SearchItem only
-  if (item.type !== 'keyword' && (item as SearchItem).id) {
-    const searchItem = item as SearchItem;
-    const normalizedId = searchItem.id.toLowerCase();
+  // Score based on ID (code) matches
+  if (item.source_id) {
+    const normalizedId = item.source_id.toLowerCase();
     const normalizedQueryRaw = query.toLowerCase().trim();
     
-    // Exact ID match gets very high score (higher than name matches for precision)
+    // Exact ID match gets very high score
     if (normalizedId === normalizedQueryRaw) {
       score += 150;
     }
@@ -165,19 +108,29 @@ function calculateRelevanceScore(item: SearchItem | KeywordItem, query: string):
     }
   }
   
-  // For keywords, add context relevance
-  if (item.type === 'keyword') {
-    const keywordItem = item as KeywordItem;
-    if (keywordItem.sources && Array.isArray(keywordItem.sources)) {
-      keywordItem.sources.forEach(source => {
-        if (source && source.context && searchInText(source.context, query)) {
-          score += 15;
-        }
-      });
+  return score;
+}
+
+// Helper to get match info for a result
+function getMatchInfo(item: any, query: string) {
+  const q = query.toLowerCase();
+  if (item.term && item.term.toLowerCase().includes(q)) {
+    return { matchField: 'name', matchSnippet: item.term };
+  }
+  if (item.source_id && item.source_id.toLowerCase().includes(q)) {
+    return { matchField: 'id', matchSnippet: item.source_id };
+  }
+  if (item.additional_data?.context && typeof item.additional_data.context === 'string') {
+    const context = item.additional_data.context;
+    const idx = context.toLowerCase().indexOf(q);
+    if (idx !== -1) {
+      const start = Math.max(0, idx - 30);
+      const end = Math.min(context.length, idx + 30 + q.length);
+      const snippet = context.substring(start, end);
+      return { matchField: 'description', matchSnippet: snippet };
     }
   }
-  
-  return score;
+  return { matchField: null, matchSnippet: null };
 }
 
 export async function GET(request: NextRequest) {
@@ -187,65 +140,6 @@ export async function GET(request: NextRequest) {
     const types = searchParams.get('types')?.split(',') || ['departments', 'vendors', 'programs', 'funds'];
     const limit = parseInt(searchParams.get('limit') || '10', 10);
     const excludeCommon = searchParams.get('exclude_common') === 'true';
-
-    // Get search data
-    const searchData = await getSearchData();
-    if (!searchData) {
-      return NextResponse.json({
-        departments: [],
-        vendors: [],
-        programs: [],
-        funds: [],
-        keywords: [],
-        totalResults: 0,
-        query,
-        appliedFilters: {
-          types,
-          excludeCommon,
-          limit
-        },
-        details: {
-          departments: {},
-          vendors: {},
-          programs: {},
-          funds: {}
-        }
-      });
-    }
-
-    // Normalize search terms
-    const searchTerms = query.split(/\s+/).filter(term => 
-      term.length > 0 && (!excludeCommon || !COMMON_WORDS.has(term))
-    );
-
-    if (searchTerms.length === 0) {
-      return NextResponse.json({
-        departments: [],
-        vendors: [],
-        programs: [],
-        funds: [],
-        keywords: [],
-        totalResults: 0,
-        query,
-        appliedFilters: {
-          types,
-          excludeCommon,
-          limit
-        },
-        details: {
-          departments: {},
-          vendors: {},
-          programs: {},
-          funds: {}
-        }
-      });
-    }
-
-    // Validate types
-    const validTypes = ['department', 'vendor', 'program', 'fund', 'keyword'];
-    const filteredTypes = types.filter(type => validTypes.includes(type));
-    
-    console.log('Search API request:', { query, types: filteredTypes, limit, excludeCommon });
     
     // If no query provided, return empty results
     if (!query.trim()) {
@@ -297,139 +191,164 @@ export async function GET(request: NextRequest) {
       });
     }
     
-    // Load search data - this will throw if search.json is not found
-    const typedSearchData = await getSearchData() as SearchJSON;
-    if (!typedSearchData || !typedSearchData.departments || !typedSearchData.vendors || 
-        !typedSearchData.programs || !typedSearchData.funds || !typedSearchData.keywords) {
-      throw new Error('Search index not found or invalid. Please run the generate_search_index script.');
-    }
-    
-    let results: {
-      departments: SearchItem[];
-      vendors: SearchItem[];
-      programs: SearchItem[];
-      funds: SearchItem[];
-      keywords: KeywordItem[];
-    } = {
+    // Normalize search terms
+    const searchTerms = query.split(/\s+/).filter(term => 
+      term.length > 0 && (!excludeCommon || !COMMON_WORDS.has(term))
+    );
+
+    if (searchTerms.length === 0) {
+      return NextResponse.json({
       departments: [],
       vendors: [],
       programs: [],
       funds: [],
-      keywords: []
+        keywords: [],
+        totalResults: 0,
+        query,
+        appliedFilters: {
+          types,
+          excludeCommon,
+          limit
+        },
+        details: {
+          departments: {},
+          vendors: {},
+          programs: {},
+          funds: {}
+        }
+      });
+    }
+
+    // Validate types and map to database types
+    const validTypes = ['department', 'vendor', 'program', 'fund', 'keyword'];
+    const filteredTypes = types.filter(type => validTypes.includes(type));
+    
+    console.log('Search API request:', { query, types: filteredTypes, limit, excludeCommon });
+    
+    // Use Supabase full-text search
+    // For each type, run a separate search with its own limit
+    const perTypeResults: Record<string, any[]> = {};
+    for (const type of filteredTypes) {
+      perTypeResults[type] = await searchAccess.search(query, {
+        types: [type],
+        limit
+      });
+    }
+
+    // Transform results to match expected structure
+    const transformedResults = {
+      departments: [] as SearchItem[],
+      vendors: [] as SearchItem[],
+      programs: [] as SearchItem[],
+      funds: [] as SearchItem[],
+      keywords: [] as KeywordItem[]
     };
-    
-    // Search in each category if requested
-    if (filteredTypes.includes('department')) {
-      results.departments = typedSearchData.departments
-        .filter(item => item && (item.term || item.id))
-        .filter(item => searchInItem(item, query))
-        .map(item => ({ ...item, score: calculateRelevanceScore(item, query) }))
-        .sort((a, b) => (b as any).score - (a as any).score)
-        .slice(0, limit);
+
+    // Process and score results per type
+    for (const type of filteredTypes) {
+      const items = perTypeResults[type] || [];
+      items.forEach(item => {
+        const searchItem = {
+          term: item.term,
+          type: item.type,
+          id: item.source_id,
+          ...(item.additional_data as any)
+        };
+        const { matchField, matchSnippet } = getMatchInfo(item, query);
+        const scoredItem = {
+          ...searchItem,
+          score: calculateRelevanceScore(item, query),
+          matchField,
+          matchSnippet
+        };
+        switch (item.type) {
+          case 'department':
+            transformedResults.departments.push(scoredItem as SearchItem);
+            break;
+          case 'vendor':
+            transformedResults.vendors.push(scoredItem as SearchItem);
+            break;
+          case 'program':
+            transformedResults.programs.push(scoredItem as SearchItem);
+            break;
+          case 'fund':
+            transformedResults.funds.push(scoredItem as SearchItem);
+            break;
+          case 'keyword':
+            transformedResults.keywords.push(scoredItem as KeywordItem);
+            break;
+        }
+      });
     }
-    
-    if (filteredTypes.includes('vendor')) {
-      results.vendors = typedSearchData.vendors
-        .filter(item => item && (item.term || item.id))
-        .filter(item => searchInItem(item, query))
-        .map(item => ({ ...item, score: calculateRelevanceScore(item, query) }))
-        .sort((a, b) => (b as any).score - (a as any).score)
-        .slice(0, limit);
-    }
-    
-    if (filteredTypes.includes('program')) {
-      results.programs = typedSearchData.programs
-        .filter(item => item && (item.term || item.id))
-        .filter(item => searchInItem(item, query))
-        .map(item => ({ ...item, score: calculateRelevanceScore(item, query) }))
-        .sort((a, b) => (b as any).score - (a as any).score)
-        .slice(0, limit);
-    }
-    
-    if (filteredTypes.includes('fund')) {
-      results.funds = typedSearchData.funds
-        .filter(item => item && (item.term || item.id))
-        .filter(item => searchInItem(item, query))
-        .map(item => ({ ...item, score: calculateRelevanceScore(item, query) }))
-        .sort((a, b) => (b as any).score - (a as any).score)
-        .slice(0, limit);
-    }
-    
-    if (filteredTypes.includes('keyword')) {
-      results.keywords = typedSearchData.keywords
-        .filter(item => item && item.term && typeof item.term === 'string')
-        .filter(item => {
-          // Search in keyword term
-          if (searchInText(item.term, query)) return true;
-          
-          // Search in keyword sources context
-          return item.sources && item.sources.some(source => 
-            source && source.context && searchInText(source.context, query)
-          );
-        })
-        .map(item => ({ ...item, score: calculateRelevanceScore(item, query) }))
-        .sort((a, b) => (b as any).score - (a as any).score)
-        .slice(0, limit);
-    }
-    
-    // Remove score property from results (used only for sorting)
-    const cleanResults = {
-      departments: results.departments.map(({ score: _score, ...item }: any) => item),
-      vendors: results.vendors.map(({ score: _score, ...item }: any) => item),
-      programs: results.programs.map(({ score: _score, ...item }: any) => item),
-      funds: results.funds.map(({ score: _score, ...item }: any) => item),
-      keywords: results.keywords.map(({ score: _score, ...item }: any) => item)
+
+    // Sort by score and limit results per type
+    const normalizedQuery = query.trim().toLowerCase();
+    const nameMatches = (item: any) =>
+      item.term && item.term.toLowerCase().includes(normalizedQuery);
+    const sortedResults = {
+      departments: transformedResults.departments
+        .filter(nameMatches)
+        .sort((a: any, b: any) => b.score - a.score)
+        .slice(0, limit)
+        .map(({ score: _score, ...item }: any) => item),
+      vendors: transformedResults.vendors
+        .filter(nameMatches)
+        .sort((a: any, b: any) => b.score - a.score)
+        .slice(0, limit)
+        .map(({ score: _score, ...item }: any) => item),
+      programs: transformedResults.programs
+        .filter(nameMatches)
+        .sort((a: any, b: any) => b.score - a.score)
+        .slice(0, limit)
+        .map(({ score: _score, ...item }: any) => item),
+      funds: transformedResults.funds
+        .filter(nameMatches)
+        .sort((a: any, b: any) => b.score - a.score)
+        .slice(0, limit)
+        .map(({ score: _score, ...item }: any) => item),
+      keywords: transformedResults.keywords
+        .sort((a: any, b: any) => b.score - a.score)
+        .slice(0, limit)
+        .map(({ score: _score, ...item }: any) => item)
     };
-    
-    // Get details for each result
+
+    // Get details for each result (using the additional_data from search_index)
     const details = {
-      departments: {},
-      vendors: {},
-      programs: {},
-      funds: {}
+      departments: {} as Record<string, any>,
+      vendors: {} as Record<string, any>,
+      programs: {} as Record<string, any>,
+      funds: {} as Record<string, any>
     };
-    
-    // Add details from search.json for each result
-    cleanResults.departments.forEach(dept => {
-      if (dept.id && typedSearchData.departments) {
-        const detail = typedSearchData.departments.find(d => d.id === dept.id);
-        if (detail) {
-          details.departments[dept.id] = detail;
-        }
+
+    // Add details from search results
+    if (perTypeResults && Object.values(perTypeResults).length > 0) {
+      for (const type of filteredTypes) {
+        const items = perTypeResults[type] || [];
+        items.forEach(item => {
+          if (item.additional_data) {
+            switch (item.type) {
+              case 'department':
+                details.departments[item.source_id] = item.additional_data;
+                break;
+              case 'vendor':
+                details.vendors[item.source_id] = item.additional_data;
+                break;
+              case 'program':
+                details.programs[item.source_id] = item.additional_data;
+                break;
+              case 'fund':
+                details.funds[item.source_id] = item.additional_data;
+                break;
+            }
+          }
+        });
       }
-    });
-    
-    cleanResults.vendors.forEach(vendor => {
-      if (vendor.id && typedSearchData.vendors) {
-        const detail = typedSearchData.vendors.find(v => v.id === vendor.id);
-        if (detail) {
-          details.vendors[vendor.id] = detail;
-        }
-      }
-    });
-    
-    cleanResults.programs.forEach(program => {
-      if (program.id && typedSearchData.programs) {
-        const detail = typedSearchData.programs.find(p => p.id === program.id);
-        if (detail) {
-          details.programs[program.id] = detail;
-        }
-      }
-    });
-    
-    cleanResults.funds.forEach(fund => {
-      if (fund.id && typedSearchData.funds) {
-        const detail = typedSearchData.funds.find(f => f.id === fund.id);
-        if (detail) {
-          details.funds[fund.id] = detail;
-        }
-      }
-    });
-    
-    const totalResults = Object.values(cleanResults).reduce((sum, arr) => sum + arr.length, 0);
+    }
+
+    const totalResults = Object.values(sortedResults).reduce((sum, arr) => sum + arr.length, 0);
     
     const response: SearchResponse = {
-      ...cleanResults,
+      ...sortedResults,
       totalResults,
       query,
       appliedFilters: {
@@ -443,11 +362,11 @@ export async function GET(request: NextRequest) {
     console.log('Search API response:', {
       query,
       totalResults,
-      departmentCount: cleanResults.departments.length,
-      vendorCount: cleanResults.vendors.length,
-      programCount: cleanResults.programs.length,
-      fundCount: cleanResults.funds.length,
-      keywordCount: cleanResults.keywords.length
+      departmentCount: sortedResults.departments.length,
+      vendorCount: sortedResults.vendors.length,
+      programCount: sortedResults.programs.length,
+      fundCount: sortedResults.funds.length,
+      keywordCount: sortedResults.keywords.length
     });
     
     return NextResponse.json(response, {
@@ -460,7 +379,7 @@ export async function GET(request: NextRequest) {
     console.error('Error in Search API:', error);
     return NextResponse.json(
       { 
-        error: 'Failed to perform search. Search index not found or invalid.',
+        error: 'Failed to perform search.',
         departments: [],
         vendors: [],
         programs: [],

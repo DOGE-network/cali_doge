@@ -7,12 +7,8 @@
 .env.local
 
 # Raw Data files
-src/data/workforce/*.csv
-src/data/vendors/*.csv
-src/data/departments.json.bak*
-
-# test files
-src/data/test_data/
+# as files are too large
+src/data/vendors/*.csv 
 
 # User-specific files
 *.rsuser
@@ -414,9 +410,3 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 .vercel
-
-# Ignore uncompressed vendors.json
-src/data/vendors.json
-
-# But track the compressed version
-!src/data/vendors.json.gz

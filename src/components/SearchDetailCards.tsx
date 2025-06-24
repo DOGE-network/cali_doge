@@ -8,6 +8,9 @@ interface DetailCardProps {
   item: SearchItem | KeywordItem;
   isSelected?: boolean;
   onSelect?: () => void;
+  matchField?: string | null;
+  matchSnippet?: string | null;
+  query?: string;
 }
 
 interface SpendData {
@@ -25,9 +28,80 @@ interface ProgramData {
   sources: string[];
 }
 
-export function DepartmentDetailCard({ item, isSelected }: DetailCardProps) {
-  const [spendData, setSpendData] = useState<SpendData | null>(null);
-  const [loading, setLoading] = useState(false);
+// HighlightMatch component
+function HighlightMatch({ text, query }: { text: string; query?: string }) {
+  if (!query) return <>{text}</>;
+  const regex = new RegExp(`(${query})`, 'ig');
+  const parts = text.split(regex);
+  return (
+    <>
+      {parts.map((part, i) =>
+        regex.test(part) ? (
+          <mark key={i} style={{ background: 'yellow', fontWeight: 600 }}>{part}</mark>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
+
+// Add a MatchedFieldButton component
+function MatchedFieldButton({ matchField, matchSnippet, query }: { matchField: string; matchSnippet: string; query?: string }) {
+  const [hovered, setHovered] = useState(false);
+  if (!matchField || !matchSnippet) return null;
+  return (
+    <div style={{ position: 'relative', display: 'inline-block' }}>
+      <button
+        type="button"
+        className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors ml-2"
+        style={{ minWidth: 90 }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        Matched {matchField}
+      </button>
+      {hovered && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '110%',
+            right: 0,
+            zIndex: 10,
+            background: 'white',
+            color: '#222',
+            border: '1px solid #ddd',
+            borderRadius: 6,
+            padding: '8px 12px',
+            minWidth: 200,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.12)'
+          }}
+        >
+          <span style={{ fontSize: '0.95em' }}>
+            <HighlightMatch text={matchSnippet} query={query} />
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface DepartmentDetailCardProps extends DetailCardProps {
+  vendorTotal?: number | null;
+  budgetTotal?: number | null;
+}
+
+export function DepartmentDetailCard({ 
+  item, 
+  isSelected, 
+  // eslint-disable-next-line no-unused-vars
+  onSelect, 
+  matchField, 
+  matchSnippet, 
+  query, 
+  vendorTotal, 
+  budgetTotal 
+}: DepartmentDetailCardProps) {
   const [hasPage, setHasPage] = useState(false);
 
   useEffect(() => {
@@ -40,38 +114,10 @@ export function DepartmentDetailCard({ item, isSelected }: DetailCardProps) {
         })
         .catch(console.error);
     }
-    if (isSelected && item.type === 'department' && item.id) {
-      setLoading(true);
-      // Fetch department spending data
-      fetch(`/api/spend?department=${encodeURIComponent(item.term)}&limit=1`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.spending && data.spending.length > 0) {
-            // Calculate summary stats
-            const totalAmount = data.summary?.totalAmount || 0;
-            const transactionCount = data.summary?.recordCount || 0;
-            const topVendors: string[] = Array.from(new Set(data.spending.slice(0, 5).map((s: any) => String(s.vendor || ''))));
-            const topPrograms: string[] = Array.from(new Set(data.spending.slice(0, 5).map((s: any) => String(s.program || ''))));
-            const recentYear = Math.max(...data.spending.map((s: any) => s.year));
-            setSpendData({
-              totalAmount,
-              transactionCount,
-              topDepartments: topVendors,
-              topPrograms,
-              recentYear
-            });
-          }
-        })
-        .catch(console.error)
-        .finally(() => setLoading(false));
-    }
-  }, [isSelected, item]);
+  }, [item]);
 
-  // Type guard to ensure we have a SearchItem
   if (item.type !== 'department') return null;
   const departmentItem = item as SearchItem;
-  
-  // The item.id is already in the correct format for the URL
   const departmentSlug = departmentItem.id || 'unknown-department';
 
   return (
@@ -83,55 +129,35 @@ export function DepartmentDetailCard({ item, isSelected }: DetailCardProps) {
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{departmentItem.term}</h3>
           <p className="text-sm text-gray-600">Department • ID: {departmentItem.id || 'N/A'}</p>
         </div>
-        {hasPage ? (
-        <Link
-          href={`/departments/${departmentSlug}`}
-          className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-        >
-          View Details
-        </Link>
-        ) : (
-          <span className="px-3 py-1 text-sm bg-gray-100 text-gray-500 rounded">
-            Details Not Available
-          </span>
-        )}
-      </div>
-
-      {isSelected && (
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          {loading ? (
-            <div className="flex justify-center py-4">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
-            </div>
-          ) : spendData ? (
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-medium text-gray-900 mb-2">Spending Overview</h4>
-                <div className="space-y-1 text-sm">
-                  <div>Total Amount: <span className="font-medium">${spendData.totalAmount.toLocaleString()}</span></div>
-                  <div>Transactions: <span className="font-medium">{spendData.transactionCount.toLocaleString()}</span></div>
-                  <div>Recent Year: <span className="font-medium">{spendData.recentYear}</span></div>
-                </div>
-              </div>
-              <div>
-                <h4 className="font-medium text-gray-900 mb-2">Top Programs</h4>
-                <div className="space-y-1 text-sm">
-                  {spendData.topPrograms.slice(0, 3).map((program, index) => (
-                    <div key={index} className="text-gray-600 truncate">{program}</div>
-                  ))}
-                </div>
-              </div>
-            </div>
+        <div className="flex gap-2 items-center">
+          {hasPage ? (
+            <Link
+              href={`/departments/${departmentSlug}`}
+              className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            >
+              View Details
+            </Link>
           ) : (
-            <div className="text-sm text-gray-500">No spending data available</div>
+            <span className="px-3 py-1 text-sm bg-gray-100 text-gray-500 rounded">
+              Details Not Available
+            </span>
+          )}
+          {matchField && matchSnippet && (
+            <MatchedFieldButton matchField={matchField} matchSnippet={matchSnippet} query={query} />
           )}
         </div>
-      )}
+      </div>
+      <div className="mt-2">
+        <div className="space-y-1 text-sm">
+          <div>Vendor Spend Total: <span className="font-medium">{vendorTotal !== null && vendorTotal !== undefined ? `$${vendorTotal.toLocaleString()}` : 'N/A'}</span></div>
+          <div>Budget Total: <span className="font-medium">{budgetTotal !== null && budgetTotal !== undefined ? `$${budgetTotal.toLocaleString()}` : 'N/A'}</span></div>
+        </div>
+      </div>
     </div>
   );
 }
 
-export function VendorDetailCard({ item, isSelected, onSelect }: DetailCardProps) {
+export function VendorDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query }: DetailCardProps) {
   const [spendData, setSpendData] = useState<SpendData | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -184,7 +210,7 @@ export function VendorDetailCard({ item, isSelected, onSelect }: DetailCardProps
             href={`https://projects.propublica.org/nonprofits/search?q=${encodeURIComponent(vendorItem.term)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+            className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             onClick={e => e.stopPropagation()}
           >
             ProPublica
@@ -193,11 +219,14 @@ export function VendorDetailCard({ item, isSelected, onSelect }: DetailCardProps
             href={`https://datarepublican.com/nonprofit/assets/?filter=${encodeURIComponent(vendorItem.term)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+            className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             onClick={e => e.stopPropagation()}
           >
             Data Republican
           </a>
+          {matchField && matchSnippet && (
+            <MatchedFieldButton matchField={matchField} matchSnippet={matchSnippet} query={query} />
+          )}
         </div>
       </div>
 
@@ -235,7 +264,7 @@ export function VendorDetailCard({ item, isSelected, onSelect }: DetailCardProps
   );
 }
 
-export function ProgramDetailCard({ item, isSelected, onSelect }: DetailCardProps) {
+export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query }: DetailCardProps) {
   const [programData, setProgramData] = useState<ProgramData | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -276,6 +305,11 @@ export function ProgramDetailCard({ item, isSelected, onSelect }: DetailCardProp
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{programItem.term}</h3>
           <p className="text-sm text-gray-600">Program • ID: {programItem.id}</p>
         </div>
+        <div className="flex gap-2 items-center">
+          {matchField && matchSnippet && (
+            <MatchedFieldButton matchField={matchField} matchSnippet={matchSnippet} query={query} />
+          )}
+        </div>
       </div>
 
       {isSelected && (
@@ -308,7 +342,7 @@ export function ProgramDetailCard({ item, isSelected, onSelect }: DetailCardProp
   );
 }
 
-export function FundDetailCard({ item, isSelected, onSelect }: DetailCardProps) {
+export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query }: DetailCardProps) {
   const [fundData, setFundData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
@@ -344,6 +378,11 @@ export function FundDetailCard({ item, isSelected, onSelect }: DetailCardProps) 
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{fundItem.term}</h3>
           <p className="text-sm text-gray-600">Fund • ID: {fundItem.id}</p>
         </div>
+        <div className="flex gap-2 items-center">
+          {matchField && matchSnippet && (
+            <MatchedFieldButton matchField={matchField} matchSnippet={matchSnippet} query={query} />
+          )}
+        </div>
       </div>
 
       {isSelected && (
@@ -371,7 +410,7 @@ export function FundDetailCard({ item, isSelected, onSelect }: DetailCardProps) 
   );
 }
 
-export function KeywordDetailCard({ item, isSelected, onSelect }: DetailCardProps) {
+export function KeywordDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query }: DetailCardProps) {
   // Type guard to ensure we have a KeywordItem
   if (item.type !== 'keyword') return null;
   const keywordItem = item as KeywordItem;
@@ -387,6 +426,11 @@ export function KeywordDetailCard({ item, isSelected, onSelect }: DetailCardProp
         <div>
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{keywordItem.term}</h3>
           <p className="text-sm text-gray-600">Keyword • Sources: {keywordItem.sources?.length || 0}</p>
+        </div>
+        <div className="flex gap-2 items-center">
+          {matchField && matchSnippet && (
+            <MatchedFieldButton matchField={matchField} matchSnippet={matchSnippet} query={query} />
+          )}
         </div>
       </div>
 

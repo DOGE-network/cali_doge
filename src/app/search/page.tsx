@@ -56,6 +56,11 @@ function SearchPageClient() {
   const [limit, setLimit] = useState(20);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isLoading] = useState(false);
+  // State for collapsed sections
+  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
+  const [departmentTotals, setDepartmentTotals] = useState<Record<string, { vendorTotal: number | null, budgetTotal: number | null }>>({});
+  // eslint-disable-next-line no-unused-vars
+  const [totalsLoading, setTotalsLoading] = useState(false);
 
   // Build API URL based on current filters
   const buildApiUrl = () => {
@@ -208,6 +213,39 @@ function SearchPageClient() {
     setSelectedId(id);
   };
 
+  // Default all sections to open when results change
+  useEffect(() => {
+    setCollapsedSections({});
+  }, [searchData]);
+
+  // Fetch vendor and budget totals for all departments
+  useEffect(() => {
+    if (!searchData || !searchData.departments) return;
+    const fetchTotals = async () => {
+      setTotalsLoading(true);
+      const newTotals: Record<string, { vendorTotal: number | null, budgetTotal: number | null }> = {};
+      await Promise.all(
+        searchData.departments.map(async (dept) => {
+          try {
+            const [vendorRes, budgetRes] = await Promise.all([
+              fetch(`/api/spend?department=${encodeURIComponent(dept.term)}&limit=1`).then(r => r.json()),
+              fetch(`/api/spend?view=budget&department=${encodeURIComponent(dept.term)}&limit=1`).then(r => r.json()),
+            ]);
+            newTotals[dept.id] = {
+              vendorTotal: vendorRes.summary?.totalAmount ?? null,
+              budgetTotal: budgetRes.spending ? budgetRes.spending.reduce((sum: number, rec: any) => sum + (rec.amount || 0), 0) : null,
+            };
+          } catch {
+            newTotals[dept.id] = { vendorTotal: null, budgetTotal: null };
+          }
+        })
+      );
+      setDepartmentTotals(newTotals);
+      setTotalsLoading(false);
+    };
+    fetchTotals();
+  }, [searchData]);
+
   const renderResults = () => {
     if (!searchData) return null;
 
@@ -235,6 +273,11 @@ function SearchPageClient() {
             item={dept}
             isSelected={selectedId === dept.id}
             onSelect={() => handleItemClick(dept.id)}
+            matchField={(dept as any).matchField}
+            matchSnippet={(dept as any).matchSnippet}
+            query={query}
+            vendorTotal={departmentTotals[dept.id]?.vendorTotal}
+            budgetTotal={departmentTotals[dept.id]?.budgetTotal}
           />
         ))
       },
@@ -247,6 +290,9 @@ function SearchPageClient() {
             item={vendor}
             isSelected={selectedId === vendor.id}
             onSelect={() => handleItemClick(vendor.id)}
+            matchField={(vendor as any).matchField}
+            matchSnippet={(vendor as any).matchSnippet}
+            query={query}
           />
         ))
       },
@@ -259,6 +305,9 @@ function SearchPageClient() {
             item={program}
             isSelected={selectedId === program.id}
             onSelect={() => handleItemClick(program.id)}
+            matchField={(program as any).matchField}
+            matchSnippet={(program as any).matchSnippet}
+            query={query}
           />
         ))
       },
@@ -271,6 +320,9 @@ function SearchPageClient() {
             item={fund}
             isSelected={selectedId === fund.id}
             onSelect={() => handleItemClick(fund.id)}
+            matchField={(fund as any).matchField}
+            matchSnippet={(fund as any).matchSnippet}
+            query={query}
           />
         ))
       },
@@ -283,6 +335,9 @@ function SearchPageClient() {
             item={keyword}
             isSelected={selectedId === keyword.term}
             onSelect={() => handleItemClick(keyword.term)}
+            matchField={(keyword as any).matchField}
+            matchSnippet={(keyword as any).matchSnippet}
+            query={query}
           />
         ))
       }
@@ -292,10 +347,18 @@ function SearchPageClient() {
       <div className="space-y-8">
         {sections.map((section) => (
           <section key={section.key}>
-            <h2 className="text-xl font-semibold mb-4">{section.title}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {section.items}
-            </div>
+            <h2
+              className="text-xl font-semibold mb-4 cursor-pointer select-none flex items-center gap-2"
+              onClick={() => setCollapsedSections(cs => ({ ...cs, [section.key]: !cs[section.key] }))}
+            >
+              <span>{section.title}</span>
+              <span className="text-base">{collapsedSections[section.key] ? '▼' : '▲'}</span>
+            </h2>
+            {!collapsedSections[section.key] && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {section.items}
+              </div>
+            )}
           </section>
         ))}
       </div>
@@ -320,6 +383,19 @@ function SearchPageClient() {
             selectedTypes={selectedTypes}
             onToggleType={toggleType}
           />
+        </div>
+        <div className="mt-4 flex items-center gap-3">
+          <label className="flex items-center gap-1 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              checked={excludeCommon}
+              onChange={e => {
+                setExcludeCommon(e.target.checked);
+                updateUrl({ exclude_common: e.target.checked.toString() });
+              }}
+            />
+            Exclude Common Words
+          </label>
         </div>
       </div>
 

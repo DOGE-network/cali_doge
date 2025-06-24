@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "DOGE CA: Transparent California Spending Data | Cali DOGE",
-  description: "DOGE CA provides real transparency for California government spending. Search our 15M+ record database to track government efficiency, waste, and spending patterns. Independent data platform for California taxpayers.",
+  description: "DOGE CA provides real transparency for California government spending. Search our 30M+ record database to track government efficiency, waste, and spending patterns. Independent data platform for California taxpayers.",
   alternates: {
     canonical: '/doge-ca',
   },
@@ -17,7 +17,7 @@ export default function DogeCA() {
         <header className="mb-12">
           <h1 className="text-4xl font-bold mb-6">DOGE CA: Real Transparency for California</h1>
           <p className="text-xl text-gray-600 mb-8">
-            Your independent source for California government spending data. Unlike other platforms, DOGE CA delivers actionable insights backed by 15M+ records of real spending data.
+            Your independent source for California government spending data. Unlike other platforms, DOGE CA delivers actionable insights backed by 30M+ records of real spending data.
           </p>
           <div className="flex gap-4">
             <Link 
@@ -43,7 +43,7 @@ export default function DogeCA() {
               While other transparency platforms focus on advocacy or limited data sets, DOGE CA provides comprehensive access to California government operations. Our platform combines:
             </p>
             <ul className="list-disc pl-6 mt-4 space-y-2">
-              <li>15M+ records of government spending data</li>
+              <li>30M+ records of government spending data</li>
               <li>300+ hours of research and analysis</li>
               <li>Real-time updates on government operations</li>
               <li>Independent verification of spending patterns</li>
