@@ -21,4 +21,22 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey)
 // Client for server-side operations with elevated privileges
 export const getServiceSupabase = () => {
   return createClient<Database>(supabaseUrl, supabaseServiceKey!)
+}
+
+// Mock for Jest unit tests to prevent real DB access
+if (process.env.NODE_ENV === 'test') {
+  const jest = require('jest-mock');
+  module.exports.getServiceSupabase = jest.fn(() => ({
+    from: jest.fn(() => ({
+      select: jest.fn().mockReturnThis(),
+      eq: jest.fn().mockReturnThis(),
+      order: jest.fn().mockReturnThis(),
+      limit: jest.fn().mockReturnThis(),
+      single: jest.fn().mockReturnThis(),
+      textSearch: jest.fn().mockReturnThis(),
+      or: jest.fn().mockReturnThis(),
+      in: jest.fn().mockReturnThis(),
+      then: jest.fn(),
+    })),
+  }));
 } 
