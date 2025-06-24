@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import programsData from '@/data/programs.json';
-import type { ProgramsJSON } from '@/types/program';
+import { programs } from '@/lib/api/dataAccess';
+import type { Program } from '@/types/program';
+import type { Database } from '@/types/supabase';
 
 export const runtime = 'edge';
 export const revalidate = 3600; // Revalidate every hour
@@ -15,37 +16,50 @@ export async function GET(
 
     console.log('Program API - individual program request:', { projectCode });
 
-    // Type-cast statically imported programs data
-    const typedPrograms = programsData as unknown as ProgramsJSON;
+    try {
+      const program = await programs.getProgramByCode(projectCode) as Database['public']['Tables']['programs']['Row'];
 
-    if (!typedPrograms || !typedPrograms.programs) {
-      return NextResponse.json(
-        { error: 'Programs data not available' },
-        { status: 500 }
-      );
-    }
+      if (!program) {
+        return NextResponse.json(
+          { error: 'Program not found', projectCode },
+          { status: 404 }
+        );
+      }
 
-    // Find the specific program
-    const program = typedPrograms.programs.find(p => p.projectCode === projectCode);
+      console.log('Program API - found program:', { 
+        projectCode, 
+        name: program.name 
+      });
 
-    if (!program) {
+      // Map database fields to API response format
+      const apiProgram: Program = {
+        id: program.id,
+        project_code: program.project_code,
+        name: program.name,
+        description: program.description,
+        sources: program.sources,
+        created_at: program.created_at,
+        updated_at: program.updated_at,
+        
+        // Add legacy fields for backward compatibility
+        projectCode: program.project_code,
+        programDescriptions: program.description ? [
+          { description: program.description, source: 'Database' }
+        ] : []
+      };
+
+      return NextResponse.json(apiProgram, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+        }
+      });
+    } catch (error) {
+      console.log('Program not found:', projectCode);
       return NextResponse.json(
         { error: 'Program not found', projectCode },
         { status: 404 }
       );
     }
-
-    console.log('Program API - found program:', { 
-      projectCode, 
-      name: program.name, 
-      descriptionsCount: program.programDescriptions.length 
-    });
-
-    return NextResponse.json(program, {
-      headers: {
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
-      }
-    });
 
   } catch (error) {
     console.error('Error in Program API (individual):', error);

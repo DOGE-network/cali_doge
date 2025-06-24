@@ -645,22 +645,6 @@ describe('Supabase Schema Integration Tests', () => {
       }
     });
 
-    it.skip('vendor_totals_all_years view should exist and return expected columns', async () => {
-      const { data, error } = await supabase
-        .from('vendor_totals_all_years')
-        .select('*')
-        .limit(1);
-      
-      expect(error).toBeNull();
-      expect(Array.isArray(data)).toBe(true);
-      if (data && data.length > 0) {
-        expect(data[0]).toHaveProperty('vendor_name');
-        expect(data[0]).toHaveProperty('total_amount');
-        expect(data[0]).toHaveProperty('transaction_count');
-        expect(data[0]).toHaveProperty('fiscal_year');
-      }
-    });
-
     it('budgets table should have all columns used by process_json.ts with correct types', async () => {
       const { data, error } = await supabase
         .from('budgets')
@@ -1488,36 +1472,8 @@ describe('Supabase Schema Integration Tests', () => {
 
   // Test all materialized views
   describe('Materialized Views', () => {
-    // Skip tests for views that don't exist
-    it.skip('should have vendor_transactions_with_vendor view', async () => {
-      const { data, error } = await supabase
-        .from('vendor_transactions_with_vendor')
-        .select('*')
-        .limit(1);
-      
-      expect(error).toBeNull();
-      expect(Array.isArray(data)).toBe(true);
-      if (data && data.length > 0) {
-        expect(data[0]).toHaveProperty('vendor_name');
-      }
-    });
-
-    it.skip('should have vendor_totals_all_years view', async () => {
-      const { data, error } = await supabase
-        .from('vendor_totals_all_years')
-        .select('*')
-        .limit(1);
-      
-      expect(error).toBeNull();
-      expect(Array.isArray(data)).toBe(true);
-      if (data && data.length > 0) {
-        expect(data[0]).toHaveProperty('vendor_name');
-        expect(data[0]).toHaveProperty('total_amount');
-        expect(data[0]).toHaveProperty('transaction_count');
-        expect(data[0]).toHaveProperty('fiscal_year');
-      }
-    });
-
+    // Remove tests for views that don't exist
+    
     it('should have budget_line_items_with_names view', async () => {
       const { data, error } = await supabase
         .from('budget_line_items_with_names')
@@ -2078,22 +2034,6 @@ describe('Supabase Schema Integration Tests', () => {
         // Test that vendor_name is populated (the main purpose of this view)
         expect(typeof row.vendor_name).toBe('string');
         expect(row.vendor_name.length).toBeGreaterThan(0);
-      }
-    });
-
-    it.skip('vendor_totals_all_years view should exist and return expected columns', async () => {
-      const { data, error } = await supabase
-        .from('vendor_totals_all_years')
-        .select('*')
-        .limit(1);
-      
-      expect(error).toBeNull();
-      expect(Array.isArray(data)).toBe(true);
-      if (data && data.length > 0) {
-        expect(data[0]).toHaveProperty('vendor_name');
-        expect(data[0]).toHaveProperty('total_amount');
-        expect(data[0]).toHaveProperty('transaction_count');
-        expect(data[0]).toHaveProperty('fiscal_year');
       }
     });
 

@@ -208,7 +208,7 @@ interface DepartmentWorkforce {
 }
 
 
-
+// eslint-disable-next-line no-unused-vars
 interface ProgramData {
   projectCode: string;
   name: string;
@@ -218,6 +218,14 @@ interface ProgramData {
   }>;
   departmentCode?: string;
   fiscalYear?: number;
+  
+  // Add database schema fields for compatibility
+  id?: string;
+  project_code?: string;
+  description?: string | null;
+  sources?: string[] | null;
+  created_at?: string | null;
+  updated_at?: string | null;
 }
 
 /**
@@ -1693,13 +1701,11 @@ async function updatePrograms(): Promise<ProcessingResult> {
       log('INFO', transactionId, 'Step 3.3: Mapping program data to database schema', { step: '3.3', context });
       fileLogger.log('Step 3.3: Mapping program data to database schema');
 
-      const programsToUpsert = batch.map((program: ProgramData) => {
-        return {
-          project_code: program.projectCode,
-          name: program.name || 'Unnamed Program',
-          program_description_ids: [] // Will be populated after creating program_descriptions
-        };
-      });
+      const programsToUpsert = batch.map((program: any) => ({
+        project_code: program.project_code || program.projectCode,
+        name: program.name || 'Unnamed Program',
+        program_description_ids: []
+      }));
       
       // Step 3.4: Upsert programs with conflict handling
       log('INFO', transactionId, 'Step 3.4: Upserting programs with conflict handling', { step: '3.4', context });
