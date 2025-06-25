@@ -7,7 +7,7 @@ export default function SavingsPage() {
       </div>
 
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Potential Savings Summary</h2>
+        <h2 className="text-2xl font-bold mb-6" data-tour="savings-summary">Potential Savings Summary</h2>
         
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div className="border p-6 rounded-lg">
@@ -30,7 +30,7 @@ export default function SavingsPage() {
       </section>
 
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Savings Opportunities by Agency</h2>
+        <h2 className="text-2xl font-bold mb-6" data-tour="agency-savings">Savings Opportunities by Agency</h2>
         <p className="mb-6">
           The following information is compiled from publicly available California State Auditor reports.
           Each item includes a reference to the specific report for verification.
@@ -115,7 +115,7 @@ export default function SavingsPage() {
       </section>
       
       <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-6">Additional Savings Opportunities</h2>
+        <h2 className="text-2xl font-bold mb-6" data-tour="additional-savings">Additional Savings Opportunities</h2>
         <p className="mb-4">
           Beyond the major agencies listed above, the California State Auditor has identified numerous
           other opportunities for cost savings across state government:

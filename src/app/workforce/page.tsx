@@ -1099,7 +1099,7 @@ function WorkforcePageClient() {
             Wages are calculated as regular wages plus any benefits.
           </p>
           <div className="flex items-center space-x-4 mt-4">
-            <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
+            <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100" data-tour="view-mode">
               <Button
                 variant={viewMode === 'parent-only' ? "secondary" : "ghost"}
                 size="sm"
@@ -1117,7 +1117,7 @@ function WorkforcePageClient() {
                 Include Children
               </Button>
             </div>
-            <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
+            <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100" data-tour="fiscal-year-selector">
               <label htmlFor="fiscalYear" className="text-xs text-gray-600 px-2">Annual Year:</label>
               <Select value={selectedFiscalYear} onValueChange={handleFiscalYearChange}>
                 <SelectTrigger className="text-xs font-medium rounded-full bg-white shadow-sm border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none px-3 py-1 w-20">
@@ -1140,7 +1140,7 @@ function WorkforcePageClient() {
       </div>
       
       <div className="mb-10">
-        <nav className="mb-4">
+        <nav className="mb-4" data-tour="department-hierarchy">
           <ol className="flex flex-wrap items-center">
             {pathDepartments.map((dept: DepartmentData, index: number) => (
               <li key={index} className="flex items-center">
@@ -1163,7 +1163,7 @@ function WorkforcePageClient() {
         </nav>
         
         {currentActiveDepartment && (
-          <div className="mb-6">
+          <div className="mb-6" data-tour="workforce-charts">
             <DepartmentCard 
               department={currentActiveDepartment} 
               isActive={true} 

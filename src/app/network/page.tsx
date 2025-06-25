@@ -1,11 +1,23 @@
 'use client';
 import { FaExternalLinkAlt, FaTwitter } from 'react-icons/fa';
 import Image from 'next/image';
+import MailingList from '@/components/MailingList';
 
 export default function NetworkPage() {
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-8">DOGE State Network</h1>
+      {/* Header with mailing list panel */}
+      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-8">
+        <div className="flex-1">
+          <h1 className="text-2xl font-bold">DOGE State Network</h1>
+        </div>
+        <div className="mt-4 lg:mt-0 lg:ml-8">
+          <div className="bg-white rounded-lg shadow-md p-4 border border-gray-200 w-80" data-tour="mailing-list">
+            <h3 className="text-sm font-semibold text-gray-700 mb-3">Join Our Mailing List</h3>
+            <MailingList className="w-full" uniqueId="network-page" />
+          </div>
+        </div>
+      </div>
       
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-4">Overview</h2>
@@ -18,7 +30,7 @@ export default function NetworkPage() {
       </section>
       
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">State Initiatives</h2>
+        <h2 className="text-2xl font-semibold mb-4" data-tour="state-initiatives">State Initiatives</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead className="bg-gray-100">
@@ -204,7 +216,7 @@ export default function NetworkPage() {
       </section>
       
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">Sources</h2>
+        <h2 className="text-2xl font-semibold mb-4" data-tour="network-sources">Sources</h2>
         <ul className="space-y-2">
           <li>
             <a 

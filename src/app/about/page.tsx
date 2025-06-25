@@ -8,7 +8,7 @@ export default function AboutPage() {
       <h1 className="text-4xl font-bold mb-8">About California DOGE</h1>
       
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
+        <h2 className="text-2xl font-semibold mb-4" data-tour="about-mission">Our Mission</h2>
         <p className="mb-4">
           We analyze government spending and regulations through a three-layer approach:
         </p>
@@ -23,7 +23,7 @@ export default function AboutPage() {
       </section>
       
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">Get Involved</h2>
+        <h2 className="text-2xl font-semibold mb-4" data-tour="about-involved">Get Involved</h2>
         <p className="mb-4">
           We welcome volunteers to help with:
         </p>
@@ -34,7 +34,7 @@ export default function AboutPage() {
         </ul>
         
         <h3 className="text-xl font-medium mb-3">How to contribute:</h3>
-        <ul className="space-y-3 mb-4">
+        <ul className="space-y-3 mb-4" data-tour="social-links">
           <li className="flex items-center">
             <a 
               href="https://twitter.com/cali_doge" 
@@ -71,8 +71,8 @@ export default function AboutPage() {
             Learn more about DOGE.gov
           </Button>
           
-          <Link href="/join" className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg text-center transition-colors">
-            Join Our Team
+          <Link href="/network" className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg text-center transition-colors">
+            Join Our Mailing List
           </Link>
         </div>
       </section>

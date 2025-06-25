@@ -320,7 +320,7 @@ function SpendPageClient() {
       {/* Controls */}
       <div className="mb-6 space-y-4">
         {/* View Selection */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4" data-tour="view-selector">
           <label className="text-sm font-medium">Display:</label>
             <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
             {['vendor', 'budget', 'compare'].map((viewOption) => (
@@ -338,7 +338,7 @@ function SpendPageClient() {
         </div>
 
         {/* Filter Controls */}
-        <div className="flex items-center space-x-4 flex-wrap p-4 bg-white rounded-lg border">
+        <div className="flex items-center space-x-4 flex-wrap p-4 bg-white rounded-lg border" data-tour="filter-controls">
           {view === 'compare' ? (
             <>
               <label className="text-sm font-medium">Compare by:</label>
@@ -455,8 +455,6 @@ function SpendPageClient() {
         </div>
       </div>
 
-
-
       {/* Data Table */}
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border border-gray-300">
@@ -475,6 +473,7 @@ function SpendPageClient() {
                       else if (column === compareBy) sortField = compareBy;
                       handleSort(sortField);
                     }}
+                    data-tour="sort-controls"
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-medium capitalize">{column === compareBy ? compareBy.charAt(0).toUpperCase() + compareBy.slice(1) : column}</span>
@@ -494,6 +493,7 @@ function SpendPageClient() {
                     key={column}
                     className="border border-gray-300 px-4 py-2 text-left cursor-pointer hover:bg-gray-200"
                     onClick={() => handleSort(column)}
+                    data-tour="sort-controls"
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-medium capitalize">{column}</span>

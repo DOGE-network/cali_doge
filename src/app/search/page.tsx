@@ -50,8 +50,8 @@ function SearchPageClient() {
   const router = useRouter();
   
   // State for search and filters
-  const [query, setQuery] = useState(searchParams.get('q') || '');
-  const [selectedTypes, setSelectedTypes] = useState<string[]>(['department', 'vendor', 'program', 'fund']);
+  const [query, setQuery] = useState('high'); // Auto-fill with 'high'
+  const [selectedTypes, setSelectedTypes] = useState<string[]>(['department', 'vendor', 'program', 'fund', 'keyword']);
   const [excludeCommon, setExcludeCommon] = useState(true);
   const [limit, setLimit] = useState(20);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -61,6 +61,16 @@ function SearchPageClient() {
   const [departmentTotals, setDepartmentTotals] = useState<Record<string, { vendorTotal: number | null, budgetTotal: number | null }>>({});
   // eslint-disable-next-line no-unused-vars
   const [totalsLoading, setTotalsLoading] = useState(false);
+
+  // Auto-trigger search on mount if query is not empty
+  useEffect(() => {
+    if (query && (!searchParams.get('q') || searchParams.get('q') !== query)) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('q', query);
+      router.replace(`/search?${params.toString()}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Build API URL based on current filters
   const buildApiUrl = () => {
@@ -278,6 +288,7 @@ function SearchPageClient() {
             query={query}
             vendorTotal={departmentTotals[dept.id]?.vendorTotal}
             budgetTotal={departmentTotals[dept.id]?.budgetTotal}
+            data-tour={index === 0 ? 'result-card-department' : undefined}
           />
         ))
       },
@@ -293,6 +304,7 @@ function SearchPageClient() {
             matchField={(vendor as any).matchField}
             matchSnippet={(vendor as any).matchSnippet}
             query={query}
+            data-tour={index === 0 ? 'result-card-vendor' : undefined}
           />
         ))
       },
@@ -308,6 +320,7 @@ function SearchPageClient() {
             matchField={(program as any).matchField}
             matchSnippet={(program as any).matchSnippet}
             query={query}
+            data-tour={index === 0 ? 'result-card-program' : undefined}
           />
         ))
       },
@@ -323,6 +336,7 @@ function SearchPageClient() {
             matchField={(fund as any).matchField}
             matchSnippet={(fund as any).matchSnippet}
             query={query}
+            data-tour={index === 0 ? 'result-card-fund' : undefined}
           />
         ))
       },
@@ -338,6 +352,7 @@ function SearchPageClient() {
             matchField={(keyword as any).matchField}
             matchSnippet={(keyword as any).matchSnippet}
             query={query}
+            data-tour={index === 0 ? 'result-card-keyword' : undefined}
           />
         ))
       }
@@ -346,10 +361,11 @@ function SearchPageClient() {
     return (
       <div className="space-y-8">
         {sections.map((section) => (
-          <section key={section.key}>
+          <section key={section.key} data-tour={section.key}>
             <h2
               className="text-xl font-semibold mb-4 cursor-pointer select-none flex items-center gap-2"
               onClick={() => setCollapsedSections(cs => ({ ...cs, [section.key]: !cs[section.key] }))}
+              data-tour={`section-heading-${section.key}`}
             >
               <span>{section.title}</span>
               <span className="text-base">{collapsedSections[section.key] ? '▼' : '▲'}</span>
@@ -376,16 +392,17 @@ function SearchPageClient() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search departments, vendors, programs, funds..."
             className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            data-tour="search-input"
           />
         </div>
-        <div className="mt-4">
+        <div className="mt-4" data-tour="type-filter">
           <SearchTypeFilter
             selectedTypes={selectedTypes}
             onToggleType={toggleType}
           />
         </div>
         <div className="mt-4 flex items-center gap-3">
-          <label className="flex items-center gap-1 text-sm cursor-pointer">
+          <label className="flex items-center gap-1 text-sm cursor-pointer" data-tour="exclude-common">
             <input
               type="checkbox"
               checked={excludeCommon}

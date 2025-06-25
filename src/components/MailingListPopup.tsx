@@ -10,7 +10,7 @@ export default function MailingListPopup() {
   
   useEffect(() => {
     // Don't show popup on the Join page
-    if (pathname === '/join') {
+    if (pathname === '/network') {
       return;
     }
     
@@ -41,7 +41,7 @@ export default function MailingListPopup() {
   }
 
   // Don't render the component at all when on the Join page
-  if (pathname === '/join') {
+  if (pathname === '/network') {
     return null
   }
 
