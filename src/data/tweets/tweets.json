@@ -1,6 +1,109 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1937671711979372642"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 282,
+            "end": 297,
+            "probability": 0.7949,
+            "type": "Organization",
+            "normalized_text": "California State"
+          }
+        ],
+        "urls": [
+          {
+            "start": 62,
+            "end": 85,
+            "url": "https://t.co/YjO0yjfpU4",
+            "expanded_url": "https://github.com/DOGE-network/tables/blob/master/source/CHIRLA_affiliated_groups.csv",
+            "display_url": "github.com/DOGE-network/t…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1937671755314921476/cUz73mkw?format=jpg&name=orig",
+                "width": 1200,
+                "height": 600
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1937671755314921476/cUz73mkw?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "tables/source/CHIRLA_affiliated_groups.csv at master · DOGE-network/tables",
+            "description": "holds source data for cali-doge and other transparency tools to utilize - DOGE-network/tables",
+            "unwound_url": "https://github.com/DOGE-network/tables/blob/master/source/CHIRLA_affiliated_groups.csv"
+          },
+          {
+            "start": 174,
+            "end": 197,
+            "url": "https://t.co/QGiU2sFsja",
+            "expanded_url": "https://cali-doge.org/search",
+            "display_url": "cali-doge.org/search",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1937671754790633472/hStEgWMY?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1937671754790633472/hStEgWMY?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/search"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 9,
+            "end": 24,
+            "username": "LauraPowellEsq",
+            "id": "374174560"
+          }
+        ]
+      },
+      "id": "1937671711979372642",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "@joffemd @LauraPowellEsq I have been tracking the groups here https://t.co/YjO0yjfpU4\n\nI just finished some housekeeping, so starting to work on adding a group search option https://t.co/QGiU2sFsja. You will be able to select different groups which will show their interaction with California State",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-06-25T00:38:30.000Z",
+      "created_at_formatted": "Jun 25, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "created_at": "2025-06-22T00:39:06.000Z",
       "author_id": "1859283000145608705",
       "entities": {
@@ -18097,8 +18200,8 @@
     }
   ],
   "meta": {
-    "result_count": 167,
-    "newest_id": "1936584698844881149",
+    "result_count": 168,
+    "newest_id": "1937671711979372642",
     "oldest_id": "1882144700762878208"
   }
 }
