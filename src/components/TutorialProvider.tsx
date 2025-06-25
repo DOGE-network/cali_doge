@@ -3,10 +3,112 @@
 import { useState, useEffect } from 'react';
 import { TourProvider, useTour, StepType } from '@reactour/tour';
 import FloatingTutorialButton from './FloatingTutorialButton';
+import { usePathname } from 'next/navigation';
 
-// Tutorial steps configuration
-const tutorialSteps: StepType[] = [
-  // Step 1: Welcome
+// Tutorial steps configuration for different pages
+const getTutorialSteps = (pathname: string): StepType[] => {
+  const normalizedPath = pathname.replace(/\/$/, '');
+  console.log('DEBUG getTutorialSteps:', pathname, 'normalized:', normalizedPath);
+
+  // Search page tutorial (put this first)
+  if (normalizedPath === '/search') {
+    return [
+      // 1. Overview
+      {
+        selector: 'body',
+        content: (
+          <div>
+            <h3 className="text-xl font-bold mb-3">Search Overview</h3>
+            <p className="mb-4">This is the most powerful way to explore California government data. You can search across departments, vendors, programs, funds, and keywords.</p>
+          </div>
+        ),
+        position: 'center',
+      },
+      // 2. Search Bar
+      {
+        selector: '[data-tour="search-input"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Search Bar</h3>
+            <p className="mb-3">Type keywords to search across all government data. Try department names, vendor names, program codes, or fund numbers.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      // 3. Type Filter
+      {
+        selector: '[data-tour="type-filter"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Type Filter</h3>
+            <p className="mb-3">Toggle which types of results you want to see: Departments, Vendors, Programs, Funds, or Keywords. You can combine multiple types for broader results.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      // 4. Exclude Common Words
+      {
+        selector: '[data-tour="exclude-common"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Exclude Common Words</h3>
+            <p className="mb-3">Enable this to ignore common words (like &quot;the&quot;, &quot;of&quot;, &quot;and&quot;) for more relevant results.</p>
+          </div>
+        ),
+        position: 'top',
+      },
+      // 5. Types Sections (Departments, Vendors, Programs, Funds, Keywords)
+      {
+        selector: '[data-tour="departments-section"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Result Sections</h3>
+            <p className="mb-3">Results are grouped by type: Departments, Vendors, Programs, Funds, and Keywords. Each section shows the most relevant matches for your search.</p>
+          </div>
+        ),
+        position: 'top',
+        action: (elem) => { if (elem) elem.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
+      },
+      // 6. Expand/Collapse
+      {
+        selector: '[data-tour="section-heading-departments-section"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Expand/Collapse</h3>
+            <p className="mb-3">Click the arrow to show or hide the results in each section.</p>
+          </div>
+        ),
+        position: 'top',
+        action: (elem) => { if (elem) elem.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
+      },
+      // 7. Click a Card for Details
+      {
+        selector: '[data-tour="result-card-department"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">View Details</h3>
+            <p className="mb-3">Click a card to view more details about a department, vendor, program, fund, or keyword.</p>
+          </div>
+        ),
+        position: 'top',
+      },
+      // 8. Need More Help
+      {
+        selector: '.floating-tutorial-button',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Need More Help?</h3>
+            <p className="mb-3">You can restart this tutorial at any time by clicking the floating help button.</p>
+          </div>
+        ),
+        position: 'left',
+      },
+    ];
+  }
+
+  // Root page tutorial (put this after /search)
+  if (pathname === '/') {
+    return [
   {
     selector: 'body',
     content: (
@@ -35,7 +137,6 @@ const tutorialSteps: StepType[] = [
     ),
     position: 'center',
   },
-  // Step 2: Search Database button
   {
     selector: '[data-tour="search-database"]',
     content: (
@@ -46,7 +147,6 @@ const tutorialSteps: StepType[] = [
     ),
     position: 'bottom',
   },
-  // Step 3: Search icon
   {
     selector: '[data-tour="search-icon"]',
     content: (
@@ -56,8 +156,10 @@ const tutorialSteps: StepType[] = [
       </div>
     ),
     position: 'bottom',
+    styles: {
+      popover: (base) => ({ ...base, marginTop: '25px' }),
+    },
   },
-  // Step 4: Nav menu
   {
     selector: '[data-tour="nav-menu"]',
     content: (
@@ -68,15 +170,16 @@ const tutorialSteps: StepType[] = [
       </div>
     ),
     position: 'bottom',
+    styles: {
+      popover: (base) => ({ ...base, marginTop: '25px' }),
+    },
     action: (_elem) => {
-      // Open the nav menu if it's not already open
       const menuButton = document.querySelector('[data-tour="nav-menu"]');
       if (menuButton && !menuButton.getAttribute('aria-expanded')) {
         (menuButton as HTMLElement).click();
       }
     },
   },
-  // Step 5: Report Waste button
   {
     selector: '[data-tour="report-waste"]',
     content: (
@@ -87,7 +190,6 @@ const tutorialSteps: StepType[] = [
     ),
     position: 'bottom',
   },
-  // Step 6: Twitter content (modal-only)
   {
     selector: 'body',
     content: (
@@ -104,7 +206,6 @@ const tutorialSteps: StepType[] = [
     ),
     position: 'center',
   },
-  // Step 7: Floating tutorial button
   {
     selector: '.floating-tutorial-button',
     content: (
@@ -116,33 +217,453 @@ const tutorialSteps: StepType[] = [
     position: 'left',
   },
 ];
+  }
+
+  // Savings page tutorial
+  if (pathname === '/savings') {
+    return [
+      {
+        selector: 'body',
+        content: (
+          <div>
+            <h3 className="text-xl font-bold mb-3">Savings Page Overview</h3>
+            <p className="mb-4">This page shows potential savings opportunities identified by the California State Auditor across various government agencies.</p>
+          </div>
+        ),
+        position: 'center',
+      },
+      {
+        selector: '[data-tour="savings-summary"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Savings Summary</h3>
+            <p className="mb-3">View the total potential savings of $25 billion and per-taxpayer impact of $1,420.45.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="agency-savings"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Agency-Specific Savings</h3>
+            <p className="mb-3">Explore detailed savings opportunities for major agencies like Health Care Services, Transportation, and Corrections.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="additional-savings"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Additional Opportunities</h3>
+            <p className="mb-3">Learn about procurement reform, property management, IT modernization, and energy efficiency savings.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '.floating-tutorial-button',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Need More Help?</h3>
+            <p className="mb-3">You can restart this tutorial at any time by clicking the floating help button.</p>
+          </div>
+        ),
+        position: 'left',
+      },
+    ];
+  }
+
+  // Payments page tutorial
+  if (pathname === '/payments') {
+    return [
+      {
+        selector: 'body',
+        content: (
+          <div>
+            <h3 className="text-xl font-bold mb-3">Payments Page Overview</h3>
+            <p className="mb-4">This page displays vendor payment data, showing how much money flows to different contractors and service providers.</p>
+          </div>
+        ),
+        position: 'center',
+      },
+      {
+        selector: '[data-tour="vendor-filter"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Filter Vendors</h3>
+            <p className="mb-3">Search for specific vendors or filter by name to find particular contractors.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="vendor-sort"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Sort Data</h3>
+            <p className="mb-3">Click column headers to sort vendors by amount, transaction count, or name.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="vendor-details"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Vendor Details</h3>
+            <p className="mb-3">Hover over vendor names to see detailed information about departments, programs, and transaction categories.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '.floating-tutorial-button',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Need More Help?</h3>
+            <p className="mb-3">You can restart this tutorial at any time by clicking the floating help button.</p>
+          </div>
+        ),
+        position: 'left',
+      },
+    ];
+  }
+
+  // Spend page tutorial
+  if (pathname === '/spend') {
+    return [
+      {
+        selector: 'body',
+        content: (
+          <div>
+            <h3 className="text-xl font-bold mb-3">Spend Page Overview</h3>
+            <p className="mb-4">This page provides detailed spending analysis with multiple views: vendor spending, budget comparisons, and program analysis.</p>
+          </div>
+        ),
+        position: 'center',
+      },
+      {
+        selector: '[data-tour="view-selector"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">View Options</h3>
+            <p className="mb-3">Switch between Vendor, Budget, and Compare views to analyze spending from different perspectives.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="filter-controls"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Filter Data</h3>
+            <p className="mb-3">Filter by year, department, vendor, program, or fund to focus on specific spending areas.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="sort-controls"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Sort Results</h3>
+            <p className="mb-3">Click column headers to sort spending data by amount, department, vendor, or other criteria.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '.floating-tutorial-button',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Need More Help?</h3>
+            <p className="mb-3">You can restart this tutorial at any time by clicking the floating help button.</p>
+          </div>
+        ),
+        position: 'left',
+      },
+    ];
+  }
+
+  // Workforce page tutorial
+  if (pathname === '/workforce') {
+    return [
+      {
+        selector: 'body',
+        content: (
+          <div>
+            <h3 className="text-xl font-bold mb-3">Workforce Page Overview</h3>
+            <p className="mb-4">This page shows California government workforce data, including employee counts, salaries, and organizational structure.</p>
+          </div>
+        ),
+        position: 'center',
+      },
+      {
+        selector: '[data-tour="department-hierarchy"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Department Hierarchy</h3>
+            <p className="mb-3">Navigate through the government organizational structure by clicking on departments to explore their workforce data.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="fiscal-year-selector"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Fiscal Year</h3>
+            <p className="mb-3">Select different fiscal years to view workforce data from specific time periods.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="view-mode"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">View Mode</h3>
+            <p className="mb-3">Switch between aggregated view (includes subordinates) and parent-only view for different data perspectives.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="workforce-charts"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Data Visualizations</h3>
+            <p className="mb-3">View charts showing salary distributions, tenure patterns, and age demographics for selected departments.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '.floating-tutorial-button',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Need More Help?</h3>
+            <p className="mb-3">You can restart this tutorial at any time by clicking the floating help button.</p>
+          </div>
+        ),
+        position: 'left',
+      },
+    ];
+  }
+
+  // Regulations page tutorial
+  if (pathname === '/regulations') {
+    return [
+      {
+        selector: 'body',
+        content: (
+          <div>
+            <h3 className="text-xl font-bold mb-3">Regulations Page Overview</h3>
+            <p className="mb-4">This page shows the regulatory impact on California, including restriction counts, compliance costs, and regulatory growth over time.</p>
+          </div>
+        ),
+        position: 'center',
+      },
+      {
+        selector: '[data-tour="regulatory-impact"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Regulatory Impact Summary</h3>
+            <p className="mb-3">View key metrics including total regulatory restrictions, annual compliance costs, and per-employee impact.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="historical-data"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Historical Data</h3>
+            <p className="mb-3">Explore how laws and regulations have grown over time from 2010 to 2024.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="agency-distribution"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Agency Distribution</h3>
+            <p className="mb-3">See which state agencies are responsible for the most regulatory restrictions.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '.floating-tutorial-button',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Need More Help?</h3>
+            <p className="mb-3">You can restart this tutorial at any time by clicking the floating help button.</p>
+          </div>
+        ),
+        position: 'left',
+      },
+    ];
+  }
+
+  // Network page tutorial
+  if (pathname === '/network') {
+    return [
+      {
+        selector: 'body',
+        content: (
+          <div>
+            <h3 className="text-xl font-bold mb-3">Network Page Overview</h3>
+            <p className="mb-4">This page shows DOGE initiatives across different states and provides information about joining our mailing list.</p>
+          </div>
+        ),
+        position: 'center',
+      },
+      {
+        selector: '[data-tour="mailing-list"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Join Our Mailing List</h3>
+            <p className="mb-3">Stay updated with the latest transparency news and California DOGE updates by subscribing to our mailing list.</p>
+          </div>
+        ),
+        position: 'left',
+      },
+      {
+        selector: '[data-tour="state-initiatives"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">State Initiatives</h3>
+            <p className="mb-3">Explore DOGE-inspired government efficiency initiatives across different states and their progress.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="network-sources"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Sources</h3>
+            <p className="mb-3">Find links to original sources and research materials used for this analysis.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '.floating-tutorial-button',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Need More Help?</h3>
+            <p className="mb-3">You can restart this tutorial at any time by clicking the floating help button.</p>
+          </div>
+        ),
+        position: 'left',
+      },
+    ];
+  }
+
+  // About page tutorial
+  if (pathname === '/about') {
+    return [
+      {
+        selector: 'body',
+        content: (
+          <div>
+            <h3 className="text-xl font-bold mb-3">About Page Overview</h3>
+            <p className="mb-4">Learn about California DOGE&apos;s mission, approach, and how you can get involved in government transparency efforts.</p>
+          </div>
+        ),
+        position: 'center',
+      },
+      {
+        selector: '[data-tour="about-mission"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Our Mission</h3>
+            <p className="mb-3">Understand our three-layer approach to analyzing government spending: People, Infrastructure, and Services & IT.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="about-involved"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Get Involved</h3>
+            <p className="mb-3">Learn about volunteer opportunities and ways to contribute to government transparency efforts.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '[data-tour="social-links"]',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Connect With Us</h3>
+            <p className="mb-3">Follow us on social media and contribute to our GitHub repository to stay engaged.</p>
+          </div>
+        ),
+        position: 'bottom',
+      },
+      {
+        selector: '.floating-tutorial-button',
+        content: (
+          <div>
+            <h3 className="text-lg font-bold mb-2">Need More Help?</h3>
+            <p className="mb-3">You can restart this tutorial at any time by clicking the floating help button.</p>
+          </div>
+        ),
+        position: 'left',
+      },
+    ];
+  }
+
+  // Default tutorial for other pages
+  return [
+    {
+      selector: 'body',
+      content: (
+        <div>
+          <h3 className="text-xl font-bold mb-3">Welcome to California DOGE</h3>
+          <p className="mb-4">This page provides additional insights into California government operations and transparency.</p>
+        </div>
+      ),
+      position: 'center',
+    },
+    {
+      selector: '.floating-tutorial-button',
+      content: (
+        <div>
+          <h3 className="text-lg font-bold mb-2">Need More Help?</h3>
+          <p className="mb-3">You can restart this tutorial at any time by clicking the floating help button.</p>
+        </div>
+      ),
+      position: 'left',
+    },
+  ];
+};
 
 // Inner component that uses the tour hook
 function TutorialContent() {
   const { setIsOpen } = useTour();
+  const pathname = usePathname();
   const [hasSeenTutorial, setHasSeenTutorial] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Check if user has seen tutorial before
-    const tutorialSeen = localStorage.getItem('cali-doge-tutorial-seen');
+    // Check if user has seen tutorial for this specific page
+    const tutorialSeen = localStorage.getItem(`cali-doge-tutorial-seen-${pathname}`);
     if (tutorialSeen) {
       setHasSeenTutorial(true);
     }
     setIsLoaded(true);
-  }, []);
+  }, [pathname]);
 
   const handleTutorialClick = () => {
-    // Debug: Check if target elements exist
-    console.log('[Tutorial] Starting tutorial...');
-    console.log('[Tutorial] Checking for target elements:');
-    console.log('[Tutorial] search-database:', document.querySelector('[data-tour="search-database"]'));
-    console.log('[Tutorial] search-icon:', document.querySelector('[data-tour="search-icon"]'));
-    console.log('[Tutorial] nav-menu:', document.querySelector('[data-tour="nav-menu"]'));
-    console.log('[Tutorial] report-waste:', document.querySelector('[data-tour="report-waste"]'));
-    console.log('[Tutorial] twitter-content:', document.querySelector('[data-tour="twitter-content"]'));
-    console.log('[Tutorial] floating-tutorial-button:', document.querySelector('.floating-tutorial-button'));
-    
+    console.log('[Tutorial] Starting tutorial for page:', pathname);
     setIsOpen(true);
   };
 
@@ -161,8 +682,14 @@ function TutorialContent() {
 
 // Main provider component
 export default function TutorialProvider() {
+  const pathname = usePathname();
+  const normalizedPath = pathname.replace(/\/$/, '');
+  console.log('TutorialProvider pathname:', pathname, 'normalized:', normalizedPath);
+  const tutorialSteps = getTutorialSteps(pathname);
+
   return (
     <TourProvider
+      key={pathname}
       steps={tutorialSteps}
       styles={{
         popover: (base) => ({
@@ -178,9 +705,17 @@ export default function TutorialProvider() {
         }),
         badge: (base) => ({
           ...base,
-          color: '#2563eb',
-          fontSize: '20px',
+          backgroundColor: '#2563eb',
+          color: '#fff',
           fontWeight: '700',
+          fontFamily: 'inherit',
+          borderRadius: '9999px',
+          fontSize: '20px',
+          minWidth: '32px',
+          minHeight: '32px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }),
         controls: (base) => ({
           ...base,
@@ -191,7 +726,7 @@ export default function TutorialProvider() {
         }),
         button: (base, props) => ({
           ...base,
-          backgroundColor: '#f3f4f6', // light grey
+          backgroundColor: '#f3f4f6',
           color: '#111',
           border: '2px solid #222',
           borderRadius: '4px',
@@ -233,6 +768,10 @@ export default function TutorialProvider() {
           zIndex: 2,
           transition: 'background 0.2s, color 0.2s',
         }),
+        highlightedArea: (base) => ({
+          ...base,
+          fill: '#f3f4f6',
+        }),
       }}
       padding={{
         mask: 10,
@@ -248,19 +787,17 @@ export default function TutorialProvider() {
       disableDotsNavigation={false}
       disableKeyboardNavigation={false}
       afterOpen={(_target) => {
-        console.log('[Tutorial] Tour opened');
+        console.log('[Tutorial] Tour opened for page:', pathname);
       }}
       beforeClose={(_target) => {
-        console.log('[Tutorial] Tour closing');
-        // Mark tutorial as seen
-        localStorage.setItem('cali-doge-tutorial-seen', 'true');
+        console.log('[Tutorial] Tour closing for page:', pathname);
+        // Mark tutorial as seen for this specific page
+        localStorage.setItem(`cali-doge-tutorial-seen-${pathname}`, 'true');
       }}
       onClickMask={({ setIsOpen }) => {
-        // Close tour when clicking mask
         setIsOpen(false);
       }}
       onClickClose={({ setIsOpen }) => {
-        // Close tour when clicking close button
         setIsOpen(false);
       }}
     >

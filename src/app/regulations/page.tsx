@@ -4,7 +4,7 @@ export default function RegulationsPage() {
   return (
     <main className="container mx-auto px-4 py-8">
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Regulatory Impact</h2>
+        <h2 className="text-2xl font-bold mb-6" data-tour="regulatory-impact">Regulatory Impact</h2>
         
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div className="border p-6 rounded-lg">
@@ -50,7 +50,7 @@ export default function RegulationsPage() {
       </section>
 
       <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-6">Laws and Regulations Created by Year (2010-2024)</h2>
+        <h2 className="text-3xl font-bold mb-6" data-tour="historical-data">Laws and Regulations Created by Year (2010-2024)</h2>
         <p className="mb-6">
           The chart below shows the number of new laws enacted and regulations created in California each year,
           along with the total regulatory restrictions.
@@ -166,7 +166,7 @@ export default function RegulationsPage() {
       </section>
       
       <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-6">Regulations by Agency Group</h2>
+        <h2 className="text-3xl font-bold mb-6" data-tour="agency-distribution">Regulations by Agency Group</h2>
         <p className="mb-6">
           California&apos;s regulatory burden is distributed across various state agencies and departments.
           The chart below shows the distribution of regulatory restrictions by agency group.

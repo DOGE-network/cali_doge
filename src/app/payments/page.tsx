@@ -277,6 +277,7 @@ function PaymentsPageClient() {
                   }
                 }}
                 className="w-96 bg-white"
+                data-tour="vendor-filter"
               />
               <p className="text-xs text-gray-500">
                 Use AND to find vendors containing all terms (e.g. &quot;health AND care AND services&quot;). 
@@ -317,6 +318,7 @@ function PaymentsPageClient() {
                   key={column.key}
                   className={`border border-gray-300 px-4 py-2 text-left ${column.sortable ? 'cursor-pointer hover:bg-gray-200' : ''}`}
                   onClick={column.sortable ? () => handleSort(column.key) : undefined}
+                  data-tour={column.sortable ? "vendor-sort" : undefined}
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-medium">{column.label}</span>
@@ -330,7 +332,7 @@ function PaymentsPageClient() {
             {vendorData.vendors && vendorData.vendors.length > 0 ? vendorData.vendors.map((vendor, index) => (
               <tr key={index} className="hover:bg-gray-50">
                 <td className="border border-gray-300 px-4 py-2">
-                  <div className="group relative">
+                  <div className="group relative" data-tour="vendor-details">
                     <span className="font-medium">{vendor.vendor}</span>
                     <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block bg-black text-white text-xs rounded px-2 py-1 whitespace-nowrap z-10">
                       <a 
