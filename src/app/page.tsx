@@ -57,7 +57,7 @@ export default async function Home() {
         <h1 className="text-3xl font-bold mb-4">Cali DOGE: Uncovering California Government Waste</h1>
         <div className="prose prose-lg text-gray-600 mb-8">
           <p className="mb-4">
-            Welcome to Cali DOGE (California DOGE), your independent platform for government transparency. With over 15M records in our database and 300+ hours of research, we provide unprecedented access to California government operations, programs, and spending data.
+            Welcome to Cali DOGE (California DOGE), your independent platform for government transparency. With over 30M records in our database and 400+ hours of research, we provide unprecedented access to California government operations, programs, and spending data.
           </p>
           <p className="mb-4">
             Our CA DOGE platform helps you discover hidden taxes, track government efficiency, and understand how your tax dollars are being spent. Unlike other transparency platforms, we focus exclusively on California, delivering detailed insights into state and local government operations.

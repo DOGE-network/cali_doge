@@ -24,86 +24,100 @@ export function log(level: LogLevel, transactionId: string, message: string, dat
 
   // Always log to console
   console.log(JSON.stringify(logEntry, null, 2));
+
+  // Log WARN and above levels to file if in Node environment
+  if (typeof window === 'undefined' && (level === 'WARN' || level === 'ERROR')) {
+    // Use the class method directly without referencing the possibly undefined export
+    NodeFileLogger.log(`${level}: ${message}`, false, level === 'ERROR');
+  }
 }
 
-// Only export FileLogger in Node.js environment
-export const FileLogger = typeof window === 'undefined' ? class {
-  private logFile: string;
-  private logStream: NodeJS.WriteStream;
-
-  constructor(logDir: string, prefix: string) {
-    if (typeof window !== 'undefined') throw new Error('FileLogger is only available in Node.js environment');
-    // Create log directory if it doesn't exist
-    if (!fs.existsSync(logDir)) {
-      fs.mkdirSync(logDir, { recursive: true });
+// Define the class without conditional export
+class NodeFileLogger {
+  private static _logFile: string | null = null;
+  private static _logStream: NodeJS.WriteStream | null = null;
+  
+  private static get logFile(): string {
+    if (!NodeFileLogger._logFile) {
+      // Create logs directory if it doesn't exist
+      const logsDir = path.join(process.cwd(), 'src/logs');
+      if (!fs.existsSync(logsDir)) {
+        fs.mkdirSync(logsDir, { recursive: true });
+      }
+      
+      // Get the script name from process.argv
+      const scriptPath = process.argv[1] || 'unknown_script';
+      const scriptName = path.basename(scriptPath, path.extname(scriptPath));
+      
+      NodeFileLogger._logFile = path.join(logsDir, `${scriptName}_${new Date().toISOString().replace(/[:.]/g, '-')}.log`);
+      
+      // Initialize the log file with a header
+      fs.writeFileSync(NodeFileLogger._logFile, `${scriptName} Log - ${new Date().toISOString()}\n`);
     }
-
-    // Generate log file name with timestamp
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    this.logFile = path.join(logDir, `${prefix}_${timestamp}.log`);
-
-    // Create write stream in synchronous append mode
-    this.logStream = fs.createWriteStream(this.logFile, {
-      flags: 'a',
-      encoding: 'utf8',
-      autoClose: true
-    });
-
-    // Initialize log file
-    this.writeSync(`Process Budgets Log - ${new Date().toISOString()}\n`);
-
-    // Setup cleanup on process exit
-    process.on('exit', () => this.cleanup());
-    process.on('SIGINT', () => this.cleanup());
-    process.on('SIGTERM', () => this.cleanup());
-    process.on('uncaughtException', (err) => {
-      this.error(`Uncaught Exception: ${err.message}`);
-      this.error(err.stack || '');
-      this.cleanup();
-      process.exit(1);
-    });
+    return NodeFileLogger._logFile;
+  }
+  
+  private static get logStream(): NodeJS.WriteStream {
+    if (!NodeFileLogger._logStream) {
+      NodeFileLogger._logStream = fs.createWriteStream(NodeFileLogger.logFile, {
+        flags: 'a',
+        encoding: 'utf8',
+        autoClose: true
+      });
+    }
+    return NodeFileLogger._logStream as NodeJS.WriteStream; // Assert non-null
   }
 
-  private writeSync(message: string): void {
+  constructor() {
+    if (typeof window !== 'undefined') throw new Error('FileLogger is only available in Node.js environment');
+  }
+
+  private static writeSync(message: string): void {
     if (!fs) throw new Error('FileLogger is only available in Node.js environment');
     
     // Write to console immediately
     process.stdout.write(message);
     
     // Write to file synchronously
-    fs.appendFileSync(this.logFile, message);
+    fs.appendFileSync(NodeFileLogger.logFile, message);
   }
 
-  public log(message: string, isSubStep = false, isError = false): void {
+  public static log(message: string, isSubStep = false, isError = false): void {
     const timestamp = new Date().toISOString();
     const level = isError ? 'ERROR' : 'INFO';
     const prefix = isSubStep ? '  - ' : '• ';
     const logEntry = `[${level}] [${timestamp}] ${prefix}${message}\n`;
-    this.writeSync(logEntry);
+    NodeFileLogger.writeSync(logEntry);
   }
 
-  public logUser(message: string): void {
+  public static logUser(message: string): void {
     const timestamp = new Date().toISOString();
     const logEntry = `[USER] [${timestamp}] ${message}\n`;
-    this.writeSync(logEntry);
+    NodeFileLogger.writeSync(logEntry);
   }
 
-  public error(message: string): void {
+  public static error(message: string): void {
     const timestamp = new Date().toISOString();
     const logEntry = `[ERROR] [${timestamp}] ${message}\n`;
-    this.writeSync(logEntry);
+    NodeFileLogger.writeSync(logEntry);
   }
 
-  public cleanup(): void {
+  public static cleanup(): void {
     try {
-      this.logStream.end();
-      this.logStream.destroy();
+      if (NodeFileLogger._logStream) {
+        NodeFileLogger._logStream.end();
+        NodeFileLogger._logStream.destroy();
+        NodeFileLogger._logStream = null;
+      }
     } catch (err) {
       // Ignore cleanup errors
     }
   }
 
-  public getLogFile(): string {
-    return this.logFile;
+  public static getLogFile(): string {
+    return NodeFileLogger.logFile;
   }
-} : undefined; 
+}
+
+// Conditionally export FileLogger
+export const FileLogger = typeof window === 'undefined' ? NodeFileLogger : undefined;

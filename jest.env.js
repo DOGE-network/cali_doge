@@ -1,0 +1,1 @@
+process.env.TEST_MODE = process.env.TEST_MODE || 'mock'; 

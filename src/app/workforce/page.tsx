@@ -131,14 +131,22 @@
 'use client';
 
 import React, { useState, useEffect, Suspense, useMemo, useRef } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import AgencyDataVisualization from '../../components/AgencyDataVisualization';
-import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, ValidSlug, BudgetStatus, RawDistributionItem, AnnualYear, TenureRange, SalaryRange, AgeRange, NonNegativeNumber } from '@/types/department';
+import type { DepartmentData, DepartmentHierarchy, NonNegativeInteger, BudgetStatus, RawDistributionItem, AnnualYear, TenureRange, SalaryRange, AgeRange, NonNegativeNumber } from '@/types/department';
 import { log, generateTransactionId } from '@/lib/logging';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { analytics } from '@/lib/analytics';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => fetch(url).then(res => res.json());
+
+interface WorkforceResponse {
+  departments: DepartmentData[];
+}
 
 // Initialize logging
 const initTransactionId = generateTransactionId();
@@ -235,10 +243,15 @@ function aggregateDistributions(departments: DepartmentHierarchy[], selectedFisc
   log('INFO', transactionId, 'Step 3.2: Aggregating yearly data', { fiscalYear: selectedFiscalYear });
   
   // Get all distributions from departments and their subdepartments recursively
-  const getAllDistributions = (depts: DepartmentHierarchy[], isRoot: boolean = false) => {
-    log('DEBUG', transactionId, 'Step 3.2: Department yearly data', { 
+  const getAllDistributions = (depts: DepartmentHierarchy[]): {
+    tenure: RawDistributionItem[][];
+    salary: RawDistributionItem[][];
+    age: RawDistributionItem[][];
+    headCount: number;
+    wages: number;
+  } => {
+    log('DEBUG', transactionId, 'Step 3.2: Processing departments', { 
       departmentCount: depts.length,
-      isRoot,
       fiscalYear: selectedFiscalYear
     });
 
@@ -286,9 +299,9 @@ function aggregateDistributions(departments: DepartmentHierarchy[], selectedFisc
         distributions.wages += dept.wages.yearly[selectedFiscalYear] as number;
       }
 
-      // Process subdepartments if they exist
+      // Process subdepartments if they exist - RECURSIVELY
       if (dept.subDepartments?.length) {
-        log('DEBUG', transactionId, 'Step 3.2: Processing subdepartments', {
+        log('DEBUG', transactionId, 'Step 3.2: Processing subdepartments recursively', {
           department: dept.name,
           subDepartmentCount: dept.subDepartments.length,
           fiscalYear: selectedFiscalYear
@@ -308,7 +321,7 @@ function aggregateDistributions(departments: DepartmentHierarchy[], selectedFisc
     return distributions;
   };
 
-  const allDistributions = getAllDistributions(departments, true);
+  const allDistributions = getAllDistributions(departments);
   
   // 3.3 Final Aggregation
   log('INFO', transactionId, 'Step 3.3: Computing final aggregated distributions', { fiscalYear: selectedFiscalYear });
@@ -366,7 +379,7 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
   const root: DepartmentHierarchy = {
     ...(rootDept || {
       name: 'California State Government',
-      _slug: ('california_state_government' as ValidSlug),
+      _slug: ('california_state_government' as any),
       canonicalName: 'California State Government',
       aliases: [],
       orgLevel: (0 as NonNegativeInteger),
@@ -440,32 +453,36 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
   // Add root to maps
   deptMap.set(root.name, root);
   levelMap.set(0, [root]);
+  // Ensure root.subDepartments is always initialized
+  if (!root.subDepartments) root.subDepartments = [];
 
   // 2.3 Parent-Child Relationships
   log('INFO', transactionId, 'Step 2.3: Establishing parent-child relationships');
 
-  // Helper function to normalize department names
-  const normalizeName = (name: string) => name.toLowerCase().replace(/\s+/g, ' ').trim();
+  // Helper function to normalize department names (lowercase, remove punctuation, trim spaces)
+  const normalizeName = (name: string) => name.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
 
   // Helper function to find best parent match
   const findParent = (parentName: string, childLevel: number): DepartmentHierarchy | undefined => {
-    let parent = deptMap.get(parentName);
-    if (parent) return parent;
-
-    parent = aliasMap.get(normalizeName(parentName));
-    if (parent) return parent;
-
     const normalizedParent = normalizeName(parentName);
+    // Try direct match in deptMap
+    for (const [deptName, dept] of Array.from(deptMap.entries())) {
+      if (normalizeName(deptName) === normalizedParent) return dept;
+    }
+    // Try alias match
+    for (const [alias, dept] of Array.from(aliasMap.entries())) {
+      if (normalizeName(alias) === normalizedParent) return dept;
+    }
+    // Try substring match in potential parents at previous level
     const potentialParents = levelMap.get(childLevel - 1) || [];
-    
     return potentialParents.find(p => {
       const normalizedName = normalizeName(p.name);
-      return normalizedName.includes(normalizedParent) || 
-             normalizedParent.includes(normalizedName) ||
-             (p.aliases || []).some(alias => 
-               normalizeName(alias).includes(normalizedParent) || 
-               normalizedParent.includes(normalizeName(alias))
-             );
+      if (normalizedName === normalizedParent) return true;
+      if (normalizedName.includes(normalizedParent) || normalizedParent.includes(normalizedName)) return true;
+      return (p.aliases || []).some(alias => {
+        const normAlias = normalizeName(alias);
+        return normAlias === normalizedParent || normAlias.includes(normalizedParent) || normalizedParent.includes(normAlias);
+      });
     });
   };
 
@@ -516,6 +533,22 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
     });
   }
 
+  // PATCH: Attach any remaining unattached departments directly to root
+  if (unattachedDepts.size > 0) {
+    log('WARN', transactionId, 'Attaching unattached departments directly to root', {
+      unattached: Array.from(unattachedDepts)
+    });
+    unattachedDepts.forEach(deptName => {
+      if (deptName !== root.name) {
+        const dept = deptMap.get(deptName);
+        if (dept && (!root.subDepartments || !root.subDepartments.some(d => d.name === dept.name))) {
+          if (!root.subDepartments) root.subDepartments = [];
+          root.subDepartments.push(dept);
+        }
+      }
+    });
+  }
+
   // 2.4 Hierarchy Finalization
   log('INFO', transactionId, 'Step 2.4: Sorting departments alphabetically');
   const sortDepartments = (dept: DepartmentHierarchy) => {
@@ -549,7 +582,7 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
     const parentAverageSalary = parentHeadCount > 0 ? 
       (parentWages / parentHeadCount) as NonNegativeNumber : null;
     
-    // Process subdepartments first
+    // Process subdepartments first - RECURSIVELY
     if (dept.subDepartments && dept.subDepartments.length > 0) {
       // Process all subdepartments recursively to get subordinate counts
       dept.subDepartments.forEach(child => {
@@ -557,9 +590,10 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
       });
 
       // Calculate aggregated distributions, headcount, wages and average salary
+      // This will now include ALL levels recursively
       const aggregated = aggregateDistributions(dept.subDepartments, selectedFiscalYear);
       
-      // Store child-only aggregated data
+      // Store child-only aggregated data (includes all subdepartments at all levels)
       const childHeadCount = aggregated.childHeadCount;
       const childWages = aggregated.childWages;
       const childAverageSalary = aggregated.childAverageSalary;
@@ -572,7 +606,7 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
       
       // Store all aggregated information
       dept.aggregatedDistributions = {
-        // Distribution arrays
+        // Distribution arrays (includes all levels)
         tenureDistribution: aggregated.tenureDistribution,
         salaryDistribution: aggregated.salaryDistribution,
         ageDistribution: aggregated.ageDistribution,
@@ -582,7 +616,7 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
         parentWages,
         parentAverageSalary,
         
-        // Child data (sum of all subdepartments)
+        // Child data (sum of all subdepartments at all levels)
         childHeadCount,
         childWages,
         childAverageSalary,
@@ -596,6 +630,7 @@ function buildHierarchy(departments: DepartmentData[], selectedFiscalYear: Annua
       log('INFO', generateTransactionId(), 'Aggregated data calculated', {
         department: dept.name,
         fiscalYear: selectedFiscalYear,
+        subordinateOffices: dept.subordinateOffices,
         parent: {
           headCount: parentHeadCount,
           wages: parentWages,
@@ -656,6 +691,35 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
   const _wagesData = typeof department.wages?.yearly?.[fiscalYear] === 'number' ? department.wages.yearly[fiscalYear] : undefined;
   const _averageSalary = typeof department._averageSalary === 'number' ? department._averageSalary : undefined;
   
+  // State for checking if department has a markdown page
+  const [hasPage, setHasPage] = useState(false);
+  const [isLoadingPage, setIsLoadingPage] = useState(true);
+
+  // Check if department has a markdown page
+  useEffect(() => {
+    const checkForPage = async () => {
+      try {
+        const response = await fetch('/api/departments/available');
+        const data = await response.json();
+        
+        // Construct the potential slug from organizational code and name
+        if (department.organizationalCode && department.name) {
+          const potentialSlug = `${department.organizationalCode}_${department.name.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, '_')}`;
+          setHasPage(data.slugs.includes(potentialSlug));
+        } else {
+          setHasPage(false);
+        }
+      } catch (error) {
+        console.error('Error checking for department page:', error);
+        setHasPage(false);
+      } finally {
+        setIsLoadingPage(false);
+      }
+    };
+
+    checkForPage();
+  }, [department.organizationalCode, department.name]);
+  
   const handleCardClick = () => {
     // Track workforce card click - only pass number values
     const employeeCount = typeof _workforceData === 'number' ? _workforceData : undefined;
@@ -672,9 +736,9 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
         <div className="flex justify-between items-start">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">
-              {department.hasPage && department.pageSlug ? (
+              {!isLoadingPage && hasPage ? (
                 <Link 
-                  href={`/departments/${department.pageSlug}`}
+                  href={`/departments/${department.organizationalCode}_${department.name.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, '_')}`}
                   onClick={(e: React.MouseEvent) => e.stopPropagation()}
                   className="text-blue-600 hover:text-blue-800 hover:underline"
                 >
@@ -715,128 +779,29 @@ function DepartmentCard({ department, isActive, onClick, showChart, viewMode, fi
   );
 }
 
-interface SubDepartmentSectionProps {
-  department: DepartmentHierarchy;
-  parentPath: string[];
-  activeAgencyPath: string[];
-  onDepartmentClick: (_path: string[]) => void;
-  viewMode: 'aggregated' | 'parent-only';
-  fiscalYear: AnnualYear;
-}
-
-function SubDepartmentSection({ 
-  department, 
-  parentPath,
-  activeAgencyPath,
-  onDepartmentClick,
-  viewMode,
-  fiscalYear
-}: SubDepartmentSectionProps) {
-  // Check if this is the root department "California State Government"
-  const isRoot = department.name === 'California State Government';
-  
-  // Check if this department is the currently selected item
-  const isActiveItem = activeAgencyPath.length === parentPath.length + 1 && 
-    activeAgencyPath[parentPath.length] === department.name;
-  
-  // Check if this is a direct child of the active item
-  const isChildOfActive = parentPath.length > 0 && 
-    parentPath.join('/') === activeAgencyPath.join('/') &&
-    !activeAgencyPath.includes(department.name);
-  
-  // Check if this is an ancestor in the path to the active item
-  const isAncestorOfActive = activeAgencyPath.length > parentPath.length + 1 && 
-    activeAgencyPath[parentPath.length] === department.name;
-  
-  // Show chart only when this department is specifically selected
-  const showChart = isActiveItem;
-  
-  // Show subdepartments only if this is active or an ancestor of active
-  const showSubDepartments = isActiveItem || isAncestorOfActive;
-  
-  const fullPath = [...parentPath, department.name];
-  
-  // Don't render this department if it's not in the path to active, not active, and not a child of active
-  if (!isActiveItem && !isAncestorOfActive && !isChildOfActive) {
-    return null;
-  }
-  
-  // Get departments to display as children
-  let displaySubDepartments = department.subDepartments || [];
-  
-  // Special handling for root level - only show direct children with parent_agency == "California State Government"
-  if (isRoot && isActiveItem) {
-    displaySubDepartments = displaySubDepartments.filter(dept => 
-      dept.parent_agency === 'California State Government'
-    );
-  }
-  
-  return (
-    <div>
-      <DepartmentCard 
-        department={department}
-        isActive={isActiveItem}
-        onClick={() => onDepartmentClick(fullPath)}
-        showChart={showChart}
-        viewMode={viewMode}
-        fiscalYear={fiscalYear}
-      />
-      
-      {displaySubDepartments && showSubDepartments && (
-        <div className="grid grid-cols-1 gap-4 mt-4 ml-4">
-          {displaySubDepartments.map((subDept) => (
-            <SubDepartmentSection
-              key={subDept.name}
-              department={subDept}
-              parentPath={fullPath}
-              activeAgencyPath={activeAgencyPath}
-              onDepartmentClick={onDepartmentClick}
-              viewMode={viewMode}
-              fiscalYear={fiscalYear}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default function WorkforcePage() {
-  return (
-    <Suspense fallback={
-      <div className="p-4 flex flex-col items-center justify-center min-h-[400px]">
-        <LoadingSpinner size="lg" className="mb-4" />
-        <p className="text-gray-600">Loading workforce data...</p>
-      </div>
-    }>
-      <WorkforcePageContent />
-    </Suspense>
-  );
-}
-
-function WorkforcePageContent() {
-  // Generate a single transaction ID for the component lifecycle
-  const transactionId = useMemo(() => generateTransactionId(), []);
-  
+// Client component that uses useSearchParams
+function WorkforcePageClient() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  
+  // State for filters and sorting
   const [selectedDepartmentName, setSelectedDepartmentName] = useState<string | null>(null);
   const [selectedFiscalYear, setSelectedFiscalYear] = useState<AnnualYear>("2023");
   const [activePath, setActivePath] = useState<string[]>([]);
-  const [departments, setDepartments] = useState<DepartmentData[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'aggregated' | 'parent-only'>('aggregated');
+  
+  // Generate a single transaction ID for the component lifecycle
+  const transactionId = useMemo(() => generateTransactionId(), []);
   
   // Refs for tracking state changes
   const prevState = useRef<{
     hasHierarchy: boolean;
     selectedDepartment: string | null;
     activePath: string[];
-    error: string | null;
   }>({
     hasHierarchy: false,
     selectedDepartment: null,
     activePath: [],
-    error: null
   });
 
   const prevDisplayState = useRef<{
@@ -850,7 +815,25 @@ function WorkforcePageContent() {
     childCount: 0,
     totalDisplayed: 0
   });
-  
+
+  // Build API URL
+  const buildApiUrl = () => {
+    const params = new URLSearchParams();
+    params.set('format', 'departments');
+    return `/api/departments?${params.toString()}`;
+  };
+
+  // Fetch departments data using SWR
+  const { data: workforceData, error, isLoading } = useSWR<WorkforceResponse>(
+    buildApiUrl(),
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 30000
+    }
+  );
+
   // Component initialization logging - only once
   useEffect(() => {
     log('INFO', transactionId, 'Component initialized', {
@@ -861,31 +844,12 @@ function WorkforcePageContent() {
     analytics.pageView('/workforce', 'California State Government Workforce');
   }, [transactionId, searchParams]);
 
-  // Fetch departments and build hierarchy
-  useEffect(() => {
-    async function loadDepartments() {
-      try {
-        setError(null);
-        const response = await fetch('/api/departments?format=departments');
-        if (!response.ok) {
-          throw new Error('Failed to fetch departments');
-        }
-        const deps = await response.json();
-        log('INFO', transactionId, 'Departments fetched successfully', {
-          count: deps.length
-        });
-        setDepartments(deps);
-      } catch (err) {
-        log('ERROR', transactionId, 'Failed to load departments', { error: err });
-        console.error('Error loading departments:', err);
-        setError('Failed to load department data');
-      }
-    }
-    loadDepartments();
-  }, [transactionId]);
+  const departments = useMemo(() => {
+    return workforceData?.departments || [];
+  }, [workforceData?.departments]);
 
   const hierarchyData = useMemo(() => {
-    if (!departments) {
+    if (!departments.length) {
       return null;
     }
     
@@ -1004,7 +968,6 @@ function WorkforcePageContent() {
       hasHierarchy: !!hierarchyData,
       selectedDepartment: selectedDepartmentName,
       activePath,
-      error
     };
 
     // Only log if state has changed
@@ -1012,7 +975,7 @@ function WorkforcePageContent() {
       log('INFO', transactionId, 'Component state changed', currentState);
       prevState.current = currentState;
     }
-  }, [hierarchyData, selectedDepartmentName, activePath, error, transactionId]);
+  }, [hierarchyData, selectedDepartmentName, activePath, transactionId]);
 
   // Get path departments to display
   const pathDepartments = useMemo(() => {
@@ -1075,17 +1038,46 @@ function WorkforcePageContent() {
     setSelectedDepartmentName(department.name);
   };
 
+  // Update URL when filters change
+  const updateUrl = (newParams: Record<string, string>) => {
+    const params = new URLSearchParams(searchParams);
+    Object.entries(newParams).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value);
+      } else {
+        params.delete(key);
+      }
+    });
+    router.push(`/workforce?${params.toString()}`);
+  };
+
+  // Handle view mode change
+  const handleViewModeChange = (newViewMode: 'aggregated' | 'parent-only') => {
+    setViewMode(newViewMode);
+    analytics.filterApplied('view_mode', newViewMode, 'workforce_page');
+    updateUrl({ viewMode: newViewMode });
+  };
+
+  // Handle fiscal year change
+  const handleFiscalYearChange = (year: string) => {
+    if (year.match(/^\d{4}$/)) {
+      analytics.filterApplied('fiscal_year', year, 'workforce_page');
+      setSelectedFiscalYear(year as AnnualYear);
+      updateUrl({ fiscalYear: year });
+    }
+  };
+
   if (error) {
     log('ERROR', transactionId, 'Displaying error state', { error });
     return (
       <div className="p-4 text-red-600 bg-red-50 rounded-lg">
         <h2 className="text-lg font-semibold mb-2">Error</h2>
-        <p>{error}</p>
+        <p>Failed to load workforce data</p>
       </div>
     );
   }
   
-  if (!hierarchyData) {
+  if (isLoading || !hierarchyData) {
     log('INFO', transactionId, 'Displaying loading state');
     return (
       <div className="p-4 flex flex-col items-center justify-center min-h-[400px]">
@@ -1106,16 +1098,13 @@ function WorkforcePageContent() {
             <a href="https://openthebooks.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline"> Open The Books</a> also offers valuable salary and spending information.
             Wages are calculated as regular wages plus any benefits.
           </p>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mt-4">
             <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
               <Button
                 variant={viewMode === 'parent-only' ? "secondary" : "ghost"}
                 size="sm"
                 className={`rounded-full text-xs ${viewMode === 'parent-only' ? 'bg-white shadow-sm' : ''}`}
-                onClick={() => {
-                  analytics.filterApplied('view_mode', 'parent-only', 'workforce_page');
-                  setViewMode('parent-only');
-                }}
+                onClick={() => handleViewModeChange('parent-only')}
               >
                 Parent Only
               </Button>
@@ -1123,37 +1112,28 @@ function WorkforcePageContent() {
                 variant={viewMode === 'aggregated' ? "secondary" : "ghost"}
                 size="sm"
                 className={`rounded-full text-xs ${viewMode === 'aggregated' ? 'bg-white shadow-sm' : ''}`}
-                onClick={() => {
-                  analytics.filterApplied('view_mode', 'aggregated', 'workforce_page');
-                  setViewMode('aggregated');
-                }}
+                onClick={() => handleViewModeChange('aggregated')}
               >
                 Include Children
               </Button>
             </div>
             <div className="flex items-center space-x-2 border rounded-full p-1 bg-gray-100">
               <label htmlFor="fiscalYear" className="text-xs text-gray-600 px-2">Annual Year:</label>
-              <select
-                id="fiscalYear"
-                value={selectedFiscalYear}
-                onChange={(e) => {
-                  const year = e.target.value;
-                  if (year.match(/^\d{4}$/)) {
-                    analytics.filterApplied('fiscal_year', year, 'workforce_page');
-                    setSelectedFiscalYear(year as AnnualYear);
-                  }
-                }}
-                className="text-xs font-medium rounded-full bg-gray-100 shadow-sm border-0 focus:ring-0 focus:outline-none px-2 py-1"
-              >
-                {Array.from({ length: 16 }, (_, i) => {
-                  const year = (2010 + i).toString() as AnnualYear;
-                  return (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  );
-                })}
-              </select>
+              <Select value={selectedFiscalYear} onValueChange={handleFiscalYearChange}>
+                <SelectTrigger className="text-xs font-medium rounded-full bg-white shadow-sm border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none px-3 py-1 w-20">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-white border border-gray-200 shadow-lg">
+                  {Array.from({ length: 16 }, (_, i) => {
+                    const year = (2010 + i).toString() as AnnualYear;
+                    return (
+                      <SelectItem key={year} value={year}>
+                        {year}
+                      </SelectItem>
+                    );
+                  })}
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
@@ -1273,5 +1253,18 @@ function WorkforcePageContent() {
         </ul>
       </div>
     </div>
+  );
+}
+
+export default function WorkforcePage() {
+  return (
+    <Suspense fallback={
+      <div className="p-4 flex flex-col items-center justify-center min-h-[400px]">
+        <LoadingSpinner size="lg" className="mb-4" />
+        <p className="text-gray-600">Loading workforce data...</p>
+      </div>
+    }>
+      <WorkforcePageClient />
+    </Suspense>
   );
 } 

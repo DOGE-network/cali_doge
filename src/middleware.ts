@@ -42,18 +42,30 @@ export function middleware(request: NextRequest) {
       return response;
     }
 
-    // Add Vercel's CDN headers
-    response.headers.set(
-      'Cache-Control',
-      'public, s-maxage=3600, stale-while-revalidate=7200'
-    );
+    // Dynamic but cacheable API routes
+    if (
+      request.nextUrl.pathname.includes('/search') ||
+      request.nextUrl.pathname.includes('/vendors/top') ||
+      request.nextUrl.pathname.includes('/departments')
+    ) {
+      response.headers.set(
+        'Cache-Control',
+        'public, max-age=60, stale-while-revalidate=600'
+      );
+    } else {
+      // Default API caching strategy
+      response.headers.set(
+        'Cache-Control',
+        'public, max-age=10, stale-while-revalidate=60'
+      );
+    }
   }
 
   // Add caching headers for the root page
   if (request.nextUrl.pathname === '/') {
     response.headers.set(
       'Cache-Control',
-      'public, s-maxage=3600, stale-while-revalidate=7200'
+      'public, max-age=60, stale-while-revalidate=600'
     );
   }
 

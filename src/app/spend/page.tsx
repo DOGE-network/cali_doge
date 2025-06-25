@@ -23,6 +23,13 @@ interface SpendingRecord {
   // For compare view
   vendorAmount?: number;
   budgetAmount?: number;
+  // Dynamic fields for compare view
+  departmentCode?: string;
+  departmentName?: string;
+  programCode?: string;
+  programName?: string;
+  fundCode?: string;
+  fundName?: string;
 }
 
 interface SpendResponse {
@@ -39,6 +46,8 @@ interface SpendResponse {
     totalAmount: number;
     recordCount: number;
   };
+  error?: string;
+  details?: any;
 }
 
 interface Program {
@@ -91,7 +100,22 @@ function SpendPageClient() {
     
     // Only add filter params if we have both filter type and value from URL
     if (appliedFilter && appliedFilter !== 'all' && appliedFilterValue && appliedFilterValue.trim()) {
-      params.set(appliedFilter, appliedFilterValue.trim());
+      if (appliedFilter === 'year') {
+        // For year filter, add as year parameter
+        params.set('year', appliedFilterValue.trim());
+      } else if (appliedFilter === 'department') {
+        // For department filter, add as department parameter
+        params.set('department', appliedFilterValue.trim());
+      } else if (appliedFilter === 'vendor') {
+        // For vendor filter, add as vendor parameter
+        params.set('vendor', appliedFilterValue.trim());
+      } else if (appliedFilter === 'program') {
+        // For program filter, add as program parameter
+        params.set('program', appliedFilterValue.trim());
+      } else if (appliedFilter === 'fund') {
+        // For fund filter, add as fund parameter
+        params.set('fund', appliedFilterValue.trim());
+      }
     }
     
     return `/api/spend?${params.toString()}`;
@@ -125,7 +149,7 @@ function SpendPageClient() {
     }
     // Validate filter param based on URL view param (not state)
     const validFilters = viewParam === 'compare' 
-      ? ['all', 'department', 'program', 'fund']
+      ? ['all', 'year', 'department', 'program', 'fund']
       : ['all', 'year', 'department', 'vendor', 'program', 'fund'];
     
     if (filterParam && validFilters.includes(filterParam)) {
@@ -169,13 +193,15 @@ function SpendPageClient() {
     setView(newView);
     setPage(1);
     
-    // Reset filter when switching to compare view
+    // Reset filter when switching views (but keep compareBy for compare view)
     if (newView === 'compare') {
       setFilter('all');
       setFilterValue('');
       updateUrl({ view: newView, page: '1', filter: '', filterValue: '', compareBy });
     } else {
-      updateUrl({ view: newView, page: '1' });
+      setFilter('all');
+      setFilterValue('');
+      updateUrl({ view: newView, page: '1', filter: '', filterValue: '' });
     }
   };
 
@@ -263,6 +289,24 @@ function SpendPageClient() {
     );
   }
 
+  // Check for API error response
+  if (spendData.error) {
+    return (
+      <div className="p-4 text-red-600 bg-red-50 rounded-lg">
+        <h2 className="text-lg font-semibold mb-2">API Error</h2>
+        <p>{spendData.error}</p>
+        {spendData.details && (
+          <details className="mt-2">
+            <summary className="cursor-pointer text-sm">Error Details</summary>
+            <pre className="text-xs mt-1 bg-red-100 p-2 rounded overflow-auto">
+              {JSON.stringify(spendData.details, null, 2)}
+            </pre>
+          </details>
+        )}
+      </div>
+    );
+  }
+
   return (
     <main className="container mx-auto px-4 py-8 max-w-7xl">
       {/* Header */}
@@ -312,6 +356,51 @@ function SpendPageClient() {
                   <SelectItem value="fund">Fund</SelectItem>
                 </SelectContent>
               </Select>
+
+              <label className="text-sm font-medium">Filter by:</label>
+              <Select value={filter} onValueChange={handleFilterTypeChange}>
+                <SelectTrigger className="w-40 bg-white">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-white">
+                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="year">Year</SelectItem>
+                  <SelectItem value={compareBy}>{compareBy.charAt(0).toUpperCase() + compareBy.slice(1)}</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              {filter !== 'all' && (
+                <div className="flex flex-col space-y-2">
+                  <Input
+                    placeholder={`Enter ${filter}...`}
+                    value={filterValue}
+                    onChange={(e) => setFilterValue(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleApplyFilter();
+                      }
+                    }}
+                    className="w-48 bg-white"
+                  />
+                  <p className="text-xs text-gray-500">
+                    {filter === 'year' 
+                      ? 'Enter a specific year (e.g., 2023)'
+                      : `Search by ${compareBy} name or code. Use AND to find records containing all terms (e.g. "diversity AND equity AND inclusion"). Use OR to find records containing any term (e.g. "diversity OR equity"). Commas are treated as AND. Use quotes for exact phrases (e.g. "racial justice").`
+                    }
+                  </p>
+                </div>
+              )}
+              
+              {filter !== 'all' && filterValue && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleApplyFilter}
+                  className="bg-white"
+                >
+                  Apply Filter
+                </Button>
+              )}
             </>
           ) : (
             <>
@@ -341,7 +430,7 @@ function SpendPageClient() {
                         handleApplyFilter();
                       }
                     }}
-                    className="w-96 bg-white"
+                    className="w-48 bg-white"
                   />
                   <p className="text-xs text-gray-500">
                     Use AND to find records containing all terms (e.g. &quot;diversity AND equity AND inclusion&quot;). 
@@ -388,7 +477,7 @@ function SpendPageClient() {
                     }}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-medium capitalize">{column}</span>
+                      <span className="font-medium capitalize">{column === compareBy ? compareBy.charAt(0).toUpperCase() + compareBy.slice(1) : column}</span>
                       <span className="text-xs">{
                         column === 'vendor amount' ? getSortIcon('vendorAmount') :
                         column === 'budget amount' ? getSortIcon('budgetAmount') :
@@ -423,41 +512,14 @@ function SpendPageClient() {
                   <>
                     <td className="border border-gray-300 px-4 py-2">{record.year}</td>
                     <td className="border border-gray-300 px-4 py-2">
-                      {compareBy === 'department' && record.departmentSlug ? (
-                        <Link 
-                          href={`/departments/${record.departmentSlug}`}
-                          className="text-blue-600 hover:underline"
-                        >
-                          {record.department}
-                        </Link>
-                      ) : compareBy === 'program' && record.program !== 'Unknown Program' ? (
-                        <div 
-                          className="group relative cursor-help"
-                          onMouseEnter={() => handleProgramHover(record.program)}
-                          onMouseLeave={() => {
-                            setHoveredProgram(null);
-                            setProgramDetails(null);
-                          }}
-                        >
-                          <span>{record.program}</span>
-                          {hoveredProgram === record.program && programDetails && (
-                            <div className="absolute bottom-full left-0 mb-2 bg-black text-white text-xs rounded px-3 py-2 whitespace-nowrap z-10 max-w-xs">
-                              <div className="font-medium mb-1">{programDetails.name}</div>
-                              {programDetails.programDescriptions.map((desc, i) => (
-                                <div key={i} className="mb-1">
-                                  <div>{desc.description}</div>
-                                  <div className="text-gray-300 text-xs">
-                                    Sources: {Array.isArray(desc.source) ? desc.source.length : 1}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                        </div>
+                      {compareBy === 'department' ? (
+                        record.departmentName || record.department || 'Unknown Department'
+                      ) : compareBy === 'program' ? (
+                        record.programName || record.program || 'Unknown Program'
                       ) : compareBy === 'fund' ? (
-                        record.fund
+                        record.fundName || record.fund || 'Unknown Fund'
                       ) : (
-                        record.department
+                        'Unknown'
                       )}
                     </td>
                     <td className="border border-gray-300 px-4 py-2 text-right font-mono">

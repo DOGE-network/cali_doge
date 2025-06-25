@@ -14,9 +14,17 @@ export interface ProgramDescription {
  * Represents a program with its code, name and descriptions
  */
 export interface Program {
-  projectCode: string;
+  id: string;
+  project_code: string;
   name: string;
-  programDescriptions: ProgramDescription[];
+  description?: string | null;
+  sources?: string[] | null;
+  created_at?: string | null;
+  updated_at?: string | null;
+  
+  // Legacy fields for backward compatibility
+  projectCode?: string;
+  programDescriptions?: ProgramDescription[];
 }
 
 /**
