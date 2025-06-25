@@ -66,12 +66,14 @@ export default async function Home() {
             <Link 
               href="/search" 
               className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              data-tour="search-database"
             >
               Search Database
             </Link>
             <Link 
               href="/whistleblower" 
               className="bg-gray-100 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-200 transition-colors"
+              data-tour="report-waste"
             >
               Report Waste
             </Link>
@@ -80,7 +82,7 @@ export default async function Home() {
       </section>
       
       {/* Tweets Section */}
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6" data-tour="twitter-content">
         <h2 className="text-2xl font-semibold mb-6">Latest Updates from Cali DOGE</h2>
         {tweetGroups.length > 0 ? (
           <div className="space-y-6">

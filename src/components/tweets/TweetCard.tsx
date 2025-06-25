@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 interface TweetCardProps {
   tweet: EnrichedTweet;
+  isFirst?: boolean;
 }
 
 // Function to extract YouTube video ID from various YouTube URL formats
@@ -177,7 +178,7 @@ function formatTweetText(text: string): React.ReactNode {
   );
 }
 
-export function TweetCard({ tweet }: TweetCardProps) {
+export function TweetCard({ tweet, isFirst = false }: TweetCardProps) {
   const [youtubeThumbError, setYoutubeThumbError] = useState(false);
   const [linkPreviewError, setLinkPreviewError] = useState(false);
   const [mediaErrors, setMediaErrors] = useState<Record<number, boolean>>({});
@@ -273,6 +274,7 @@ export function TweetCard({ tweet }: TweetCardProps) {
           handleClick();
         }
       }}
+      data-tour={isFirst ? "twitter-content" : undefined}
     >
       <div className="flex items-start space-x-3">
         {tweet.author?.profile_image_url && (

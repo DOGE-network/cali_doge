@@ -8,6 +8,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 import WebVitalsTracker from '@/components/WebVitalsTracker';
 const inter = Inter({ subsets: ['latin'] });
 import MailingListPopup from '@/components/MailingListPopup'
+import TutorialProvider from '@/components/TutorialProvider';
 
 
 export const viewport: Viewport = {
@@ -106,6 +107,9 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        
+        {/* Tutorial Provider */}
+        <TutorialProvider />
         
         {/* Three-Layer Analytics Setup */}
         {/* Layer 1: Vercel Analytics - Performance and Core Web Vitals */}
