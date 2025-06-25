@@ -24,6 +24,7 @@
   "dependencies": {
     "@radix-ui/react-select": "^2.2.2",
     "@radix-ui/react-slot": "^1.1.2",
+    "@reactour/tour": "^3.8.0",
     "@supabase/supabase-js": "^2.49.4",
     "@types/mime-types": "^2.1.4",
     "@types/node-cron": "^3.0.11",
@@ -47,7 +48,6 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.5.0",
-    "react-joyride": "^2.9.3",
     "recharts": "^2.15.1",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
