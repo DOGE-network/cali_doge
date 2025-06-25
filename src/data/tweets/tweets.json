@@ -1,6 +1,85 @@
 {
   "tweets": [
     {
+      "id": "1937899012247769198",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "adamcarolla",
+            "id": "10926202"
+          },
+          {
+            "start": 23,
+            "end": 35,
+            "username": "adamcarolla",
+            "id": "10926202"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 103,
+            "end": 110,
+            "probability": 0.4723,
+            "type": "Place",
+            "normalized_text": "LA Mayor"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at": "2025-06-25T15:41:43.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        }
+      ],
+      "text": "@adamcarolla Just wait @adamcarolla. If this works and he gets elected, expect a similar candidate for LA Mayor very soon. The organizations propping up and organizing activist representation are hungry for income and publicity.  They have a stockpile of cash from the last few years.",
+      "edit_history_tweet_ids": [
+        "1937899012247769198"
+      ],
+      "created_at_formatted": "Jun 25, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -18340,8 +18419,8 @@
     }
   ],
   "meta": {
-    "result_count": 169,
-    "newest_id": "1937774832122495229",
+    "result_count": 170,
+    "newest_id": "1937899012247769198",
     "oldest_id": "1882144700762878208"
   }
 }
