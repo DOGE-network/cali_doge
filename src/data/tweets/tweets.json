@@ -1,6 +1,273 @@
 {
   "tweets": [
     {
+      "created_at": "2025-06-25T21:18:25.000Z",
+      "author_id": "1859283000145608705",
+      "text": "@DataRepublican @CynicalPublius It was screwed up one step at a time. Recent public awareness is a good forward step. \n\nNow just getting smart, business friendly, problem solvers elected…",
+      "edit_history_tweet_ids": [
+        "1937983744138481693"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 16,
+            "end": 31,
+            "username": "CynicalPublius",
+            "id": "793542678377926656"
+          }
+        ]
+      },
+      "id": "1937983744138481693",
+      "created_at_formatted": "Jun 25, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "created_at": "2025-06-25T19:22:22.000Z",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697078762958848",
+            "name": "Pet Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Pets such as pet food, toys, cleaning"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1448236149676261380",
+            "name": "Shiba Inu"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "852262932607926273",
+            "name": "Pets",
+            "description": "Pets"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "853980498816679937",
+            "name": "Dogs",
+            "description": "Dogs"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "857601204154638336",
+            "name": "Shiba Inu",
+            "description": "Shiba Inu"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1448236149676261380",
+            "name": "Shiba Inu"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1478776259068907541",
+            "name": "Cryptotokens"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        }
+      ],
+      "text": "Meet our spirit animal Severin Doge. \n\nSeverin Doge, a sharp-witted Shiba Inu from Silicon Valley, grew frustrated with burdensome government regulations—sparking the sticky note riots of 2006 and water bowl shortages of 2017. Joining the Department of Government Efficiency, he https://t.co/6JHS7001Yb",
+      "entities": {
+        "annotations": [
+          {
+            "start": 23,
+            "end": 34,
+            "probability": 0.5093,
+            "type": "Other",
+            "normalized_text": "Severin Doge"
+          },
+          {
+            "start": 39,
+            "end": 50,
+            "probability": 0.4951,
+            "type": "Other",
+            "normalized_text": "Severin Doge"
+          },
+          {
+            "start": 68,
+            "end": 76,
+            "probability": 0.6827,
+            "type": "Other",
+            "normalized_text": "Shiba Inu"
+          },
+          {
+            "start": 83,
+            "end": 96,
+            "probability": 0.9539,
+            "type": "Place",
+            "normalized_text": "Silicon Valley"
+          }
+        ],
+        "urls": [
+          {
+            "start": 279,
+            "end": 302,
+            "url": "https://t.co/6JHS7001Yb",
+            "expanded_url": "https://x.com/cali_doge/status/1937954539413573900/photo/1",
+            "display_url": "pic.x.com/6JHS7001Yb",
+            "media_key": "3_1937948112791998464"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1937948118252982410",
+        "1937954539413573900"
+      ],
+      "id": "1937954539413573900",
+      "attachments": {
+        "media_keys": [
+          "3_1937948112791998464"
+        ]
+      },
+      "created_at_formatted": "Jun 25, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1937954539413573900_0.jpg",
+          "width": 960,
+          "height": 960
+        }
+      ]
+    },
+    {
       "id": "1937948118252982410",
       "text": "Meet our spirit animal Severin Doge. \n\nSeverin Doge, a sharp-witted Shiba Inu from Silicon Valley, grew frustrated with burdensome government regulations—sparking the sticky note riots of 2006 and water bowl shortages of 2017. Joining the Department of Government Efficiency, he https://t.co/sBKyUSR7Gv",
       "context_annotations": [
@@ -18653,8 +18920,8 @@
     }
   ],
   "meta": {
-    "result_count": 171,
-    "newest_id": "1937948118252982410",
+    "result_count": 173,
+    "newest_id": "1937983744138481693",
     "oldest_id": "1882144700762878208"
   }
 }
