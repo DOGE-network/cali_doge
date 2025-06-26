@@ -201,4 +201,24 @@ export async function getDepartmentSlugs(): Promise<string[]> {
     console.error('Error reading department posts directory:', error);
     return [];
   }
+}
+
+export function getDepartmentSlug(organizationalCode: string | number, name: string): string {
+  return `${organizationalCode}_${name.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, '_')}`;
+}
+
+export async function getDepartmentSlugData(): Promise<{ organizationalCode: number, name: string, slug: string }[]> {
+  const fileNames = fs.readdirSync(postsDirectory);
+  return await Promise.all(fileNames
+    .filter(fileName => fileName.endsWith('.md'))
+    .map(async fileName => {
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const matterResult = matter(fileContents);
+      const organizationalCode = toNonNegativeInteger(matterResult.data.organizationalCode);
+      const name = matterResult.data.name || '';
+      const slug = getDepartmentSlug(organizationalCode, name);
+      return { organizationalCode, name, slug };
+    })
+  );
 } 

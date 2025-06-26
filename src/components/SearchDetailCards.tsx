@@ -99,26 +99,86 @@ export function DepartmentDetailCard({
   matchField, 
   matchSnippet, 
   query, 
+  // eslint-disable-next-line no-unused-vars
   vendorTotal, 
+  // eslint-disable-next-line no-unused-vars
   budgetTotal 
 }: DepartmentDetailCardProps) {
   const [hasPage, setHasPage] = useState(false);
+  const [departmentData, setDepartmentData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [constructedSlug, setConstructedSlug] = useState<string>('');
+  // eslint-disable-next-line no-unused-vars
+  const [availableDepartments, setAvailableDepartments] = useState<any[]>([]);
+  const [computedVendorTotal, setComputedVendorTotal] = useState<number | null>(null);
+  const [computedBudgetTotal, setComputedBudgetTotal] = useState<number | null>(null);
 
   useEffect(() => {
     if (item.type === 'department' && item.id) {
-      // Check if department has a markdown page using API endpoint
-      fetch('/api/departments/available')
-        .then(res => res.json())
-        .then(data => {
-          setHasPage(data.slugs.includes(item.id));
+      setIsLoading(true);
+      Promise.all([
+        fetch('/api/departments?format=departments'),
+        fetch('/api/departments/available')
+      ])
+        .then(responses => Promise.all(responses.map(res => res.json())))
+        .then(async ([departmentsData, availableData]) => {
+          // Debug log the availableData response
+          if (process.env.NODE_ENV === 'development') {
+            const departmentsArr = Array.isArray(availableData.departments) ? availableData.departments : [];
+            console.debug('[DepartmentDetailCard] /api/departments/available response:', availableData);
+            console.debug('[DepartmentDetailCard] First 20 department slugs:', departmentsArr.slice(0, 20).map(d => d.slug));
+          }
+          const department = departmentsData.departments?.find((dept: any) => 
+            dept.name === item.term || dept.canonicalName === item.term
+          );
+          if (department) {
+            setDepartmentData(department);
+            const departmentsArr = Array.isArray(availableData.departments) ? availableData.departments : [];
+            setAvailableDepartments(departmentsArr);
+            // Find the matching department in availableDepartments
+            const matched = departmentsArr.find((d: any) => {
+              return (
+                String(d.organizationalCode) === String(department.organizationalCode) &&
+                d.name === department.name
+              );
+            });
+            if (matched) {
+              setConstructedSlug(matched.slug);
+              setHasPage(true);
+              // Fetch spend data for this department slug
+              const spendRes = await fetch(`/api/spend?department=${encodeURIComponent(matched.slug)}`);
+              const spendData = await spendRes.json();
+              // Sum vendor spend and budget totals across all years
+              let vendorSum = 0;
+              let budgetSum = 0;
+              if (spendData.spending && Array.isArray(spendData.spending)) {
+                spendData.spending.forEach((rec: any) => {
+                  if (rec.amount) vendorSum += rec.amount;
+                  if (rec.budget) budgetSum += rec.budget;
+                });
+              }
+              // Fallback to summary if available
+              if (spendData.summary) {
+                if (typeof spendData.summary.totalAmount === 'number') vendorSum = spendData.summary.totalAmount;
+                if (typeof spendData.summary.totalBudget === 'number') budgetSum = spendData.summary.totalBudget;
+              }
+              setComputedVendorTotal(vendorSum);
+              setComputedBudgetTotal(budgetSum);
+            } else {
+              setHasPage(false);
+            }
+          } else {
+            setHasPage(false);
+          }
         })
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => setIsLoading(false));
     }
   }, [item]);
 
   if (item.type !== 'department') return null;
   const departmentItem = item as SearchItem;
-  const departmentSlug = departmentItem.id || 'unknown-department';
+  const departmentSlug = constructedSlug || 'unknown-department';
 
   return (
     <div className={`p-6 border rounded-lg transition-all ${
@@ -128,15 +188,29 @@ export function DepartmentDetailCard({
         <div>
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{departmentItem.term}</h3>
           <p className="text-sm text-gray-600">Department • ID: {departmentItem.id || 'N/A'}</p>
+          {departmentData?.organizationalCode && (
+            <p className="text-sm text-gray-500">Code: {departmentData.organizationalCode}</p>
+          )}
+          {constructedSlug && (
+            <p className="text-xs text-gray-400 mt-1">Slug: {constructedSlug}</p>
+          )}
         </div>
         <div className="flex gap-2 items-center">
-          {hasPage ? (
+          {isLoading ? (
+            <span className="px-3 py-1 text-sm bg-gray-100 text-gray-500 rounded">
+              Loading...
+            </span>
+          ) : hasPage ? (
             <Link
               href={`/departments/${departmentSlug}`}
               className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             >
               View Details
             </Link>
+          ) : departmentData ? (
+            <span className="px-3 py-1 text-sm bg-yellow-200 text-yellow-900 rounded border border-yellow-400">
+              Page Missing
+            </span>
           ) : (
             <span className="px-3 py-1 text-sm bg-gray-100 text-gray-500 rounded">
               Details Not Available
@@ -149,8 +223,8 @@ export function DepartmentDetailCard({
       </div>
       <div className="mt-2">
         <div className="space-y-1 text-sm">
-          <div>Vendor Spend Total: <span className="font-medium">{vendorTotal !== null && vendorTotal !== undefined ? `$${vendorTotal.toLocaleString()}` : 'N/A'}</span></div>
-          <div>Budget Total: <span className="font-medium">{budgetTotal !== null && budgetTotal !== undefined ? `$${budgetTotal.toLocaleString()}` : 'N/A'}</span></div>
+          <div>Vendor Spend Total: <span className="font-medium">{computedVendorTotal !== null && computedVendorTotal !== undefined ? `$${computedVendorTotal.toLocaleString()}` : 'N/A'}</span></div>
+          <div>Budget Total: <span className="font-medium">{computedBudgetTotal !== null && computedBudgetTotal !== undefined ? `$${computedBudgetTotal.toLocaleString()}` : 'N/A'}</span></div>
         </div>
       </div>
     </div>
