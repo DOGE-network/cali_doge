@@ -1,6 +1,206 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 12,
+            "end": 14,
+            "probability": 0.429,
+            "type": "Other",
+            "normalized_text": "tsv"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ],
+        "urls": [
+          {
+            "start": 86,
+            "end": 109,
+            "url": "https://t.co/M8ipCmB68d",
+            "expanded_url": "https://github.com/DOGE-network/tables/blob/master/README.md",
+            "display_url": "github.com/DOGE-network/t…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1938403842624000005/xyjcr4h7?format=jpg&name=orig",
+                "width": 1200,
+                "height": 600
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1938403842624000005/xyjcr4h7?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "tables/README.md at master · DOGE-network/tables",
+            "description": "holds source data for cali-doge and other transparency tools to utilize - DOGE-network/tables",
+            "unwound_url": "https://github.com/DOGE-network/tables/blob/master/README.md"
+          },
+          {
+            "start": 122,
+            "end": 145,
+            "url": "https://t.co/02NdKe65Tw",
+            "expanded_url": "https://github.com/DOGE-network/tables/blob/master/source/corporate_entity_metadata.tsv",
+            "display_url": "github.com/DOGE-network/t…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1938403842481385472/kz-fjd4E?format=jpg&name=orig",
+                "width": 1200,
+                "height": 600
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1938403842481385472/kz-fjd4E?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "tables/source/corporate_entity_metadata.tsv at master · DOGE-network/tables",
+            "description": "holds source data for cali-doge and other transparency tools to utilize - DOGE-network/tables",
+            "unwound_url": "https://github.com/DOGE-network/tables/blob/master/source/corporate_entity_metadata.tsv"
+          }
+        ]
+      },
+      "id": "1938403799322005870",
+      "text": "@twinforces tsv agreed. Feel free to recommend modifications \n\nFormat described here: https://t.co/M8ipCmB68d\n\nFile here: https://t.co/02NdKe65Tw",
+      "created_at": "2025-06-27T01:07:34.000Z",
+      "edit_history_tweet_ids": [
+        "1938403799322005870"
+      ],
+      "created_at_formatted": "Jun 27, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 97,
+            "end": 99,
+            "probability": 0.4597,
+            "type": "Other",
+            "normalized_text": "API"
+          },
+          {
+            "start": 165,
+            "end": 168,
+            "probability": 0.4397,
+            "type": "Other",
+            "normalized_text": "json"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ],
+        "urls": [
+          {
+            "start": 226,
+            "end": 249,
+            "url": "https://t.co/5iY6TxZPcd",
+            "expanded_url": "https://github.com/DOGE-network/tables",
+            "display_url": "github.com/DOGE-network/t…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1938370554261819392/jFKo-koP?format=jpg&name=orig",
+                "width": 1200,
+                "height": 600
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1938370554261819392/jFKo-koP?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "GitHub - DOGE-network/tables: holds source data for cali-doge and other transparency tools to utilize",
+            "description": "holds source data for cali-doge and other transparency tools to utilize - DOGE-network/tables",
+            "unwound_url": "https://github.com/DOGE-network/tables"
+          }
+        ]
+      },
+      "id": "1938370549295788244",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        }
+      ],
+      "text": "@twinforces I would like create a repository of corporate metadata including ein. The government API for ein lookups are rate limited. I would trust a shared csv or json that we collectively maintain more anyway. Interested?\n\nhttps://t.co/5iY6TxZPcd",
+      "created_at": "2025-06-26T22:55:26.000Z",
+      "edit_history_tweet_ids": [
+        "1938370549295788244"
+      ],
+      "created_at_formatted": "Jun 26, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "created_at": "2025-06-25T21:18:25.000Z",
       "author_id": "1859283000145608705",
       "text": "@DataRepublican @CynicalPublius It was screwed up one step at a time. Recent public awareness is a good forward step. \n\nNow just getting smart, business friendly, problem solvers elected…",
@@ -18920,8 +19120,8 @@
     }
   ],
   "meta": {
-    "result_count": 173,
-    "newest_id": "1937983744138481693",
+    "result_count": 175,
+    "newest_id": "1938403799322005870",
     "oldest_id": "1882144700762878208"
   }
 }
