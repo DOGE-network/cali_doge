@@ -1,6 +1,81 @@
 {
   "tweets": [
     {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 12,
+            "end": 16,
+            "probability": 0.6845,
+            "type": "Person",
+            "normalized_text": "Roger"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1939071705374454123",
+      "created_at": "2025-06-28T21:21:35.000Z",
+      "edit_history_tweet_ids": [
+        "1939071705374454123"
+      ],
+      "text": "@twinforces Roger that. Something to collaborate on.",
+      "created_at_formatted": "Jun 28, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1939051831038231002",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        }
+      ],
+      "created_at": "2025-06-28T20:02:37.000Z",
+      "edit_history_tweet_ids": [
+        "1939051831038231002"
+      ],
+      "text": "@twinforces Merged. I am starting to work my next release. I will import charity ein as part of the data republican charity lookup to increase accuracy. \n\nIs the nonprofit list complete? Meaning, if corp name not found then it is likely a for profit  corp?",
+      "created_at_formatted": "Jun 28, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "entities": {
         "annotations": [
@@ -19120,8 +19195,8 @@
     }
   ],
   "meta": {
-    "result_count": 175,
-    "newest_id": "1938403799322005870",
+    "result_count": 177,
+    "newest_id": "1939071705374454123",
     "oldest_id": "1882144700762878208"
   }
 }
