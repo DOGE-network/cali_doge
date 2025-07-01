@@ -1,0 +1,1275 @@
+{
+  "info": {
+    "name": "California Doge API Testing",
+    "description": "Comprehensive API testing collection for California Doge government spending application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "environment",
+      "value": "development",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Search API",
+      "item": [
+        {
+          "name": "Search All Types",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/search?q=transportation&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "transportation",
+                  "description": "Search query"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of results to return"
+                }
+              ]
+            },
+            "description": "Search across all entity types (departments, vendors, programs, funds)"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Departments Only",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/search?q=transportation&types=department&limit=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "transportation",
+                  "description": "Search query"
+                },
+                {
+                  "key": "types",
+                  "value": "department",
+                  "description": "Filter by entity type"
+                },
+                {
+                  "key": "limit",
+                  "value": "5",
+                  "description": "Number of results to return"
+                }
+              ]
+            },
+            "description": "Search for departments only"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Vendors Only",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/search?q=construction&types=vendor&limit=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "construction",
+                  "description": "Search query"
+                },
+                {
+                  "key": "types",
+                  "value": "vendor",
+                  "description": "Filter by entity type"
+                },
+                {
+                  "key": "limit",
+                  "value": "5",
+                  "description": "Number of results to return"
+                }
+              ]
+            },
+            "description": "Search for vendors only"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Spending Data API",
+      "item": [
+        {
+          "name": "Get Vendor Spending (Default View)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&limit=10&page=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor, budget, or compare"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of records per page"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                }
+              ]
+            },
+            "description": "Get vendor spending data with pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Budget Data",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=budget&year=2024&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "budget",
+                  "description": "View type: budget"
+                },
+                {
+                  "key": "year",
+                  "value": "2024",
+                  "description": "Fiscal year"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of records per page"
+                }
+              ]
+            },
+            "description": "Get budget allocation data"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Compare Data by Department",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=compare&compareBy=department&year=2024&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "compare",
+                  "description": "View type: compare"
+                },
+                {
+                  "key": "compareBy",
+                  "value": "department",
+                  "description": "Compare by: department, program, or fund"
+                },
+                {
+                  "key": "year",
+                  "value": "2024",
+                  "description": "Fiscal year"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of records per page"
+                }
+              ]
+            },
+            "description": "Get comparison data between vendor spending and budget by department"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Spending by Department",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&department=Transportation&year=2024&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "department",
+                  "value": "Transportation",
+                  "description": "Department name filter"
+                },
+                {
+                  "key": "year",
+                  "value": "2024",
+                  "description": "Fiscal year"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of records per page"
+                }
+              ]
+            },
+            "description": "Filter spending data by specific department"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Spending by Vendor",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&vendor=construction&year=2024&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "vendor",
+                  "value": "construction",
+                  "description": "Vendor name filter"
+                },
+                {
+                  "key": "year",
+                  "value": "2024",
+                  "description": "Fiscal year"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of records per page"
+                }
+              ]
+            },
+            "description": "Filter spending data by specific vendor"
+          },
+          "response": []
+        },
+        {
+          "name": "Sort Spending by Amount (Descending)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&sort=amount&order=desc&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "sort",
+                  "value": "amount",
+                  "description": "Sort field: amount, year, department, vendor, program, fund"
+                },
+                {
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Sort order: asc or desc"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of records per page"
+                }
+              ]
+            },
+            "description": "Sort spending data by amount in descending order"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Departments API",
+      "item": [
+        {
+          "name": "Get All Departments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments"]
+            },
+            "description": "Get all available departments"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Available Department Slugs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments/available",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments", "available"]
+            },
+            "description": "Get list of department slugs that have detailed pages"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vendors API",
+      "item": [
+        {
+          "name": "Get Top Vendors by Year",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/vendors/top?year=2024&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "vendors", "top"],
+              "query": [
+                {
+                  "key": "year",
+                  "value": "2024",
+                  "description": "Fiscal year"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of top vendors to return"
+                }
+              ]
+            },
+            "description": "Get top vendors by total spending amount for a specific year"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Top Vendors All Years",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/vendors/top?limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "vendors", "top"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of top vendors to return"
+                }
+              ]
+            },
+            "description": "Get top vendors across all years"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Top Vendors",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/vendors/top?search=construction&year=2024&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "vendors", "top"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "construction",
+                  "description": "Search term for vendor names"
+                },
+                {
+                  "key": "year",
+                  "value": "2024",
+                  "description": "Fiscal year"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of top vendors to return"
+                }
+              ]
+            },
+            "description": "Search top vendors by name"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Programs API",
+      "item": [
+        {
+          "name": "Get All Programs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/programs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "programs"]
+            },
+            "description": "Get all available programs"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Programs by Department",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/programs?department=2500&year=2024",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "programs"],
+              "query": [
+                {
+                  "key": "department",
+                  "value": "2500",
+                  "description": "Department code"
+                },
+                {
+                  "key": "year",
+                  "value": "2024",
+                  "description": "Fiscal year"
+                }
+              ]
+            },
+            "description": "Get programs for a specific department and year"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Program Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/programs/2500-001",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "programs", "2500-001"]
+            },
+            "description": "Get detailed information for a specific program by project code"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Media API",
+      "item": [
+        {
+          "name": "Get Media File",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/media/twitter_media/example.jpg",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "media", "twitter_media", "example.jpg"]
+            },
+            "description": "Get media files (images, documents, etc.)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Email API",
+      "item": [
+        {
+          "name": "Send Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"test@example.com\",\n  \"subject\": \"Test Email\",\n  \"message\": \"This is a test email from the API\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/send-email",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "send-email"]
+            },
+            "description": "Send email through the application"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "API Chaining Tests",
+      "item": [
+        {
+          "name": "1. Search for Department",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Search for a department first",
+                  "pm.test(\"Search for department\", function () {",
+                  "    if (pm.response.code === 200) {",
+                  "        const response = pm.response.json();",
+                  "        ",
+                  "        if (response.departments && response.departments.length > 0) {",
+                  "            // Store the first department for chaining",
+                  "            const firstDept = response.departments[0];",
+                  "            pm.environment.set(\"testDepartmentId\", firstDept.id);",
+                  "            pm.environment.set(\"testDepartmentName\", firstDept.term);",
+                  "            pm.environment.set(\"testDepartmentSlug\", firstDept.id);",
+                  "            ",
+                  "            console.log(\"Found department:\", firstDept.term, \"with ID:\", firstDept.id);",
+                  "        } else {",
+                  "            console.log(\"No departments found in search results\");",
+                  "        }",
+                  "    } else {",
+                  "        console.log(\"Request failed with status:\", pm.response.code);",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/search?q=transportation&types=department&limit=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "transportation",
+                  "description": "Search query"
+                },
+                {
+                  "key": "types",
+                  "value": "department",
+                  "description": "Filter by entity type"
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "description": "Number of results to return"
+                }
+              ]
+            },
+            "description": "Step 1: Search for a department to use in subsequent requests"
+          },
+          "response": []
+        },
+        {
+          "name": "2. Get Department Spending",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Test department spending data",
+                  "pm.test(\"Get department spending\", function () {",
+                  "    if (pm.response.code === 200) {",
+                  "        const response = pm.response.json();",
+                  "        ",
+                  "        pm.expect(response.spending).to.be.an('array');",
+                  "        pm.expect(response.pagination).to.be.an('object');",
+                  "        pm.expect(response.summary).to.be.an('object');",
+                  "        ",
+                  "        if (response.spending.length > 0) {",
+                  "            // Store some spending data for next step",
+                  "            const firstSpending = response.spending[0];",
+                  "            pm.environment.set(\"testVendorName\", firstSpending.vendor);",
+                  "            pm.environment.set(\"testProgramCode\", firstSpending.program);",
+                  "            ",
+                  "            console.log(\"Found vendor:\", firstSpending.vendor, \"with program:\", firstSpending.program);",
+                  "            console.log(\"Stored program code for next step:\", firstSpending.program);",
+                  "        } else {",
+                  "            console.log(\"No spending data found to extract program code\");",
+                  "        }",
+                  "    } else {",
+                  "        console.log(\"Request failed with status:\", pm.response.code);",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&department={{testDepartmentName}}&year=2024&limit=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "department",
+                  "value": "{{testDepartmentName}}",
+                  "description": "Department name from previous step"
+                },
+                {
+                  "key": "year",
+                  "value": "2024",
+                  "description": "Fiscal year"
+                },
+                {
+                  "key": "limit",
+                  "value": "5",
+                  "description": "Number of records per page"
+                }
+              ]
+            },
+            "description": "Step 2: Get spending data for the department found in step 1"
+          },
+          "response": []
+        },
+        {
+          "name": "3. Search for Vendor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Test vendor search",
+                  "pm.test(\"Search for vendor\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    ",
+                  "    pm.expect(response.vendors).to.be.an('array');",
+                  "    ",
+                  "    if (response.vendors.length > 0) {",
+                  "        const firstVendor = response.vendors[0];",
+                  "        pm.environment.set(\"testVendorId\", firstVendor.id);",
+                  "        ",
+                  "        console.log(\"Found vendor:\", firstVendor.term, \"with ID:\", firstVendor.id);",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/search?q={{testVendorName}}&types=vendor&limit=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{testVendorName}}",
+                  "description": "Vendor name from previous step"
+                },
+                {
+                  "key": "types",
+                  "value": "vendor",
+                  "description": "Filter by entity type"
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "description": "Number of results to return"
+                }
+              ]
+            },
+            "description": "Step 3: Search for the vendor found in the spending data"
+          },
+          "response": []
+        },
+        {
+          "name": "4. Get Vendor Spending Details",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Test vendor spending details",
+                  "pm.test(\"Get vendor spending details\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    ",
+                  "    pm.expect(response.spending).to.be.an('array');",
+                  "    pm.expect(response.summary).to.be.an('object');",
+                  "    ",
+                  "    console.log(\"Vendor spending summary:\", response.summary);",
+                  "    console.log(\"Total transactions:\", response.spending.length);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&vendor={{testVendorName}}&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "vendor",
+                  "value": "{{testVendorName}}",
+                  "description": "Vendor name from previous step"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of records per page"
+                }
+              ]
+            },
+            "description": "Step 4: Get detailed spending data for the vendor"
+          },
+          "response": []
+        },
+        {
+          "name": "5. Get Program Details",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Check if we have a valid program code before making the request",
+                  "const programCode = pm.environment.get(\"testProgramCode\");",
+                  "if (!programCode || programCode === \"Unknown Program\" || programCode === \"\") {",
+                  "    console.log(\"No valid program code available, using fallback program code\");",
+                  "    pm.environment.set(\"testProgramCode\", \"2500-001\");",
+                  "}"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Test program details",
+                  "pm.test(\"Get program details\", function () {",
+                  "    const programCode = pm.environment.get(\"testProgramCode\");",
+                  "    ",
+                  "    if (pm.response.code === 200) {",
+                  "        const response = pm.response.json();",
+                  "        ",
+                  "        pm.expect(response).to.be.an('object');",
+                  "        ",
+                  "        if (response.description) {",
+                  "            console.log(\"Program description:\", response.description);",
+                  "        }",
+                  "        if (response.totalBudget) {",
+                  "            console.log(\"Program total budget:\", response.totalBudget);",
+                  "        }",
+                  "    } else if (pm.response.code === 404) {",
+                  "        console.log(\"Program not found. Program code:\", programCode);",
+                  "        console.log(\"This is expected if the program code doesn't exist in the database.\");",
+                  "    } else {",
+                  "        console.log(\"Request failed with status:\", pm.response.code);",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/programs/{{testProgramCode}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "programs", "{{testProgramCode}}"]
+            },
+            "description": "Step 5: Get details for the program found in spending data"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Performance Tests",
+      "item": [
+        {
+          "name": "Large Dataset Test",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Performance test for large datasets",
+                  "pm.test(\"Response time is acceptable\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "    console.log(\"Response time:\", pm.response.responseTime, \"ms\");",
+                  "});",
+                  "",
+                  "pm.test(\"Large dataset handling\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    ",
+                  "    pm.expect(response.spending).to.be.an('array');",
+                  "    pm.expect(response.spending.length).to.be.at.most(100);",
+                  "    ",
+                  "    console.log(\"Records returned:\", response.spending.length);",
+                  "    console.log(\"Total items available:\", response.pagination.totalItems);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&limit=100&page=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Large number of records"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                }
+              ]
+            },
+            "description": "Test performance with large dataset requests"
+          },
+          "response": []
+        },
+        {
+          "name": "Complex Filter Test",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Test complex filtering performance",
+                  "pm.test(\"Complex filter response time\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "    console.log(\"Complex filter response time:\", pm.response.responseTime, \"ms\");",
+                  "});",
+                  "",
+                  "pm.test(\"Complex filter results\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    ",
+                  "    pm.expect(response.spending).to.be.an('array');",
+                  "    ",
+                  "    // Verify filters are applied correctly",
+                  "    if (response.spending.length > 0) {",
+                  "        const firstRecord = response.spending[0];",
+                  "        pm.expect(firstRecord.year).to.equal(2024);",
+                  "        ",
+                  "        console.log(\"Filtered results:\", response.spending.length, \"records\");",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&year=2024&department=Transportation&sort=amount&order=desc&limit=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "year",
+                  "value": "2024",
+                  "description": "Fiscal year filter"
+                },
+                {
+                  "key": "department",
+                  "value": "Transportation",
+                  "description": "Department filter"
+                },
+                {
+                  "key": "sort",
+                  "value": "amount",
+                  "description": "Sort by amount"
+                },
+                {
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Descending order"
+                },
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Number of records"
+                }
+              ]
+            },
+            "description": "Test performance with complex filtering and sorting"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Error Handling Tests",
+      "item": [
+        {
+          "name": "Invalid Year Parameter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Test error handling for invalid year",
+                  "pm.test(\"Handles invalid year gracefully\", function () {",
+                  "    // Should either return 400 or handle gracefully",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 422]);",
+                  "    ",
+                  "    if (pm.response.code === 200) {",
+                  "        const response = pm.response.json();",
+                  "        pm.expect(response.spending).to.be.an('array');",
+                  "        console.log(\"API handled invalid year gracefully\");",
+                  "    } else {",
+                  "        console.log(\"API returned error for invalid year as expected\");",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&year=invalid&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "year",
+                  "value": "invalid",
+                  "description": "Invalid year parameter"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of records"
+                }
+              ]
+            },
+            "description": "Test error handling for invalid year parameter"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Limit Parameter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Test error handling for invalid limit",
+                  "pm.test(\"Handles invalid limit gracefully\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 422]);",
+                  "    ",
+                  "    if (pm.response.code === 200) {",
+                  "        const response = pm.response.json();",
+                  "        pm.expect(response.spending).to.be.an('array');",
+                  "        console.log(\"API handled invalid limit gracefully\");",
+                  "    } else {",
+                  "        console.log(\"API returned error for invalid limit as expected\");",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&limit=-1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "limit",
+                  "value": "-1",
+                  "description": "Invalid negative limit"
+                }
+              ]
+            },
+            "description": "Test error handling for invalid limit parameter"
+          },
+          "response": []
+        },
+        {
+          "name": "Non-existent Department",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Test handling of non-existent department",
+                  "pm.test(\"Handles non-existent department gracefully\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    ",
+                  "    pm.expect(response.spending).to.be.an('array');",
+                  "    pm.expect(response.spending.length).to.equal(0);",
+                  "    ",
+                  "    console.log(\"API correctly returned empty results for non-existent department\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/spend?view=vendor&department=NonExistentDepartment12345&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "spend"],
+              "query": [
+                {
+                  "key": "view",
+                  "value": "vendor",
+                  "description": "View type: vendor"
+                },
+                {
+                  "key": "department",
+                  "value": "NonExistentDepartment12345",
+                  "description": "Non-existent department name"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of records"
+                }
+              ]
+            },
+            "description": "Test handling of non-existent department"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+} 

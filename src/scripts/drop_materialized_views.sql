@@ -1,6 +1,0 @@
-drop materialized view program_compare_summary;
-drop materialized view department_compare_summary;
-drop materialized view fund_compare_summary;
-drop materialized view budget_line_items_with_names;
-drop materialized view vendor_totals_all_years;
-drop materialized view vendor_transactions_with_vendor;

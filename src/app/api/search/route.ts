@@ -282,27 +282,20 @@ export async function GET(request: NextRequest) {
     }
 
     // Sort by score and limit results per type
-    const normalizedQuery = query.trim().toLowerCase();
-    const nameMatches = (item: any) =>
-      item.term && item.term.toLowerCase().includes(normalizedQuery);
     const sortedResults = {
       departments: transformedResults.departments
-        .filter(nameMatches)
         .sort((a: any, b: any) => b.score - a.score)
         .slice(0, limit)
         .map(({ score: _score, ...item }: any) => item),
       vendors: transformedResults.vendors
-        .filter(nameMatches)
         .sort((a: any, b: any) => b.score - a.score)
         .slice(0, limit)
         .map(({ score: _score, ...item }: any) => item),
       programs: transformedResults.programs
-        .filter(nameMatches)
         .sort((a: any, b: any) => b.score - a.score)
         .slice(0, limit)
         .map(({ score: _score, ...item }: any) => item),
       funds: transformedResults.funds
-        .filter(nameMatches)
         .sort((a: any, b: any) => b.score - a.score)
         .slice(0, limit)
         .map(({ score: _score, ...item }: any) => item),

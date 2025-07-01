@@ -1,6 +1,6 @@
 {
   "name": "cali-doge",
-  "version": "1.6.9",
+  "version": "1.6.10",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
@@ -22,7 +22,7 @@
     "test": "jest --config jest.config.js",
     "test:unit": "TEST_MODE=mock jest --passWithNoTests --config jest.config.js",
     "test:dev": "npm run test:unit",
-    "test:integration": "TEST_MODE=integration jest --config jest.config.js",
+    "test:integration": "TEST_MODE=integration jest --config jest.config.js && npx newman run __tests__/integration/cali-doge-api-testing.postman_collection.json",
     "test:stage": "npm run test:integration",
     "test:watch": "jest --config jest.config.js --watch",
     "process-json": "npx tsx src/scripts/process_json.ts",

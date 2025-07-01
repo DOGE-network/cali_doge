@@ -103,6 +103,7 @@ export function DepartmentDetailCard({
   budgetTotal 
 }: DepartmentDetailCardProps) {
   const [hasPage, setHasPage] = useState(false);
+  const [departmentSlug, setDepartmentSlug] = useState<string>('');
 
   useEffect(() => {
     if (item.type === 'department' && item.id) {
@@ -110,7 +111,15 @@ export function DepartmentDetailCard({
       fetch('/api/departments/available')
         .then(res => res.json())
         .then(data => {
-          setHasPage(data.slugs.includes(item.id));
+          // Find the matching slug that starts with the department ID
+          const matchingSlug = data.slugs.find((slug: string) => slug.startsWith(item.id + '_'));
+          if (matchingSlug) {
+            setHasPage(true);
+            setDepartmentSlug(matchingSlug);
+          } else {
+            setHasPage(false);
+            setDepartmentSlug(item.id || 'unknown-department');
+          }
         })
         .catch(console.error);
     }
@@ -118,7 +127,6 @@ export function DepartmentDetailCard({
 
   if (item.type !== 'department') return null;
   const departmentItem = item as SearchItem;
-  const departmentSlug = departmentItem.id || 'unknown-department';
 
   return (
     <div className={`p-6 border rounded-lg transition-all ${
