@@ -1,6 +1,58 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1939873848469725582"
+      ],
+      "created_at": "2025-07-01T02:29:01.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1046545033657081857",
+            "name": "News",
+            "description": "News"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "text": "@PatriotDad_USA - what job do you want to do next? \n- where do you think are the most jobs for you?\n- what is your 5 year plan?\nYou can then ask follow up questions for policy, politics, or the simple which politician has your back? Plz explain…",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          }
+        ]
+      },
+      "id": "1939873848469725582",
+      "created_at_formatted": "Jul 1, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -19343,8 +19395,8 @@
     }
   ],
   "meta": {
-    "result_count": 179,
-    "newest_id": "1939787213807788215",
+    "result_count": 180,
+    "newest_id": "1939873848469725582",
     "oldest_id": "1882144700762878208"
   }
 }
