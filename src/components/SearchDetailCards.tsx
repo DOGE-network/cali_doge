@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import type { SearchItem, KeywordItem } from '@/types/search';
 import { fuzzyMatch } from '@/lib/fuzzyMatching';
-import { downloadTSV, getAvailableColumns, VENDOR_SPENDING_COLUMNS, BUDGET_SPENDING_COLUMNS } from '@/lib/download';
+import { downloadTSVWithLookups, getAvailableColumns, VENDOR_SPENDING_COLUMNS, BUDGET_SPENDING_COLUMNS } from '@/lib/download';
 
 interface DetailCardProps {
   item: SearchItem | KeywordItem;
@@ -66,25 +66,17 @@ function MatchedFieldButton({
 }) {
   const [hovered, setHovered] = useState(false);
   if (!matchField || !matchSnippet) return null;
-  
-  // Determine button color based on fuzzy score
-  const getButtonColor = (score?: number) => {
-    if (!score) return 'bg-blue-500 hover:bg-blue-600';
-    if (score >= 0.9) return 'bg-green-500 hover:bg-green-600';
-    if (score >= 0.7) return 'bg-yellow-500 hover:bg-yellow-600';
-    return 'bg-red-500 hover:bg-red-600';
-  };
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <button
         type="button"
-        className={`px-3 py-1 text-sm text-white rounded transition-colors ml-2 ${getButtonColor(fuzzyScore)}`}
+        className="px-3 py-1 text-sm text-white rounded transition-colors ml-2 bg-blue-500 hover:bg-blue-600"
         style={{ minWidth: 90 }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        {fuzzyResult ? `Match: ${fuzzyResult}` : `Matched ${matchField}`}
+        Matched {matchField}
       </button>
       {hovered && (
         <div
@@ -109,6 +101,9 @@ function MatchedFieldButton({
             {fuzzyScore && (
               <div style={{ marginBottom: '4px', color: '#666' }}>
                 Fuzzy Score: {Math.round(fuzzyScore * 100)}%
+                {fuzzyResult && (
+                  <span className="ml-2">({fuzzyResult})</span>
+                )}
               </div>
             )}
             <div>
@@ -246,36 +241,42 @@ function DetailedDataModal({
   // Download all data for the department
   const handleDownload = async () => {
     if (!departmentName || downloading) return;
-    
     setDownloading(true);
     try {
       // Fetch all data (no pagination limit)
       const url = type === 'vendor' 
         ? `/api/spend?department=${encodeURIComponent(departmentName)}&limit=10000&sort=${sortColumn}&order=${sortDirection}`
         : `/api/spend?view=budget&department=${encodeURIComponent(departmentName)}&limit=10000&sort=${sortColumn}&order=${sortDirection}`;
-      
       const response = await fetch(url);
       const result = await response.json();
-      
-      const allData = result.spending || [];
-      
+      let allData = result.spending || [];
+
       if (allData.length === 0) {
         alert('No data to download');
         return;
       }
-      
+
+      // Re-run match logic for all rows before export
+      allData = allData.map(row => {
+        const match = findMatchInRecord(row, query, departmentName);
+        return {
+          ...row,
+          matchField: match?.field,
+          matchSnippet: match?.matchedText,
+          fuzzyScore: match?.score,
+          fuzzyResult: match?.confidence
+        };
+      });
+
       // Determine columns based on data type and available fields
       const predefinedColumns = type === 'vendor' ? VENDOR_SPENDING_COLUMNS : BUDGET_SPENDING_COLUMNS;
       const availableColumns = getAvailableColumns(allData, predefinedColumns);
-      
       // Generate filename
       const safeDepName = departmentName.replace(/[^a-zA-Z0-9]/g, '_');
       const timestamp = new Date().toISOString().split('T')[0];
       const filename = `${type}_spending_${safeDepName}_${timestamp}`;
-      
       // Download the data
-      downloadTSV(allData, filename, availableColumns);
-      
+      await downloadTSVWithLookups(allData, filename, availableColumns);
     } catch (error) {
       console.error('Error downloading data:', error);
       alert('Failed to download data. Please try again.');

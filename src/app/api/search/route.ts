@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server';
 import { search as searchAccess } from '@/lib/api/dataAccess';
 import type { SearchItem, KeywordItem } from '@/types/search';
 import { fuzzyMatch, formatMatchResult, type FuzzyMatchResult } from '@/lib/fuzzyMatching';
+import { getServiceSupabase } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -193,15 +194,31 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '10', 10);
     const excludeCommon = searchParams.get('exclude_common') === 'true';
     
-    // If no query provided, return empty results
+    // If no query provided, return all entries for requested types from search_index
     if (!query.trim()) {
-      return NextResponse.json({
+      const supabase = getServiceSupabase();
+      const results: Record<string, any[]> = {
         departments: [],
         vendors: [],
         programs: [],
         funds: [],
-        keywords: [],
-        totalResults: 0,
+        keywords: []
+      };
+      for (const type of types) {
+        // Map plural to singular for search_index type
+        const dbType = type.replace(/s$/, '');
+        if (["department", "vendor", "program", "fund", "keyword"].includes(dbType)) {
+          const { data } = await supabase
+            .from('search_index')
+            .select('*')
+            .eq('type', dbType)
+            .limit(limit);
+          if (data) results[type] = data;
+        }
+      }
+      return NextResponse.json({
+        ...results,
+        totalResults: Object.values(results).reduce((sum, arr) => sum + arr.length, 0),
         query: '',
         appliedFilters: {
           types,
