@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { search as searchAccess } from '@/lib/api/dataAccess';
 import type { SearchItem, KeywordItem } from '@/types/search';
+import { fuzzyMatch, formatMatchResult, type FuzzyMatchResult } from '@/lib/fuzzyMatching';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -111,26 +112,77 @@ function calculateRelevanceScore(item: any, query: string): number {
   return score;
 }
 
-// Helper to get match info for a result
+// Helper to get match info for a result with fuzzy matching
 function getMatchInfo(item: any, query: string) {
   const q = query.toLowerCase();
-  if (item.term && item.term.toLowerCase().includes(q)) {
-    return { matchField: 'name', matchSnippet: item.term };
-  }
-  if (item.source_id && item.source_id.toLowerCase().includes(q)) {
-    return { matchField: 'id', matchSnippet: item.source_id };
-  }
-  if (item.additional_data?.context && typeof item.additional_data.context === 'string') {
-    const context = item.additional_data.context;
-    const idx = context.toLowerCase().indexOf(q);
-    if (idx !== -1) {
-      const start = Math.max(0, idx - 30);
-      const end = Math.min(context.length, idx + 30 + q.length);
-      const snippet = context.substring(start, end);
-      return { matchField: 'description', matchSnippet: snippet };
+  let bestMatch: { field: string; snippet: string; fuzzyResult?: FuzzyMatchResult } | null = null;
+  let bestScore = 0;
+
+  // Check different fields for matches
+  const fieldsToCheck = [
+    { field: 'name', value: item.term },
+    { field: 'id', value: item.source_id },
+    { field: 'description', value: item.additional_data?.context }
+  ];
+
+  for (const { field, value } of fieldsToCheck) {
+    if (!value || typeof value !== 'string') continue;
+
+    // First check for exact substring matches (existing logic)
+    if (value.toLowerCase().includes(q)) {
+      if (field === 'description') {
+        const idx = value.toLowerCase().indexOf(q);
+        const start = Math.max(0, idx - 30);
+        const end = Math.min(value.length, idx + 30 + q.length);
+        const snippet = value.substring(start, end);
+        return { 
+          matchField: field, 
+          matchSnippet: snippet,
+          fuzzyScore: 1.0,
+          fuzzyResult: formatMatchResult({
+            score: 1.0,
+            confidence: 'high',
+            algorithm: 'exact',
+            matchType: 'exact'
+          })
+        };
+      } else {
+        return { 
+          matchField: field, 
+          matchSnippet: value,
+          fuzzyScore: 1.0,
+          fuzzyResult: formatMatchResult({
+            score: 1.0,
+            confidence: 'high',
+            algorithm: 'exact',
+            matchType: 'exact'
+          })
+        };
+      }
+    }
+
+    // Then check for fuzzy matches
+    const fuzzyResult = fuzzyMatch(query, value, { threshold: 0.5 });
+    if (fuzzyResult.score > bestScore) {
+      bestScore = fuzzyResult.score;
+      bestMatch = {
+        field,
+        snippet: value,
+        fuzzyResult
+      };
     }
   }
-  return { matchField: null, matchSnippet: null };
+
+  if (bestMatch && bestMatch.fuzzyResult) {
+    return {
+      matchField: bestMatch.field,
+      matchSnippet: bestMatch.snippet,
+      fuzzyScore: bestMatch.fuzzyResult.score,
+      fuzzyResult: formatMatchResult(bestMatch.fuzzyResult)
+    };
+  }
+
+  return { matchField: null, matchSnippet: null, fuzzyScore: 0, fuzzyResult: null };
 }
 
 export async function GET(request: NextRequest) {
@@ -254,12 +306,14 @@ export async function GET(request: NextRequest) {
           id: item.source_id,
           ...(item.additional_data as any)
         };
-        const { matchField, matchSnippet } = getMatchInfo(item, query);
+        const { matchField, matchSnippet, fuzzyScore, fuzzyResult } = getMatchInfo(item, query);
         const scoredItem = {
           ...searchItem,
           score: calculateRelevanceScore(item, query),
           matchField,
-          matchSnippet
+          matchSnippet,
+          fuzzyScore,
+          fuzzyResult
         };
         switch (item.type) {
           case 'department':

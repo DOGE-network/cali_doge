@@ -211,13 +211,11 @@ export async function GET(request: NextRequest) {
       }
 
       // Apply sorting
-      const sortField = sort === 'amount' ? 'vendor_amount' : 
+      const sortField = sort === 'amount' ? 'amount' : 
                        sort === 'year' ? 'year' :
-                       sort === 'vendorAmount' ? 'vendor_amount' :
-                       sort === 'budgetAmount' ? 'budget_amount' :
-                       compareBy === 'department' ? 'department_name' :
-                       compareBy === 'program' ? 'program_name' :
-                       compareBy === 'fund' ? 'fund_name' : 'vendor_amount';
+                       sort === 'department' ? 'department_name' :
+                       sort === 'program' ? 'program_name' :
+                       sort === 'fund' ? 'fund_name' : 'amount';
       const ascending = order === 'asc';
       query = query.order(sortField, { ascending });
 
@@ -354,9 +352,8 @@ export async function GET(request: NextRequest) {
         const sortField = sort === 'amount' ? 'amount' : 
                          sort === 'year' ? 'fiscal_year' :
                          sort === 'department' ? 'department_name' :
-                         sort === 'vendor' ? 'vendor_name' :
-                         sort === 'program' ? 'program_code' :
-                         sort === 'fund' ? 'fund_code' : 'amount';
+                         sort === 'program' ? 'program_name' :
+                         sort === 'fund' ? 'fund_name' : 'amount';
         const ascending = order === 'asc';
         filteredQuery = filteredQuery.order(sortField, { ascending });
 

@@ -307,6 +307,8 @@ function SearchPageClient() {
             budgetTotal={departmentTotals[dept.id]?.budgetTotal}
             vendorRecordCount={departmentTotals[dept.id]?.vendorRecordCount}
             budgetRecordCount={departmentTotals[dept.id]?.budgetRecordCount}
+            fuzzyScore={(dept as any).fuzzyScore}
+            fuzzyResult={(dept as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-department' : undefined}
           />
         ))
@@ -323,6 +325,8 @@ function SearchPageClient() {
             matchField={(vendor as any).matchField}
             matchSnippet={(vendor as any).matchSnippet}
             query={query}
+            fuzzyScore={(vendor as any).fuzzyScore}
+            fuzzyResult={(vendor as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-vendor' : undefined}
           />
         ))
@@ -339,6 +343,8 @@ function SearchPageClient() {
             matchField={(program as any).matchField}
             matchSnippet={(program as any).matchSnippet}
             query={query}
+            fuzzyScore={(program as any).fuzzyScore}
+            fuzzyResult={(program as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-program' : undefined}
           />
         ))
@@ -355,6 +361,8 @@ function SearchPageClient() {
             matchField={(fund as any).matchField}
             matchSnippet={(fund as any).matchSnippet}
             query={query}
+            fuzzyScore={(fund as any).fuzzyScore}
+            fuzzyResult={(fund as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-fund' : undefined}
           />
         ))
@@ -371,6 +379,8 @@ function SearchPageClient() {
             matchField={(keyword as any).matchField}
             matchSnippet={(keyword as any).matchSnippet}
             query={query}
+            fuzzyScore={(keyword as any).fuzzyScore}
+            fuzzyResult={(keyword as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-keyword' : undefined}
           />
         ))
