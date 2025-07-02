@@ -58,7 +58,12 @@ function SearchPageClient() {
   const [isLoading] = useState(false);
   // State for collapsed sections
   const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
-  const [departmentTotals, setDepartmentTotals] = useState<Record<string, { vendorTotal: number | null, budgetTotal: number | null }>>({});
+  const [departmentTotals, setDepartmentTotals] = useState<Record<string, { 
+    vendorTotal: number | null; 
+    budgetTotal: number | null;
+    vendorRecordCount: number | null;
+    budgetRecordCount: number | null;
+  }>>({});
   // eslint-disable-next-line no-unused-vars
   const [totalsLoading, setTotalsLoading] = useState(false);
 
@@ -233,7 +238,12 @@ function SearchPageClient() {
     if (!searchData || !searchData.departments) return;
     const fetchTotals = async () => {
       setTotalsLoading(true);
-      const newTotals: Record<string, { vendorTotal: number | null, budgetTotal: number | null }> = {};
+      const newTotals: Record<string, { 
+        vendorTotal: number | null; 
+        budgetTotal: number | null;
+        vendorRecordCount: number | null;
+        budgetRecordCount: number | null;
+      }> = {};
       await Promise.all(
         searchData.departments.map(async (dept) => {
           try {
@@ -243,10 +253,17 @@ function SearchPageClient() {
             ]);
             newTotals[dept.id] = {
               vendorTotal: vendorRes.summary?.totalAmount ?? null,
-              budgetTotal: budgetRes.spending ? budgetRes.spending.reduce((sum: number, rec: any) => sum + (rec.amount || 0), 0) : null,
+              budgetTotal: budgetRes.summary?.totalAmount ?? null,
+              vendorRecordCount: vendorRes.summary?.recordCount ?? null,
+              budgetRecordCount: budgetRes.summary?.recordCount ?? null,
             };
           } catch {
-            newTotals[dept.id] = { vendorTotal: null, budgetTotal: null };
+            newTotals[dept.id] = { 
+              vendorTotal: null, 
+              budgetTotal: null,
+              vendorRecordCount: null,
+              budgetRecordCount: null,
+            };
           }
         })
       );
@@ -288,6 +305,8 @@ function SearchPageClient() {
             query={query}
             vendorTotal={departmentTotals[dept.id]?.vendorTotal}
             budgetTotal={departmentTotals[dept.id]?.budgetTotal}
+            vendorRecordCount={departmentTotals[dept.id]?.vendorRecordCount}
+            budgetRecordCount={departmentTotals[dept.id]?.budgetRecordCount}
             data-tour={index === 0 ? 'result-card-department' : undefined}
           />
         ))
