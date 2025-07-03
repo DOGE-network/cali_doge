@@ -6,6 +6,9 @@
 # Environment variables
 .env.local
 
+# test coverage
+/__tests__/coverage
+
 # Raw Data files
 # as files are too large
 src/data/vendors/*.csv 

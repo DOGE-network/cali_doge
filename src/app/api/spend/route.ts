@@ -32,6 +32,7 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const department = searchParams.get('department');
+    const departmentCode = searchParams.get('department_code');
     const vendor = searchParams.get('vendor');
     const program = searchParams.get('program');
     const fund = searchParams.get('fund');
@@ -53,7 +54,9 @@ export async function GET(request: NextRequest) {
         .select('*', { count: 'exact' });
 
       // Apply filters
-      if (department) {
+      if (departmentCode) {
+        query = query.eq('department_code', departmentCode);
+      } else if (department) {
         query = query.ilike('department_name', `%${department}%`);
       }
       if (year) {
@@ -92,11 +95,18 @@ export async function GET(request: NextRequest) {
       }
 
       // Calculate totals
-      const { data: totalData, error: totalError } = await supabase
+      let totalQuery = supabase
         .from('budget_line_items_with_names')
-        .select('amount')
-        .ilike('department_name', department ? `%${department}%` : '%')
-        .eq('fiscal_year', year ? parseInt(year) : 0);
+        .select('amount');
+      if (departmentCode) {
+        totalQuery = totalQuery.eq('department_code', departmentCode);
+      } else if (department) {
+        totalQuery = totalQuery.ilike('department_name', `%${department}%`);
+      }
+      if (year) {
+        totalQuery = totalQuery.eq('fiscal_year', parseInt(year));
+      }
+      const { data: totalData, error: totalError } = await totalQuery;
 
       if (totalError) {
         console.error('Budget total calculation error:', totalError);
@@ -125,6 +135,7 @@ export async function GET(request: NextRequest) {
       const spending = data?.map(item => ({
         year: item.fiscal_year,
         department: item.department_name || 'Unknown Department',
+        departmentCode: item.department_code || null,
         vendor: 'Budget Allocation',
         program: item.program_name || 'Unknown Program',
         fund: item.fund_name || 'Unknown Fund',
@@ -331,7 +342,10 @@ export async function GET(request: NextRequest) {
         let filteredQuery = query;
         let filteredTotalQuery = totalQuery;
         
-        if (department) {
+        if (departmentCode) {
+          filteredQuery = filteredQuery.eq('department_code', departmentCode);
+          filteredTotalQuery = filteredTotalQuery.eq('department_code', departmentCode);
+        } else if (department) {
           filteredQuery = filteredQuery.ilike('department_name', `%${department}%`);
           filteredTotalQuery = filteredTotalQuery.ilike('department_name', `%${department}%`);
         }
@@ -420,7 +434,9 @@ export async function GET(request: NextRequest) {
           let yearQuery = (supabase as any).from(viewName).select('*');
           
           // Apply filters
-          if (department) {
+          if (departmentCode) {
+            yearQuery = yearQuery.eq('department_code', departmentCode);
+          } else if (department) {
             yearQuery = yearQuery.ilike('department_name', `%${department}%`);
           }
           if (vendor) {
@@ -472,6 +488,7 @@ export async function GET(request: NextRequest) {
       const spending = data?.map(item => ({
         year: item.fiscal_year,
         department: item.department_name || 'Unknown Department',
+        departmentCode: item.department_code || null,
         vendor: item.vendor_name || 'Unknown Vendor',
         program: item.program_code || 'Unknown Program',
         fund: item.fund_code || 'Unknown Fund',

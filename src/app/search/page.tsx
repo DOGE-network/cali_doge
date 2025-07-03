@@ -248,8 +248,8 @@ function SearchPageClient() {
         searchData.departments.map(async (dept) => {
           try {
             const [vendorRes, budgetRes] = await Promise.all([
-              fetch(`/api/spend?department=${encodeURIComponent(dept.term)}&limit=1`).then(r => r.json()),
-              fetch(`/api/spend?view=budget&department=${encodeURIComponent(dept.term)}&limit=1`).then(r => r.json()),
+              fetch(`/api/spend?department_code=${encodeURIComponent(dept.id)}&limit=1`).then(r => r.json()),
+              fetch(`/api/spend?view=budget&department_code=${encodeURIComponent(dept.id)}&limit=1`).then(r => r.json()),
             ]);
             newTotals[dept.id] = {
               vendorTotal: vendorRes.summary?.totalAmount ?? null,
