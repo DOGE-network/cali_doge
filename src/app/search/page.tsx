@@ -58,7 +58,12 @@ function SearchPageClient() {
   const [isLoading] = useState(false);
   // State for collapsed sections
   const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
-  const [departmentTotals, setDepartmentTotals] = useState<Record<string, { vendorTotal: number | null, budgetTotal: number | null }>>({});
+  const [departmentTotals, setDepartmentTotals] = useState<Record<string, { 
+    vendorTotal: number | null; 
+    budgetTotal: number | null;
+    vendorRecordCount: number | null;
+    budgetRecordCount: number | null;
+  }>>({});
   // eslint-disable-next-line no-unused-vars
   const [totalsLoading, setTotalsLoading] = useState(false);
 
@@ -233,20 +238,32 @@ function SearchPageClient() {
     if (!searchData || !searchData.departments) return;
     const fetchTotals = async () => {
       setTotalsLoading(true);
-      const newTotals: Record<string, { vendorTotal: number | null, budgetTotal: number | null }> = {};
+      const newTotals: Record<string, { 
+        vendorTotal: number | null; 
+        budgetTotal: number | null;
+        vendorRecordCount: number | null;
+        budgetRecordCount: number | null;
+      }> = {};
       await Promise.all(
         searchData.departments.map(async (dept) => {
           try {
             const [vendorRes, budgetRes] = await Promise.all([
-              fetch(`/api/spend?department=${encodeURIComponent(dept.term)}&limit=1`).then(r => r.json()),
-              fetch(`/api/spend?view=budget&department=${encodeURIComponent(dept.term)}&limit=1`).then(r => r.json()),
+              fetch(`/api/spend?department_code=${encodeURIComponent(dept.id)}&limit=1`).then(r => r.json()),
+              fetch(`/api/spend?view=budget&department_code=${encodeURIComponent(dept.id)}&limit=1`).then(r => r.json()),
             ]);
             newTotals[dept.id] = {
               vendorTotal: vendorRes.summary?.totalAmount ?? null,
-              budgetTotal: budgetRes.spending ? budgetRes.spending.reduce((sum: number, rec: any) => sum + (rec.amount || 0), 0) : null,
+              budgetTotal: budgetRes.summary?.totalAmount ?? null,
+              vendorRecordCount: vendorRes.summary?.recordCount ?? null,
+              budgetRecordCount: budgetRes.summary?.recordCount ?? null,
             };
           } catch {
-            newTotals[dept.id] = { vendorTotal: null, budgetTotal: null };
+            newTotals[dept.id] = { 
+              vendorTotal: null, 
+              budgetTotal: null,
+              vendorRecordCount: null,
+              budgetRecordCount: null,
+            };
           }
         })
       );
@@ -288,6 +305,10 @@ function SearchPageClient() {
             query={query}
             vendorTotal={departmentTotals[dept.id]?.vendorTotal}
             budgetTotal={departmentTotals[dept.id]?.budgetTotal}
+            vendorRecordCount={departmentTotals[dept.id]?.vendorRecordCount}
+            budgetRecordCount={departmentTotals[dept.id]?.budgetRecordCount}
+            fuzzyScore={(dept as any).fuzzyScore}
+            fuzzyResult={(dept as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-department' : undefined}
           />
         ))
@@ -304,6 +325,8 @@ function SearchPageClient() {
             matchField={(vendor as any).matchField}
             matchSnippet={(vendor as any).matchSnippet}
             query={query}
+            fuzzyScore={(vendor as any).fuzzyScore}
+            fuzzyResult={(vendor as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-vendor' : undefined}
           />
         ))
@@ -320,6 +343,8 @@ function SearchPageClient() {
             matchField={(program as any).matchField}
             matchSnippet={(program as any).matchSnippet}
             query={query}
+            fuzzyScore={(program as any).fuzzyScore}
+            fuzzyResult={(program as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-program' : undefined}
           />
         ))
@@ -336,6 +361,8 @@ function SearchPageClient() {
             matchField={(fund as any).matchField}
             matchSnippet={(fund as any).matchSnippet}
             query={query}
+            fuzzyScore={(fund as any).fuzzyScore}
+            fuzzyResult={(fund as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-fund' : undefined}
           />
         ))
@@ -352,6 +379,8 @@ function SearchPageClient() {
             matchField={(keyword as any).matchField}
             matchSnippet={(keyword as any).matchSnippet}
             query={query}
+            fuzzyScore={(keyword as any).fuzzyScore}
+            fuzzyResult={(keyword as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-keyword' : undefined}
           />
         ))
