@@ -1,6 +1,197 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1941142698284728475"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 210,
+            "end": 218,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 219,
+            "end": 234,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 235,
+            "end": 246,
+            "username": "twinforces",
+            "id": "258495978"
+          },
+          {
+            "start": 247,
+            "end": 259,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 260,
+            "end": 276,
+            "username": "Titanshell42069",
+            "id": "1770510201310859264"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 15,
+            "end": 21,
+            "probability": 0.9331,
+            "type": "Place",
+            "normalized_text": "America"
+          },
+          {
+            "start": 68,
+            "end": 84,
+            "probability": 0.7035,
+            "type": "Place",
+            "normalized_text": "California DOGE 1"
+          },
+          {
+            "start": 86,
+            "end": 86,
+            "probability": 0.4877,
+            "type": "Other",
+            "normalized_text": "6"
+          }
+        ],
+        "urls": [
+          {
+            "start": 277,
+            "end": 300,
+            "url": "https://t.co/hphhNKUqFZ",
+            "expanded_url": "https://x.com/cali_doge/status/1941142698284728475/photo/1",
+            "display_url": "pic.x.com/hphhNKUqFZ",
+            "media_key": "16_1941142691472928768"
+          }
+        ]
+      },
+      "created_at": "2025-07-04T14:30:58.000Z",
+      "attachments": {
+        "media_keys": [
+          "16_1941142691472928768"
+        ]
+      },
+      "id": "1941142698284728475",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "Happy Birthday America! To do my part to celebrate, I have released California DOGE 1.6.11.   \n\nNow with improved search capabilities, over 30M rows of data processed for your use, and tutorials on every page.\n@joffemd @DataRepublican @twinforces @T_Q_Gardner @Titanshell42069 https://t.co/hphhNKUqFZ",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 4, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "animated_gif",
+          "url": "/media/1941142698284728475_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/tweet_video_thumb/GvBS_keW8AA_Ma-.jpg",
+          "width": 480,
+          "height": 200
+        }
+      ]
+    },
+    {
       "text": "@twinforces  if there are any patches you want a review on, just add me. I will attempt to slow down a bit and do the same.",
       "author_id": "1859283000145608705",
       "entities": {
@@ -19639,8 +19830,8 @@
     }
   ],
   "meta": {
-    "result_count": 184,
-    "newest_id": "1940456014639415417",
+    "result_count": 185,
+    "newest_id": "1941142698284728475",
     "oldest_id": "1882144700762878208"
   }
 }
