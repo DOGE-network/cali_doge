@@ -20,9 +20,25 @@ const getTutorialSteps = (pathname: string): StepType[] => {
           <div>
             <h3 className="text-xl font-bold mb-3">Search Overview</h3>
             <p className="mb-4">This is the most powerful way to explore California government data. You can search across departments, vendors, programs, funds, and keywords.</p>
+            <p className="mb-2 text-sm text-blue-600">💡 We&apos;ve added a sample search &apos;high&apos; to demonstrate the search functionality.</p>
           </div>
         ),
         position: 'center',
+        action: () => {
+          // Input "high" into the search field when tutorial starts
+          const searchInput = document.querySelector('[data-tour="search-input"]') as HTMLInputElement;
+          if (searchInput) {
+            searchInput.value = 'high';
+            // Trigger the change event to update the state
+            const event = new Event('input', { bubbles: true });
+            searchInput.dispatchEvent(event);
+            
+            // Also trigger a search by updating the URL
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('q', 'high');
+            window.history.replaceState({}, '', currentUrl.toString());
+          }
+        },
       },
       // 2. Search Bar
       {
@@ -31,6 +47,7 @@ const getTutorialSteps = (pathname: string): StepType[] => {
           <div>
             <h3 className="text-lg font-bold mb-2">Search Bar</h3>
             <p className="mb-3">Type keywords to search across all government data. Try department names, vendor names, program codes, or fund numbers.</p>
+            <p className="mb-2 text-sm text-gray-600">The search &apos;high&apos; was added to show you how the search works. You can change it to any term you want!</p>
           </div>
         ),
         position: 'bottom',
