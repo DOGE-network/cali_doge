@@ -50,7 +50,7 @@ function SearchPageClient() {
   const router = useRouter();
   
   // State for search and filters
-  const [query, setQuery] = useState('high'); // Auto-fill with 'high'
+  const [query, setQuery] = useState(''); // Start with empty query
   const [selectedTypes, setSelectedTypes] = useState<string[]>(['department', 'vendor', 'program', 'fund', 'keyword']);
   const [excludeCommon, setExcludeCommon] = useState(true);
   const [limit, setLimit] = useState(20);
@@ -418,7 +418,10 @@ function SearchPageClient() {
           <input
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              updateUrl({ q: e.target.value });
+            }}
             placeholder="Search departments, vendors, programs, funds..."
             className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             data-tour="search-input"

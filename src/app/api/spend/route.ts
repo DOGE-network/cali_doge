@@ -222,11 +222,22 @@ export async function GET(request: NextRequest) {
       }
 
       // Apply sorting
-      const sortField = sort === 'amount' ? 'amount' : 
-                       sort === 'year' ? 'year' :
-                       sort === 'department' ? 'department_name' :
-                       sort === 'program' ? 'program_name' :
-                       sort === 'fund' ? 'fund_name' : 'amount';
+      let sortField = sort;
+      if (sort === 'amount' || !['vendorAmount','budgetAmount','year','department','program','fund'].includes(sort)) {
+        sortField = 'vendor_amount'; // Default to vendor_amount for compare view
+      } else if (sort === 'vendorAmount') {
+        sortField = 'vendor_amount';
+      } else if (sort === 'budgetAmount') {
+        sortField = 'budget_amount';
+      } else if (sort === 'year') {
+        sortField = 'year';
+      } else if (sort === 'department') {
+        sortField = 'department_name';
+      } else if (sort === 'program') {
+        sortField = 'program_name';
+      } else if (sort === 'fund') {
+        sortField = 'fund_name';
+      }
       const ascending = order === 'asc';
       query = query.order(sortField, { ascending });
 
