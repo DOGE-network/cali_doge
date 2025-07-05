@@ -1,0 +1,11 @@
+{
+  "version": "./badges/version.svg",
+  "node": "./badges/node.svg",
+  "typescript": "./badges/typescript.svg",
+  "next.js": "./badges/next.js.svg",
+  "license": "./badges/license.svg",
+  "licenseApache": "./badges/licenseApache.svg",
+  "data rows": "./badges/data-rows.svg",
+  "coverage": "./badges/coverage.svg",
+  "build": "./badges/build.svg"
+}
