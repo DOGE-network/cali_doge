@@ -28,7 +28,8 @@
     "test:stage": "npm run test:integration",
     "test:watch": "jest --config jest.config.js --watch",
     "process-json": "npx tsx src/scripts/process_json.ts",
-    "update-supabase-types": "npx supabase gen types typescript --project-id sdopdxbeiqrktcmskplt > src/types/supabase.ts"
+    "update-supabase-types": "npx supabase gen types typescript --project-id sdopdxbeiqrktcmskplt > src/types/supabase.ts",
+    "generate-badges": "node src/scripts/generate-badges.js"
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.2.2",
@@ -41,6 +42,7 @@
     "@upstash/redis": "^1.35.0",
     "@vercel/analytics": "^1.5.0",
     "axios": "^1.9.0",
+    "badge-maker": "^5.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "csv-parse": "^5.6.0",
