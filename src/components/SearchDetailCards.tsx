@@ -22,7 +22,7 @@ interface SpendData {
   transactionCount: number;
   topDepartments: string[];
   topPrograms: string[];
-  recentYear: number;
+  recentYear: number | undefined;
 }
 
 interface ProgramData {
@@ -927,6 +927,13 @@ export function DepartmentDetailCard({
               )}
             </div>
             
+            {/* Accurate total record count display */}
+            {vendorRecordCount && (
+              <div className="text-xs text-gray-600">
+                {vendorRecordCount.toLocaleString()} total records
+              </div>
+            )}
+            
             {/* Vendor Match Analysis */}
             {loadingMatchData ? (
               <div className="text-xs text-gray-500">Analyzing matches...</div>
@@ -988,6 +995,13 @@ export function DepartmentDetailCard({
                 <span className="font-medium text-sm text-gray-500">N/A</span>
               )}
             </div>
+            
+            {/* Accurate total record count display */}
+            {budgetRecordCount && (
+              <div className="text-xs text-gray-600">
+                {budgetRecordCount.toLocaleString()} total records
+              </div>
+            )}
             
             {/* Budget Match Analysis */}
             {loadingMatchData ? (
@@ -1060,36 +1074,77 @@ export function DepartmentDetailCard({
 export function VendorDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult }: DetailCardProps) {
   const [spendData, setSpendData] = useState<SpendData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [matchData, setMatchData] = useState<{
+    topMatches: Array<{
+      score: number;
+      display: string;
+      field: string;
+      confidence: 'high' | 'medium' | 'low';
+      matchedText: string;
+      departmentCode: string;
+      amount: number;
+    }>;
+    totalMatches: number;
+    avgScore: number;
+  } | null>(null);
+  const [showVendorModal, setShowVendorModal] = useState(false);
 
   useEffect(() => {
-    if (isSelected && item.type === 'vendor') {
-      setLoading(true);
-      // Fetch vendor spending data
-      fetch(`/api/spend?vendor=${encodeURIComponent(item.term)}&limit=1`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.spending && data.spending.length > 0) {
-            const totalAmount = data.summary?.totalAmount || 0;
-            const transactionCount = data.summary?.recordCount || 0;
-            const topDepartments: string[] = Array.from(new Set(data.spending.slice(0, 5).map((s: any) => String(s.department || ''))));
-            const topPrograms: string[] = Array.from(new Set(data.spending.slice(0, 5).map((s: any) => String(s.program || ''))));
-            const recentYear = Math.max(...data.spending.map((s: any) => s.year));
-            
-            setSpendData({
-              totalAmount,
-              transactionCount,
-              topDepartments,
-              topPrograms,
-              recentYear
-            });
-          }
-        })
-        .catch(console.error)
-        .finally(() => setLoading(false));
-    }
-  }, [isSelected, item]);
+    if (item.type !== 'vendor') return;
+    setLoading(true);
+    const fetchData = async () => {
+      try {
+        // Fetch vendor summary (totals, record count)
+        const summaryRes = await fetch(`/api/spend?vendor=${encodeURIComponent(item.term)}&limit=1`);
+        const summaryData = await summaryRes.json();
+        const totalAmount = summaryData.summary?.totalAmount || 0;
+        const transactionCount = summaryData.summary?.recordCount || 0;
 
-  // Type guard to ensure we have a SearchItem
+        // Fetch vendor preview for match analysis
+        const previewRes = await fetch(`/api/spend?vendor=${encodeURIComponent(item.term)}&limit=10`);
+        const previewData = await previewRes.json();
+        const topDepartments = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.department || '')))) as string[];
+        const topPrograms = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.program || '')))) as string[];
+        const recentYear = previewData.spending && previewData.spending.length > 0 ? Math.max(...previewData.spending.map((s: any) => s.year)) : undefined;
+        setSpendData({
+          totalAmount,
+          transactionCount,
+          topDepartments,
+          topPrograms,
+          recentYear
+        });
+
+        // Analyze vendor matches (preview only)
+        const vendorMatches = previewData.spending?.map((record: any) => {
+          // Use the search query as the context for vendor matching
+          const match = findMatchInRecord(record, query, query);
+          return match && {
+            ...match,
+            departmentCode: record.department_code || '',
+            amount: record.amount
+          };
+        }).filter((match: any) => match !== null) || [];
+
+        const vendorAvgScore = vendorMatches.length > 0 
+          ? vendorMatches.reduce((sum: number, m: any) => sum + m.score, 0) / vendorMatches.length 
+          : 0;
+
+        setMatchData({
+          topMatches: vendorMatches.slice(0, 3),
+          totalMatches: vendorMatches.length,
+          avgScore: vendorAvgScore
+        });
+      } catch (e) {
+        setSpendData(null);
+        setMatchData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item.term, item.type, query]);
+
   if (item.type !== 'vendor') return null;
   const vendorItem = item as SearchItem;
 
@@ -1105,7 +1160,7 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
           <h3 className="text-lg font-semibold text-gray-900 mb-1">{vendorItem.term}</h3>
           <p className="text-sm text-gray-600">Vendor • ID: {vendorItem.id}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <a
             href={`https://projects.propublica.org/nonprofits/search?q=${encodeURIComponent(vendorItem.term)}`}
             target="_blank"
@@ -1136,36 +1191,84 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
         </div>
       </div>
 
-      {isSelected && (
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          {loading ? (
-            <div className="flex justify-center py-4">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-green-500"></div>
+      {/* Always show summary UI, not just when selected */}
+      <div className="mt-4 space-y-3">
+        <div className="border-t pt-3">
+          <h4 className="text-sm font-medium text-gray-700 mb-2">Vendor Spending</h4>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">Total:</span>
+              {spendData && spendData.totalAmount > 0 ? (
+                <button
+                  onClick={e => { e.stopPropagation(); setShowVendorModal(true); }}
+                  className="font-medium text-blue-600 hover:text-blue-800 underline text-sm"
+                >
+                  ${spendData.totalAmount.toLocaleString()}
+                </button>
+              ) : (
+                <span className="font-medium text-sm text-gray-500">N/A</span>
+              )}
             </div>
-          ) : spendData ? (
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-medium text-gray-900 mb-2">Spending Overview</h4>
-                <div className="space-y-1 text-sm">
-                  <div>Total Amount: <span className="font-medium">${spendData.totalAmount.toLocaleString()}</span></div>
-                  <div>Transactions: <span className="font-medium">{spendData.transactionCount.toLocaleString()}</span></div>
-                  <div>Recent Year: <span className="font-medium">{spendData.recentYear}</span></div>
-                </div>
+            {/* Accurate total record count display */}
+            {spendData && (
+              <div className="text-xs text-gray-600">
+                {spendData.transactionCount.toLocaleString()} total records
               </div>
-              <div>
-                <h4 className="font-medium text-gray-900 mb-2">Top Departments</h4>
-                <div className="space-y-1 text-sm">
-                  {spendData.topDepartments.slice(0, 3).map((dept, index) => (
-                    <div key={`dept-${index}`} className="text-gray-600 truncate">{dept}</div>
+            )}
+            {/* Vendor Match Analysis */}
+            {loading ? (
+              <div className="text-xs text-gray-500">Analyzing matches...</div>
+            ) : matchData && matchData.totalMatches > 0 ? (
+              <div className="space-y-1">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-gray-600">Match Quality:</span>
+                  <span className={`font-medium ${
+                    matchData.avgScore >= 0.7 ? 'text-green-600' :
+                    matchData.avgScore >= 0.4 ? 'text-yellow-600' : 'text-red-600'
+                  }`}>
+                    {Math.round(matchData.avgScore * 100)}% avg
+                  </span>
+                </div>
+                <div className="text-xs text-gray-600">
+                  {matchData.totalMatches} records with matches
+                </div>
+                {/* Top matches preview */}
+                <div className="space-y-1">
+                  {matchData.topMatches.map((match, idx) => (
+                    <div key={idx} className="text-xs bg-gray-50 p-1 rounded">
+                      <div className="flex justify-between">
+                        <span className="truncate">{vendorItem.term}</span>
+                        <span className={`px-1 rounded text-xs ${
+                          match.confidence === 'high' ? 'bg-green-100 text-green-700' :
+                          match.confidence === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-red-100 text-red-700'
+                        }`}>
+                          {Math.round(match.score * 100)}%
+                        </span>
+                      </div>
+                      <div className="text-gray-500 truncate">
+                        via department code: &quot;{match.departmentCode?.substring(0, 5)}...&quot;
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
-            </div>
-          ) : (
-            <div className="text-sm text-gray-500">No spending data available</div>
-          )}
+            ) : (
+              <div className="text-xs text-gray-500">No vendor matches found</div>
+            )}
+          </div>
         </div>
-      )}
+      </div>
+
+      {/* Modal for vendor details, if needed */}
+      <DetailedDataModal
+        isOpen={showVendorModal}
+        onClose={() => setShowVendorModal(false)}
+        title={`Vendor Spending Details - ${vendorItem.term}`}
+        departmentName={vendorItem.term}
+        type="vendor"
+        query={query}
+      />
     </div>
   );
 }
