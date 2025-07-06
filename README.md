@@ -23,10 +23,12 @@ npm run dev
 
 ## What This Does
 
+- Builds the frontend of the California DOGE application 
 - **Search**: Multi-dimensional search across departments, vendors, programs, funds
 - **Spending Analysis**: Track vendor payments, department budgets, program spending
 - **Workforce Data**: Salary and employment data
 - **Department Pages**: Detailed analysis of departments
+- **Plus Regulations and Savings**: still under development 
 
 ## Development
 
@@ -52,11 +54,8 @@ npm run test:integration # Integration tests
 npm run lint            # ESLint
 npm run typecheck       # TypeScript check
 
-# Data Processing
+# Processing tweets
 npm run fetch-tweets    # Update Twitter data
-npm run process-vendors # Process vendor data
-npm run process-budgets # Process budget data
-npm run download-salary # Download salary data
 ```
 
 ## Project Structure
@@ -91,7 +90,12 @@ src/
 - `GET /api/search` - Multi-dimensional search
 - `GET /api/spend` - Spending data analysis
 - `GET /api/departments` - Department information
-- `GET /api/programs/[code]` - Program details
+
+## Department Markdown details
+
+- `src/app/departments/pages/`
+- location of each of the department pages
+- research and deep dives are encouraged
 
 ## License
 
