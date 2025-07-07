@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import type { SearchItem, KeywordItem } from '@/types/search';
 import { fuzzyMatch } from '@/lib/fuzzyMatching';
 import { downloadTSVWithLookups, getAvailableColumns, VENDOR_SPENDING_COLUMNS, BUDGET_SPENDING_COLUMNS } from '@/lib/download';
+import DepartmentSpendingModal from './DepartmentSpendingModal';
+import VendorSpendingModal from './VendorSpendingModal';
 
 interface DetailCardProps {
   item: SearchItem | KeywordItem;
@@ -230,485 +232,6 @@ function MatchedFieldButton({
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-// DetailedDataModal component for displaying detailed spend/budget data
-function DetailedDataModal({ 
-  isOpen, 
-  onClose, 
-  title, 
-  departmentName,
-  type,
-  query,
-  departmentCode
-}: { 
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  departmentName: string;
-  type: 'vendor' | 'budget';
-  query?: string;
-  departmentCode?: string;
-}) {
-  const [data, setData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [pagination, setPagination] = useState<any>(null);
-  const [summary, setSummary] = useState<any>(null);
-  const [sortColumn, setSortColumn] = useState<string>('amount');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
-  const [downloading, setDownloading] = useState(false);
-  const limit = 50;
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
-
-  // Handle column sorting
-  const handleSort = (column: string) => {
-    if (sortColumn === column) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortColumn(column);
-      setSortDirection('desc'); // Default to descending for new column
-    }
-    // Reset to first page when sorting changes
-    setPage(1);
-  };
-
-  // Render sort indicator
-  const renderSortIndicator = (column: string) => {
-    if (sortColumn !== column) {
-      return <span className="text-gray-400 ml-1">⇅</span>;
-    }
-    return (
-      <span className="text-blue-600 ml-1">
-        {sortDirection === 'asc' ? '↑' : '↓'}
-      </span>
-    );
-  };
-
-  // Download all data for the department
-  const handleDownload = async () => {
-    if (!departmentName || downloading) return;
-    setDownloading(true);
-    try {
-      // Use departmentCode prop if available, else extract from title, else fallback to name
-      let code = departmentCode;
-      if (!code) {
-        let codeMatch = title.match(/\((\d{3,})\)$/);
-        code = (codeMatch ? codeMatch[1] : undefined) as string | undefined;
-      }
-      let url: string;
-      if (type === 'vendor') {
-        if (code) {
-          url = `/api/spend?department_code=${encodeURIComponent(code)}&limit=10000&sort=${sortColumn}&order=${sortDirection}`;
-        } else {
-          url = `/api/spend?department=${encodeURIComponent(departmentName)}&limit=10000&sort=${sortColumn}&order=${sortDirection}`;
-        }
-      } else {
-        if (code) {
-          url = `/api/spend?view=budget&department_code=${encodeURIComponent(code)}&limit=10000&sort=${sortColumn}&order=${sortDirection}`;
-        } else {
-          url = `/api/spend?view=budget&department=${encodeURIComponent(departmentName)}&limit=10000&sort=${sortColumn}&order=${sortDirection}`;
-        }
-      }
-      const response = await fetch(url);
-      const result = await response.json();
-      let allData = result.spending || [];
-
-      if (allData.length === 0) {
-        alert('No data to download');
-        return;
-      }
-
-      // Re-run match logic for all rows before export
-      allData = allData.map(row => {
-        const match = findMatchInRecord(row, query, departmentName);
-        // Ensure fund fields remain strings
-        let fundValue = row.fund;
-        if (typeof fundValue === 'number') {
-          fundValue = String(fundValue);
-        }
-        return {
-          ...row,
-          fund: fundValue,
-          matchField: match?.field,
-          matchSnippet: match?.matchedText,
-          fuzzyScore: match?.score,
-          fuzzyResult: match?.confidence
-        };
-      });
-
-      // Determine columns based on data type and available fields
-      const predefinedColumns = type === 'vendor' ? VENDOR_SPENDING_COLUMNS : BUDGET_SPENDING_COLUMNS;
-      const availableColumns = getAvailableColumns(allData, predefinedColumns);
-      // Generate filename
-      const safeDepName = departmentName.replace(/[^a-zA-Z0-9]/g, '_');
-      const timestamp = new Date().toISOString().split('T')[0];
-      const filename = `${type}_spending_${safeDepName}_${timestamp}`;
-      // Download the data
-      await downloadTSVWithLookups(allData, filename, availableColumns);
-    } catch (error) {
-      console.error('Error downloading data:', error);
-      alert('Failed to download data. Please try again.');
-    } finally {
-      setDownloading(false);
-    }
-  };
-
-  // Fetch data when modal opens or page changes
-  useEffect(() => {
-    if (!isOpen || !departmentName) return;
-
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        // Use departmentCode prop if available, else extract from title, else fallback to name
-        let code = departmentCode;
-        if (!code) {
-          let codeMatch = title.match(/\((\d{3,})\)$/);
-          code = (codeMatch ? codeMatch[1] : undefined) as string | undefined;
-        }
-        let url: string;
-        if (type === 'vendor') {
-          if (code) {
-            url = `/api/spend?department_code=${encodeURIComponent(code)}&page=${page}&limit=${limit}&sort=${sortColumn}&order=${sortDirection}`;
-          } else {
-            url = `/api/spend?department=${encodeURIComponent(departmentName)}&page=${page}&limit=${limit}&sort=${sortColumn}&order=${sortDirection}`;
-          }
-        } else {
-          if (code) {
-            url = `/api/spend?view=budget&department_code=${encodeURIComponent(code)}&page=${page}&limit=${limit}&sort=${sortColumn}&order=${sortDirection}`;
-          } else {
-            url = `/api/spend?view=budget&department=${encodeURIComponent(departmentName)}&page=${page}&limit=${limit}&sort=${sortColumn}&order=${sortDirection}`;
-          }
-        }
-        const response = await fetch(url);
-        const result = await response.json();
-        setData(result.spending || []);
-        setPagination(result.pagination || null);
-        setSummary(result.summary || null);
-      } catch (error) {
-        console.error('Error fetching detailed data:', error);
-        setData([]);
-        setPagination(null);
-        setSummary(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [isOpen, departmentName, type, page, sortColumn, sortDirection, departmentCode, title]);
-
-  // Reset page when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      setPage(1);
-    }
-  }, [isOpen]);
-
-  if (!isOpen) return null;
-
-  return (
-    <div 
-      className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4"
-      onClick={onClose}
-    >
-      <div 
-        className="bg-white rounded-lg shadow-lg w-full max-w-5xl max-h-[80vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-4">
-                          <div>
-                <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-                <div className="text-sm text-gray-600 mt-1 space-y-1">
-                  {query && (
-                    <p>
-                      Search: <span className="font-medium text-gray-800">&quot;{query}&quot;</span>
-                    </p>
-                  )}
-                  {summary && (
-                    <p>
-                      {summary.recordCount?.toLocaleString()} records • {formatCurrency(summary.totalAmount || 0)} total
-                    </p>
-                  )}
-                </div>
-              </div>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={handleDownload}
-                disabled={downloading}
-                className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed flex items-center space-x-1"
-              >
-                {downloading ? (
-                  <>
-                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
-                    <span>Downloading...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>📥</span>
-                    <span>Download TSV</span>
-                  </>
-                )}
-              </button>
-              <button
-                onClick={onClose}
-                className="text-gray-400 hover:text-gray-600 text-xl font-bold"
-              >
-                ×
-              </button>
-            </div>
-          </div>
-          
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-300 text-sm">
-              <thead>
-                <tr className="bg-gray-100">
-                  {type === 'vendor' ? (
-                    <>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-left cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('year')}
-                      >
-                        Year{renderSortIndicator('year')}
-                      </th>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-left cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('vendor')}
-                      >
-                        Vendor{renderSortIndicator('vendor')}
-                      </th>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-right cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('amount')}
-                      >
-                        Amount{renderSortIndicator('amount')}
-                      </th>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-left cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('department')}
-                      >
-                        Department{renderSortIndicator('department')}
-                      </th>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-left cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('program')}
-                      >
-                        Program{renderSortIndicator('program')}
-                      </th>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-left cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('fund')}
-                      >
-                        Fund{renderSortIndicator('fund')}
-                      </th>
-                      <th className="border border-gray-300 px-3 py-2 text-left">Match</th>
-                    </>
-                  ) : (
-                    <>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-left cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('year')}
-                      >
-                        Year{renderSortIndicator('year')}
-                      </th>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-left cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('department')}
-                      >
-                        Department{renderSortIndicator('department')}
-                      </th>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-left cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('program')}
-                      >
-                        Program{renderSortIndicator('program')}
-                      </th>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-left cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('fund')}
-                      >
-                        Fund{renderSortIndicator('fund')}
-                      </th>
-                      <th 
-                        className="border border-gray-300 px-3 py-2 text-right cursor-pointer hover:bg-gray-200 select-none"
-                        onClick={() => handleSort('amount')}
-                      >
-                        Amount{renderSortIndicator('amount')}
-                      </th>
-                      <th className="border border-gray-300 px-3 py-2 text-left">Match</th>
-                    </>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan={(type === 'vendor' ? 7 : 6)} className="border border-gray-300 px-3 py-8 text-center">
-                      <div className="flex justify-center items-center">
-                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                        <span className="ml-2">Loading...</span>
-                      </div>
-                    </td>
-                  </tr>
-                ) : data.length === 0 ? (
-                  <tr>
-                    <td colSpan={(type === 'vendor' ? 7 : 6)} className="border border-gray-300 px-3 py-8 text-center text-gray-500">
-                      No data found
-                    </td>
-                  </tr>
-                ) : (
-                  data.map((item, index) => {
-                    const matchInfo = findMatchInRecord(item, query, departmentName);
-                    return (
-                      <tr key={index} className="hover:bg-gray-50">
-                        {type === 'vendor' ? (
-                          <>
-                            <td className="border border-gray-300 px-3 py-2">{item.year}</td>
-                            <td className="border border-gray-300 px-3 py-2">
-                              {query ? <HighlightMatch text={item.vendor} query={query} /> : item.vendor}
-                            </td>
-                            <td className="border border-gray-300 px-3 py-2 text-right font-mono">
-                              {formatCurrency(item.amount)}
-                            </td>
-                            <td className="border border-gray-300 px-3 py-2">
-                              {item.department ? (
-                                query ? <HighlightMatch text={item.department} query={query} /> : item.department
-                              ) : 'N/A'}
-                            </td>
-                            <td className="border border-gray-300 px-3 py-2">
-                              {item.program ? (
-                                query ? <HighlightMatch text={item.program} query={query} /> : item.program
-                              ) : 'N/A'}
-                            </td>
-                            <td className="border border-gray-300 px-3 py-2">
-                              {item.fund ? (
-                                query ? <HighlightMatch text={item.fund} query={query} /> : item.fund
-                              ) : 'N/A'}
-                            </td>
-                            <td className="border border-gray-300 px-3 py-2">
-                              {matchInfo ? (
-                                <span 
-                                  className={`px-2 py-1 rounded text-xs font-medium ${
-                                    matchInfo.confidence === 'high' ? 'bg-green-100 text-green-800' :
-                                    matchInfo.confidence === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                                    'bg-red-100 text-red-800'
-                                  }`}
-                                  title={`Matched text: "${matchInfo.matchedText}" (${Math.round(matchInfo.score * 100)}% similarity)`}
-                                >
-                                  {matchInfo.display}
-                                </span>
-                              ) : (
-                                <span className="text-gray-400 text-xs">no match</span>
-                              )}
-                            </td>
-                          </>
-                        ) : (
-                          <>
-                            <td className="border border-gray-300 px-3 py-2">{item.year}</td>
-                            <td className="border border-gray-300 px-3 py-2">
-                              {item.department ? (
-                                query ? <HighlightMatch text={item.department} query={query} /> : item.department
-                              ) : 'N/A'}
-                            </td>
-                            <td className="border border-gray-300 px-3 py-2">
-                              {item.program ? (
-                                query ? <HighlightMatch text={item.program} query={query} /> : item.program
-                              ) : 'N/A'}
-                            </td>
-                            <td className="border border-gray-300 px-3 py-2">
-                              {item.fund ? (
-                                query ? <HighlightMatch text={item.fund} query={query} /> : item.fund
-                              ) : 'N/A'}
-                            </td>
-                            <td className="border border-gray-300 px-3 py-2 text-right font-mono">
-                              {formatCurrency(item.amount)}
-                            </td>
-                            <td className="border border-gray-300 px-3 py-2">
-                              {matchInfo ? (
-                                <span 
-                                  className={`px-2 py-1 rounded text-xs font-medium ${
-                                    matchInfo.confidence === 'high' ? 'bg-green-100 text-green-800' :
-                                    matchInfo.confidence === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                                    'bg-red-100 text-red-800'
-                                  }`}
-                                  title={`Matched text: "${matchInfo.matchedText}" (${Math.round(matchInfo.score * 100)}% similarity)`}
-                                >
-                                  {matchInfo.display}
-                                </span>
-                              ) : (
-                                <span className="text-gray-400 text-xs">no match</span>
-                              )}
-                            </td>
-                          </>
-                        )}
-                      </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
-          </div>
-          
-          {/* Pagination */}
-          {pagination && pagination.totalPages > 1 && (
-            <div className="mt-4 flex items-center justify-between">
-              <div className="text-sm text-gray-600">
-                Showing {((pagination.currentPage - 1) * pagination.itemsPerPage) + 1} to{' '}
-                {Math.min(pagination.currentPage * pagination.itemsPerPage, pagination.totalItems)} of{' '}
-                {pagination.totalItems} records
-              </div>
-              <div className="flex items-center space-x-2">
-                <button
-                  disabled={!pagination.hasPrevPage || loading}
-                  onClick={() => setPage(page - 1)}
-                  className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Previous
-                </button>
-                <span className="text-sm">
-                  Page {pagination.currentPage} of {pagination.totalPages}
-                </span>
-                <button
-                  disabled={!pagination.hasNextPage || loading}
-                  onClick={() => setPage(page + 1)}
-                  className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Next
-                </button>
-              </div>
-            </div>
-          )}
-          
-          {/* Summary */}
-          <div className="mt-4 pt-4 border-t border-gray-200">
-            <div className="text-sm text-gray-600">
-              {summary ? (
-                <>
-                  Total: {formatCurrency(summary.totalAmount || 0)} 
-                  ({summary.recordCount?.toLocaleString() || 0} total records)
-                </>
-              ) : (
-                <>
-                  Page Total: {formatCurrency(data.reduce((sum, item) => sum + (item.amount || 0), 0))} 
-                  ({data.length} records on this page)
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
@@ -1049,23 +572,23 @@ export function DepartmentDetailCard({
       </div>
 
       {/* Modals */}
-      <DetailedDataModal
+      <DepartmentSpendingModal
         isOpen={showVendorModal}
         onClose={() => setShowVendorModal(false)}
         title={`Vendor Spending Details - ${departmentItem.term}`}
         departmentName={departmentItem.term}
-        type="vendor"
         query={query}
         departmentCode={departmentItem.id}
+        type="vendor"
       />
-      <DetailedDataModal
+      <DepartmentSpendingModal
         isOpen={showBudgetModal}
         onClose={() => setShowBudgetModal(false)}
         title={`Budget Details - ${departmentItem.term}`}
         departmentName={departmentItem.term}
-        type="budget"
         query={query}
         departmentCode={departmentItem.id}
+        type="budget"
       />
     </div>
   );
@@ -1261,12 +784,11 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
       </div>
 
       {/* Modal for vendor details, if needed */}
-      <DetailedDataModal
+      <VendorSpendingModal
         isOpen={showVendorModal}
         onClose={() => setShowVendorModal(false)}
         title={`Vendor Spending Details - ${vendorItem.term}`}
-        departmentName={vendorItem.term}
-        type="vendor"
+        vendorName={vendorItem.term}
         query={query}
       />
     </div>
@@ -1476,4 +998,6 @@ export function KeywordDetailCard({ item, isSelected, onSelect, matchField, matc
       )}
     </div>
   );
-} 
+}
+
+export { findMatchInRecord, getAvailableColumns, VENDOR_SPENDING_COLUMNS, BUDGET_SPENDING_COLUMNS, downloadTSVWithLookups }; 
