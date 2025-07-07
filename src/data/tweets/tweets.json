@@ -1,6 +1,118 @@
 {
   "tweets": [
     {
+      "entities": {
+        "urls": [
+          {
+            "start": 93,
+            "end": 116,
+            "url": "https://t.co/5iY6TxZPcd",
+            "expanded_url": "https://github.com/DOGE-network/tables",
+            "display_url": "github.com/DOGE-network/t…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1942324699834507265/yxtmyUFf?format=jpg&name=orig",
+                "width": 1200,
+                "height": 600
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1942324699834507265/yxtmyUFf?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "GitHub - DOGE-network/tables: holds source data for cali-doge and other transparency tools to utilize",
+            "description": "holds source data for cali-doge and other transparency tools to utilize - DOGE-network/tables",
+            "unwound_url": "https://github.com/DOGE-network/tables"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "shellenberger",
+            "id": "2474749586"
+          },
+          {
+            "start": 15,
+            "end": 27,
+            "username": "war24182236",
+            "id": "1091838536582451200"
+          },
+          {
+            "start": 28,
+            "end": 39,
+            "username": "bettersoma",
+            "id": "762870498187280384"
+          }
+        ]
+      },
+      "id": "1942324650798899436",
+      "text": "@shellenberger @war24182236 @bettersoma Share the list of 20 organizations and I will add to https://t.co/5iY6TxZPcd",
+      "created_at": "2025-07-07T20:47:38.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1942324650798899436"
+      ],
+      "created_at_formatted": "Jul 7, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "id": "1942256497737765202",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 124,
+            "end": 133,
+            "probability": 0.9881,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "@joffemd Algorithms and modeling for housing and environmental causes have been misused and poorly implemented for years in California. \n\nDumping all the snowmelt into the ocean to favor smelt comes to mind.",
+      "created_at": "2025-07-07T16:16:49.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1942256497737765202"
+      ],
+      "created_at_formatted": "Jul 7, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1941243006897807669"
       ],
@@ -19846,8 +19958,8 @@
     }
   ],
   "meta": {
-    "result_count": 186,
-    "newest_id": "1941243006897807669",
+    "result_count": 188,
+    "newest_id": "1942324650798899436",
     "oldest_id": "1882144700762878208"
   }
 }
