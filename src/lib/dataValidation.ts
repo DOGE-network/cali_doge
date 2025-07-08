@@ -84,8 +84,8 @@ async function validateConsistency(
  * @returns Validation result
  */
 async function validateVendorsDepartments(
-  vendorsPath,
-  departmentsPath
+  vendorsPath: string,
+  departmentsPath: string
 ): Promise<ValidationResult> {
   try {
     // Read JSON files
@@ -143,8 +143,8 @@ async function validateVendorsDepartments(
  * @returns Validation result
  */
 async function validateVendorsPrograms(
-  vendorsPath,
-  programsPath
+  vendorsPath: string,
+  programsPath: string
 ): Promise<ValidationResult> {
   try {
     // Read JSON files

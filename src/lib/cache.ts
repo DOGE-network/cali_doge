@@ -75,12 +75,26 @@ export async function invalidateByTag(tag: string): Promise<void> {
 }
 
 /**
- * Delete a specific key from the cache
+ * Delete a specific key from the cache and clean up tag references
  * @param key The key to delete
  */
 export async function deleteFromCache(key: string): Promise<void> {
   try {
-    await redis.del(key);
+    // Get all tag keys to check for this key
+    const tagKeys = await redis.keys('tag:*');
+    
+    // Use pipeline for efficient batch operations
+    const pipeline = redis.pipeline();
+    
+    // Remove the key from cache
+    pipeline.del(key);
+    
+    // Remove the key from all tag sets it might belong to
+    for (const tagKey of tagKeys) {
+      pipeline.srem(tagKey, key);
+    }
+    
+    await pipeline.exec();
   } catch (error) {
     console.error('Cache delete error:', error);
   }
@@ -148,5 +162,50 @@ export async function msetInCache<T>(
     await pipeline.exec();
   } catch (error) {
     console.error('Cache mset error:', error);
+  }
+}
+
+/**
+ * Clean up orphaned tag references (should be run periodically)
+ * This removes references to keys that no longer exist in the cache
+ */
+export async function cleanupOrphanedTagReferences(): Promise<void> {
+  try {
+    // Get all tag keys
+    const tagKeys = await redis.keys('tag:*');
+    
+    for (const tagKey of tagKeys) {
+      // Get all keys referenced by this tag
+      const referencedKeys = await redis.smembers<string[]>(tagKey);
+      
+      if (referencedKeys && referencedKeys.length > 0) {
+        // Check which keys actually exist
+        const existingKeys = await Promise.all(
+          referencedKeys.map(async (key) => {
+            const exists = await redis.exists(key);
+            return { key, exists: exists === 1 };
+          })
+        );
+        
+        // Remove orphaned references
+        const orphanedKeys = existingKeys
+          .filter(({ exists }) => !exists)
+          .map(({ key }) => key);
+        
+        if (orphanedKeys.length > 0) {
+          await redis.srem(tagKey, ...orphanedKeys);
+          console.log(`Cleaned up ${orphanedKeys.length} orphaned references for tag ${tagKey}`);
+        }
+        
+        // If tag set is now empty, remove it
+        const remainingCount = await redis.scard(tagKey);
+        if (remainingCount === 0) {
+          await redis.del(tagKey);
+          console.log(`Removed empty tag set: ${tagKey}`);
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Cache cleanup error:', error);
   }
 } 

@@ -4,20 +4,37 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const response = NextResponse.next();
 
-  // Only keeping basic non-restrictive security headers
+  // Basic security headers
   response.headers.set('X-DNS-Prefetch-Control', 'on');
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   
-  // Set permissive headers for development
-  if (process.env.NODE_ENV === 'development') {
-    // No need to set any restrictive headers in development
-    // This ensures the app works fully with all external services
-  } else {
-    // In production, we could add more restrictive headers
-    // but we'll keep it minimal
-    response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+  // Add critical security headers
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  
+  // Content Security Policy to prevent XSS attacks
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "img-src 'self' data: blob: https:",
+    "connect-src 'self' https://api.vercel.com https://*.supabase.co https://www.google-analytics.com",
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self'"
+  ].join('; ');
+  
+  response.headers.set('Content-Security-Policy', csp);
+  
+  // Set stricter headers for production
+  if (process.env.NODE_ENV === 'production') {
+    response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
   }
+
+  // Headers are now set appropriately for all environments above
 
   // Add CDN caching headers for static assets
   if (
