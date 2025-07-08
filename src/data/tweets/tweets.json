@@ -2,6 +2,41 @@
   "tweets": [
     {
       "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 14,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 24,
+            "end": 33,
+            "probability": 0.9263,
+            "type": "Other",
+            "normalized_text": "Sankey 2.0"
+          }
+        ]
+      },
+      "created_at": "2025-07-08T05:31:19.000Z",
+      "author_id": "1859283000145608705",
+      "text": "RT @twinforces: So when Sankey 2.0 gets released, if you're a data nerd and don't want to spend 2 months figuring out how to part all three…",
+      "edit_history_tweet_ids": [
+        "1942456440700166215"
+      ],
+      "id": "1942456440700166215",
+      "created_at_formatted": "Jul 8, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "entities": {
         "urls": [
           {
             "start": 93,
@@ -19958,8 +19993,8 @@
     }
   ],
   "meta": {
-    "result_count": 188,
-    "newest_id": "1942324650798899436",
+    "result_count": 189,
+    "newest_id": "1942456440700166215",
     "oldest_id": "1882144700762878208"
   }
 }
