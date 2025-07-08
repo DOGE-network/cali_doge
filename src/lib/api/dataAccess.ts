@@ -346,8 +346,6 @@ export async function getSearchData() {
     vendors: [] as any[],
     programs: [] as any[],
     funds: [] as any[],
-    keywords: [] as any[],
-    lastUpdated: new Date().toISOString()
   };
 
   // Group by type and transform
@@ -371,9 +369,6 @@ export async function getSearchData() {
         break;
       case 'fund':
         transformedData.funds.push(searchItem);
-        break;
-      case 'keyword':
-        transformedData.keywords.push(searchItem);
         break;
     }
   });

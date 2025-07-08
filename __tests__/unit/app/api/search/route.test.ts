@@ -73,7 +73,6 @@ describe('Search API', () => {
     expect(json).toHaveProperty('vendors');
     expect(json).toHaveProperty('programs');
     expect(json).toHaveProperty('funds');
-    expect(json).toHaveProperty('keywords');
     expect(json).toHaveProperty('totalResults');
     expect(json).toHaveProperty('query');
     expect(json).toHaveProperty('appliedFilters');

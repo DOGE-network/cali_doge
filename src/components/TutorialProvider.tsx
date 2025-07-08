@@ -19,7 +19,7 @@ const getTutorialSteps = (pathname: string): StepType[] => {
         content: (
           <div>
             <h3 className="text-xl font-bold mb-3">Search Overview</h3>
-            <p className="mb-4">This is the most powerful way to explore California government data. You can search across departments, vendors, programs, funds, and keywords.</p>
+            <p className="mb-4">This is the most powerful way to explore California government data. You can search across departments, vendors, programs, and funds.</p>
             <p className="mb-2 text-sm text-blue-600">💡 We&apos;ve added a sample search &apos;high&apos; to demonstrate the search functionality.</p>
           </div>
         ),
@@ -58,7 +58,7 @@ const getTutorialSteps = (pathname: string): StepType[] => {
         content: (
           <div>
             <h3 className="text-lg font-bold mb-2">Type Filter</h3>
-            <p className="mb-3">Toggle which types of results you want to see: Departments, Vendors, Programs, Funds, or Keywords. You can combine multiple types for broader results.</p>
+            <p className="mb-3">Toggle which types of results you want to see: Departments, Vendors, Programs, or Funds. You can combine multiple types for broader results.</p>
           </div>
         ),
         position: 'bottom',
@@ -80,7 +80,7 @@ const getTutorialSteps = (pathname: string): StepType[] => {
         content: (
           <div>
             <h3 className="text-lg font-bold mb-2">Result Sections</h3>
-            <p className="mb-3">Results are grouped by type: Departments, Vendors, Programs, Funds, and Keywords. Each section shows the most relevant matches for your search.</p>
+            <p className="mb-3">Results are grouped by type: Departments, Vendors, Programs, and Funds. Each section shows the most relevant matches for your search.</p>
           </div>
         ),
         position: 'top',
@@ -104,7 +104,7 @@ const getTutorialSteps = (pathname: string): StepType[] => {
         content: (
           <div>
             <h3 className="text-lg font-bold mb-2">View Details</h3>
-            <p className="mb-3">Click a card to view more details about a department, vendor, program, fund, or keyword.</p>
+            <p className="mb-3">Click a card to view more details about a department, vendor, program, or fund.</p>
           </div>
         ),
         position: 'top',

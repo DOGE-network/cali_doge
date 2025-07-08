@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { analytics } from '@/lib/analytics';
 import { trackEvent as gaTrackEvent } from '@/components/GoogleAnalytics';
-import type { SearchItem, KeywordItem } from '@/types/search';
+import type { SearchItem } from '@/types/search';
 import { SearchTypeFilter } from './SearchTypeFilter';
 
 interface SearchResponse {
@@ -12,7 +12,6 @@ interface SearchResponse {
   vendors: SearchItem[];
   programs: SearchItem[];
   funds: SearchItem[];
-  keywords: KeywordItem[];
   totalResults: number;
   query: string;
   appliedFilters: {
@@ -84,8 +83,7 @@ export function EnhancedSearch({ isOpen, onClose }: EnhancedSearchProps) {
         const totalResults = (data.departments?.length || 0) + 
                            (data.vendors?.length || 0) + 
                            (data.programs?.length || 0) + 
-                           (data.funds?.length || 0) + 
-                           (data.keywords?.length || 0);
+                           (data.funds?.length || 0);
         analytics.search(query.trim(), totalResults, 'enhanced_search');
       }
     } catch (error) {
@@ -218,36 +216,28 @@ export function EnhancedSearch({ isOpen, onClose }: EnhancedSearchProps) {
   };
 
   // Handle result click
-  const handleResultClick = (item: SearchItem | KeywordItem) => {
+  const handleResultClick = (item: SearchItem) => {
     // Track the click based on item type
-    if (item.type === 'keyword') {
-      // This is a KeywordItem
-      gaTrackEvent('keyword_click', { keyword: item.term, sources_count: item.sources.length });
-    } else {
-      // This is a SearchItem
-      switch (item.type) {
-        case 'department':
-          analytics.departmentView(item.term, item.id);
-          break;
-        case 'vendor':
-          analytics.vendorView(item.term);
-          break;
-        case 'program':
-          analytics.programView(item.id, item.term);
-          break;
-        case 'fund':
-          gaTrackEvent('fund_view', { fund_name: item.term, fund_id: item.id });
-          break;
-      }
+    switch (item.type) {
+      case 'department':
+        analytics.departmentView(item.term, item.id);
+        break;
+      case 'vendor':
+        analytics.vendorView(item.term);
+        break;
+      case 'program':
+        analytics.programView(item.id, item.term);
+        break;
+      case 'fund':
+        gaTrackEvent('fund_view', { fund_name: item.term, fund_id: item.id });
+        break;
     }
 
     // Navigate to search results page
     const params = new URLSearchParams();
     params.set('q', item.term);
     params.set('view', 'details');
-    if (item.type !== 'keyword') {
-      params.set('id', item.id);
-    }
+    params.set('id', item.id);
     router.push(`/search?${params.toString()}`);
     onClose();
   };
@@ -432,35 +422,6 @@ export function EnhancedSearch({ isOpen, onClose }: EnhancedSearchProps) {
                     >
                       <div className="font-medium text-gray-900">{fund.term}</div>
                       <div className="text-xs text-gray-500">Fund • Code: {fund.id}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Keywords */}
-            {searchResults.keywords.length > 0 && (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-700 mb-2 flex items-center">
-                  <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-                  Keywords ({searchResults.keywords.length})
-                </h3>
-                <div className="space-y-1">
-                  {searchResults.keywords.map((keyword, index) => (
-                    <button
-                      key={`keyword-${index}`}
-                      onClick={() => handleResultClick(keyword)}
-                      className="w-full text-left p-2 hover:bg-gray-50 rounded-lg transition-colors"
-                    >
-                      <div className="font-medium text-gray-900">{keyword.term}</div>
-                      <div className="text-xs text-gray-500">
-                        Found in {keyword.sources.length} context{keyword.sources.length !== 1 ? 's' : ''}
-                      </div>
-                      {keyword.sources.length > 0 && (
-                        <div className="text-xs text-gray-400 mt-1 truncate">
-                          &quot;{keyword.sources[0].context}&quot;
-                        </div>
-                      )}
                     </button>
                   ))}
                 </div>
