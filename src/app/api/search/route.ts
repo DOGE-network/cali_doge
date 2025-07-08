@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { search as searchAccess } from '@/lib/api/dataAccess';
-import type { SearchItem, KeywordItem } from '@/types/search';
+import type { SearchItem } from '@/types/search';
 import { fuzzyMatch, formatMatchResult, type FuzzyMatchResult } from '@/lib/fuzzyMatching';
 import { getServiceSupabase } from '@/lib/supabase';
 
@@ -12,7 +12,6 @@ interface SearchResponse {
   vendors: SearchItem[];
   programs: SearchItem[];
   funds: SearchItem[];
-  keywords: KeywordItem[];
   totalResults: number;
   query: string;
   appliedFilters: {
@@ -201,13 +200,12 @@ export async function GET(request: NextRequest) {
         departments: [],
         vendors: [],
         programs: [],
-        funds: [],
-        keywords: []
+        funds: []
       };
       for (const type of types) {
         // Map plural to singular for search_index type
         const dbType = type.replace(/s$/, '');
-        if (["department", "vendor", "program", "fund", "keyword"].includes(dbType)) {
+        if (["department", "vendor", "program", "fund"].includes(dbType)) {
           const { data } = await supabase
             .from('search_index')
             .select('*')
@@ -242,7 +240,6 @@ export async function GET(request: NextRequest) {
         vendors: [],
         programs: [],
         funds: [],
-        keywords: [],
         totalResults: 0,
         query,
         appliedFilters: {
@@ -267,11 +264,10 @@ export async function GET(request: NextRequest) {
 
     if (searchTerms.length === 0) {
       return NextResponse.json({
-      departments: [],
-      vendors: [],
-      programs: [],
-      funds: [],
-        keywords: [],
+        departments: [],
+        vendors: [],
+        programs: [],
+        funds: [],
         totalResults: 0,
         query,
         appliedFilters: {
@@ -289,7 +285,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Validate types and map to database types
-    const validTypes = ['department', 'vendor', 'program', 'fund', 'keyword'];
+    const validTypes = ['department', 'vendor', 'program', 'fund'];
     const filteredTypes = types.filter(type => validTypes.includes(type));
     
     console.log('Search API request:', { query, types: filteredTypes, limit, excludeCommon });
@@ -309,8 +305,7 @@ export async function GET(request: NextRequest) {
       departments: [] as SearchItem[],
       vendors: [] as SearchItem[],
       programs: [] as SearchItem[],
-      funds: [] as SearchItem[],
-      keywords: [] as KeywordItem[]
+      funds: [] as SearchItem[]
     };
 
     // Process and score results per type
@@ -345,9 +340,6 @@ export async function GET(request: NextRequest) {
           case 'fund':
             transformedResults.funds.push(scoredItem as SearchItem);
             break;
-          case 'keyword':
-            transformedResults.keywords.push(scoredItem as KeywordItem);
-            break;
         }
       });
     }
@@ -367,10 +359,6 @@ export async function GET(request: NextRequest) {
         .slice(0, limit)
         .map(({ score: _score, ...item }: any) => item),
       funds: transformedResults.funds
-        .sort((a: any, b: any) => b.score - a.score)
-        .slice(0, limit)
-        .map(({ score: _score, ...item }: any) => item),
-      keywords: transformedResults.keywords
         .sort((a: any, b: any) => b.score - a.score)
         .slice(0, limit)
         .map(({ score: _score, ...item }: any) => item)
@@ -429,8 +417,7 @@ export async function GET(request: NextRequest) {
       departmentCount: sortedResults.departments.length,
       vendorCount: sortedResults.vendors.length,
       programCount: sortedResults.programs.length,
-      fundCount: sortedResults.funds.length,
-      keywordCount: sortedResults.keywords.length
+      fundCount: sortedResults.funds.length
     });
     
     return NextResponse.json(response, {
@@ -448,7 +435,6 @@ export async function GET(request: NextRequest) {
         vendors: [],
         programs: [],
         funds: [],
-        keywords: [],
         totalResults: 0,
         query: '',
         appliedFilters: {

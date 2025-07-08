@@ -4,13 +4,12 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 import { analytics } from '@/lib/analytics';
 import useSWR from 'swr';
-import type { SearchItem, KeywordItem } from '@/types/search';
+import type { SearchItem } from '@/types/search';
 import { 
   DepartmentDetailCard, 
   VendorDetailCard, 
   ProgramDetailCard, 
-  FundDetailCard, 
-  KeywordDetailCard 
+  FundDetailCard,  
 } from '@/components/SearchDetailCards';
 import { SearchTypeFilter } from '@/components/SearchTypeFilter';
 
@@ -19,7 +18,6 @@ interface SearchResponse {
   vendors: SearchItem[];
   programs: SearchItem[];
   funds: SearchItem[];
-  keywords: KeywordItem[];
   totalResults: number;
   query: string;
   appliedFilters: {
@@ -51,7 +49,7 @@ function SearchPageClient() {
   
   // State for search and filters
   const [query, setQuery] = useState(''); // Start with empty query
-  const [selectedTypes, setSelectedTypes] = useState<string[]>(['department', 'vendor', 'program', 'fund', 'keyword']);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>(['department', 'vendor', 'program', 'fund']);
   const [excludeCommon, setExcludeCommon] = useState(true);
   const [limit, setLimit] = useState(20);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -105,7 +103,6 @@ function SearchPageClient() {
           vendors: [],
           programs: [],
           funds: [],
-          keywords: [],
           totalResults: 0,
           query: query,
           appliedFilters: {
@@ -155,7 +152,7 @@ function SearchPageClient() {
     }
     if (typesParam) {
       const types = typesParam.split(',').filter(type => 
-        ['department', 'vendor', 'program', 'fund', 'keyword'].includes(type)
+        ['department', 'vendor', 'program', 'fund'].includes(type)
       );
       if (types.length > 0) {
         setSelectedTypes(types);
@@ -281,7 +278,6 @@ function SearchPageClient() {
       vendors = [],
       programs = [],
       funds = [],
-      keywords = []
     } = searchData;
 
     interface Section {
@@ -366,25 +362,8 @@ function SearchPageClient() {
             data-tour={index === 0 ? 'result-card-fund' : undefined}
           />
         ))
-      },
-      keywords.length > 0 && {
-        key: 'keywords-section',
-        title: 'Keywords',
-        items: keywords.map((keyword, index) => (
-          <KeywordDetailCard
-            key={`keyword-${keyword.term || index}`}
-            item={keyword}
-            isSelected={selectedId === keyword.term}
-            onSelect={() => handleItemClick(keyword.term)}
-            matchField={(keyword as any).matchField}
-            matchSnippet={(keyword as any).matchSnippet}
-            query={query}
-            fuzzyScore={(keyword as any).fuzzyScore}
-            fuzzyResult={(keyword as any).fuzzyResult}
-            data-tour={index === 0 ? 'result-card-keyword' : undefined}
-          />
-        ))
       }
+      // Removed keywords section
     ].filter((section): section is Section => Boolean(section));
 
     return (

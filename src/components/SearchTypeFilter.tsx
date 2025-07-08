@@ -7,17 +7,16 @@ interface SearchTypeFilterProps {
   className?: string;
 }
 
-const SEARCH_TYPES = [
+const filterOptions = [
   { key: 'department', label: 'Departments' },
   { key: 'vendor', label: 'Vendors' },
   { key: 'program', label: 'Programs' },
   { key: 'fund', label: 'Funds' },
-  { key: 'keyword', label: 'Keywords' },
 ];
 
 export const SearchTypeFilter: React.FC<SearchTypeFilterProps> = ({ selectedTypes, onToggleType, className = '' }) => (
   <div className={`flex flex-wrap gap-2 ${className}`}>
-    {SEARCH_TYPES.map(({ key, label }) => (
+    {filterOptions.map(({ key, label }) => (
       <button
         key={key}
         type="button"

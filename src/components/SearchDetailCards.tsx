@@ -2,14 +2,16 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import type { SearchItem, KeywordItem } from '@/types/search';
+import type { SearchItem } from '@/types/search';
 import { fuzzyMatch } from '@/lib/fuzzyMatching';
 import { downloadTSVWithLookups, getAvailableColumns, VENDOR_SPENDING_COLUMNS, BUDGET_SPENDING_COLUMNS } from '@/lib/download';
 import DepartmentSpendingModal from './DepartmentSpendingModal';
 import VendorSpendingModal from './VendorSpendingModal';
+import ProgramSpendingModal from './ProgramSpendingModal';
+import FundSpendingModal from './FundSpendingModal';
 
 interface DetailCardProps {
-  item: SearchItem | KeywordItem;
+  item: SearchItem;
   isSelected?: boolean;
   onSelect?: () => void;
   matchField?: string | null;
@@ -797,28 +799,90 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
 
 export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult }: DetailCardProps) {
   const [programData, setProgramData] = useState<ProgramData | null>(null);
+  const [spendData, setSpendData] = useState<SpendData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [matchData, setMatchData] = useState<{
+    topMatches: Array<{
+      score: number;
+      display: string;
+      field: string;
+      confidence: 'high' | 'medium' | 'low';
+      matchedText: string;
+      departmentCode: string;
+      amount: number;
+    }>;
+    totalMatches: number;
+    avgScore: number;
+  } | null>(null);
+  const [showProgramModal, setShowProgramModal] = useState(false);
 
   useEffect(() => {
-    if (isSelected && item.type === 'program') {
+    if (item.type !== 'program') return;
       setLoading(true);
+    const fetchData = async () => {
+      try {
       // Fetch program data
-      fetch(`/api/programs/${encodeURIComponent(item.id)}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data) {
+        const programRes = await fetch(`/api/programs/${encodeURIComponent(item.id)}`);
+        const programData = await programRes.json();
+        if (programData) {
             setProgramData({
-              description: data.description || '',
-              departments: data.departments || [],
-              totalBudget: data.totalBudget || 0,
-              sources: data.sources || []
-            });
-          }
-        })
-        .catch(console.error)
-        .finally(() => setLoading(false));
-    }
-  }, [isSelected, item]);
+            description: programData.description || '',
+            departments: programData.departments || [],
+            totalBudget: programData.totalBudget || 0,
+            sources: programData.sources || []
+          });
+        }
+
+        // Fetch program spending summary
+        const summaryRes = await fetch(`/api/spend?program=${encodeURIComponent(item.id)}&limit=1`);
+        const summaryData = await summaryRes.json();
+        const totalAmount = summaryData.summary?.totalAmount || 0;
+        const transactionCount = summaryData.summary?.recordCount || 0;
+
+        // Fetch program preview for match analysis
+        const previewRes = await fetch(`/api/spend?program=${encodeURIComponent(item.id)}&limit=10`);
+        const previewData = await previewRes.json();
+        const topDepartments = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.department || '')))) as string[];
+        const topPrograms = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.program || '')))) as string[];
+        const recentYear = previewData.spending && previewData.spending.length > 0 ? Math.max(...previewData.spending.map((s: any) => s.year)) : undefined;
+        setSpendData({
+          totalAmount,
+          transactionCount,
+          topDepartments,
+          topPrograms,
+          recentYear
+        });
+
+        // Analyze program matches
+        const programMatches = previewData.spending?.map((record: any) => {
+          const match = findMatchInRecord(record, query, item.term);
+          return match && {
+            ...match,
+            departmentCode: record.department_code || '',
+            amount: record.amount
+          };
+        }).filter((match: any) => match !== null) || [];
+
+        const programAvgScore = programMatches.length > 0 
+          ? programMatches.reduce((sum: number, m: any) => sum + m.score, 0) / programMatches.length 
+          : 0;
+
+        setMatchData({
+          topMatches: programMatches.slice(0, 3),
+          totalMatches: programMatches.length,
+          avgScore: programAvgScore
+        });
+      } catch (e) {
+        setProgramData(null);
+        setSpendData(null);
+        setMatchData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item.term, item.type, query]);
 
   // Type guard to ensure we have a SearchItem
   if (item.type !== 'program') return null;
@@ -849,8 +913,78 @@ export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matc
         </div>
       </div>
 
+      {/* Always show summary UI, not just when selected */}
+      <div className="mt-4 space-y-3">
+        <div className="border-t pt-3">
+          <h4 className="text-sm font-medium text-gray-700 mb-2">Program Spending</h4>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">Total:</span>
+              {spendData && spendData.totalAmount > 0 ? (
+                <button
+                  onClick={e => { e.stopPropagation(); setShowProgramModal(true); }}
+                  className="font-medium text-blue-600 hover:text-blue-800 underline text-sm"
+                >
+                  ${spendData.totalAmount.toLocaleString()}
+                </button>
+              ) : (
+                <span className="font-medium text-sm text-gray-500">N/A</span>
+              )}
+            </div>
+            {/* Accurate total record count display */}
+            {spendData && (
+              <div className="text-xs text-gray-600">
+                {spendData.transactionCount.toLocaleString()} total records
+              </div>
+            )}
+            {/* Program Match Analysis */}
+            {loading ? (
+              <div className="text-xs text-gray-500">Analyzing matches...</div>
+            ) : matchData && matchData.totalMatches > 0 ? (
+              <div className="space-y-1">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-gray-600">Match Quality:</span>
+                  <span className={`font-medium ${
+                    matchData.avgScore >= 0.7 ? 'text-green-600' :
+                    matchData.avgScore >= 0.4 ? 'text-yellow-600' : 'text-red-600'
+                  }`}>
+                    {Math.round(matchData.avgScore * 100)}% avg
+                  </span>
+                </div>
+                <div className="text-xs text-gray-600">
+                  {matchData.totalMatches} records with matches
+                </div>
+                {/* Top matches preview */}
+                <div className="space-y-1">
+                  {matchData.topMatches.map((match, idx) => (
+                    <div key={idx} className="text-xs bg-gray-50 p-1 rounded">
+                      <div className="flex justify-between">
+                        <span className="truncate">{programItem.term}</span>
+                        <span className={`px-1 rounded text-xs ${
+                          match.confidence === 'high' ? 'bg-green-100 text-green-700' :
+                          match.confidence === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-red-100 text-red-700'
+                        }`}>
+                          {Math.round(match.score * 100)}%
+                        </span>
+                      </div>
+                      <div className="text-gray-500 truncate">
+                        via {match.field}: &quot;{match.matchedText.substring(0, 30)}...&quot;
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="text-xs text-gray-500">No program matches found</div>
+            )}
+          </div>
+        </div>
+
+        {/* Program Details Section */}
       {isSelected && (
-        <div className="mt-4 pt-4 border-t border-gray-200">
+          <div className="border-t pt-3">
+            <h4 className="text-sm font-medium text-gray-700 mb-2">Program Details</h4>
           {loading ? (
             <div className="flex justify-center py-4">
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-500"></div>
@@ -858,7 +992,6 @@ export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matc
           ) : programData ? (
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Program Details</h4>
                 <div className="space-y-1 text-sm">
                   <div>Total Budget: <span className="font-medium">${programData.totalBudget.toLocaleString()}</span></div>
                   <div>Departments: <span className="font-medium">{programData.departments.length}</span></div>
@@ -866,7 +999,6 @@ export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matc
                 </div>
               </div>
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Description</h4>
                 <p className="text-sm text-gray-600">{programData.description}</p>
               </div>
             </div>
@@ -875,29 +1007,93 @@ export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matc
           )}
         </div>
       )}
+      </div>
+
+      {/* Modal for program details */}
+      <ProgramSpendingModal
+        isOpen={showProgramModal}
+        onClose={() => setShowProgramModal(false)}
+        title={`Program Spending Details - ${programItem.term}`}
+        programCode={programItem.id}
+        programName={programItem.term}
+        query={query}
+      />
     </div>
   );
 }
 
 export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult }: DetailCardProps) {
-  const [fundData, setFundData] = useState<any>(null);
+  const [spendData, setSpendData] = useState<SpendData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [matchData, setMatchData] = useState<{
+    topMatches: Array<{
+      score: number;
+      display: string;
+      field: string;
+      confidence: 'high' | 'medium' | 'low';
+      matchedText: string;
+      departmentCode: string;
+      amount: number;
+    }>;
+    totalMatches: number;
+    avgScore: number;
+  } | null>(null);
+  const [showFundModal, setShowFundModal] = useState(false);
 
   useEffect(() => {
-    if (isSelected && item.type === 'fund') {
+    if (item.type !== 'fund') return;
       setLoading(true);
-      // Fetch fund data
-      fetch(`/api/funds/${encodeURIComponent(item.id)}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data) {
-            setFundData(data);
-          }
-        })
-        .catch(console.error)
-        .finally(() => setLoading(false));
-    }
-  }, [isSelected, item]);
+    const fetchData = async () => {
+      try {
+        // Fetch fund spending summary
+        const summaryRes = await fetch(`/api/spend?fund=${encodeURIComponent(item.id)}&limit=1`);
+        const summaryData = await summaryRes.json();
+        const totalAmount = summaryData.summary?.totalAmount || 0;
+        const transactionCount = summaryData.summary?.recordCount || 0;
+
+        // Fetch fund preview for match analysis
+        const previewRes = await fetch(`/api/spend?fund=${encodeURIComponent(item.id)}&limit=10`);
+        const previewData = await previewRes.json();
+        const topDepartments = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.department || '')))) as string[];
+        const topPrograms = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.program || '')))) as string[];
+        const recentYear = previewData.spending && previewData.spending.length > 0 ? Math.max(...previewData.spending.map((s: any) => s.year)) : undefined;
+        setSpendData({
+          totalAmount,
+          transactionCount,
+          topDepartments,
+          topPrograms,
+          recentYear
+        });
+
+        // Analyze fund matches
+        const fundMatches = previewData.spending?.map((record: any) => {
+          const match = findMatchInRecord(record, query, item.term);
+          return match && {
+            ...match,
+            departmentCode: record.department_code || '',
+            amount: record.amount
+          };
+        }).filter((match: any) => match !== null) || [];
+
+        const fundAvgScore = fundMatches.length > 0 
+          ? fundMatches.reduce((sum: number, m: any) => sum + m.score, 0) / fundMatches.length 
+          : 0;
+
+        setMatchData({
+          topMatches: fundMatches.slice(0, 3),
+          totalMatches: fundMatches.length,
+          avgScore: fundAvgScore
+        });
+      } catch (e) {
+        setSpendData(null);
+        setMatchData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item.term, item.type, query]);
 
   // Type guard to ensure we have a SearchItem
   if (item.type !== 'fund') return null;
@@ -928,74 +1124,92 @@ export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSn
         </div>
       </div>
 
-      {isSelected && (
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          {loading ? (
-            <div className="flex justify-center py-4">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-orange-500"></div>
+      {/* Always show summary UI, not just when selected */}
+      <div className="mt-4 space-y-3">
+        <div className="border-t pt-3">
+          <h4 className="text-sm font-medium text-gray-700 mb-2">Fund Spending</h4>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">Total:</span>
+              {spendData && spendData.totalAmount > 0 ? (
+                <button
+                  onClick={e => { e.stopPropagation(); setShowFundModal(true); }}
+                  className="font-medium text-blue-600 hover:text-blue-800 underline text-sm"
+                >
+                  ${spendData.totalAmount.toLocaleString()}
+                </button>
+              ) : (
+                <span className="font-medium text-sm text-gray-500">N/A</span>
+              )}
             </div>
-          ) : fundData ? (
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-medium text-gray-900 mb-2">Fund Details</h4>
-                <div className="space-y-1 text-sm">
-                  <div>Total Budget: <span className="font-medium">${fundData.totalBudget?.toLocaleString() || '0'}</span></div>
-                  <div>Description: <span className="font-medium">{fundData.description || 'N/A'}</span></div>
+            {/* Accurate total record count display */}
+            {spendData && (
+              <div className="text-xs text-gray-600">
+                {spendData.transactionCount.toLocaleString()} total records
+              </div>
+            )}
+            {/* Fund Match Analysis */}
+          {loading ? (
+              <div className="text-xs text-gray-500">Analyzing matches...</div>
+            ) : matchData && matchData.totalMatches > 0 ? (
+              <div className="space-y-1">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-gray-600">Match Quality:</span>
+                  <span className={`font-medium ${
+                    matchData.avgScore >= 0.7 ? 'text-green-600' :
+                    matchData.avgScore >= 0.4 ? 'text-yellow-600' : 'text-red-600'
+                  }`}>
+                    {Math.round(matchData.avgScore * 100)}% avg
+                  </span>
+            </div>
+                <div className="text-xs text-gray-600">
+                  {matchData.totalMatches} records with matches
                 </div>
+                {/* Top matches preview */}
+                <div className="space-y-1">
+                  {matchData.topMatches.map((match, idx) => (
+                    <div key={idx} className="text-xs bg-gray-50 p-1 rounded">
+                      <div className="flex justify-between">
+                        <span className="truncate">{fundItem.term}</span>
+                        <span className={`px-1 rounded text-xs ${
+                          match.confidence === 'high' ? 'bg-green-100 text-green-700' :
+                          match.confidence === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-red-100 text-red-700'
+                        }`}>
+                          {Math.round(match.score * 100)}%
+                        </span>
+                      </div>
+                      <div className="text-gray-500 truncate">
+                        via {match.field}: &quot;{match.matchedText.substring(0, 30)}...&quot;
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           ) : (
-            <div className="text-sm text-gray-500">No fund data available</div>
+              <div className="text-xs text-gray-500">No fund matches found</div>
           )}
+        </div>
+        </div>
+
+        {/* Fund Details Section */}
+        {isSelected && (
+          <div className="border-t pt-3">
+            <h4 className="text-sm font-medium text-gray-700 mb-2">Fund Details</h4>
+            <div className="text-sm text-gray-500">Fund metadata not available</div>
         </div>
       )}
-    </div>
-  );
-}
-
-export function KeywordDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult }: DetailCardProps) {
-  // Type guard to ensure we have a KeywordItem
-  if (item.type !== 'keyword') return null;
-  const keywordItem = item as KeywordItem;
-
-  return (
-    <div 
-      className={`p-6 border rounded-lg transition-all cursor-pointer ${
-        isSelected ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-red-300 hover:shadow-md'
-      }`}
-      onClick={onSelect}
-    >
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-1">{keywordItem.term}</h3>
-          <p className="text-sm text-gray-600">Keyword • Sources: {keywordItem.sources?.length || 0}</p>
-        </div>
-        <div className="flex gap-2 items-center">
-          {matchField && matchSnippet && (
-            <MatchedFieldButton 
-              matchField={matchField} 
-              matchSnippet={matchSnippet} 
-              query={query}
-              fuzzyScore={fuzzyScore}
-              fuzzyResult={fuzzyResult}
-            />
-          )}
-        </div>
       </div>
 
-      {isSelected && keywordItem.sources && keywordItem.sources.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-2">Context</h4>
-          <div className="space-y-2">
-            {keywordItem.sources.map((source, index) => (
-              <div key={`source-${index}`} className="text-sm text-gray-600">
-                <p className="font-medium">{source.type}: {source.id}</p>
-                <p className="mt-1">{source.context}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Modal for fund details */}
+      <FundSpendingModal
+        isOpen={showFundModal}
+        onClose={() => setShowFundModal(false)}
+        title={`Fund Spending Details - ${fundItem.term}`}
+        fundCode={fundItem.id}
+        fundName={fundItem.term}
+        query={query}
+      />
     </div>
   );
 }
