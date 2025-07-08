@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServiceSupabase } from '@/lib/supabase';
+import { getFromCache, setInCache } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -28,6 +29,16 @@ function yearPartitionedViewExists(fiscalYear: number): boolean {
   return AVAILABLE_YEAR_VIEWS.has(viewName);
 }
 
+// Helper function to generate cache key
+function generateCacheKey(searchParams: URLSearchParams): string {
+  // Sort parameters for consistent cache keys
+  const sortedParams = Array.from(searchParams.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, value]) => `${key}:${value}`)
+    .join('|');
+  return `spend:${sortedParams}`;
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -44,6 +55,27 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1', 10);
     const sort = searchParams.get('sort') || 'amount';
     const order = searchParams.get('order') || 'desc';
+
+    // Generate cache key and check cache
+    const cacheKey = generateCacheKey(searchParams);
+    console.log(`[SPEND API] Cache key: ${cacheKey}`);
+    
+    try {
+      const cachedResult = await getFromCache(cacheKey);
+      if (cachedResult) {
+        console.log(`[SPEND API] Cache HIT for key: ${cacheKey}`);
+        return NextResponse.json(cachedResult, {
+          headers: {
+            'X-Cache': 'HIT',
+            'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+          }
+        });
+      }
+      console.log(`[SPEND API] Cache MISS for key: ${cacheKey}`);
+    } catch (cacheError) {
+      console.warn(`[SPEND API] Cache error: ${cacheError}`);
+      // Continue with database query if cache fails
+    }
 
     const supabase = getServiceSupabase();
 
@@ -147,7 +179,7 @@ export async function GET(request: NextRequest) {
       const itemsPerPage = limit;
       const totalItems = count || 0;
 
-      return NextResponse.json({
+      const budgetResult = {
         spending,
         pagination: {
           currentPage,
@@ -160,6 +192,21 @@ export async function GET(request: NextRequest) {
         summary: {
           totalAmount,
           recordCount: totalItems
+        }
+      };
+
+      // Cache the budget result for 1 hour
+      try {
+        await setInCache(cacheKey, budgetResult, { ex: 3600, tags: ['spend', 'budget'] });
+        console.log(`[SPEND API] Cached budget result for key: ${cacheKey}`);
+      } catch (cacheError) {
+        console.warn(`[SPEND API] Failed to cache budget result: ${cacheError}`);
+      }
+
+      return NextResponse.json(budgetResult, {
+        headers: {
+          'X-Cache': 'MISS',
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
         }
       });
 
@@ -315,7 +362,7 @@ export async function GET(request: NextRequest) {
       const itemsPerPage = limit;
       const totalItems = count || 0;
 
-      return NextResponse.json({
+      const compareResult = {
         spending,
         pagination: {
           currentPage,
@@ -328,6 +375,21 @@ export async function GET(request: NextRequest) {
         summary: {
           totalAmount: totalVendorAmount + totalBudgetAmount,
           recordCount: totalItems
+        }
+      };
+
+      // Cache the compare result for 1 hour
+      try {
+        await setInCache(cacheKey, compareResult, { ex: 3600, tags: ['spend', 'compare'] });
+        console.log(`[SPEND API] Cached compare result for key: ${cacheKey}`);
+      } catch (cacheError) {
+        console.warn(`[SPEND API] Failed to cache compare result: ${cacheError}`);
+      }
+
+      return NextResponse.json(compareResult, {
+        headers: {
+          'X-Cache': 'MISS',
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
         }
       });
 
@@ -511,7 +573,7 @@ export async function GET(request: NextRequest) {
       const itemsPerPage = limit;
       const totalItems = count || 0;
 
-      return NextResponse.json({
+      const vendorResult = {
         spending,
         pagination: {
           currentPage,
@@ -524,6 +586,21 @@ export async function GET(request: NextRequest) {
         summary: {
           totalAmount,
           recordCount: totalItems
+        }
+      };
+
+      // Cache the vendor result for 1 hour
+      try {
+        await setInCache(cacheKey, vendorResult, { ex: 3600, tags: ['spend', 'vendor'] });
+        console.log(`[SPEND API] Cached vendor result for key: ${cacheKey}`);
+      } catch (cacheError) {
+        console.warn(`[SPEND API] Failed to cache vendor result: ${cacheError}`);
+      }
+
+      return NextResponse.json(vendorResult, {
+        headers: {
+          'X-Cache': 'MISS',
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
         }
       });
     }
