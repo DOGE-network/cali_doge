@@ -1,6 +1,321 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "susancrabtree",
+            "id": "21333396"
+          }
+        ],
+        "urls": [
+          {
+            "start": 157,
+            "end": 180,
+            "url": "https://t.co/AFMZrchxh1",
+            "expanded_url": "https://cali-doge.org/search?q=High-Speed+Rail+Authority",
+            "display_url": "cali-doge.org/search?q=High-…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1942638249819729920/X4m7qZTB?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1942638249819729920/X4m7qZTB?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/search?q=High-Speed+Rail+Authority"
+          },
+          {
+            "start": 181,
+            "end": 204,
+            "url": "https://t.co/N0oUq3jb9r",
+            "expanded_url": "https://x.com/cali_doge/status/1942638245579223448/photo/1",
+            "display_url": "pic.x.com/N0oUq3jb9r",
+            "media_key": "3_1942638238478278656"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 88,
+            "end": 97,
+            "probability": 0.9495,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "attachments": {
+        "media_keys": [
+          "3_1942638238478278656"
+        ]
+      },
+      "created_at": "2025-07-08T17:33:44.000Z",
+      "text": "@susancrabtree Thx for this reporting! We can expect a lot more of this across multiple California departments that have operating with federal subsidies. \n\nhttps://t.co/AFMZrchxh1 https://t.co/N0oUq3jb9r",
+      "edit_history_tweet_ids": [
+        "1942638245579223448"
+      ],
+      "id": "1942638245579223448",
+      "created_at_formatted": "Jul 8, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1942638245579223448_0.jpg",
+          "width": 1108,
+          "height": 2048
+        }
+      ]
+    },
+    {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 14,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ],
+        "urls": [
+          {
+            "start": 117,
+            "end": 140,
+            "url": "https://t.co/ogBFmbsZcz",
+            "expanded_url": "https://x.com/twinforces/status/1942622204916613493/video/1",
+            "display_url": "pic.x.com/ogBFmbsZcz",
+            "media_key": "13_1942424469181702144"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 23,
+            "end": 36,
+            "probability": 0.548,
+            "type": "Place",
+            "normalized_text": "Poverty Palace"
+          },
+          {
+            "start": 98,
+            "end": 103,
+            "probability": 0.3177,
+            "type": "Other",
+            "normalized_text": "Sankey"
+          }
+        ]
+      },
+      "attachments": {
+        "media_keys": [
+          "13_1942424469181702144"
+        ],
+        "media_source_tweet_id": [
+          "1942622204916613493"
+        ]
+      },
+      "created_at": "2025-07-08T16:37:49.000Z",
+      "text": "RT @twinforces: If the Poverty Palace is so great, why do they get all their money anonymously? A Sankey 2.0 teaser. https://t.co/ogBFmbsZcz",
+      "edit_history_tweet_ids": [
+        "1942624172666180070"
+      ],
+      "id": "1942624172666180070",
+      "created_at_formatted": "Jul 8, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1942624172666180070_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1942424469181702144/img/oiqliD62JK2zhZYj.jpg",
+          "width": 2086,
+          "height": 1256
+        }
+      ]
+    },
+    {
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 255,
+            "end": 278,
+            "url": "https://t.co/PKN5iZfMYZ",
+            "expanded_url": "https://x.com/cali_doge/status/1942612199702188146/photo/1",
+            "display_url": "pic.x.com/PKN5iZfMYZ",
+            "media_key": "3_1942612196531335168"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 14,
+            "probability": 0.7888,
+            "type": "Place",
+            "normalized_text": "California DOGE"
+          },
+          {
+            "start": 130,
+            "end": 139,
+            "probability": 0.9779,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "attachments": {
+        "media_keys": [
+          "3_1942612196531335168"
+        ]
+      },
+      "created_at": "2025-07-08T15:50:15.000Z",
+      "text": "California DOGE 1.6.13 is released. Search is completely revamped. Search for any vendor that has done business with the state of California for the past 10 years. \n\nTides Center: $9.5M\nCenter for Sustainable Energy: $600M\nLegacy 455 Market Street: $7.5M https://t.co/PKN5iZfMYZ",
+      "edit_history_tweet_ids": [
+        "1942612199702188146"
+      ],
+      "id": "1942612199702188146",
+      "created_at_formatted": "Jul 8, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1942612199702188146_0.jpg",
+          "width": 1720,
+          "height": 790
+        }
+      ]
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -19993,8 +20308,8 @@
     }
   ],
   "meta": {
-    "result_count": 189,
-    "newest_id": "1942456440700166215",
+    "result_count": 192,
+    "newest_id": "1942638245579223448",
     "oldest_id": "1882144700762878208"
   }
 }
