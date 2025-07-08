@@ -44,6 +44,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const department = searchParams.get('department');
     const departmentCode = searchParams.get('department_code');
+    const batch = searchParams.get('batch'); // New batch parameter for multiple department codes
     const vendor = searchParams.get('vendor');
     const program = searchParams.get('program');
     const fund = searchParams.get('fund');
@@ -55,6 +56,113 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1', 10);
     const sort = searchParams.get('sort') || 'amount';
     const order = searchParams.get('order') || 'desc';
+
+    // Handle batch request for multiple department codes
+    if (batch !== null) {
+      try {
+        const departmentCodes = batch.split(',').map(code => code.trim()).filter(Boolean);
+        if (departmentCodes.length === 0) {
+          return NextResponse.json({
+            error: 'No valid department codes provided in batch parameter'
+          }, { status: 400 });
+        }
+
+        // Generate cache key for batch request
+        const batchCacheKey = `batch:${departmentCodes.sort().join(',')}`;
+        console.log(`[SPEND API] Batch request for ${departmentCodes.length} departments: ${departmentCodes.join(', ')}`);
+        console.log(`[SPEND API] Batch cache key: ${batchCacheKey}`);
+
+        // Check cache for batch request
+        try {
+          const cachedBatchResult = await getFromCache(batchCacheKey);
+          if (cachedBatchResult) {
+            console.log(`[SPEND API] Batch cache HIT for key: ${batchCacheKey}`);
+            return NextResponse.json(cachedBatchResult, {
+              headers: {
+                'X-Cache': 'HIT',
+                'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+              }
+            });
+          }
+          console.log(`[SPEND API] Batch cache MISS for key: ${batchCacheKey}`);
+        } catch (cacheError) {
+          console.warn(`[SPEND API] Batch cache error: ${cacheError}`);
+          // Continue with database queries if cache fails
+        }
+
+        const supabase = getServiceSupabase();
+        const results: Record<string, { vendorTotal: number | null; budgetTotal: number | null; vendorRecordCount: number | null; budgetRecordCount: number | null }> = {};
+
+        // Process each department code
+        await Promise.all(departmentCodes.map(async (deptCode) => {
+          try {
+            // Get vendor totals
+            let vendorQuery = supabase
+              .from('vendor_transactions_with_vendor_fy2024') // Use most recent year for totals
+              .select('amount', { count: 'exact' })
+              .eq('department_code', deptCode);
+
+            // Get budget totals
+            let budgetQuery = supabase
+              .from('budget_line_items_with_names')
+              .select('amount', { count: 'exact' })
+              .eq('department_code', deptCode);
+
+            const [vendorResult, budgetResult] = await Promise.all([
+              vendorQuery,
+              budgetQuery
+            ]);
+
+            const vendorTotal = vendorResult.data?.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0) || 0;
+            const budgetTotal = budgetResult.data?.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0) || 0;
+
+            results[deptCode] = {
+              vendorTotal,
+              budgetTotal,
+              vendorRecordCount: vendorResult.count || 0,
+              budgetRecordCount: budgetResult.count || 0
+            };
+
+          } catch (error) {
+            console.warn(`[SPEND API] Error processing department ${deptCode}:`, error);
+            results[deptCode] = {
+              vendorTotal: null,
+              budgetTotal: null,
+              vendorRecordCount: null,
+              budgetRecordCount: null
+            };
+          }
+        }));
+
+        const batchResult = {
+          batch: results,
+          totalDepartments: departmentCodes.length,
+          processedDepartments: Object.keys(results).length
+        };
+
+        // Cache the batch result for 1 hour
+        try {
+          await setInCache(batchCacheKey, batchResult, { ex: 3600, tags: ['spend', 'batch'] });
+          console.log(`[SPEND API] Cached batch result for key: ${batchCacheKey}`);
+        } catch (cacheError) {
+          console.warn(`[SPEND API] Failed to cache batch result: ${cacheError}`);
+        }
+
+        return NextResponse.json(batchResult, {
+          headers: {
+            'X-Cache': 'MISS',
+            'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+          }
+        });
+
+      } catch (error) {
+        console.error('[SPEND API] Batch request error:', error);
+        return NextResponse.json({
+          error: 'Failed to process batch request',
+          details: error
+        }, { status: 500 });
+      }
+    }
 
     // Generate cache key and check cache
     const cacheKey = generateCacheKey(searchParams);

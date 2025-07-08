@@ -164,6 +164,17 @@ function SpendPageClient() {
     if (orderParam && ['asc', 'desc'].includes(orderParam)) {
       setOrder(orderParam);
     }
+    // Initialize page from URL parameter
+    if (pageParam) {
+      const pageNum = parseInt(pageParam, 10);
+      if (!isNaN(pageNum) && pageNum > 0) {
+        console.log(`[SPEND PAGE] Setting page from URL: ${pageNum}`);
+        setPage(pageNum);
+      }
+    } else {
+      console.log(`[SPEND PAGE] No page param, setting to 1`);
+      setPage(1);
+    }
   }, [searchParams]);
 
   // Update URL when filters change

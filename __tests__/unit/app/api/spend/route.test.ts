@@ -36,6 +36,12 @@ describe('spend API utility functions', () => {
   });
 });
 
+// Mock cache functions
+jest.mock('@/lib/cache', () => ({
+  getFromCache: jest.fn().mockResolvedValue(null),
+  setInCache: jest.fn().mockResolvedValue(undefined),
+}));
+
 // --- New tests for budget view ---
 jest.mock('@/lib/supabase', () => {
   // Helper to create a chainable mock query object
@@ -603,5 +609,138 @@ describe('spend API general error handling', () => {
     expect(res).toBeInstanceOf(NextResponse);
     const json = await res.json();
     expect(json.spending).toBeDefined();
+  });
+});
+
+// --- New tests for batch API functionality ---
+describe('spend API batch functionality', () => {
+  it('handles batch request with multiple department codes', async () => {
+    const { getServiceSupabase } = require('@/lib/supabase');
+    const mockSupabase = getServiceSupabase();
+    
+    // Mock the batch queries - each department gets 2 queries (vendor + budget)
+    let callCount = 0;
+    mockSupabase.from.mockImplementation(() => {
+      callCount++;
+      const mockQuery: any = {};
+      const chain = () => mockQuery;
+      mockQuery.select = chain;
+      mockQuery.eq = chain;
+      mockQuery.then = (resolve) => {
+        // Return different data for vendor vs budget queries
+        const isVendorQuery = callCount % 2 === 1;
+        const data = isVendorQuery 
+          ? [{ amount: 1000 }, { amount: 2000 }] 
+          : [{ amount: 500 }, { amount: 1500 }];
+        const count = isVendorQuery ? 2 : 2;
+        Promise.resolve({ data, error: null, count }).then(resolve);
+      };
+      return mockQuery;
+    });
+
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?batch=8880,1111,2660' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json.batch).toBeDefined();
+    expect(json.totalDepartments).toBe(3);
+    expect(json.processedDepartments).toBe(3);
+    // Check that the batch response has the expected structure
+    expect(json.batch['8880']).toHaveProperty('vendorTotal');
+    expect(json.batch['8880']).toHaveProperty('budgetTotal');
+    expect(json.batch['8880']).toHaveProperty('vendorRecordCount');
+    expect(json.batch['8880']).toHaveProperty('budgetRecordCount');
+  });
+
+  it('handles batch request with empty department codes', async () => {
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?batch=' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json.error).toBe('No valid department codes provided in batch parameter');
+    expect(res.status).toBe(400);
+  });
+
+  it('handles batch request with only whitespace department codes', async () => {
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?batch=   ' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json.error).toBe('No valid department codes provided in batch parameter');
+    expect(res.status).toBe(400);
+  });
+
+  it('handles batch request with invalid department codes', async () => {
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?batch=,,,' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json.error).toBe('No valid department codes provided in batch parameter');
+    expect(res.status).toBe(400);
+  });
+
+  it('handles batch request with database errors', async () => {
+    const { getServiceSupabase } = require('@/lib/supabase');
+    const mockSupabase = getServiceSupabase();
+    
+    // Mock database error - the API should catch this and return null values
+    mockSupabase.from.mockImplementation(() => {
+      const mockQuery: any = {};
+      const chain = () => mockQuery;
+      mockQuery.select = chain;
+      mockQuery.eq = chain;
+      mockQuery.then = (resolve) => {
+        // Simulate the catch block in the API that sets null values
+        throw new Error('Database error');
+      };
+      return mockQuery;
+    });
+
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?batch=8880,1111' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json.batch).toBeDefined();
+    expect(json.batch['8880']).toMatchObject({
+      vendorTotal: null,
+      budgetTotal: null,
+      vendorRecordCount: null,
+      budgetRecordCount: null
+    });
+  });
+
+  it('handles batch request with cache hit', async () => {
+    const { getFromCache } = require('@/lib/cache');
+    const cachedData = {
+      batch: {
+        '8880': {
+          vendorTotal: 1000,
+          budgetTotal: 500,
+          vendorRecordCount: 10,
+          budgetRecordCount: 5
+        }
+      },
+      totalDepartments: 1,
+      processedDepartments: 1
+    };
+    (getFromCache as jest.Mock).mockResolvedValueOnce(cachedData);
+
+    const { GET } = require('@/app/api/spend/route');
+    const req = { url: 'http://localhost/api/spend?batch=8880' };
+    const res = await GET(req as any);
+
+    expect(res).toBeInstanceOf(NextResponse);
+    const json = await res.json();
+    expect(json).toEqual(cachedData);
   });
 }); 
