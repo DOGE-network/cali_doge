@@ -1,6 +1,144 @@
 {
   "tweets": [
     {
+      "entities": {
+        "urls": [
+          {
+            "start": 134,
+            "end": 157,
+            "url": "https://t.co/wX3UrdAVPQ",
+            "expanded_url": "https://x.com/cali_doge/status/1942735274808848846/photo/1",
+            "display_url": "pic.x.com/wX3UrdAVPQ",
+            "media_key": "3_1942735269888716803"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 33,
+            "end": 37,
+            "probability": 0.7922,
+            "type": "Other",
+            "normalized_text": "HSCST"
+          },
+          {
+            "start": 42,
+            "end": 71,
+            "probability": 0.9268,
+            "type": "Other",
+            "normalized_text": "High Speed Climate Smelt Train"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "attachments": {
+        "media_keys": [
+          "3_1942735269888716803"
+        ]
+      },
+      "id": "1942735274808848846",
+      "author_id": "1859283000145608705",
+      "text": "@joffemd We should rename it the HSCST or High Speed Climate Smelt Train. Might as well jam a bunch of stupid ideas into one project. https://t.co/wX3UrdAVPQ",
+      "created_at": "2025-07-08T23:59:18.000Z",
+      "edit_history_tweet_ids": [
+        "1942735274808848846"
+      ],
+      "created_at_formatted": "Jul 8, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1942735274808848846_0.jpg",
+          "width": 720,
+          "height": 960
+        }
+      ]
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 213,
+            "end": 236,
+            "url": "https://t.co/P3uqeGwBTW",
+            "expanded_url": "https://twitter.com/hotshot_movie/status/1942652586466607549",
+            "display_url": "x.com/hotshot_movie/…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 200,
+            "end": 212,
+            "username": "adamcarolla",
+            "id": "10926202"
+          }
+        ]
+      },
+      "id": "1942668645848494452",
+      "author_id": "1859283000145608705",
+      "text": "Sad that our lessons have to be relearned by death and destruction. Proper attention to power and water needs will allow us to rebuild and not make our grandchildren experience this manmade horror. \n\n@adamcarolla https://t.co/P3uqeGwBTW",
+      "created_at": "2025-07-08T19:34:32.000Z",
+      "edit_history_tweet_ids": [
+        "1942668645848494452"
+      ],
+      "created_at_formatted": "Jul 8, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "entities": {
         "mentions": [
@@ -20308,8 +20446,8 @@
     }
   ],
   "meta": {
-    "result_count": 192,
-    "newest_id": "1942638245579223448",
+    "result_count": 194,
+    "newest_id": "1942735274808848846",
     "oldest_id": "1882144700762878208"
   }
 }
