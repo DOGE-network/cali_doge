@@ -53,9 +53,10 @@ export async function GET(request: NextRequest) {
     const compareBy = searchParams.get('compareBy') || 'department';
     const limit = parseInt(searchParams.get('limit') || '50', 10);
     const page = parseInt(searchParams.get('page') || '1', 10);
-    const offset = parseInt(searchParams.get('offset') || '0', 10);
+    const offsetParam = searchParams.get('offset');
+    const offset = offsetParam !== null ? parseInt(offsetParam, 10) : 0;
     // Calculate offset from page if not provided directly
-    const calculatedOffset = offset === 0 ? (page - 1) * limit : offset;
+    const calculatedOffset = offsetParam === null ? (page - 1) * limit : offset;
     const sort = searchParams.get('sort') || 'amount';
     const order = searchParams.get('order') || 'desc';
 
@@ -98,11 +99,38 @@ export async function GET(request: NextRequest) {
         // Process each department code
         await Promise.all(departmentCodes.map(async (deptCode) => {
           try {
-            // Get vendor totals
-            let vendorQuery = supabase
-              .from('vendor_transactions_with_vendor_fy2024') // Use most recent year for totals
-              .select('amount', { count: 'exact' })
-              .eq('department_code', deptCode);
+            // Get vendor totals across all available fiscal years
+            const years = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+            let vendorTotal = 0;
+            let vendorRecordCount = 0;
+            
+            // Query each year-partitioned view and aggregate results
+            for (const yearValue of years) {
+              const viewName = getYearPartitionedViewName(yearValue);
+              
+              try {
+                const yearQuery = (supabase as any)
+                  .from(viewName)
+                  .select('amount', { count: 'exact' })
+                  .eq('department_code', deptCode);
+                
+                const { data: yearData, count: yearCount, error: yearError } = await yearQuery;
+                
+                if (yearError) {
+                  console.warn(`[SPEND API] Error querying ${viewName} for department ${deptCode}:`, yearError);
+                  continue;
+                }
+                
+                if (yearData) {
+                  const yearTotal = yearData.reduce((sum: number, item: any) => sum + parseFloat(item.amount.toString()), 0);
+                  vendorTotal += yearTotal;
+                  vendorRecordCount += yearCount || 0;
+                }
+              } catch (yearError) {
+                console.warn(`[SPEND API] Error processing ${viewName} for department ${deptCode}:`, yearError);
+                continue;
+              }
+            }
 
             // Get budget totals
             let budgetQuery = supabase
@@ -110,18 +138,13 @@ export async function GET(request: NextRequest) {
               .select('amount', { count: 'exact' })
               .eq('department_code', deptCode);
 
-            const [vendorResult, budgetResult] = await Promise.all([
-              vendorQuery,
-              budgetQuery
-            ]);
-
-            const vendorTotal = vendorResult.data?.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0) || 0;
+            const budgetResult = await budgetQuery;
             const budgetTotal = budgetResult.data?.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0) || 0;
 
             results[deptCode] = {
               vendorTotal,
               budgetTotal,
-              vendorRecordCount: vendorResult.count || 0,
+              vendorRecordCount,
               budgetRecordCount: budgetResult.count || 0
             };
 
