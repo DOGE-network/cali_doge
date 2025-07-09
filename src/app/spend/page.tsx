@@ -118,7 +118,9 @@ function SpendPageClient() {
       }
     }
     
-    return `/api/spend?${params.toString()}`;
+    const url = `/api/spend?${params.toString()}`;
+    console.log(`[SPEND PAGE] Building API URL: ${url} (page state: ${page})`);
+    return url;
   };
 
   // Fetch spending data
@@ -140,6 +142,7 @@ function SpendPageClient() {
     const filterValueParam = searchParams.get('filterValue');
     const sortParam = searchParams.get('sort');
     const orderParam = searchParams.get('order');
+    const pageParam = searchParams.get('page');
     
     if (viewParam && ['vendor', 'budget', 'compare'].includes(viewParam)) {
       setView(viewParam);
@@ -164,10 +167,22 @@ function SpendPageClient() {
     if (orderParam && ['asc', 'desc'].includes(orderParam)) {
       setOrder(orderParam);
     }
+    // Initialize page from URL parameter
+    if (pageParam) {
+      const pageNum = parseInt(pageParam, 10);
+      if (!isNaN(pageNum) && pageNum > 0) {
+        console.log(`[SPEND PAGE] Setting page from URL: ${pageNum}`);
+        setPage(pageNum);
+      }
+    } else {
+      console.log(`[SPEND PAGE] No page param, setting to 1`);
+      setPage(1);
+    }
   }, [searchParams]);
 
   // Update URL when filters change
   const updateUrl = (newParams: Record<string, string>) => {
+    console.log(`[SPEND PAGE] updateUrl called with:`, newParams);
     const params = new URLSearchParams(searchParams);
     Object.entries(newParams).forEach(([key, value]) => {
       if (value) {
@@ -176,7 +191,9 @@ function SpendPageClient() {
         params.delete(key);
       }
     });
-    router.push(`/spend?${params.toString()}`);
+    const newUrl = `/spend?${params.toString()}`;
+    console.log(`[SPEND PAGE] Navigating to: ${newUrl}`);
+    router.push(newUrl);
   };
 
   // Handle sorting
@@ -270,6 +287,10 @@ function SpendPageClient() {
     if (sort !== column) return '↕️';
     return order === 'asc' ? '↑' : '↓';
   };
+
+  // Debug: Log current state
+  console.log(`[SPEND PAGE] Current state - page: ${page}, view: ${view}, sort: ${sort}, order: ${order}`);
+  console.log(`[SPEND PAGE] URL params - page: ${searchParams.get('page')}, view: ${searchParams.get('view')}`);
 
   if (error) {
     return (
@@ -636,6 +657,7 @@ function SpendPageClient() {
               disabled={!spendData.pagination.hasPrevPage}
               onClick={() => {
                 const newPage = page - 1;
+                console.log(`[SPEND PAGE] Previous button clicked: ${page} -> ${newPage}`);
                 setPage(newPage);
                 updateUrl({ page: newPage.toString() });
               }}
@@ -651,6 +673,7 @@ function SpendPageClient() {
               disabled={!spendData.pagination.hasNextPage}
               onClick={() => {
                 const newPage = page + 1;
+                console.log(`[SPEND PAGE] Next button clicked: ${page} -> ${newPage}`);
                 setPage(newPage);
                 updateUrl({ page: newPage.toString() });
               }}

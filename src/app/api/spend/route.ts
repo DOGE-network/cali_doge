@@ -44,6 +44,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const department = searchParams.get('department');
     const departmentCode = searchParams.get('department_code');
+    const batch = searchParams.get('batch'); // New batch parameter for multiple department codes
     const vendor = searchParams.get('vendor');
     const program = searchParams.get('program');
     const fund = searchParams.get('fund');
@@ -51,10 +52,142 @@ export async function GET(request: NextRequest) {
     const view = searchParams.get('view') || 'vendor';
     const compareBy = searchParams.get('compareBy') || 'department';
     const limit = parseInt(searchParams.get('limit') || '50', 10);
-    const offset = parseInt(searchParams.get('offset') || '0', 10);
     const page = parseInt(searchParams.get('page') || '1', 10);
+    const offsetParam = searchParams.get('offset');
+    const offset = offsetParam !== null ? parseInt(offsetParam, 10) : 0;
+    // Calculate offset from page if not provided directly
+    const calculatedOffset = offsetParam === null ? (page - 1) * limit : offset;
     const sort = searchParams.get('sort') || 'amount';
     const order = searchParams.get('order') || 'desc';
+
+    // Handle batch request for multiple department codes
+    if (batch !== null) {
+      try {
+        const departmentCodes = batch.split(',').map(code => code.trim()).filter(Boolean);
+        if (departmentCodes.length === 0) {
+          return NextResponse.json({
+            error: 'No valid department codes provided in batch parameter'
+          }, { status: 400 });
+        }
+
+        // Generate cache key for batch request
+        const batchCacheKey = `batch:${departmentCodes.sort().join(',')}`;
+        console.log(`[SPEND API] Batch request for ${departmentCodes.length} departments: ${departmentCodes.join(', ')}`);
+        console.log(`[SPEND API] Batch cache key: ${batchCacheKey}`);
+
+        // Check cache for batch request
+        try {
+          const cachedBatchResult = await getFromCache(batchCacheKey);
+          if (cachedBatchResult) {
+            console.log(`[SPEND API] Batch cache HIT for key: ${batchCacheKey}`);
+            return NextResponse.json(cachedBatchResult, {
+              headers: {
+                'X-Cache': 'HIT',
+                'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+              }
+            });
+          }
+          console.log(`[SPEND API] Batch cache MISS for key: ${batchCacheKey}`);
+        } catch (cacheError) {
+          console.warn(`[SPEND API] Batch cache error: ${cacheError}`);
+          // Continue with database queries if cache fails
+        }
+
+        const supabase = getServiceSupabase();
+        const results: Record<string, { vendorTotal: number | null; budgetTotal: number | null; vendorRecordCount: number | null; budgetRecordCount: number | null }> = {};
+
+        // Process each department code
+        await Promise.all(departmentCodes.map(async (deptCode) => {
+          try {
+            // Get vendor totals across all available fiscal years
+            const years = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+            let vendorTotal = 0;
+            let vendorRecordCount = 0;
+            
+            // Query each year-partitioned view and aggregate results
+            for (const yearValue of years) {
+              const viewName = getYearPartitionedViewName(yearValue);
+              
+              try {
+                const yearQuery = (supabase as any)
+                  .from(viewName)
+                  .select('amount', { count: 'exact' })
+                  .eq('department_code', deptCode);
+                
+                const { data: yearData, count: yearCount, error: yearError } = await yearQuery;
+                
+                if (yearError) {
+                  console.warn(`[SPEND API] Error querying ${viewName} for department ${deptCode}:`, yearError);
+                  continue;
+                }
+                
+                if (yearData) {
+                  const yearTotal = yearData.reduce((sum: number, item: any) => sum + parseFloat(item.amount.toString()), 0);
+                  vendorTotal += yearTotal;
+                  vendorRecordCount += yearCount || 0;
+                }
+              } catch (yearError) {
+                console.warn(`[SPEND API] Error processing ${viewName} for department ${deptCode}:`, yearError);
+                continue;
+              }
+            }
+
+            // Get budget totals
+            let budgetQuery = supabase
+              .from('budget_line_items_with_names')
+              .select('amount', { count: 'exact' })
+              .eq('department_code', deptCode);
+
+            const budgetResult = await budgetQuery;
+            const budgetTotal = budgetResult.data?.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0) || 0;
+
+            results[deptCode] = {
+              vendorTotal,
+              budgetTotal,
+              vendorRecordCount,
+              budgetRecordCount: budgetResult.count || 0
+            };
+
+          } catch (error) {
+            console.warn(`[SPEND API] Error processing department ${deptCode}:`, error);
+            results[deptCode] = {
+              vendorTotal: null,
+              budgetTotal: null,
+              vendorRecordCount: null,
+              budgetRecordCount: null
+            };
+          }
+        }));
+
+        const batchResult = {
+          batch: results,
+          totalDepartments: departmentCodes.length,
+          processedDepartments: Object.keys(results).length
+        };
+
+        // Cache the batch result for 1 hour
+        try {
+          await setInCache(batchCacheKey, batchResult, { ex: 3600, tags: ['spend', 'batch'] });
+          console.log(`[SPEND API] Cached batch result for key: ${batchCacheKey}`);
+        } catch (cacheError) {
+          console.warn(`[SPEND API] Failed to cache batch result: ${cacheError}`);
+        }
+
+        return NextResponse.json(batchResult, {
+          headers: {
+            'X-Cache': 'MISS',
+            'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+          }
+        });
+
+      } catch (error) {
+        console.error('[SPEND API] Batch request error:', error);
+        return NextResponse.json({
+          error: 'Failed to process batch request',
+          details: error
+        }, { status: 500 });
+      }
+    }
 
     // Generate cache key and check cache
     const cacheKey = generateCacheKey(searchParams);
@@ -101,9 +234,17 @@ export async function GET(request: NextRequest) {
         query = query.ilike('fund_name', `%${fund}%`);
       }
 
+      // Determine sort field for budget view
+      const sortField = sort === 'amount' ? 'amount' : 
+                       sort === 'year' ? 'fiscal_year' :
+                       sort === 'department' ? 'department_name' :
+                       sort === 'program' ? 'program_name' :
+                       sort === 'fund' ? 'fund_name' : 'amount';
+      const ascending = order === 'asc';
+
       const { data, error, count } = await query
-        .order('amount', { ascending: order === 'asc' })
-        .range(offset, offset + limit - 1);
+        .order(sortField, { ascending })
+        .range(calculatedOffset, calculatedOffset + limit - 1);
 
       if (error) {
         console.error('Budget query error:', error);
@@ -289,7 +430,7 @@ export async function GET(request: NextRequest) {
       query = query.order(sortField, { ascending });
 
       const { data, error, count } = await query
-        .range(offset, offset + limit - 1);
+        .range(calculatedOffset, calculatedOffset + limit - 1);
 
       if (error) {
         console.error('Compare query error:', error);
@@ -439,13 +580,14 @@ export async function GET(request: NextRequest) {
         const sortField = sort === 'amount' ? 'amount' : 
                          sort === 'year' ? 'fiscal_year' :
                          sort === 'department' ? 'department_name' :
-                         sort === 'program' ? 'program_name' :
-                         sort === 'fund' ? 'fund_name' : 'amount';
+                         sort === 'vendor' ? 'vendor_name' :
+                         sort === 'program' ? 'program_code' :
+                         sort === 'fund' ? 'fund_code' : 'amount';
         const ascending = order === 'asc';
         filteredQuery = filteredQuery.order(sortField, { ascending });
 
         const { data: queryData, error, count: queryCount } = await filteredQuery
-          .range(offset, offset + limit - 1);
+          .range(calculatedOffset, calculatedOffset + limit - 1);
 
         if (error) {
           console.error('Vendor query error:', error);
@@ -544,14 +686,25 @@ export async function GET(request: NextRequest) {
         const ascending = order === 'asc';
         
         allTransactions.sort((a, b) => {
-          const aVal = a[sortField] || 0;
-          const bVal = b[sortField] || 0;
-          return ascending ? aVal - bVal : bVal - aVal;
+          const aVal = a[sortField] || '';
+          const bVal = b[sortField] || '';
+          
+          // Handle numeric fields
+          if (sortField === 'amount' || sortField === 'fiscal_year') {
+            const aNum = typeof aVal === 'number' ? aVal : parseFloat(aVal) || 0;
+            const bNum = typeof bVal === 'number' ? bVal : parseFloat(bVal) || 0;
+            return ascending ? aNum - bNum : bNum - aNum;
+          }
+          
+          // Handle string fields
+          const aStr = String(aVal);
+          const bStr = String(bVal);
+          return ascending ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
         });
         
         // Apply pagination
-        const startIndex = offset;
-        const endIndex = offset + limit;
+        const startIndex = calculatedOffset;
+        const endIndex = calculatedOffset + limit;
         data = allTransactions.slice(startIndex, endIndex);
         count = allTransactions.length;
         totalAmount = allTransactions.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0);

@@ -230,41 +230,76 @@ function SearchPageClient() {
     setCollapsedSections({});
   }, [searchData]);
 
-  // Fetch vendor and budget totals for all departments
+  // Fetch vendor and budget totals for all departments using batch API
   useEffect(() => {
     if (!searchData || !searchData.departments) return;
     const fetchTotals = async () => {
       setTotalsLoading(true);
-      const newTotals: Record<string, { 
-        vendorTotal: number | null; 
-        budgetTotal: number | null;
-        vendorRecordCount: number | null;
-        budgetRecordCount: number | null;
-      }> = {};
-      await Promise.all(
-        searchData.departments.map(async (dept) => {
-          try {
-            const [vendorRes, budgetRes] = await Promise.all([
-              fetch(`/api/spend?department_code=${encodeURIComponent(dept.id)}&limit=1`).then(r => r.json()),
-              fetch(`/api/spend?view=budget&department_code=${encodeURIComponent(dept.id)}&limit=1`).then(r => r.json()),
-            ]);
-            newTotals[dept.id] = {
-              vendorTotal: vendorRes.summary?.totalAmount ?? null,
-              budgetTotal: budgetRes.summary?.totalAmount ?? null,
-              vendorRecordCount: vendorRes.summary?.recordCount ?? null,
-              budgetRecordCount: budgetRes.summary?.recordCount ?? null,
-            };
-          } catch {
-            newTotals[dept.id] = { 
-              vendorTotal: null, 
-              budgetTotal: null,
-              vendorRecordCount: null,
-              budgetRecordCount: null,
-            };
-          }
-        })
-      );
-      setDepartmentTotals(newTotals);
+      
+      try {
+        // Extract department codes for batch request
+        const departmentCodes = searchData.departments.map(dept => dept.id).join(',');
+        
+        // Make single batch request instead of individual requests
+        const batchResponse = await fetch(`/api/spend?batch=${encodeURIComponent(departmentCodes)}`);
+        
+        if (batchResponse.ok) {
+          const batchData = await batchResponse.json();
+          setDepartmentTotals(batchData.batch || {});
+        } else {
+          console.warn('Batch API failed, falling back to individual requests');
+          // Fallback to individual requests if batch fails
+          const newTotals: Record<string, { 
+            vendorTotal: number | null; 
+            budgetTotal: number | null;
+            vendorRecordCount: number | null;
+            budgetRecordCount: number | null;
+          }> = {};
+          await Promise.all(
+            searchData.departments.map(async (dept) => {
+              try {
+                const [vendorRes, budgetRes] = await Promise.all([
+                  fetch(`/api/spend?department_code=${encodeURIComponent(dept.id)}&limit=1`).then(r => r.json()),
+                  fetch(`/api/spend?view=budget&department_code=${encodeURIComponent(dept.id)}&limit=1`).then(r => r.json()),
+                ]);
+                newTotals[dept.id] = {
+                  vendorTotal: vendorRes.summary?.totalAmount ?? null,
+                  budgetTotal: budgetRes.summary?.totalAmount ?? null,
+                  vendorRecordCount: vendorRes.summary?.recordCount ?? null,
+                  budgetRecordCount: budgetRes.summary?.recordCount ?? null,
+                };
+              } catch {
+                newTotals[dept.id] = { 
+                  vendorTotal: null, 
+                  budgetTotal: null,
+                  vendorRecordCount: null,
+                  budgetRecordCount: null,
+                };
+              }
+            })
+          );
+          setDepartmentTotals(newTotals);
+        }
+      } catch (error) {
+        console.error('Error fetching department totals:', error);
+        // Set empty totals on error
+        const emptyTotals: Record<string, { 
+          vendorTotal: number | null; 
+          budgetTotal: number | null;
+          vendorRecordCount: number | null;
+          budgetRecordCount: number | null;
+        }> = {};
+        searchData.departments.forEach(dept => {
+          emptyTotals[dept.id] = { 
+            vendorTotal: null, 
+            budgetTotal: null,
+            vendorRecordCount: null,
+            budgetRecordCount: null,
+          };
+        });
+        setDepartmentTotals(emptyTotals);
+      }
+      
       setTotalsLoading(false);
     };
     fetchTotals();
