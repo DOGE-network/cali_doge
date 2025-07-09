@@ -1,6 +1,6 @@
 {
   "name": "cali-doge",
-  "version": "1.6.14",
+  "version": "1.6.15",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
@@ -11,6 +11,7 @@
     "generate-badges": "node src/scripts/generate-badges.js",
     "fetch-tweets": "ts-node -T --compilerOptions '{\"module\":\"commonjs\"}' src/scripts/fetch-tweets.ts",
     "favicon-check": "npx realfavicon check http://localhost:3000",
+    "clear-cache": "npx tsx src/scripts/clear-spend-cache.ts",
     "test": "jest --config jest.config.js --passWithNoTests",
     "test:coverage": "npm run test -- --coverage",
     "test:coverage:full": "jest --config jest.config.js --passWithNoTests --coverage --coverageReporters=text --coverageReporters=lcov --coverageReporters=html",

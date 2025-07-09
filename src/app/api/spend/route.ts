@@ -52,8 +52,10 @@ export async function GET(request: NextRequest) {
     const view = searchParams.get('view') || 'vendor';
     const compareBy = searchParams.get('compareBy') || 'department';
     const limit = parseInt(searchParams.get('limit') || '50', 10);
-    const offset = parseInt(searchParams.get('offset') || '0', 10);
     const page = parseInt(searchParams.get('page') || '1', 10);
+    const offset = parseInt(searchParams.get('offset') || '0', 10);
+    // Calculate offset from page if not provided directly
+    const calculatedOffset = offset === 0 ? (page - 1) * limit : offset;
     const sort = searchParams.get('sort') || 'amount';
     const order = searchParams.get('order') || 'desc';
 
@@ -209,9 +211,17 @@ export async function GET(request: NextRequest) {
         query = query.ilike('fund_name', `%${fund}%`);
       }
 
+      // Determine sort field for budget view
+      const sortField = sort === 'amount' ? 'amount' : 
+                       sort === 'year' ? 'fiscal_year' :
+                       sort === 'department' ? 'department_name' :
+                       sort === 'program' ? 'program_name' :
+                       sort === 'fund' ? 'fund_name' : 'amount';
+      const ascending = order === 'asc';
+
       const { data, error, count } = await query
-        .order('amount', { ascending: order === 'asc' })
-        .range(offset, offset + limit - 1);
+        .order(sortField, { ascending })
+        .range(calculatedOffset, calculatedOffset + limit - 1);
 
       if (error) {
         console.error('Budget query error:', error);
@@ -397,7 +407,7 @@ export async function GET(request: NextRequest) {
       query = query.order(sortField, { ascending });
 
       const { data, error, count } = await query
-        .range(offset, offset + limit - 1);
+        .range(calculatedOffset, calculatedOffset + limit - 1);
 
       if (error) {
         console.error('Compare query error:', error);
@@ -547,13 +557,14 @@ export async function GET(request: NextRequest) {
         const sortField = sort === 'amount' ? 'amount' : 
                          sort === 'year' ? 'fiscal_year' :
                          sort === 'department' ? 'department_name' :
-                         sort === 'program' ? 'program_name' :
-                         sort === 'fund' ? 'fund_name' : 'amount';
+                         sort === 'vendor' ? 'vendor_name' :
+                         sort === 'program' ? 'program_code' :
+                         sort === 'fund' ? 'fund_code' : 'amount';
         const ascending = order === 'asc';
         filteredQuery = filteredQuery.order(sortField, { ascending });
 
         const { data: queryData, error, count: queryCount } = await filteredQuery
-          .range(offset, offset + limit - 1);
+          .range(calculatedOffset, calculatedOffset + limit - 1);
 
         if (error) {
           console.error('Vendor query error:', error);
@@ -652,14 +663,25 @@ export async function GET(request: NextRequest) {
         const ascending = order === 'asc';
         
         allTransactions.sort((a, b) => {
-          const aVal = a[sortField] || 0;
-          const bVal = b[sortField] || 0;
-          return ascending ? aVal - bVal : bVal - aVal;
+          const aVal = a[sortField] || '';
+          const bVal = b[sortField] || '';
+          
+          // Handle numeric fields
+          if (sortField === 'amount' || sortField === 'fiscal_year') {
+            const aNum = typeof aVal === 'number' ? aVal : parseFloat(aVal) || 0;
+            const bNum = typeof bVal === 'number' ? bVal : parseFloat(bVal) || 0;
+            return ascending ? aNum - bNum : bNum - aNum;
+          }
+          
+          // Handle string fields
+          const aStr = String(aVal);
+          const bStr = String(bVal);
+          return ascending ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
         });
         
         // Apply pagination
-        const startIndex = offset;
-        const endIndex = offset + limit;
+        const startIndex = calculatedOffset;
+        const endIndex = calculatedOffset + limit;
         data = allTransactions.slice(startIndex, endIndex);
         count = allTransactions.length;
         totalAmount = allTransactions.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0);

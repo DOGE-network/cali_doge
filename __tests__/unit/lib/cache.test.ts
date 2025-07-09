@@ -2,6 +2,7 @@
 const mockPipeline = {
   set: jest.fn().mockReturnThis(),
   sadd: jest.fn().mockReturnThis(),
+  del: jest.fn().mockReturnThis(),
   exec: jest.fn()
 };
 const mockRedis = {
@@ -16,9 +17,7 @@ const mockRedis = {
 };
 
 jest.mock('@upstash/redis', () => ({
-  Redis: {
-    fromEnv: jest.fn(() => mockRedis)
-  }
+  Redis: jest.fn(() => mockRedis)
 }));
 
 // Now import the cache functions

@@ -1,8 +1,18 @@
 import { Redis } from '@upstash/redis';
 import type { SetCommandOptions } from '@upstash/redis';
 
-// Redis.fromEnv() will automatically read UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN
-const redis = Redis.fromEnv();
+// Lazy initialization of Redis client
+let redis: Redis | null = null;
+
+function getRedisClient(): Redis {
+  if (!redis) {
+    redis = new Redis({
+      url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL,
+      token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN,
+    });
+  }
+  return redis;
+}
 
 export type CacheOptions = {
   ex?: number; // Expiration in seconds
@@ -17,7 +27,7 @@ export type CacheOptions = {
  */
 export async function getFromCache<T>(key: string): Promise<T | null> {
   try {
-    return await redis.get<T>(key);
+    return await getRedisClient().get<T>(key);
   } catch (error) {
     console.error('Cache get error:', error);
     return null;
@@ -43,12 +53,12 @@ export async function setInCache<T>(
       nx: redisOptions.nx ? true : undefined
     } as unknown as SetCommandOptions;
     
-    await redis.set(key, value, setOptions);
+    await getRedisClient().set(key, value, setOptions);
     
     // If tags are provided, store key references for later invalidation
     if (tags && tags.length > 0) {
       for (const tag of tags) {
-        await redis.sadd(`tag:${tag}`, key);
+        await getRedisClient().sadd(`tag:${tag}`, key);
       }
     }
   } catch (error) {
@@ -63,11 +73,11 @@ export async function setInCache<T>(
 export async function invalidateByTag(tag: string): Promise<void> {
   try {
     // Get all keys with this tag
-    const keys = await redis.smembers<string[]>(`tag:${tag}`);
+    const keys = await getRedisClient().smembers<string[]>(`tag:${tag}`);
     
     // Delete all keys
     if (keys && keys.length > 0) {
-      await redis.del(...keys, `tag:${tag}`);
+      await getRedisClient().del(...keys, `tag:${tag}`);
     }
   } catch (error) {
     console.error('Cache invalidation error:', error);
@@ -80,7 +90,7 @@ export async function invalidateByTag(tag: string): Promise<void> {
  */
 export async function deleteFromCache(key: string): Promise<void> {
   try {
-    await redis.del(key);
+    await getRedisClient().del(key);
   } catch (error) {
     console.error('Cache delete error:', error);
   }
@@ -93,7 +103,7 @@ export async function deleteFromCache(key: string): Promise<void> {
  */
 export async function existsInCache(key: string): Promise<boolean> {
   try {
-    return await redis.exists(key) === 1;
+    return await getRedisClient().exists(key) === 1;
   } catch (error) {
     console.error('Cache exists check error:', error);
     return false;
@@ -107,7 +117,7 @@ export async function existsInCache(key: string): Promise<boolean> {
  */
 export async function mgetFromCache<T>(keys: string[]): Promise<(T | null)[]> {
   try {
-    const values = await redis.mget<T[]>(keys);
+    const values = await getRedisClient().mget<T[]>(keys);
     return values.map(value => value ?? null);
   } catch (error) {
     console.error('Cache mget error:', error);
@@ -132,7 +142,7 @@ export async function msetInCache<T>(
       nx: redisOptions.nx ? true : undefined
     } as unknown as SetCommandOptions;
     
-    const pipeline = redis.pipeline();
+    const pipeline = getRedisClient().pipeline();
     
     for (const { key, value } of entries) {
       pipeline.set(key, value, setOptions);
