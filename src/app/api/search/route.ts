@@ -185,6 +185,26 @@ function getMatchInfo(item: any, query: string) {
   return { matchField: null, matchSnippet: null, fuzzyScore: 0, fuzzyResult: null };
 }
 
+// --- Helper to fetch years for a batch of entities ---
+async function fetchBatchYears(type, ids, terms) {
+  if (!ids.length) return {};
+  let url = '';
+  if (type === 'vendor') url = `/api/spend?vendor=${encodeURIComponent(terms.join(','))}&limit=1`;
+  else if (type === 'program') url = `/api/spend?program=${encodeURIComponent(ids.join(','))}&limit=1`;
+  else if (type === 'fund') url = `/api/spend?fund=${encodeURIComponent(ids.join(','))}&limit=1`;
+  if (!url) return {};
+  try {
+    const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const res = await fetch(base + url);
+    if (!res.ok) return {};
+    const data = await res.json();
+    // Assume batch result is keyed by id or term
+    return data.batch || {};
+  } catch {
+    return {};
+  }
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -344,6 +364,30 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // --- Batch fetch years for vendors, programs, and funds ---
+    // Vendors: use term as key, programs/funds: use id
+    const vendorTerms = transformedResults.vendors.map(item => item.term);
+    const programIds = transformedResults.programs.map(item => item.id);
+    const fundIds = transformedResults.funds.map(item => item.id);
+    const [vendorBatch, programBatch, fundBatch] = await Promise.all([
+      fetchBatchYears('vendor', [], vendorTerms),
+      fetchBatchYears('program', programIds, []),
+      fetchBatchYears('fund', fundIds, [])
+    ]);
+    transformedResults.vendors.forEach(item => {
+      const batchData = vendorBatch[item.term];
+      if (batchData && Array.isArray(batchData.years)) item.years = batchData.years;
+    });
+    transformedResults.programs.forEach(item => {
+      const batchData = programBatch[item.id];
+      if (batchData && Array.isArray(batchData.years)) item.years = batchData.years;
+    });
+    transformedResults.funds.forEach(item => {
+      const batchData = fundBatch[item.id];
+      if (batchData && Array.isArray(batchData.years)) item.years = batchData.years;
+    });
+    // --- End batch years injection ---
+
     // Sort by score and limit results per type
     const sortedResults = {
       departments: transformedResults.departments
@@ -422,7 +466,7 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(response, {
       headers: {
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
+        'Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=604800'
       }
     });
     

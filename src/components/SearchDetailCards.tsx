@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import type { SearchItem } from '@/types/search';
-import { fuzzyMatch } from '@/lib/fuzzyMatching';
 import { downloadTSVWithLookups, getAvailableColumns, VENDOR_SPENDING_COLUMNS, BUDGET_SPENDING_COLUMNS } from '@/lib/download';
 import DepartmentSpendingModal from './DepartmentSpendingModal';
 import VendorSpendingModal from './VendorSpendingModal';
@@ -19,21 +18,7 @@ interface DetailCardProps {
   query?: string;
   fuzzyScore?: number;
   fuzzyResult?: string;
-}
-
-interface SpendData {
-  totalAmount: number;
-  transactionCount: number;
-  topDepartments: string[];
-  topPrograms: string[];
-  recentYear: number | undefined;
-}
-
-interface ProgramData {
-  description: string;
-  departments: string[];
-  totalBudget: number;
-  sources: string[];
+  years?: number[];
 }
 
 // HighlightMatch component
@@ -52,124 +37,6 @@ function HighlightMatch({ text, query }: { text: string; query?: string }) {
       )}
     </>
   );
-}
-
-// Function to find how well this record matches the department using fuzzy logic
-function findMatchInRecord(record: any, searchQuery?: string, contextDepartmentName?: string): {
-  score: number;
-  display: string;
-  field: string;
-  confidence: 'high' | 'medium' | 'low';
-  matchedText: string;
-} | null {
-  if (!contextDepartmentName) return null;
-  
-  let bestMatch: any = null;
-  let bestScore = 0;
-  let bestField = '';
-  let bestMatchedText = '';
-
-  // First, try to get the department code from the record
-  const recordDepartmentCode = record.departmentCode || record.organizational_code || record.org_code;
-  const recordDepartmentName = record.department || record.departmentName;
-  const expectedDepartmentCode = record.departmentCode; // This is set in the DepartmentDetailCard context
-
-  // Check for exact code and name match (highest priority)
-  const codeMatches = recordDepartmentCode && expectedDepartmentCode && recordDepartmentCode === expectedDepartmentCode;
-  const nameMatches = recordDepartmentName && contextDepartmentName && recordDepartmentName.toLowerCase() === contextDepartmentName.toLowerCase();
-
-  if (codeMatches && nameMatches) {
-    return {
-      score: 1.0,
-      display: `🟢 100% via department code & name`,
-      field: 'department code & name',
-      confidence: 'high',
-      matchedText: `${recordDepartmentCode} & ${recordDepartmentName}`
-    };
-  } else if (codeMatches) {
-    return {
-      score: 1.0,
-      display: `🟢 100% via department code`,
-      field: 'department code',
-      confidence: 'high',
-      matchedText: recordDepartmentCode
-    };
-  } else if (nameMatches) {
-    return {
-      score: 0.8,
-      display: `🟢 80% via department name`,
-      field: 'department name',
-      confidence: 'high',
-      matchedText: recordDepartmentName
-    };
-  }
-
-  // Fields to check for fuzzy matching against the department name
-  const fieldsToCheck = [
-    { field: 'department', label: 'department', weight: 1.2 },
-    { field: 'departmentName', label: 'department name', weight: 1.2 },
-    { field: 'vendor', label: 'vendor', weight: 1.0 },
-    { field: 'program', label: 'program', weight: 0.8 },
-    { field: 'programName', label: 'program name', weight: 0.8 },
-    { field: 'description', label: 'description', weight: 0.6 },
-    { field: 'programDescription', label: 'program desc', weight: 0.6 }
-  ];
-
-  // Check each field against the department name using fuzzy matching
-  fieldsToCheck.forEach(({ field, label, weight }) => {
-    const fieldValue = record[field];
-    if (fieldValue && typeof fieldValue === 'string') {
-      // Check for exact name match first
-      if (fieldValue.toLowerCase() === contextDepartmentName.toLowerCase()) {
-        const exactScore = 0.8; // 80% for exact name match
-        if (exactScore > bestScore) {
-          bestScore = exactScore;
-          bestMatch = {
-            score: exactScore,
-            confidence: 'high',
-            algorithm: 'exact',
-            matchType: 'exact'
-          };
-          bestField = label;
-          bestMatchedText = fieldValue;
-        }
-      } else {
-        // Use fuzzy matching for non-exact matches
-        const fuzzyResult = fuzzyMatch(contextDepartmentName, fieldValue, { 
-          threshold: 0.3, // Lower threshold to catch more matches
-          usePhonetic: true,
-          preferExact: true 
-        });
-        
-        // Apply weight to the score, but cap at 0.7 for fuzzy matches
-        const weightedScore = Math.min(fuzzyResult.score * weight, 0.7);
-        
-        if (weightedScore > bestScore) {
-          bestScore = weightedScore;
-          bestMatch = fuzzyResult;
-          bestField = label;
-          bestMatchedText = fieldValue;
-        }
-      }
-    }
-  });
-
-  // If we have a decent match, return formatted result
-  if (bestMatch && bestScore >= 0.3) {
-    const percentage = Math.round(bestScore * 100);
-    const confidenceIcon = bestMatch.confidence === 'high' ? '🟢' : 
-                           bestMatch.confidence === 'medium' ? '🟡' : '🔴';
-    
-    return {
-      score: bestScore,
-      display: `${confidenceIcon} ${percentage}% via ${bestField}`,
-      field: bestField,
-      confidence: bestMatch.confidence,
-      matchedText: bestMatchedText
-    };
-  }
-
-  return null;
 }
 
 // Add a MatchedFieldButton component with fuzzy matching display
@@ -243,6 +110,8 @@ interface DepartmentDetailCardProps extends DetailCardProps {
   budgetTotal?: number | null;
   vendorRecordCount?: number | null;
   budgetRecordCount?: number | null;
+  vendorYears?: number[];
+  budgetYears?: number[];
 }
 
 export function DepartmentDetailCard({ 
@@ -255,44 +124,17 @@ export function DepartmentDetailCard({
   query, 
   vendorTotal, 
   budgetTotal,
-  // eslint-disable-next-line no-unused-vars
   vendorRecordCount,
-  // eslint-disable-next-line no-unused-vars
   budgetRecordCount,
   fuzzyScore,
-  fuzzyResult
+  fuzzyResult,
+  vendorYears,
+  budgetYears
 }: DepartmentDetailCardProps) {
   const [hasPage, setHasPage] = useState(false);
   const [departmentSlug, setDepartmentSlug] = useState<string>('');
   const [showVendorModal, setShowVendorModal] = useState(false);
   const [showBudgetModal, setShowBudgetModal] = useState(false);
-  const [vendorMatchData, setVendorMatchData] = useState<{
-    topMatches: Array<{
-      score: number;
-      display: string;
-      field: string;
-      confidence: 'high' | 'medium' | 'low';
-      matchedText: string;
-      vendor: string;
-      amount: number;
-    }>;
-    totalMatches: number;
-    avgScore: number;
-  } | null>(null);
-  const [budgetMatchData, setBudgetMatchData] = useState<{
-    topMatches: Array<{
-      score: number;
-      display: string;
-      field: string;
-      confidence: 'high' | 'medium' | 'low';
-      matchedText: string;
-      program: string;
-      amount: number;
-    }>;
-    totalMatches: number;
-    avgScore: number;
-  } | null>(null);
-  const [loadingMatchData, setLoadingMatchData] = useState(false);
 
   useEffect(() => {
     if (item.type === 'department' && item.id) {
@@ -313,88 +155,6 @@ export function DepartmentDetailCard({
         .catch(console.error);
     }
   }, [item]);
-
-  // Fetch matching data for vendor and budget records
-  useEffect(() => {
-    if (!item.term || item.type !== 'department') return;
-
-    const fetchMatchData = async () => {
-      setLoadingMatchData(true);
-      try {
-        // Prefer department_code if available
-        const departmentCode = item.id;
-        let vendorUrl = `/api/spend?department_code=${encodeURIComponent(departmentCode)}&limit=10`;
-        let budgetUrl = `/api/spend?view=budget&department_code=${encodeURIComponent(departmentCode)}&limit=10`;
-        console.log('[DepartmentDetailCard] Fetching vendor data:', vendorUrl);
-        const vendorResponse = await fetch(vendorUrl);
-        const vendorData = await vendorResponse.json();
-        console.log('[DepartmentDetailCard] Vendor API response:', vendorData);
-        console.log('[DepartmentDetailCard] Fetching budget data:', budgetUrl);
-        const budgetResponse = await fetch(budgetUrl);
-        const budgetData = await budgetResponse.json();
-        console.log('[DepartmentDetailCard] Budget API response:', budgetData);
-
-        // Analyze vendor matches with department code context
-        const vendorMatches = vendorData.spending?.map((record: any) => {
-          const recordWithCode = {
-            ...record,
-            departmentCode: departmentCode
-          };
-          const match = findMatchInRecord(recordWithCode, query, item.term);
-          return {
-            ...match,
-            vendor: record.vendor,
-            amount: record.amount
-          };
-        }).filter((match: any) => match !== null) || [];
-        console.log('[DepartmentDetailCard] Vendor matches:', vendorMatches);
-
-        // Analyze budget matches with department code context
-        const budgetMatches = budgetData.spending?.map((record: any) => {
-          const recordWithCode = {
-            ...record,
-            departmentCode: departmentCode
-          };
-          const match = findMatchInRecord(recordWithCode, query, item.term);
-          return {
-            ...match,
-            program: record.program,
-            amount: record.amount
-          };
-        }).filter((match: any) => match !== null) || [];
-        console.log('[DepartmentDetailCard] Budget matches:', budgetMatches);
-
-        // Calculate vendor match statistics
-        const vendorAvgScore = vendorMatches.length > 0 
-          ? vendorMatches.reduce((sum: number, m: any) => sum + m.score, 0) / vendorMatches.length 
-          : 0;
-
-        // Calculate budget match statistics
-        const budgetAvgScore = budgetMatches.length > 0 
-          ? budgetMatches.reduce((sum: number, m: any) => sum + m.score, 0) / budgetMatches.length 
-          : 0;
-
-        setVendorMatchData({
-          topMatches: vendorMatches.slice(0, 3), // Top 3 matches
-          totalMatches: vendorMatches.length,
-          avgScore: vendorAvgScore
-        });
-
-        setBudgetMatchData({
-          topMatches: budgetMatches.slice(0, 3), // Top 3 matches
-          totalMatches: budgetMatches.length,
-          avgScore: budgetAvgScore
-        });
-
-      } catch (error) {
-        console.error('Error fetching match data:', error);
-      } finally {
-        setLoadingMatchData(false);
-      }
-    };
-
-    fetchMatchData();
-  }, [item.term, item.type, query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (item.type !== 'department') return null;
   const departmentItem = item as SearchItem;
@@ -453,53 +213,13 @@ export function DepartmentDetailCard({
             </div>
             
             {/* Accurate total record count display */}
-            {vendorRecordCount && (
+            {typeof vendorRecordCount === 'number' ? (
               <div className="text-xs text-gray-600">
-                {vendorRecordCount.toLocaleString()} total records
+                {vendorRecordCount > 0
+                  ? `${vendorRecordCount.toLocaleString()} total records${vendorYears && vendorYears.length > 0 ? ` (${Math.min(...vendorYears)}–${Math.max(...vendorYears)})` : ''}`
+                  : '0 records found'}
               </div>
-            )}
-            
-            {/* Vendor Match Analysis */}
-            {loadingMatchData ? (
-              <div className="text-xs text-gray-500">Analyzing matches...</div>
-            ) : vendorMatchData && vendorMatchData.totalMatches > 0 ? (
-              <div className="space-y-1">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-gray-600">Match Quality:</span>
-                  <span className={`font-medium ${
-                    vendorMatchData.avgScore >= 0.7 ? 'text-green-600' :
-                    vendorMatchData.avgScore >= 0.4 ? 'text-yellow-600' : 'text-red-600'
-                  }`}>
-                    {Math.round(vendorMatchData.avgScore * 100)}% avg
-                  </span>
-                </div>
-                <div className="text-xs text-gray-600">
-                  {vendorMatchData.totalMatches} records with matches
-                </div>
-                {/* Top matches preview */}
-                <div className="space-y-1">
-                  {vendorMatchData.topMatches.map((match, idx) => (
-                    <div key={idx} className="text-xs bg-gray-50 p-1 rounded">
-                      <div className="flex justify-between">
-                        <span className="truncate">{match.vendor}</span>
-                        <span className={`px-1 rounded text-xs ${
-                          match.confidence === 'high' ? 'bg-green-100 text-green-700' :
-                          match.confidence === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                          'bg-red-100 text-red-700'
-                        }`}>
-                          {Math.round(match.score * 100)}%
-                        </span>
-                      </div>
-                      <div className="text-gray-500 truncate">
-                        via {match.field}: &quot;{match.matchedText.substring(0, 30)}...&quot;
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="text-xs text-gray-500">No vendor matches found</div>
-            )}
+            ) : null}
           </div>
         </div>
 
@@ -522,53 +242,13 @@ export function DepartmentDetailCard({
             </div>
             
             {/* Accurate total record count display */}
-            {budgetRecordCount && (
+            {typeof budgetRecordCount === 'number' ? (
               <div className="text-xs text-gray-600">
-                {budgetRecordCount.toLocaleString()} total records
+                {budgetRecordCount > 0
+                  ? `${budgetRecordCount.toLocaleString()} total records${budgetYears && budgetYears.length > 0 ? ` (${Math.min(...budgetYears)}–${Math.max(...budgetYears)})` : ''}`
+                  : '0 records found'}
               </div>
-            )}
-            
-            {/* Budget Match Analysis */}
-            {loadingMatchData ? (
-              <div className="text-xs text-gray-500">Analyzing matches...</div>
-            ) : budgetMatchData && budgetMatchData.totalMatches > 0 ? (
-              <div className="space-y-1">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-gray-600">Match Quality:</span>
-                  <span className={`font-medium ${
-                    budgetMatchData.avgScore >= 0.7 ? 'text-green-600' :
-                    budgetMatchData.avgScore >= 0.4 ? 'text-yellow-600' : 'text-red-600'
-                  }`}>
-                    {Math.round(budgetMatchData.avgScore * 100)}% avg
-                  </span>
-                </div>
-                <div className="text-xs text-gray-600">
-                  {budgetMatchData.totalMatches} records with matches
-                </div>
-                {/* Top matches preview */}
-                <div className="space-y-1">
-                  {budgetMatchData.topMatches.map((match, idx) => (
-                    <div key={idx} className="text-xs bg-gray-50 p-1 rounded">
-                      <div className="flex justify-between">
-                        <span className="truncate">{match.program}</span>
-                        <span className={`px-1 rounded text-xs ${
-                          match.confidence === 'high' ? 'bg-green-100 text-green-700' :
-                          match.confidence === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                          'bg-red-100 text-red-700'
-                        }`}>
-                          {Math.round(match.score * 100)}%
-                        </span>
-                      </div>
-                      <div className="text-gray-500 truncate">
-                        via {match.field}: &quot;{match.matchedText.substring(0, 30)}...&quot;
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="text-xs text-gray-500">No budget matches found</div>
-            )}
+            ) : null}
           </div>
         </div>
       </div>
@@ -596,22 +276,12 @@ export function DepartmentDetailCard({
   );
 }
 
-export function VendorDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult }: DetailCardProps) {
-  const [spendData, setSpendData] = useState<SpendData | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [matchData, setMatchData] = useState<{
-    topMatches: Array<{
-      score: number;
-      display: string;
-      field: string;
-      confidence: 'high' | 'medium' | 'low';
-      matchedText: string;
-      departmentCode: string;
-      amount: number;
-    }>;
-    totalMatches: number;
-    avgScore: number;
+export function VendorDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult, years }: DetailCardProps) {
+  const [spendData, setSpendData] = useState<{
+    totalAmount: number;
+    transactionCount: number;
   } | null>(null);
+  const [loading, setLoading] = useState(false);
   const [showVendorModal, setShowVendorModal] = useState(false);
 
   useEffect(() => {
@@ -619,56 +289,25 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
     setLoading(true);
     const fetchData = async () => {
       try {
-        // Fetch vendor summary (totals, record count)
+        // Fetch vendor summary (totals, record count) only
         const summaryRes = await fetch(`/api/spend?vendor=${encodeURIComponent(item.term)}&limit=1`);
         const summaryData = await summaryRes.json();
         const totalAmount = summaryData.summary?.totalAmount || 0;
         const transactionCount = summaryData.summary?.recordCount || 0;
 
-        // Fetch vendor preview for match analysis
-        const previewRes = await fetch(`/api/spend?vendor=${encodeURIComponent(item.term)}&limit=10`);
-        const previewData = await previewRes.json();
-        const topDepartments = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.department || '')))) as string[];
-        const topPrograms = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.program || '')))) as string[];
-        const recentYear = previewData.spending && previewData.spending.length > 0 ? Math.max(...previewData.spending.map((s: any) => s.year)) : undefined;
         setSpendData({
           totalAmount,
-          transactionCount,
-          topDepartments,
-          topPrograms,
-          recentYear
-        });
-
-        // Analyze vendor matches (preview only)
-        const vendorMatches = previewData.spending?.map((record: any) => {
-          // Use the search query as the context for vendor matching
-          const match = findMatchInRecord(record, query, query);
-          return match && {
-            ...match,
-            departmentCode: record.department_code || '',
-            amount: record.amount
-          };
-        }).filter((match: any) => match !== null) || [];
-
-        const vendorAvgScore = vendorMatches.length > 0 
-          ? vendorMatches.reduce((sum: number, m: any) => sum + m.score, 0) / vendorMatches.length 
-          : 0;
-
-        setMatchData({
-          topMatches: vendorMatches.slice(0, 3),
-          totalMatches: vendorMatches.length,
-          avgScore: vendorAvgScore
+          transactionCount
         });
       } catch (e) {
         setSpendData(null);
-        setMatchData(null);
       } finally {
         setLoading(false);
       }
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item.term, item.type, query]);
+  }, [item.term, item.type]);
 
   if (item.type !== 'vendor') return null;
   const vendorItem = item as SearchItem;
@@ -716,14 +355,15 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
         </div>
       </div>
 
-      {/* Always show summary UI, not just when selected */}
       <div className="mt-4 space-y-3">
         <div className="border-t pt-3">
           <h4 className="text-sm font-medium text-gray-700 mb-2">Vendor Spending</h4>
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-600">Total:</span>
-              {spendData && spendData.totalAmount > 0 ? (
+              {loading ? (
+                <span className="text-sm text-gray-500">Loading...</span>
+              ) : spendData && spendData.totalAmount > 0 ? (
                 <button
                   onClick={e => { e.stopPropagation(); setShowVendorModal(true); }}
                   className="font-medium text-blue-600 hover:text-blue-800 underline text-sm"
@@ -735,57 +375,18 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
               )}
             </div>
             {/* Accurate total record count display */}
-            {spendData && (
+            {typeof spendData?.transactionCount === 'number' ? (
               <div className="text-xs text-gray-600">
-                {spendData.transactionCount.toLocaleString()} total records
+                {spendData.transactionCount > 0
+                  ? `${spendData.transactionCount.toLocaleString()} total records${years && years.length > 0 ? ` (${Math.min(...years)}–${Math.max(...years)})` : ''}`
+                  : '0 records found'}
               </div>
-            )}
-            {/* Vendor Match Analysis */}
-            {loading ? (
-              <div className="text-xs text-gray-500">Analyzing matches...</div>
-            ) : matchData && matchData.totalMatches > 0 ? (
-              <div className="space-y-1">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-gray-600">Match Quality:</span>
-                  <span className={`font-medium ${
-                    matchData.avgScore >= 0.7 ? 'text-green-600' :
-                    matchData.avgScore >= 0.4 ? 'text-yellow-600' : 'text-red-600'
-                  }`}>
-                    {Math.round(matchData.avgScore * 100)}% avg
-                  </span>
-                </div>
-                <div className="text-xs text-gray-600">
-                  {matchData.totalMatches} records with matches
-                </div>
-                {/* Top matches preview */}
-                <div className="space-y-1">
-                  {matchData.topMatches.map((match, idx) => (
-                    <div key={idx} className="text-xs bg-gray-50 p-1 rounded">
-                      <div className="flex justify-between">
-                        <span className="truncate">{vendorItem.term}</span>
-                        <span className={`px-1 rounded text-xs ${
-                          match.confidence === 'high' ? 'bg-green-100 text-green-700' :
-                          match.confidence === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                          'bg-red-100 text-red-700'
-                        }`}>
-                          {Math.round(match.score * 100)}%
-                        </span>
-                      </div>
-                      <div className="text-gray-500 truncate">
-                        via department code: &quot;{match.departmentCode?.substring(0, 5)}...&quot;
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="text-xs text-gray-500">No vendor matches found</div>
-            )}
+            ) : null}
           </div>
         </div>
       </div>
 
-      {/* Modal for vendor details, if needed */}
+      {/* Modal */}
       <VendorSpendingModal
         isOpen={showVendorModal}
         onClose={() => setShowVendorModal(false)}
@@ -797,94 +398,39 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
   );
 }
 
-export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult }: DetailCardProps) {
-  const [programData, setProgramData] = useState<ProgramData | null>(null);
-  const [spendData, setSpendData] = useState<SpendData | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [matchData, setMatchData] = useState<{
-    topMatches: Array<{
-      score: number;
-      display: string;
-      field: string;
-      confidence: 'high' | 'medium' | 'low';
-      matchedText: string;
-      departmentCode: string;
-      amount: number;
-    }>;
-    totalMatches: number;
-    avgScore: number;
+export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult, years }: DetailCardProps) {
+  const [spendData, setSpendData] = useState<{
+    totalAmount: number;
+    transactionCount: number;
   } | null>(null);
+  const [loading, setLoading] = useState(false);
   const [showProgramModal, setShowProgramModal] = useState(false);
 
   useEffect(() => {
     if (item.type !== 'program') return;
-      setLoading(true);
+    setLoading(true);
     const fetchData = async () => {
       try {
-      // Fetch program data
-        const programRes = await fetch(`/api/programs/${encodeURIComponent(item.id)}`);
-        const programData = await programRes.json();
-        if (programData) {
-            setProgramData({
-            description: programData.description || '',
-            departments: programData.departments || [],
-            totalBudget: programData.totalBudget || 0,
-            sources: programData.sources || []
-          });
-        }
-
-        // Fetch program spending summary
+        // Fetch program spending summary (totals, record count) only
         const summaryRes = await fetch(`/api/spend?program=${encodeURIComponent(item.id)}&limit=1`);
         const summaryData = await summaryRes.json();
         const totalAmount = summaryData.summary?.totalAmount || 0;
         const transactionCount = summaryData.summary?.recordCount || 0;
 
-        // Fetch program preview for match analysis
-        const previewRes = await fetch(`/api/spend?program=${encodeURIComponent(item.id)}&limit=10`);
-        const previewData = await previewRes.json();
-        const topDepartments = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.department || '')))) as string[];
-        const topPrograms = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.program || '')))) as string[];
-        const recentYear = previewData.spending && previewData.spending.length > 0 ? Math.max(...previewData.spending.map((s: any) => s.year)) : undefined;
         setSpendData({
           totalAmount,
-          transactionCount,
-          topDepartments,
-          topPrograms,
-          recentYear
-        });
-
-        // Analyze program matches
-        const programMatches = previewData.spending?.map((record: any) => {
-          const match = findMatchInRecord(record, query, item.term);
-          return match && {
-            ...match,
-            departmentCode: record.department_code || '',
-            amount: record.amount
-          };
-        }).filter((match: any) => match !== null) || [];
-
-        const programAvgScore = programMatches.length > 0 
-          ? programMatches.reduce((sum: number, m: any) => sum + m.score, 0) / programMatches.length 
-          : 0;
-
-        setMatchData({
-          topMatches: programMatches.slice(0, 3),
-          totalMatches: programMatches.length,
-          avgScore: programAvgScore
+          transactionCount
         });
       } catch (e) {
-        setProgramData(null);
         setSpendData(null);
-        setMatchData(null);
       } finally {
         setLoading(false);
       }
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item.term, item.type, query]);
+  }, [item.id, item.type]);
 
-  // Type guard to ensure we have a SearchItem
   if (item.type !== 'program') return null;
   const programItem = item as SearchItem;
 
@@ -913,14 +459,15 @@ export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matc
         </div>
       </div>
 
-      {/* Always show summary UI, not just when selected */}
       <div className="mt-4 space-y-3">
         <div className="border-t pt-3">
           <h4 className="text-sm font-medium text-gray-700 mb-2">Program Spending</h4>
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-600">Total:</span>
-              {spendData && spendData.totalAmount > 0 ? (
+              {loading ? (
+                <span className="text-sm text-gray-500">Loading...</span>
+              ) : spendData && spendData.totalAmount > 0 ? (
                 <button
                   onClick={e => { e.stopPropagation(); setShowProgramModal(true); }}
                   className="font-medium text-blue-600 hover:text-blue-800 underline text-sm"
@@ -932,84 +479,18 @@ export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matc
               )}
             </div>
             {/* Accurate total record count display */}
-            {spendData && (
+            {typeof spendData?.transactionCount === 'number' ? (
               <div className="text-xs text-gray-600">
-                {spendData.transactionCount.toLocaleString()} total records
+                {spendData.transactionCount > 0
+                  ? `${spendData.transactionCount.toLocaleString()} total records${years && years.length > 0 ? ` (${Math.min(...years)}–${Math.max(...years)})` : ''}`
+                  : '0 records found'}
               </div>
-            )}
-            {/* Program Match Analysis */}
-            {loading ? (
-              <div className="text-xs text-gray-500">Analyzing matches...</div>
-            ) : matchData && matchData.totalMatches > 0 ? (
-              <div className="space-y-1">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-gray-600">Match Quality:</span>
-                  <span className={`font-medium ${
-                    matchData.avgScore >= 0.7 ? 'text-green-600' :
-                    matchData.avgScore >= 0.4 ? 'text-yellow-600' : 'text-red-600'
-                  }`}>
-                    {Math.round(matchData.avgScore * 100)}% avg
-                  </span>
-                </div>
-                <div className="text-xs text-gray-600">
-                  {matchData.totalMatches} records with matches
-                </div>
-                {/* Top matches preview */}
-                <div className="space-y-1">
-                  {matchData.topMatches.map((match, idx) => (
-                    <div key={idx} className="text-xs bg-gray-50 p-1 rounded">
-                      <div className="flex justify-between">
-                        <span className="truncate">{programItem.term}</span>
-                        <span className={`px-1 rounded text-xs ${
-                          match.confidence === 'high' ? 'bg-green-100 text-green-700' :
-                          match.confidence === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                          'bg-red-100 text-red-700'
-                        }`}>
-                          {Math.round(match.score * 100)}%
-                        </span>
-                      </div>
-                      <div className="text-gray-500 truncate">
-                        via {match.field}: &quot;{match.matchedText.substring(0, 30)}...&quot;
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="text-xs text-gray-500">No program matches found</div>
-            )}
+            ) : null}
           </div>
         </div>
-
-        {/* Program Details Section */}
-      {isSelected && (
-          <div className="border-t pt-3">
-            <h4 className="text-sm font-medium text-gray-700 mb-2">Program Details</h4>
-          {loading ? (
-            <div className="flex justify-center py-4">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-500"></div>
-            </div>
-          ) : programData ? (
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <div className="space-y-1 text-sm">
-                  <div>Total Budget: <span className="font-medium">${programData.totalBudget.toLocaleString()}</span></div>
-                  <div>Departments: <span className="font-medium">{programData.departments.length}</span></div>
-                  <div>Sources: <span className="font-medium">{programData.sources.length}</span></div>
-                </div>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">{programData.description}</p>
-              </div>
-            </div>
-          ) : (
-            <div className="text-sm text-gray-500">No program data available</div>
-          )}
-        </div>
-      )}
       </div>
 
-      {/* Modal for program details */}
+      {/* Modal */}
       <ProgramSpendingModal
         isOpen={showProgramModal}
         onClose={() => setShowProgramModal(false)}
@@ -1022,80 +503,39 @@ export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matc
   );
 }
 
-export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult }: DetailCardProps) {
-  const [spendData, setSpendData] = useState<SpendData | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [matchData, setMatchData] = useState<{
-    topMatches: Array<{
-      score: number;
-      display: string;
-      field: string;
-      confidence: 'high' | 'medium' | 'low';
-      matchedText: string;
-      departmentCode: string;
-      amount: number;
-    }>;
-    totalMatches: number;
-    avgScore: number;
+export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSnippet, query, fuzzyScore, fuzzyResult, years }: DetailCardProps) {
+  const [spendData, setSpendData] = useState<{
+    totalAmount: number;
+    transactionCount: number;
   } | null>(null);
+  const [loading, setLoading] = useState(false);
   const [showFundModal, setShowFundModal] = useState(false);
 
   useEffect(() => {
     if (item.type !== 'fund') return;
-      setLoading(true);
+    setLoading(true);
     const fetchData = async () => {
       try {
-        // Fetch fund spending summary
+        // Fetch fund spending summary (totals, record count) only
         const summaryRes = await fetch(`/api/spend?fund=${encodeURIComponent(item.id)}&limit=1`);
         const summaryData = await summaryRes.json();
         const totalAmount = summaryData.summary?.totalAmount || 0;
         const transactionCount = summaryData.summary?.recordCount || 0;
 
-        // Fetch fund preview for match analysis
-        const previewRes = await fetch(`/api/spend?fund=${encodeURIComponent(item.id)}&limit=10`);
-        const previewData = await previewRes.json();
-        const topDepartments = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.department || '')))) as string[];
-        const topPrograms = Array.from(new Set(previewData.spending?.slice(0, 5).map((s: any) => String(s.program || '')))) as string[];
-        const recentYear = previewData.spending && previewData.spending.length > 0 ? Math.max(...previewData.spending.map((s: any) => s.year)) : undefined;
         setSpendData({
           totalAmount,
-          transactionCount,
-          topDepartments,
-          topPrograms,
-          recentYear
-        });
-
-        // Analyze fund matches
-        const fundMatches = previewData.spending?.map((record: any) => {
-          const match = findMatchInRecord(record, query, item.term);
-          return match && {
-            ...match,
-            departmentCode: record.department_code || '',
-            amount: record.amount
-          };
-        }).filter((match: any) => match !== null) || [];
-
-        const fundAvgScore = fundMatches.length > 0 
-          ? fundMatches.reduce((sum: number, m: any) => sum + m.score, 0) / fundMatches.length 
-          : 0;
-
-        setMatchData({
-          topMatches: fundMatches.slice(0, 3),
-          totalMatches: fundMatches.length,
-          avgScore: fundAvgScore
+          transactionCount
         });
       } catch (e) {
         setSpendData(null);
-        setMatchData(null);
       } finally {
         setLoading(false);
       }
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item.term, item.type, query]);
+  }, [item.id, item.type]);
 
-  // Type guard to ensure we have a SearchItem
   if (item.type !== 'fund') return null;
   const fundItem = item as SearchItem;
 
@@ -1124,14 +564,15 @@ export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSn
         </div>
       </div>
 
-      {/* Always show summary UI, not just when selected */}
       <div className="mt-4 space-y-3">
         <div className="border-t pt-3">
           <h4 className="text-sm font-medium text-gray-700 mb-2">Fund Spending</h4>
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-600">Total:</span>
-              {spendData && spendData.totalAmount > 0 ? (
+              {loading ? (
+                <span className="text-sm text-gray-500">Loading...</span>
+              ) : spendData && spendData.totalAmount > 0 ? (
                 <button
                   onClick={e => { e.stopPropagation(); setShowFundModal(true); }}
                   className="font-medium text-blue-600 hover:text-blue-800 underline text-sm"
@@ -1143,65 +584,18 @@ export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSn
               )}
             </div>
             {/* Accurate total record count display */}
-            {spendData && (
+            {typeof spendData?.transactionCount === 'number' ? (
               <div className="text-xs text-gray-600">
-                {spendData.transactionCount.toLocaleString()} total records
+                {spendData.transactionCount > 0
+                  ? `${spendData.transactionCount.toLocaleString()} total records${years && years.length > 0 ? ` (${Math.min(...years)}–${Math.max(...years)})` : ''}`
+                  : '0 records found'}
               </div>
-            )}
-            {/* Fund Match Analysis */}
-          {loading ? (
-              <div className="text-xs text-gray-500">Analyzing matches...</div>
-            ) : matchData && matchData.totalMatches > 0 ? (
-              <div className="space-y-1">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-gray-600">Match Quality:</span>
-                  <span className={`font-medium ${
-                    matchData.avgScore >= 0.7 ? 'text-green-600' :
-                    matchData.avgScore >= 0.4 ? 'text-yellow-600' : 'text-red-600'
-                  }`}>
-                    {Math.round(matchData.avgScore * 100)}% avg
-                  </span>
-            </div>
-                <div className="text-xs text-gray-600">
-                  {matchData.totalMatches} records with matches
-                </div>
-                {/* Top matches preview */}
-                <div className="space-y-1">
-                  {matchData.topMatches.map((match, idx) => (
-                    <div key={idx} className="text-xs bg-gray-50 p-1 rounded">
-                      <div className="flex justify-between">
-                        <span className="truncate">{fundItem.term}</span>
-                        <span className={`px-1 rounded text-xs ${
-                          match.confidence === 'high' ? 'bg-green-100 text-green-700' :
-                          match.confidence === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                          'bg-red-100 text-red-700'
-                        }`}>
-                          {Math.round(match.score * 100)}%
-                        </span>
-                      </div>
-                      <div className="text-gray-500 truncate">
-                        via {match.field}: &quot;{match.matchedText.substring(0, 30)}...&quot;
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          ) : (
-              <div className="text-xs text-gray-500">No fund matches found</div>
-          )}
+            ) : null}
+          </div>
         </div>
-        </div>
-
-        {/* Fund Details Section */}
-        {isSelected && (
-          <div className="border-t pt-3">
-            <h4 className="text-sm font-medium text-gray-700 mb-2">Fund Details</h4>
-            <div className="text-sm text-gray-500">Fund metadata not available</div>
-        </div>
-      )}
       </div>
 
-      {/* Modal for fund details */}
+      {/* Modal */}
       <FundSpendingModal
         isOpen={showFundModal}
         onClose={() => setShowFundModal(false)}
@@ -1214,4 +608,4 @@ export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSn
   );
 }
 
-export { findMatchInRecord, getAvailableColumns, VENDOR_SPENDING_COLUMNS, BUDGET_SPENDING_COLUMNS, downloadTSVWithLookups }; 
+export { getAvailableColumns, VENDOR_SPENDING_COLUMNS, BUDGET_SPENDING_COLUMNS, downloadTSVWithLookups }; 

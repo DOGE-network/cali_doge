@@ -61,6 +61,8 @@ function SearchPageClient() {
     budgetTotal: number | null;
     vendorRecordCount: number | null;
     budgetRecordCount: number | null;
+    vendorYears?: number[];
+    budgetYears?: number[];
   }>>({});
   // eslint-disable-next-line no-unused-vars
   const [totalsLoading, setTotalsLoading] = useState(false);
@@ -338,6 +340,8 @@ function SearchPageClient() {
             budgetTotal={departmentTotals[dept.id]?.budgetTotal}
             vendorRecordCount={departmentTotals[dept.id]?.vendorRecordCount}
             budgetRecordCount={departmentTotals[dept.id]?.budgetRecordCount}
+            vendorYears={departmentTotals[dept.id]?.vendorYears}
+            budgetYears={departmentTotals[dept.id]?.budgetYears}
             fuzzyScore={(dept as any).fuzzyScore}
             fuzzyResult={(dept as any).fuzzyResult}
             data-tour={index === 0 ? 'result-card-department' : undefined}
@@ -358,6 +362,7 @@ function SearchPageClient() {
             query={query}
             fuzzyScore={(vendor as any).fuzzyScore}
             fuzzyResult={(vendor as any).fuzzyResult}
+            years={vendor.years}
             data-tour={index === 0 ? 'result-card-vendor' : undefined}
           />
         ))
@@ -376,6 +381,7 @@ function SearchPageClient() {
             query={query}
             fuzzyScore={(program as any).fuzzyScore}
             fuzzyResult={(program as any).fuzzyResult}
+            years={program.years}
             data-tour={index === 0 ? 'result-card-program' : undefined}
           />
         ))
@@ -394,6 +400,7 @@ function SearchPageClient() {
             query={query}
             fuzzyScore={(fund as any).fuzzyScore}
             fuzzyResult={(fund as any).fuzzyResult}
+            years={fund.years}
             data-tour={index === 0 ? 'result-card-fund' : undefined}
           />
         ))
