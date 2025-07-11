@@ -1,8 +1,43 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import {
+  getClientIP,
+  isIPBlocked,
+  checkRateLimit,
+  getRateLimitConfig
+} from '@/lib/rateLimit';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
+
+  // --- IP Rate Limiting and Abuse Protection ---
+  const ip = getClientIP(request);
+  const config = getRateLimitConfig(request.nextUrl.pathname);
+
+  // Block abusive IPs
+  if (await isIPBlocked(ip)) {
+    return new NextResponse('Your IP has been temporarily blocked due to abuse. If you believe this is an error, contact support.', {
+      status: 403,
+      headers: {
+        'Content-Type': 'text/plain',
+        'Retry-After': '3600'
+      }
+    });
+  }
+
+  // Enforce rate limit
+  const rateResult = await checkRateLimit(ip, config);
+  if (!rateResult.success) {
+    return new NextResponse('Too many requests from your IP. Please try again later.', {
+      status: 429,
+      headers: {
+        'Content-Type': 'text/plain',
+        'Retry-After': rateResult.retryAfter?.toString() || '60',
+        'X-RateLimit-Remaining': rateResult.remaining.toString(),
+        'X-RateLimit-Reset': rateResult.resetTime.toString()
+      }
+    });
+  }
 
   // Only keeping basic non-restrictive security headers
   response.headers.set('X-DNS-Prefetch-Control', 'on');

@@ -1,0 +1,270 @@
+import { Redis } from '@upstash/redis';
+import { NextRequest } from 'next/server';
+
+// Rate limit configurations
+export interface RateLimitConfig {
+  windowMs: number; // Time window in milliseconds
+  maxRequests: number; // Maximum requests per window
+  blockDuration?: number; // Duration to block IP if limit exceeded (in ms)
+  keyPrefix?: string; // Redis key prefix
+}
+
+// Default rate limit configurations
+export const RATE_LIMITS = {
+  // General API endpoints
+  api: {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 100,
+    blockDuration: 5 * 60 * 1000, // 5 minutes
+    keyPrefix: 'rate_limit:api'
+  },
+  // Search endpoints (more restrictive)
+  search: {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 30,
+    blockDuration: 10 * 60 * 1000, // 10 minutes
+    keyPrefix: 'rate_limit:search'
+  },
+  // Email endpoints (very restrictive)
+  email: {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 5,
+    blockDuration: 30 * 60 * 1000, // 30 minutes
+    keyPrefix: 'rate_limit:email'
+  },
+  // Media endpoints (moderate)
+  media: {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 50,
+    blockDuration: 5 * 60 * 1000, // 5 minutes
+    keyPrefix: 'rate_limit:media'
+  },
+  // Static assets (generous)
+  static: {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 200,
+    blockDuration: 2 * 60 * 1000, // 2 minutes
+    keyPrefix: 'rate_limit:static'
+  }
+} as const;
+
+// IP blocking configuration
+export const IP_BLOCK_CONFIG = {
+  maxViolations: 3, // Number of violations before permanent block
+  blockDuration: 24 * 60 * 60 * 1000, // 24 hours
+  keyPrefix: 'ip_block'
+};
+
+// Lazy initialization of Redis client
+let redis: Redis | null = null;
+
+function getRedisClient(): Redis {
+  if (!redis) {
+    redis = new Redis({
+      url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL,
+      token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN,
+    });
+  }
+  return redis;
+}
+
+// Get client IP address
+export function getClientIP(request: NextRequest): string {
+  // Check for forwarded headers first (for proxy/CDN setups)
+  const forwarded = request.headers.get('x-forwarded-for');
+  if (forwarded) {
+    // Take the first IP in the chain
+    return forwarded.split(',')[0].trim();
+  }
+  
+  // Fallback to direct connection IP
+  const realIP = request.headers.get('x-real-ip');
+  if (realIP) {
+    return realIP;
+  }
+  
+  // Last resort - use connection remote address
+  return 'unknown';
+}
+
+// Check if IP is blocked
+export async function isIPBlocked(ip: string): Promise<boolean> {
+  try {
+    const redis = getRedisClient();
+    const blockKey = `${IP_BLOCK_CONFIG.keyPrefix}:${ip}`;
+    const blockInfo = await redis.get(blockKey);
+    
+    if (blockInfo) {
+      const { blockedUntil } = blockInfo as any;
+      
+      // Check if still blocked
+      if (blockedUntil && Date.now() < blockedUntil) {
+        return true;
+      }
+      
+      // If block expired, remove it
+      if (blockedUntil && Date.now() >= blockedUntil) {
+        await redis.del(blockKey);
+      }
+    }
+    
+    return false;
+  } catch (error) {
+    console.error('Error checking IP block status:', error);
+    return false; // Fail open - don't block if Redis is down
+  }
+}
+
+// Record a violation for an IP
+export async function recordViolation(ip: string): Promise<void> {
+  try {
+    const redis = getRedisClient();
+    const blockKey = `${IP_BLOCK_CONFIG.keyPrefix}:${ip}`;
+    
+    // Get current violation count
+    const blockInfo = await redis.get(blockKey) as any || { violations: 0 };
+    const newViolations = (blockInfo.violations || 0) + 1;
+    
+    // Determine block duration based on violation count
+    const blockDuration = newViolations >= IP_BLOCK_CONFIG.maxViolations 
+      ? IP_BLOCK_CONFIG.blockDuration * 7 // 7 days for repeated violations
+      : IP_BLOCK_CONFIG.blockDuration;
+    
+    const blockedUntil = Date.now() + blockDuration;
+    
+    // Update block info
+    await redis.set(blockKey, {
+      violations: newViolations,
+      blockedUntil,
+      lastViolation: Date.now()
+    }, { ex: Math.ceil(blockDuration / 1000) });
+    
+    console.warn(`IP ${ip} recorded violation ${newViolations}/${IP_BLOCK_CONFIG.maxViolations}`);
+    
+    if (newViolations >= IP_BLOCK_CONFIG.maxViolations) {
+      console.error(`IP ${ip} permanently blocked due to repeated violations`);
+    }
+  } catch (error) {
+    console.error('Error recording IP violation:', error);
+  }
+}
+
+// Rate limiting result
+export interface RateLimitResult {
+  success: boolean;
+  remaining: number;
+  resetTime: number;
+  retryAfter?: number;
+  blocked?: boolean;
+}
+
+// Check rate limit for an IP
+export async function checkRateLimit(
+  ip: string, 
+  config: RateLimitConfig
+): Promise<RateLimitResult> {
+  try {
+    const redis = getRedisClient();
+    const key = `${config.keyPrefix}:${ip}`;
+    const now = Date.now();
+    const windowStart = now - config.windowMs;
+    
+    // Get current request count using zrange with scores
+    const requests = await redis.zrange(key, 0, -1, { withScores: true }) as Array<[string, number]>;
+    const currentCount = requests.filter(([_, score]) => score >= windowStart).length;
+    
+    // Check if limit exceeded
+    if (currentCount >= config.maxRequests) {
+      // Record violation
+      await recordViolation(ip);
+      
+      // Calculate retry after time
+      const oldestRequest = requests.find(([_, score]) => score >= windowStart);
+      const retryAfter = oldestRequest 
+        ? Math.ceil((oldestRequest[1] + config.windowMs - now) / 1000)
+        : Math.ceil(config.windowMs / 1000);
+      
+      return {
+        success: false,
+        remaining: 0,
+        resetTime: now + config.windowMs,
+        retryAfter: Math.max(retryAfter, 1)
+      };
+    }
+    
+    // Add current request to the set
+    await redis.zadd(key, { score: now, member: now.toString() });
+    
+    // Set expiration on the key
+    await redis.expire(key, Math.ceil(config.windowMs / 1000));
+    
+    return {
+      success: true,
+      remaining: config.maxRequests - currentCount - 1,
+      resetTime: now + config.windowMs
+    };
+  } catch (error) {
+    console.error('Error checking rate limit:', error);
+    // Fail open - allow request if Redis is down
+    return {
+      success: true,
+      remaining: 999,
+      resetTime: Date.now() + 60000
+    };
+  }
+}
+
+// Get rate limit configuration for a path
+export function getRateLimitConfig(pathname: string): RateLimitConfig {
+  if (pathname.startsWith('/api/search')) {
+    return RATE_LIMITS.search;
+  }
+  if (pathname.startsWith('/api/send-email')) {
+    return RATE_LIMITS.email;
+  }
+  if (pathname.startsWith('/api/media') || pathname.startsWith('/media/')) {
+    return RATE_LIMITS.media;
+  }
+  if (pathname.startsWith('/_next/') || pathname.startsWith('/images/')) {
+    return RATE_LIMITS.static;
+  }
+  if (pathname.startsWith('/api/')) {
+    return RATE_LIMITS.api;
+  }
+  
+  // Default to API limits for unknown paths
+  return RATE_LIMITS.api;
+}
+
+// Clean up expired rate limit entries (can be called periodically)
+export async function cleanupExpiredEntries(): Promise<void> {
+  try {
+    const redis = getRedisClient();
+    const now = Date.now();
+    
+    // Clean up rate limit keys
+    for (const config of Object.values(RATE_LIMITS) as RateLimitConfig[]) {
+      const pattern = `${config.keyPrefix}:*`;
+      const keys = await redis.keys(pattern);
+      
+      for (const key of keys) {
+        const windowStart = now - (config as any).windowMs;
+        // Remove all entries with score less than windowStart
+        await redis.zremrangebyscore(key, -Infinity, windowStart);
+      }
+    }
+    
+    // Clean up expired IP blocks
+    const blockPattern = `${IP_BLOCK_CONFIG.keyPrefix}:*`;
+    const blockKeys = await redis.keys(blockPattern);
+    
+    for (const key of blockKeys) {
+      const blockInfo = await redis.get(key) as any;
+      if (blockInfo && blockInfo.blockedUntil && now >= blockInfo.blockedUntil) {
+        await redis.del(key);
+      }
+    }
+  } catch (error) {
+    console.error('Error cleaning up expired entries:', error);
+  }
+} 

@@ -12,6 +12,8 @@ import {
   FundDetailCard,  
 } from '@/components/SearchDetailCards';
 import { SearchTypeFilter } from '@/components/SearchTypeFilter';
+import RateLimitError from '@/components/RateLimitError';
+import { isRateLimitError, getRateLimitInfo } from '@/lib/apiClient';
 
 interface SearchResponse {
   departments: SearchItem[];
@@ -88,7 +90,7 @@ function SearchPageClient() {
   };
 
   // Fetch search results
-  const { data: searchData } = useSWR<SearchResponse>(
+  const { data: searchData, error } = useSWR<SearchResponse>(
     query ? buildApiUrl() : null,
     async (url) => {
       try {
@@ -100,25 +102,7 @@ function SearchPageClient() {
         return data;
       } catch (error) {
         console.error('Error fetching search results:', error);
-        return {
-          departments: [],
-          vendors: [],
-          programs: [],
-          funds: [],
-          totalResults: 0,
-          query: query,
-          appliedFilters: {
-            types: selectedTypes,
-            excludeCommon: excludeCommon,
-            limit: limit
-          },
-          details: {
-            departments: {},
-            vendors: {},
-            programs: {},
-            funds: {}
-          }
-        };
+        throw error; // Re-throw to let SWR handle it
       }
     }
   );
@@ -306,6 +290,43 @@ function SearchPageClient() {
     };
     fetchTotals();
   }, [searchData]);
+
+  // Handle rate limit errors
+  if (error && isRateLimitError(error)) {
+    const rateLimitInfo = getRateLimitInfo(error);
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Search California Government Data</h1>
+          <p className="text-gray-600">Find departments, vendors, programs, and funds in California&apos;s government spending data.</p>
+        </div>
+        
+        <RateLimitError 
+          retryAfter={rateLimitInfo?.retryAfter}
+          remaining={rateLimitInfo?.remaining}
+          resetTime={rateLimitInfo?.resetTime}
+          onRetry={() => window.location.reload()}
+        />
+      </div>
+    );
+  }
+
+  // Handle other errors
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Search California Government Data</h1>
+          <p className="text-gray-600">Find departments, vendors, programs, and funds in California&apos;s government spending data.</p>
+        </div>
+        
+        <div className="p-4 text-red-600 bg-red-50 rounded-lg">
+          <h2 className="text-lg font-semibold mb-2">Error</h2>
+          <p>{error.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   const renderResults = () => {
     if (!searchData) return null;
