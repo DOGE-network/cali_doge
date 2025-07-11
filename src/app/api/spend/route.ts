@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
         }
 
         const supabase = getServiceSupabase();
-        const results: Record<string, { vendorTotal: number | null; budgetTotal: number | null; vendorRecordCount: number | null; budgetRecordCount: number | null }> = {};
+        const results: Record<string, { vendorTotal: number | null; budgetTotal: number | null; vendorRecordCount: number | null; budgetRecordCount: number | null; vendorYears?: number[]; budgetYears?: number[] }> = {};
 
         // Process each department code
         await Promise.all(departmentCodes.map(async (deptCode) => {
@@ -103,28 +103,25 @@ export async function GET(request: NextRequest) {
             const years = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
             let vendorTotal = 0;
             let vendorRecordCount = 0;
-            
+            const vendorYears: number[] = [];
             // Query each year-partitioned view and aggregate results
             for (const yearValue of years) {
               const viewName = getYearPartitionedViewName(yearValue);
-              
               try {
                 const yearQuery = (supabase as any)
                   .from(viewName)
                   .select('amount', { count: 'exact' })
                   .eq('department_code', deptCode);
-                
                 const { data: yearData, count: yearCount, error: yearError } = await yearQuery;
-                
                 if (yearError) {
                   console.warn(`[SPEND API] Error querying ${viewName} for department ${deptCode}:`, yearError);
                   continue;
                 }
-                
-                if (yearData) {
+                if (yearData && yearData.length > 0) {
                   const yearTotal = yearData.reduce((sum: number, item: any) => sum + parseFloat(item.amount.toString()), 0);
                   vendorTotal += yearTotal;
                   vendorRecordCount += yearCount || 0;
+                  vendorYears.push(yearValue);
                 }
               } catch (yearError) {
                 console.warn(`[SPEND API] Error processing ${viewName} for department ${deptCode}:`, yearError);
@@ -132,20 +129,22 @@ export async function GET(request: NextRequest) {
               }
             }
 
-            // Get budget totals
+            // Get budget totals and years
             let budgetQuery = supabase
               .from('budget_line_items_with_names')
-              .select('amount', { count: 'exact' })
+              .select('amount, fiscal_year', { count: 'exact' })
               .eq('department_code', deptCode);
-
             const budgetResult = await budgetQuery;
             const budgetTotal = budgetResult.data?.reduce((sum, item) => sum + parseFloat(item.amount.toString()), 0) || 0;
+            const budgetYears = Array.from(new Set((budgetResult.data || []).map(item => item.fiscal_year))).filter(Boolean).sort();
 
             results[deptCode] = {
               vendorTotal,
               budgetTotal,
               vendorRecordCount,
-              budgetRecordCount: budgetResult.count || 0
+              budgetRecordCount: budgetResult.count || 0,
+              vendorYears,
+              budgetYears
             };
 
           } catch (error) {
@@ -315,6 +314,9 @@ export async function GET(request: NextRequest) {
         amount: parseFloat(item.amount.toString())
       })) || [];
 
+      // Collect all unique years from spending data
+      const years = Array.from(new Set(spending.map(item => item.year))).filter(Boolean).sort();
+
       const totalPages = Math.ceil((count || 0) / limit);
       const currentPage = page;
       const itemsPerPage = limit;
@@ -332,7 +334,8 @@ export async function GET(request: NextRequest) {
         },
         summary: {
           totalAmount,
-          recordCount: totalItems
+          recordCount: totalItems,
+          years
         }
       };
 
@@ -721,6 +724,9 @@ export async function GET(request: NextRequest) {
         amount: parseFloat(item.amount.toString())
       })) || [];
 
+      // Collect all unique years from spending data
+      const years = Array.from(new Set(spending.map(item => item.year))).filter(Boolean).sort();
+
       const totalPages = Math.ceil((count || 0) / limit);
       const currentPage = page;
       const itemsPerPage = limit;
@@ -738,7 +744,8 @@ export async function GET(request: NextRequest) {
         },
         summary: {
           totalAmount,
-          recordCount: totalItems
+          recordCount: totalItems,
+          years
         }
       };
 
