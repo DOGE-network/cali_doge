@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Ensure badges directory exists
-const badgesDir = path.join(__dirname, 'public/badges');
+const badgesDir = path.join(__dirname, '../../public/badges');
 if (!fs.existsSync(badgesDir)) {
   fs.mkdirSync(badgesDir, { recursive: true });
 }
@@ -13,49 +13,49 @@ if (!fs.existsSync(badgesDir)) {
 const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf8'));
 
 // Calculate data metrics
-function getDataMetrics() {
-  const dataDir = path.join(__dirname, '../data');
-  let totalDataRows = 0;
-  
-  // Define specific directories to count
-  const countDirectories = [
-    path.join(dataDir, 'budget/text'),
-    path.join(dataDir, 'vendors'),
-    path.join(dataDir, 'workforce')
-  ];
-  
-  countDirectories.forEach(dir => {
-    if (fs.existsSync(dir)) {
-      const files = fs.readdirSync(dir, { recursive: true });
-      files.forEach(file => {
-        if (file.endsWith('.txt') || file.endsWith('.csv')) {
-          const filePath = path.join(dir, file);
-          try {
-            // Count lines (data rows)
-            const content = fs.readFileSync(filePath, 'utf8');
-            const lines = content.split('\n').length;
-            totalDataRows += lines;
-          } catch (error) {
-            console.warn(`Could not read file: ${filePath}`);
-          }
-        }
-      });
-    }
-  });
-  
-  return {
-    dataRows: formatNumber(totalDataRows)
-  };
-}
+// function getDataMetrics() {
+//   const dataDir = path.join(__dirname, '../data');
+//   let totalDataRows = 0;
+//   
+//   // Define specific directories to count
+//   const countDirectories = [
+//     path.join(dataDir, 'budget/text'),
+//     path.join(dataDir, 'vendors'),
+//     path.join(dataDir, 'workforce')
+//   ];
+//   
+//   countDirectories.forEach(dir => {
+//     if (fs.existsSync(dir)) {
+//       const files = fs.readdirSync(dir, { recursive: true });
+//       files.forEach(file => {
+//         if (file.endsWith('.txt') || file.endsWith('.csv')) {
+//           const filePath = path.join(dir, file);
+//           try {
+//             // Count lines (data rows)
+//             const content = fs.readFileSync(filePath, 'utf8');
+//             const lines = content.split('\n').length;
+//             totalDataRows += lines;
+//           } catch (error) {
+//             console.warn(`Could not read file: ${filePath}`);
+//           }
+//         }
+//       });
+//     }
+//   });
+//   
+//   return {
+//     dataRows: formatNumber(totalDataRows)
+//   };
+// }
 
-function formatNumber(num) {
-  if (num >= 1000000) {
-    return (num / 1000000).toFixed(1) + 'M';
-  } else if (num >= 1000) {
-    return (num / 1000).toFixed(1) + 'K';
-  }
-  return num.toString();
-}
+// function formatNumber(num) {
+//   if (num >= 1000000) {
+//     return (num / 1000000).toFixed(1) + 'M';
+//   } else if (num >= 1000) {
+//     return (num / 1000).toFixed(1) + 'K';
+//   }
+//   return num.toString();
+// }
 
 // Generate badge using badge-maker
 async function generateBadge(format) {
@@ -71,7 +71,9 @@ async function generateBadge(format) {
 // Main function
 async function main() {
   // Generate badges
-  const metrics = getDataMetrics();
+  
+  //const metrics = getDataMetrics();
+  const metrics = { dataRows: '32M' };
 
   const badgeConfigs = [
     {
