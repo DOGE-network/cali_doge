@@ -96,7 +96,48 @@ function SearchPageClient() {
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          // Handle rate limiting with proper error format
+          if (response.status === 429) {
+            const retryAfter = response.headers.get('Retry-After');
+            const remaining = response.headers.get('X-RateLimit-Remaining');
+            const resetTime = response.headers.get('X-RateLimit-Reset');
+
+            const rateLimitInfo = {
+              retryAfter: retryAfter ? parseInt(retryAfter) : 60,
+              remaining: remaining ? parseInt(remaining) : 0,
+              resetTime: resetTime ? parseInt(resetTime) : undefined
+            };
+
+            throw new Error(JSON.stringify({
+              message: 'Too many requests. Please try again later.',
+              status: 429,
+              rateLimit: rateLimitInfo
+            }));
+          }
+
+          // Handle IP blocking
+          if (response.status === 403) {
+            const retryAfter = response.headers.get('Retry-After');
+            throw new Error(JSON.stringify({
+              message: 'Your IP has been temporarily blocked due to abuse. Please try again later.',
+              status: 403,
+              rateLimit: { retryAfter: retryAfter ? parseInt(retryAfter) : 3600 }
+            }));
+          }
+
+          // Handle other HTTP errors
+          let errorMessage = 'An error occurred while fetching data.';
+          try {
+            const errorData = await response.json();
+            errorMessage = errorData.error || errorData.message || errorMessage;
+          } catch {
+            errorMessage = response.statusText || errorMessage;
+          }
+
+          throw new Error(JSON.stringify({
+            message: errorMessage,
+            status: response.status
+          }));
         }
         const data = await response.json();
         return data;
@@ -233,6 +274,25 @@ function SearchPageClient() {
           const batchData = await batchResponse.json();
           setDepartmentTotals(batchData.batch || {});
         } else {
+          // Handle rate limiting in batch request
+          if (batchResponse.status === 429) {
+            const retryAfter = batchResponse.headers.get('Retry-After');
+            const remaining = batchResponse.headers.get('X-RateLimit-Remaining');
+            const resetTime = batchResponse.headers.get('X-RateLimit-Reset');
+
+            const rateLimitInfo = {
+              retryAfter: retryAfter ? parseInt(retryAfter) : 60,
+              remaining: remaining ? parseInt(remaining) : 0,
+              resetTime: resetTime ? parseInt(resetTime) : undefined
+            };
+
+            throw new Error(JSON.stringify({
+              message: 'Too many requests. Please try again later.',
+              status: 429,
+              rateLimit: rateLimitInfo
+            }));
+          }
+
           console.warn('Batch API failed, falling back to individual requests');
           // Fallback to individual requests if batch fails
           const newTotals: Record<string, { 

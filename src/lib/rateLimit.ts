@@ -170,7 +170,14 @@ export async function checkRateLimit(
     const windowStart = now - config.windowMs;
     
     // Get current request count using zrange with scores
-    const requests = await redis.zrange(key, 0, -1, { withScores: true }) as Array<[string, number]>;
+    const rawRequests = await redis.zrange(key, 0, -1, { withScores: true }) as string[];
+    // Convert flat array [member1, score1, member2, score2, ...] to tuples
+    const requests: Array<[string, number]> = [];
+    for (let i = 0; i < rawRequests.length; i += 2) {
+      const member = rawRequests[i];
+      const score = parseFloat(rawRequests[i + 1]);
+      requests.push([member, score]);
+    }
     const currentCount = requests.filter(([_, score]) => score >= windowStart).length;
     
     // Check if limit exceeded
