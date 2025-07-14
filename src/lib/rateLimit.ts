@@ -14,7 +14,7 @@ export const RATE_LIMITS = {
   // General API endpoints
   api: {
     windowMs: 60 * 1000, // 1 minute
-    maxRequests: 40,
+    maxRequests: 1000,
     blockDuration: 5 * 60 * 1000, // 5 minutes
     keyPrefix: 'rate_limit:api'
   },

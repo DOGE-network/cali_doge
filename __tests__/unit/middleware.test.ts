@@ -8,7 +8,7 @@ jest.mock('@/lib/rateLimit', () => ({
   checkRateLimit: jest.fn(),
   getRateLimitConfig: jest.fn(() => ({
     windowMs: 60000,
-    maxRequests: 100,
+    maxRequests: 1000,
     keyPrefix: 'test'
   }))
 }));

@@ -28,7 +28,7 @@ describe('Rate Limiting Configuration', () => {
     it('returns search config for search endpoints', () => {
       const config = getRateLimitConfig('/api/search');
       expect(config).toBe(RATE_LIMITS.api);
-      expect(config.maxRequests).toBe(40);
+      expect(config.maxRequests).toBe(1000);
       expect(config.windowMs).toBe(60 * 1000);
     });
 
@@ -54,7 +54,7 @@ describe('Rate Limiting Configuration', () => {
     it('returns api config for other API endpoints', () => {
       const config = getRateLimitConfig('/api/departments');
       expect(config).toBe(RATE_LIMITS.api);
-      expect(config.maxRequests).toBe(40);
+      expect(config.maxRequests).toBe(1000);
     });
   });
 
