@@ -113,4 +113,35 @@ describe('Rate Limit Error Handling Integration', () => {
     expect(parsedError.status).toBe(0);
     expect(parsedError.rateLimit).toBeUndefined();
   });
+
+  it('should properly handle 504 Gateway Timeout errors with user notification', () => {
+    // Simulate a 504 error response from the API
+    const timeoutError = new Error(JSON.stringify({
+      message: 'The server took too long to respond. Please try again later.',
+      status: 504
+    }));
+
+    // Test that the error is NOT identified as a rate limit error
+    expect(isRateLimitError(timeoutError)).toBe(false);
+
+    // Test that the error is correctly parsed
+    const parsedError = parseApiError(timeoutError);
+    expect(parsedError.message).toBe('The server took too long to respond. Please try again later.');
+    expect(parsedError.status).toBe(504);
+  });
+
+  it('should display user-friendly 504 timeout error message', () => {
+    // Simulate a 504 error
+    const timeoutError = new Error(JSON.stringify({
+      message: 'The server took too long to respond. Please try again later.',
+      status: 504
+    }));
+
+    const parsedError = parseApiError(timeoutError);
+    
+    // Verify the error message is user-friendly
+    expect(parsedError.message).toContain('server took too long');
+    expect(parsedError.message).toContain('try again later');
+    expect(parsedError.status).toBe(504);
+  });
 }); 
