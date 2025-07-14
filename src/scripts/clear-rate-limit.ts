@@ -277,7 +277,7 @@ async function getAllRedisMetadata(): Promise<RedisMetadataResult> {
           result.metadata.rateLimitData[configType].ips.push({
             ip,
             requestCount,
-            lastActivity: requests.length > 0 ? new Date(parseInt(requests[requests.length - 2])).toISOString() : 'Unknown'
+            lastActivity: requests.length > 0 ? new Date(parseInt(requests[requests.length - 1])).toISOString() : 'Unknown'
           });
         }
         
