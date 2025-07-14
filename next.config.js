@@ -44,6 +44,15 @@ const nextConfig = {
     }
   },
   
+  // Enable experimental Turbopack for production builds
+  experimental: {
+    turbo: {
+      rules: {
+        // Add any specific rules if needed
+      }
+    }
+  },
+  
   images: {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 31536000, // 1 year

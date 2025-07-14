@@ -9,8 +9,10 @@ const isNodeEnv = typeof window === 'undefined' &&
                   process.versions.node &&
                   process.env.NEXT_RUNTIME !== 'edge';
 
+// Only import nodemailer in Node.js environment
 if (isNodeEnv) {
   try {
+    // Use dynamic import to avoid bundling in client builds
     nodemailer = require('nodemailer');
   } catch (error) {
     // Ignore module loading errors in Edge Runtime
