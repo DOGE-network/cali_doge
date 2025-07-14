@@ -51,6 +51,14 @@ class ApiClient {
       }));
     }
 
+    // Handle 504 Gateway Timeout
+    if (response.status === 504) {
+      throw new Error(JSON.stringify({
+        message: 'The server took too long to respond. Please try again later.',
+        status: 504
+      }));
+    }
+
     // Handle other errors
     let errorMessage = 'An error occurred while fetching data.';
     try {

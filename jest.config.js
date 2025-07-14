@@ -16,6 +16,9 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(node-fetch)/)'
+  ],
   testMatch,
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',

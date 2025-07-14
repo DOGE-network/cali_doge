@@ -14,16 +14,9 @@ export const RATE_LIMITS = {
   // General API endpoints
   api: {
     windowMs: 60 * 1000, // 1 minute
-    maxRequests: 100,
+    maxRequests: 40,
     blockDuration: 5 * 60 * 1000, // 5 minutes
     keyPrefix: 'rate_limit:api'
-  },
-  // Search endpoints (more restrictive)
-  search: {
-    windowMs: 60 * 1000, // 1 minute
-    maxRequests: 30,
-    blockDuration: 10 * 60 * 1000, // 10 minutes
-    keyPrefix: 'rate_limit:search'
   },
   // Email endpoints (very restrictive)
   email: {
@@ -50,15 +43,16 @@ export const RATE_LIMITS = {
 
 // IP blocking configuration
 export const IP_BLOCK_CONFIG = {
-  maxViolations: 3, // Number of violations before permanent block
+  maxViolations: 20, // Increased from 10 to 20
   blockDuration: 24 * 60 * 60 * 1000, // 24 hours
+  initialBlockDuration: 60 * 60 * 1000, // 1 hour for first-time offenders
   keyPrefix: 'ip_block'
 };
 
 // Lazy initialization of Redis client
 let redis: Redis | null = null;
 
-function getRedisClient(): Redis {
+export function getRedisClient(): Redis {
   if (!redis) {
     redis = new Redis({
       url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL,
@@ -74,21 +68,40 @@ export function getClientIP(request: NextRequest): string {
   const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
     // Take the first IP in the chain
-    return forwarded.split(',')[0].trim();
+    const ip = forwarded.split(',')[0].trim();
+    if (ip && ip !== '') {
+      return ip;
+    }
   }
   
   // Fallback to direct connection IP
   const realIP = request.headers.get('x-real-ip');
-  if (realIP) {
+  if (realIP && realIP !== '') {
     return realIP;
   }
   
-  // Last resort - use connection remote address
+  // Last resort - try to get from connection info
+  // Note: In Edge Runtime, this might not be available
+  try {
+    // @ts-ignore - accessing internal connection info
+    const connection = (request as any).connection || (request as any).socket;
+    if (connection && connection.remoteAddress) {
+      return connection.remoteAddress;
+    }
+  } catch (error) {
+    // Ignore errors accessing connection info
+  }
+  
   return 'unknown';
 }
 
 // Check if IP is blocked
 export async function isIPBlocked(ip: string): Promise<boolean> {
+  // Reject empty, invalid, or 'unknown' IPs
+  if (!ip || ip === '' || ip === 'unknown') {
+    return false;
+  }
+  
   try {
     const redis = getRedisClient();
     const blockKey = `${IP_BLOCK_CONFIG.keyPrefix}:${ip}`;
@@ -117,6 +130,12 @@ export async function isIPBlocked(ip: string): Promise<boolean> {
 
 // Record a violation for an IP
 export async function recordViolation(ip: string): Promise<void> {
+  // Reject empty, invalid, or 'unknown' IPs
+  if (!ip || ip === '' || ip === 'unknown') {
+    console.warn('Attempted to record violation for invalid IP, skipping');
+    return;
+  }
+  
   try {
     const redis = getRedisClient();
     const blockKey = `${IP_BLOCK_CONFIG.keyPrefix}:${ip}`;
@@ -126,9 +145,14 @@ export async function recordViolation(ip: string): Promise<void> {
     const newViolations = (blockInfo.violations || 0) + 1;
     
     // Determine block duration based on violation count
-    const blockDuration = newViolations >= IP_BLOCK_CONFIG.maxViolations 
-      ? IP_BLOCK_CONFIG.blockDuration * 7 // 7 days for repeated violations
-      : IP_BLOCK_CONFIG.blockDuration;
+    let blockDuration;
+    if (newViolations === 1) {
+      blockDuration = IP_BLOCK_CONFIG.initialBlockDuration;
+    } else if (newViolations >= IP_BLOCK_CONFIG.maxViolations) {
+      blockDuration = IP_BLOCK_CONFIG.blockDuration * 7; // 7 days for repeated violations
+    } else {
+      blockDuration = IP_BLOCK_CONFIG.blockDuration;
+    }
     
     const blockedUntil = Date.now() + blockDuration;
     
@@ -163,6 +187,16 @@ export async function checkRateLimit(
   ip: string, 
   config: RateLimitConfig
 ): Promise<RateLimitResult> {
+  // Reject empty, invalid, or 'unknown' IPs
+  if (!ip || ip === '' || ip === 'unknown') {
+    console.warn('Attempted to check rate limit for invalid IP, allowing request');
+    return {
+      success: true,
+      remaining: 999,
+      resetTime: Date.now() + 60000
+    };
+  }
+  
   try {
     const redis = getRedisClient();
     const key = `${config.keyPrefix}:${ip}`;
@@ -223,8 +257,9 @@ export async function checkRateLimit(
 
 // Get rate limit configuration for a path
 export function getRateLimitConfig(pathname: string): RateLimitConfig {
+  // All /api/search endpoints use the general API rate limit
   if (pathname.startsWith('/api/search')) {
-    return RATE_LIMITS.search;
+    return RATE_LIMITS.api;
   }
   if (pathname.startsWith('/api/send-email')) {
     return RATE_LIMITS.email;
@@ -238,7 +273,6 @@ export function getRateLimitConfig(pathname: string): RateLimitConfig {
   if (pathname.startsWith('/api/')) {
     return RATE_LIMITS.api;
   }
-  
   // Default to API limits for unknown paths
   return RATE_LIMITS.api;
 }
@@ -271,7 +305,62 @@ export async function cleanupExpiredEntries(): Promise<void> {
         await redis.del(key);
       }
     }
+    
+    // Clean up invalid IP entries (empty strings, 'unknown', etc.)
+    await cleanupInvalidIPs();
+    
   } catch (error) {
     console.error('Error cleaning up expired entries:', error);
+  }
+}
+
+// Clean up invalid IP entries
+async function cleanupInvalidIPs(): Promise<void> {
+  try {
+    const redis = getRedisClient();
+    
+    // Find and clean up invalid IP entries (empty or malformed)
+    const blockKeys = await redis.keys('ip_block:*');
+    const invalidKeys: string[] = [];
+    
+    for (const key of blockKeys) {
+      const ip = key.split(':')[1];
+      if (!ip || ip === '' || ip === 'unknown') {
+        invalidKeys.push(key);
+      }
+    }
+    
+    if (invalidKeys.length > 0) {
+      await redis.del(...invalidKeys);
+      console.log(`🧹 Cleaned up ${invalidKeys.length} invalid IP block entries`);
+    }
+    
+    // Also clean up invalid rate limit keys
+    const rateLimitPatterns = [
+      'rate_limit:api:*',
+      'rate_limit:email:*',
+      'rate_limit:media:*',
+      'rate_limit:static:*'
+    ];
+    
+    const invalidRateLimitKeys: string[] = [];
+    
+    for (const pattern of rateLimitPatterns) {
+      const keys = await redis.keys(pattern);
+      for (const key of keys) {
+        const ip = key.split(':')[2];
+        if (!ip || ip === '' || ip === 'unknown') {
+          invalidRateLimitKeys.push(key);
+        }
+      }
+    }
+    
+    if (invalidRateLimitKeys.length > 0) {
+      await redis.del(...invalidRateLimitKeys);
+      console.log(`🧹 Cleaned up ${invalidRateLimitKeys.length} invalid rate limit entries`);
+    }
+    
+  } catch (error) {
+    console.error('Error cleaning up invalid IPs:', error);
   }
 } 

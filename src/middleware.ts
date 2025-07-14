@@ -10,12 +10,57 @@ import {
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
 
+  // Skip rate limiting for internal alert API calls to prevent loops
+  if (request.nextUrl.pathname === '/api/alert') {
+    return response;
+  }
+
   // --- IP Rate Limiting and Abuse Protection ---
   const ip = getClientIP(request);
+  
+  // Skip rate limiting for 'unknown' IPs entirely
+  if (ip === 'unknown') {
+    console.log(`[MIDDLEWARE] Skipping rate limiting for unknown IP: ${ip}`);
+    return response;
+  }
+  
+  // Ensure IP is never blank - if it is, skip rate limiting
+  if (!ip || ip === '') {
+    console.log(`[MIDDLEWARE] Skipping rate limiting for blank IP`);
+    return response;
+  }
+  
+  const userAgent = request.headers.get('user-agent') || 'unknown';
   const config = getRateLimitConfig(request.nextUrl.pathname);
+
+  // Debug logging
+  console.log(`[MIDDLEWARE] ${request.method} ${request.nextUrl.pathname} from IP: ${ip}, config: ${config.keyPrefix}`);
 
   // Block abusive IPs
   if (await isIPBlocked(ip)) {
+    console.log(`[MIDDLEWARE] IP ${ip} is blocked`);
+    
+    // Send email alert via API (runs in Node.js environment)
+    try {
+      await fetch(`${request.nextUrl.origin}/api/alert`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: 'IP Block Alert',
+          message: `IP ${ip} blocked due to repeated violations`,
+          data: { 
+            ip, 
+            userAgent, 
+            path: request.nextUrl.pathname,
+            timestamp: new Date().toISOString(),
+            blockReason: 'Repeated rate limit violations'
+          }
+        })
+      });
+    } catch (error) {
+      console.error('Failed to send IP block alert:', error);
+    }
+    
     return new NextResponse('Your IP has been temporarily blocked due to abuse. If you believe this is an error, contact support.', {
       status: 403,
       headers: {
@@ -27,7 +72,39 @@ export async function middleware(request: NextRequest) {
 
   // Enforce rate limit
   const rateResult = await checkRateLimit(ip, config);
+  console.log(`[MIDDLEWARE] Rate limit result for ${ip}: success=${rateResult.success}, remaining=${rateResult.remaining}`);
+  
   if (!rateResult.success) {
+    console.log(`[MIDDLEWARE] Rate limit exceeded for ${ip}, returning 429`);
+    
+    // Send email alert via API (runs in Node.js environment)
+    try {
+      await fetch(`${request.nextUrl.origin}/api/alert`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: 'Rate Limit Alert',
+          message: `Rate limit exceeded for IP ${ip} on ${config.keyPrefix}`,
+          data: { 
+            ip, 
+            userAgent, 
+            path: request.nextUrl.pathname, 
+            config: config.keyPrefix,
+            rateLimit: {
+              maxRequests: config.maxRequests,
+              windowMs: config.windowMs,
+              remaining: rateResult.remaining,
+              retryAfter: rateResult.retryAfter,
+              resetTime: rateResult.resetTime
+            },
+            timestamp: new Date().toISOString()
+          }
+        })
+      });
+    } catch (error) {
+      console.error('Failed to send rate limit alert:', error);
+    }
+    
     return new NextResponse('Too many requests from your IP. Please try again later.', {
       status: 429,
       headers: {

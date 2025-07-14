@@ -13,7 +13,7 @@ import {
 } from '@/components/SearchDetailCards';
 import { SearchTypeFilter } from '@/components/SearchTypeFilter';
 import RateLimitError from '@/components/RateLimitError';
-import { isRateLimitError, getRateLimitInfo } from '@/lib/apiClient';
+import { isRateLimitError, getRateLimitInfo, parseApiError } from '@/lib/apiClient';
 
 interface SearchResponse {
   departments: SearchItem[];
@@ -360,13 +360,28 @@ function SearchPageClient() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Search California Government Data</h1>
           <p className="text-gray-600">Find departments, vendors, programs, and funds in California&apos;s government spending data.</p>
         </div>
-        
         <RateLimitError 
           retryAfter={rateLimitInfo?.retryAfter}
           remaining={rateLimitInfo?.remaining}
           resetTime={rateLimitInfo?.resetTime}
           onRetry={() => window.location.reload()}
         />
+      </div>
+    );
+  }
+
+  // Handle 504 Gateway Timeout errors
+  if (error && parseApiError(error).status === 504) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Search California Government Data</h1>
+          <p className="text-gray-600">Find departments, vendors, programs, and funds in California&apos;s government spending data.</p>
+        </div>
+        <div className="p-4 text-red-600 bg-red-50 rounded-lg">
+          <h2 className="text-lg font-semibold mb-2">Server Timeout</h2>
+          <p>The server took too long to respond. Please try again later.</p>
+        </div>
       </div>
     );
   }
