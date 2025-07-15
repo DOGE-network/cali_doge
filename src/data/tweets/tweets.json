@@ -1,6 +1,164 @@
 {
   "tweets": [
     {
+      "created_at": "2025-07-14T22:25:14.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 16,
+            "username": "ReggieSmit59755",
+            "id": "1822681086037794816"
+          }
+        ]
+      },
+      "text": "@ReggieSmit59755 TLDR",
+      "edit_history_tweet_ids": [
+        "1944885930868846912"
+      ],
+      "id": "1944885930868846912",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 14, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-07-14T20:12:28.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 22,
+            "end": 50,
+            "probability": 0.8565,
+            "type": "Organization",
+            "normalized_text": "California Coastal Commission"
+          }
+        ],
+        "urls": [
+          {
+            "start": 55,
+            "end": 78,
+            "url": "https://t.co/nAKWfc7EOd",
+            "expanded_url": "https://dogenetwork.org/departments/3720_california_coastal_commission",
+            "display_url": "dogenetwork.org/departments/37…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1944852559853928448/QkEQSJQf?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1944852559853928448/QkEQSJQf?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://dogenetwork.org/departments/3720_california_coastal_commission"
+          },
+          {
+            "start": 79,
+            "end": 102,
+            "url": "https://t.co/hWYHBZvIGP",
+            "expanded_url": "https://x.com/cali_doge/status/1944852516577141066/photo/1",
+            "display_url": "pic.x.com/hWYHBZvIGP",
+            "media_key": "3_1944852509316800515"
+          },
+          {
+            "start": 103,
+            "end": 126,
+            "url": "https://t.co/0Gyu5DONoS",
+            "expanded_url": "https://twitter.com/adamcarolla/status/1944811521193767320",
+            "display_url": "x.com/adamcarolla/st…"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "Brought to you by the California Coastal Commission. \n\nhttps://t.co/nAKWfc7EOd https://t.co/hWYHBZvIGP https://t.co/0Gyu5DONoS",
+      "edit_history_tweet_ids": [
+        "1944852516577141066"
+      ],
+      "attachments": {
+        "media_keys": [
+          "3_1944852509316800515"
+        ]
+      },
+      "id": "1944852516577141066",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 14, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1944852516577141066_0.jpg",
+          "width": 1234,
+          "height": 2048
+        }
+      ]
+    },
+    {
+      "created_at": "2025-07-14T19:35:51.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "RKMajer",
+            "id": "1827847718548787200"
+          }
+        ]
+      },
+      "text": "@RKMajer Thanks!",
+      "edit_history_tweet_ids": [
+        "1944843302748242374"
+      ],
+      "id": "1944843302748242374",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 14, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -21052,8 +21210,8 @@
     }
   ],
   "meta": {
-    "result_count": 199,
-    "newest_id": "1944801065746227306",
+    "result_count": 202,
+    "newest_id": "1944885930868846912",
     "oldest_id": "1882144700762878208"
   }
 }
