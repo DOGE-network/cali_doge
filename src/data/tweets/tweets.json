@@ -1,6 +1,189 @@
 {
   "tweets": [
     {
+      "text": "@repdarrellissa @JDVance As a tax paying Californian, I 100% want and crave this debate. Our governor fancies himself as the ultimate Effective Altruist. The buzzsaw of Reality beats meanless empathy everytime.",
+      "edit_history_tweet_ids": [
+        "1945131429396144181"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1516097382118682624",
+            "name": "J. D. Vance"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1579862252601036800",
+            "name": "J.D. Vance"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1848744575940091904",
+            "name": "NewsNation Town Hall with VP Candidate JD Vance",
+            "description": "TONIGHT: VP Candidate @JDVance answers your questions in a town hall moderated by Chris Cuomo from Michigan. Watch at 8pm ET/7pm CT via @NewsNation streaming exclusively on @X."
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "1579862252601036800",
+            "name": "J.D. Vance"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1516097382118682624",
+            "name": "J. D. Vance"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1518653065976369153",
+            "name": "United States political figures"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1579862252601036800",
+            "name": "J.D. Vance"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1840858535829057537",
+            "name": "CBS News 2024 Vice Presidential Debate",
+            "description": "TONIGHT: Democratic Gov. Tim Walz of Minnesota and GOP Sen. JD Vance of Ohio participate in the CBS News Vice Presidential Debate live in New York City. Watch live at 9pm ET via @CBSNews on @X."
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-07-15T14:40:46.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "repdarrellissa",
+            "id": "63650107"
+          },
+          {
+            "start": 16,
+            "end": 24,
+            "username": "JDVance",
+            "id": "1542228578"
+          }
+        ]
+      },
+      "id": "1945131429396144181",
+      "created_at_formatted": "Jul 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
       "created_at": "2025-07-14T22:25:14.000Z",
       "entities": {
         "mentions": [
@@ -21210,8 +21393,8 @@
     }
   ],
   "meta": {
-    "result_count": 202,
-    "newest_id": "1944885930868846912",
+    "result_count": 203,
+    "newest_id": "1945131429396144181",
     "oldest_id": "1882144700762878208"
   }
 }
