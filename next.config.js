@@ -36,20 +36,11 @@ const nextConfig = {
   compress: true,
   productionBrowserSourceMaps: false,
   
-  // Turbopack configuration
+  // Turbopack configuration (stable)
   turbopack: {
     rules: {
       // Add any specific rules if needed
       // Example: "*.mdx": ["mdx-loader"]
-    }
-  },
-  
-  // Enable experimental Turbopack for production builds
-  experimental: {
-    turbo: {
-      rules: {
-        // Add any specific rules if needed
-      }
     }
   },
   
