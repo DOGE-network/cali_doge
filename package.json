@@ -1,6 +1,6 @@
 {
   "name": "cali-doge",
-  "version": "1.6.17",
+  "version": "1.7.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
@@ -13,6 +13,8 @@
     "favicon-check": "npx realfavicon check http://localhost:3000",
     "clear-rate-limit": "npx tsx src/scripts/clear-rate-limit.ts",
     "clear-cache": "npx tsx src/scripts/clear-spend-cache.ts",
+    "warm-cache": "npx tsx src/scripts/warm-spend-cache.ts",
+    "monitor-connections": "npx tsx src/scripts/monitor-connections.ts",
     "test": "jest --config jest.config.js --passWithNoTests",
     "test:coverage": "npm run test -- --coverage",
     "test:coverage:full": "jest --config jest.config.js --passWithNoTests --coverage --coverageReporters=text --coverageReporters=lcov --coverageReporters=html",

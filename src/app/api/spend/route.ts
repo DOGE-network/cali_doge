@@ -96,15 +96,16 @@ export async function GET(request: NextRequest) {
         const supabase = getServiceSupabase();
         const results: Record<string, { vendorTotal: number | null; budgetTotal: number | null; vendorRecordCount: number | null; budgetRecordCount: number | null; vendorYears?: number[]; budgetYears?: number[] }> = {};
 
-        // Process each department code
-        await Promise.all(departmentCodes.map(async (deptCode) => {
+        // Process each department code sequentially to avoid connection pool exhaustion
+        for (const deptCode of departmentCodes) {
           try {
             // Get vendor totals across all available fiscal years
             const years = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
             let vendorTotal = 0;
             let vendorRecordCount = 0;
             const vendorYears: number[] = [];
-            // Query each year-partitioned view and aggregate results
+            
+            // Query each year-partitioned view sequentially with delays
             for (const yearValue of years) {
               const viewName = getYearPartitionedViewName(yearValue);
               try {
@@ -123,6 +124,10 @@ export async function GET(request: NextRequest) {
                   vendorRecordCount += yearCount || 0;
                   vendorYears.push(yearValue);
                 }
+                
+                // Add delay between year queries to prevent connection pool exhaustion
+                await new Promise(resolve => setTimeout(resolve, 50));
+                
               } catch (yearError) {
                 console.warn(`[SPEND API] Error processing ${viewName} for department ${deptCode}:`, yearError);
                 continue;
@@ -156,7 +161,10 @@ export async function GET(request: NextRequest) {
               budgetRecordCount: null
             };
           }
-        }));
+          
+          // Add delay between department processing
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
 
         const batchResult = {
           batch: results,
