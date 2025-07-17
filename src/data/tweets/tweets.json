@@ -1,6 +1,38 @@
 {
   "tweets": [
     {
+      "text": "@J_GallagherAD3 @jenvanlaar It is possible to be both a political actor quoting lines given to them and not a deep thinker who believes what their Keynesian advisers tell them.",
+      "edit_history_tweet_ids": [
+        "1945863888689340790"
+      ],
+      "created_at": "2025-07-17T15:11:18.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "J_GallagherAD3",
+            "id": "512044262"
+          },
+          {
+            "start": 16,
+            "end": 27,
+            "username": "jenvanlaar",
+            "id": "775137023979958272"
+          }
+        ]
+      },
+      "id": "1945863888689340790",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 17, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "created_at": "2025-07-17T01:58:19.000Z",
       "text": "@KevinKileyCA @jenvanlaar Unfortunately the purpose of High-Speed Rail is not laying track but employing people. The state spent 2019-2024 $265M for state salaries and $2.8B for vendors. \n\nhttps://t.co/jfr7Is0huO\n\nhttps://t.co/dHIIXQe7wq",
       "author_id": "1859283000145608705",
@@ -21628,8 +21660,8 @@
     }
   ],
   "meta": {
-    "result_count": 205,
-    "newest_id": "1945664330810495208",
+    "result_count": 206,
+    "newest_id": "1945863888689340790",
     "oldest_id": "1882144700762878208"
   }
 }
