@@ -1,6 +1,90 @@
 {
   "tweets": [
     {
+      "created_at": "2025-07-17T01:58:19.000Z",
+      "text": "@KevinKileyCA @jenvanlaar Unfortunately the purpose of High-Speed Rail is not laying track but employing people. The state spent 2019-2024 $265M for state salaries and $2.8B for vendors. \n\nhttps://t.co/jfr7Is0huO\n\nhttps://t.co/dHIIXQe7wq",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1945664330810495208"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 189,
+            "end": 212,
+            "url": "https://t.co/jfr7Is0huO",
+            "expanded_url": "https://cali-doge.org/workforce?department=High-Speed+Rail+Authority&fiscalYear=2023",
+            "display_url": "cali-doge.org/workforce?depa…",
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce?department=High-Speed+Rail+Authority&fiscalYear=2023"
+          },
+          {
+            "start": 214,
+            "end": 237,
+            "url": "https://t.co/dHIIXQe7wq",
+            "expanded_url": "https://cali-doge.org/search?q=High-Speed+Rail+Authority&view=details&id=2665",
+            "display_url": "cali-doge.org/search?q=High-…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1945662813848129536/ZjjNKVTa?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1945662813848129536/ZjjNKVTa?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/search?q=High-Speed+Rail+Authority&view=details&id=2665"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "KevinKileyCA",
+            "id": "3180247177"
+          },
+          {
+            "start": 14,
+            "end": 25,
+            "username": "jenvanlaar",
+            "id": "775137023979958272"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 55,
+            "end": 58,
+            "probability": 0.6699,
+            "type": "Other",
+            "normalized_text": "High"
+          },
+          {
+            "start": 60,
+            "end": 69,
+            "probability": 0.6968,
+            "type": "Other",
+            "normalized_text": "Speed Rail"
+          }
+        ]
+      },
+      "id": "1945664330810495208",
+      "created_at_formatted": "Jul 17, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "entities": {
         "annotations": [
@@ -21544,8 +21628,8 @@
     }
   ],
   "meta": {
-    "result_count": 204,
-    "newest_id": "1945627856509571382",
+    "result_count": 205,
+    "newest_id": "1945664330810495208",
     "oldest_id": "1882144700762878208"
   }
 }
