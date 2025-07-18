@@ -1,6 +1,292 @@
 {
   "tweets": [
     {
+      "text": "@RobertGarcia @GavinNewsom I nominate this as the funniest post of the week!! https://t.co/Ck5KqGPfwW",
+      "edit_history_tweet_ids": [
+        "1946265874081747186"
+      ],
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_keys": [
+          "3_1946265868037427200"
+        ]
+      },
+      "id": "1946265874081747186",
+      "created_at": "2025-07-18T17:48:38.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "RobertGarcia",
+            "id": "18120497"
+          },
+          {
+            "start": 14,
+            "end": 26,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          }
+        ],
+        "urls": [
+          {
+            "start": 78,
+            "end": 101,
+            "url": "https://t.co/Ck5KqGPfwW",
+            "expanded_url": "https://x.com/cali_doge/status/1946265874081747186/photo/1",
+            "display_url": "pic.x.com/Ck5KqGPfwW",
+            "media_key": "3_1946265868037427200"
+          }
+        ]
+      },
+      "created_at_formatted": "Jul 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1946265874081747186_0.jpg",
+          "width": 720,
+          "height": 960
+        }
+      ]
+    },
+    {
+      "text": "@MikeBenzCyber @AutismCapital Cause everyone knows the path to happiness and self fulfillment is through Linux",
+      "edit_history_tweet_ids": [
+        "1946264818693845048"
+      ],
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 105,
+            "end": 109,
+            "probability": 0.9752,
+            "type": "Other",
+            "normalized_text": "Linux"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "MikeBenzCyber",
+            "id": "1599510806680535042"
+          },
+          {
+            "start": 15,
+            "end": 29,
+            "username": "AutismCapital",
+            "id": "1297651178256257024"
+          }
+        ]
+      },
+      "id": "1946264818693845048",
+      "created_at": "2025-07-18T17:44:27.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "848959431836487680",
+            "name": "Linux",
+            "description": "Linux"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848959431836487680",
+            "name": "Linux",
+            "description": "Linux"
+          }
+        }
+      ],
+      "created_at_formatted": "Jul 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "text": "@LauraPowellEsq Scripting authenticity is odd to even write down. How does your brain not revolt as you read what you just wrote. \n\nNow stare into camera with a convincing look. \nInsert long pause for authentic vibe. \nThese are notes, don’t say these out loud. \n\nWell shoot…",
+      "edit_history_tweet_ids": [
+        "1946263333214081500"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1946263333214081500",
+      "created_at": "2025-07-18T17:38:33.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "LauraPowellEsq",
+            "id": "374174560"
+          }
+        ]
+      },
+      "created_at_formatted": "Jul 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "text": "@joffemd We should find an opponent for these two terrible candidates",
+      "edit_history_tweet_ids": [
+        "1946261341272220159"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1946261341272220159",
+      "created_at": "2025-07-18T17:30:38.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "created_at_formatted": "Jul 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "text": "@twinforces Still a few of us here that don’t talk with our hands…",
+      "edit_history_tweet_ids": [
+        "1946217815330967830"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1946217815330967830",
+      "created_at": "2025-07-18T14:37:40.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ]
+      },
+      "created_at_formatted": "Jul 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "entities": {
         "annotations": [
@@ -21801,8 +22087,8 @@
     }
   ],
   "meta": {
-    "result_count": 208,
-    "newest_id": "1945954445541470239",
+    "result_count": 213,
+    "newest_id": "1946265874081747186",
     "oldest_id": "1882144700762878208"
   }
 }
