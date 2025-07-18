@@ -1,6 +1,147 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 45,
+            "end": 48,
+            "probability": 0.4693,
+            "type": "Other",
+            "normalized_text": "Rail"
+          }
+        ],
+        "urls": [
+          {
+            "start": 176,
+            "end": 199,
+            "url": "https://t.co/D2OIiY8hUe",
+            "expanded_url": "https://x.com/cali_doge/status/1945954445541470239/photo/1",
+            "display_url": "pic.x.com/D2OIiY8hUe",
+            "media_key": "3_1945954439996620800"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "ZavalaA",
+            "id": "47337027"
+          }
+        ]
+      },
+      "id": "1945954445541470239",
+      "edit_history_tweet_ids": [
+        "1945954445541470239"
+      ],
+      "created_at": "2025-07-17T21:11:08.000Z",
+      "text": "@ZavalaA In the effort to support High-Speed Rail, our Governor will be going office to office in the capital ringing his bell, “Bring out your morons! Bring out your morons!” https://t.co/D2OIiY8hUe",
+      "attachments": {
+        "media_keys": [
+          "3_1945954439996620800"
+        ]
+      },
+      "created_at_formatted": "Jul 17, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1945954445541470239_0.jpg",
+          "width": 720,
+          "height": 960
+        }
+      ]
+    },
+    {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 39,
+            "end": 53,
+            "probability": 0.7537,
+            "type": "Other",
+            "normalized_text": "High-Speed Rail"
+          }
+        ],
+        "urls": [
+          {
+            "start": 176,
+            "end": 199,
+            "url": "https://t.co/s1aIpl6mFv",
+            "expanded_url": "https://cali-doge.org/workforce?department=High-Speed%20Rail%20Authority",
+            "display_url": "cali-doge.org/workforce?depa…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1945662855774457856/aA_WiMiL?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1945662855774457856/aA_WiMiL?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/workforce?department=High-Speed%20Rail%20Authority"
+          },
+          {
+            "start": 201,
+            "end": 224,
+            "url": "https://t.co/dHIIXQdzGS",
+            "expanded_url": "https://cali-doge.org/search?q=High-Speed+Rail+Authority&view=details&id=2665",
+            "display_url": "cali-doge.org/search?q=High-…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1945662813848129536/ZjjNKVTa?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1945662813848129536/ZjjNKVTa?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/search?q=High-Speed+Rail+Authority&view=details&id=2665"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 9,
+            "username": "SecDuffy",
+            "id": "1883853671148167168"
+          }
+        ]
+      },
+      "id": "1945950447132368947",
+      "edit_history_tweet_ids": [
+        "1945950447132368947"
+      ],
+      "created_at": "2025-07-17T20:55:15.000Z",
+      "text": "@SecDuffy Unfortunately the purpose of High-Speed Rail was never laying track but employing people. The state spent 2019-2024 $265M for state salaries and $2.8B for vendors. \n\nhttps://t.co/s1aIpl6mFv\n\nhttps://t.co/dHIIXQdzGS",
+      "created_at_formatted": "Jul 17, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "text": "@J_GallagherAD3 @jenvanlaar It is possible to be both a political actor quoting lines given to them and not a deep thinker who believes what their Keynesian advisers tell them.",
       "edit_history_tweet_ids": [
         "1945863888689340790"
@@ -21660,8 +21801,8 @@
     }
   ],
   "meta": {
-    "result_count": 206,
-    "newest_id": "1945863888689340790",
+    "result_count": 208,
+    "newest_id": "1945954445541470239",
     "oldest_id": "1882144700762878208"
   }
 }
