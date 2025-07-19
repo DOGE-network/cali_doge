@@ -1,6 +1,435 @@
 {
   "tweets": [
     {
+      "created_at": "2025-07-19T18:13:46.000Z",
+      "id": "1946634586584232388",
+      "entities": {
+        "annotations": [
+          {
+            "start": 86,
+            "end": 95,
+            "probability": 0.9912,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 184,
+            "end": 188,
+            "probability": 0.4235,
+            "type": "Other",
+            "normalized_text": "decay"
+          },
+          {
+            "start": 199,
+            "end": 208,
+            "probability": 0.9596,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 10,
+            "end": 24,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 29,
+            "end": 41,
+            "username": "MorningWire",
+            "id": "1417130677414289409"
+          }
+        ],
+        "urls": [
+          {
+            "start": 212,
+            "end": 235,
+            "url": "https://t.co/ggMHGv4fJJ",
+            "expanded_url": "https://twitter.com/morningwire/status/1946487677995630684",
+            "display_url": "x.com/morningwire/st…"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1946634247231422584",
+        "1946634586584232388"
+      ],
+      "text": "Thanks to @houmanhemmati and @MorningWire for sharing what happening on the ground in California. Too much much wealth was the symptom and we are now dealing with the disease of civic decay. Rebuild California!! https://t.co/ggMHGv4fJJ",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1836137739353292800",
+            "name": "2024 US Election",
+            "description": "Brought to you by @Polymarket. Get live, unbiased 2024 election forecasts: https://polymarket.com/elections\n"
+          }
+        }
+      ],
+      "created_at_formatted": "Jul 19, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "created_at": "2025-07-19T16:02:57.000Z",
+      "id": "1946601664225448218",
+      "entities": {
+        "annotations": [
+          {
+            "start": 163,
+            "end": 165,
+            "probability": 0.6476,
+            "type": "Other",
+            "normalized_text": "SLS"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "WillSwaim",
+            "id": "44485284"
+          },
+          {
+            "start": 11,
+            "end": 18,
+            "username": "SpaceX",
+            "id": "34743251"
+          },
+          {
+            "start": 145,
+            "end": 150,
+            "username": "NASA",
+            "id": "11348282"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1946601664225448218"
+      ],
+      "text": "@WillSwaim @SpaceX has proven that science fiction can beat the bureaucracy. Smart move to hold out for the transporter!\n\nNow if we can only get @NASA to stop the SLS boondoggle.",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "872801340224806912",
+            "name": "Aerospace",
+            "description": "Aerospace"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "872801738394279936",
+            "name": "SpaceX",
+            "description": "SpaceX"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "872802352448667648",
+            "name": "NASA",
+            "description": "NASA"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "854692455005921281",
+            "name": "Science",
+            "description": "Science"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "847899255880564736",
+            "name": "Space",
+            "description": "Space and astronomy"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847899255880564736",
+            "name": "Space",
+            "description": "Space and astronomy"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "872801738394279936",
+            "name": "SpaceX",
+            "description": "SpaceX"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "872802352448667648",
+            "name": "NASA",
+            "description": "NASA"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1352681651516567553",
+            "name": "Space agencies & companies"
+          }
+        },
+        {
+          "domain": {
+            "id": "164",
+            "name": "Fields of study",
+            "description": "for all fields of study, e.g., futurology, microbiology "
+          },
+          "entity": {
+            "id": "854692455005921281",
+            "name": "Science",
+            "description": "Science"
+          }
+        }
+      ],
+      "created_at_formatted": "Jul 19, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "created_at": "2025-07-19T15:56:39.000Z",
+      "id": "1946600077977321919",
+      "edit_history_tweet_ids": [
+        "1946600077977321919"
+      ],
+      "text": "Absolutely critical to have these strong discussions out in the open https://t.co/RlVTffWw1s",
+      "entities": {
+        "urls": [
+          {
+            "start": 69,
+            "end": 92,
+            "url": "https://t.co/RlVTffWw1s",
+            "expanded_url": "https://twitter.com/opentodebateorg/status/1946580163732365325",
+            "display_url": "x.com/opentodebateor…"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974596157251587",
+            "name": "Government/Education"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974596165570560",
+            "name": "Education Related - Government/Education"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10047480136",
+            "name": "Harvard University",
+            "description": "Harvard University"
+          }
+        }
+      ],
+      "created_at_formatted": "Jul 19, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "text": "@RobertGarcia @GavinNewsom I nominate this as the funniest post of the week!! https://t.co/Ck5KqGPfwW",
       "edit_history_tweet_ids": [
         "1946265874081747186"
@@ -22087,8 +22516,8 @@
     }
   ],
   "meta": {
-    "result_count": 213,
-    "newest_id": "1946265874081747186",
+    "result_count": 216,
+    "newest_id": "1946634586584232388",
     "oldest_id": "1882144700762878208"
   }
 }
