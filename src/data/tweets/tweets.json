@@ -1,6 +1,57 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "text": "RT @PatriotDad_USA: Weekly Update | July 19, 2025 https://t.co/ikCJIt7ZfP",
+      "edit_history_tweet_ids": [
+        "1946724773943251290"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 18,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          }
+        ],
+        "urls": [
+          {
+            "start": 50,
+            "end": 73,
+            "url": "https://t.co/ikCJIt7ZfP",
+            "expanded_url": "https://x.com/i/broadcasts/1BRJjmZYBzNGw",
+            "display_url": "x.com/i/broadcasts/1…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1946706277956206592/gzxh4Dja?format=jpg&name=orig",
+                "width": 1920,
+                "height": 1080
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1946706277956206592/gzxh4Dja?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Patriot Dad 🇺🇸",
+            "description": "Weekly Update | July 19, 2025",
+            "unwound_url": "https://twitter.com/i/broadcasts/1BRJjmZYBzNGw"
+          }
+        ]
+      },
+      "created_at": "2025-07-20T00:12:09.000Z",
+      "id": "1946724773943251290",
+      "created_at_formatted": "Jul 20, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "created_at": "2025-07-19T18:13:46.000Z",
       "id": "1946634586584232388",
       "entities": {
@@ -22516,8 +22567,8 @@
     }
   ],
   "meta": {
-    "result_count": 216,
-    "newest_id": "1946634586584232388",
+    "result_count": 217,
+    "newest_id": "1946724773943251290",
     "oldest_id": "1882144700762878208"
   }
 }
