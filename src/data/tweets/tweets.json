@@ -1,6 +1,530 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "entities": {
+        "urls": [
+          {
+            "start": 210,
+            "end": 233,
+            "url": "https://t.co/nte3JeLO50",
+            "expanded_url": "https://www.wsj.com/opinion/californias-bullet-train-boondoggle-keeps-chugging-along-rail-spending-594dc5d9?st=bDZsmv&reflink=article_copyURL_share",
+            "display_url": "wsj.com/opinion/califo…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1947717528203235330/YBhkDylt?format=jpg&name=orig",
+                "width": 1280,
+                "height": 640
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1947717528203235330/YBhkDylt?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Opinion | California’s Bullet Train Is a Model of Progressive Governance",
+            "description": "Trump gave Newsom a perfect opportunity to cut his losses and shift blame. Why didn’t he take it?",
+            "unwound_url": "https://www.wsj.com/opinion/californias-bullet-train-boondoggle-keeps-chugging-along-rail-spending-594dc5d9?st=bDZsmv&reflink=article_copyURL_share"
+          },
+          {
+            "start": 235,
+            "end": 258,
+            "url": "https://t.co/gIxApHuV0B",
+            "expanded_url": "https://youtu.be/XBbkt2vYC4M?si=7Py-y852JEsHWpz6",
+            "display_url": "youtu.be/XBbkt2vYC4M?si…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1947281676079370240/xiV5B8V_?format=jpg&name=orig",
+                "width": 1280,
+                "height": 720
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1947281676079370240/xiV5B8V_?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Hunter Biden Interview",
+            "description": "Go to https://ground.news/channel5 to stay fully informed with all sides of every story. Subscribe for 40% off the Vantage plan through my link.🌎 Get an exc...",
+            "unwound_url": "https://www.youtube.com/watch?si=7Py-y852JEsHWpz6&v=XBbkt2vYC4M&feature=youtu.be"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 115,
+            "end": 126,
+            "probability": 0.9088,
+            "type": "Person",
+            "normalized_text": "Hunter Biden"
+          },
+          {
+            "start": 144,
+            "end": 169,
+            "probability": 0.6822,
+            "type": "Other",
+            "normalized_text": "California High-Speed Rail"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1504615302822211600",
+            "name": "Hunter Biden"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1504615302822211600",
+            "name": "Hunter Biden"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878257630195712",
+            "name": "Government",
+            "description": "Government"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "The creeping incompetence of the privileged class that has been running government for a decades is highlighted by Hunter Biden’s interview and California High-Speed Rail. \n\nWeak demands by inadequate people.\n\nhttps://t.co/nte3JeLO50\n\nhttps://t.co/gIxApHuV0B",
+      "id": "1947717485576524168",
+      "edit_history_tweet_ids": [
+        "1947717485576524168"
+      ],
+      "created_at": "2025-07-22T17:56:50.000Z",
+      "created_at_formatted": "Jul 22, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_keys": [
+          "3_1947685642038870016"
+        ]
+      },
+      "entities": {
+        "urls": [
+          {
+            "start": 180,
+            "end": 203,
+            "url": "https://t.co/ZJji5R03CB",
+            "expanded_url": "https://x.com/cali_doge/status/1947685645146828985/photo/1",
+            "display_url": "pic.x.com/ZJji5R03CB",
+            "media_key": "3_1947685642038870016"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 28,
+            "end": 29,
+            "probability": 0.6125,
+            "type": "Place",
+            "normalized_text": "US"
+          },
+          {
+            "start": 158,
+            "end": 162,
+            "probability": 0.77,
+            "type": "Person",
+            "normalized_text": "Gavin"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "tedcruz",
+            "id": "23022687"
+          },
+          {
+            "start": 89,
+            "end": 102,
+            "username": "ericswalwell",
+            "id": "377609596"
+          },
+          {
+            "start": 126,
+            "end": 138,
+            "username": "BetoORourke",
+            "id": "342863309"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "940606231609147393",
+            "name": "Eric Swalwell",
+            "description": "US Representative Eric Swalwell (CA-15)"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "981196086575443968",
+            "name": "Beto O'Rourke",
+            "description": "US Representative Beto O'Rourke (TX-16)"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1491415810367098880",
+            "name": "Texas gubernatorial election, 2022"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "940606231609147393",
+            "name": "Eric Swalwell",
+            "description": "US Representative Eric Swalwell (CA-15)"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "981196086575443968",
+            "name": "Beto O'Rourke",
+            "description": "US Representative Beto O'Rourke (TX-16)"
+          }
+        },
+        {
+          "domain": {
+            "id": "38",
+            "name": "Political Race",
+            "description": ""
+          },
+          "entity": {
+            "id": "1491415810367098880",
+            "name": "Texas gubernatorial election, 2022"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "940606231609147393",
+            "name": "Eric Swalwell",
+            "description": "US Representative Eric Swalwell (CA-15)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "981196086575443968",
+            "name": "Beto O'Rourke",
+            "description": "US Representative Beto O'Rourke (TX-16)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1488973753274929152",
+            "name": "Political events"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1518940645343125504",
+            "name": "United States political events"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1526278121527205889",
+            "name": "2022 United States midterm elections"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "10037721448",
+            "name": "Ted Cruz",
+            "description": "US Senator Ted Cruz (TX)\n"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "10037721448",
+            "name": "Ted Cruz",
+            "description": "US Senator Ted Cruz (TX)\n"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10037721448",
+            "name": "Ted Cruz",
+            "description": "US Senator Ted Cruz (TX)\n"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "text": "@tedcruz And the first 2028 US Presidential contender enters the race. \n\nWe fully expect @ericswalwell to be next followed by @BetoORourke. \n\nOur dear leader Gavin, where are you? https://t.co/ZJji5R03CB",
+      "id": "1947685645146828985",
+      "edit_history_tweet_ids": [
+        "1947685645146828985"
+      ],
+      "created_at": "2025-07-22T15:50:18.000Z",
+      "created_at_formatted": "Jul 22, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1947685645146828985_0.jpg",
+          "width": 720,
+          "height": 960
+        }
+      ]
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -22664,8 +23188,8 @@
     }
   ],
   "meta": {
-    "result_count": 218,
-    "newest_id": "1947405197116117179",
+    "result_count": 220,
+    "newest_id": "1947717485576524168",
     "oldest_id": "1882144700762878208"
   }
 }
