@@ -1,6 +1,103 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "id": "1947405197116117179",
+      "created_at": "2025-07-21T21:15:54.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "MikeBenzCyber",
+            "id": "1599510806680535042"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 15,
+            "end": 26,
+            "probability": 0.9725,
+            "type": "Person",
+            "normalized_text": "Gavin Newsom"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1947405197116117179"
+      ],
+      "text": "@MikeBenzCyber Gavin Newsom is taking notes",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 21, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "text": "RT @PatriotDad_USA: Weekly Update | July 19, 2025 https://t.co/ikCJIt7ZfP",
       "edit_history_tweet_ids": [
@@ -22567,8 +22664,8 @@
     }
   ],
   "meta": {
-    "result_count": 217,
-    "newest_id": "1946724773943251290",
+    "result_count": 218,
+    "newest_id": "1947405197116117179",
     "oldest_id": "1882144700762878208"
   }
 }
