@@ -1,6 +1,48 @@
 {
   "tweets": [
     {
+      "id": "1947903430124835170",
+      "created_at": "2025-07-23T06:15:42.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "GovPressOffice",
+            "id": "1285266390"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 117,
+            "end": 118,
+            "probability": 0.9649,
+            "type": "Place",
+            "normalized_text": "LA"
+          },
+          {
+            "start": 125,
+            "end": 134,
+            "probability": 0.9793,
+            "type": "Place",
+            "normalized_text": "Northridge"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1947903430124835170"
+      ],
+      "text": "@GovPressOffice By the responses you might get the hint that the governor is not popular. Try focusing on rebuilding LA like Northridge after the quakes.",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 23, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "entities": {
         "urls": [
@@ -23188,8 +23230,8 @@
     }
   ],
   "meta": {
-    "result_count": 220,
-    "newest_id": "1947717485576524168",
+    "result_count": 221,
+    "newest_id": "1947903430124835170",
     "oldest_id": "1882144700762878208"
   }
 }
