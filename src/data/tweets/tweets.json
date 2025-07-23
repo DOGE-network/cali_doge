@@ -1,6 +1,172 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 43,
+            "end": 66,
+            "url": "https://t.co/IJjkg48X30",
+            "expanded_url": "https://x.com/secduffy/status/1947662378503454741?s=46&t=LpJPTMQKV2euvT1A1vqDdg",
+            "display_url": "x.com/secduffy/statu…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "GovPressOffice",
+            "id": "1285266390"
+          },
+          {
+            "start": 16,
+            "end": 27,
+            "username": "CAgovernor",
+            "id": "38349184"
+          },
+          {
+            "start": 28,
+            "end": 42,
+            "username": "Univision34LA",
+            "id": "546383985"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1948034259676991819"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1948034259676991819",
+      "created_at": "2025-07-23T14:55:34.000Z",
+      "text": "@GovPressOffice @CAgovernor @Univision34LA https://t.co/IJjkg48X30",
+      "created_at_formatted": "Jul 23, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 16,
+            "end": 39,
+            "url": "https://t.co/H7bvyXOxRI",
+            "expanded_url": "https://x.com/secduffy/status/1947662378503454741",
+            "display_url": "x.com/secduffy/statu…"
+          },
+          {
+            "start": 40,
+            "end": 63,
+            "url": "https://t.co/ms0tw3ylQA",
+            "expanded_url": "https://twitter.com/secduffy/status/1947662378503454741",
+            "display_url": "x.com/secduffy/statu…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "GovPressOffice",
+            "id": "1285266390"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1948034165074796882"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1948034165074796882",
+      "created_at": "2025-07-23T14:55:12.000Z",
+      "text": "@GovPressOffice https://t.co/H7bvyXOxRI https://t.co/ms0tw3ylQA",
+      "created_at_formatted": "Jul 23, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 16,
+            "end": 39,
+            "url": "https://t.co/IJjkg49uSy",
+            "expanded_url": "https://x.com/secduffy/status/1947662378503454741?s=46&t=LpJPTMQKV2euvT1A1vqDdg",
+            "display_url": "x.com/secduffy/statu…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "GovPressOffice",
+            "id": "1285266390"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1948033944508895472"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1948033944508895472",
+      "created_at": "2025-07-23T14:54:19.000Z",
+      "text": "@GovPressOffice https://t.co/IJjkg49uSy",
+      "created_at_formatted": "Jul 23, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "id": "1947903430124835170",
       "created_at": "2025-07-23T06:15:42.000Z",
       "entities": {
@@ -23230,8 +23396,8 @@
     }
   ],
   "meta": {
-    "result_count": 221,
-    "newest_id": "1947903430124835170",
+    "result_count": 224,
+    "newest_id": "1948034259676991819",
     "oldest_id": "1882144700762878208"
   }
 }
