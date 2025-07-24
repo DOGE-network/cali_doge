@@ -1,6 +1,70 @@
 {
   "tweets": [
     {
+      "id": "1948403319585878488",
+      "text": "@houmanhemmati @canarymission Unlearning the grifting lifestyle is required city by city at the local level.  Probably not a very popular campaign slogan :/",
+      "created_at": "2025-07-24T15:22:05.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 15,
+            "end": 29,
+            "username": "canarymission",
+            "id": "3107509399"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1948403319585878488"
+      ],
+      "created_at_formatted": "Jul 24, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "id": "1948401681299108041",
+      "text": "@houmanhemmati @canarymission Unfortunately the simple mindedness displayed is common amongst many anti-capitalists. Blame someone else because of my failures.",
+      "created_at": "2025-07-24T15:15:35.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 15,
+            "end": 29,
+            "username": "canarymission",
+            "id": "3107509399"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1948401681299108041"
+      ],
+      "created_at_formatted": "Jul 24, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "entities": {
         "mentions": [
@@ -23526,8 +23590,8 @@
     }
   ],
   "meta": {
-    "result_count": 226,
-    "newest_id": "1948161254759285224",
+    "result_count": 228,
+    "newest_id": "1948403319585878488",
     "oldest_id": "1882144700762878208"
   }
 }
