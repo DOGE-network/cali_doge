@@ -1,6 +1,115 @@
 {
   "tweets": [
     {
+      "text": "Our retribution @ScottAdamsSays can be radical transparency on all their actions over the past decade. @DNIGabbard. @DOGE, @MikeBenzCyber, @DataRepublican and many others have started the process. \n\nhttps://t.co/zsQofri1kP",
+      "entities": {
+        "urls": [
+          {
+            "start": 199,
+            "end": 222,
+            "url": "https://t.co/zsQofri1kP",
+            "expanded_url": "https://www.realclearpolitics.com/video/2025/07/24/scott_adams_obamas_russia_hoax_and_fine_people_lie_ruined_my_life_and_divided_america.html",
+            "display_url": "realclearpolitics.com/video/2025/07/…",
+            "status": 200,
+            "title": "Scott Adams: Obama's \"Russia Hoax\" And \"Fine People Lie\" Ruined My Life And Divided America",
+            "description": "\"Dilbert\" creator Scott Adams discusses the role the \"Russia hoax\" and the \"fine people\" lie divided America and \"ruined his life\" on his morning livestream. SCOTT ADAMS: How many of you found out that Obama's hoaxes—which would include the Russia hoax, and it would also include the \"fine people\" hoax, because Obama was behind that and Biden running for office—those two hoaxes, I would argue, ruined my life. Let me say that again. Those two hoaxes—Russia, Russia, Russia, and the \"fine people\" hoax—ruined my life. Because those are the hoaxes that allowed my entire social group to say, “Are you kidding me? You're backing Trump? Trump's a Russian puppet, and he said that neo-Nazis are fine people. So we can't even talk to you again. You're so bad that we can't invite you anywhere, we can't be your friend, and you should just f--k off.” So this is very personal to me. What Obama did was he divided the country with these hoaxes. Because if you imagine a different history—where there had ne",
+            "unwound_url": "https://www.realclearpolitics.com/video/2025/07/24/scott_adams_obamas_russia_hoax_and_fine_people_lie_ruined_my_life_and_divided_america.html"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 16,
+            "end": 31,
+            "username": "ScottAdamsSays",
+            "id": "2853461537"
+          },
+          {
+            "start": 103,
+            "end": 114,
+            "username": "DNIGabbard",
+            "id": "1889464666885382144"
+          },
+          {
+            "start": 116,
+            "end": 121,
+            "username": "DOGE",
+            "id": "1856751787644260354"
+          },
+          {
+            "start": 123,
+            "end": 137,
+            "username": "MikeBenzCyber",
+            "id": "1599510806680535042"
+          },
+          {
+            "start": 139,
+            "end": 154,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1948496773887959198",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1491172670917931008",
+            "name": "Comic artists & writers"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        }
+      ],
+      "created_at": "2025-07-24T21:33:26.000Z",
+      "edit_history_tweet_ids": [
+        "1948496773887959198"
+      ],
+      "created_at_formatted": "Jul 24, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "id": "1948403319585878488",
       "text": "@houmanhemmati @canarymission Unlearning the grifting lifestyle is required city by city at the local level.  Probably not a very popular campaign slogan :/",
       "created_at": "2025-07-24T15:22:05.000Z",
@@ -23590,8 +23699,8 @@
     }
   ],
   "meta": {
-    "result_count": 228,
-    "newest_id": "1948403319585878488",
+    "result_count": 229,
+    "newest_id": "1948496773887959198",
     "oldest_id": "1882144700762878208"
   }
 }
