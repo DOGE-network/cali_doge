@@ -1,6 +1,96 @@
 {
   "tweets": [
     {
+      "text": "@twinforces Tell them you are a reformed, practicing climate Luddite and their 90’s technology is evil. Don’t tell them Climate Luddites have an exception for Starlink.",
+      "entities": {
+        "annotations": [
+          {
+            "start": 120,
+            "end": 126,
+            "probability": 0.468,
+            "type": "Other",
+            "normalized_text": "Climate"
+          },
+          {
+            "start": 159,
+            "end": 166,
+            "probability": 0.8306,
+            "type": "Other",
+            "normalized_text": "Starlink"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1948827511120343165"
+      ],
+      "created_at": "2025-07-25T19:27:40.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "872801738394279936",
+            "name": "SpaceX",
+            "description": "SpaceX"
+          }
+        },
+        {
+          "domain": {
+            "id": "48",
+            "name": "Product",
+            "description": "Products created by Brands.  Examples: Ford Explorer, Apple iPhone."
+          },
+          "entity": {
+            "id": "1527725622948077568",
+            "name": "Starlink"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "872801738394279936",
+            "name": "SpaceX",
+            "description": "SpaceX"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1527725622948077568",
+            "name": "Starlink"
+          }
+        }
+      ],
+      "id": "1948827511120343165",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 25, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "text": "Our retribution @ScottAdamsSays can be radical transparency on all their actions over the past decade. @DNIGabbard. @DOGE, @MikeBenzCyber, @DataRepublican and many others have started the process. \n\nhttps://t.co/zsQofri1kP",
       "entities": {
         "urls": [
@@ -23699,8 +23789,8 @@
     }
   ],
   "meta": {
-    "result_count": 229,
-    "newest_id": "1948496773887959198",
+    "result_count": 230,
+    "newest_id": "1948827511120343165",
     "oldest_id": "1882144700762878208"
   }
 }
