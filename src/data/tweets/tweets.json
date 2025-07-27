@@ -1,6 +1,237 @@
 {
   "tweets": [
     {
+      "created_at": "2025-07-26T21:17:30.000Z",
+      "id": "1949217538644365462",
+      "edit_history_tweet_ids": [
+        "1949217538644365462"
+      ],
+      "text": "@BBARAIDER @Cartel_Cal Valid",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "BBARAIDER",
+            "id": "22298130"
+          },
+          {
+            "start": 11,
+            "end": 22,
+            "username": "Cartel_Cal",
+            "id": "1573087373193158656"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 26, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "created_at": "2025-07-26T21:11:36.000Z",
+      "id": "1949216055479722279",
+      "edit_history_tweet_ids": [
+        "1949216055479722279"
+      ],
+      "text": "@MikeBenzCyber @AutismCapital Reminds me that I misplaced my VCR",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "MikeBenzCyber",
+            "id": "1599510806680535042"
+          },
+          {
+            "start": 15,
+            "end": 29,
+            "username": "AutismCapital",
+            "id": "1297651178256257024"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 61,
+            "end": 63,
+            "probability": 0.805,
+            "type": "Other",
+            "normalized_text": "VCR"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 26, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "created_at": "2025-07-26T21:08:27.000Z",
+      "id": "1949215259195285678",
+      "edit_history_tweet_ids": [
+        "1949215259195285678"
+      ],
+      "text": "@Cartel_Cal We continue to run into the problem that only one political party functions in California. Look no further than Swalwell elections. A weak candidate that gets reelected because the Republican party never gets involved. Embarrassing 😳.",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "Cartel_Cal",
+            "id": "1573087373193158656"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 91,
+            "end": 100,
+            "probability": 0.9865,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 124,
+            "end": 131,
+            "probability": 0.3067,
+            "type": "Organization",
+            "normalized_text": "Swalwell"
+          },
+          {
+            "start": 193,
+            "end": 202,
+            "probability": 0.5706,
+            "type": "Organization",
+            "normalized_text": "Republican"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "940606231609147393",
+            "name": "Eric Swalwell",
+            "description": "US Representative Eric Swalwell (CA-15)"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "940606231609147393",
+            "name": "Eric Swalwell",
+            "description": "US Representative Eric Swalwell (CA-15)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "940606231609147393",
+            "name": "Eric Swalwell",
+            "description": "US Representative Eric Swalwell (CA-15)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Jul 26, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "text": "@twinforces Tell them you are a reformed, practicing climate Luddite and their 90’s technology is evil. Don’t tell them Climate Luddites have an exception for Starlink.",
       "entities": {
         "annotations": [
@@ -23789,8 +24020,8 @@
     }
   ],
   "meta": {
-    "result_count": 230,
-    "newest_id": "1948827511120343165",
+    "result_count": 233,
+    "newest_id": "1949217538644365462",
     "oldest_id": "1882144700762878208"
   }
 }
