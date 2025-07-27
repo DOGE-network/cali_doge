@@ -1,6 +1,323 @@
 {
   "tweets": [
     {
+      "id": "1949517699144659154",
+      "text": "@houmanhemmati @GavinNewsom More details and the money trail can be found on California DOGE https://t.co/teTJYwutpn",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-07-27T17:10:14.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 15,
+            "end": 27,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          }
+        ],
+        "urls": [
+          {
+            "start": 93,
+            "end": 116,
+            "url": "https://t.co/teTJYwutpn",
+            "expanded_url": "https://cali-doge.org/departments/0500_governors_office",
+            "display_url": "cali-doge.org/departments/05…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1949517701896097793/6TqzfJdV?format=jpg&name=orig",
+                "width": 888,
+                "height": 1200
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1949517701896097793/6TqzfJdV?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "We have gathered knowledge for you, do you have the wisdom to apply it",
+            "description": "We analyze government spending and regulations through a three-layer approach. Our goal is to provide clear, actionable insights that can lead to more efficient government operations and better public services.",
+            "unwound_url": "https://cali-doge.org/departments/0500_governors_office"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 77,
+            "end": 86,
+            "probability": 0.9571,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1949517699144659154"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Jul 27, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "id": "1949514152843591688",
+      "text": "@amuse San Francisco Bay Area has been dealing with wind power scams for many decades now. Rotting monuments to tax shelters and misplaced idealism. \n\nSimple solution, if windmills are so great, in front of your house first.",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-07-27T16:56:08.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 6,
+            "username": "amuse",
+            "id": "4239551"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 7,
+            "end": 28,
+            "probability": 0.9732,
+            "type": "Place",
+            "normalized_text": "San Francisco Bay Area"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1949514152843591688"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "898654185146560512",
+            "name": "Energy Technology",
+            "description": "Energy Technology"
+          }
+        },
+        {
+          "domain": {
+            "id": "165",
+            "name": "Technology",
+            "description": "for individual and types of technology, e.g., food technology, 3D printing"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        }
+      ],
+      "created_at_formatted": "Jul 27, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
       "created_at": "2025-07-26T21:17:30.000Z",
       "id": "1949217538644365462",
       "edit_history_tweet_ids": [
@@ -24020,8 +24337,8 @@
     }
   ],
   "meta": {
-    "result_count": 233,
-    "newest_id": "1949217538644365462",
+    "result_count": 235,
+    "newest_id": "1949517699144659154",
     "oldest_id": "1882144700762878208"
   }
 }
