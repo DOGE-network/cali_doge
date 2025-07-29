@@ -1,6 +1,205 @@
 {
   "tweets": [
     {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 16,
+            "end": 20,
+            "probability": 0.7967,
+            "type": "Person",
+            "normalized_text": "Obama"
+          },
+          {
+            "start": 52,
+            "end": 64,
+            "probability": 0.9751,
+            "type": "Other",
+            "normalized_text": "Space Balls 3"
+          }
+        ]
+      },
+      "text": "@twinforces The Obama intel cabal as the source for Space Balls 3. It almost writes itself!",
+      "id": "1949969944055095641",
+      "edit_history_tweet_ids": [
+        "1949969944055095641"
+      ],
+      "created_at": "2025-07-28T23:07:18.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "10038764303",
+            "name": "Barack Obama",
+            "description": "Former US President Barack Obama"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "10038764303",
+            "name": "Barack Obama",
+            "description": "Former US President Barack Obama"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10038764303",
+            "name": "Barack Obama",
+            "description": "Former US President Barack Obama"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 28, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 65,
+            "end": 73,
+            "probability": 0.9811,
+            "type": "Other",
+            "normalized_text": "Star Wars"
+          }
+        ]
+      },
+      "text": "@twinforces Maybe they are actually building the set for another Star Wars movie…",
+      "id": "1949969476599861637",
+      "edit_history_tweet_ids": [
+        "1949969476599861637"
+      ],
+      "created_at": "2025-07-28T23:05:26.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696802391859201",
+            "name": "Entertainment & Leisure Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to movies, music, television, franchises, venues, theme parks, toys, tourism, hotels"
+          }
+        },
+        {
+          "domain": {
+            "id": "130",
+            "name": "Multimedia Franchise",
+            "description": "Franchises which span multiple forms of media like 'Harry Potter'"
+          },
+          "entity": {
+            "id": "986247671663898625",
+            "name": "Star Wars",
+            "description": "This entity includes all conversation about the franchise, as well as any individual installments in the series, if applicable.\t\t\t"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "839544274442051584",
+            "name": "Entertainment"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "986247671663898625",
+            "name": "Star Wars",
+            "description": "This entity includes all conversation about the franchise, as well as any individual installments in the series, if applicable.\t\t\t"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1074757527995277313",
+            "name": "Entertainment franchises"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 28, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
       "id": "1949634198588821514",
       "entities": {
         "annotations": [
@@ -24834,8 +25033,8 @@
     }
   ],
   "meta": {
-    "result_count": 243,
-    "newest_id": "1949634198588821514",
+    "result_count": 245,
+    "newest_id": "1949969944055095641",
     "oldest_id": "1882144700762878208"
   }
 }
