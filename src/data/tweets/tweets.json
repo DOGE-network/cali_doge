@@ -1,6 +1,163 @@
 {
   "tweets": [
     {
+      "created_at": "2025-07-30T02:42:20.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "857083369514876928",
+            "name": "Weather",
+            "description": "Weather"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1332265012266631169",
+            "name": "Tsunamis"
+          }
+        },
+        {
+          "domain": {
+            "id": "155",
+            "name": "Weather",
+            "description": "Weather-related topics like Boston weather or Earthquakes"
+          },
+          "entity": {
+            "id": "1332265012266631169",
+            "name": "Tsunamis"
+          }
+        },
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        },
+        {
+          "domain": {
+            "id": "175",
+            "name": "Emergency Events",
+            "description": ""
+          },
+          "entity": {
+            "id": "1332265012266631169",
+            "name": "Tsunamis"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 14,
+            "end": 29,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 30,
+            "end": 41,
+            "username": "nicksortor",
+            "id": "2162812627"
+          }
+        ],
+        "urls": [
+          {
+            "start": 178,
+            "end": 201,
+            "url": "https://t.co/SmyhetEuEM",
+            "expanded_url": "http://nixle.us/GHSZB",
+            "display_url": "nixle.us/GHSZB",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1950383079077662721/Z6pp_U29?format=jpg&name=orig",
+                "width": 88,
+                "height": 88
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1950383079077662721/Z6pp_U29?format=jpg&name=150x150",
+                "width": 88,
+                "height": 88
+              }
+            ],
+            "status": 200,
+            "title": "Tsunami Advisory for Alameda County from AC Alert : Nixle",
+            "description": "This is an AC Alert from Alameda County . The Tsnami Warning Center has issued a TSUNAMI Advisory for the San Francisco Bay Area. AVOID coastal areas, beaches, and waterways. NO evacuation is ...",
+            "unwound_url": "http://nixle.us/GHSZB"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 49,
+            "end": 58,
+            "probability": 0.8415,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 72,
+            "end": 78,
+            "probability": 0.5329,
+            "type": "Place",
+            "normalized_text": "TSUNAMI"
+          },
+          {
+            "start": 106,
+            "end": 127,
+            "probability": 0.9493,
+            "type": "Place",
+            "normalized_text": "San Francisco Bay Area"
+          }
+        ]
+      },
+      "id": "1950386448743698886",
+      "edit_history_tweet_ids": [
+        "1950386448743698886"
+      ],
+      "text": "@Alladdin1983 @DataRepublican @nicksortor And in California \n\nAC ALERT: TSUNAMI Advisory is in effect for San Francisco Bay Area. AVOID coastal areas and beaches. NO evacuation. https://t.co/SmyhetEuEM",
+      "created_at_formatted": "Jul 30, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -25033,8 +25190,8 @@
     }
   ],
   "meta": {
-    "result_count": 245,
-    "newest_id": "1949969944055095641",
+    "result_count": 246,
+    "newest_id": "1950386448743698886",
     "oldest_id": "1882144700762878208"
   }
 }
