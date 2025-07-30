@@ -1,6 +1,55 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1950596570434642402"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 24,
+            "end": 26,
+            "probability": 0.4633,
+            "type": "Other",
+            "normalized_text": "OSS"
+          },
+          {
+            "start": 179,
+            "end": 185,
+            "probability": 0.6367,
+            "type": "Organization",
+            "normalized_text": "OpenGov"
+          },
+          {
+            "start": 197,
+            "end": 203,
+            "probability": 0.7824,
+            "type": "Place",
+            "normalized_text": "America"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 4,
+            "username": "shl",
+            "id": "16347964"
+          }
+        ]
+      },
+      "id": "1950596570434642402",
+      "text": "@shl Agreed amongst the OSS converted. By personality, we are risk takers. I would love to be part of that 18F like focus to encourage creativity and a bit of risk in government. OpenGov, Code for America and others have started the work. It will take a few to continue the work.",
+      "created_at": "2025-07-30T16:37:17.000Z",
+      "created_at_formatted": "Jul 30, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "created_at": "2025-07-30T02:42:20.000Z",
       "context_annotations": [
         {
@@ -25190,8 +25239,8 @@
     }
   ],
   "meta": {
-    "result_count": 246,
-    "newest_id": "1950386448743698886",
+    "result_count": 247,
+    "newest_id": "1950596570434642402",
     "oldest_id": "1882144700762878208"
   }
 }
