@@ -1,6 +1,32 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1950931960383357370"
+      ],
+      "text": "@twinforces Agreed",
+      "id": "1950931960383357370",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ]
+      },
+      "created_at": "2025-07-31T14:50:00.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Jul 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "edit_history_tweet_ids": [
         "1950596570434642402"
@@ -25239,8 +25265,8 @@
     }
   ],
   "meta": {
-    "result_count": 247,
-    "newest_id": "1950596570434642402",
+    "result_count": 248,
+    "newest_id": "1950931960383357370",
     "oldest_id": "1882144700762878208"
   }
 }
