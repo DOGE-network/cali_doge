@@ -1,6 +1,32 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "text": "@Alladdin1983 Think you might need to replace those disks too …",
+      "created_at": "2025-08-02T17:39:31.000Z",
+      "edit_history_tweet_ids": [
+        "1951699396225323035"
+      ],
+      "id": "1951699396225323035",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          }
+        ]
+      },
+      "created_at_formatted": "Aug 2, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1950931960383357370"
       ],
@@ -25265,8 +25291,8 @@
     }
   ],
   "meta": {
-    "result_count": 248,
-    "newest_id": "1950931960383357370",
+    "result_count": 249,
+    "newest_id": "1951699396225323035",
     "oldest_id": "1882144700762878208"
   }
 }
