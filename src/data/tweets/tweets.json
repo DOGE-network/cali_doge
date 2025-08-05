@@ -2,6 +2,67 @@
   "tweets": [
     {
       "author_id": "1859283000145608705",
+      "id": "1952753079742500960",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "photony",
+            "id": "69573"
+          },
+          {
+            "start": 18,
+            "end": 28,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          },
+          {
+            "start": 192,
+            "end": 205,
+            "username": "DroneFlyguys",
+            "id": "1220434067973341187"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 12,
+            "end": 15,
+            "probability": 0.7387,
+            "type": "Person",
+            "normalized_text": "Tony"
+          },
+          {
+            "start": 109,
+            "end": 117,
+            "probability": 0.5244,
+            "type": "Other",
+            "normalized_text": "Palisades"
+          },
+          {
+            "start": 142,
+            "end": 152,
+            "probability": 0.9173,
+            "type": "Other",
+            "normalized_text": "DroneDeploy"
+          }
+        ]
+      },
+      "text": "@photony Hi Tony, @lisa_4_la and myself have been discussing applying some public pressure to accelerate the Palisades rebuild progress using DroneDeploy, Civil Tracker or similar. I spoke to @DroneFlyguys as an option, but we would rather get volunteers if possible. Interested?",
+      "created_at": "2025-08-05T15:26:29.000Z",
+      "edit_history_tweet_ids": [
+        "1952753079742500960"
+      ],
+      "created_at_formatted": "Aug 5, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
       "text": "@Alladdin1983 Think you might need to replace those disks too …",
       "created_at": "2025-08-02T17:39:31.000Z",
       "edit_history_tweet_ids": [
@@ -25291,8 +25352,8 @@
     }
   ],
   "meta": {
-    "result_count": 249,
-    "newest_id": "1951699396225323035",
+    "result_count": 250,
+    "newest_id": "1952753079742500960",
     "oldest_id": "1882144700762878208"
   }
 }
