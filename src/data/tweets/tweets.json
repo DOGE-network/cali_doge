@@ -2,6 +2,32 @@
   "tweets": [
     {
       "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "realrobbymcj",
+            "id": "1580926787806175233"
+          }
+        ]
+      },
+      "created_at": "2025-08-07T01:04:11.000Z",
+      "text": "@realrobbymcj Yes, this is good content",
+      "edit_history_tweet_ids": [
+        "1953260850149769558"
+      ],
+      "id": "1953260850149769558",
+      "created_at_formatted": "Aug 7, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
       "created_at": "2025-08-05T23:26:30.000Z",
       "context_annotations": [
         {
@@ -25660,8 +25686,8 @@
     }
   ],
   "meta": {
-    "result_count": 254,
-    "newest_id": "1952873879455887853",
+    "result_count": 255,
+    "newest_id": "1953260850149769558",
     "oldest_id": "1882144700762878208"
   }
 }
