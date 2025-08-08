@@ -2,6 +2,208 @@
   "tweets": [
     {
       "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 16,
+            "username": "spencerpratt",
+            "id": "23395456"
+          }
+        ],
+        "urls": [
+          {
+            "start": 45,
+            "end": 68,
+            "url": "https://t.co/Rkjs4KSIaX",
+            "expanded_url": "https://x.com/spencerpratt/status/1953670177608048906/video/1",
+            "display_url": "pic.x.com/Rkjs4KSIaX",
+            "media_key": "13_1953670051028144128"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_source_tweet_id": [
+          "1953670177608048906"
+        ],
+        "media_keys": [
+          "13_1953670051028144128"
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1953856572846940486"
+      ],
+      "id": "1953856572846940486",
+      "created_at": "2025-08-08T16:31:22.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696940178935808",
+            "name": "Gaming Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to offline and online games such as gaming consoles, tabletop games, video game publishers"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1303718795043774465",
+            "name": "Reality stars"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        }
+      ],
+      "text": "RT @spencerpratt: please help this community https://t.co/Rkjs4KSIaX",
+      "created_at_formatted": "Aug 8, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1953856572846940486_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1953670051028144128/img/NIwn5BHLcnVH2tQq.jpg",
+          "width": 576,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "lalovestrump",
+            "id": "2919047954"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 14,
+            "end": 20,
+            "probability": 0.7889,
+            "type": "Place",
+            "normalized_text": "Ventura"
+          },
+          {
+            "start": 29,
+            "end": 46,
+            "probability": 0.9082,
+            "type": "Place",
+            "normalized_text": "Los Angeles County"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1953855994666090611"
+      ],
+      "id": "1953855994666090611",
+      "created_at": "2025-08-08T16:29:04.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "856860708847222784",
+            "name": "Los Angeles",
+            "description": "Los Angeles"
+          }
+        }
+      ],
+      "text": "@lalovestrump Ventura versus Los Angeles County. Civil standards of conduct versus little to none.",
+      "created_at_formatted": "Aug 8, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "jercephus",
+            "id": "1161619238"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 23,
+            "end": 28,
+            "probability": 0.9805,
+            "type": "Place",
+            "normalized_text": "Canada"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1953852471392002184"
+      ],
+      "id": "1953852471392002184",
+      "created_at": "2025-08-08T16:15:04.000Z",
+      "text": "@jercephus Majority of Canada’s forest fires are from lightning strikes. This government imposed forest use ban will solve nothing.",
+      "created_at_formatted": "Aug 8, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
         "urls": [
           {
             "start": 69,
@@ -26480,8 +26682,8 @@
     }
   ],
   "meta": {
-    "result_count": 262,
-    "newest_id": "1953628332266074134",
+    "result_count": 265,
+    "newest_id": "1953856572846940486",
     "oldest_id": "1882144700762878208"
   }
 }
