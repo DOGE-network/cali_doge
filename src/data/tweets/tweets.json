@@ -1,6 +1,604 @@
 {
   "tweets": [
     {
+      "entities": {
+        "urls": [
+          {
+            "start": 69,
+            "end": 92,
+            "url": "https://t.co/QbL2gwQPiS",
+            "expanded_url": "https://www.wsj.com/opinion/the-folly-of-californias-green-energy-future-gavin-newsom-renewables-4caeb127?st=YtTKLP&reflink=article_copyURL_share",
+            "display_url": "wsj.com/opinion/the-fo…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1953628333943693312/9O28cy02?format=jpg&name=orig",
+                "width": 1280,
+                "height": 640
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1953628333943693312/9O28cy02?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Opinion | The Folly of California’s Green Energy Future",
+            "description": "‘Mr. Newsom assures us that renewables are the cheapest thing since powdered wigs, yet California’s electricity costs more than unicorn tears.’",
+            "unwound_url": "https://www.wsj.com/opinion/the-folly-of-californias-green-energy-future-gavin-newsom-renewables-4caeb127?st=YtTKLP&reflink=article_copyURL_share"
+          },
+          {
+            "start": 93,
+            "end": 116,
+            "url": "https://t.co/VT5MQnzbin",
+            "expanded_url": "https://x.com/cali_doge/status/1953628332266074134/photo/1",
+            "display_url": "pic.x.com/VT5MQnzbin",
+            "media_key": "3_1953628328092741632"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 9,
+            "probability": 0.9902,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 63,
+            "end": 64,
+            "probability": 0.9635,
+            "type": "Place",
+            "normalized_text": "US"
+          }
+        ]
+      },
+      "created_at": "2025-08-08T01:24:25.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1953628332266074134"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696940178935808",
+            "name": "Gaming Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to offline and online games such as gaming consoles, tabletop games, video game publishers"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1953628332266074134",
+      "attachments": {
+        "media_keys": [
+          "3_1953628328092741632"
+        ]
+      },
+      "text": "California has the most expensive and risky energy grid in the US. \n\nhttps://t.co/QbL2gwQPiS https://t.co/VT5MQnzbin",
+      "created_at_formatted": "Aug 8, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1953628332266074134_0.jpg",
+          "width": 832,
+          "height": 1248
+        }
+      ]
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 109,
+            "end": 132,
+            "url": "https://t.co/gWYvgq23cH",
+            "expanded_url": "https://x.com/benniehimself/status/1953254726986023321/photo/1",
+            "display_url": "pic.x.com/gWYvgq23cH",
+            "media_key": "3_1953254723752214528"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 17,
+            "username": "benniehimself",
+            "id": "2686185181"
+          },
+          {
+            "start": 95,
+            "end": 107,
+            "username": "DanielLurie",
+            "id": "18819064"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 33,
+            "end": 55,
+            "probability": 0.9227,
+            "type": "Place",
+            "normalized_text": "San Francisco City Hall"
+          }
+        ]
+      },
+      "created_at": "2025-08-08T00:48:24.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1953619266022125977"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        }
+      ],
+      "attachments": {
+        "media_source_tweet_id": [
+          "1953254726986023321"
+        ],
+        "media_keys": [
+          "3_1953254723752214528"
+        ]
+      },
+      "id": "1953619266022125977",
+      "text": "RT @benniehimself: 5 blocks from San Francisco City Hall.\n\nOn the 211th day of your mayorship, @DanielLurie. https://t.co/gWYvgq23cH",
+      "created_at_formatted": "Aug 8, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1953619266022125977_0.jpg",
+          "width": 1079,
+          "height": 675
+        }
+      ]
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 48,
+            "end": 71,
+            "url": "https://t.co/a0iQ8Al1Mt",
+            "expanded_url": "https://x.com/cali_doge/status/1953580692371386395/video/1",
+            "display_url": "pic.x.com/a0iQ8Al1Mt",
+            "media_key": "13_1953580641632890884"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 9,
+            "username": "elonmusk",
+            "id": "44196397"
+          }
+        ]
+      },
+      "created_at": "2025-08-07T22:15:07.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1953580692371386395"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1953580692371386395",
+      "attachments": {
+        "media_keys": [
+          "13_1953580641632890884"
+        ]
+      },
+      "text": "@elonmusk California Agent DOGE at your service https://t.co/a0iQ8Al1Mt",
+      "created_at_formatted": "Aug 7, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1953580692371386395_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1953580641632890884/img/OdTSrwW9i6vjpY7g.jpg",
+          "width": 560,
+          "height": 560
+        }
+      ]
+    },
+    {
+      "created_at": "2025-08-07T21:55:02.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1953575636586705307"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "lalovestrump",
+            "id": "2919047954"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 30,
+            "end": 43,
+            "probability": 0.9828,
+            "type": "Place",
+            "normalized_text": "Ventura County"
+          }
+        ]
+      },
+      "id": "1953575636586705307",
+      "text": "@lalovestrump Time to move to Ventura County my friends, where no fault evictions and homeowner’ rights are still legal",
+      "created_at_formatted": "Aug 7, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 96,
+            "end": 119,
+            "url": "https://t.co/lAx8gtQjdL",
+            "expanded_url": "https://x.com/cali_doge/status/1953546279822168545/video/1",
+            "display_url": "pic.x.com/lAx8gtQjdL",
+            "media_key": "7_1953546193230831616"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 40,
+            "end": 51,
+            "username": "twinforces",
+            "id": "258495978"
+          },
+          {
+            "start": 52,
+            "end": 65,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 66,
+            "end": 78,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 79,
+            "end": 95,
+            "username": "Titanshell42069",
+            "id": "1770510201310859264"
+          }
+        ]
+      },
+      "created_at": "2025-08-07T19:58:22.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1953546279822168545"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        }
+      ],
+      "id": "1953546279822168545",
+      "attachments": {
+        "media_keys": [
+          "7_1953546193230831616"
+        ]
+      },
+      "text": "First glimpse of Agent DOGE in the wild\n@twinforces @Alladdin1983 @T_Q_Gardner @titanshell42069 https://t.co/lAx8gtQjdL",
+      "created_at_formatted": "Aug 7, 2025",
+      "author": {
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1953546279822168545_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/ext_tw_video_thumb/1953546193230831616/pu/img/0-UrpxXLimcW3_74.jpg",
+          "width": 560,
+          "height": 560
+        }
+      ]
+    },
+    {
       "text": "I would instead take this document as a guide to how to further dismantle the bureaucracy.",
       "edit_history_tweet_ids": [
         "1953474168483123568"
@@ -25882,8 +26480,8 @@
     }
   ],
   "meta": {
-    "result_count": 257,
-    "newest_id": "1953474168483123568",
+    "result_count": 262,
+    "newest_id": "1953628332266074134",
     "oldest_id": "1882144700762878208"
   }
 }
