@@ -1,6 +1,48 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1954093587936768352"
+      ],
+      "text": "RT @BasedMikeLee: 🧵 1/ If the residents of DC want to be part of a state, the solution is *not* DC statehood\n\nAny solution should involve r…",
+      "author_id": "1859283000145608705",
+      "id": "1954093587936768352",
+      "entities": {
+        "annotations": [
+          {
+            "start": 43,
+            "end": 44,
+            "probability": 0.6719,
+            "type": "Place",
+            "normalized_text": "DC"
+          },
+          {
+            "start": 96,
+            "end": 97,
+            "probability": 0.586,
+            "type": "Organization",
+            "normalized_text": "DC"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 16,
+            "username": "BasedMikeLee",
+            "id": "1551266822460162051"
+          }
+        ]
+      },
+      "created_at": "2025-08-09T08:13:11.000Z",
+      "created_at_formatted": "Aug 9, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
       "entities": {
         "urls": [
           {
@@ -26787,8 +26829,8 @@
     }
   ],
   "meta": {
-    "result_count": 267,
-    "newest_id": "1953918407558279217",
+    "result_count": 268,
+    "newest_id": "1954093587936768352",
     "oldest_id": "1882144700762878208"
   }
 }
