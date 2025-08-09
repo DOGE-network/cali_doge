@@ -2,6 +2,111 @@
   "tweets": [
     {
       "entities": {
+        "urls": [
+          {
+            "start": 80,
+            "end": 103,
+            "url": "https://t.co/QlaHCEeMzt",
+            "expanded_url": "https://www.realclearpolitics.com/video/2025/08/08/miller_democrats_stole_20-30_house_seats_by_counting_illegals_to_rig_the_census.html",
+            "display_url": "realclearpolitics.com/video/2025/08/…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1953831484755673088/k8k6med0?format=jpg&name=orig",
+                "width": 750,
+                "height": 562
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1953831484755673088/k8k6med0?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Miller: Democrats Stole 20-30 House Seats By Counting Illegal Aliens In The Census",
+            "description": "White House advisor Stephen Miller made the case for a new census that would not count illegal immigrants, as President Trump posted yesterday, during an appearance on Newsmax last night. STEPHEN MILLER: If I had to pick one thing, if you really pushed me, and there’s so much, I would say, of course, the fact that there have been zero illegal aliens let into the country across the southern border the last three months in a row. One of the biggest issues litigated in this campaign was about border security and sovereignty, and now, for three straight months, zero — zero illegal aliens were let through the southern border. But above it all, I’ll just end with this: it’s the reawakening of the American spirit, putting our country first, our people first, our citizens first in every interaction around the world. We have a president now who is defending, with every ounce of his being, the well-being of the American people. HOST: I want to ask you about the 10, 15, 20 million illegal aliens ",
+            "unwound_url": "https://www.realclearpolitics.com/video/2025/08/08/miller_democrats_stole_20-30_house_seats_by_counting_illegals_to_rig_the_census.html"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 76,
+            "end": 77,
+            "probability": 0.9801,
+            "type": "Place",
+            "normalized_text": "US"
+          }
+        ]
+      },
+      "text": "This is probably the biggest issue since it is fundamental to operating the US\n\nhttps://t.co/QlaHCEeMzt",
+      "created_at": "2025-08-08T20:37:05.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1953918407558279217"
+      ],
+      "id": "1953918407558279217",
+      "created_at_formatted": "Aug 8, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 58,
+            "end": 81,
+            "url": "https://t.co/UqocGocbz4",
+            "expanded_url": "https://x.com/itsme_urstruly/status/1953822137132654886/video/1",
+            "display_url": "pic.x.com/UqocGocbz4",
+            "media_key": "7_1953820444659945472"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 18,
+            "username": "itsme_urstruly",
+            "id": "1648685716237598720"
+          }
+        ]
+      },
+      "text": "RT @itsme_urstruly: Still one of the best all time videos https://t.co/UqocGocbz4",
+      "created_at": "2025-08-08T19:57:53.000Z",
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_source_tweet_id": [
+          "1953822137132654886"
+        ],
+        "media_keys": [
+          "7_1953820444659945472"
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1953908542878232824"
+      ],
+      "id": "1953908542878232824",
+      "created_at_formatted": "Aug 8, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1953908542878232824_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/ext_tw_video_thumb/1953820444659945472/pu/img/GX8UfrxKZE661fSv.jpg",
+          "width": 720,
+          "height": 544
+        }
+      ]
+    },
+    {
+      "entities": {
         "mentions": [
           {
             "start": 3,
@@ -26682,8 +26787,8 @@
     }
   ],
   "meta": {
-    "result_count": 265,
-    "newest_id": "1953856572846940486",
+    "result_count": 267,
+    "newest_id": "1953918407558279217",
     "oldest_id": "1882144700762878208"
   }
 }
