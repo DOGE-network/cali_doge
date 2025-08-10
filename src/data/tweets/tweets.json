@@ -1,6 +1,194 @@
 {
   "tweets": [
     {
+      "attachments": {
+        "media_keys": [
+          "13_1954555535572844544"
+        ],
+        "media_source_tweet_id": [
+          "1954556388522291682"
+        ]
+      },
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 10,
+            "username": "DHSgov",
+            "id": "15647676"
+          }
+        ],
+        "urls": [
+          {
+            "start": 41,
+            "end": 64,
+            "url": "https://t.co/nZkBEj3GGi",
+            "expanded_url": "http://JOIN.ICE.GOV",
+            "display_url": "JOIN.ICE.GOV",
+            "status": 200,
+            "title": "America Needs You | ICE",
+            "description": "America Needs You. We're recruiting.",
+            "unwound_url": "https://join.ice.gov/"
+          },
+          {
+            "start": 65,
+            "end": 88,
+            "url": "https://t.co/grWECh6vRP",
+            "expanded_url": "https://x.com/DHSgov/status/1954556388522291682/video/1",
+            "display_url": "pic.x.com/grWECh6vRP",
+            "media_key": "13_1954555535572844544"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 31,
+            "end": 37,
+            "probability": 0.775,
+            "type": "Place",
+            "normalized_text": "America"
+          }
+        ]
+      },
+      "created_at": "2025-08-10T17:14:52.000Z",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696940178935808",
+            "name": "Gaming Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to offline and online games such as gaming consoles, tabletop games, video game publishers"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1954592295329968295"
+      ],
+      "text": "RT @DHSgov: Hunt Cartels. Save America.\n\nhttps://t.co/nZkBEj3GGi https://t.co/grWECh6vRP",
+      "id": "1954592295329968295",
+      "created_at_formatted": "Aug 10, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1954592295329968295_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1954555535572844544/img/uOMqljOcfcpo3gKl.jpg",
+          "width": 1080,
+          "height": 1920
+        }
+      ]
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 55,
+            "end": 78,
+            "url": "https://t.co/R1Yl7ezDwV",
+            "expanded_url": "http://www.realclearpolitics.com/video/2025/08/10/beto_orourke_at_rally_against_redistricting_f--_the_rules_were_going_to_win_whatever_it_takes.html",
+            "display_url": "realclearpolitics.com/video/2025/08/…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1954581311282102276/yt3tWl5_?format=jpg&name=orig",
+                "width": 750,
+                "height": 562
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1954581311282102276/yt3tWl5_?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Beto O'Rourke at Rally Against Redistricting: \"F-- The Rules, We're Going To Win Whatever It Takes\"",
+            "description": "Former U.S. Rep. Beto O’Rourke called on Democrats to break the rules to \"maximize Democratic Party advantage\" at a rally on Saturday against the GOP effort to redistrict Texas congressional districts. \"There are no refs in this game, f--k the rules, we are going to win whatever it takes,\" he said at the rally in Fort Worth called \"The People vs. The Power Grab.\" BETO O'ROURKE: We're not going to let him stop us -- are you with me on that? It also means... we don't await the punch thrown by these would-be fascists to land, we punch first and we punch harder. We want California and New Jersey and Illinois and Maryland and every other state where the Democrats hold the governor's mansion, the assembly, and the Senate to redraw their congressional districts now. Not wait for Texas to go first. To maximize Democratic Party advantage. Listen, you may say to yourself, well, those aren't the rules. There are no refs in this game, f--k the rules, we are going to win whatever it takes. We're go",
+            "unwound_url": "https://www.realclearpolitics.com/video/2025/08/10/beto_orourke_at_rally_against_redistricting_f--_the_rules_were_going_to_win_whatever_it_takes.html"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 41,
+            "end": 42,
+            "probability": 0.6821,
+            "type": "Place",
+            "normalized_text": "US"
+          }
+        ]
+      },
+      "created_at": "2025-08-10T17:10:56.000Z",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1954591307684532486"
+      ],
+      "text": "Communist rallying his party to dominate US elections\n\nhttps://t.co/R1Yl7ezDwV",
+      "id": "1954591307684532486",
+      "created_at_formatted": "Aug 10, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1954093587936768352"
       ],
@@ -26829,8 +27017,8 @@
     }
   ],
   "meta": {
-    "result_count": 268,
-    "newest_id": "1954093587936768352",
+    "result_count": 270,
+    "newest_id": "1954592295329968295",
     "oldest_id": "1882144700762878208"
   }
 }
