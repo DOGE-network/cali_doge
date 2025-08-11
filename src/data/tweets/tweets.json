@@ -1,6 +1,94 @@
 {
   "tweets": [
     {
+      "created_at": "2025-08-11T16:38:35.000Z",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "annotations": [
+          {
+            "start": 66,
+            "end": 76,
+            "probability": 0.4948,
+            "type": "Other",
+            "normalized_text": "AmericaFest"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1954945552069902434"
+      ],
+      "text": "@T_Q_Gardner Really good. I think we have the intro track for the AmericaFest gathering!",
+      "id": "1954945552069902434",
+      "created_at_formatted": "Aug 11, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "created_at": "2025-08-11T16:36:36.000Z",
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_keys": [
+          "13_1954695573241577472"
+        ],
+        "media_source_tweet_id": [
+          "1954695773586940115"
+        ]
+      },
+      "entities": {
+        "urls": [
+          {
+            "start": 107,
+            "end": 130,
+            "url": "https://t.co/zYljdCYgcE",
+            "expanded_url": "https://x.com/T_Q_Gardner/status/1954695773586940115/video/1",
+            "display_url": "pic.x.com/zYljdCYgcE",
+            "media_key": "13_1954695573241577472"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 15,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1954945054164054363"
+      ],
+      "text": "RT @T_Q_Gardner: New track finished. Drop your thoughts in the comments, let the guys know what you think. https://t.co/zYljdCYgcE",
+      "id": "1954945054164054363",
+      "created_at_formatted": "Aug 11, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1954945054164054363_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1954695573241577472/img/riDoThSe1EQOnSYO.jpg",
+          "width": 876,
+          "height": 1028
+        }
+      ]
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -27055,8 +27143,8 @@
     }
   ],
   "meta": {
-    "result_count": 271,
-    "newest_id": "1954612383948865780",
+    "result_count": 273,
+    "newest_id": "1954945552069902434",
     "oldest_id": "1882144700762878208"
   }
 }
