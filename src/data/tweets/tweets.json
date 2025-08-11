@@ -1,6 +1,44 @@
 {
   "tweets": [
     {
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 15,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 17,
+            "end": 30,
+            "username": "realrobbymcj",
+            "id": "1580926787806175233"
+          },
+          {
+            "start": 61,
+            "end": 71,
+            "username": "cali_doge",
+            "id": "1859283000145608705"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1954612383948865780",
+      "text": "RT @T_Q_Gardner: @realrobbymcj Yes! Been pushing this hard. \n@cali_doge has created a great set of tools for people to do local and state-l…",
+      "edit_history_tweet_ids": [
+        "1954612383948865780"
+      ],
+      "created_at": "2025-08-10T18:34:41.000Z",
+      "created_at_formatted": "Aug 10, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
       "attachments": {
         "media_keys": [
           "13_1954555535572844544"
@@ -27017,8 +27055,8 @@
     }
   ],
   "meta": {
-    "result_count": 270,
-    "newest_id": "1954592295329968295",
+    "result_count": 271,
+    "newest_id": "1954612383948865780",
     "oldest_id": "1882144700762878208"
   }
 }
