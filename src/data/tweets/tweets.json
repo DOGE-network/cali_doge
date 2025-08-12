@@ -1,6 +1,145 @@
 {
   "tweets": [
     {
+      "id": "1955272538734383405",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 16,
+            "end": 31,
+            "username": "Rasmussen_Poll",
+            "id": "19553409"
+          }
+        ]
+      },
+      "created_at": "2025-08-12T14:17:55.000Z",
+      "text": "@DataRepublican @Rasmussen_Poll Both things can be true at once",
+      "edit_history_tweet_ids": [
+        "1955272538734383405"
+      ],
+      "created_at_formatted": "Aug 12, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "id": "1955270946258059312",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-12T14:11:35.000Z",
+      "text": "Real deal sound https://t.co/S8E3kGFSnz",
+      "entities": {
+        "urls": [
+          {
+            "start": 16,
+            "end": 39,
+            "url": "https://t.co/S8E3kGFSnz",
+            "expanded_url": "https://twitter.com/lalovestrump/status/1955228681414320420",
+            "display_url": "x.com/lalovestrump/s…"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696802391859201",
+            "name": "Entertainment & Leisure Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to movies, music, television, franchises, venues, theme parks, toys, tourism, hotels"
+          }
+        },
+        {
+          "domain": {
+            "id": "78",
+            "name": "Video Game Publisher",
+            "description": "A Video Game Publisher like 'Activision'"
+          },
+          "entity": {
+            "id": "1575492118520340482",
+            "name": "Country Style"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1955270946258059312"
+      ],
+      "created_at_formatted": "Aug 12, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "id": "1955267727272124695",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "ScottPresler",
+            "id": "931286316"
+          },
+          {
+            "start": 14,
+            "end": 27,
+            "username": "ScottPresler",
+            "id": "931286316"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 28,
+            "end": 37,
+            "probability": 0.8981,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "created_at": "2025-08-12T13:58:47.000Z",
+      "text": "@ScottPresler @ScottPresler California political party registration has a large percentage of Decline to State. With an improved quality opposition party, it is ready to overturn the status quo.",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1955267727272124695"
+      ],
+      "created_at_formatted": "Aug 12, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "created_at": "2025-08-11T16:38:35.000Z",
       "author_id": "1859283000145608705",
       "entities": {
@@ -27143,8 +27282,8 @@
     }
   ],
   "meta": {
-    "result_count": 273,
-    "newest_id": "1954945552069902434",
+    "result_count": 276,
+    "newest_id": "1955272538734383405",
     "oldest_id": "1882144700762878208"
   }
 }
