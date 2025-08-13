@@ -1,6 +1,324 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1955411569502003330"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 53,
+            "end": 76,
+            "url": "https://t.co/YDKf0R8u8M",
+            "expanded_url": "https://x.com/i/broadcasts/1DXGyWmnzPWxM",
+            "display_url": "x.com/i/broadcasts/1…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1955411283857248256/LXvdQsKH?format=jpg&name=orig",
+                "width": 1920,
+                "height": 1080
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1955411283857248256/LXvdQsKH?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Patriot Dad 🇺🇸",
+            "description": "Evening Update | August 12, 2025",
+            "unwound_url": "https://twitter.com/i/broadcasts/1DXGyWmnzPWxM"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 18,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          }
+        ]
+      },
+      "created_at": "2025-08-12T23:30:22.000Z",
+      "id": "1955411569502003330",
+      "text": "RT @PatriotDad_USA: Evening Update | August 12, 2025 https://t.co/YDKf0R8u8M",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 12, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "attachments": {
+        "media_keys": [
+          "16_1955410003382374400"
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1955410009602535675"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 16,
+            "end": 39,
+            "url": "https://t.co/UGdU1crKxx",
+            "expanded_url": "https://x.com/cali_doge/status/1955410009602535675/photo/1",
+            "display_url": "pic.x.com/UGdU1crKxx",
+            "media_key": "16_1955410003382374400"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          }
+        ]
+      },
+      "created_at": "2025-08-12T23:24:10.000Z",
+      "id": "1955410009602535675",
+      "text": "@PatriotDad_USA https://t.co/UGdU1crKxx",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 12, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "animated_gif",
+          "url": "/media/1955410009602535675_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/tweet_video_thumb/GyMDCbHaEAA6O66.jpg",
+          "width": 398,
+          "height": 498
+        }
+      ]
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1955408610202358160"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 102,
+            "end": 125,
+            "url": "https://t.co/vqtpaTknu1",
+            "expanded_url": "https://twitter.com/charliekirk11/status/1955299749139263935",
+            "display_url": "x.com/charliekirk11/…"
+          }
+        ]
+      },
+      "created_at": "2025-08-12T23:18:37.000Z",
+      "id": "1955408610202358160",
+      "text": "Clear, Forceful and Respectful\n\nExcellent speech. \n\nI aspire to be at your level of speaking quality. https://t.co/vqtpaTknu1",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1707176037577068544",
+            "name": "2nd US Republican Primary Debate 2024",
+            "description": "#GOPDebate is happening! Explore the latest Tweets, must-see highlights, and the can’t-miss moments right here.\n\n"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1722429172528611328",
+            "name": "3rd US Republican Primary Debate 2024",
+            "description": "#GOPDebate is happening! Explore the latest Tweets, must-see highlights, and the can’t-miss moments right here.\n\n"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1729551200817717248",
+            "name": "4th US Republican Primary Debate 2024",
+            "description": "#GOPDebate is happening! Explore the latest Tweets, must-see highlights, and the can’t-miss moments right here.\n\n"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1804210159566168064",
+            "name": "2024 US Presidential Debate 1 "
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1813266602030194688",
+            "name": "Republican National Convention 2024"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1828102132739801088",
+            "name": "2024 US Presidential Debate 2"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1836137739353292800",
+            "name": "2024 US Election",
+            "description": "Brought to you by @Polymarket. Get live, unbiased 2024 election forecasts: https://polymarket.com/elections\n"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1840858535829057537",
+            "name": "CBS News 2024 Vice Presidential Debate",
+            "description": "TONIGHT: Democratic Gov. Tim Walz of Minnesota and GOP Sen. JD Vance of Ohio participate in the CBS News Vice Presidential Debate live in New York City. Watch live at 9pm ET via @CBSNews on @X."
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 12, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
       "id": "1955272538734383405",
       "author_id": "1859283000145608705",
       "entities": {
@@ -27282,8 +27600,8 @@
     }
   ],
   "meta": {
-    "result_count": 276,
-    "newest_id": "1955272538734383405",
+    "result_count": 279,
+    "newest_id": "1955411569502003330",
     "oldest_id": "1882144700762878208"
   }
 }
