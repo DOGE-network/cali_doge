@@ -1,6 +1,130 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "1004451994877157376",
+            "name": "New Jersey",
+            "description": "New Jersey"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "1010254568087670785",
+            "name": "Oregon",
+            "description": "Oregon"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "1010255110465679361",
+            "name": "Pennsylvania",
+            "description": "Pennsylvania"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "We can use grass roots help in the West to rebuild the political structure https://t.co/qUkEhHJXXU",
+      "edit_history_tweet_ids": [
+        "1955688637758423307"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 75,
+            "end": 98,
+            "url": "https://t.co/qUkEhHJXXU",
+            "expanded_url": "https://twitter.com/scottpresler/status/1955649840215670848",
+            "display_url": "x.com/scottpresler/s…"
+          }
+        ]
+      },
+      "created_at": "2025-08-13T17:51:20.000Z",
+      "id": "1955688637758423307",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 13, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1955411569502003330"
       ],
@@ -27600,8 +27724,8 @@
     }
   ],
   "meta": {
-    "result_count": 279,
-    "newest_id": "1955411569502003330",
+    "result_count": 280,
+    "newest_id": "1955688637758423307",
     "oldest_id": "1882144700762878208"
   }
 }
