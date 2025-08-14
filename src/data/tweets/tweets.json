@@ -1,6 +1,725 @@
 {
   "tweets": [
     {
+      "entities": {
+        "annotations": [
+          {
+            "start": 38,
+            "end": 47,
+            "probability": 0.8344,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 97,
+            "end": 120,
+            "url": "https://t.co/KfOUTLEYmh",
+            "expanded_url": "https://aelc.assembly.ca.gov/redistricting-public-comment",
+            "display_url": "aelc.assembly.ca.gov/redistricting-…",
+            "status": 200,
+            "title": "Back to Top",
+            "unwound_url": "https://aelc.assembly.ca.gov/redistricting-public-comment"
+          },
+          {
+            "start": 211,
+            "end": 234,
+            "url": "https://t.co/epj75DpKDi",
+            "expanded_url": "https://twitter.com/zavalaa/status/1955781401414131970",
+            "display_url": "x.com/zavalaa/status…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 122,
+            "end": 138,
+            "username": "HarmeetKDhillon",
+            "id": "201066140"
+          },
+          {
+            "start": 139,
+            "end": 154,
+            "username": "ScottAdamsSays",
+            "id": "2853461537"
+          },
+          {
+            "start": 155,
+            "end": 167,
+            "username": "adamcarolla",
+            "id": "10926202"
+          },
+          {
+            "start": 168,
+            "end": 178,
+            "username": "WillSwaim",
+            "id": "44485284"
+          },
+          {
+            "start": 179,
+            "end": 187,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 188,
+            "end": 199,
+            "username": "Cartel_Cal",
+            "id": "1573087373193158656"
+          },
+          {
+            "start": 200,
+            "end": 210,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1721929468237795328",
+            "name": "US Election day - Nov 7th 2023",
+            "description": "State legislative elections in Ohio, Mississippi, Virginia, Kentucky, Philadelphia, Texas."
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1491172670917931008",
+            "name": "Comic artists & writers"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "Repost my friends. Governor Newsom of California needs to hear your thoughts on redistricting. \n\nhttps://t.co/KfOUTLEYmh\n\n@HarmeetKDhillon @ScottAdamsSays @adamcarolla @WillSwaim @joffemd @Cartel_Cal @lisa_4_la https://t.co/epj75DpKDi",
+      "edit_history_tweet_ids": [
+        "1955788928533078402"
+      ],
+      "created_at": "2025-08-14T00:29:52.000Z",
+      "id": "1955788928533078402",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "That is the funniest post of the day https://t.co/JYZmCneeYv",
+      "edit_history_tweet_ids": [
+        "1955783487740670401"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 37,
+            "end": 60,
+            "url": "https://t.co/JYZmCneeYv",
+            "expanded_url": "https://twitter.com/mcgop_ca/status/1955531958576091519",
+            "display_url": "x.com/mcgop_ca/statu…"
+          }
+        ]
+      },
+      "created_at": "2025-08-14T00:08:14.000Z",
+      "id": "1955783487740670401",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 80,
+            "end": 89,
+            "probability": 0.8401,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 12,
+            "username": "MCGOP_CA",
+            "id": "1918336773635375104"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "RT @MCGOP_CA: I saw a Democrat posted this image (1) and said \"You can't ruin a California sunset.\" I tried, and promptly got blocked (2).…",
+      "edit_history_tweet_ids": [
+        "1955783374414733796"
+      ],
+      "created_at": "2025-08-14T00:07:47.000Z",
+      "id": "1955783374414733796",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 75,
+            "end": 77,
+            "probability": 0.6267,
+            "type": "Organization",
+            "normalized_text": "NPC"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "RealKiraDavis",
+            "id": "253872062"
+          }
+        ]
+      },
+      "text": "@RealKiraDavis We are all in a first person game of life where no one is a NPC",
+      "edit_history_tweet_ids": [
+        "1955782515391914427"
+      ],
+      "created_at": "2025-08-14T00:04:23.000Z",
+      "id": "1955782515391914427",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        }
+      ],
+      "text": "@elonmusk Reimagined as a troop carrier https://t.co/4HLhEZ2Ax1",
+      "edit_history_tweet_ids": [
+        "1955780438217384159"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 40,
+            "end": 63,
+            "url": "https://t.co/4HLhEZ2Ax1",
+            "expanded_url": "https://x.com/cali_doge/status/1955780438217384159/video/1",
+            "display_url": "pic.x.com/4HLhEZ2Ax1",
+            "media_key": "13_1955780384823951360"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 9,
+            "username": "elonmusk",
+            "id": "44196397"
+          }
+        ]
+      },
+      "attachments": {
+        "media_keys": [
+          "13_1955780384823951360"
+        ]
+      },
+      "created_at": "2025-08-13T23:56:07.000Z",
+      "id": "1955780438217384159",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 13, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1955780438217384159_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1955780384823951360/img/vIufiyK2evaVsOo_.jpg",
+          "width": 416,
+          "height": 768
+        }
+      ]
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        }
+      ],
+      "text": "@elonmusk Does it come in black …",
+      "edit_history_tweet_ids": [
+        "1955765313808499171"
+      ],
+      "created_at": "2025-08-13T22:56:01.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 9,
+            "username": "elonmusk",
+            "id": "44196397"
+          }
+        ]
+      },
+      "id": "1955765313808499171",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 13, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "text": "We Californians have a small group of accomplished sitting government officials. Welcome to the party @HarmeetKDhillon !! https://t.co/kE8QQIaNuo",
+      "edit_history_tweet_ids": [
+        "1955758957991223457"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 122,
+            "end": 145,
+            "url": "https://t.co/kE8QQIaNuo",
+            "expanded_url": "https://twitter.com/harmeetkdhillon/status/1955749502251344152",
+            "display_url": "x.com/harmeetkdhillo…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 102,
+            "end": 118,
+            "username": "HarmeetKDhillon",
+            "id": "201066140"
+          }
+        ]
+      },
+      "created_at": "2025-08-13T22:30:46.000Z",
+      "id": "1955758957991223457",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 13, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -27724,8 +28443,8 @@
     }
   ],
   "meta": {
-    "result_count": 280,
-    "newest_id": "1955688637758423307",
+    "result_count": 287,
+    "newest_id": "1955788928533078402",
     "oldest_id": "1882144700762878208"
   }
 }
