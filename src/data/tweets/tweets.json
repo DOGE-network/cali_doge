@@ -1,6 +1,128 @@
 {
   "tweets": [
     {
+      "created_at": "2025-08-14T15:18:52.000Z",
+      "entities": {
+        "urls": [
+          {
+            "start": 37,
+            "end": 60,
+            "url": "https://t.co/CIP6cVMkoc",
+            "expanded_url": "https://x.com/cali_doge/status/1956012653387899338/photo/1",
+            "display_url": "pic.x.com/CIP6cVMkoc",
+            "media_key": "16_1956012646026895362"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 16,
+            "end": 29,
+            "username": "matt_vanswol",
+            "id": "1244068896157708289"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1956012653387899338"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1956012653387899338",
+      "text": "@DataRepublican @matt_vanswol Hello? https://t.co/CIP6cVMkoc",
+      "attachments": {
+        "media_keys": [
+          "16_1956012646026895362"
+        ]
+      },
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "animated_gif",
+          "url": "/media/1956012653387899338_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/tweet_video_thumb/GyUnI16a4AIMc5X.jpg",
+          "width": 480,
+          "height": 330
+        }
+      ]
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 63,
+            "end": 64,
+            "probability": 0.9681,
+            "type": "Place",
+            "normalized_text": "US"
+          },
+          {
+            "start": 125,
+            "end": 128,
+            "probability": 0.9481,
+            "type": "Place",
+            "normalized_text": "U.S."
+          },
+          {
+            "start": 191,
+            "end": 208,
+            "probability": 0.5972,
+            "type": "Place",
+            "normalized_text": "Southern Caribbean"
+          }
+        ],
+        "urls": [
+          {
+            "start": 210,
+            "end": 233,
+            "url": "https://t.co/5Ekz4yYPTP",
+            "expanded_url": "https://www.dailywire.com/news/u-s-deploys-forces-to-take-on-latin-american-drug-cartels-in-the-southern-caribbean",
+            "display_url": "dailywire.com/news/u-s-deplo…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1955982459620806659/wsSry800?format=jpg&name=orig",
+                "width": 1200,
+                "height": 675
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1955982459620806659/wsSry800?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "U.S. Deploys Forces To Take On Latin American Drug Cartels In The Southern Caribbean",
+            "description": "U.S. air and naval forces are set to deploy to the Southern Caribbean Sea following President Donald Trump’s directive for the Pentagon to use the military for operations against Latin American drug cartels, Reuters reported on Thursday.Sources briefed on the move told Reuters that after Trump’s order, the Defense Department has begun deploying U.S. troops to address “threats to U.S. national security from specially designated narco-terrorist organizations in the region.” Last week, Trump quietly signed an order to deploy U.S. troops to conduct anti-cartel operations in foreign countries, according to The New York Times.It remains unknown which specific cartels the president is targeting in his directive. After Trump was sworn into office, the United States designated seven drug cartels and two international criminal gangs as foreign terrorist organizations. Most of those cartels primarily operate in Mexico, but the reported deployment of troops to the South Caribbean Sea suggests that",
+            "unwound_url": "https://www.dailywire.com/news/u-s-deploys-forces-to-take-on-latin-american-drug-cartels-in-the-southern-caribbean"
+          }
+        ]
+      },
+      "created_at": "2025-08-14T15:07:21.000Z",
+      "edit_history_tweet_ids": [
+        "1956009755698454823"
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1956009755698454823",
+      "text": "For North Americans, this is the biggest development since the US last tackled the Columbian drug gangs starting in 1990s. \n\nU.S. Deploys Forces To Take On Latin American Drug Cartels In The Southern Caribbean https://t.co/5Ekz4yYPTP",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -28443,8 +28565,8 @@
     }
   ],
   "meta": {
-    "result_count": 287,
-    "newest_id": "1955788928533078402",
+    "result_count": 289,
+    "newest_id": "1956012653387899338",
     "oldest_id": "1882144700762878208"
   }
 }
