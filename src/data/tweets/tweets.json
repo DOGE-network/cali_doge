@@ -1,6 +1,431 @@
 {
   "tweets": [
     {
+      "id": "1956417542588870999",
+      "created_at": "2025-08-15T18:07:45.000Z",
+      "edit_history_tweet_ids": [
+        "1956417542588870999"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1836137739353292800",
+            "name": "2024 US Election",
+            "description": "Brought to you by @Polymarket. Get live, unbiased 2024 election forecasts: https://polymarket.com/elections\n"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 14,
+            "end": 26,
+            "username": "PeteHegseth",
+            "id": "1518709627927633920"
+          },
+          {
+            "start": 27,
+            "end": 42,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 43,
+            "end": 52,
+            "username": "AshFarms",
+            "id": "1888600400586272768"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 53,
+            "end": 57,
+            "probability": 0.915,
+            "type": "Person",
+            "normalized_text": "Trump"
+          },
+          {
+            "start": 141,
+            "end": 145,
+            "probability": 0.4617,
+            "type": "Other",
+            "normalized_text": "Su57s"
+          },
+          {
+            "start": 180,
+            "end": 185,
+            "probability": 0.9671,
+            "type": "Place",
+            "normalized_text": "Russia"
+          },
+          {
+            "start": 311,
+            "end": 314,
+            "probability": 0.5428,
+            "type": "Other",
+            "normalized_text": "F35s"
+          }
+        ]
+      },
+      "text": "@Alladdin1983 @PeteHegseth @DataRepublican @AshFarms Trump “How do you like those F35s? Are they just great. But not nearly as good as those Su57s you have right? Maybe if I visit Russia you can find a few of those… hmm, maybe. I heard you might have a bit of a problem making those planes, right? Oh well, the F35s are pretty",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "id": "1956415480971100358",
+      "created_at": "2025-08-15T17:59:33.000Z",
+      "edit_history_tweet_ids": [
+        "1956415480971100358"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878049504714752",
+            "name": "Human resources",
+            "description": "Human resources"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "857878049504714752",
+            "name": "Human resources",
+            "description": "Human resources"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1272636957504356352",
+            "name": "Business professions"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1491418731523690501",
+            "name": "Professions"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974596752842752",
+            "name": "Services"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10041116541",
+            "name": "LinkedIn"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "ryancarson",
+            "id": "14763"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 12,
+            "end": 19,
+            "probability": 0.6099,
+            "type": "Other",
+            "normalized_text": "linkedin"
+          },
+          {
+            "start": 64,
+            "end": 72,
+            "probability": 0.9637,
+            "type": "Other",
+            "normalized_text": "Instagram"
+          }
+        ]
+      },
+      "text": "@ryancarson linkedin added video.\nit morphed to human resources Instagram.\nwe collectively became less intelligent.",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "id": "1956374396974571810",
+      "created_at": "2025-08-15T15:16:18.000Z",
+      "edit_history_tweet_ids": [
+        "1956374396974571810"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ]
+      },
+      "text": "@twinforces I will think on this. Thanks for sharing your Mom with us.",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "id": "1956368421265998141",
+      "created_at": "2025-08-15T14:52:33.000Z",
+      "edit_history_tweet_ids": [
+        "1956368421265998141"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1491172670917931008",
+            "name": "Comic artists & writers"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "ScottAdamsSays",
+            "id": "2853461537"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 52,
+            "end": 57,
+            "probability": 0.9247,
+            "type": "Person",
+            "normalized_text": "Schiff"
+          }
+        ]
+      },
+      "text": "@ScottAdamsSays I think you captured the essence of Schiff today",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge"
+      }
+    },
+    {
       "id": "1956088216991490098",
       "created_at": "2025-08-14T20:19:07.000Z",
       "author_id": "1859283000145608705",
@@ -29036,8 +29461,8 @@
     }
   ],
   "meta": {
-    "result_count": 295,
-    "newest_id": "1956088216991490098",
+    "result_count": 299,
+    "newest_id": "1956417542588870999",
     "oldest_id": "1882144700762878208"
   }
 }
