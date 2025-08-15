@@ -1,6 +1,477 @@
 {
   "tweets": [
     {
+      "id": "1956088216991490098",
+      "created_at": "2025-08-14T20:19:07.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1956088216991490098"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "lalovestrump",
+            "id": "2919047954"
+          }
+        ]
+      },
+      "text": "@lalovestrump If one of my direct employees was posting like that, I would be extremely interested in the quality and quantity of work they were doing. \n\nIt might be as simple, they are not posting anymore as they are not employed anymore.",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "id": "1956074362475581481",
+      "created_at": "2025-08-14T19:24:04.000Z",
+      "entities": {
+        "urls": [
+          {
+            "start": 275,
+            "end": 298,
+            "url": "https://t.co/hyf9Mk7tFu",
+            "expanded_url": "https://twitter.com/cali_doge/status/1955788928533078402",
+            "display_url": "x.com/cali_doge/stat…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "WillSwaim",
+            "id": "44485284"
+          },
+          {
+            "start": 11,
+            "end": 19,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 55,
+            "end": 64,
+            "probability": 0.9031,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1956074362475581481"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1721929468237795328",
+            "name": "US Election day - Nov 7th 2023",
+            "description": "State legislative elections in Ohio, Mississippi, Virginia, Kentucky, Philadelphia, Texas."
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "847869251595542528",
+            "name": "Drawing & illustration",
+            "description": "Drawing and sketching"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847869251595542528",
+            "name": "Drawing & illustration",
+            "description": "Drawing and sketching"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1046577790353428480",
+            "name": "Visual arts",
+            "description": "Visual Arts"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1265660441822281728",
+            "name": "Art"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "@WillSwaim @joffemd \n\nHere is a sample to start from:\n\nCalifornia voters created the independent Citizens Redistricting Commission in 2008 and 2010 to take map‑drawing out of politicians’ hands. The commission uses census data, strict rules, and public input to produce fair https://t.co/hyf9Mk7tFu",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "id": "1956073171913990606",
+      "created_at": "2025-08-14T19:19:20.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1956073171913990606"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "text": "@joffemd It is all last minute shenanigans",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "id": "1956071010509447212",
+      "created_at": "2025-08-14T19:10:45.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1956071010509447212"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 16,
+            "username": "AsmLaurieDavies",
+            "id": "1346187316767780864"
+          },
+          {
+            "start": 17,
+            "end": 28,
+            "username": "jenvanlaar",
+            "id": "775137023979958272"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 81,
+            "end": 90,
+            "probability": 0.8503,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "847869251595542528",
+            "name": "Drawing & illustration",
+            "description": "Drawing and sketching"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847869251595542528",
+            "name": "Drawing & illustration",
+            "description": "Drawing and sketching"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1046577790353428480",
+            "name": "Visual arts",
+            "description": "Visual Arts"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1265660441822281728",
+            "name": "Art"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "@AsmLaurieDavies @jenvanlaar Here is my post if you want to copy or be inspired\n\nCalifornia voters created the independent Citizens Redistricting Commission in 2008 and 2010 to take map‑drawing out of politicians’ hands. The commission uses census data, strict rules, and public input to produce fair",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "id": "1956070617406693794",
+      "created_at": "2025-08-14T19:09:11.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1956070617406693794"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 16,
+            "username": "AsmLaurieDavies",
+            "id": "1346187316767780864"
+          },
+          {
+            "start": 17,
+            "end": 28,
+            "username": "jenvanlaar",
+            "id": "775137023979958272"
+          }
+        ]
+      },
+      "text": "@AsmLaurieDavies @jenvanlaar Heads up! The assembly page is misleading. It can only accept 1712 characters, not 2000.",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "id": "1956067169638473944",
+      "created_at": "2025-08-14T18:55:29.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1956067169638473944"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "BreitbartNews",
+            "id": "457984599"
+          },
+          {
+            "start": 15,
+            "end": 31,
+            "username": "HarmeetKDhillon",
+            "id": "201066140"
+          },
+          {
+            "start": 32,
+            "end": 43,
+            "username": "AGPamBondi",
+            "id": "1886531809284173824"
+          },
+          {
+            "start": 163,
+            "end": 173,
+            "username": "WillSwaim",
+            "id": "44485284"
+          },
+          {
+            "start": 174,
+            "end": 182,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 44,
+            "end": 71,
+            "probability": 0.8679,
+            "type": "Organization",
+            "normalized_text": "California State Legislature"
+          },
+          {
+            "start": 132,
+            "end": 138,
+            "probability": 0.4694,
+            "type": "Organization",
+            "normalized_text": "Federal"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "1138063030732828672",
+            "name": "Breitbart News"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "@BreitbartNews @HarmeetKDhillon @AGPamBondi California State Legislature and Governor are putting the budget at risk by defying the Federal Government’s demands.\n\n@WillSwaim @joffemd",
+      "created_at_formatted": "Aug 14, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      }
+    },
+    {
       "created_at": "2025-08-14T15:18:52.000Z",
       "entities": {
         "urls": [
@@ -28565,8 +29036,8 @@
     }
   ],
   "meta": {
-    "result_count": 289,
-    "newest_id": "1956012653387899338",
+    "result_count": 295,
+    "newest_id": "1956088216991490098",
     "oldest_id": "1882144700762878208"
   }
 }
