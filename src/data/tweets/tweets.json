@@ -1,6 +1,857 @@
 {
   "tweets": [
     {
+      "created_at": "2025-08-15T23:41:38.000Z",
+      "attachments": {
+        "media_keys": [
+          "3_1956384872152649728"
+        ],
+        "media_source_tweet_id": [
+          "1956385355130929618"
+        ]
+      },
+      "text": "RT @Schwarzenegger: I’m getting ready for the gerrymandering battle. https://t.co/Lbgr1bnGw8",
+      "entities": {
+        "urls": [
+          {
+            "start": 69,
+            "end": 92,
+            "url": "https://t.co/Lbgr1bnGw8",
+            "expanded_url": "https://x.com/Schwarzenegger/status/1956385355130929618/photo/1",
+            "display_url": "pic.x.com/Lbgr1bnGw8",
+            "media_key": "3_1956384872152649728"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 18,
+            "username": "Schwarzenegger",
+            "id": "12044602"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1956501568267939873",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "806574782275665920",
+            "name": "Arnold Schwarzenegger",
+            "description": "Arnold Schwarzenegger"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "806574782275665920",
+            "name": "Arnold Schwarzenegger",
+            "description": "Arnold Schwarzenegger"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "806574782275665920",
+            "name": "Arnold Schwarzenegger",
+            "description": "Arnold Schwarzenegger"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1956501568267939873"
+      ],
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1956501568267939873_0.jpg",
+          "width": 1536,
+          "height": 2048
+        }
+      ]
+    },
+    {
+      "created_at": "2025-08-15T23:26:15.000Z",
+      "text": "@TPASarah @Alladdin1983 @DataRepublican @AshFarms @T_Q_Gardner Hilarious!",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 9,
+            "username": "TPASarah",
+            "id": "16917630"
+          },
+          {
+            "start": 10,
+            "end": 23,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 24,
+            "end": 39,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 40,
+            "end": 49,
+            "username": "AshFarms",
+            "id": "1888600400586272768"
+          },
+          {
+            "start": 50,
+            "end": 62,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1956497694954029170",
+      "edit_history_tweet_ids": [
+        "1956497694954029170"
+      ],
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-15T22:42:05.000Z",
+      "text": "RT @T_Q_Gardner: Back door funding of riots called out by @RepLuna on the @joerogan podcast. \n\nAmerica is grateful for all the hardworking…",
+      "entities": {
+        "annotations": [
+          {
+            "start": 95,
+            "end": 101,
+            "probability": 0.9383,
+            "type": "Place",
+            "normalized_text": "America"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 15,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 58,
+            "end": 66,
+            "username": "RepLuna",
+            "id": "1610230835289923584"
+          },
+          {
+            "start": 74,
+            "end": 83,
+            "username": "joerogan",
+            "id": "18208354"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1956486583567495432",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1442901475244449793",
+            "name": "International Podcasts Day"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696802391859201",
+            "name": "Entertainment & Leisure Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to movies, music, television, franchises, venues, theme parks, toys, tourism, hotels"
+          }
+        },
+        {
+          "domain": {
+            "id": "91",
+            "name": "Podcast",
+            "description": "A podcast like \"Serial\""
+          },
+          "entity": {
+            "id": "996469712660848640",
+            "name": "The Joe Rogan Experience",
+            "description": "The Joe Rogan Experience"
+          }
+        },
+        {
+          "domain": {
+            "id": "91",
+            "name": "Podcast",
+            "description": "A podcast like \"Serial\""
+          },
+          "entity": {
+            "id": "1490751295698837510",
+            "name": "Podcasts"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "839544274442051584",
+            "name": "Entertainment"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "996469712660848640",
+            "name": "The Joe Rogan Experience",
+            "description": "The Joe Rogan Experience"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1074758954444513282",
+            "name": "Podcasts & radio",
+            "description": "Podcasts"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1490751295698837510",
+            "name": "Podcasts"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1495096603845165058",
+            "name": "Comedy podcasts"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1495103560295407616",
+            "name": "Society & culture podcasts"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1495103813581115392",
+            "name": "Sports podcasts"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1528742992911028225",
+            "name": "Marketing podcast"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1528742993577988097",
+            "name": "Political podcast"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "819538160606539777",
+            "name": "Joe Rogan",
+            "description": "Joe Rogan"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "819538160606539777",
+            "name": "Joe Rogan",
+            "description": "Joe Rogan"
+          }
+        },
+        {
+          "domain": {
+            "id": "92",
+            "name": "Sports Personality",
+            "description": "A Sports Personality like 'Skip Bayless'"
+          },
+          "entity": {
+            "id": "819538160606539777",
+            "name": "Joe Rogan",
+            "description": "Joe Rogan"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "819538160606539777",
+            "name": "Joe Rogan",
+            "description": "Joe Rogan"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1956486583567495432"
+      ],
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-15T22:29:43.000Z",
+      "text": "First salvo\n\n@joffemd @WillSwaim https://t.co/GBl9KB6Olr",
+      "entities": {
+        "urls": [
+          {
+            "start": 33,
+            "end": 56,
+            "url": "https://t.co/GBl9KB6Olr",
+            "expanded_url": "https://twitter.com/zavalaa/status/1956476957073514985",
+            "display_url": "x.com/zavalaa/status…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 13,
+            "end": 21,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 22,
+            "end": 32,
+            "username": "WillSwaim",
+            "id": "44485284"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1956483467895824846",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "961705302700654593",
+            "name": "United States Congress",
+            "description": "United States Congress"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "961705302700654593",
+            "name": "United States Congress",
+            "description": "United States Congress"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1068583660914266113",
+            "name": "Government institutions",
+            "description": "Political Body"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1956483467895824846"
+      ],
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-15T22:25:39.000Z",
+      "text": "RT @JackPosobiec: For decades, the American Right has been dominated by the image of the rural conservative — the pickup-driving, small-tow…",
+      "entities": {
+        "annotations": [
+          {
+            "start": 35,
+            "end": 48,
+            "probability": 0.7178,
+            "type": "Other",
+            "normalized_text": "American Right"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 16,
+            "username": "JackPosobiec",
+            "id": "592730371"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1956482446654165122",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1059669906201862144",
+            "name": "Jack Posobiec",
+            "description": "Jack Posobiec"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1059669906201862144",
+            "name": "Jack Posobiec",
+            "description": "Jack Posobiec"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1956482446654165122"
+      ],
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-15T21:30:08.000Z",
+      "text": "@Rightanglenews If the conversation topic is how the oil tanker ghost fleet is being intercepted as we speak, then the flex will be complete. \n\n“Chocolate cake Vlad? Let’s get this guy some cake and a drink. You need a drink? You look like you need a drink. Let’s help this guy out…”",
+      "entities": {
+        "annotations": [
+          {
+            "start": 160,
+            "end": 163,
+            "probability": 0.6397,
+            "type": "Other",
+            "normalized_text": "Vlad"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "Rightanglenews",
+            "id": "1566499424192368641"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1956468474781507982",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1410656977961717765",
+            "name": "Oil trading"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1956468474781507982"
+      ],
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-15T20:57:05.000Z",
+      "text": "Definitely a mine is bigger moment. That is how these deals get done. https://t.co/UpKKWi4cJ2",
+      "entities": {
+        "urls": [
+          {
+            "start": 70,
+            "end": 93,
+            "url": "https://t.co/UpKKWi4cJ2",
+            "expanded_url": "https://twitter.com/eyakoby/status/1956436850207342620",
+            "display_url": "x.com/eyakoby/status…"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1956460155924775252",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847876936378441729",
+            "name": "United States Foreign Policy",
+            "description": "Conversation about US Foreign Policy"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "900740740468191232",
+            "name": "Political issues",
+            "description": "Political issues"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "864931126132985856",
+            "name": "Vladimir Putin",
+            "description": "President of Russia Vladimir Putin"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "864931126132985856",
+            "name": "Vladimir Putin",
+            "description": "President of Russia Vladimir Putin"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "864931126132985856",
+            "name": "Vladimir Putin",
+            "description": "President of Russia Vladimir Putin"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1542094279727652864",
+            "name": "Russian political figures"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1836137739353292800",
+            "name": "2024 US Election",
+            "description": "Brought to you by @Polymarket. Get live, unbiased 2024 election forecasts: https://polymarket.com/elections\n"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1956460155924775252"
+      ],
+      "created_at_formatted": "Aug 15, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
       "id": "1956417542588870999",
       "created_at": "2025-08-15T18:07:45.000Z",
       "edit_history_tweet_ids": [
@@ -29461,8 +30312,8 @@
     }
   ],
   "meta": {
-    "result_count": 299,
-    "newest_id": "1956417542588870999",
+    "result_count": 306,
+    "newest_id": "1956501568267939873",
     "oldest_id": "1882144700762878208"
   }
 }
