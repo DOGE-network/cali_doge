@@ -4,6 +4,545 @@
       "entities": {
         "mentions": [
           {
+            "start": 0,
+            "end": 13,
+            "username": "matt_vanswol",
+            "id": "1244068896157708289"
+          }
+        ]
+      },
+      "created_at": "2025-08-17T16:42:22.000Z",
+      "id": "1957120830393188488",
+      "text": "@matt_vanswol Not one",
+      "edit_history_tweet_ids": [
+        "1957120830393188488"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 17, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "jenvanlaar",
+            "id": "775137023979958272"
+          }
+        ]
+      },
+      "created_at": "2025-08-17T16:39:20.000Z",
+      "id": "1957120069344825584",
+      "text": "@jenvanlaar Brilliant, clear thread",
+      "edit_history_tweet_ids": [
+        "1957120069344825584"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 17, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "created_at": "2025-08-17T16:38:14.000Z",
+      "id": "1957119792856420655",
+      "text": "Undoing our deindustrialization will lead to decades of wage growth https://t.co/2qWNBcMeXb",
+      "edit_history_tweet_ids": [
+        "1957119792856420655"
+      ],
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847511168268644352",
+            "name": "Global Economy",
+            "description": "Conversation about global finance and economies."
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 68,
+            "end": 91,
+            "url": "https://t.co/2qWNBcMeXb",
+            "expanded_url": "https://twitter.com/aristos_revenge/status/1956997527137337361",
+            "display_url": "x.com/aristos_reveng…"
+          }
+        ]
+      },
+      "created_at_formatted": "Aug 17, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "jenvanlaar",
+            "id": "775137023979958272"
+          }
+        ]
+      },
+      "created_at": "2025-08-17T16:28:57.000Z",
+      "id": "1957117457317159128",
+      "text": "@jenvanlaar Our decades of poor governance on national display",
+      "edit_history_tweet_ids": [
+        "1957117457317159128"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 17, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "RealJamesWoods",
+            "id": "78523300"
+          },
+          {
+            "start": 186,
+            "end": 199,
+            "username": "DroneFlyguys",
+            "id": "1220434067973341187"
+          },
+          {
+            "start": 216,
+            "end": 226,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 54,
+            "end": 62,
+            "probability": 0.4835,
+            "type": "Other",
+            "normalized_text": "Palisades"
+          }
+        ]
+      },
+      "created_at": "2025-08-17T02:16:21.000Z",
+      "id": "1956902891131944997",
+      "text": "@RealJamesWoods We have a plan to run drones over the Palisades to keep a digital record of the properties and report on rebuild progress. Looking for drone operators or funding to hire @DroneFlyguys .\n\nReach out to @lisa_4_la or myself for more information.",
+      "edit_history_tweet_ids": [
+        "1956902891131944997"
+      ],
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "899697002988019714",
+            "name": "James Woods",
+            "description": "James Woods"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "899697002988019714",
+            "name": "James Woods",
+            "description": "James Woods"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "899697002988019714",
+            "name": "James Woods",
+            "description": "James Woods"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 17, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "RobSchneider",
+            "id": "90552683"
+          },
+          {
+            "start": 184,
+            "end": 197,
+            "username": "DroneFlyguys",
+            "id": "1220434067973341187"
+          },
+          {
+            "start": 214,
+            "end": 224,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 52,
+            "end": 60,
+            "probability": 0.4835,
+            "type": "Other",
+            "normalized_text": "Palisades"
+          }
+        ]
+      },
+      "created_at": "2025-08-17T02:16:05.000Z",
+      "id": "1956902823112937695",
+      "text": "@RobSchneider We have a plan to run drones over the Palisades to keep a digital record of the properties and report on rebuild progress. Looking for drone operators or funding to hire @DroneFlyguys .\n\nReach out to @lisa_4_la or myself for more information.",
+      "edit_history_tweet_ids": [
+        "1956902823112937695"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 17, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "WallStreetApes",
+            "id": "1099579684981944320"
+          },
+          {
+            "start": 186,
+            "end": 199,
+            "username": "DroneFlyguys",
+            "id": "1220434067973341187"
+          },
+          {
+            "start": 216,
+            "end": 226,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 54,
+            "end": 62,
+            "probability": 0.4835,
+            "type": "Other",
+            "normalized_text": "Palisades"
+          }
+        ]
+      },
+      "created_at": "2025-08-17T02:15:33.000Z",
+      "id": "1956902689524093116",
+      "text": "@WallStreetApes We have a plan to run drones over the Palisades to keep a digital record of the properties and report on rebuild progress. Looking for drone operators or funding to hire @DroneFlyguys .\n\nReach out to @lisa_4_la or myself for more information.",
+      "edit_history_tweet_ids": [
+        "1956902689524093116"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 17, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "spencerpratt",
+            "id": "23395456"
+          },
+          {
+            "start": 184,
+            "end": 197,
+            "username": "DroneFlyguys",
+            "id": "1220434067973341187"
+          },
+          {
+            "start": 214,
+            "end": 224,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 52,
+            "end": 60,
+            "probability": 0.4835,
+            "type": "Other",
+            "normalized_text": "Palisades"
+          }
+        ]
+      },
+      "created_at": "2025-08-17T02:13:36.000Z",
+      "id": "1956902200908898782",
+      "text": "@spencerpratt We have a plan to run drones over the Palisades to keep a digital record of the properties and report on rebuild progress. Looking for drone operators or funding to hire @DroneFlyguys .\n\nReach out to @lisa_4_la or myself for more information.",
+      "edit_history_tweet_ids": [
+        "1956902200908898782"
+      ],
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1303718795043774465",
+            "name": "Reality stars"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 17, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 12,
+            "username": "elonmusk",
+            "id": "44196397"
+          }
+        ],
+        "urls": [
+          {
+            "start": 14,
+            "end": 37,
+            "url": "https://t.co/PzCgcDj1wm",
+            "expanded_url": "https://x.com/elonmusk/status/1956779702145667096/photo/1",
+            "display_url": "pic.x.com/PzCgcDj1wm",
+            "media_key": "3_1956779696105902080"
+          }
+        ]
+      },
+      "created_at": "2025-08-16T19:37:17.000Z",
+      "id": "1956802461555187785",
+      "attachments": {
+        "media_source_tweet_id": [
+          "1956779702145667096"
+        ],
+        "media_keys": [
+          "3_1956779696105902080"
+        ]
+      },
+      "text": "RT @elonmusk: https://t.co/PzCgcDj1wm",
+      "edit_history_tweet_ids": [
+        "1956802461555187785"
+      ],
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 16, 2025",
+      "author": {
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1956802461555187785_0.jpg",
+          "width": 1024,
+          "height": 1473
+        }
+      ]
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
             "start": 3,
             "end": 13,
             "username": "Mark_Penn",
@@ -30500,8 +31039,8 @@
     }
   ],
   "meta": {
-    "result_count": 307,
-    "newest_id": "1956589681635713452",
+    "result_count": 316,
+    "newest_id": "1957120830393188488",
     "oldest_id": "1882144700762878208"
   }
 }
