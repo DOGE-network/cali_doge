@@ -1,9 +1,9 @@
 import { checkRateLimit, getRateLimitConfig } from '@/lib/rateLimit';
 
 describe('Rate Limit Behavior Test', () => {
-  it('should verify search rate limit is set to 40 requests per minute', () => {
+  it('should verify search rate limit is set to 10000 requests per minute', () => {
     const apiConfig = getRateLimitConfig('/api/search');
-    expect(apiConfig.maxRequests).toBe(40);
+    expect(apiConfig.maxRequests).toBe(10000); // Updated from 40 to 10000
     expect(apiConfig.windowMs).toBe(60 * 1000); // 1 minute
   });
 
@@ -12,14 +12,14 @@ describe('Rate Limit Behavior Test', () => {
     const apiConfig = getRateLimitConfig('/api/search');
     
     // Simulate making requests one by one
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 10000; i++) { // Updated from 40 to 10000
       const result = await checkRateLimit(testIP, apiConfig);
-      if (i < 39) {
-        // Should succeed for first 39 requests
+      if (i < 9999) { // Updated from 39 to 9999
+        // Should succeed for first 9999 requests
         expect(result.success).toBe(true);
-        expect(result.remaining).toBe(39 - i);
+        expect(result.remaining).toBe(9999 - i); // Updated from 39 to 9999
       } else {
-        // 40th request should be rate limited
+        // 10000th request should be rate limited
         expect(result.success).toBe(false);
         expect(result.remaining).toBe(0);
       }
@@ -30,20 +30,20 @@ describe('Rate Limit Behavior Test', () => {
     const testIP = '192.168.1.14';
     const apiConfig = getRateLimitConfig('/api/search');
     
-    // Simulate making 50 requests (exceeding the 40 limit)
-    const requests = Array(50).fill(null).map(() => 
+    // Simulate making 11000 requests (exceeding the 10000 limit)
+    const requests = Array(11000).fill(null).map(() => // Updated from 50 to 11000
       checkRateLimit(testIP, apiConfig)
     );
     
     const results = await Promise.all(requests);
     
-    // First 40 should succeed
-    for (let i = 0; i < 40; i++) {
+    // First 10000 should succeed
+    for (let i = 0; i < 10000; i++) { // Updated from 40 to 10000
       expect(results[i].success).toBe(true);
     }
     
-    // Remaining 10 should fail
-    for (let i = 40; i < 50; i++) {
+    // Remaining 1000 should fail
+    for (let i = 10000; i < 11000; i++) { // Updated from 40,50 to 10000,11000
       expect(results[i].success).toBe(false);
       expect(results[i].remaining).toBe(0);
     }
