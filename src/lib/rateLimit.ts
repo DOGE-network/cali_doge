@@ -14,28 +14,28 @@ export const RATE_LIMITS = {
   // General API endpoints
   api: {
     windowMs: 60 * 1000, // 1 minute
-    maxRequests: 1000,
+    maxRequests: 10000, // Increased from 1000 to 10000 (10x)
     blockDuration: 5 * 60 * 1000, // 5 minutes
     keyPrefix: 'rate_limit:api'
   },
   // Email endpoints (very restrictive)
   email: {
     windowMs: 60 * 1000, // 1 minute
-    maxRequests: 5,
+    maxRequests: 50, // Increased from 5 to 50 (10x)
     blockDuration: 30 * 60 * 1000, // 30 minutes
     keyPrefix: 'rate_limit:email'
   },
   // Media endpoints (moderate)
   media: {
     windowMs: 60 * 1000, // 1 minute
-    maxRequests: 50,
+    maxRequests: 500, // Increased from 50 to 500 (10x)
     blockDuration: 5 * 60 * 1000, // 5 minutes
     keyPrefix: 'rate_limit:media'
   },
   // Static assets (generous)
   static: {
     windowMs: 60 * 1000, // 1 minute
-    maxRequests: 200,
+    maxRequests: 2000, // Increased from 200 to 2000 (10x)
     blockDuration: 2 * 60 * 1000, // 2 minutes
     keyPrefix: 'rate_limit:static'
   }

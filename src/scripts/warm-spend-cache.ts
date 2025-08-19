@@ -11,6 +11,16 @@ if (fs.existsSync(envPath)) {
 // Now import the cache module after environment variables are loaded
 import { setInCache } from '../lib/cache';
 
+// Helper function to generate cache key (same as API)
+function generateCacheKey(searchParams: URLSearchParams): string {
+  // Sort parameters for consistent cache keys
+  const sortedParams = Array.from(searchParams.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, value]) => `${key}:${value}`)
+    .join('|');
+  return `spend:${sortedParams}`;
+}
+
 // Common department codes that appear in search results
 const COMMON_DEPARTMENT_CODES = [
   '6255', '0984', '1165', '0515', '4300', '0956', '1701', '6860', '7100', '7120',
@@ -101,18 +111,25 @@ async function warmSpendCache() {
         const vendorResponse = await fetch(`${baseUrl}/api/spend?department_code=${deptCode}&limit=1`);
         if (vendorResponse.ok) {
           const vendorData = await vendorResponse.json();
-          const vendorKey = `spend:department_code:${deptCode}|limit:1`;
+          const vendorParams = new URLSearchParams();
+          vendorParams.set('department_code', deptCode);
+          vendorParams.set('limit', '1');
+          const vendorKey = generateCacheKey(vendorParams);
           await setInCache(vendorKey, vendorData, { ex: 3600, tags: ['spend', 'vendor'] });
-          console.log(`    ✅ Cached vendor data for ${deptCode}`);
+          console.log(`    ✅ Cached vendor data for ${deptCode} (key: ${vendorKey})`);
         }
         
         // Budget view
         const budgetResponse = await fetch(`${baseUrl}/api/spend?view=budget&department_code=${deptCode}&limit=1`);
         if (budgetResponse.ok) {
           const budgetData = await budgetResponse.json();
-          const budgetKey = `spend:view:budget|department_code:${deptCode}|limit:1`;
+          const budgetParams = new URLSearchParams();
+          budgetParams.set('view', 'budget');
+          budgetParams.set('department_code', deptCode);
+          budgetParams.set('limit', '1');
+          const budgetKey = generateCacheKey(budgetParams);
           await setInCache(budgetKey, budgetData, { ex: 3600, tags: ['spend', 'budget'] });
-          console.log(`    ✅ Cached budget data for ${deptCode}`);
+          console.log(`    ✅ Cached budget data for ${deptCode} (key: ${budgetKey})`);
         }
         
       } catch (error) {
@@ -133,9 +150,10 @@ async function warmSpendCache() {
         
         if (searchResponse.ok) {
           const searchData = await searchResponse.json();
-          const searchKey = `search:${term}:department,vendor,program,fund:20:false`;
+          // Search API uses dataAccess layer which generates keys like: search:query:term:types:limit
+          const searchKey = `search:query:${term}:department,vendor,program,fund:20`;
           await setInCache(searchKey, searchData, { ex: 3600, tags: ['search'] });
-          console.log(`    ✅ Cached search data for "${term}"`);
+          console.log(`    ✅ Cached search data for "${term}" (key: ${searchKey})`);
         }
       } catch (error) {
         console.log(`  ❌ Search "${term}" error: ${error}`);

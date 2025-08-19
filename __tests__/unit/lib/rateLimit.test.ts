@@ -28,33 +28,33 @@ describe('Rate Limiting Configuration', () => {
     it('returns search config for search endpoints', () => {
       const config = getRateLimitConfig('/api/search');
       expect(config).toBe(RATE_LIMITS.api);
-      expect(config.maxRequests).toBe(1000);
+      expect(config.maxRequests).toBe(10000); // Updated from 1000 to 10000
       expect(config.windowMs).toBe(60 * 1000);
     });
 
     it('returns email config for email endpoints', () => {
       const config = getRateLimitConfig('/api/send-email');
       expect(config).toBe(RATE_LIMITS.email);
-      expect(config.maxRequests).toBe(5);
+      expect(config.maxRequests).toBe(50); // Updated from 5 to 50
       expect(config.windowMs).toBe(60 * 1000);
     });
 
     it('returns media config for media endpoints', () => {
       const config = getRateLimitConfig('/api/media/test.jpg');
       expect(config).toBe(RATE_LIMITS.media);
-      expect(config.maxRequests).toBe(50);
+      expect(config.maxRequests).toBe(500); // Updated from 50 to 500
     });
 
     it('returns static config for static assets', () => {
       const config = getRateLimitConfig('/_next/static/test.js');
       expect(config).toBe(RATE_LIMITS.static);
-      expect(config.maxRequests).toBe(200);
+      expect(config.maxRequests).toBe(2000); // Updated from 200 to 2000
     });
 
     it('returns api config for other API endpoints', () => {
       const config = getRateLimitConfig('/api/departments');
       expect(config).toBe(RATE_LIMITS.api);
-      expect(config.maxRequests).toBe(1000);
+      expect(config.maxRequests).toBe(10000); // Updated from 1000 to 10000
     });
   });
 
