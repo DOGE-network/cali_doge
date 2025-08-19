@@ -1,6 +1,143 @@
 {
   "tweets": [
     {
+      "id": "1957531993031458869",
+      "text": "@ScottPresler We are data driven society now. I would like to codevelop tools to help drive registration. \n\nMaps of burn area construction progress, maps of violent crime victims, and heat maps of public assistance. https://t.co/wGcw8Y3yG6",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696940178935808",
+            "name": "Gaming Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to offline and online games such as gaming consoles, tabletop games, video game publishers"
+          }
+        },
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "1037076248877395968",
+            "name": "GPS and maps",
+            "description": "GPS & Maps"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1957531993031458869"
+      ],
+      "created_at": "2025-08-18T19:56:10.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "ScottPresler",
+            "id": "931286316"
+          }
+        ],
+        "urls": [
+          {
+            "start": 216,
+            "end": 239,
+            "url": "https://t.co/wGcw8Y3yG6",
+            "expanded_url": "https://x.com/cali_doge/status/1957531993031458869/photo/1",
+            "display_url": "pic.x.com/wGcw8Y3yG6",
+            "media_key": "3_1957531987511828480"
+          }
+        ]
+      },
+      "attachments": {
+        "media_keys": [
+          "3_1957531987511828480"
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1957531993031458869_0.jpg",
+          "width": 720,
+          "height": 960
+        }
+      ]
+    },
+    {
+      "id": "1957518984552780172",
+      "text": "@ScottPresler @ScottPresler it is likely the Democrats in California will pass their redistricting plan. I would like to collaborate on the new areas of the districts and make them competitive. It was nice of them to give us a map of the areas to target for registrations.",
+      "entities": {
+        "annotations": [
+          {
+            "start": 45,
+            "end": 53,
+            "probability": 0.8034,
+            "type": "Organization",
+            "normalized_text": "Democrats"
+          },
+          {
+            "start": 58,
+            "end": 67,
+            "probability": 0.9891,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "ScottPresler",
+            "id": "931286316"
+          },
+          {
+            "start": 14,
+            "end": 27,
+            "username": "ScottPresler",
+            "id": "931286316"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "edit_history_tweet_ids": [
+        "1957518984552780172"
+      ],
+      "created_at": "2025-08-18T19:04:29.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 18, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "entities": {
         "annotations": [
           {
@@ -31811,8 +31948,8 @@
     }
   ],
   "meta": {
-    "result_count": 325,
-    "newest_id": "1957484240389677245",
+    "result_count": 327,
+    "newest_id": "1957531993031458869",
     "oldest_id": "1882144700762878208"
   }
 }
