@@ -1,6 +1,830 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1958206441120252125"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 14,
+            "end": 23,
+            "username": "prescott",
+            "id": "14429525"
+          },
+          {
+            "start": 24,
+            "end": 40,
+            "username": "TheShawnHendrix",
+            "id": "1573915572764610560"
+          },
+          {
+            "start": 41,
+            "end": 53,
+            "username": "LiveFreeOr_",
+            "id": "1857521214836883456"
+          },
+          {
+            "start": 54,
+            "end": 70,
+            "username": "maybedanielleee",
+            "id": "1516771137673474048"
+          },
+          {
+            "start": 71,
+            "end": 86,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 87,
+            "end": 98,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ],
+        "urls": [
+          {
+            "start": 99,
+            "end": 122,
+            "url": "https://t.co/5U6ewLeR1y",
+            "expanded_url": "https://x.com/cali_doge/status/1958206441120252125/photo/1",
+            "display_url": "pic.x.com/5U6ewLeR1y",
+            "media_key": "16_1958206434342211586"
+          }
+        ]
+      },
+      "created_at": "2025-08-20T16:36:11.000Z",
+      "text": "@Alladdin1983 @prescott @TheShawnHendrix @LiveFreeOr_ @maybedanielleee @DataRepublican @twinforces https://t.co/5U6ewLeR1y",
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_keys": [
+          "16_1958206434342211586"
+        ]
+      },
+      "id": "1958206441120252125",
+      "created_at_formatted": "Aug 20, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "animated_gif",
+          "url": "/media/1958206441120252125_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/tweet_video_thumb/GyzyYIPaEAIZw5b.jpg",
+          "width": 498,
+          "height": 372
+        }
+      ]
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1958205557489422416"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 14,
+            "end": 23,
+            "username": "prescott",
+            "id": "14429525"
+          },
+          {
+            "start": 24,
+            "end": 40,
+            "username": "TheShawnHendrix",
+            "id": "1573915572764610560"
+          },
+          {
+            "start": 41,
+            "end": 53,
+            "username": "LiveFreeOr_",
+            "id": "1857521214836883456"
+          },
+          {
+            "start": 54,
+            "end": 70,
+            "username": "maybedanielleee",
+            "id": "1516771137673474048"
+          },
+          {
+            "start": 71,
+            "end": 86,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 87,
+            "end": 98,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 99,
+            "end": 106,
+            "probability": 0.3043,
+            "type": "Other",
+            "normalized_text": "Prescott"
+          },
+          {
+            "start": 133,
+            "end": 141,
+            "probability": 0.6023,
+            "type": "Other",
+            "normalized_text": "Doge Cali"
+          }
+        ]
+      },
+      "created_at": "2025-08-20T16:32:41.000Z",
+      "text": "@Alladdin1983 @prescott @TheShawnHendrix @LiveFreeOr_ @maybedanielleee @DataRepublican @twinforces Prescott invited. Not sure who GC Doge Cali is.",
+      "author_id": "1859283000145608705",
+      "id": "1958205557489422416",
+      "created_at_formatted": "Aug 20, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1958204092314235034"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974596752842752",
+            "name": "Services"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10027232467",
+            "name": "Microsoft"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10027232467",
+            "name": "Microsoft"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 16,
+            "username": "thestustustudio",
+            "id": "1695117880168235009"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 43,
+            "end": 51,
+            "probability": 0.9373,
+            "type": "Organization",
+            "normalized_text": "Microsoft"
+          }
+        ]
+      },
+      "created_at": "2025-08-20T16:26:51.000Z",
+      "text": "@thestustustudio So much work happening at Microsoft…",
+      "author_id": "1859283000145608705",
+      "id": "1958204092314235034",
+      "created_at_formatted": "Aug 20, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1958182602948727270"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1494299422976471041",
+            "name": "Indian assembly elections"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "69",
+            "name": "News Vertical",
+            "description": "News Categories like Entertainment or Technology"
+          },
+          "entity": {
+            "id": "1489542346047852544",
+            "name": "India politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "961705302700654593",
+            "name": "United States Congress",
+            "description": "United States Congress"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "961705302700654593",
+            "name": "United States Congress",
+            "description": "United States Congress"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1068583660914266113",
+            "name": "Government institutions",
+            "description": "Political Body"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1489542346047852544",
+            "name": "India politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1494299422976471041",
+            "name": "Indian assembly elections"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "ZavalaA",
+            "id": "47337027"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 13,
+            "end": 21,
+            "probability": 0.6942,
+            "type": "Organization",
+            "normalized_text": "Democrats"
+          },
+          {
+            "start": 35,
+            "end": 53,
+            "probability": 0.5427,
+            "type": "Organization",
+            "normalized_text": "Elections Committee"
+          },
+          {
+            "start": 84,
+            "end": 85,
+            "probability": 0.8109,
+            "type": "Place",
+            "normalized_text": "CA"
+          },
+          {
+            "start": 123,
+            "end": 138,
+            "probability": 0.4844,
+            "type": "Organization",
+            "normalized_text": "Democratic Major"
+          }
+        ]
+      },
+      "created_at": "2025-08-20T15:01:28.000Z",
+      "text": "RT @ZavalaA: Democrats in Assembly Elections Committee say legislative leaders drew CA’s new congressional maps. \n\nBut the Democratic Major…",
+      "author_id": "1859283000145608705",
+      "id": "1958182602948727270",
+      "created_at_formatted": "Aug 20, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1958181761986576628"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847876936378441729",
+            "name": "United States Foreign Policy",
+            "description": "Conversation about US Foreign Policy"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "900740740468191232",
+            "name": "Political issues",
+            "description": "Political issues"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "854844910888902656",
+            "name": "US Department of State",
+            "description": "US Department of State"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "854844910888902656",
+            "name": "US Department of State",
+            "description": "US Department of State"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1068583660914266113",
+            "name": "Government institutions",
+            "description": "Political Body"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 19,
+            "username": "maybedanielleee",
+            "id": "1516771137673474048"
+          },
+          {
+            "start": 21,
+            "end": 34,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 35,
+            "end": 44,
+            "username": "TPASarah",
+            "id": "16917630"
+          },
+          {
+            "start": 45,
+            "end": 55,
+            "username": "StateDept",
+            "id": "9624742"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 71,
+            "end": 75,
+            "probability": 0.5788,
+            "type": "Other",
+            "normalized_text": "USDOT"
+          }
+        ]
+      },
+      "created_at": "2025-08-20T14:58:07.000Z",
+      "text": "RT @maybedanielleee: @Alladdin1983 @TPASarah @StateDept Thank you. The USDOT data sets are a dumpster fire. It is nearly impossible to use…",
+      "author_id": "1859283000145608705",
+      "id": "1958181761986576628",
+      "created_at_formatted": "Aug 20, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1958180986933657925"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "ZavalaA",
+            "id": "47337027"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 13,
+            "end": 45,
+            "probability": 0.5841,
+            "type": "Organization",
+            "normalized_text": "California State Senate Elections"
+          },
+          {
+            "start": 63,
+            "end": 79,
+            "probability": 0.9511,
+            "type": "Person",
+            "normalized_text": "Sabrina Cervantes"
+          },
+          {
+            "start": 132,
+            "end": 138,
+            "probability": 0.5847,
+            "type": "Place",
+            "normalized_text": "Califor"
+          }
+        ]
+      },
+      "created_at": "2025-08-20T14:55:03.000Z",
+      "text": "RT @ZavalaA: California State Senate Elections Committee Chair Sabrina Cervantes refuses to say who specifically is responsible for Califor…",
+      "author_id": "1859283000145608705",
+      "id": "1958180986933657925",
+      "created_at_formatted": "Aug 20, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1958180610704380274"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 27,
+            "end": 39,
+            "username": "sfchronicle",
+            "id": "121597316"
+          }
+        ],
+        "urls": [
+          {
+            "start": 80,
+            "end": 103,
+            "url": "https://t.co/0KacPqOpNT",
+            "expanded_url": "https://x.com/joffemd/status/1958163593440157917/photo/1",
+            "display_url": "pic.x.com/0KacPqOpNT",
+            "media_key": "3_1958163590546104320"
+          },
+          {
+            "start": 80,
+            "end": 103,
+            "url": "https://t.co/0KacPqOpNT",
+            "expanded_url": "https://x.com/joffemd/status/1958163593440157917/photo/1",
+            "display_url": "pic.x.com/0KacPqOpNT",
+            "media_key": "3_1958163590801932289"
+          }
+        ]
+      },
+      "created_at": "2025-08-20T14:53:33.000Z",
+      "text": "RT @joffemd: Shocking. The @sfchronicle ran my letter to the editor on transit. https://t.co/0KacPqOpNT",
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_keys": [
+          "3_1958163590546104320",
+          "3_1958163590801932289"
+        ],
+        "media_source_tweet_id": [
+          "1958163593440157917",
+          "1958163593440157917"
+        ]
+      },
+      "id": "1958180610704380274",
+      "created_at_formatted": "Aug 20, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1958180610704380274_0.jpg",
+          "width": 1079,
+          "height": 959
+        },
+        {
+          "type": "photo",
+          "url": "/media/1958180610704380274_1.jpg",
+          "width": 1080,
+          "height": 1204
+        }
+      ]
+    },
+    {
       "id": "1957531993031458869",
       "text": "@ScottPresler We are data driven society now. I would like to codevelop tools to help drive registration. \n\nMaps of burn area construction progress, maps of violent crime victims, and heat maps of public assistance. https://t.co/wGcw8Y3yG6",
       "context_annotations": [
@@ -31948,8 +32772,8 @@
     }
   ],
   "meta": {
-    "result_count": 327,
-    "newest_id": "1957531993031458869",
+    "result_count": 334,
+    "newest_id": "1958206441120252125",
     "oldest_id": "1882144700762878208"
   }
 }
