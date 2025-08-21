@@ -1,6 +1,592 @@
 {
   "tweets": [
     {
+      "text": "@njess That sucks. Quality of life cannot be excessively quantified for a child.",
+      "created_at": "2025-08-21T15:41:06.000Z",
+      "id": "1958554963011100929",
+      "edit_history_tweet_ids": [
+        "1958554963011100929"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 6,
+            "username": "njess",
+            "id": "17607669"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 21, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "@twinforces It is common misunderstanding. Most companies have narrow profit margins. Hence, @BedBathBeyond @innoutburger_ @Tesla and others moving away from high regulations and taxes.",
+      "created_at": "2025-08-21T14:51:54.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696420500541440",
+            "name": "Automotive, Aircraft & Boat Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to automobile, spacecraft, aircraft and boat manufacturing"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847511168268644352",
+            "name": "Global Economy",
+            "description": "Conversation about global finance and economies."
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781972125179518977",
+            "name": "Auto Manufacturer - Auto"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10044199219",
+            "name": "Tesla"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "847528391163092993",
+            "name": "Automotive",
+            "description": "Car culture"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "847528576551337984",
+            "name": "Hybrid and electric vehicles",
+            "description": "Hybrid and electric vehicles"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "847528646185070592",
+            "name": "Luxury Cars",
+            "description": "Luxury"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10044199219",
+            "name": "Tesla"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847528391163092993",
+            "name": "Automotive",
+            "description": "Car culture"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1196845866138533888",
+            "name": "Automobile Brands"
+          }
+        }
+      ],
+      "id": "1958542585326112991",
+      "edit_history_tweet_ids": [
+        "1958542585326112991"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          },
+          {
+            "start": 93,
+            "end": 107,
+            "username": "BedBathBeyond",
+            "id": "372817561"
+          },
+          {
+            "start": 108,
+            "end": 122,
+            "username": "innoutburger_",
+            "id": "1709397342"
+          },
+          {
+            "start": 123,
+            "end": 129,
+            "username": "Tesla",
+            "id": "13298072"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 21, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "Its funny because they would https://t.co/GEmElWAlgS",
+      "created_at": "2025-08-21T14:45:06.000Z",
+      "entities": {
+        "urls": [
+          {
+            "start": 29,
+            "end": 52,
+            "url": "https://t.co/GEmElWAlgS",
+            "expanded_url": "https://twitter.com/thebabylonbee/status/1958276798447280611",
+            "display_url": "x.com/thebabylonbee/…"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1247553715780780033",
+            "name": "Stevie Wonder"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696802391859201",
+            "name": "Entertainment & Leisure Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to movies, music, television, franchises, venues, theme parks, toys, tourism, hotels"
+          }
+        },
+        {
+          "domain": {
+            "id": "54",
+            "name": "Musician",
+            "description": "A musician in the world, like Adele or Bob Dylan"
+          },
+          "entity": {
+            "id": "1247553715780780033",
+            "name": "Stevie Wonder"
+          }
+        },
+        {
+          "domain": {
+            "id": "55",
+            "name": "Music Genre",
+            "description": "A category for a musical style, like Pop, Rock, or Rap"
+          },
+          "entity": {
+            "id": "849684722695327744",
+            "name": "R&B and soul",
+            "description": "R&B and soul"
+          }
+        },
+        {
+          "domain": {
+            "id": "55",
+            "name": "Music Genre",
+            "description": "A category for a musical style, like Pop, Rock, or Rap"
+          },
+          "entity": {
+            "id": "1286087026526150656",
+            "name": "Soul music"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847524658970636288",
+            "name": "Music",
+            "description": "Music and radio"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "849684722695327744",
+            "name": "R&B and soul",
+            "description": "R&B and soul"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1247553715780780033",
+            "name": "Stevie Wonder"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1958540871743545407",
+      "edit_history_tweet_ids": [
+        "1958540871743545407"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 21, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "RT @lisa_4_la: A Senator from Florida comes to Palisades to help, while our own elected representatives try to pass bills to buy up the lan…",
+      "entities": {
+        "annotations": [
+          {
+            "start": 30,
+            "end": 36,
+            "probability": 0.9808,
+            "type": "Place",
+            "normalized_text": "Florida"
+          },
+          {
+            "start": 47,
+            "end": 55,
+            "probability": 0.3862,
+            "type": "Place",
+            "normalized_text": "Palisades"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 13,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ]
+      },
+      "created_at": "2025-08-21T14:37:31.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "855436277054750722",
+            "name": "Florida",
+            "description": "Florida"
+          }
+        }
+      ],
+      "id": "1958538964186644707",
+      "edit_history_tweet_ids": [
+        "1958538964186644707"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 21, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "@twinforces This person does understand the difference between contracts and subsidies. Thats like not understanding the difference between the Bee Gees and Led Zeppelin.",
+      "entities": {
+        "annotations": [
+          {
+            "start": 144,
+            "end": 151,
+            "probability": 0.6768,
+            "type": "Other",
+            "normalized_text": "Bee Gees"
+          },
+          {
+            "start": 157,
+            "end": 168,
+            "probability": 0.8216,
+            "type": "Other",
+            "normalized_text": "Led Zeppelin"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ]
+      },
+      "created_at": "2025-08-21T14:35:44.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1005198780419862528",
+            "name": "Bee Gees",
+            "description": "Bee Gees"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1364233917935460362",
+            "name": "Led Zeppelin"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696802391859201",
+            "name": "Entertainment & Leisure Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to movies, music, television, franchises, venues, theme parks, toys, tourism, hotels"
+          }
+        },
+        {
+          "domain": {
+            "id": "54",
+            "name": "Musician",
+            "description": "A musician in the world, like Adele or Bob Dylan"
+          },
+          "entity": {
+            "id": "1005198780419862528",
+            "name": "Bee Gees",
+            "description": "Bee Gees"
+          }
+        },
+        {
+          "domain": {
+            "id": "54",
+            "name": "Musician",
+            "description": "A musician in the world, like Adele or Bob Dylan"
+          },
+          "entity": {
+            "id": "1364233917935460362",
+            "name": "Led Zeppelin"
+          }
+        },
+        {
+          "domain": {
+            "id": "55",
+            "name": "Music Genre",
+            "description": "A category for a musical style, like Pop, Rock, or Rap"
+          },
+          "entity": {
+            "id": "806571747730341888",
+            "name": "Rock",
+            "description": "Rock"
+          }
+        },
+        {
+          "domain": {
+            "id": "55",
+            "name": "Music Genre",
+            "description": "A category for a musical style, like Pop, Rock, or Rap"
+          },
+          "entity": {
+            "id": "810938279801470977",
+            "name": "Pop",
+            "description": "Pop"
+          }
+        },
+        {
+          "domain": {
+            "id": "55",
+            "name": "Music Genre",
+            "description": "A category for a musical style, like Pop, Rock, or Rap"
+          },
+          "entity": {
+            "id": "1108100469778345984",
+            "name": "Classic rock",
+            "description": "Classic Rock"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "806571747730341888",
+            "name": "Rock",
+            "description": "Rock"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "810938279801470977",
+            "name": "Pop",
+            "description": "Pop"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847524658970636288",
+            "name": "Music",
+            "description": "Music and radio"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1005198780419862528",
+            "name": "Bee Gees",
+            "description": "Bee Gees"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1108100469778345984",
+            "name": "Classic rock",
+            "description": "Classic Rock"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1364233917935460362",
+            "name": "Led Zeppelin"
+          }
+        }
+      ],
+      "id": "1958538514158477619",
+      "edit_history_tweet_ids": [
+        "1958538514158477619"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 21, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "author_id": "1859283000145608705",
       "created_at": "2025-08-21T07:36:53.000Z",
       "context_annotations": [
@@ -33330,8 +33916,8 @@
     }
   ],
   "meta": {
-    "result_count": 338,
-    "newest_id": "1958433105913762045",
+    "result_count": 343,
+    "newest_id": "1958554963011100929",
     "oldest_id": "1882144700762878208"
   }
 }
