@@ -1,6 +1,205 @@
 {
   "tweets": [
     {
+      "entities": {
+        "urls": [
+          {
+            "start": 169,
+            "end": 192,
+            "url": "https://t.co/FK1kEblzbj",
+            "expanded_url": "https://twitter.com/marcuslemonis/status/1958285733325664659",
+            "display_url": "x.com/marcuslemonis/…"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 8,
+            "end": 19,
+            "probability": 0.9812,
+            "type": "Person",
+            "normalized_text": "Gavin Newsom"
+          },
+          {
+            "start": 43,
+            "end": 63,
+            "probability": 0.5643,
+            "type": "Organization",
+            "normalized_text": "California Government"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "text": "If only Gavin Newsom was in control of the California Government, so he could act on your recommendations. Sadly, it appears we have a democracy here, which is tyranny. https://t.co/FK1kEblzbj",
+      "id": "1958333553126842806",
+      "edit_history_tweet_ids": [
+        "1958333553126842806"
+      ],
+      "created_at": "2025-08-21T01:01:17.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878257630195712",
+            "name": "Government",
+            "description": "Government"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 21, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 37,
+            "end": 60,
+            "url": "https://t.co/byGT3ftxCV",
+            "expanded_url": "https://twitter.com/ktla/status/1958216706653884841",
+            "display_url": "x.com/ktla/status/19…"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 0,
+            "end": 8,
+            "probability": 0.8914,
+            "type": "Organization",
+            "normalized_text": "Discovery"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "text": "Discovery is going to be interesting https://t.co/byGT3ftxCV",
+      "id": "1958243843381572033",
+      "edit_history_tweet_ids": [
+        "1958243843381572033"
+      ],
+      "created_at": "2025-08-20T19:04:49.000Z",
+      "created_at_formatted": "Aug 20, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1958206441120252125"
       ],
@@ -32772,8 +32971,8 @@
     }
   ],
   "meta": {
-    "result_count": 334,
-    "newest_id": "1958206441120252125",
+    "result_count": 336,
+    "newest_id": "1958333553126842806",
     "oldest_id": "1882144700762878208"
   }
 }
