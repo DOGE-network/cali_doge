@@ -1,6 +1,417 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1721929468237795328",
+            "name": "US Election day - Nov 7th 2023",
+            "description": "State legislative elections in Ohio, Mississippi, Virginia, Kentucky, Philadelphia, Texas."
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "88",
+            "name": "Political Body",
+            "description": "A section of a government, like The Supreme Court"
+          },
+          "entity": {
+            "id": "961705302700654593",
+            "name": "United States Congress",
+            "description": "United States Congress"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847511168268644352",
+            "name": "Global Economy",
+            "description": "Conversation about global finance and economies."
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "961705302700654593",
+            "name": "United States Congress",
+            "description": "United States Congress"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1068583660914266113",
+            "name": "Government institutions",
+            "description": "Political Body"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "RT @lancelands: California, your governor just threw away $250+ million in taxes, as well as the independent redistricting commission so he…",
+      "entities": {
+        "annotations": [
+          {
+            "start": 16,
+            "end": 25,
+            "probability": 0.9841,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 14,
+            "username": "lancelands",
+            "id": "19880772"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1958776621089079704"
+      ],
+      "created_at": "2025-08-22T06:21:53.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1958776621089079704",
+      "created_at_formatted": "Aug 22, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1303718795043774465",
+            "name": "Reality stars"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1491172670917931008",
+            "name": "Comic artists & writers"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        }
+      ],
+      "text": "@CAgovernor Newsom “you come across as a troll, not someone who understands why voters left”\n\n@spencerpratt @adamcarolla @ScottAdamsSays @lisa_4_la @amyforsandiego \n\nhttps://t.co/bA08HdYtUw",
+      "edit_history_tweet_ids": [
+        "1958774564303118756"
+      ],
+      "created_at": "2025-08-22T06:13:43.000Z",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "urls": [
+          {
+            "start": 166,
+            "end": 189,
+            "url": "https://t.co/bA08HdYtUw",
+            "expanded_url": "https://www.washingtonexaminer.com/opinion/columnists/3762096/gavin-newsom-social-media-cracked-mirror/",
+            "display_url": "washingtonexaminer.com/opinion/column…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1958221983956766720/jzp-X-Pj?format=jpg&name=orig",
+                "width": 1024,
+                "height": 683
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1958221983956766720/jzp-X-Pj?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Newsom's cracked mirror",
+            "description": "Gov. Gavin Newsom's attempts to hold a mirror to MAGA are backfiring spectacularly because they are inauthentic.",
+            "unwound_url": "https://www.washingtonexaminer.com/opinion/columnists/3762096/gavin-newsom-social-media-cracked-mirror/"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "CAgovernor",
+            "id": "38349184"
+          },
+          {
+            "start": 94,
+            "end": 107,
+            "username": "spencerpratt",
+            "id": "23395456"
+          },
+          {
+            "start": 108,
+            "end": 120,
+            "username": "adamcarolla",
+            "id": "10926202"
+          },
+          {
+            "start": 121,
+            "end": 136,
+            "username": "ScottAdamsSays",
+            "id": "2853461537"
+          },
+          {
+            "start": 137,
+            "end": 147,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          },
+          {
+            "start": 148,
+            "end": 163,
+            "username": "amyforsandiego",
+            "id": "1522024718496256000"
+          }
+        ]
+      },
+      "id": "1958774564303118756",
+      "created_at_formatted": "Aug 22, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "id": "1958684561082331199",
       "edit_history_tweet_ids": [
         "1958684561082331199"
@@ -33951,8 +34362,8 @@
     }
   ],
   "meta": {
-    "result_count": 344,
-    "newest_id": "1958684561082331199",
+    "result_count": 346,
+    "newest_id": "1958776621089079704",
     "oldest_id": "1882144700762878208"
   }
 }
