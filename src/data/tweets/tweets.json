@@ -1,6 +1,209 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1958918869747474581"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "ImMeme0",
+            "id": "1511074777708085258"
+          }
+        ],
+        "urls": [
+          {
+            "start": 54,
+            "end": 77,
+            "url": "https://t.co/WGsDVGZXE9",
+            "expanded_url": "https://x.com/ImMeme0/status/1958905050866086025/video/1",
+            "display_url": "pic.x.com/WGsDVGZXE9",
+            "media_key": "13_1958904979550302208"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 26,
+            "end": 35,
+            "probability": 0.9864,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_keys": [
+          "13_1958904979550302208"
+        ],
+        "media_source_tweet_id": [
+          "1958905050866086025"
+        ]
+      },
+      "created_at": "2025-08-22T15:47:08.000Z",
+      "text": "RT @ImMeme0: Meanwhile in California…\n\nBRILLIANT! 😂😭😂 https://t.co/WGsDVGZXE9",
+      "id": "1958918869747474581",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 22, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1958918869747474581_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1958904979550302208/img/8ukPwbtI-ZtpUCC5.jpg",
+          "width": 720,
+          "height": 1280
+        }
+      ]
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1958917923105644761"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 18,
+            "username": "RealWillONeill",
+            "id": "4220346373"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-22T15:43:22.000Z",
+      "text": "RT @RealWillONeill: Assuming that this gerrymandering scheme makes it to the ballot, it will be incumbent on all of us to ensure that our r…",
+      "id": "1958917923105644761",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 22, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1958914519331479590"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 12,
+            "username": "MCGOP_CA",
+            "id": "1918336773635375104"
+          }
+        ],
+        "urls": [
+          {
+            "start": 38,
+            "end": 61,
+            "url": "https://t.co/MDCkOSFzIW",
+            "expanded_url": "https://x.com/MCGOP_CA/status/1958655147384742133/photo/1",
+            "display_url": "pic.x.com/MDCkOSFzIW",
+            "media_key": "3_1958655142229942278"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "attachments": {
+        "media_keys": [
+          "3_1958655142229942278"
+        ],
+        "media_source_tweet_id": [
+          "1958655147384742133"
+        ]
+      },
+      "created_at": "2025-08-22T15:29:50.000Z",
+      "text": "RT @MCGOP_CA: Post this everywhere!!! https://t.co/MDCkOSFzIW",
+      "id": "1958914519331479590",
+      "created_at_formatted": "Aug 22, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1958914519331479590_0.png",
+          "width": 1080,
+          "height": 1080
+        }
+      ]
+    },
+    {
       "context_annotations": [
         {
           "domain": {
@@ -34362,8 +34565,8 @@
     }
   ],
   "meta": {
-    "result_count": 346,
-    "newest_id": "1958776621089079704",
+    "result_count": 349,
+    "newest_id": "1958918869747474581",
     "oldest_id": "1882144700762878208"
   }
 }
