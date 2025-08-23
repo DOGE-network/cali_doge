@@ -1,6 +1,179 @@
 {
   "tweets": [
     {
+      "id": "1958977394603434406",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 19,
+            "username": "VivekGRamaswamy",
+            "id": "1227799690579718144"
+          }
+        ]
+      },
+      "text": "RT @VivekGRamaswamy: I’m not in this just to lead the people who agree with me, but also those who don’t. If you care about giving your kid…",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1694423773468917760",
+            "name": "Vivek Ramaswamy"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "1694423773468917760",
+            "name": "Vivek Ramaswamy"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        }
+      ],
+      "created_at": "2025-08-22T19:39:41.000Z",
+      "edit_history_tweet_ids": [
+        "1958977394603434406"
+      ],
+      "created_at_formatted": "Aug 22, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "id": "1958977037001269397",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Save_SF_2024",
+            "id": "1660422154931019778"
+          },
+          {
+            "start": 14,
+            "end": 20,
+            "username": "POTUS",
+            "id": "1879650942410481666"
+          },
+          {
+            "start": 21,
+            "end": 33,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          }
+        ]
+      },
+      "text": "@Save_SF_2024 @POTUS @GavinNewsom Adaption is hard when you believe in sunk cost theory",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "created_at": "2025-08-22T19:38:16.000Z",
+      "edit_history_tweet_ids": [
+        "1958977037001269397"
+      ],
+      "created_at_formatted": "Aug 22, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1958918869747474581"
       ],
@@ -34565,8 +34738,8 @@
     }
   ],
   "meta": {
-    "result_count": 349,
-    "newest_id": "1958918869747474581",
+    "result_count": 351,
+    "newest_id": "1958977394603434406",
     "oldest_id": "1882144700762878208"
   }
 }
