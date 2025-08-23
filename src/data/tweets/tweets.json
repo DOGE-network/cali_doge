@@ -1,6 +1,112 @@
 {
   "tweets": [
     {
+      "text": "@joffemd CHSR is just as likely to build tracks to the moon as they are to get to any city Fresno, Los Angeles or San Francisco. https://t.co/g3A1Bk64mz",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        },
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "856860708847222784",
+            "name": "Los Angeles",
+            "description": "Los Angeles"
+          }
+        }
+      ],
+      "attachments": {
+        "media_keys": [
+          "13_1959144823145078784"
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-23T06:45:12.000Z",
+      "edit_history_tweet_ids": [
+        "1959144876819235068"
+      ],
+      "id": "1959144876819235068",
+      "entities": {
+        "annotations": [
+          {
+            "start": 9,
+            "end": 12,
+            "probability": 0.4139,
+            "type": "Other",
+            "normalized_text": "CHSR"
+          },
+          {
+            "start": 91,
+            "end": 96,
+            "probability": 0.9392,
+            "type": "Place",
+            "normalized_text": "Fresno"
+          },
+          {
+            "start": 99,
+            "end": 109,
+            "probability": 0.9802,
+            "type": "Place",
+            "normalized_text": "Los Angeles"
+          },
+          {
+            "start": 114,
+            "end": 126,
+            "probability": 0.9836,
+            "type": "Place",
+            "normalized_text": "San Francisco"
+          }
+        ],
+        "urls": [
+          {
+            "start": 129,
+            "end": 152,
+            "url": "https://t.co/g3A1Bk64mz",
+            "expanded_url": "https://x.com/cali_doge/status/1959144876819235068/video/1",
+            "display_url": "pic.x.com/g3A1Bk64mz",
+            "media_key": "13_1959144823145078784"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "created_at_formatted": "Aug 23, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "username": "cali_doge"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1959144876819235068_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1959144823145078784/img/9lIrD7VI-hJLooeN.jpg",
+          "width": 480,
+          "height": 640
+        }
+      ]
+    },
+    {
       "author_id": "1859283000145608705",
       "created_at": "2025-08-23T01:58:00.000Z",
       "entities": {
@@ -34799,8 +34905,8 @@
     }
   ],
   "meta": {
-    "result_count": 353,
-    "newest_id": "1959072602242367558",
+    "result_count": 354,
+    "newest_id": "1959144876819235068",
     "oldest_id": "1882144700762878208"
   }
 }
