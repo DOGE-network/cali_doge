@@ -1,6 +1,67 @@
 {
   "tweets": [
     {
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-23T01:58:00.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 33,
+            "end": 46,
+            "probability": 0.3919,
+            "type": "Place",
+            "normalized_text": "silicon valley"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "text": "@joffemd Make $1T, since in real silicon valley style, it is vaporwear.",
+      "edit_history_tweet_ids": [
+        "1959072602242367558"
+      ],
+      "id": "1959072602242367558",
+      "created_at_formatted": "Aug 23, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-23T01:52:41.000Z",
+      "text": "@lalovestrump Umm, scissors and ears do not mix. Spend the $30 somewhere else.",
+      "edit_history_tweet_ids": [
+        "1959071264066478116"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "lalovestrump",
+            "id": "2919047954"
+          }
+        ]
+      },
+      "id": "1959071264066478116",
+      "created_at_formatted": "Aug 23, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "id": "1958977394603434406",
       "author_id": "1859283000145608705",
       "entities": {
@@ -34738,8 +34799,8 @@
     }
   ],
   "meta": {
-    "result_count": 351,
-    "newest_id": "1958977394603434406",
+    "result_count": 353,
+    "newest_id": "1959072602242367558",
     "oldest_id": "1882144700762878208"
   }
 }
