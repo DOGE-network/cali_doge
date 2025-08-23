@@ -1,6 +1,549 @@
 {
   "tweets": [
     {
+      "entities": {
+        "urls": [
+          {
+            "start": 47,
+            "end": 70,
+            "url": "https://t.co/Md9whPORRw",
+            "expanded_url": "https://x.com/spencerpratt/status/1958992175049711654/video/1",
+            "display_url": "pic.x.com/Md9whPORRw",
+            "media_key": "13_1958992029826129923"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 16,
+            "username": "spencerpratt",
+            "id": "23395456"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 18,
+            "end": 23,
+            "probability": 0.5247,
+            "type": "Other",
+            "normalized_text": "Newsom"
+          }
+        ]
+      },
+      "text": "RT @spencerpratt: Newsom clear your dead brush https://t.co/Md9whPORRw",
+      "attachments": {
+        "media_keys": [
+          "13_1958992029826129923"
+        ],
+        "media_source_tweet_id": [
+          "1958992175049711654"
+        ]
+      },
+      "id": "1959318168780079208",
+      "created_at": "2025-08-23T18:13:48.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1959318168780079208"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1303718795043774465",
+            "name": "Reality stars"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 23, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1959318168780079208_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1958992029826129923/img/P8Lu16xrXD28gbTn.jpg",
+          "width": 1080,
+          "height": 1920
+        }
+      ]
+    },
+    {
+      "text": "RT @SteveAdami: San Francisco, it’s time to shut down the party! I’ve never been on a prison yard with this level of filth, disorder, &amp; cha…",
+      "id": "1959261452130488759",
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 14,
+            "username": "SteveAdami",
+            "id": "1297318589263802371"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 16,
+            "end": 28,
+            "probability": 0.9782,
+            "type": "Place",
+            "normalized_text": "San Francisco"
+          }
+        ]
+      },
+      "created_at": "2025-08-23T14:28:26.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1959261452130488759"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "3",
+            "name": "TV Shows",
+            "description": "Television shows from around the world"
+          },
+          "entity": {
+            "id": "10000612773",
+            "name": "NFL Football",
+            "description": "Replays of classic NFL games."
+          }
+        },
+        {
+          "domain": {
+            "id": "6",
+            "name": "Sports Event"
+          },
+          "entity": {
+            "id": "1922841715473338369",
+            "name": "Chargers at 49ers"
+          }
+        },
+        {
+          "domain": {
+            "id": "11",
+            "name": "Sport",
+            "description": "Types of sports, like soccer and basketball"
+          },
+          "entity": {
+            "id": "689566306014617600",
+            "name": "American football"
+          }
+        },
+        {
+          "domain": {
+            "id": "26",
+            "name": "Sports League",
+            "description": ""
+          },
+          "entity": {
+            "id": "689566314835259392",
+            "name": "NFL"
+          }
+        },
+        {
+          "domain": {
+            "id": "27",
+            "name": "American Football Game",
+            "description": "Sports Event specific to American Football, such as Notre Dame vs. Stanford"
+          },
+          "entity": {
+            "id": "1922841715473338369",
+            "name": "Chargers at 49ers"
+          }
+        },
+        {
+          "domain": {
+            "id": "28",
+            "name": "NFL Football Game",
+            "description": "Sports Event specific to NFL Football, such as Buffalo Bills vs. New England Patriots"
+          },
+          "entity": {
+            "id": "1922841715473338369",
+            "name": "Chargers at 49ers"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1922841715473338369",
+            "name": "Chargers at 49ers"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697289971322880",
+            "name": "Sports & Fitness Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to sports nutrition, athletic apparel, sports apps, fitness venues"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "689566306014617600",
+            "name": "American football"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "689566314835259392",
+            "name": "NFL"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847900493514891265",
+            "name": "Sports",
+            "description": "Sports"
+          }
+        },
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 23, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "text": "RT @DataRepublican: @honestpollster The new Gavin Newsom: all the maniless of Harry Sisson, all the temperance of George Conway, all the hu…",
+      "id": "1959260968602484808",
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 18,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 20,
+            "end": 35,
+            "username": "honestpollster",
+            "id": "1421446810149822465"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 44,
+            "end": 55,
+            "probability": 0.9497,
+            "type": "Person",
+            "normalized_text": "Gavin Newsom"
+          },
+          {
+            "start": 78,
+            "end": 89,
+            "probability": 0.9768,
+            "type": "Person",
+            "normalized_text": "Harry Sisson"
+          },
+          {
+            "start": 114,
+            "end": 126,
+            "probability": 0.9778,
+            "type": "Person",
+            "normalized_text": "George Conway"
+          }
+        ]
+      },
+      "created_at": "2025-08-23T14:26:30.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1959260968602484808"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1138906221014949888",
+            "name": "George Conway",
+            "description": "George Conway"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "1138906221014949888",
+            "name": "George Conway",
+            "description": "George Conway"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1138906221014949888",
+            "name": "George Conway",
+            "description": "George Conway"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 23, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
+        "urls": [
+          {
+            "start": 80,
+            "end": 103,
+            "url": "https://t.co/kSJOS9asxz",
+            "expanded_url": "https://twitter.com/mayorofla/status/1958938243124404684",
+            "display_url": "x.com/mayorofla/stat…"
+          }
+        ]
+      },
+      "text": "The only to rely on is the self delusion that everything is okay if I say it so https://t.co/kSJOS9asxz",
+      "id": "1959260694886711429",
+      "created_at": "2025-08-23T14:25:25.000Z",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1959260694886711429"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1957328857989533696",
+            "name": "&TEAM"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696802391859201",
+            "name": "Entertainment & Leisure Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to movies, music, television, franchises, venues, theme parks, toys, tourism, hotels"
+          }
+        },
+        {
+          "domain": {
+            "id": "54",
+            "name": "Musician",
+            "description": "A musician in the world, like Adele or Bob Dylan"
+          },
+          "entity": {
+            "id": "1957328857989533696",
+            "name": "&TEAM"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847524658970636288",
+            "name": "Music",
+            "description": "Music and radio"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "888105153038958593",
+            "name": "K-pop",
+            "description": "K-Pop"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1957328857989533696",
+            "name": "&TEAM"
+          }
+        },
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "856860708847222784",
+            "name": "Los Angeles",
+            "description": "Los Angeles"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 23, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "text": "@joffemd CHSR is just as likely to build tracks to the moon as they are to get to any city Fresno, Los Angeles or San Francisco. https://t.co/g3A1Bk64mz",
       "context_annotations": [
         {
@@ -34905,8 +35448,8 @@
     }
   ],
   "meta": {
-    "result_count": 354,
-    "newest_id": "1959144876819235068",
+    "result_count": 358,
+    "newest_id": "1959318168780079208",
     "oldest_id": "1882144700762878208"
   }
 }
