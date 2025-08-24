@@ -2,6 +2,228 @@
   "tweets": [
     {
       "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 19,
+            "username": "GuntherEagleman",
+            "id": "1355721251180961792"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 57,
+            "end": 68,
+            "probability": 0.9739,
+            "type": "Person",
+            "normalized_text": "Gavin Newsom"
+          }
+        ]
+      },
+      "created_at": "2025-08-23T19:51:00.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "834828264786898945",
+            "name": "Drinks",
+            "description": "Drinks"
+          }
+        },
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "1006278636842782720",
+            "name": "Drink Experience",
+            "description": "Drink Experience"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "text": "RT @GuntherEagleman: NEWLY RESURFACED: Did you know that Gavin Newsom once had a drinking problem so bad he would MELT DOWN as soon as some…",
+      "id": "1959342631777169570",
+      "edit_history_tweet_ids": [
+        "1959342631777169570"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 23, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "created_at": "2025-08-23T19:35:11.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "849075668352499712",
+            "name": "Web design",
+            "description": "Web design"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "849075668352499712",
+            "name": "Web design",
+            "description": "Web design"
+          }
+        }
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 62,
+            "end": 85,
+            "url": "https://t.co/tAKkcpHTtL",
+            "expanded_url": "https://twitter.com/davidsacks47/status/1959079981801513416",
+            "display_url": "x.com/davidsacks47/s…"
+          }
+        ]
+      },
+      "text": "Amazing progress. Cleaning up our messy room is long overdue. https://t.co/tAKkcpHTtL",
+      "id": "1959338650795454644",
+      "edit_history_tweet_ids": [
+        "1959338650795454644"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 23, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
         "urls": [
           {
             "start": 47,
@@ -35448,8 +35670,8 @@
     }
   ],
   "meta": {
-    "result_count": 358,
-    "newest_id": "1959318168780079208",
+    "result_count": 360,
+    "newest_id": "1959342631777169570",
     "oldest_id": "1882144700762878208"
   }
 }
