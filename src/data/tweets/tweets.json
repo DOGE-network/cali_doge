@@ -4,6 +4,41 @@
       "entities": {
         "annotations": [
           {
+            "start": 36,
+            "end": 56,
+            "probability": 0.5634,
+            "type": "Other",
+            "normalized_text": "China High-Speed Rail"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "text": "RT @joffemd: The dark underbelly of China High-Speed Rail: many low ridership lines, huge operating losses, and massive debt. Not a great m…",
+      "created_at": "2025-08-25T15:14:06.000Z",
+      "id": "1959997722557317592",
+      "edit_history_tweet_ids": [
+        "1959997722557317592"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 25, 2025",
+      "author": {
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
             "start": 21,
             "end": 32,
             "probability": 0.9361,
@@ -36625,8 +36660,8 @@
     }
   ],
   "meta": {
-    "result_count": 373,
-    "newest_id": "1959772487023223041",
+    "result_count": 374,
+    "newest_id": "1959997722557317592",
     "oldest_id": "1882144700762878208"
   }
 }
