@@ -2,6 +2,961 @@
   "tweets": [
     {
       "entities": {
+        "annotations": [
+          {
+            "start": 21,
+            "end": 32,
+            "probability": 0.9361,
+            "type": "Person",
+            "normalized_text": "Gavin Newsom"
+          }
+        ],
+        "urls": [
+          {
+            "start": 59,
+            "end": 82,
+            "url": "https://t.co/AU6r1kq3SF",
+            "expanded_url": "https://x.com/IAMTOMMACDONALD/status/1959738815356215588/video/1",
+            "display_url": "pic.x.com/AU6r1kq3SF",
+            "media_key": "13_1959738744237694977"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 19,
+            "username": "IAMTOMMACDONALD",
+            "id": "292237349"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1959772487023223041"
+      ],
+      "attachments": {
+        "media_source_tweet_id": [
+          "1959738815356215588"
+        ],
+        "media_keys": [
+          "13_1959738744237694977"
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696940178935808",
+            "name": "Gaming Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to offline and online games such as gaming consoles, tabletop games, video game publishers"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "text": "RT @IAMTOMMACDONALD: Gavin Newsom is an EMBARRASSMENT 🤷‍♂️ https://t.co/AU6r1kq3SF",
+      "id": "1959772487023223041",
+      "created_at": "2025-08-25T00:19:06.000Z",
+      "created_at_formatted": "Aug 25, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1959772487023223041_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1959738744237694977/img/DziIjXRKxtiGZOfs.jpg",
+          "width": 720,
+          "height": 1280
+        }
+      ]
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 32,
+            "end": 43,
+            "probability": 0.9647,
+            "type": "Person",
+            "normalized_text": "Gavin Newsom"
+          },
+          {
+            "start": 74,
+            "end": 82,
+            "probability": 0.7551,
+            "type": "Organization",
+            "normalized_text": "Democrats"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 19,
+            "username": "GuntherEagleman",
+            "id": "1355721251180961792"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1959771124621017552"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "text": "RT @GuntherEagleman: BOMBSHELL: Gavin Newsom is going to be DUMPED by the Democrats as these videos go viral.\n\nThis has to be the WORST int…",
+      "id": "1959771124621017552",
+      "created_at": "2025-08-25T00:13:41.000Z",
+      "created_at_formatted": "Aug 25, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1959769981941657663"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 186,
+            "end": 209,
+            "url": "https://t.co/ESWnQ0a1Q3",
+            "expanded_url": "https://dogenetwork.org",
+            "display_url": "dogenetwork.org",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1959770000677580800/CjYaLEeH?format=jpg&name=orig",
+                "width": 2840,
+                "height": 2452
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1959770000677580800/CjYaLEeH?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Conservative Technology Group - Supporting Government Transparency | Conservative Technology Group",
+            "description": "Conservative Technology Group supports various projects related to government transparency through collaboration and in-person meetings.",
+            "unwound_url": "https://dogenetwork.org"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "houmanhemmati",
+            "id": "230307512"
+          },
+          {
+            "start": 15,
+            "end": 29,
+            "username": "Susan_Shelley",
+            "id": "615369344"
+          },
+          {
+            "start": 30,
+            "end": 42,
+            "username": "CivilRights",
+            "id": "221135570"
+          },
+          {
+            "start": 43,
+            "end": 57,
+            "username": "USAttyEssayli",
+            "id": "1914737178279862272"
+          },
+          {
+            "start": 58,
+            "end": 69,
+            "username": "hamill_law",
+            "id": "728102354151559168"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "text": "@houmanhemmati @Susan_Shelley @CivilRights @USAttyEssayli @hamill_law The time is now to get involved. I started with data 6 months ago and now starting to build teams that do things. \n\nhttps://t.co/ESWnQ0a1Q3",
+      "id": "1959769981941657663",
+      "created_at": "2025-08-25T00:09:09.000Z",
+      "created_at_formatted": "Aug 25, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 22,
+            "end": 27,
+            "probability": 0.7013,
+            "type": "Person",
+            "normalized_text": "Newsom"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 15,
+            "username": "E_Barcohana",
+            "id": "1819269305588187136"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1959768181754736885"
+      ],
+      "author_id": "1859283000145608705",
+      "text": "RT @E_Barcohana: With Newsom in the news, Californians keep getting asked why he isn’t being recalled. This is why:\n\n💰 In a recall, he can…",
+      "id": "1959768181754736885",
+      "created_at": "2025-08-25T00:01:59.000Z",
+      "created_at_formatted": "Aug 25, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 20,
+            "end": 31,
+            "probability": 0.9695,
+            "type": "Person",
+            "normalized_text": "Gavin Newsom"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 18,
+            "username": "TheKevinDalton",
+            "id": "1508867469447864324"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1959739013209989545"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "text": "RT @TheKevinDalton: Gavin Newsom has made a career of melting down and throwing a temper tantrum when asked the utmost basic questions abou…",
+      "id": "1959739013209989545",
+      "created_at": "2025-08-24T22:06:05.000Z",
+      "created_at_formatted": "Aug 24, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1959738734682980378"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 38,
+            "end": 61,
+            "url": "https://t.co/NKxWomtOq9",
+            "expanded_url": "https://x.com/MCGOP_CA/status/1959709914856890585/photo/1",
+            "display_url": "pic.x.com/NKxWomtOq9",
+            "media_key": "3_1959709903519719425"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 12,
+            "username": "MCGOP_CA",
+            "id": "1918336773635375104"
+          },
+          {
+            "start": 24,
+            "end": 37,
+            "username": "TheNosnevets",
+            "id": "21781418"
+          }
+        ]
+      },
+      "attachments": {
+        "media_source_tweet_id": [
+          "1959709914856890585"
+        ],
+        "media_keys": [
+          "3_1959709903519719425"
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "text": "RT @MCGOP_CA: Credit to @TheNosnevets https://t.co/NKxWomtOq9",
+      "id": "1959738734682980378",
+      "created_at": "2025-08-24T22:04:59.000Z",
+      "created_at_formatted": "Aug 24, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1959738734682980378_0.jpg",
+          "width": 1182,
+          "height": 836
+        }
+      ]
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1959738533197070542"
+      ],
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "COCOGOP",
+            "id": "288041411"
+          },
+          {
+            "start": 9,
+            "end": 22,
+            "username": "matt_vanswol",
+            "id": "1244068896157708289"
+          }
+        ]
+      },
+      "text": "@COCOGOP @matt_vanswol You can speak",
+      "id": "1959738533197070542",
+      "created_at": "2025-08-24T22:04:11.000Z",
+      "created_at_formatted": "Aug 24, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1959737685997949274"
+      ],
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 16,
+            "end": 30,
+            "username": "The_Kyle_Mann",
+            "id": "28021635"
+          }
+        ]
+      },
+      "text": "@DataRepublican @The_Kyle_Mann Valid",
+      "id": "1959737685997949274",
+      "created_at": "2025-08-24T22:00:49.000Z",
+      "created_at_formatted": "Aug 24, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1959736170520383506"
+      ],
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 14,
+            "end": 29,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 30,
+            "end": 43,
+            "username": "IfindRetards",
+            "id": "1872569731829604352"
+          }
+        ]
+      },
+      "text": "@Alladdin1983 @DataRepublican @IfindRetards I actually do not fault him for being physically weak. It is his profound lack of self awareness that he is weak and which caused him to publicly embarrass himself.",
+      "id": "1959736170520383506",
+      "created_at": "2025-08-24T21:54:47.000Z",
+      "created_at_formatted": "Aug 24, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 115,
+            "end": 125,
+            "probability": 0.4376,
+            "type": "Person",
+            "normalized_text": "Vanilla Ice"
+          }
+        ],
+        "urls": [
+          {
+            "start": 128,
+            "end": 151,
+            "url": "https://t.co/IXtooyWlwf",
+            "expanded_url": "https://x.com/cali_doge/status/1959734062291255775/photo/1",
+            "display_url": "pic.x.com/IXtooyWlwf",
+            "media_key": "3_1959734057228816384"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 14,
+            "end": 29,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          },
+          {
+            "start": 30,
+            "end": 43,
+            "username": "IfindRetards",
+            "id": "1872569731829604352"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1959734062291255775"
+      ],
+      "attachments": {
+        "media_keys": [
+          "3_1959734057228816384"
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "text": "@Alladdin1983 @DataRepublican @IfindRetards That’s back when he could press 150lbs. His rap prime days on par with Vanilla Ice. https://t.co/IXtooyWlwf",
+      "id": "1959734062291255775",
+      "created_at": "2025-08-24T21:46:25.000Z",
+      "created_at_formatted": "Aug 24, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1959734062291255775_0.jpg",
+          "width": 720,
+          "height": 960
+        }
+      ]
+    },
+    {
+      "entities": {
+        "annotations": [
+          {
+            "start": 37,
+            "end": 40,
+            "probability": 0.5207,
+            "type": "Other",
+            "normalized_text": "json"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "twinforces",
+            "id": "258495978"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1959731393703100764"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "text": "@twinforces All my prompt library is json. Just saying.",
+      "id": "1959731393703100764",
+      "created_at": "2025-08-24T21:35:48.000Z",
+      "created_at_formatted": "Aug 24, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1959710253995761762"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 49,
+            "end": 72,
+            "url": "https://t.co/ISOkeg3zO5",
+            "expanded_url": "https://twitter.com/tonyseruga/status/1959616444972593609",
+            "display_url": "x.com/tonyseruga/sta…"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "799022225751871488",
+            "name": "Donald Trump",
+            "description": "45th US President, Donald Trump"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1836137739353292800",
+            "name": "2024 US Election",
+            "description": "Brought to you by @Polymarket. Get live, unbiased 2024 election forecasts: https://polymarket.com/elections\n"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "text": "Not my fault, blame the rain is a moronic answer https://t.co/ISOkeg3zO5",
+      "id": "1959710253995761762",
+      "created_at": "2025-08-24T20:11:48.000Z",
+      "created_at_formatted": "Aug 24, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1959702274965639220"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 14,
+            "end": 37,
+            "url": "https://t.co/8xhjFwxsVh",
+            "expanded_url": "https://www.realclearpolitics.com/video/2025/08/24/reince_priebus_the_electoral_elephant_in_the_room_is_democrats_are_on_the_wrong_side_of_normal.html",
+            "display_url": "realclearpolitics.com/video/2025/08/…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1959678541848862720/1C6quMi1?format=jpg&name=orig",
+                "width": 750,
+                "height": 562
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1959678541848862720/1C6quMi1?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Reince Priebus: The Electoral Elephant In The Room Is Democrats Are On The Wrong Side Of Normal",
+            "description": "REINCE PRIEBUS: The most important thing in winning elections, number one, is to know where your voters are. And then the strongest indicator for that is voter registration. They're getting trampled in all 30 states (there are only 30 where you can track voter registration). But the bigger problem is, the elephant in the room here, is that the Democrats are on the wrong side of normal. The people -- they're out of step with the norms of society. It's so bad that the Democrats this week put out a memo, and they listed 45 things that Democrats shouldn't say. It's all therapy speak, and explaining away crime -- JON KARL: A memo from whom? PRIEBUS: Third Way, and it's all because -- it's not a matter of they can't put people on the doors and register people. That's all that is. It's that they're putting people on the doors. They're trying to win vote registrations. There are state parties, county parties, district parties, and they can't sell it because it's not normal. People don't want i",
+            "unwound_url": "https://www.realclearpolitics.com/video/2025/08/24/reince_priebus_the_electoral_elephant_in_the_room_is_democrats_are_on_the_wrong_side_of_normal.html"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 39,
+            "end": 54,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          },
+          {
+            "start": 55,
+            "end": 67,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "text": "Simple truth\n\nhttps://t.co/8xhjFwxsVh\n\n@PatriotDad_USA @T_Q_Gardner",
+      "id": "1959702274965639220",
+      "created_at": "2025-08-24T19:40:06.000Z",
+      "created_at_formatted": "Aug 24, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "entities": {
         "mentions": [
           {
             "start": 3,
@@ -35670,8 +36625,8 @@
     }
   ],
   "meta": {
-    "result_count": 360,
-    "newest_id": "1959342631777169570",
+    "result_count": 373,
+    "newest_id": "1959772487023223041",
     "oldest_id": "1882144700762878208"
   }
 }
