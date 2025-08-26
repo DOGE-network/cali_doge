@@ -2,6 +2,131 @@
   "tweets": [
     {
       "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 16,
+            "username": "vin4congress",
+            "id": "1653894153183584256"
+          }
+        ],
+        "urls": [
+          {
+            "start": 121,
+            "end": 139,
+            "url": "https://t.co/27m8V",
+            "display_url": "t.co/27m8V"
+          }
+        ]
+      },
+      "text": "RT @vin4congress: The fight begins and I will not stop backing our people over corrupt politicians. Vote No one Prop 50. https://t.co/27m8V…",
+      "author_id": "1859283000145608705",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        }
+      ],
+      "created_at": "2025-08-25T20:12:57.000Z",
+      "edit_history_tweet_ids": [
+        "1960072931180155145"
+      ],
+      "id": "1960072931180155145",
+      "created_at_formatted": "Aug 25, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 18,
+            "username": "Bubblebathgirl",
+            "id": "32804484"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 59,
+            "end": 71,
+            "probability": 0.9148,
+            "type": "Place",
+            "normalized_text": "Union Station"
+          },
+          {
+            "start": 76,
+            "end": 77,
+            "probability": 0.9126,
+            "type": "Place",
+            "normalized_text": "DC"
+          }
+        ]
+      },
+      "text": "RT @Bubblebathgirl: Woman explains the profound cleanup at Union Station in DC, particularly “the underpass bridge where people would throw…",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-25T19:51:24.000Z",
+      "edit_history_tweet_ids": [
+        "1960067507995422820"
+      ],
+      "id": "1960067507995422820",
+      "created_at_formatted": "Aug 25, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "entities": {
         "annotations": [
           {
             "start": 36,
@@ -36660,8 +36785,8 @@
     }
   ],
   "meta": {
-    "result_count": 374,
-    "newest_id": "1959997722557317592",
+    "result_count": 376,
+    "newest_id": "1960072931180155145",
     "oldest_id": "1882144700762878208"
   }
 }
