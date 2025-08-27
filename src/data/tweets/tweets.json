@@ -1,6 +1,70 @@
 {
   "tweets": [
     {
+      "created_at": "2025-08-27T05:40:20.000Z",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "username": "EricLDaugh",
+            "id": "763094579491008512"
+          }
+        ]
+      },
+      "id": "1960578103714914377",
+      "text": "@T_Q_Gardner @EricLDaugh A more simple answer is my kids, family, friends and neighbors live here. They deserve their best life.",
+      "edit_history_tweet_ids": [
+        "1960578103714914377"
+      ],
+      "created_at_formatted": "Aug 27, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
+      "created_at": "2025-08-27T05:05:12.000Z",
+      "author_id": "1859283000145608705",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "username": "EricLDaugh",
+            "id": "763094579491008512"
+          }
+        ]
+      },
+      "id": "1960569263724618133",
+      "text": "@T_Q_Gardner @EricLDaugh No. We will be successful at turning the state around. Our people deserve to live good lives.",
+      "edit_history_tweet_ids": [
+        "1960569263724618133"
+      ],
+      "created_at_formatted": "Aug 27, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "entities": {
         "mentions": [
           {
@@ -36785,8 +36849,8 @@
     }
   ],
   "meta": {
-    "result_count": 376,
-    "newest_id": "1960072931180155145",
+    "result_count": 378,
+    "newest_id": "1960578103714914377",
     "oldest_id": "1882144700762878208"
   }
 }
