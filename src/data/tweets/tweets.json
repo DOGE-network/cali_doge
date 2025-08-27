@@ -1,6 +1,41 @@
 {
   "tweets": [
     {
+      "id": "1960714890294796394",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "Cartel_Cal",
+            "id": "1573087373193158656"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 33,
+            "end": 46,
+            "probability": 0.9328,
+            "type": "Place",
+            "normalized_text": "Silicon Valley"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1960714890294796394"
+      ],
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-27T14:43:52.000Z",
+      "text": "@Cartel_Cal No way we give up on Silicon Valley. Innovation happens here, so we must reinvent how to get smart conservatives running government again.",
+      "created_at_formatted": "Aug 27, 2025",
+      "author": {
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "created_at": "2025-08-27T05:40:20.000Z",
       "author_id": "1859283000145608705",
       "entities": {
@@ -36849,8 +36884,8 @@
     }
   ],
   "meta": {
-    "result_count": 378,
-    "newest_id": "1960578103714914377",
+    "result_count": 379,
+    "newest_id": "1960714890294796394",
     "oldest_id": "1882144700762878208"
   }
 }
