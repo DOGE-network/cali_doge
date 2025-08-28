@@ -2,6 +2,187 @@
   "tweets": [
     {
       "edit_history_tweet_ids": [
+        "1961091161768247434"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1046545033657081857",
+            "name": "News",
+            "description": "News"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1074755369530880001",
+            "name": "Journalists",
+            "description": "Journalism"
+          }
+        }
+      ],
+      "id": "1961091161768247434",
+      "entities": {
+        "urls": [
+          {
+            "start": 60,
+            "end": 83,
+            "url": "https://t.co/DmigJwzQGD",
+            "expanded_url": "https://thevoicesf.org/dogs-and-ghosts-at-the-civic-center-inn/",
+            "display_url": "thevoicesf.org/dogs-and-ghost…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1960738454347943936/VmTKVXFv?format=jpg&name=orig",
+                "width": 720,
+                "height": 539
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1960738454347943936/VmTKVXFv?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "Dogs and ghosts at the Civic Center Inn - The Voice of San Francisco",
+            "description": "Speaker Emerita Nancy Pelosi was scheduled to take the stage outside City Hall. A group of well-dressed politicos and commissioners gathered to commemorate Women’s Equality Day. Pelosi was a no-show. With nothing to see or report, I took an early exit and headed to the Civic Center Inn. Sam Patel, who runs the nearby Best […]",
+            "unwound_url": "https://thevoicesf.org/dogs-and-ghosts-at-the-civic-center-inn/"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "TheVOSF",
+            "id": "1717677726591840256"
+          },
+          {
+            "start": 31,
+            "end": 46,
+            "username": "EricaJSandberg",
+            "id": "128632829"
+          }
+        ]
+      },
+      "text": "RT @TheVOSF: Read the story by @EricaJSandberg out today. 👇\nhttps://t.co/DmigJwzQGD",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-28T15:39:02.000Z",
+      "created_at_formatted": "Aug 28, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1961090713552404789"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1961090713552404789",
+      "entities": {
+        "urls": [
+          {
+            "start": 19,
+            "end": 42,
+            "url": "https://t.co/ItLf3bcHkS",
+            "expanded_url": "https://x.com/susancrabtree/status/1879211081631186992",
+            "display_url": "x.com/susancrabtree/…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 17,
+            "username": "susancrabtree",
+            "id": "21333396"
+          }
+        ]
+      },
+      "text": "RT @susancrabtree: https://t.co/ItLf3bcHkS",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-28T15:37:16.000Z",
+      "created_at_formatted": "Aug 28, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
+        "1961089325845893602"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 83,
+            "end": 108,
+            "probability": 0.6686,
+            "type": "Other",
+            "normalized_text": "California High-Speed Rail"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1961089325845893602",
+      "text": "RT @joffemd: On Tuesday, DOT cancelled federal funding of four projects related to California High-Speed Rail. One of these was a $24.7 mil…",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-28T15:31:45.000Z",
+      "created_at_formatted": "Aug 28, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "edit_history_tweet_ids": [
         "1960883546656268308"
       ],
       "entities": {
@@ -36919,8 +37100,8 @@
     }
   ],
   "meta": {
-    "result_count": 380,
-    "newest_id": "1960883546656268308",
+    "result_count": 383,
+    "newest_id": "1961091161768247434",
     "oldest_id": "1882144700762878208"
   }
 }
