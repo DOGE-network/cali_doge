@@ -1,6 +1,41 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1960883546656268308"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 92,
+            "end": 98,
+            "probability": 0.7103,
+            "type": "Other",
+            "normalized_text": "FireAid"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 16,
+            "username": "KevinKileyCA",
+            "id": "3180247177"
+          }
+        ]
+      },
+      "text": "RT @KevinKileyCA: We are finally about to get answers as to where the $100 million from the FireAid concert went. \n\nAs part of our Judiciar…",
+      "author_id": "1859283000145608705",
+      "created_at": "2025-08-28T01:54:03.000Z",
+      "id": "1960883546656268308",
+      "created_at_formatted": "Aug 28, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge"
+      }
+    },
+    {
       "id": "1960714890294796394",
       "entities": {
         "mentions": [
@@ -36884,8 +36919,8 @@
     }
   ],
   "meta": {
-    "result_count": 379,
-    "newest_id": "1960714890294796394",
+    "result_count": 380,
+    "newest_id": "1960883546656268308",
     "oldest_id": "1882144700762878208"
   }
 }
