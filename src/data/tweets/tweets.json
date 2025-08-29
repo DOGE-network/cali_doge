@@ -1,6 +1,348 @@
 {
   "tweets": [
     {
+      "entities": {
+        "mentions": [
+          {
+            "start": 3,
+            "end": 17,
+            "username": "NeverNewsom50",
+            "id": "1564796292345106432"
+          },
+          {
+            "start": 19,
+            "end": 30,
+            "username": "CAgovernor",
+            "id": "38349184"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 59,
+            "end": 68,
+            "probability": 0.984,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1961271520690663447"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "RT @NeverNewsom50: @CAgovernor Because of the raw numbers, California has more murders than all red states combined.",
+      "id": "1961271520690663447",
+      "created_at": "2025-08-29T03:35:43.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 29, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "baystreet85",
+            "id": "1599772212348624897"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "username": "lanheechen",
+            "id": "87048122"
+          },
+          {
+            "start": 25,
+            "end": 30,
+            "username": "grok",
+            "id": "1720665183188922368"
+          },
+          {
+            "start": 49,
+            "end": 61,
+            "username": "baystreet85",
+            "id": "1599772212348624897"
+          },
+          {
+            "start": 267,
+            "end": 283,
+            "username": "HarmeetKDhillon",
+            "id": "201066140"
+          },
+          {
+            "start": 284,
+            "end": 293,
+            "username": "elonmusk",
+            "id": "44196397"
+          },
+          {
+            "start": 294,
+            "end": 304,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 128,
+            "end": 137,
+            "probability": 0.8228,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1961265565303279966"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "@baystreet85 @lanheechen @grok That around $233M @baystreet85\n\nThats ignoring all the money spent on promoting going around the California constitution. Face it. Your government lies, cheats and steals.\n\nTime to fire them and replace with adults like these people. \n\n@HarmeetKDhillon @elonmusk @lisa_4_la",
+      "id": "1961265565303279966",
+      "created_at": "2025-08-29T03:12:03.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 29, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "baystreet85",
+            "id": "1599772212348624897"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "username": "lanheechen",
+            "id": "87048122"
+          },
+          {
+            "start": 29,
+            "end": 34,
+            "username": "grok",
+            "id": "1720665183188922368"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 69,
+            "end": 78,
+            "probability": 0.9559,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1961262788283961766"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "text": "@baystreet85 @lanheechen Hey @grok what is the estimated cost of the California prop 50 vote?\nPlus share the cost of the redistricting implementation if prop 50 passes.",
+      "id": "1961262788283961766",
+      "created_at": "2025-08-29T03:01:01.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 29, 2025",
+      "author": {
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "id": "1961209059501338985",
       "entities": {
         "mentions": [
@@ -37181,8 +37523,8 @@
     }
   ],
   "meta": {
-    "result_count": 385,
-    "newest_id": "1961209059501338985",
+    "result_count": 388,
+    "newest_id": "1961271520690663447",
     "oldest_id": "1882144700762878208"
   }
 }
