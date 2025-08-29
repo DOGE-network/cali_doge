@@ -1,6 +1,87 @@
 {
   "tweets": [
     {
+      "id": "1961209059501338985",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "baystreet85",
+            "id": "1599772212348624897"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "username": "lanheechen",
+            "id": "87048122"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1961209059501338985"
+      ],
+      "text": "@baystreet85 @lanheechen Fiscal impact of few millions dollars of costs is a flat out lie",
+      "created_at": "2025-08-28T23:27:31.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 28, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 86,
+            "end": 95,
+            "probability": 0.9855,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 14,
+            "username": "lanheechen",
+            "id": "87048122"
+          }
+        ]
+      },
+      "id": "1961208633477517642",
+      "edit_history_tweet_ids": [
+        "1961208633477517642"
+      ],
+      "text": "RT @lanheechen: This is the prime example of why title and summary of propositions in California should NOT be written by a partisan hack:…",
+      "created_at": "2025-08-28T23:25:50.000Z",
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 28, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705",
+        "name": "California DOGE"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1961091161768247434"
       ],
@@ -37100,8 +37181,8 @@
     }
   ],
   "meta": {
-    "result_count": 383,
-    "newest_id": "1961091161768247434",
+    "result_count": 385,
+    "newest_id": "1961209059501338985",
     "oldest_id": "1882144700762878208"
   }
 }
