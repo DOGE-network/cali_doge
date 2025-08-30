@@ -2,6 +2,148 @@
   "tweets": [
     {
       "entities": {
+        "urls": [
+          {
+            "start": 62,
+            "end": 85,
+            "url": "https://t.co/pkKWLWz6HQ",
+            "expanded_url": "https://twitter.com/alladdin1983/status/1961594310811378099",
+            "display_url": "x.com/alladdin1983/s…"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 48,
+            "end": 61,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          }
+        ]
+      },
+      "id": "1961602749600002339",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1407811550987972617",
+            "name": "Industries"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1584479029557481473",
+            "name": "Loans"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "text": "We are not surprised. Thanks for this reporting @Alladdin1983 https://t.co/pkKWLWz6HQ",
+      "edit_history_tweet_ids": [
+        "1961602749600002339"
+      ],
+      "created_at": "2025-08-30T01:31:54.000Z",
+      "created_at_formatted": "Aug 30, 2025",
+      "author": {
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
+      "entities": {
         "mentions": [
           {
             "start": 3,
@@ -37523,8 +37665,8 @@
     }
   ],
   "meta": {
-    "result_count": 388,
-    "newest_id": "1961271520690663447",
+    "result_count": 389,
+    "newest_id": "1961602749600002339",
     "oldest_id": "1882144700762878208"
   }
 }
