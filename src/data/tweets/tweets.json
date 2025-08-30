@@ -1,6 +1,121 @@
 {
   "tweets": [
     {
+      "edit_history_tweet_ids": [
+        "1961791089972797828"
+      ],
+      "text": "@BuffyWicks @GavinNewsom Haven’t these companies threatened to pull out of California if you pass this? Not sure how that helps all the gig workers by effectively cancelling their jobs.",
+      "id": "1961791089972797828",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "BuffyWicks",
+            "id": "210833051"
+          },
+          {
+            "start": 12,
+            "end": 24,
+            "username": "GavinNewsom",
+            "id": "11347122"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 75,
+            "end": 84,
+            "probability": 0.9896,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ]
+      },
+      "created_at": "2025-08-30T14:00:18.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "created_at_formatted": "Aug 30, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE",
+        "username": "cali_doge",
+        "id": "1859283000145608705"
+      }
+    },
+    {
       "entities": {
         "urls": [
           {
@@ -37665,8 +37780,8 @@
     }
   ],
   "meta": {
-    "result_count": 389,
-    "newest_id": "1961602749600002339",
+    "result_count": 390,
+    "newest_id": "1961791089972797828",
     "oldest_id": "1882144700762878208"
   }
 }
