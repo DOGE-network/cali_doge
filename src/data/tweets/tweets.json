@@ -1,6 +1,1581 @@
 {
   "tweets": [
     {
+      "text": "@Alladdin1983 @T_Q_Gardner @Titanshell42069 @PatriotDad_USA Truth",
+      "created_at": "2025-08-31T18:03:40.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1962214721018585378",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 14,
+            "end": 26,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 27,
+            "end": 43,
+            "username": "Titanshell42069",
+            "id": "1770510201310859264"
+          },
+          {
+            "start": 44,
+            "end": 59,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1962214721018585378"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "@Alladdin1983 @T_Q_Gardner @Titanshell42069 @PatriotDad_USA Unfortunately many in California do not listen to anything not from their “team”. Politicians here have been very successful in creating factions.\n\nIt how situations like an Oakland street filled with trash for a year are allowed to happen. People are blind to what they do not",
+      "created_at": "2025-08-31T17:52:31.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1957328857989533696",
+            "name": "&TEAM"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696802391859201",
+            "name": "Entertainment & Leisure Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to movies, music, television, franchises, venues, theme parks, toys, tourism, hotels"
+          }
+        },
+        {
+          "domain": {
+            "id": "54",
+            "name": "Musician",
+            "description": "A musician in the world, like Adele or Bob Dylan"
+          },
+          "entity": {
+            "id": "1957328857989533696",
+            "name": "&TEAM"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847524658970636288",
+            "name": "Music",
+            "description": "Music and radio"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "888105153038958593",
+            "name": "K-pop",
+            "description": "K-Pop"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1957328857989533696",
+            "name": "&TEAM"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1962211917487108310",
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 14,
+            "end": 26,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 27,
+            "end": 43,
+            "username": "Titanshell42069",
+            "id": "1770510201310859264"
+          },
+          {
+            "start": 44,
+            "end": 59,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1962211917487108310"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "Oakland deserves blue collar factory jobs for High School graduates, taxes spent on the police, crime reduction and cleaning up the city. \n\nMake Oakland residents proud to live there. https://t.co/IzoX2SpqAg",
+      "entities": {
+        "annotations": [
+          {
+            "start": 0,
+            "end": 6,
+            "probability": 0.8393,
+            "type": "Place",
+            "normalized_text": "Oakland"
+          },
+          {
+            "start": 145,
+            "end": 151,
+            "probability": 0.8916,
+            "type": "Place",
+            "normalized_text": "Oakland"
+          }
+        ],
+        "urls": [
+          {
+            "start": 184,
+            "end": 207,
+            "url": "https://t.co/IzoX2SpqAg",
+            "expanded_url": "https://twitter.com/eastoaklanddad/status/1961596426938716519",
+            "display_url": "x.com/eastoaklanddad…"
+          }
+        ]
+      },
+      "created_at": "2025-08-31T17:45:55.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "940708551827140608",
+            "name": "Barbara Lee",
+            "description": "US Representative Barbara Lee (CA-13)"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "940708551827140608",
+            "name": "Barbara Lee",
+            "description": "US Representative Barbara Lee (CA-13)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847511168268644352",
+            "name": "Global Economy",
+            "description": "Conversation about global finance and economies."
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "940708551827140608",
+            "name": "Barbara Lee",
+            "description": "US Representative Barbara Lee (CA-13)"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1962210255166972355",
+      "edit_history_tweet_ids": [
+        "1962210255166972355"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "Hilarious California example of I don’t have facts. \n\nI will wait for the oops I was wrong after the corruption and greed becomes too much to ignore. \n\n@T_Q_Gardner @Titanshell42069 @Alladdin1983 @PatriotDad_USA https://t.co/EshSVnQgCu",
+      "entities": {
+        "annotations": [
+          {
+            "start": 10,
+            "end": 19,
+            "probability": 0.9568,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 152,
+            "end": 164,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 165,
+            "end": 181,
+            "username": "Titanshell42069",
+            "id": "1770510201310859264"
+          },
+          {
+            "start": 182,
+            "end": 195,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 196,
+            "end": 211,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          }
+        ],
+        "urls": [
+          {
+            "start": 212,
+            "end": 235,
+            "url": "https://t.co/EshSVnQgCu",
+            "expanded_url": "https://twitter.com/baystreet85/status/1962189578191958317",
+            "display_url": "x.com/baystreet85/st…"
+          }
+        ]
+      },
+      "created_at": "2025-08-31T17:35:15.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "29",
+            "name": "Events [Entity Service]",
+            "description": "Real world events. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "913142676819648512",
+            "name": "Cryptocurrencies",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1484181943616884743",
+            "name": "Cryptocoins"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1492162686204854274",
+            "name": "Digital assets & cryptocurrency",
+            "description": "Cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1665772587467653121",
+            "name": "2024 US Presidential Election",
+            "description": "2024 US Presidential Election"
+          }
+        },
+        {
+          "domain": {
+            "id": "174",
+            "name": "Digital Assets & Crypto",
+            "description": "For cryptocurrency entities"
+          },
+          "entity": {
+            "id": "1139229372198469633",
+            "name": "Dogecoin cryptocurrency"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1962207570174824706",
+      "edit_history_tweet_ids": [
+        "1962207570174824706"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "RT @joffemd: Merced officials were \"blind-sided\" by the High-Speed Rail Authority's tentative decision to temporarily bypass their city to…",
+      "entities": {
+        "annotations": [
+          {
+            "start": 56,
+            "end": 80,
+            "probability": 0.6489,
+            "type": "Organization",
+            "normalized_text": "High-Speed Rail Authority"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ]
+      },
+      "created_at": "2025-08-31T17:30:57.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1962206489415999509",
+      "edit_history_tweet_ids": [
+        "1962206489415999509"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "@NeverNewsom50 @GovPressOffice We are thankful that Newsom is working on controlling his disturbing hand gestures. The public doesn’t need to be subjected to that. \n\nMental illness is a real problem and we wish him good health.",
+      "entities": {
+        "annotations": [
+          {
+            "start": 52,
+            "end": 57,
+            "probability": 0.6211,
+            "type": "Person",
+            "normalized_text": "Newsom"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "NeverNewsom50",
+            "id": "1564796292345106432"
+          },
+          {
+            "start": 15,
+            "end": 30,
+            "username": "GovPressOffice",
+            "id": "1285266390"
+          }
+        ]
+      },
+      "created_at": "2025-08-31T15:28:03.000Z",
+      "author_id": "1859283000145608705",
+      "id": "1962175559590728177",
+      "edit_history_tweet_ids": [
+        "1962175559590728177"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "@baystreet85 @lanheechen @grok @HarmeetKDhillon @elonmusk @lisa_4_la If you want to go down the list of costly programs that didn’t accomplish much, I give you the High Speed Train, homelessness policies and every single Climate Change policy since 2012. \n\nNone of them accomplished anything but enrich political allies.",
+      "entities": {
+        "annotations": [
+          {
+            "start": 175,
+            "end": 179,
+            "probability": 0.4637,
+            "type": "Other",
+            "normalized_text": "Train"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "baystreet85",
+            "id": "1599772212348624897"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "username": "lanheechen",
+            "id": "87048122"
+          },
+          {
+            "start": 25,
+            "end": 30,
+            "username": "grok",
+            "id": "1720665183188922368"
+          },
+          {
+            "start": 31,
+            "end": 47,
+            "username": "HarmeetKDhillon",
+            "id": "201066140"
+          },
+          {
+            "start": 48,
+            "end": 57,
+            "username": "elonmusk",
+            "id": "44196397"
+          },
+          {
+            "start": 58,
+            "end": 68,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ]
+      },
+      "created_at": "2025-08-31T15:18:52.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1265415402915393537",
+            "name": "Climate change"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1962173248667611283",
+      "edit_history_tweet_ids": [
+        "1962173248667611283"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "@baystreet85 @lanheechen @grok @HarmeetKDhillon @elonmusk @lisa_4_la Your analysis avoids the total cost to the taxpayers of California. \n\nNot sure how you define fiscal impact, but it pays to be aware of the total cost of a project, not just one year of many. https://t.co/8FA9gs1Kdb",
+      "entities": {
+        "annotations": [
+          {
+            "start": 125,
+            "end": 134,
+            "probability": 0.9815,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "baystreet85",
+            "id": "1599772212348624897"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "username": "lanheechen",
+            "id": "87048122"
+          },
+          {
+            "start": 25,
+            "end": 30,
+            "username": "grok",
+            "id": "1720665183188922368"
+          },
+          {
+            "start": 31,
+            "end": 47,
+            "username": "HarmeetKDhillon",
+            "id": "201066140"
+          },
+          {
+            "start": 48,
+            "end": 57,
+            "username": "elonmusk",
+            "id": "44196397"
+          },
+          {
+            "start": 58,
+            "end": 68,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ],
+        "urls": [
+          {
+            "start": 261,
+            "end": 284,
+            "url": "https://t.co/8FA9gs1Kdb",
+            "expanded_url": "https://x.com/cali_doge/status/1962156067464544548/photo/1",
+            "display_url": "pic.x.com/8FA9gs1Kdb",
+            "media_key": "3_1962156063463280640"
+          }
+        ]
+      },
+      "created_at": "2025-08-31T14:10:36.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696848252391426",
+            "name": "Financial Services Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to Banks, Credit cards, Insurance, Investments, Stocks "
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "781974596148793345",
+            "name": "Business & finance"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "857878777191211008",
+            "name": "Leadership",
+            "description": "Leadership"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "808713037230157824",
+            "name": "Elon Musk",
+            "description": "Elon Musk"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1091420346660470784",
+            "name": "Tech personalities",
+            "description": "Tech Professionals"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1166406108623163392",
+            "name": "Business personalities"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "attachments": {
+        "media_keys": [
+          "3_1962156063463280640"
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "id": "1962156067464544548",
+      "edit_history_tweet_ids": [
+        "1962156067464544548"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "photo",
+          "url": "/media/1962156067464544548_0.jpg",
+          "width": 720,
+          "height": 960
+        }
+      ]
+    },
+    {
+      "text": "@lalovestrump The solution to homelessness helping people get into long term mental health treatment. It solves many problems facing California. \n\n@spencerpratt @adamcarolla @lisa_4_la",
+      "entities": {
+        "annotations": [
+          {
+            "start": 133,
+            "end": 142,
+            "probability": 0.9754,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 13,
+            "username": "lalovestrump",
+            "id": "2919047954"
+          },
+          {
+            "start": 147,
+            "end": 160,
+            "username": "spencerpratt",
+            "id": "23395456"
+          },
+          {
+            "start": 161,
+            "end": 173,
+            "username": "adamcarolla",
+            "id": "10926202"
+          },
+          {
+            "start": 174,
+            "end": 184,
+            "username": "lisa_4_la",
+            "id": "1870693229810892800"
+          }
+        ]
+      },
+      "created_at": "2025-08-31T13:55:10.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1303718795043774465",
+            "name": "Reality stars"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1962152182847004987",
+      "edit_history_tweet_ids": [
+        "1962152182847004987"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "Important skills to add to your capabilities\n\n@T_Q_Gardner @Titanshell42069 @PatriotDad_USA @DataRepublican https://t.co/RoYHjCGqDs",
+      "created_at": "2025-08-31T13:48:02.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557697333571112960",
+            "name": "Technology Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to softwares, apps, communication equipments, hardwares"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "848920371311001600",
+            "name": "Technology",
+            "description": "Technology and computing"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "848921413196984320",
+            "name": "Computer programming",
+            "description": "Computer programming"
+          }
+        },
+        {
+          "domain": {
+            "id": "45",
+            "name": "Brand Vertical",
+            "description": "Top level entities that describe a Brands industry"
+          },
+          "entity": {
+            "id": "781974597226799105",
+            "name": "B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "781974597172203520",
+            "name": "Services - B2B"
+          }
+        },
+        {
+          "domain": {
+            "id": "47",
+            "name": "Brand",
+            "description": "Brands and Companies"
+          },
+          "entity": {
+            "id": "10040692468",
+            "name": "GitHub"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1962150387944935847",
+      "entities": {
+        "mentions": [
+          {
+            "start": 46,
+            "end": 58,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 59,
+            "end": 75,
+            "username": "Titanshell42069",
+            "id": "1770510201310859264"
+          },
+          {
+            "start": 76,
+            "end": 91,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          },
+          {
+            "start": 92,
+            "end": 107,
+            "username": "DataRepublican",
+            "id": "1320917783597625349"
+          }
+        ],
+        "urls": [
+          {
+            "start": 108,
+            "end": 131,
+            "url": "https://t.co/RoYHjCGqDs",
+            "expanded_url": "https://twitter.com/twinforces/status/1961944710844719549",
+            "display_url": "x.com/twinforces/sta…"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1962150387944935847"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "text": "Here is yet another scam promoted by politicians that have wasted billions. Newsom had years to make any progress on  the issues like water storage and fire prevention. He has failed.\n\n@ScottAdamsSays @spencerpratt @adamcarolla @joffemd https://t.co/EkkBNuCG0R",
+      "created_at": "2025-08-31T13:45:52.000Z",
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "35",
+            "name": "Politician",
+            "description": "Politicians in the world, like Joe Biden"
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696888568045569",
+            "name": "Food & Beverage Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent and related to foods & beverages such as snacks, soft drinks, beers."
+          }
+        },
+        {
+          "domain": {
+            "id": "56",
+            "name": "Actor",
+            "description": "An actor or actress in the world, like Kate Winslet or Leonardo DiCaprio"
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "30",
+            "name": "Entities [Entity Service]",
+            "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain"
+          },
+          "entity": {
+            "id": "825047692124442624",
+            "name": "Food",
+            "description": "Food"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "834828264786898945",
+            "name": "Drinks",
+            "description": "Drinks"
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "834828445238431744",
+            "name": "Generic Drinks",
+            "description": "Generic Drinks"
+          }
+        },
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "850146068683571201",
+            "name": "Water",
+            "description": "Water"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "10026364236",
+            "name": "Dell"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "834828264786898945",
+            "name": "Drinks",
+            "description": "Drinks"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "850146068683571201",
+            "name": "Water",
+            "description": "Water"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "999344319885524992",
+            "name": "Gavin Newsom",
+            "description": "Candidate for Governor of California Gavin Newsom"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070032753834438656",
+            "name": "Political figures",
+            "description": "Politician"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1070726196793462784",
+            "name": "Adam Carolla",
+            "description": "American radio personality, television host, comedian, and actor"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1265415402915393537",
+            "name": "Climate change"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1303718795043774465",
+            "name": "Reality stars"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1491172670917931008",
+            "name": "Comic artists & writers"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1535254985427910656",
+            "name": "Spencer Pratt"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "author_id": "1859283000145608705",
+      "id": "1962149842995888497",
+      "entities": {
+        "mentions": [
+          {
+            "start": 185,
+            "end": 200,
+            "username": "ScottAdamsSays",
+            "id": "2853461537"
+          },
+          {
+            "start": 201,
+            "end": 214,
+            "username": "spencerpratt",
+            "id": "23395456"
+          },
+          {
+            "start": 215,
+            "end": 227,
+            "username": "adamcarolla",
+            "id": "10926202"
+          },
+          {
+            "start": 228,
+            "end": 236,
+            "username": "joffemd",
+            "id": "18560905"
+          }
+        ],
+        "urls": [
+          {
+            "start": 237,
+            "end": 260,
+            "url": "https://t.co/EkkBNuCG0R",
+            "expanded_url": "https://twitter.com/securewaterca/status/1958590910562017574",
+            "display_url": "x.com/securewaterca/…"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1962149842995888497"
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "name": "California DOGE"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1961791089972797828"
       ],
@@ -37780,8 +39355,8 @@
     }
   ],
   "meta": {
-    "result_count": 390,
-    "newest_id": "1961791089972797828",
+    "result_count": 401,
+    "newest_id": "1962214721018585378",
     "oldest_id": "1882144700762878208"
   }
 }
