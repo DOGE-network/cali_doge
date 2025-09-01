@@ -1,6 +1,639 @@
 {
   "tweets": [
     {
+      "created_at": "2025-08-31T23:31:08.000Z",
+      "text": "I voted for this. Do San Francisco next. \n\nhttps://t.co/5MdjLhyiDV",
+      "id": "1962297132301594842",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1962297132301594842"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 21,
+            "end": 33,
+            "probability": 0.9803,
+            "type": "Place",
+            "normalized_text": "San Francisco"
+          }
+        ],
+        "urls": [
+          {
+            "start": 43,
+            "end": 66,
+            "url": "https://t.co/5MdjLhyiDV",
+            "expanded_url": "https://www.usatoday.com/story/opinion/voices/2025/08/29/trump-dc-police-crime-arrests/85864285007/",
+            "display_url": "usatoday.com/story/opinion/…",
+            "images": [
+              {
+                "url": "https://pbs.twimg.com/news_img/1961377365633769472/WCbhtzOU?format=jpg&name=orig",
+                "width": 1600,
+                "height": 800
+              },
+              {
+                "url": "https://pbs.twimg.com/news_img/1961377365633769472/WCbhtzOU?format=jpg&name=150x150",
+                "width": 150,
+                "height": 150
+              }
+            ],
+            "status": 200,
+            "title": "I live in DC. I'm glad Trump sent in the National Guard to fight crime. | Opinion",
+            "description": "President Donald Trump's deployment of National Guard soldiers to fight crime in Washington, DC, is necessary because local leaders are inept.",
+            "unwound_url": "https://www.usatoday.com/story/opinion/voices/2025/08/29/trump-dc-police-crime-arrests/85864285007/"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-31T21:38:57.000Z",
+      "text": "@NeverNewsom50 @jjstyx We used to export surfer good vibes and innovative companies",
+      "id": "1962268897702494696",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1962268897702494696"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 14,
+            "username": "NeverNewsom50",
+            "id": "1564796292345106432"
+          },
+          {
+            "start": 15,
+            "end": 22,
+            "username": "jjstyx",
+            "id": "96595086"
+          }
+        ]
+      },
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-31T21:32:47.000Z",
+      "text": "@ScottAdamsSays Never too late for good governance",
+      "id": "1962267348599255260",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1962267348599255260"
+      ],
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "10",
+            "name": "Person",
+            "description": "Named people in the world like Nelson Mandela"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "58",
+            "name": "Entertainment Personality",
+            "description": "An entertainment personality in the world, like Anderson Cooper or Miranda Sings"
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1491172670917931008",
+            "name": "Comic artists & writers"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1549015486666420224",
+            "name": "Scott Adams"
+          }
+        }
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 15,
+            "username": "ScottAdamsSays",
+            "id": "2853461537"
+          }
+        ]
+      },
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "attachments": {
+        "media_source_tweet_id": [
+          "1962036002886996387"
+        ],
+        "media_keys": [
+          "13_1962035874579038208"
+        ]
+      },
+      "created_at": "2025-08-31T21:23:20.000Z",
+      "text": "RT @lalovestrump: 🎶 Made up my mind to make a new start ..Going to California with an achin’ in my heart 🎶 https://t.co/xZNc00b0g3",
+      "id": "1962264969577378215",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1962264969577378215"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 67,
+            "end": 76,
+            "probability": 0.9845,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "urls": [
+          {
+            "start": 107,
+            "end": 130,
+            "url": "https://t.co/xZNc00b0g3",
+            "expanded_url": "https://x.com/lalovestrump/status/1962036002886996387/video/1",
+            "display_url": "pic.x.com/xZNc00b0g3",
+            "media_key": "13_1962035874579038208"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 16,
+            "username": "lalovestrump",
+            "id": "2919047954"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696940178935808",
+            "name": "Gaming Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to offline and online games such as gaming consoles, tabletop games, video game publishers"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      },
+      "media": [
+        {
+          "type": "video",
+          "url": "/media/1962264969577378215_0.jpg",
+          "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/1962035874579038208/img/VW1I57EDaXeUtJX2.jpg",
+          "width": 766,
+          "height": 576
+        }
+      ]
+    },
+    {
+      "created_at": "2025-08-31T21:18:28.000Z",
+      "text": "RT @InformedMama209: AB84, the California bill that would disimate non classroom based charter schools, homeschool programs and exosystem.…",
+      "id": "1962263744496709911",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1962263744496709911"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 31,
+            "end": 40,
+            "probability": 0.8267,
+            "type": "Place",
+            "normalized_text": "California"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 19,
+            "username": "InformedMama209",
+            "id": "1527750133273661440"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1552291412820893697",
+            "name": "Education Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to education such as colleges, school material, schools"
+          }
+        },
+        {
+          "domain": {
+            "id": "65",
+            "name": "Interests and Hobbies Vertical",
+            "description": "Top level interests and hobbies groupings, like Food or Travel"
+          },
+          "entity": {
+            "id": "847546154439000064",
+            "name": "Education",
+            "description": "Education through the lens of those passionate about resources and news. This topic excludes Education policy and reform."
+          }
+        },
+        {
+          "domain": {
+            "id": "66",
+            "name": "Interests and Hobbies Category",
+            "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations"
+          },
+          "entity": {
+            "id": "852272390092410880",
+            "name": "Homeschooling",
+            "description": "Homeschooling"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847546154439000064",
+            "name": "Education",
+            "description": "Education through the lens of those passionate about resources and news. This topic excludes Education policy and reform."
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847547282010497024",
+            "name": "Parenting",
+            "description": "Family and parenting"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "852272390092410880",
+            "name": "Homeschooling",
+            "description": "Homeschooling"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-31T21:15:47.000Z",
+      "text": "@T_Q_Gardner @Titanshell42069 @Alladdin1983 @PatriotDad_USA Valid NPC rules",
+      "id": "1962263068177788975",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1962263068177788975"
+      ],
+      "entities": {
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "T_Q_Gardner",
+            "id": "1823134447912316928"
+          },
+          {
+            "start": 13,
+            "end": 29,
+            "username": "Titanshell42069",
+            "id": "1770510201310859264"
+          },
+          {
+            "start": 30,
+            "end": 43,
+            "username": "Alladdin1983",
+            "id": "1471084664"
+          },
+          {
+            "start": 44,
+            "end": 59,
+            "username": "PatriotDad_USA",
+            "id": "1688698460625584128"
+          }
+        ]
+      },
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-31T19:49:15.000Z",
+      "text": "@MissionLoco I continue to be baffled by the California legislators short sightedness. Waymo has made huge progress in SF. Others are not far behind. This legislation will doom the industry.\n\n@joffemd @TheVOSF",
+      "id": "1962241293138182166",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1962241293138182166"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 45,
+            "end": 54,
+            "probability": 0.9067,
+            "type": "Place",
+            "normalized_text": "California"
+          },
+          {
+            "start": 87,
+            "end": 91,
+            "probability": 0.6673,
+            "type": "Organization",
+            "normalized_text": "Waymo"
+          },
+          {
+            "start": 119,
+            "end": 120,
+            "probability": 0.3899,
+            "type": "Place",
+            "normalized_text": "SF"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 12,
+            "username": "MissionLoco",
+            "id": "1490783731929411587"
+          },
+          {
+            "start": 192,
+            "end": 200,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 201,
+            "end": 209,
+            "username": "TheVOSF",
+            "id": "1717677726591840256"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-31T18:40:45.000Z",
+      "text": "@TheVOSF Crime, open drug use, and mentality ill homeless keep the foot traffic down which is the cause of most of San Francisco’s problems.",
+      "id": "1962224053802201479",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1962224053802201479"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 115,
+            "end": 127,
+            "probability": 0.9868,
+            "type": "Place",
+            "normalized_text": "San Francisco"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 8,
+            "username": "TheVOSF",
+            "id": "1717677726591840256"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "1037076073719025664",
+            "name": "Traffic",
+            "description": "Traffic"
+          }
+        },
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
+      "created_at": "2025-08-31T18:25:15.000Z",
+      "text": "RT @joffemd: Join me and the @TheVOSF to discuss the fate of San Francisco Centre and other local issues on X Spaces at 11am tomorrow (Sund…",
+      "id": "1962220151463723277",
+      "author_id": "1859283000145608705",
+      "edit_history_tweet_ids": [
+        "1962220151463723277"
+      ],
+      "entities": {
+        "annotations": [
+          {
+            "start": 61,
+            "end": 80,
+            "probability": 0.89,
+            "type": "Place",
+            "normalized_text": "San Francisco Centre"
+          },
+          {
+            "start": 108,
+            "end": 115,
+            "probability": 0.8335,
+            "type": "Other",
+            "normalized_text": "X Spaces"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 3,
+            "end": 11,
+            "username": "joffemd",
+            "id": "18560905"
+          },
+          {
+            "start": 29,
+            "end": 37,
+            "username": "TheVOSF",
+            "id": "1717677726591840256"
+          }
+        ]
+      },
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "156",
+            "name": "Cities",
+            "description": "Cities around the world"
+          },
+          "entity": {
+            "id": "908354585005146113",
+            "name": "San Francisco",
+            "description": "San Francisco"
+          }
+        }
+      ],
+      "created_at_formatted": "Aug 31, 2025",
+      "author": {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg",
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE"
+      }
+    },
+    {
       "text": "@Alladdin1983 @T_Q_Gardner @Titanshell42069 @PatriotDad_USA Truth",
       "created_at": "2025-08-31T18:03:40.000Z",
       "author_id": "1859283000145608705",
@@ -39355,8 +39988,8 @@
     }
   ],
   "meta": {
-    "result_count": 401,
-    "newest_id": "1962214721018585378",
+    "result_count": 410,
+    "newest_id": "1962297132301594842",
     "oldest_id": "1882144700762878208"
   }
 }
