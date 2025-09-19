@@ -35,7 +35,7 @@
     "@types/nodemailer": "^6.4.17",
     "@upstash/redis": "^1.35.0",
     "@vercel/analytics": "^1.5.0",
-    "axios": "^1.9.0",
+    "axios": "^1.12.0",
     "badge-maker": "^5.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
