@@ -14,7 +14,10 @@ export default function NetworkPage() {
         <div className="mt-4 lg:mt-0 lg:ml-8">
           <div className="bg-white rounded-lg shadow-md p-4 border border-gray-200 w-80" data-tour="mailing-list">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">Join Our Mailing List</h3>
-            <MailingList className="w-full" uniqueId="network-page" />
+            <a href="https://gaggle.email/join/community@dogenetwork.org" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center text-blue-600 hover:text-blue-800 transition-colors"> click me</a>
           </div>
         </div>
       </div>
