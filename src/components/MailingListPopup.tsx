@@ -30,6 +30,12 @@ export default function MailingListPopup() {
     setIsOpen(false)
   }
 
+  const handleSuccess = () => {
+    // Store the user's subscription preference
+    localStorage.setItem('newsletter_subscribed', 'true')
+    setIsOpen(false)
+  }
+
   // Don't render the component at all when on the Join page
   if (pathname === '/network') {
     return null
@@ -56,6 +62,7 @@ export default function MailingListPopup() {
           href="https://gaggle.email/join/community@dogenetwork.org"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleSuccess}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 text-center block"
         >
           Join Mailing List
