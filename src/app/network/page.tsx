@@ -1,7 +1,6 @@
 'use client';
 import { FaExternalLinkAlt, FaTwitter } from 'react-icons/fa';
 import Image from 'next/image';
-import MailingList from '@/components/MailingList';
 
 export default function NetworkPage() {
   return (
@@ -13,8 +12,15 @@ export default function NetworkPage() {
         </div>
         <div className="mt-4 lg:mt-0 lg:ml-8">
           <div className="bg-white rounded-lg shadow-md p-4 border border-gray-200 w-80" data-tour="mailing-list">
-            <h3 className="text-sm font-semibold text-gray-700 mb-3">Join Our Mailing List</h3>
-            <MailingList className="w-full" uniqueId="network-page" />
+
+            <a 
+              href="https://gaggle.email/join/community@dogenetwork.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 text-center block"
+            >
+              Join Mailing List
+            </a>
           </div>
         </div>
       </div>
