@@ -23,15 +23,6 @@ export default function MailingListPopup() {
     }
   }, [pathname])
 
-  const handleSuccess = () => {
-    // Set the localStorage flag immediately
-    localStorage.setItem('newsletter_subscribed', 'true')
-    
-    // Add a 5-second delay before closing the popup
-    setTimeout(() => {
-      setIsOpen(false)
-    }, 5000)
-  }
 
   const handleDecline = () => {
     // Store the user's preference
@@ -65,7 +56,6 @@ export default function MailingListPopup() {
           href="https://gaggle.email/join/community@dogenetwork.org"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={handleSuccess}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 text-center block"
         >
           Join Mailing List
