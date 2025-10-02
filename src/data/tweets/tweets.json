@@ -1,6 +1,292 @@
 {
   "tweets": [
     {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "46",
+            "name": "Business Taxonomy",
+            "description": "Categories within Brand Verticals that narrow down the scope of Brands"
+          },
+          "entity": {
+            "id": "1557696940178935808",
+            "name": "Gaming Business",
+            "description": "Brands, companies, advertisers and every non-person handle with the profit intent related to offline and online games such as gaming consoles, tabletop games, video game publishers"
+          }
+        },
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "1148230949382922240",
+            "name": "Board games"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847527650667094017",
+            "name": "Gaming",
+            "description": "Gaming"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "872578743771963392",
+            "name": "Tabletop gaming",
+            "description": "Board Games"
+          }
+        },
+        {
+          "domain": {
+            "id": "173",
+            "name": "Product Taxonomy",
+            "description": "A product taxonomy for labeling categories of products. "
+          },
+          "entity": {
+            "id": "1148230949382922240",
+            "name": "Board games"
+          }
+        },
+        {
+          "domain": {
+            "id": "159",
+            "name": "States",
+            "description": "States, provinces, or prefectures, like California or Fukushima Prefecture"
+          },
+          "entity": {
+            "id": "856860158428798977",
+            "name": "California",
+            "description": "California"
+          }
+        }
+      ],
+      "id": "1973714836229087259",
+      "created_at": "2025-10-02T11:41:01.000Z",
+      "author_id": "1859283000145608705",
+      "text": "Maybe we can turn it into a boardgame, California Shutdown",
+      "entities": {
+        "annotations": [
+          {
+            "start": 39,
+            "end": 57,
+            "probability": 0.7781,
+            "type": "Other",
+            "normalized_text": "California Shutdown"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1973714836229087259"
+      ],
+      "created_at_formatted": "Oct 2, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "1486451280109182976",
+            "name": "GDP - Gross Domestic Product"
+          }
+        }
+      ],
+      "id": "1973710490816966708",
+      "created_at": "2025-10-02T11:23:45.000Z",
+      "author_id": "1859283000145608705",
+      "text": "3/3 As of late 2025, the U.S. government debt is about 125% of GDP—significantly above the postwar average of roughly 66%. This means non-essential staff levels should be permanently downsized by a similar proportion, targeting a total reduction that matches the current overage",
+      "entities": {
+        "annotations": [
+          {
+            "start": 25,
+            "end": 28,
+            "probability": 0.7971,
+            "type": "Place",
+            "normalized_text": "U.S."
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1973710490816966708"
+      ],
+      "created_at_formatted": "Oct 2, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "context_annotations": [
+        {
+          "domain": {
+            "id": "67",
+            "name": "Interests and Hobbies",
+            "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks"
+          },
+          "entity": {
+            "id": "1486451280109182976",
+            "name": "GDP - Gross Domestic Product"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847511168268644352",
+            "name": "Global Economy",
+            "description": "Conversation about global finance and economies."
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "847878884917886977",
+            "name": "Politics",
+            "description": "Politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "900740740468191232",
+            "name": "Political issues",
+            "description": "Political issues"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1291447199595782144",
+            "name": "United States politics"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1518689897296453633",
+            "name": "United States political issues"
+          }
+        },
+        {
+          "domain": {
+            "id": "131",
+            "name": "Unified Twitter Taxonomy",
+            "description": "A taxonomy of user interests. "
+          },
+          "entity": {
+            "id": "1561886046505222144",
+            "name": "National debt of the United States"
+          }
+        }
+      ],
+      "id": "1973710488967213560",
+      "created_at": "2025-10-02T11:23:44.000Z",
+      "author_id": "1859283000145608705",
+      "text": "2/3 To integrate staff reductions directly proportional to the United States' national debt-to-GDP ratio, update the exercise so that the permanent workforce cut percentage mirrors this fiscal benchmark.",
+      "entities": {
+        "annotations": [
+          {
+            "start": 63,
+            "end": 75,
+            "probability": 0.8918,
+            "type": "Place",
+            "normalized_text": "United States"
+          }
+        ]
+      },
+      "edit_history_tweet_ids": [
+        "1973710488967213560"
+      ],
+      "created_at_formatted": "Oct 2, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
+      "id": "1973710485951480165",
+      "created_at": "2025-10-02T11:23:44.000Z",
+      "entities": {
+        "urls": [
+          {
+            "start": 149,
+            "end": 172,
+            "url": "https://t.co/J9xjfNq8HS",
+            "expanded_url": "https://dogenetwork.org/docs/events/americafest-2025",
+            "display_url": "dogenetwork.org/docs/events/am…",
+            "status": 404,
+            "unwound_url": "https://dogenetwork.org/docs/events/americafest-2025"
+          }
+        ],
+        "annotations": [
+          {
+            "start": 27,
+            "end": 41,
+            "probability": 0.5578,
+            "type": "Other",
+            "normalized_text": "CTG AmericaFest"
+          }
+        ]
+      },
+      "author_id": "1859283000145608705",
+      "text": "1/3 As part of our planned CTG AmericaFest event, I created this breakout session: Shutdown non-essential parts of the government tabletop exercise\n\nhttps://t.co/J9xjfNq8HS",
+      "edit_history_tweet_ids": [
+        "1973710485951480165"
+      ],
+      "created_at_formatted": "Oct 2, 2025",
+      "author": {
+        "id": "1859283000145608705",
+        "username": "cali_doge",
+        "name": "California DOGE",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1934359691251097601/yEbaYN_W_normal.jpg"
+      }
+    },
+    {
       "edit_history_tweet_ids": [
         "1973620436073410632"
       ],
@@ -47830,8 +48116,8 @@
     }
   ],
   "meta": {
-    "result_count": 508,
-    "newest_id": "1973620436073410632",
+    "result_count": 512,
+    "newest_id": "1973714836229087259",
     "oldest_id": "1882144700762878208"
   }
 }
