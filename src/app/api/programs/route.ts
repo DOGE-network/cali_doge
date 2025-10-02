@@ -3,7 +3,6 @@ import { programs } from '@/lib/api/dataAccess';
 import type { Program } from '@/types/program';
 import type { Database } from '@/types/supabase';
 
-export const runtime = 'edge';
 export const revalidate = 3600; // Revalidate every hour
 
 interface ProgramResponse {

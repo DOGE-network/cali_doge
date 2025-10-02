@@ -103,6 +103,9 @@
     "tsx": "^4.19.4",
     "typescript": "^5.3.3"
   },
+  "optionalDependencies": {
+    "@esbuild/linux-x64": "^0.24.0"
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
