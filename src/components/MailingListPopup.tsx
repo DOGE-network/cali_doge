@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import MailingList from './MailingList'
 import { usePathname } from 'next/navigation'
 
 export default function MailingListPopup() {
@@ -62,7 +61,15 @@ export default function MailingListPopup() {
         <p className="text-gray-600 mb-4">
           Stay updated with our latest news and updates!
         </p>
-        <MailingList onSuccess={handleSuccess} uniqueId="popup" />
+        <a 
+          href="https://gaggle.email/join/community@dogenetwork.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleSuccess}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 text-center block"
+        >
+          Join Mailing List
+        </a>
         <div className="mt-4 text-center">
           <button
             onClick={handleDecline}
