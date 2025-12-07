@@ -235,7 +235,7 @@ export function TweetCard({ tweet, isFirst = false }: TweetCardProps) {
     // If it's already a clean media URL, return it
     if (url.startsWith('/media/')) {
       // Extract just the filename part if it's a Twitter API URL
-      const match = url.match(/\/media\/([^\/]+)$/);
+      const match = url.match(/\/media\/([^/]+)$/);
       if (match) {
         return `/media/${match[1]}`;
       }
@@ -247,7 +247,7 @@ export function TweetCard({ tweet, isFirst = false }: TweetCardProps) {
     
     // Remove any domain names and clean the path
     const cleanPath = url
-      .replace(/^https?:\/\/[^\/]+\//, '') // Remove domain
+      .replace(/^https?:\/\/[^/]+\//, '') // Remove domain
       .replace(/^\/?media\/?/, '') // Remove media prefix
       .replace(/[^a-zA-Z0-9._-]/g, '_'); // Clean filename
     
