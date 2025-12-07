@@ -117,8 +117,7 @@ interface DepartmentDetailCardProps extends DetailCardProps {
 export function DepartmentDetailCard({ 
   item, 
   isSelected, 
-  // eslint-disable-next-line no-unused-vars
-  onSelect, 
+  onSelect: _onSelect, 
   matchField, 
   matchSnippet, 
   query, 
@@ -299,7 +298,7 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
           totalAmount,
           transactionCount
         });
-      } catch (e) {
+      } catch {
         setSpendData(null);
       } finally {
         setLoading(false);
@@ -421,7 +420,7 @@ export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matc
           totalAmount,
           transactionCount
         });
-      } catch (e) {
+      } catch {
         setSpendData(null);
       } finally {
         setLoading(false);
@@ -526,7 +525,7 @@ export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSn
           totalAmount,
           transactionCount
         });
-      } catch (e) {
+      } catch {
         setSpendData(null);
       } finally {
         setLoading(false);

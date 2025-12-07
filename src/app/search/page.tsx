@@ -66,8 +66,7 @@ function SearchPageClient() {
     vendorYears?: number[];
     budgetYears?: number[];
   }>>({});
-  // eslint-disable-next-line no-unused-vars
-  const [totalsLoading, setTotalsLoading] = useState(false);
+  const [_totalsLoading, setTotalsLoading] = useState(false);
 
   // Auto-trigger search on mount if query is not empty
   useEffect(() => {

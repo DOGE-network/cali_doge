@@ -10,7 +10,7 @@ import { getFromCache, setInCache, invalidateByTag } from '@/lib/cache';
 import type { Database } from '@/types/supabase';
 
 // Base class for all data access
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class QueryBuilder<T> {
   protected table: string;
   protected defaultTTL: number = 3600; // 1 hour default cache

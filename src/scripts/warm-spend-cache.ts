@@ -58,7 +58,7 @@ async function preflightCheck() {
     try {
       const res = await fetch(`${baseUrl}${ep}`);
       if (res.ok) return;
-    } catch (e) {
+    } catch {
       // try next endpoint
     }
   }

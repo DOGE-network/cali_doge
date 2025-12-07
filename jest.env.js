@@ -4,7 +4,7 @@ process.env.TEST_MODE = process.env.TEST_MODE || 'mock';
 try {
   const dotenv = require('dotenv');
   dotenv.config({ path: '.env.local' });
-} catch (error) {
+} catch {
   // Ignore if dotenv or .env.local not available
 }
 
@@ -17,6 +17,6 @@ try {
   global.Headers = Headers;
   global.Request = Request;
   global.Response = Response;
-} catch (error) {
+} catch {
   // Ignore if node-fetch not available
 } 

@@ -60,7 +60,7 @@ export async function GET(request: Request) {
             'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200'
           }
         });
-      } catch (error) {
+      } catch {
         console.log('Program not found:', projectCode);
         return NextResponse.json(
           { error: 'Program not found' },
