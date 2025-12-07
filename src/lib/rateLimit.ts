@@ -88,7 +88,7 @@ export function getClientIP(request: NextRequest): string {
     if (connection && connection.remoteAddress) {
       return connection.remoteAddress;
     }
-  } catch (error) {
+  } catch {
     // Ignore errors accessing connection info
   }
   

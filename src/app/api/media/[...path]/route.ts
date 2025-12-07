@@ -28,7 +28,7 @@ export async function GET(
     try {
       // Check if file exists and is readable
       await access(filePath, constants.R_OK);
-    } catch (error) {
+    } catch {
       // File doesn't exist or isn't readable, try fallback
       const fallbackUrl = request.nextUrl.searchParams.get('fallback');
       if (fallbackUrl) {

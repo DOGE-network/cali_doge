@@ -14,7 +14,7 @@ if (isNodeEnv) {
   try {
     // Use dynamic import to avoid bundling in client builds
     nodemailer = require('nodemailer');
-  } catch (error) {
+  } catch {
     // Ignore module loading errors in Edge Runtime
     console.warn('Node.js modules not available in this environment');
   }

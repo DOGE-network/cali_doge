@@ -11,7 +11,7 @@ function parseLogFile(logPath: string) {
   let entries: any[];
   try {
     entries = JSON.parse(raw);
-  } catch (e) {
+  } catch {
     // Try to parse as NDJSON
     entries = raw.split('\n').filter(Boolean).map(line => JSON.parse(line));
   }
