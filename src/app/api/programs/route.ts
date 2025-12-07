@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { programs } from '@/lib/api/dataAccess';
 import type { Program } from '@/types/program';
 import type { Database } from '@/types/supabase';
@@ -17,10 +17,9 @@ interface ProgramResponse {
   };
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const url = new URL(request.url || '', 'http://localhost');
-    const searchParams = url.searchParams;
+    const searchParams = request.nextUrl.searchParams;
     
     // Parse query parameters
     const page = parseInt(searchParams.get('page') || '1', 10);
