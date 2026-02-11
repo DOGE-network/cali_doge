@@ -209,7 +209,7 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const query = searchParams.get('q')?.toLowerCase() || '';
-    const types = searchParams.get('types')?.split(',') || ['departments', 'vendors', 'programs', 'funds'];
+    const types = searchParams.get('types')?.split(',') || ['department', 'vendor', 'program', 'fund'];
     const limit = parseInt(searchParams.get('limit') || '10', 10);
     const excludeCommon = searchParams.get('exclude_common') === 'true';
     

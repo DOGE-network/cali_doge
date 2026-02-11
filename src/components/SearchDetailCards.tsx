@@ -24,7 +24,9 @@ interface DetailCardProps {
 // HighlightMatch component
 function HighlightMatch({ text, query }: { text: string; query?: string }) {
   if (!query) return <>{text}</>;
-  const regex = new RegExp(`(${query})`, 'ig');
+  // Escape special regex characters to prevent crashes on queries like "C++", "(test)", etc.
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escaped})`, 'ig');
   const parts = text.split(regex);
   return (
     <>
@@ -305,7 +307,6 @@ export function VendorDetailCard({ item, isSelected, onSelect, matchField, match
       }
     };
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.term, item.type]);
 
   if (item.type !== 'vendor') return null;
@@ -427,7 +428,6 @@ export function ProgramDetailCard({ item, isSelected, onSelect, matchField, matc
       }
     };
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.id, item.type]);
 
   if (item.type !== 'program') return null;
@@ -532,7 +532,6 @@ export function FundDetailCard({ item, isSelected, onSelect, matchField, matchSn
       }
     };
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.id, item.type]);
 
   if (item.type !== 'fund') return null;

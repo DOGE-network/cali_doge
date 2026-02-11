@@ -10,110 +10,102 @@ import {
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
 
+  // Only apply rate limiting to API routes (not pages, static assets, or _next routes)
+  const isApiRoute = request.nextUrl.pathname.startsWith('/api/');
+
   // Skip rate limiting for internal alert API calls to prevent loops
   if (request.nextUrl.pathname === '/api/alert') {
     return response;
   }
 
-  // --- IP Rate Limiting and Abuse Protection ---
-  const ip = getClientIP(request);
-  
-  // Skip rate limiting for 'unknown' IPs entirely
-  if (ip === 'unknown') {
-    console.log(`[MIDDLEWARE] Skipping rate limiting for unknown IP: ${ip}`);
-    return response;
-  }
-  
-  // Ensure IP is never blank - if it is, skip rate limiting
-  if (!ip || ip === '') {
-    console.log(`[MIDDLEWARE] Skipping rate limiting for blank IP`);
-    return response;
-  }
-  
-  const userAgent = request.headers.get('user-agent') || 'unknown';
-  const config = getRateLimitConfig(request.nextUrl.pathname);
+  // --- IP Rate Limiting and Abuse Protection (API routes only) ---
+  if (isApiRoute) {
+    const ip = getClientIP(request);
 
-  // Debug logging
-  console.log(`[MIDDLEWARE] ${request.method} ${request.nextUrl.pathname} from IP: ${ip}, config: ${config.keyPrefix}`);
+    // Skip rate limiting for 'unknown' IPs entirely
+    if (ip === 'unknown') {
+      // skip
+    } else if (!ip || ip === '') {
+      // skip
+    } else {
+      const userAgent = request.headers.get('user-agent') || 'unknown';
+      const config = getRateLimitConfig(request.nextUrl.pathname);
 
-  // Block abusive IPs
-  if (await isIPBlocked(ip)) {
-    console.log(`[MIDDLEWARE] IP ${ip} is blocked`);
-    
-    // Send email alert via API (runs in Node.js environment)
-    try {
-      await fetch(`${request.nextUrl.origin}/api/alert`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          subject: 'IP Block Alert',
-          message: `IP ${ip} blocked due to repeated violations`,
-          data: { 
-            ip, 
-            userAgent, 
-            path: request.nextUrl.pathname,
-            timestamp: new Date().toISOString(),
-            blockReason: 'Repeated rate limit violations'
+      // Block abusive IPs
+      if (await isIPBlocked(ip)) {
+        // Send email alert via API (runs in Node.js environment)
+        try {
+          await fetch(`${request.nextUrl.origin}/api/alert`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              subject: 'IP Block Alert',
+              message: `IP ${ip} blocked due to repeated violations`,
+              data: {
+                ip,
+                userAgent,
+                path: request.nextUrl.pathname,
+                timestamp: new Date().toISOString(),
+                blockReason: 'Repeated rate limit violations'
+              }
+            })
+          });
+        } catch (error) {
+          console.error('Failed to send IP block alert:', error);
+        }
+
+        return new NextResponse('Your IP has been temporarily blocked due to abuse. If you believe this is an error, contact support.', {
+          status: 403,
+          headers: {
+            'Content-Type': 'text/plain',
+            'Retry-After': '3600'
           }
-        })
-      });
-    } catch (error) {
-      console.error('Failed to send IP block alert:', error);
-    }
-    
-    return new NextResponse('Your IP has been temporarily blocked due to abuse. If you believe this is an error, contact support.', {
-      status: 403,
-      headers: {
-        'Content-Type': 'text/plain',
-        'Retry-After': '3600'
+        });
       }
-    });
-  }
 
-  // Enforce rate limit
-  const rateResult = await checkRateLimit(ip, config);
-  console.log(`[MIDDLEWARE] Rate limit result for ${ip}: success=${rateResult.success}, remaining=${rateResult.remaining}`);
-  
-  if (!rateResult.success) {
-    console.log(`[MIDDLEWARE] Rate limit exceeded for ${ip}, returning 429`);
-    
-    // Send email alert via API (runs in Node.js environment)
-    try {
-      await fetch(`${request.nextUrl.origin}/api/alert`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          subject: 'Rate Limit Alert',
-          message: `Rate limit exceeded for IP ${ip} on ${config.keyPrefix}`,
-          data: { 
-            ip, 
-            userAgent, 
-            path: request.nextUrl.pathname, 
-            config: config.keyPrefix,
-            rateLimit: {
-              maxRequests: config.maxRequests,
-              windowMs: config.windowMs,
-              remaining: rateResult.remaining,
-              retryAfter: rateResult.retryAfter,
-              resetTime: rateResult.resetTime
-            },
-            timestamp: new Date().toISOString()
+      // Enforce rate limit
+      const rateResult = await checkRateLimit(ip, config);
+
+      if (!rateResult.success) {
+        // Send email alert via API (runs in Node.js environment)
+        try {
+          await fetch(`${request.nextUrl.origin}/api/alert`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              subject: 'Rate Limit Alert',
+              message: `Rate limit exceeded for IP ${ip} on ${config.keyPrefix}`,
+              data: {
+                ip,
+                userAgent,
+                path: request.nextUrl.pathname,
+                config: config.keyPrefix,
+                rateLimit: {
+                  maxRequests: config.maxRequests,
+                  windowMs: config.windowMs,
+                  remaining: rateResult.remaining,
+                  retryAfter: rateResult.retryAfter,
+                  resetTime: rateResult.resetTime
+                },
+                timestamp: new Date().toISOString()
+              }
+            })
+          });
+        } catch (error) {
+          console.error('Failed to send rate limit alert:', error);
+        }
+
+        return new NextResponse('Too many requests from your IP. Please try again later.', {
+          status: 429,
+          headers: {
+            'Content-Type': 'text/plain',
+            'Retry-After': rateResult.retryAfter?.toString() || '60',
+            'X-RateLimit-Remaining': rateResult.remaining.toString(),
+            'X-RateLimit-Reset': rateResult.resetTime.toString()
           }
-        })
-      });
-    } catch (error) {
-      console.error('Failed to send rate limit alert:', error);
-    }
-    
-    return new NextResponse('Too many requests from your IP. Please try again later.', {
-      status: 429,
-      headers: {
-        'Content-Type': 'text/plain',
-        'Retry-After': rateResult.retryAfter?.toString() || '60',
-        'X-RateLimit-Remaining': rateResult.remaining.toString(),
-        'X-RateLimit-Reset': rateResult.resetTime.toString()
+        });
       }
-    });
+    }
   }
 
   // Only keeping basic non-restrictive security headers
@@ -131,9 +123,8 @@ export async function middleware(request: NextRequest) {
     response.headers.set('X-Frame-Options', 'SAMEORIGIN');
   }
 
-  // Add CDN caching headers for static assets
+  // Add CDN caching headers for static assets (images, media)
   if (
-    request.nextUrl.pathname.startsWith('/_next/static/') ||
     request.nextUrl.pathname.startsWith('/images/') ||
     request.nextUrl.pathname.startsWith('/media/') ||
     request.nextUrl.pathname.endsWith('.jpg') ||
@@ -173,23 +164,13 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Add caching headers for the root page
-  if (request.nextUrl.pathname === '/') {
-    response.headers.set(
-      'Cache-Control',
-      'public, max-age=60, stale-while-revalidate=600'
-    );
-  }
-
   return response;
 }
 
 export const config = {
   matcher: [
-    '/_next/static/:path*',
+    '/api/:path*',
     '/images/:path*',
     '/media/:path*',
-    '/api/:path*',
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
 }; 
