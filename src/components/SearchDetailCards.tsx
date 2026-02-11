@@ -24,7 +24,9 @@ interface DetailCardProps {
 // HighlightMatch component
 function HighlightMatch({ text, query }: { text: string; query?: string }) {
   if (!query) return <>{text}</>;
-  const regex = new RegExp(`(${query})`, 'ig');
+  // Escape special regex characters to prevent crashes on queries like "C++", "(test)", etc.
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escaped})`, 'ig');
   const parts = text.split(regex);
   return (
     <>
